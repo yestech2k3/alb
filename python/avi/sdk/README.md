@@ -48,15 +48,17 @@ Usage Examples
 --------------
 
 - **Import Avi API Session:**
-
+```python
    from avi.sdk.avi_api import ApiSession
+```
 
 - **Create Avi API Session:**
-
+```python
    api = ApiSession.get_session("10.10.10.42", "admin", "something", tenant="admin")
+```
 
 - **Create VirtualService Using Pool sample_pool:**
-
+```python
    pool_obj = api.get_object_by_name('pool', 'sample_pool')
    pool_ref = api.get_obj_ref(pool_obj)
    services_obj = [{'port': 80, 'enable_ssl': False}]
@@ -64,9 +66,10 @@ Usage Examples
             'services': services_obj, 'pool_ref': pool_ref}
    resp = api.post('virtualservice', data=vs_obj)
    print resp.json()
+```
 
 - **Create VirtualService Using Pool sample_pool on 17.x Controllers:**
-
+```python
    pool_obj = api.post('pool', data={'name': 'sample_pool'}, api_version='17.2.4')
    pool_ref = api.get_obj_ref(pool_obj)
    services_obj = [{'port': 80, 'enable_ssl': False}]
@@ -74,16 +77,19 @@ Usage Examples
             'services': services_obj, 'pool_ref': pool_ref}
    resp = api.post('virtualservice', data=vs_obj, api_version='17.2.4')
    print resp.json()
+```
 
 - **Print List of All VirtualServices:**
-
+```python
    resp = api.get('virtualservice')
    for vs in resp.json()['results']:
       print vs['name']
+```
 
 - **Delete VirtualService:**
-
+```python
    resp = api.delete('virtualservice', 'sample_vs')
+```
 
 # SAML Authentication Usage
 ### Prerequisite:
@@ -158,17 +164,17 @@ api = ApiSession.get_session("10.10.10.42", "onelogin_username", "onelogin_passw
   script, then token can be used for authentication. Along with that,
   information regarding username and tenant information can also be retrieved
   as follows::
-
+```python
       token=os.environ.get('API_TOKEN')
       user=os.environ.get('USER')
       tenant=os.environ.get('TENANT')
       api = ApiSession.get_session("localhost", user, token=token, tenant=tenant)
-
+```
 
 # virtualservice_examples_api Usage
  Create a basic virtualservice named
   basic-vs:
-
+```
    virtualservice_examples_api.py -h
    virtualservice_examples_api.py -c 10.10.25.42 -i 10.90.64.141 -o create-basic-vs -s 10.90.64.12
-
+```
