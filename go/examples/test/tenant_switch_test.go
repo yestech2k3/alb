@@ -1,10 +1,12 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package test
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/models"
-	"github.com/avinetworks/sdk/go/session"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/models"
+	"github.com/vmware/alb-sdk/go/session"
 	"os"
 	"testing"
 )

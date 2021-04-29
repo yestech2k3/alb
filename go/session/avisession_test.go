@@ -1,3 +1,5 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package session
 
 import (
@@ -11,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/avinetworks/sdk/go/models"
 	"github.com/golang/glog"
+	"github.com/vmware/alb-sdk/go/models"
 )
 
 var AVI_CONTROLLER = os.Getenv("AVI_CONTROLLER")

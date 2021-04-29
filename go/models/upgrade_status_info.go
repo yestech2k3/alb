@@ -1,7 +1,8 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package models
 
 // This file is auto-generated.
-// Please contact avi-sdk@avinetworks.com for any change requests.
 
 // UpgradeStatusInfo upgrade status info
 // swagger:model UpgradeStatusInfo
@@ -34,6 +35,9 @@ type UpgradeStatusInfo struct {
 
 	// Enqueue time of Upgrade operation. Field introduced in 18.2.6.
 	EnqueueTime *string `json:"enqueue_time,omitempty"`
+
+	// Fips-mode for the entire system. Field introduced in 20.1.5.
+	FipsMode *bool `json:"fips_mode,omitempty"`
 
 	// Record of past operations on this node. Field introduced in 20.1.4.
 	History []*OpsHistory `json:"history,omitempty"`

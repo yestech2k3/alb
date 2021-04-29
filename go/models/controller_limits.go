@@ -1,7 +1,8 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package models
 
 // This file is auto-generated.
-// Please contact avi-sdk@avinetworks.com for any change requests.
 
 // ControllerLimits controller limits
 // swagger:model ControllerLimits
@@ -13,7 +14,7 @@ type ControllerLimits struct {
 	// Controller system limits specific to cloud type for all controller sizes. Field introduced in 20.1.1.
 	ControllerCloudLimits []*ControllerCloudLimits `json:"controller_cloud_limits,omitempty"`
 
-	// Controller system limits specific to controller sizing. Field introduced in 20.1.1. Maximum of 3 items allowed.
+	// Controller system limits specific to controller sizing. Field introduced in 20.1.1. Maximum of 4 items allowed.
 	ControllerSizingLimits []*ControllerSizingLimits `json:"controller_sizing_limits,omitempty"`
 
 	// Maximum number of default routes per vrfcontext. Field introduced in 20.1.1.

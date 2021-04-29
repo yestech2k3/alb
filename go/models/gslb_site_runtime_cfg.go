@@ -1,7 +1,8 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package models
 
 // This file is auto-generated.
-// Please contact avi-sdk@avinetworks.com for any change requests.
 
 // GslbSiteRuntimeCfg gslb site runtime cfg
 // swagger:model GslbSiteRuntimeCfg
@@ -18,6 +19,9 @@ type GslbSiteRuntimeCfg struct {
 
 	// GHM info published for a site.
 	GhmInfo *ConfigInfo `json:"ghm_info,omitempty"`
+
+	// Gslb JWTProfile info published for a site. Field introduced in 20.1.5.
+	GjwtInfo *ConfigInfo `json:"gjwt_info,omitempty"`
 
 	// Gslb info published for a site.
 	GlbInfo *ConfigInfo `json:"glb_info,omitempty"`

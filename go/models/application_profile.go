@@ -1,7 +1,8 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package models
 
 // This file is auto-generated.
-// Please contact avi-sdk@avinetworks.com for any change requests.
 
 // ApplicationProfile application profile
 // swagger:model ApplicationProfile
@@ -28,6 +29,9 @@ type ApplicationProfile struct {
 
 	// Specifies the HTTP application proxy profile parameters.
 	HTTPProfile *HTTPApplicationProfile `json:"http_profile,omitempty"`
+
+	// List of labels to be used for granular RBAC. Field introduced in 20.1.5.
+	Markers []*RoleFilterMatchLabel `json:"markers,omitempty"`
 
 	// The name of the application profile.
 	// Required: true

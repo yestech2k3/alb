@@ -1,7 +1,8 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package models
 
 // This file is auto-generated.
-// Please contact avi-sdk@avinetworks.com for any change requests.
 
 // VsVip vs vip
 // swagger:model VsVip
@@ -10,6 +11,9 @@ type VsVip struct {
 	// UNIX time since epoch in microseconds. Units(MICROSECONDS).
 	// Read Only: true
 	LastModified *string `json:"_last_modified,omitempty"`
+
+	// Select BGP peers, using peer label, for VsVip advertisement. Field introduced in 20.1.5. Maximum of 128 items allowed.
+	BgpPeerLabels []string `json:"bgp_peer_labels,omitempty"`
 
 	//  It is a reference to an object of type Cloud. Field introduced in 17.1.1.
 	CloudRef *string `json:"cloud_ref,omitempty"`
@@ -23,8 +27,11 @@ type VsVip struct {
 	// Determines the set of IPAM networks to use for this VsVip. Selector type must be SELECTOR_IPAM and only one label is supported. Field introduced in 20.1.3.
 	IPAMSelector *Selector `json:"ipam_selector,omitempty"`
 
-	// Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field introduced in 20.1.2. Maximum of 4 items allowed.
+	// Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed.
 	Labels []*KeyValue `json:"labels,omitempty"`
+
+	// List of labels to be used for granular RBAC. Field introduced in 20.1.5.
+	Markers []*RoleFilterMatchLabel `json:"markers,omitempty"`
 
 	// Name for the VsVip object. Field introduced in 17.1.1.
 	// Required: true
