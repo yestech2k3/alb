@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "20.1.4",
+        "version": "20.1.6",
         "title": "Avi ServiceEngineGroup Object API",
         "contact": {
             "name": "Avi Networks Inc.",
@@ -1048,6 +1048,22 @@
                 }
             }
         },
+        "NsxtClusters": {
+            "type": "object",
+            "properties": {
+                "cluster_ids": {
+                    "description": "List of transport node clusters. Field introduced in 20.1.6.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "include": {
+                    "description": "Include or Exclude. Field introduced in 20.1.6.",
+                    "type": "boolean"
+                }
+            }
+        },
         "NsxtDatastores": {
             "type": "object",
             "properties": {
@@ -1109,6 +1125,10 @@
                 "vcenter_ref"
             ],
             "properties": {
+                "nsxt_clusters": {
+                    "description": "List of transport node clusters include or exclude. Field introduced in 20.1.6.",
+                    "$ref": "#/definitions/NsxtClusters"
+                },
                 "nsxt_datastores": {
                     "description": "List of shared datastores to include or exclude. Field introduced in 20.1.2. Allowed in Basic edition, Enterprise edition.",
                     "$ref": "#/definitions/NsxtDatastores"
@@ -2504,5 +2524,9 @@
                 }
             }
         }
-    }
+    },
+    "_comment": [
+        "Copyright 2021 VMware, Inc.",
+        "SPDX-License-Identifier: Apache License 2.0"
+    ]
 }

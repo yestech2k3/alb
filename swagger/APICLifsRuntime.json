@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "20.1.4",
+        "version": "20.1.6",
         "title": "Avi APICLifsRuntime Object API",
         "contact": {
             "name": "Avi Networks Inc.",
@@ -643,5 +643,9 @@
                 }
             }
         }
-    }
+    },
+    "_comment": [
+        "Copyright 2021 VMware, Inc.",
+        "SPDX-License-Identifier: Apache License 2.0"
+    ]
 }
