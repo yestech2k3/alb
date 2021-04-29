@@ -1,3 +1,6 @@
+# Copyright 2021 VMware, Inc.
+# SPDX-License-Identifier: Apache License 2.0
+
 import os
 from setuptools import setup, find_packages
 """
@@ -18,7 +21,7 @@ setup(
                                    ]),
     description='Avi python API SDK for Avi Controller REST API with samples'
                 ' and, utilities',
-    url='https://github.com/avinetworks/sdk',
+    url='https://github.com/vmware/alb-sdk',
     author='Avi Networks',
     author_email='avisdk@avinetworks.com',
     scripts=['avi/sdk/samples/virtualservice_examples_api.py'],
