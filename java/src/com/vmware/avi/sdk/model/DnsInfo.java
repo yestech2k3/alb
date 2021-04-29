@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: Apache License 2.0
+ */
+
 package com.vmware.avi.sdk.model;
 
 import java.util.*;
@@ -29,7 +34,7 @@ public class DnsInfo  {
     private String metadata = null;
 
     @JsonProperty("num_records_in_response")
-    private Integer numRecordsInResponse = 1;
+    private Integer numRecordsInResponse = null;
 
     @JsonProperty("ttl")
     private Integer ttl = null;
@@ -139,7 +144,7 @@ public class DnsInfo  {
      * Allowed values are 0-20.
      * Special values are 0- 'return all records'.
      * Field introduced in 17.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 1.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numRecordsInResponse
      */
     public Integer getNumRecordsInResponse() {
@@ -154,7 +159,7 @@ public class DnsInfo  {
      * Allowed values are 0-20.
      * Special values are 0- 'return all records'.
      * Field introduced in 17.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 1.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numRecordsInResponse set the numRecordsInResponse.
      */
     public void setNumRecordsInResponse(Integer  numRecordsInResponse) {

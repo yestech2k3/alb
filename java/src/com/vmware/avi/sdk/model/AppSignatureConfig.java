@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: Apache License 2.0
+ */
+
 package com.vmware.avi.sdk.model;
 
 import java.util.*;
@@ -27,8 +32,8 @@ public class AppSignatureConfig  {
      * Allowed values are 60-10080.
      * Field introduced in 20.1.4.
      * Unit is min.
-     * Allowed in basic(allowed values- 60) edition, essentials(allowed values- 60) edition, enterprise edition.
-     * Special default for basic edition is 60, essentials edition is 60, enterprise is 1440.
+     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Special default for basic edition is 1440, essentials edition is 1440, enterprise is 1440.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1440.
      * @return appSignatureSyncInterval
      */
@@ -42,8 +47,8 @@ public class AppSignatureConfig  {
      * Allowed values are 60-10080.
      * Field introduced in 20.1.4.
      * Unit is min.
-     * Allowed in basic(allowed values- 60) edition, essentials(allowed values- 60) edition, enterprise edition.
-     * Special default for basic edition is 60, essentials edition is 60, enterprise is 1440.
+     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Special default for basic edition is 1440, essentials edition is 1440, enterprise is 1440.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1440.
      * @param appSignatureSyncInterval set the appSignatureSyncInterval.
      */

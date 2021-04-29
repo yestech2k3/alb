@@ -1,3 +1,7 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: Apache License 2.0
+ */
 package com.vmware.avi.sdk;
 
 import java.io.IOException;
@@ -237,7 +241,7 @@ public class AviRestUtils {
 	}
 
 	public static String getSessionKey(AviCredentials aviCredentials) {
-		return aviCredentials.getController() + ":" + aviCredentials.getUsername() + ":" + aviCredentials.getPort();
+		return aviCredentials.getController() + ":" + aviCredentials.getUsername() + ":" + aviCredentials.getVersion() + ":" +aviCredentials.getTenant();
 	}
 
 	/**
