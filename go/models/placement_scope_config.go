@@ -1,11 +1,15 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package models
 
 // This file is auto-generated.
-// Please contact avi-sdk@avinetworks.com for any change requests.
 
 // PlacementScopeConfig placement scope config
 // swagger:model PlacementScopeConfig
 type PlacementScopeConfig struct {
+
+	// List of transport node clusters include or exclude. Field introduced in 20.1.6.
+	NsxtClusters *NsxtClusters `json:"nsxt_clusters,omitempty"`
 
 	// List of shared datastores to include or exclude. Field introduced in 20.1.2. Allowed in Basic edition, Enterprise edition.
 	NsxtDatastores *NsxtDatastores `json:"nsxt_datastores,omitempty"`

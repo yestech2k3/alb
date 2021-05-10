@@ -1,7 +1,8 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package models
 
 // This file is auto-generated.
-// Please contact avi-sdk@avinetworks.com for any change requests.
 
 // SeVipInterfaceList se vip interface list
 // swagger:model SeVipInterfaceList
@@ -9,6 +10,9 @@ type SeVipInterfaceList struct {
 
 	// Placeholder for description of property is_portchannel of obj type SeVipInterfaceList field type str  type boolean
 	IsPortchannel *bool `json:"is_portchannel,omitempty"`
+
+	// List of placement_networks reachable from this interface. Field introduced in 20.1.5.
+	Networks []*DiscoveredNetwork `json:"networks,omitempty"`
 
 	// Placeholder for description of property vip_intf_ip of obj type SeVipInterfaceList field type str  type object
 	VipIntfIP *IPAddr `json:"vip_intf_ip,omitempty"`

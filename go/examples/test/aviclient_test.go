@@ -1,9 +1,11 @@
+// Copyright 2021 VMware, Inc.
+// SPDX-License-Identifier: Apache License 2.0
 package test
 
 import (
 	"fmt"
-	"github.com/avinetworks/sdk/go/clients"
-	"github.com/avinetworks/sdk/go/session"
+	"github.com/vmware/alb-sdk/go/clients"
+	"github.com/vmware/alb-sdk/go/session"
 	"os"
 	"testing"
 )
@@ -13,7 +15,7 @@ func TestAviClientWithInvalidController(t *testing.T) {
 		session.SetPassword(os.Getenv("AVI_PASSWORD")),
 		session.SetTenant(os.Getenv("AVI_TENANT")),
 		session.SetVersion(os.Getenv("AVI_VERSION")),
-		session.SetControllerStatusCheckLimits(1,1),
+		session.SetControllerStatusCheckLimits(1, 1),
 		session.SetInsecure, session.SetLazyAuthentication(true))
 	if err != nil {
 		fmt.Println("Issue with lazyauthentication")
