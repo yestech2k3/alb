@@ -1,14 +1,14 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "20.1.4",
+        "version": "20.1.6",
         "title": "Avi UpgradeStatusInfo Object API",
         "contact": {
             "name": "Avi Networks Inc.",
             "url": "https://avinetworks.com/contact-us",
             "email": "support@avinetworks.com"
         },
-        "description": "CLI\n```\n- show upgrade status detail\n```\n"
+        "description": "CLI\n```\n- show upgrade status detail\n- show upgrade status detail include_history\n```\n"
     },
     "securityDefinitions": {
         "basicAuth": {
@@ -1103,6 +1103,10 @@
                     "description": "Enqueue time of Upgrade operation. Field introduced in 18.2.6.",
                     "type": "string"
                 },
+                "fips_mode": {
+                    "description": "Fips-mode for the entire system. Field introduced in 20.1.5.",
+                    "type": "boolean"
+                },
                 "history": {
                     "description": "Record of past operations on this node. Field introduced in 20.1.4.",
                     "type": "array",
@@ -1334,5 +1338,9 @@
                 }
             }
         }
-    }
+    },
+    "_comment": [
+        "Copyright 2021 VMware, Inc.",
+        "SPDX-License-Identifier: Apache License 2.0"
+    ]
 }
