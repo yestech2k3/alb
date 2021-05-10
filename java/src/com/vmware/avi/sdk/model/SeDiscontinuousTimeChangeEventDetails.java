@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: Apache License 2.0
+ */
+
 package com.vmware.avi.sdk.model;
 
 import java.util.*;
@@ -21,6 +26,9 @@ public class SeDiscontinuousTimeChangeEventDetails  {
 
     @JsonProperty("from_time")
     private String fromTime = null;
+
+    @JsonProperty("ntp_servers")
+    private String ntpServers = null;
 
     @JsonProperty("se_name")
     private String seName = null;
@@ -71,6 +79,26 @@ public class SeDiscontinuousTimeChangeEventDetails  {
      */
     public void setFromTime(String  fromTime) {
         this.fromTime = fromTime;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * System peer and candidate ntp servers active at the point of time jump.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return ntpServers
+     */
+    public String getNtpServers() {
+        return ntpServers;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * System peer and candidate ntp servers active at the point of time jump.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param ntpServers set the ntpServers.
+     */
+    public void setNtpServers(String  ntpServers) {
+        this.ntpServers = ntpServers;
     }
 
     /**
@@ -151,7 +179,8 @@ public class SeDiscontinuousTimeChangeEventDetails  {
   Objects.equals(this.seRef, objSeDiscontinuousTimeChangeEventDetails.seRef)&&
   Objects.equals(this.fromTime, objSeDiscontinuousTimeChangeEventDetails.fromTime)&&
   Objects.equals(this.toTime, objSeDiscontinuousTimeChangeEventDetails.toTime)&&
-  Objects.equals(this.driftTime, objSeDiscontinuousTimeChangeEventDetails.driftTime);
+  Objects.equals(this.driftTime, objSeDiscontinuousTimeChangeEventDetails.driftTime)&&
+  Objects.equals(this.ntpServers, objSeDiscontinuousTimeChangeEventDetails.ntpServers);
     }
 
     @Override
@@ -160,6 +189,7 @@ public class SeDiscontinuousTimeChangeEventDetails  {
       sb.append("class SeDiscontinuousTimeChangeEventDetails {\n");
                   sb.append("    driftTime: ").append(toIndentedString(driftTime)).append("\n");
                         sb.append("    fromTime: ").append(toIndentedString(fromTime)).append("\n");
+                        sb.append("    ntpServers: ").append(toIndentedString(ntpServers)).append("\n");
                         sb.append("    seName: ").append(toIndentedString(seName)).append("\n");
                         sb.append("    seRef: ").append(toIndentedString(seRef)).append("\n");
                         sb.append("    toTime: ").append(toIndentedString(toTime)).append("\n");

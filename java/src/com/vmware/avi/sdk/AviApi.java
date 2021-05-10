@@ -1,3 +1,7 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: Apache License 2.0
+ */
 package com.vmware.avi.sdk;
 
 import java.io.File;
@@ -58,7 +62,7 @@ public class AviApi {
 	public AviApi(AviCredentials aviCredentials) {
 		this.aviCredentials = aviCredentials;
 		this.sessionKey = aviCredentials.getController() + ":" + aviCredentials.getUsername() + ":"
-				+ aviCredentials.getPort();
+				+ aviCredentials.getVersion() + ":" +aviCredentials.getTenant();
 		this.restTemplate = AviRestUtils.getRestTemplate(aviCredentials);
 	}
 
@@ -88,7 +92,7 @@ public class AviApi {
 	 */
 	public static AviApi getSession(AviCredentials aviCredentials) throws IOException {
 		String sessionKey = aviCredentials.getController() + ":" + aviCredentials.getUsername() + ":"
-				+ aviCredentials.getPort();
+				+ aviCredentials.getVersion() + ":" +aviCredentials.getTenant();
 		synchronized (AviApi.class) {
 			if (sessionPool.containsKey(sessionKey)) {
 				return sessionPool.get(sessionKey);
