@@ -13,7 +13,17 @@ Maven
 Download the latest jar from https://search.maven.org/artifact/com.vmware.avi.sdk/avisdk
 
 Add the jar into the classpath of your project. or depending on the project type,
-you can add Avi SDK as a dependancy
+you can add Avi SDK as a dependancy.
+
+For maven project you can add below dependency in your pom.xml.
+```buildoutcfg
+<dependency>
+  <groupId>com.vmware.avi.sdk</groupId>
+  <artifactId>avisdk</artifactId>
+  <version>20.1.5.RELEASE</version>
+</dependency>
+```
+
 
 
 ## Usage Examples
