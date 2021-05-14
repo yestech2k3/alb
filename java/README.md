@@ -10,62 +10,15 @@ Maven
 
 
 
-Download the latest jar from https://search.maven.org/artifact/com.vmware.avi.sdk/avisdk
+Download the jar from https://github.com/vmware/alb-sdk/blob/java_sdk/java/target/avisdk-18.2.7-SNAPSHOT.jar
 
-Add the jar into the classpath of your project. or depending on the project type,
-you can add Avi SDK as a dependancy.
+add the jar into the classpath of your project.
 
-For maven project you can add below dependency in your pom.xml.
-```buildoutcfg
-<dependency>
-  <groupId>com.vmware.avi.sdk</groupId>
-  <artifactId>avisdk</artifactId>
-  <version>20.1.5.RELEASE</version>
-</dependency>
-```
-
-
+for documentation please refer https://github.com/vmware/alb-sdk/blob/java_sdk/java/target/avisdk-18.2.7-SNAPSHOT-javadoc.jar.
 
 ## Usage Examples
 
-We can Use Avi API in 2 ways:
-
-1. AviApi Using Rest Template.
-
-- **Create Avi API Session :**
-```
-AviCredentials aviCredentials = new AviCredentials("controller_ip", "username", "password");
-aviCredentials.setTenant("tenant");
-aviCredentials.setVersion("version");
-AviApi restTemplate = AviApi.getSession(aviCredentials);
-```
-
-- **Creating health monitor :**
-```
-HealthMonitor healthMonitor = new HealthMonitor();
-healthMonitor.setName("demo_HM");
-healthMonitor.setType("HEALTH_MONITOR_PING");
-restTemplate.post(healthMonitorObject);
-```
-
-- **Fetching health monitor info :**
-```
-HealthMonitor healthMonitor = restTemplate.getForObject(HealthMonitor.class, "healthmonitor-637a5af9-1b64-4040-bc5e-e94c9b524819");
-```
-
-- **Updating health monitor :**
-```
-HealthMonitor healthMonitorObject = restTemplate.getForObject(HealthMonitor.class, "healthmonitor-637a5af9-1b64-4040-bc5e-e94c9b524819");
-healthMonitorObject.setName("updated_Hm");
-restTemplate.put(healthMonitorObject, "healthmonitor-637a5af9-1b64-4040-bc5e-e94c9b524819");
-```
-
-- **Deleting health monitor :**
-```
-restTemplate.delete(HealthMonitor.class, "healthmonitor-637a5af9-1b64-4040-bc5e-e94c9b524819");
-```
-
-2. AviApi using JSON Object.
+AviApi is a pilot class of the API.
 
 - **Create Avi API Session :**
 ```
@@ -113,3 +66,6 @@ param.put("full_system", "true");
 param.put("passphrase", "abc1234");
 apiInstance.fileDownload("/configuration/export", "filepath", param);
 ```
+
+
+
