@@ -1,3 +1,6 @@
+# Copyright 2021 VMware, Inc.
+# SPDX-License-Identifier: Apache License 2.0
+
 """
 Created on Aug 16, 2016
 
@@ -150,7 +153,7 @@ def get_unicode_type():
     else:
         return str
 
-RE_REF_MATCH = re.compile('^/api/[\w/]+\?name\=[\w]+[^#<>]*$')
+RE_REF_MATCH = re.compile('^/api/[\w/]+\?name\=[\w*]+[^#<>]*$')
 
 # if HTTP ref match then strip out the #name
 # HTTP_REF_MATCH = re.compile('https://[\w.0-9:-]+/api/[\w/\?.#&-]*$')
