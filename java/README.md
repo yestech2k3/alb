@@ -19,10 +19,10 @@ For maven project you can add below dependency in your pom.xml.
 ```buildoutcfg
 <dependency>
   <groupId>com.vmware.avi.sdk</groupId>
-  <artifactId>avisdk</artifactId>
-  <version>20.1.5.RELEASE</version>
-</dependency>
-```
+    <artifactId>avisdk</artifactId>
+      <version>20.1.5.RELEASE</version>
+      </dependency>
+      ```
 
 
 
