@@ -57,7 +57,7 @@ matrix:
 #      - pytest --cov=./python/avi/sdk/test ./python/avi/sdk/test/test_avi_api.py -m travis --config ./python/avi/sdk/test/test_api.cfg --cov-fail-under=70
 
     - language: go
-      go: "1.9"
+      go: "1.13"
       python: "2.7"
       install:
       - sudo pip install Jinja2==2.11.1 MarkupSafe==1.1.1 Werkzeug==0.16.1 click==7.0 flask==1.1.1 itsdangerous==1.1.0
