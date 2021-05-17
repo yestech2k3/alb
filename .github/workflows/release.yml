@@ -45,7 +45,7 @@ jobs:
             echo "Java version Release"
             JAVA_VERSION=$JAVA_VERSION.RELEASE
           fi
-          echo "Java version: $JAVA_VERSION"
+          echo "Java version: ${JAVA_VERSION}"
           echo "::set-output name=JAVA_VERSION::$(JAVA_VERSION)"
 
       - name: Publish JAVA
