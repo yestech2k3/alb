@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.vmware.avi.sdk</groupId>
 	<artifactId>avisdk</artifactId>
+	<version>20.1.6</version>
 	<name>avisdk</name>
 	<description>Avi SDK is a java API which creates a session with controller and perform CRUD operations.</description>
 	<url>https://github.com/vmware/alb-sdk/tree/master/java</url>
@@ -85,7 +86,7 @@
 				<configuration>
 					<additionalparam>-Xdoclint:none</additionalparam>
 				</configuration>
-                <executions>
+				<executions>
 					<execution>
 						<id>attach-javadocs</id>
 						<goals>
