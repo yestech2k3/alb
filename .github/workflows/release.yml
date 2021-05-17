@@ -50,7 +50,7 @@ jobs:
 
       - name: Publish JAVA
         run: |
-          echo "Publish Java Version: ${{ steps.get_version.outputs.JAVA_VERSION }}"
+          echo "Publish Java Version: " ${{ steps.get_version.outputs.JAVA_VERSION }}
           #cd java
           #mvn versions:set -DnewVersion=${{ steps.get_version.outputs.JAVA_VERSION }}
           #mvn clean --batch-mode deploy -DskipTests -Dgpg.passphrase=${{ secrets.AVISDK_PGP_PASSPHRASE }} -Denv.MAVEN_USERNAME=${{ secrets.OSSRH_USERNAME }} -Denv.MAVEN_PASSWORD=${{ secrets.OSSRH_TOKEN }}
