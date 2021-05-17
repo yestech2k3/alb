@@ -1,4 +1,4 @@
-name: Publish package to the Maven Central Repository
+name: Publish SDK package
 # Controls when the action will run. 
 on:
   release:
@@ -32,8 +32,8 @@ jobs:
       - name: Get the version
         id: get_version
         run: | 
-          echo ::set-output name=TAG_VERSION::$(echo ${GITHUB_REF##*/} | cut -d - -f 2)
-          echo ::set-output name=AVI_VERSION::$(python ./python/version.py)
+          #echo "::set-output name=TAG_VERSION::$(echo ${GITHUB_REF##*/} | cut -d - -f 2)"
+          echo "::set-output name=AVI_VERSION::$(python ./python/version.py)"
           JAVA_VERSION=$(echo ${GITHUB_REF##*/} | cut -d - -f 2)
           if [[ "$JAVA_VERSION" == *"post"* ]]; then
             echo "Java version post"
@@ -46,7 +46,7 @@ jobs:
             JAVA_VERSION=$JAVA_VERSION.RELEASE
           fi
           echo "Java version: $JAVA_VERSION"
-          echo ::set-output name=JAVA_VERSION::$(JAVA_VERSION)
+          echo "::set-output name=JAVA_VERSION::$(JAVA_VERSION)"
 
       - name: Publish JAVA
         run: |
