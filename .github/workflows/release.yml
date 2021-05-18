@@ -70,6 +70,7 @@ jobs:
           python3 -m pip install setuptools wheel twine
           # If requirements.txt exists, install from it
           cd python
+          mkdir dist
           ./create_sdk_pip_packages.sh sdk
           ./create_sdk_pip_packages.sh migrationtools
           ./create_sdk_pypi.sh sdk
