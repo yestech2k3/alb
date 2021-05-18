@@ -68,7 +68,7 @@ jobs:
           # Upgrade pip
           python3 -m pip install --upgrade pip
           # Install build deps
-          python3 -m pip install setuptools==0.6b3 wheel twine python-all==2.6.6-3 debhelper==7.4.3
+          python3 -m pip install wheel twine
           # If requirements.txt exists, install from it
           cd python
           mkdir dist
