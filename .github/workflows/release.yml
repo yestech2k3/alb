@@ -68,7 +68,7 @@ jobs:
           # Upgrade pip
           python3 -m pip install --upgrade pip
           # Install build deps
-          python3 -m pip install wheel twine
+          python3 -m pip install wheel twine setuptools==20.7.0
           sudo apt-get install debhelper
           sudo apt-get install python-all
           sudo apt-get install python3-all
