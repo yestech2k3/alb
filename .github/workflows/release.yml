@@ -79,7 +79,7 @@ jobs:
           ls dist/
           mv dist/avimigrationtools-$AVI_VERSION.tar.gz ../avimigrationtools-$AVI_VERSION.tar.gz
           mv dist/avisdk-$AVI_VERSION.tar.gz ../avisdk-$AVI_VERSION.tar.gz
-          mv dist/python-avisdk_0_all.deb ../avisdk-$AVI_VERSION.deb
+          #mv dist/python-avisdk_0_all.deb ../avisdk-$AVI_VERSION.deb
           mv dist/avisdk-$AVI_VERSION-1.noarch.rpm ../avisdk-$AVI_VERSION.rpm
           mv dist/avimigrationtools-$AVI_VERSION.tar.gz ../avimigrationtools-$AVI_VERSION.tar.gz
         env:
@@ -113,15 +113,15 @@ jobs:
           asset_name: pip-package-avimigrationtools-${{ steps.get_sdk_version.outputs.AVI_VERSION }}
           asset_content_type: application/gzip
         
-      - name: Upload Avi API SDK debian package
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
-        with:
-          upload_url: ${{ steps.update_release.outputs.upload_url }}
-          asset_path: avisdk-${{ steps.get_sdk_version.outputs.AVI_VERSION }}.deb
-          asset_name: debian-package-avisdk-${{ steps.get_sdk_version.outputs.AVI_VERSION }}
-          asset_content_type: application/vnd.debian.binary-package
+      #- name: Upload Avi API SDK debian package
+      #  uses: actions/upload-release-asset@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.github_token }}
+      #  with:
+      #    upload_url: ${{ steps.update_release.outputs.upload_url }}
+      #    asset_path: avisdk-${{ steps.get_sdk_version.outputs.AVI_VERSION }}.deb
+      #    asset_name: debian-package-avisdk-${{ steps.get_sdk_version.outputs.AVI_VERSION }}
+      #    asset_content_type: application/vnd.debian.binary-package
 
       - name: Upload Avi API SDK rpm package
         uses: actions/upload-release-asset@v1
