@@ -30,7 +30,7 @@ jobs:
           python-version: 3.8
 
       - name: Get the version
-        id: get_version
+        id: get_sdk_version
         run: | 
           #echo "::set-output name=TAG_VERSION::$(echo ${GITHUB_REF##*/} | cut -d - -f 2)"
           echo "::set-output name=AVI_VERSION::$(python ./python/version.py)"
@@ -45,12 +45,12 @@ jobs:
             echo "Java version Release"
             JAVA_VERSION=$JAVA_VERSION.RELEASE
           fi
-          #echo "Java version ${JAVA_VERSION}"
-          echo "::set-output name=JAVA_RELEASE_VERSION::$(JAVA_VERSION)"
+          echo "Java version ${JAVA_VERSION}"
+          echo "::set-output name=JAVA_RELEASE_VERSION::${JAVA_VERSION}"
 
       - name: Publish JAVA
         run: |
-          echo "Publish Java Version ${{ steps.get_version.outputs.JAVA_RELEASE_VERSION }}"
+          echo "Publish Java Version ${{ steps.get_sdk_version.outputs.JAVA_RELEASE_VERSION }}"
           #cd java
           #mvn versions:set -DnewVersion=${{ steps.get_version.outputs.JAVA_VERSION }}
           #mvn clean --batch-mode deploy -DskipTests -Dgpg.passphrase=${{ secrets.AVISDK_PGP_PASSPHRASE }} -Denv.MAVEN_USERNAME=${{ secrets.OSSRH_USERNAME }} -Denv.MAVEN_PASSWORD=${{ secrets.OSSRH_TOKEN }}
