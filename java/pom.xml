@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.vmware.avi.sdk</groupId>
 	<artifactId>avisdk</artifactId>
-	<version>20.1.6b1</version>
+	<version>20.1.6-beta-1</version>
 	<name>avisdk</name>
 	<description>Avi SDK is a java API which creates a session with controller and perform CRUD operations.</description>
 	<url>https://github.com/vmware/alb-sdk/tree/master/java</url>
@@ -28,7 +28,7 @@
 			<organizationUrl>http://www.vmware.com</organizationUrl>
 		</developer>
 	</developers>
-	<distributionManagement>
+	<!--distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -37,7 +37,7 @@
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement>-->
 	<scm>
 		<connection>scm:git:git://github.com/vmware/alb-sdk.git</connection>
 		<developerConnection>scm:git://github.com/vmware/alb-sdk.git</developerConnection>
@@ -47,7 +47,7 @@
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
 		<plugins>
-			<plugin>
+			<!-- plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
 				<version>1.6.7</version>
@@ -57,7 +57,7 @@
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.0</version>
