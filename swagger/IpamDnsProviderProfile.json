@@ -566,6 +566,23 @@
                 }
             }
         },
+        "CustomIpamSubnet": {
+            "type": "object",
+            "properties": {
+                "network_id": {
+                    "description": "Network to use for Custom IPAM IP allocation. Field introduced in 21.1.1.",
+                    "type": "string"
+                },
+                "subnet": {
+                    "description": "IPv4 subnet to use for Custom IPAM IP allocation. Field introduced in 21.1.1.",
+                    "$ref": "#/definitions/IpAddrPrefix"
+                },
+                "subnet6": {
+                    "description": "IPv6 subnet to use for Custom IPAM IP allocation. Field introduced in 21.1.1.",
+                    "$ref": "#/definitions/IpAddrPrefix"
+                }
+            }
+        },
         "CustomParams": {
             "type": "object",
             "required": [
@@ -810,6 +827,13 @@
                         "$ref": "#/definitions/CustomParams"
                     }
                 },
+                "usable_alloc_subnets": {
+                    "description": "Networks or Subnets to use for Custom IPAM IP allocation. Field introduced in 21.1.1.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CustomIpamSubnet"
+                    }
+                },
                 "usable_domains": {
                     "description": "Usable domains. Field introduced in 17.2.2.",
                     "type": "array",
@@ -818,7 +842,7 @@
                     }
                 },
                 "usable_subnets": {
-                    "description": "Usable subnets. Field introduced in 17.2.2.",
+                    "description": "Usable subnets. Field deprecated in 21.1.1.",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/IpAddrPrefix"

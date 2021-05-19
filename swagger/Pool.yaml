@@ -1847,7 +1847,7 @@ definitions:
                 description: "Enable common name check for server certificate. If enabled and no explicit domain name is specified, Avi will use the incoming host header to do the match."
                 type: boolean
             http2_properties:
-                description: "HTTP2 pool properties. Field introduced in 21.1.1."
+                description: "HTTP2 pool properties. Field introduced in 21.1.1. Allowed in Basic edition, Essentials edition, Enterprise edition."
                 $ref: '#/definitions/HTTP2PoolProperties'
             ignore_server_port:
                 description: "Ignore the server port in building the load balancing state.Applicable only for consistent hash load balancing algorithm or Disable Port translation (use_service_port) use cases. Field introduced in 20.1.1."

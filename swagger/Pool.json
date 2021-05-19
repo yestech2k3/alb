@@ -2702,7 +2702,7 @@
                     "type": "boolean"
                 },
                 "http2_properties": {
-                    "description": "HTTP2 pool properties. Field introduced in 21.1.1.",
+                    "description": "HTTP2 pool properties. Field introduced in 21.1.1. Allowed in Basic edition, Essentials edition, Enterprise edition.",
                     "$ref": "#/definitions/HTTP2PoolProperties"
                 },
                 "ignore_server_port": {

@@ -2053,6 +2053,10 @@
                     "description": "Service Engine Management Network Name. Field introduced in 18.2.2.",
                     "type": "string"
                 },
+                "management_vpc_project_id": {
+                    "description": "Project ID of the Service Engine Management Network. By default, Service Engine Project ID will be used. Field introduced in 21.1.1.",
+                    "type": "string"
+                },
                 "management_vpc_subnet_name": {
                     "description": "Service Engine Management Network Subnet Name. Field introduced in 18.2.1.",
                     "type": "string"
@@ -2074,6 +2078,10 @@
                     "description": "Service Engine Backend Data Network Name. Field introduced in 18.2.2.",
                     "type": "string"
                 },
+                "backend_data_vpc_project_id": {
+                    "description": "Project ID of the Service Engine Backend Data Network. By default, Service Engine Project ID will be used. Field introduced in 21.1.1.",
+                    "type": "string"
+                },
                 "backend_data_vpc_subnet_name": {
                     "description": "Service Engine Backend Data Network Subnet Name. Field introduced in 18.2.1.",
                     "type": "string"
@@ -2092,6 +2100,10 @@
                 },
                 "management_vpc_network_name": {
                     "description": "Service Engine Management Network Name. Field introduced in 18.2.2.",
+                    "type": "string"
+                },
+                "management_vpc_project_id": {
+                    "description": "Project ID of the Service Engine Management Network. By default, Service Engine Project ID will be used. Field introduced in 21.1.1.",
                     "type": "string"
                 },
                 "management_vpc_subnet_name": {
@@ -3688,7 +3700,6 @@
         "Tier1LogicalRouterInfo": {
             "type": "object",
             "required": [
-                "segment_id",
                 "tier1_lr_id"
             ],
             "properties": {
