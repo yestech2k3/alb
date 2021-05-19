@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * The BotIdentification is a POJO class extends AviRestResource that used for creating
- * BotIdentification.
+ * The CustomIpamSubnet is a POJO class extends AviRestResource that used for creating
+ * CustomIpamSubnet.
  *
  * @version 1.0
  * @since 
@@ -20,88 +20,82 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BotIdentification  {
-    @JsonProperty("class")
-    private String classStr = null;
+public class CustomIpamSubnet  {
+    @JsonProperty("network_id")
+    private String networkId = null;
 
-    @JsonProperty("identifier")
-    private String identifier = null;
+    @JsonProperty("subnet")
+    private IpAddrPrefix subnet = null;
 
-    @JsonProperty("type")
-    private String type = null;
+    @JsonProperty("subnet6")
+    private IpAddrPrefix subnet6 = null;
 
 
 
     /**
      * This is the getter method this will return the attribute value.
-     * The bot client class of this identification.
-     * Enum options - HUMAN_CLIENT, BOT_CLIENT.
+     * Network to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return classStr
+     * @return networkId
      */
-    public String getClassStr() {
-        return classStr;
+    public String getNetworkId() {
+        return networkId;
     }
 
     /**
      * This is the setter method to the attribute.
-     * The bot client class of this identification.
-     * Enum options - HUMAN_CLIENT, BOT_CLIENT.
+     * Network to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param classStr set the classStr.
+     * @param networkId set the networkId.
      */
-    public void setClassStr(String  classStr) {
-        this.classStr = classStr;
+    public void setNetworkId(String  networkId) {
+        this.networkId = networkId;
     }
 
     /**
      * This is the getter method this will return the attribute value.
-     * A free-form string to identify the client.
+     * Ipv4 subnet to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return identifier
+     * @return subnet
      */
-    public String getIdentifier() {
-        return identifier;
+    public IpAddrPrefix getSubnet() {
+        return subnet;
     }
 
     /**
      * This is the setter method to the attribute.
-     * A free-form string to identify the client.
+     * Ipv4 subnet to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param identifier set the identifier.
+     * @param subnet set the subnet.
      */
-    public void setIdentifier(String  identifier) {
-        this.identifier = identifier;
+    public void setSubnet(IpAddrPrefix subnet) {
+        this.subnet = subnet;
     }
 
     /**
      * This is the getter method this will return the attribute value.
-     * The bot client type of this identification.
-     * Enum options - WEB_BROWSER, IN_APP_BROWSER, SEARCH_ENGINE, IMPERSONATOR, SPAM_SOURCE, WEB_ATTACKS, BOTNET, SCANNER, DENIAL_OF_SERVICE,
-     * CLOUD_SOURCE, SECURITY_SCANNER, SITE_MONITOR, GENERIC_APPLICATION.
+     * Ipv6 subnet to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return type
+     * @return subnet6
      */
-    public String getType() {
-        return type;
+    public IpAddrPrefix getSubnet6() {
+        return subnet6;
     }
 
     /**
      * This is the setter method to the attribute.
-     * The bot client type of this identification.
-     * Enum options - WEB_BROWSER, IN_APP_BROWSER, SEARCH_ENGINE, IMPERSONATOR, SPAM_SOURCE, WEB_ATTACKS, BOTNET, SCANNER, DENIAL_OF_SERVICE,
-     * CLOUD_SOURCE, SECURITY_SCANNER, SITE_MONITOR, GENERIC_APPLICATION.
+     * Ipv6 subnet to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param type set the type.
+     * @param subnet6 set the subnet6.
      */
-    public void setType(String  type) {
-        this.type = type;
+    public void setSubnet6(IpAddrPrefix subnet6) {
+        this.subnet6 = subnet6;
     }
 
 
@@ -113,19 +107,19 @@ public class BotIdentification  {
       if (o == null || getClass() != o.getClass()) {
           return false;
       }
-      BotIdentification objBotIdentification = (BotIdentification) o;
-      return   Objects.equals(this.classStr, objBotIdentification.classStr)&&
-  Objects.equals(this.type, objBotIdentification.type)&&
-  Objects.equals(this.identifier, objBotIdentification.identifier);
+      CustomIpamSubnet objCustomIpamSubnet = (CustomIpamSubnet) o;
+      return   Objects.equals(this.networkId, objCustomIpamSubnet.networkId)&&
+  Objects.equals(this.subnet, objCustomIpamSubnet.subnet)&&
+  Objects.equals(this.subnet6, objCustomIpamSubnet.subnet6);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class BotIdentification {\n");
-                  sb.append("    classStr: ").append(toIndentedString(classStr)).append("\n");
-                        sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
-                        sb.append("    type: ").append(toIndentedString(type)).append("\n");
+      sb.append("class CustomIpamSubnet {\n");
+                  sb.append("    networkId: ").append(toIndentedString(networkId)).append("\n");
+                        sb.append("    subnet: ").append(toIndentedString(subnet)).append("\n");
+                        sb.append("    subnet6: ").append(toIndentedString(subnet6)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

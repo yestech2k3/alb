@@ -1055,6 +1055,7 @@ public class Pool extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Http2 pool properties.
      * Field introduced in 21.1.1.
+     * Allowed in basic edition, essentials edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return http2Properties
      */
@@ -1066,6 +1067,7 @@ public class Pool extends AviRestResource  {
      * This is the setter method to the attribute.
      * Http2 pool properties.
      * Field introduced in 21.1.1.
+     * Allowed in basic edition, essentials edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param http2Properties set the http2Properties.
      */
