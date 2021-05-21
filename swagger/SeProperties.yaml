@@ -210,7 +210,7 @@ definitions:
                 description: "Protobuf version number. Gets incremented if there is se Diff of federated diff in config pbs.This field will be a monotonically increasing number indicating the number of Config Update operations. Field introduced in 21.1.1."
                 type: integer
                 default: 1
-                format: int64
+                format: int32
     DosThreshold:
         type: object
         required:
@@ -456,6 +456,16 @@ definitions:
                 description: "Max elements to flush in one shot from the internal buffer by the statecache thread. Allowed values are 1-10000. Field introduced in 18.2.5."
                 type: integer
                 default: 300
+                format: int32
+            sc_cfg_q_batch_dequeue_limit:
+                description: "Max elements to dequeue in one shot from the Q by the statecache thread. Allowed values are 1-10000. Field introduced in 21.1.1."
+                type: integer
+                default: 100
+                format: int32
+            sc_cfg_q_max_size:
+                description: "Max elements in the config queue between seagent main and the statecache thread. Allowed values are 1-10000. Field introduced in 21.1.1."
+                type: integer
+                default: 4096
                 format: int32
             sc_dns_q_batch_dequeue_limit:
                 description: "Max elements to dequeue in one shot from the Q by the statecache thread. Allowed values are 1-10000. Field introduced in 20.1.5."
