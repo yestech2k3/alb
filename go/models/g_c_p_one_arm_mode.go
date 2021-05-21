@@ -23,6 +23,9 @@ type GCPOneArmMode struct {
 	// Required: true
 	ManagementVpcNetworkName *string `json:"management_vpc_network_name"`
 
+	// Project ID of the Service Engine Management Network. By default, Service Engine Project ID will be used. Field introduced in 20.1.6.
+	ManagementVpcProjectID *string `json:"management_vpc_project_id,omitempty"`
+
 	// Service Engine Management Network Subnet Name. Field introduced in 18.2.1.
 	// Required: true
 	ManagementVpcSubnetName *string `json:"management_vpc_subnet_name"`
