@@ -232,7 +232,7 @@ public class ControllerProperties extends AviRestResource  {
     private Integer vnicOpFailTime = 180;
 
     @JsonProperty("vs_apic_scaleout_timeout")
-    private Integer vsApicScaleoutTimeout = 360;
+    private Integer vsApicScaleoutTimeout;
 
     @JsonProperty("vs_awaiting_se_timeout")
     private Integer vsAwaitingSeTimeout = 60;
@@ -1879,8 +1879,8 @@ public class ControllerProperties extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
+     * Field deprecated in 21.1.1.
      * Unit is sec.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 360.
      * @return vsApicScaleoutTimeout
      */
     public Integer getVsApicScaleoutTimeout() {
@@ -1890,8 +1890,8 @@ public class ControllerProperties extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
+     * Field deprecated in 21.1.1.
      * Unit is sec.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 360.
      * @param vsApicScaleoutTimeout set the vsApicScaleoutTimeout.
      */
     public void setVsApicScaleoutTimeout(Integer  vsApicScaleoutTimeout) {

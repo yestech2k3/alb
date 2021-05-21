@@ -43,13 +43,13 @@ public class EventDetails  {
     private ApiVersionDeprecated apiVersionDeprecated = null;
 
     @JsonProperty("apic_agent_bd_vrf_details")
-    private ApicAgentBridgeDomainVrfChange apicAgentBdVrfDetails = null;
+    private ApicAgentBridgeDomainVrfChange apicAgentBdVrfDetails;
 
     @JsonProperty("apic_agent_generic_details")
-    private ApicAgentGenericEventDetails apicAgentGenericDetails = null;
+    private ApicAgentGenericEventDetails apicAgentGenericDetails;
 
     @JsonProperty("apic_agent_vs_network_error")
-    private ApicAgentVsNetworkError apicAgentVsNetworkError = null;
+    private ApicAgentVsNetworkError apicAgentVsNetworkError;
 
     @JsonProperty("app_signature_event_data")
     private AppSignatureEventData appSignatureEventData = null;
@@ -233,6 +233,9 @@ public class EventDetails  {
 
     @JsonProperty("disc_summary")
     private VinfraDiscSummaryDetails discSummary = null;
+
+    @JsonProperty("dns_query_error")
+    private DNSQueryError dnsQueryError = null;
 
     @JsonProperty("dns_sync_info")
     private DNSVsSyncInfo dnsSyncInfo = null;
@@ -750,8 +753,7 @@ public class EventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property apic_agent_bd_vrf_details of obj type eventdetails field type str  type ref.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.1.
      * @return apicAgentBdVrfDetails
      */
     public ApicAgentBridgeDomainVrfChange getApicAgentBdVrfDetails() {
@@ -760,8 +762,7 @@ public class EventDetails  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property apic_agent_bd_vrf_details of obj type eventdetails field type str  type ref.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.1.
      * @param apicAgentBdVrfDetails set the apicAgentBdVrfDetails.
      */
     public void setApicAgentBdVrfDetails(ApicAgentBridgeDomainVrfChange apicAgentBdVrfDetails) {
@@ -770,8 +771,7 @@ public class EventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property apic_agent_generic_details of obj type eventdetails field type str  type ref.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.1.
      * @return apicAgentGenericDetails
      */
     public ApicAgentGenericEventDetails getApicAgentGenericDetails() {
@@ -780,8 +780,7 @@ public class EventDetails  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property apic_agent_generic_details of obj type eventdetails field type str  type ref.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.1.
      * @param apicAgentGenericDetails set the apicAgentGenericDetails.
      */
     public void setApicAgentGenericDetails(ApicAgentGenericEventDetails apicAgentGenericDetails) {
@@ -790,8 +789,7 @@ public class EventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property apic_agent_vs_network_error of obj type eventdetails field type str  type ref.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.1.
      * @return apicAgentVsNetworkError
      */
     public ApicAgentVsNetworkError getApicAgentVsNetworkError() {
@@ -800,8 +798,7 @@ public class EventDetails  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property apic_agent_vs_network_error of obj type eventdetails field type str  type ref.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.1.
      * @param apicAgentVsNetworkError set the apicAgentVsNetworkError.
      */
     public void setApicAgentVsNetworkError(ApicAgentVsNetworkError apicAgentVsNetworkError) {
@@ -2032,6 +2029,26 @@ public class EventDetails  {
      */
     public void setDiscSummary(VinfraDiscSummaryDetails discSummary) {
         this.discSummary = discSummary;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Placeholder for description of property dns_query_error of obj type eventdetails field type str  type ref.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return dnsQueryError
+     */
+    public DNSQueryError getDnsQueryError() {
+        return dnsQueryError;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Placeholder for description of property dns_query_error of obj type eventdetails field type str  type ref.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param dnsQueryError set the dnsQueryError.
+     */
+    public void setDnsQueryError(DNSQueryError dnsQueryError) {
+        this.dnsQueryError = dnsQueryError;
     }
 
     /**
@@ -4728,7 +4745,8 @@ public class EventDetails  {
   Objects.equals(this.genericAuditComplianceEventInfo, objEventDetails.genericAuditComplianceEventInfo)&&
   Objects.equals(this.secureKeyExchangeInfo, objEventDetails.secureKeyExchangeInfo)&&
   Objects.equals(this.logAgentEventDetails, objEventDetails.logAgentEventDetails)&&
-  Objects.equals(this.databaseEventInfo, objEventDetails.databaseEventInfo);
+  Objects.equals(this.databaseEventInfo, objEventDetails.databaseEventInfo)&&
+  Objects.equals(this.dnsQueryError, objEventDetails.dnsQueryError);
     }
 
     @Override
@@ -4806,6 +4824,7 @@ public class EventDetails  {
                         sb.append("    deleteSeDetails: ").append(toIndentedString(deleteSeDetails)).append("\n");
                         sb.append("    disableSeMigrateDetails: ").append(toIndentedString(disableSeMigrateDetails)).append("\n");
                         sb.append("    discSummary: ").append(toIndentedString(discSummary)).append("\n");
+                        sb.append("    dnsQueryError: ").append(toIndentedString(dnsQueryError)).append("\n");
                         sb.append("    dnsSyncInfo: ").append(toIndentedString(dnsSyncInfo)).append("\n");
                         sb.append("    dockerUcpDetails: ").append(toIndentedString(dockerUcpDetails)).append("\n");
                         sb.append("    dosAttackEventDetails: ").append(toIndentedString(dosAttackEventDetails)).append("\n");

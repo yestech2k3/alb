@@ -37,7 +37,7 @@ public class VirtualService extends AviRestResource  {
     private String analyticsProfileRef = null;
 
     @JsonProperty("apic_contract_graph")
-    private String apicContractGraph = null;
+    private String apicContractGraph;
 
     @JsonProperty("application_profile_ref")
     private String applicationProfileRef = null;
@@ -480,9 +480,9 @@ public class VirtualService extends AviRestResource  {
      * The name of the contract/graph associated with the virtual service.
      * Should be in the <contract name> <graph name> format.
      * This is applicable only for service integration mode with cisco apic controller.
+     * Field deprecated in 21.1.1.
      * Field introduced in 17.2.12,18.1.2.
      * Allowed in basic edition, essentials edition, enterprise edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return apicContractGraph
      */
     public String getApicContractGraph() {
@@ -494,9 +494,9 @@ public class VirtualService extends AviRestResource  {
      * The name of the contract/graph associated with the virtual service.
      * Should be in the <contract name> <graph name> format.
      * This is applicable only for service integration mode with cisco apic controller.
+     * Field deprecated in 21.1.1.
      * Field introduced in 17.2.12,18.1.2.
      * Allowed in basic edition, essentials edition, enterprise edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param apicContractGraph set the apicContractGraph.
      */
     public void setApicContractGraph(String  apicContractGraph) {
