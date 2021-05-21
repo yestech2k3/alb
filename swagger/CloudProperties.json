@@ -1411,6 +1411,10 @@
                     "type": "boolean",
                     "default": true
                 },
+                "enable_per_process_stop": {
+                    "description": "Enable stopping of individual processes if process cross the given threshold limit, even when the total controller memory usage is belowits threshold limit. Field introduced in 21.1.1.",
+                    "type": "boolean"
+                },
                 "enable_resmgr_log_cache_print": {
                     "description": "Enable printing of cached logs inside Resource Manager. Used for debugging purposes only. Field introduced in 21.1.1.",
                     "type": "boolean"
