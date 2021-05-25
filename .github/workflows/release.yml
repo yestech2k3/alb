@@ -27,7 +27,7 @@ jobs:
       # Sets up python3
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.8
 
       - name: Get the version
         id: get_sdk_version
