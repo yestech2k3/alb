@@ -394,6 +394,8 @@ definitions:
                 format: int32
     CustomIpamSubnet:
         type: object
+        required:
+            -   network_id
         properties:
             network_id:
                 description: "Network to use for Custom IPAM IP allocation. Field introduced in 21.1.1."

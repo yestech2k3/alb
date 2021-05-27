@@ -3987,7 +3987,7 @@ definitions:
                 type: integer
                 format: int32
             num_datapath_processes:
-                description: "Indicates the number of datapath processes spawned. Field introduced in 20.1.1."
+                description: "Indicates the number of active datapath processes. Field introduced in 20.1.1."
                 type: integer
                 format: int32
             num_vcpus:
