@@ -246,6 +246,9 @@ public class EventDetails  {
     @JsonProperty("dos_attack_event_details")
     private DosAttackEventDetails dosAttackEventDetails = null;
 
+    @JsonProperty("false_positive_details")
+    private FalsePositiveDetails falsePositiveDetails = null;
+
     @JsonProperty("gcp_cloud_router_info")
     private GCPCloudRouterUpdate gcpCloudRouterInfo = null;
 
@@ -2109,6 +2112,28 @@ public class EventDetails  {
      */
     public void setDosAttackEventDetails(DosAttackEventDetails dosAttackEventDetails) {
         this.dosAttackEventDetails = dosAttackEventDetails;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * False positive details.
+     * Field introduced in 21.1.1.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return falsePositiveDetails
+     */
+    public FalsePositiveDetails getFalsePositiveDetails() {
+        return falsePositiveDetails;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * False positive details.
+     * Field introduced in 21.1.1.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param falsePositiveDetails set the falsePositiveDetails.
+     */
+    public void setFalsePositiveDetails(FalsePositiveDetails falsePositiveDetails) {
+        this.falsePositiveDetails = falsePositiveDetails;
     }
 
     /**
@@ -4735,6 +4760,7 @@ public class EventDetails  {
   Objects.equals(this.nsxtImgDetails, objEventDetails.nsxtImgDetails)&&
   Objects.equals(this.psmProgramDetails, objEventDetails.psmProgramDetails)&&
   Objects.equals(this.secMgrDataEvent, objEventDetails.secMgrDataEvent)&&
+  Objects.equals(this.falsePositiveDetails, objEventDetails.falsePositiveDetails)&&
   Objects.equals(this.cloudAsgNotifDetails, objEventDetails.cloudAsgNotifDetails)&&
   Objects.equals(this.cloudAutoscalingConfigFailureDetails, objEventDetails.cloudAutoscalingConfigFailureDetails)&&
   Objects.equals(this.cloudRouteNotifDetails, objEventDetails.cloudRouteNotifDetails)&&
@@ -4828,6 +4854,7 @@ public class EventDetails  {
                         sb.append("    dnsSyncInfo: ").append(toIndentedString(dnsSyncInfo)).append("\n");
                         sb.append("    dockerUcpDetails: ").append(toIndentedString(dockerUcpDetails)).append("\n");
                         sb.append("    dosAttackEventDetails: ").append(toIndentedString(dosAttackEventDetails)).append("\n");
+                        sb.append("    falsePositiveDetails: ").append(toIndentedString(falsePositiveDetails)).append("\n");
                         sb.append("    gcpCloudRouterInfo: ").append(toIndentedString(gcpCloudRouterInfo)).append("\n");
                         sb.append("    gcpInfo: ").append(toIndentedString(gcpInfo)).append("\n");
                         sb.append("    genericAuditComplianceEventInfo: ").append(toIndentedString(genericAuditComplianceEventInfo)).append("\n");
