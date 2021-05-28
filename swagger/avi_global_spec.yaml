@@ -54729,27 +54729,27 @@ definitions:
         type: object
         properties:
             backup_scheduler_faults:
-                description: "Enable backup scheduler faults. Field introduced in 21.1.1."
+                description: "Enable backup scheduler faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             cluster_faults:
-                description: "Enable cluster faults. Field introduced in 21.1.1."
+                description: "Enable cluster faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             deprecated_api_version_faults:
-                description: "Enable deprecated api version faults. Field introduced in 21.1.1."
+                description: "Enable deprecated api version faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             license_faults:
-                description: "Enable license faults. Field introduced in 21.1.1."
+                description: "Enable license faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             migration_faults:
-                description: "Enable DB migration faults. Field introduced in 21.1.1."
+                description: "Enable DB migration faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             sslprofile_faults:
-                description: "Enable SSL Profile faults. Field introduced in 21.1.1."
+                description: "Enable SSL Profile faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
     ControllerInfo:
@@ -60374,29 +60374,29 @@ definitions:
                 readOnly: True
                 type: string
             configpb_attributes:
-                description: "Protobuf versioning for config pbs. Field introduced in 21.1.1."
+                description: "Protobuf versioning for config pbs. Field introduced in 20.1.6."
                 $ref: '#/definitions/ConfigPbAttributes'
             controller_faults:
-                description: "Configure controller faults. Field introduced in 21.1.1."
+                description: "Configure controller faults. Field introduced in 20.1.6."
                 $ref: '#/definitions/ControllerFaults'
             name:
-                description: "Name. Field introduced in 21.1.1."
+                description: "Name. Field introduced in 20.1.6."
                 type: string
             serviceengine_faults:
-                description: "Configure serviceengine faults. Field introduced in 21.1.1."
+                description: "Configure serviceengine faults. Field introduced in 20.1.6."
                 $ref: '#/definitions/ServiceengineFaults'
             tenant_ref:
-                description: "Tenant. It is a reference to an object of type Tenant. Field introduced in 21.1.1."
+                description: "Tenant. It is a reference to an object of type Tenant. Field introduced in 20.1.6."
                 type: string
             url:
                 description: "url"
                 readOnly: True
                 type: string
             uuid:
-                description: "UUID Auto generated. Field introduced in 21.1.1."
+                description: "UUID Auto generated. Field introduced in 20.1.6."
                 type: string
             virtualservice_faults:
-                description: "Configure VirtualService faults. Field introduced in 21.1.1."
+                description: "Configure VirtualService faults. Field introduced in 20.1.6."
                 $ref: '#/definitions/VirtualserviceFaults'
     InventoryFaultConfigApiResponse:
         type: object
@@ -64903,7 +64903,7 @@ definitions:
                 description: "Server reselect configuration for HTTP requests."
                 $ref: '#/definitions/HTTPServerReselect'
             server_timeout:
-                description: "Server timeout value specifies the time within which a server connection needs to be established and a request-response exchange completes between AVI and the server. Value of 0 results in using default timeout of 60 minutes. Allowed values are 0-3600000. Field introduced in 18.1.5,18.2.1. Unit is MILLISECONDS."
+                description: "Server timeout value specifies the time within which a server connection needs to be established and a request-response exchange completes between AVI and the server. Value of 0 results in using default timeout of 60 minutes. Allowed values are 0-21600000. Field introduced in 18.1.5,18.2.1. Unit is MILLISECONDS."
                 type: integer
                 format: int32
             servers:
@@ -68343,7 +68343,7 @@ definitions:
         type: object
         properties:
             debug_faults:
-                description: "Enable debug faults. Field introduced in 21.1.1."
+                description: "Enable debug faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
     ServiceEngineGroup:
@@ -73999,27 +73999,27 @@ definitions:
         type: object
         properties:
             debug_faults:
-                description: "Enable debug faults. Field introduced in 21.1.1."
+                description: "Enable debug faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             pool_server_faults:
-                description: "Enable pool server faults. Field introduced in 21.1.1."
+                description: "Enable pool server faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             scaleout_faults:
-                description: "Enable VS scaleout and scalein faults. Field introduced in 21.1.1."
+                description: "Enable VS scaleout and scalein faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             shared_vip_faults:
-                description: "Enable shared vip faults. Field introduced in 21.1.1."
+                description: "Enable shared vip faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             ssl_cert_expiry_faults:
-                description: "Enable SSL certificate expiry faults. Field introduced in 21.1.1."
+                description: "Enable SSL certificate expiry faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             ssl_cert_status_faults:
-                description: "Enable SSL certificate status faults. Field introduced in 21.1.1."
+                description: "Enable SSL certificate status faults. Field introduced in 20.1.6."
                 type: boolean
                 default: True
     VISetMgmtIpSEReq:
