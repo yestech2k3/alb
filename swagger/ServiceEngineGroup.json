@@ -2136,7 +2136,7 @@
                     "type": "boolean"
                 },
                 "se_dp_isolation_num_non_dp_cpus": {
-                    "description": "Number of CPUs for non se-dp tasks in SE datapath isolation mode. Translates Total cpus minus 'num_non_dp_cpus' for datapath use.Requires SE reboot. Allowed values are 1-8. Special values are 0- 'auto'. Field introduced in 20.1.4.",
+                    "description": "Number of CPUs for non se-dp tasks in SE datapath isolation mode. Translates Total cpus minus 'num_non_dp_cpus' for datapath use. It is recommended to reserve an even number of CPUs for hyper-threaded processors. Requires SE reboot. Allowed values are 1-8. Special values are 0- 'auto'. Field introduced in 20.1.4.",
                     "type": "integer",
                     "format": "int32"
                 },
