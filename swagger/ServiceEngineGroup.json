@@ -876,6 +876,10 @@
                     "description": "Service Engine Backend Data Network Name, used only for GCP cloud.Overrides the cloud level setting for Backend Data Network in GCP Two Arm Mode. Field introduced in 20.1.3.",
                     "type": "string"
                 },
+                "backend_data_vpc_project_id": {
+                    "description": "Project ID of the Service Engine Backend Data Network. By default, Service Engine Project ID will be used. Field introduced in 20.1.6.",
+                    "type": "string"
+                },
                 "backend_data_vpc_subnet_name": {
                     "description": "Service Engine Backend Data Subnet Name, used only for GCP cloud.Overrides the cloud level setting for Backend Data Subnet in GCP Two Arm Mode. Field introduced in 20.1.3.",
                     "type": "string"
