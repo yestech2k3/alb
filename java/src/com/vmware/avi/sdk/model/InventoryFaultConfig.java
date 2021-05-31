@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * The JWTServerProfile is a POJO class extends AviRestResource that used for creating
- * JWTServerProfile.
+ * The InventoryFaultConfig is a POJO class extends AviRestResource that used for creating
+ * InventoryFaultConfig.
  *
  * @version 1.0
  * @since 
@@ -20,18 +20,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class JWTServerProfile extends AviRestResource  {
-    @JsonProperty("is_federated")
-    private Boolean isFederated = false;
-
-    @JsonProperty("issuer")
-    private String issuer = null;
-
-    @JsonProperty("jwks_keys")
-    private String jwksKeys = null;
+public class InventoryFaultConfig extends AviRestResource  {
+    @JsonProperty("controller_faults")
+    private ControllerFaults controllerFaults = null;
 
     @JsonProperty("name")
     private String name = null;
+
+    @JsonProperty("serviceengine_faults")
+    private ServiceengineFaults serviceengineFaults = null;
 
     @JsonProperty("tenant_ref")
     private String tenantRef = null;
@@ -42,82 +39,37 @@ public class JWTServerProfile extends AviRestResource  {
     @JsonProperty("uuid")
     private String uuid = null;
 
+    @JsonProperty("virtualservice_faults")
+    private VirtualserviceFaults virtualserviceFaults = null;
+
 
 
     /**
      * This is the getter method this will return the attribute value.
-     * This field describes the object's replication scope.
-     * If the field is set to false, then the object is visible within the controller-cluster.
-     * If the field is set to true, then the object is replicated across the federation.
+     * Configure controller faults.
      * Field introduced in 20.1.6.
-     * Default value when not specified in API or module is interpreted by Avi Controller as false.
-     * @return isFederated
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return controllerFaults
      */
-    public Boolean getIsFederated() {
-        return isFederated;
+    public ControllerFaults getControllerFaults() {
+        return controllerFaults;
     }
 
     /**
      * This is the setter method to the attribute.
-     * This field describes the object's replication scope.
-     * If the field is set to false, then the object is visible within the controller-cluster.
-     * If the field is set to true, then the object is replicated across the federation.
+     * Configure controller faults.
      * Field introduced in 20.1.6.
-     * Default value when not specified in API or module is interpreted by Avi Controller as false.
-     * @param isFederated set the isFederated.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param controllerFaults set the controllerFaults.
      */
-    public void setIsFederated(Boolean  isFederated) {
-        this.isFederated = isFederated;
+    public void setControllerFaults(ControllerFaults controllerFaults) {
+        this.controllerFaults = controllerFaults;
     }
 
     /**
      * This is the getter method this will return the attribute value.
-     * Uniquely identifiable name of the token issuer.
-     * Field introduced in 20.1.3.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return issuer
-     */
-    public String getIssuer() {
-        return issuer;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Uniquely identifiable name of the token issuer.
-     * Field introduced in 20.1.3.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param issuer set the issuer.
-     */
-    public void setIssuer(String  issuer) {
-        this.issuer = issuer;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Jwks key set used for validating the jwt.
-     * Field introduced in 20.1.3.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return jwksKeys
-     */
-    public String getJwksKeys() {
-        return jwksKeys;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Jwks key set used for validating the jwt.
-     * Field introduced in 20.1.3.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param jwksKeys set the jwksKeys.
-     */
-    public void setJwksKeys(String  jwksKeys) {
-        this.jwksKeys = jwksKeys;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Name of the jwt profile.
-     * Field introduced in 20.1.3.
+     * Name.
+     * Field introduced in 20.1.6.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -127,8 +79,8 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Name of the jwt profile.
-     * Field introduced in 20.1.3.
+     * Name.
+     * Field introduced in 20.1.6.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -138,9 +90,31 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Uuid of the tenant.
+     * Configure serviceengine faults.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return serviceengineFaults
+     */
+    public ServiceengineFaults getServiceengineFaults() {
+        return serviceengineFaults;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Configure serviceengine faults.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param serviceengineFaults set the serviceengineFaults.
+     */
+    public void setServiceengineFaults(ServiceengineFaults serviceengineFaults) {
+        this.serviceengineFaults = serviceengineFaults;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Tenant.
      * It is a reference to an object of type tenant.
-     * Field introduced in 20.1.3.
+     * Field introduced in 20.1.6.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -150,9 +124,9 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Uuid of the tenant.
+     * Tenant.
      * It is a reference to an object of type tenant.
-     * Field introduced in 20.1.3.
+     * Field introduced in 20.1.6.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -179,8 +153,8 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Uuid of the jwtprofile.
-     * Field introduced in 20.1.3.
+     * Uuid auto generated.
+     * Field introduced in 20.1.6.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -190,13 +164,35 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Uuid of the jwtprofile.
-     * Field introduced in 20.1.3.
+     * Uuid auto generated.
+     * Field introduced in 20.1.6.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
     public void setUuid(String  uuid) {
         this.uuid = uuid;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Configure virtualservice faults.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return virtualserviceFaults
+     */
+    public VirtualserviceFaults getVirtualserviceFaults() {
+        return virtualserviceFaults;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Configure virtualservice faults.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param virtualserviceFaults set the virtualserviceFaults.
+     */
+    public void setVirtualserviceFaults(VirtualserviceFaults virtualserviceFaults) {
+        this.virtualserviceFaults = virtualserviceFaults;
     }
 
 
@@ -208,25 +204,25 @@ public class JWTServerProfile extends AviRestResource  {
       if (o == null || getClass() != o.getClass()) {
           return false;
       }
-      JWTServerProfile objJWTServerProfile = (JWTServerProfile) o;
-      return   Objects.equals(this.uuid, objJWTServerProfile.uuid)&&
-  Objects.equals(this.name, objJWTServerProfile.name)&&
-  Objects.equals(this.jwksKeys, objJWTServerProfile.jwksKeys)&&
-  Objects.equals(this.issuer, objJWTServerProfile.issuer)&&
-  Objects.equals(this.tenantRef, objJWTServerProfile.tenantRef)&&
-  Objects.equals(this.isFederated, objJWTServerProfile.isFederated);
+      InventoryFaultConfig objInventoryFaultConfig = (InventoryFaultConfig) o;
+      return   Objects.equals(this.uuid, objInventoryFaultConfig.uuid)&&
+  Objects.equals(this.name, objInventoryFaultConfig.name)&&
+  Objects.equals(this.tenantRef, objInventoryFaultConfig.tenantRef)&&
+  Objects.equals(this.virtualserviceFaults, objInventoryFaultConfig.virtualserviceFaults)&&
+  Objects.equals(this.controllerFaults, objInventoryFaultConfig.controllerFaults)&&
+  Objects.equals(this.serviceengineFaults, objInventoryFaultConfig.serviceengineFaults);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class JWTServerProfile {\n");
-                  sb.append("    isFederated: ").append(toIndentedString(isFederated)).append("\n");
-                        sb.append("    issuer: ").append(toIndentedString(issuer)).append("\n");
-                        sb.append("    jwksKeys: ").append(toIndentedString(jwksKeys)).append("\n");
+      sb.append("class InventoryFaultConfig {\n");
+                  sb.append("    controllerFaults: ").append(toIndentedString(controllerFaults)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
+                        sb.append("    serviceengineFaults: ").append(toIndentedString(serviceengineFaults)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+                        sb.append("    virtualserviceFaults: ").append(toIndentedString(virtualserviceFaults)).append("\n");
                   sb.append("}");
       return sb.toString();
     }
