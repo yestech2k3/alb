@@ -197,7 +197,7 @@ type Pool struct {
 	// Server reselect configuration for HTTP requests.
 	ServerReselect *HttpserverReselect `json:"server_reselect,omitempty"`
 
-	// Server timeout value specifies the time within which a server connection needs to be established and a request-response exchange completes between AVI and the server. Value of 0 results in using default timeout of 60 minutes. Allowed values are 0-3600000. Field introduced in 18.1.5,18.2.1. Unit is MILLISECONDS.
+	// Server timeout value specifies the time within which a server connection needs to be established and a request-response exchange completes between AVI and the server. Value of 0 results in using default timeout of 60 minutes. Allowed values are 0-21600000. Field introduced in 18.1.5,18.2.1. Unit is MILLISECONDS.
 	ServerTimeout *int32 `json:"server_timeout,omitempty"`
 
 	// The pool directs load balanced traffic to this list of destination servers. The servers can be configured by IP address, name, network or via IP Address Group. Maximum of 5000 items allowed.

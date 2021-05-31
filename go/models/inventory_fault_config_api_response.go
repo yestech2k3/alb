@@ -4,9 +4,9 @@ package models
 
 // This file is auto-generated.
 
-// JWTProfileAPIResponse j w t profile Api response
-// swagger:model JWTProfileApiResponse
-type JWTProfileAPIResponse struct {
+// InventoryFaultConfigAPIResponse inventory fault config Api response
+// swagger:model InventoryFaultConfigApiResponse
+type InventoryFaultConfigAPIResponse struct {
 
 	// count
 	// Required: true
@@ -17,5 +17,5 @@ type JWTProfileAPIResponse struct {
 
 	// results
 	// Required: true
-	Results []*JWTProfile `json:"results,omitempty"`
+	Results []*InventoryFaultConfig `json:"results,omitempty"`
 }
