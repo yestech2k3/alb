@@ -5,7 +5,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Avi JWTServerProfile Object API</title>
+    <title>Avi InventoryFaultConfig Object API</title>
     <style type="text/css">
       body { 
 	font-family: Trebuchet MS, sans-serif;
@@ -183,8 +183,8 @@ font-style: italic;
     </style>
   </head>
   <body>
-  <h1>Avi JWTServerProfile Object API</h1>
-    <div class="app-desc">CLI ``` - configure jwtserverprofile <key> - show jwtserverprofile <key> ``` </div>
+  <h1>Avi InventoryFaultConfig Object API</h1>
+    <div class="app-desc">CLI ``` - configure inventoryfaultconfig - show inventoryfaultconfig ``` </div>
     <div class="app-desc">More information: <a href="https://avinetworks.com/contact-us">https://avinetworks.com/contact-us</a></div>
     <div class="app-desc">Contact Info: <a href="support@avinetworks.com">support@avinetworks.com</a></div>
     <div class="app-desc">Version: 20.1.6</div>
@@ -202,20 +202,19 @@ font-style: italic;
   <h2>Table of Contents </h2>
   <div class="method-summary"></div>
   <ol>
-  <li><a href="#jwtserverprofileGet"><code><span class="http-method">get</span> /jwtserverprofile</code></a></li>
-  <li><a href="#jwtserverprofilePost"><code><span class="http-method">post</span> /jwtserverprofile</code></a></li>
-  <li><a href="#jwtserverprofileUuidDelete"><code><span class="http-method">delete</span> /jwtserverprofile/{uuid}</code></a></li>
-  <li><a href="#jwtserverprofileUuidFederatedInfoGet"><code><span class="http-method">get</span> /jwtserverprofile/{uuid}/federated_info/</code></a></li>
-  <li><a href="#jwtserverprofileUuidGet"><code><span class="http-method">get</span> /jwtserverprofile/{uuid}</code></a></li>
-  <li><a href="#jwtserverprofileUuidPatch"><code><span class="http-method">patch</span> /jwtserverprofile/{uuid}</code></a></li>
-  <li><a href="#jwtserverprofileUuidPut"><code><span class="http-method">put</span> /jwtserverprofile/{uuid}</code></a></li>
+  <li><a href="#inventoryfaultconfigGet"><code><span class="http-method">get</span> /inventoryfaultconfig</code></a></li>
+  <li><a href="#inventoryfaultconfigPost"><code><span class="http-method">post</span> /inventoryfaultconfig</code></a></li>
+  <li><a href="#inventoryfaultconfigUuidDelete"><code><span class="http-method">delete</span> /inventoryfaultconfig/{uuid}</code></a></li>
+  <li><a href="#inventoryfaultconfigUuidGet"><code><span class="http-method">get</span> /inventoryfaultconfig/{uuid}</code></a></li>
+  <li><a href="#inventoryfaultconfigUuidPatch"><code><span class="http-method">patch</span> /inventoryfaultconfig/{uuid}</code></a></li>
+  <li><a href="#inventoryfaultconfigUuidPut"><code><span class="http-method">put</span> /inventoryfaultconfig/{uuid}</code></a></li>
   </ol>
 
-  <div class="method"><a name="jwtserverprofileGet"/>
+  <div class="method"><a name="inventoryfaultconfigGet"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /jwtserverprofile</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">jwtserverprofileGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /inventoryfaultconfig</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">inventoryfaultconfigGet</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -249,7 +248,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#JWTServerProfileApiResponse">JWTServerProfileApiResponse</a>
+      <a href="#InventoryFaultConfigApiResponse">InventoryFaultConfigApiResponse</a>
       
     </div>
 
@@ -261,12 +260,28 @@ font-style: italic;
   "next" : "aeiou",
   "count" : 123,
   "results" : [ {
+    "virtualservice_faults" : {
+      "debug_faults" : true,
+      "scaleout_faults" : true,
+      "pool_server_faults" : true,
+      "shared_vip_faults" : true,
+      "ssl_cert_expiry_faults" : true,
+      "ssl_cert_status_faults" : true
+    },
     "tenant_ref" : "aeiou",
-    "jwks_keys" : "aeiou",
     "name" : "aeiou",
+    "serviceengine_faults" : {
+      "debug_faults" : true
+    },
+    "controller_faults" : {
+      "backup_scheduler_faults" : true,
+      "deprecated_api_version_faults" : true,
+      "license_faults" : true,
+      "cluster_faults" : true,
+      "migration_faults" : true,
+      "sslprofile_faults" : true
+    },
     "uuid" : "aeiou",
-    "is_federated" : true,
-    "issuer" : "aeiou",
     "url" : "aeiou",
     "_last_modified" : "aeiou"
   } ]
@@ -282,17 +297,17 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#JWTServerProfileApiResponse">JWTServerProfileApiResponse</a>
+        <a href="#InventoryFaultConfigApiResponse">InventoryFaultConfigApiResponse</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="jwtserverprofilePost"/>
+  <div class="method"><a name="inventoryfaultconfigPost"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /jwtserverprofile</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">jwtserverprofilePost</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /inventoryfaultconfig</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">inventoryfaultconfigPost</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -306,7 +321,7 @@ font-style: italic;
     <div class="field-items">
       <div class="param">body (required)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; JWTServerProfile object creation </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; InventoryFaultConfig object creation </div>
     </div>  <!-- field-items -->
 
 
@@ -314,7 +329,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#JWTServerProfile">JWTServerProfile</a>
+      <a href="#InventoryFaultConfig">InventoryFaultConfig</a>
       
     </div>
 
@@ -323,12 +338,28 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "virtualservice_faults" : {
+    "debug_faults" : true,
+    "scaleout_faults" : true,
+    "pool_server_faults" : true,
+    "shared_vip_faults" : true,
+    "ssl_cert_expiry_faults" : true,
+    "ssl_cert_status_faults" : true
+  },
   "tenant_ref" : "aeiou",
-  "jwks_keys" : "aeiou",
   "name" : "aeiou",
+  "serviceengine_faults" : {
+    "debug_faults" : true
+  },
+  "controller_faults" : {
+    "backup_scheduler_faults" : true,
+    "deprecated_api_version_faults" : true,
+    "license_faults" : true,
+    "cluster_faults" : true,
+    "migration_faults" : true,
+    "sslprofile_faults" : true
+  },
   "uuid" : "aeiou",
-  "is_federated" : true,
-  "issuer" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
 }</code></pre>
@@ -343,17 +374,17 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#JWTServerProfile">JWTServerProfile</a>
+        <a href="#InventoryFaultConfig">InventoryFaultConfig</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="jwtserverprofileUuidDelete"/>
+  <div class="method"><a name="inventoryfaultconfigUuidDelete"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /jwtserverprofile/{uuid}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">jwtserverprofileUuidDelete</span>)</div>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /inventoryfaultconfig/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">inventoryfaultconfigUuidDelete</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -407,63 +438,11 @@ font-style: italic;
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="jwtserverprofileUuidFederatedInfoGet"/>
+  <div class="method"><a name="inventoryfaultconfigUuidGet"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /jwtserverprofile/{uuid}/federated_info/</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">jwtserverprofileUuidFederatedInfoGet</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">uuid (required)</div>
-
-      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; UUID of the object to fetch </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      String
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>"aeiou"</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    OK
-        <a href="#String">String</a>
-    <h4 class="field-label">401</h4>
-    log in failed
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="jwtserverprofileUuidGet"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /jwtserverprofile/{uuid}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">jwtserverprofileUuidGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /inventoryfaultconfig/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">inventoryfaultconfigUuidGet</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -499,7 +478,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#JWTServerProfile">JWTServerProfile</a>
+      <a href="#InventoryFaultConfig">InventoryFaultConfig</a>
       
     </div>
 
@@ -508,12 +487,28 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "virtualservice_faults" : {
+    "debug_faults" : true,
+    "scaleout_faults" : true,
+    "pool_server_faults" : true,
+    "shared_vip_faults" : true,
+    "ssl_cert_expiry_faults" : true,
+    "ssl_cert_status_faults" : true
+  },
   "tenant_ref" : "aeiou",
-  "jwks_keys" : "aeiou",
   "name" : "aeiou",
+  "serviceengine_faults" : {
+    "debug_faults" : true
+  },
+  "controller_faults" : {
+    "backup_scheduler_faults" : true,
+    "deprecated_api_version_faults" : true,
+    "license_faults" : true,
+    "cluster_faults" : true,
+    "migration_faults" : true,
+    "sslprofile_faults" : true
+  },
   "uuid" : "aeiou",
-  "is_federated" : true,
-  "issuer" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
 }</code></pre>
@@ -528,17 +523,17 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#JWTServerProfile">JWTServerProfile</a>
+        <a href="#InventoryFaultConfig">InventoryFaultConfig</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="jwtserverprofileUuidPatch"/>
+  <div class="method"><a name="inventoryfaultconfigUuidPatch"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /jwtserverprofile/{uuid}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">jwtserverprofileUuidPatch</span>)</div>
+    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /inventoryfaultconfig/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">inventoryfaultconfigUuidPatch</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -558,7 +553,7 @@ font-style: italic;
     <div class="field-items">
       <div class="param">body (required)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; JWTServerProfile object creation </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; InventoryFaultConfig object creation </div>
     </div>  <!-- field-items -->
 
 
@@ -572,7 +567,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#JWTServerProfile">JWTServerProfile</a>
+      <a href="#InventoryFaultConfig">InventoryFaultConfig</a>
       
     </div>
 
@@ -581,12 +576,28 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "virtualservice_faults" : {
+    "debug_faults" : true,
+    "scaleout_faults" : true,
+    "pool_server_faults" : true,
+    "shared_vip_faults" : true,
+    "ssl_cert_expiry_faults" : true,
+    "ssl_cert_status_faults" : true
+  },
   "tenant_ref" : "aeiou",
-  "jwks_keys" : "aeiou",
   "name" : "aeiou",
+  "serviceengine_faults" : {
+    "debug_faults" : true
+  },
+  "controller_faults" : {
+    "backup_scheduler_faults" : true,
+    "deprecated_api_version_faults" : true,
+    "license_faults" : true,
+    "cluster_faults" : true,
+    "migration_faults" : true,
+    "sslprofile_faults" : true
+  },
   "uuid" : "aeiou",
-  "is_federated" : true,
-  "issuer" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
 }</code></pre>
@@ -601,17 +612,17 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#JWTServerProfile">JWTServerProfile</a>
+        <a href="#InventoryFaultConfig">InventoryFaultConfig</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="jwtserverprofileUuidPut"/>
+  <div class="method"><a name="inventoryfaultconfigUuidPut"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /jwtserverprofile/{uuid}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">jwtserverprofileUuidPut</span>)</div>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /inventoryfaultconfig/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">inventoryfaultconfigUuidPut</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -631,7 +642,7 @@ font-style: italic;
     <div class="field-items">
       <div class="param">body (required)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; JWTServerProfile object creation </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; InventoryFaultConfig object creation </div>
     </div>  <!-- field-items -->
 
 
@@ -645,7 +656,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#JWTServerProfile">JWTServerProfile</a>
+      <a href="#InventoryFaultConfig">InventoryFaultConfig</a>
       
     </div>
 
@@ -654,12 +665,28 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "virtualservice_faults" : {
+    "debug_faults" : true,
+    "scaleout_faults" : true,
+    "pool_server_faults" : true,
+    "shared_vip_faults" : true,
+    "ssl_cert_expiry_faults" : true,
+    "ssl_cert_status_faults" : true
+  },
   "tenant_ref" : "aeiou",
-  "jwks_keys" : "aeiou",
   "name" : "aeiou",
+  "serviceengine_faults" : {
+    "debug_faults" : true
+  },
+  "controller_faults" : {
+    "backup_scheduler_faults" : true,
+    "deprecated_api_version_faults" : true,
+    "license_faults" : true,
+    "cluster_faults" : true,
+    "migration_faults" : true,
+    "sslprofile_faults" : true
+  },
   "uuid" : "aeiou",
-  "is_federated" : true,
-  "issuer" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
 }</code></pre>
@@ -674,7 +701,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#JWTServerProfile">JWTServerProfile</a>
+        <a href="#InventoryFaultConfig">InventoryFaultConfig</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
@@ -687,29 +714,60 @@ font-style: italic;
 
   <h2>Table of Contents</h2>
   <ol>
-    <li><a href="#JWTServerProfile"><code>JWTServerProfile</code></a></li>
-    <li><a href="#JWTServerProfileApiResponse"><code>JWTServerProfileApiResponse</code></a></li>
+    <li><a href="#ControllerFaults"><code>ControllerFaults</code></a></li>
+    <li><a href="#InventoryFaultConfig"><code>InventoryFaultConfig</code></a></li>
+    <li><a href="#InventoryFaultConfigApiResponse"><code>InventoryFaultConfigApiResponse</code></a></li>
+    <li><a href="#ServiceengineFaults"><code>ServiceengineFaults</code></a></li>
+    <li><a href="#VirtualserviceFaults"><code>VirtualserviceFaults</code></a></li>
   </ol>
 
   <div class="model">
-    <h3 class="field-label"><a name="JWTServerProfile">JWTServerProfile</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3 class="field-label"><a name="ControllerFaults">ControllerFaults</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
-<div class="param">is_federated (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> This field describes the object&#39;s replication scope. If the field is set to false, then the object is visible within the controller-cluster.  If the field is set to true, then the object is replicated across the federation.  . Field introduced in 20.1.6. </div>
-<div class="param">issuer </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Uniquely identifiable name of the Token Issuer. Field introduced in 20.1.3. </div>
-<div class="param">jwks_keys </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> JWKS key set used for validating the JWT. Field introduced in 20.1.3. </div>
-<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the JWT Profile. Field introduced in 20.1.3. </div>
-<div class="param">tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID of the Tenant. It is a reference to an object of type Tenant. Field introduced in 20.1.3. </div>
-<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> url </div>
-<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID of the JWTProfile. Field introduced in 20.1.3. </div>
+      <div class="param">backup_scheduler_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable backup scheduler faults. Field introduced in 20.1.6. </div>
+<div class="param">cluster_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable cluster faults. Field introduced in 20.1.6. </div>
+<div class="param">deprecated_api_version_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable deprecated api version faults. Field introduced in 20.1.6. </div>
+<div class="param">license_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable license faults. Field introduced in 20.1.6. </div>
+<div class="param">migration_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable DB migration faults. Field introduced in 20.1.6. </div>
+<div class="param">sslprofile_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable SSL Profile faults. Field introduced in 20.1.6. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3 class="field-label"><a name="JWTServerProfileApiResponse">JWTServerProfileApiResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3 class="field-label"><a name="InventoryFaultConfig">InventoryFaultConfig</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
+<div class="param">controller_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#ControllerFaults">ControllerFaults</a></span> Configure controller faults. Field introduced in 20.1.6. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name. Field introduced in 20.1.6. </div>
+<div class="param">serviceengine_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#ServiceengineFaults">ServiceengineFaults</a></span> Configure serviceengine faults. Field introduced in 20.1.6. </div>
+<div class="param">tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Tenant. It is a reference to an object of type Tenant. Field introduced in 20.1.6. </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> url </div>
+<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID Auto generated. Field introduced in 20.1.6. </div>
+<div class="param">virtualservice_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#VirtualserviceFaults">VirtualserviceFaults</a></span> Configure VirtualService faults. Field introduced in 20.1.6. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="InventoryFaultConfigApiResponse">InventoryFaultConfigApiResponse</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">count </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">results </div><div class="param-desc"><span class="param-type"><a href="#JWTServerProfile">array[JWTServerProfile]</a></span>  </div>
+<div class="param">results </div><div class="param-desc"><span class="param-type"><a href="#InventoryFaultConfig">array[InventoryFaultConfig]</a></span>  </div>
 <div class="param">next (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ServiceengineFaults">ServiceengineFaults</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">debug_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable debug faults. Field introduced in 20.1.6. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VirtualserviceFaults">VirtualserviceFaults</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">debug_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable debug faults. Field introduced in 20.1.6. </div>
+<div class="param">pool_server_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable pool server faults. Field introduced in 20.1.6. </div>
+<div class="param">scaleout_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable VS scaleout and scalein faults. Field introduced in 20.1.6. </div>
+<div class="param">shared_vip_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable shared vip faults. Field introduced in 20.1.6. </div>
+<div class="param">ssl_cert_expiry_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable SSL certificate expiry faults. Field introduced in 20.1.6. </div>
+<div class="param">ssl_cert_status_faults (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable SSL certificate status faults. Field introduced in 20.1.6. </div>
     </div>  <!-- field-items -->
   </div>
   </body>
