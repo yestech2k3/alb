@@ -340,6 +340,11 @@
                     "type": "boolean",
                     "default": true
                 },
+                "check_fqdn_syntax": {
+                    "description": "Enforce FQDN syntax checks. Field introduced in 20.1.6.",
+                    "type": "boolean",
+                    "default": true
+                },
                 "cleanup_expired_authtoken_timeout_period": {
                     "description": "Period for auth token cleanup job. Field introduced in 18.1.1. Unit is MIN.",
                     "type": "integer",
@@ -433,7 +438,7 @@
                     "type": "boolean"
                 },
                 "enable_resmgr_log_cache_print": {
-                    "description": "Enable printing of cached logs inside Resource Manager. Used for debugging purposes only. Field introduced in 21.1.1.",
+                    "description": "Enable printing of cached logs inside Resource Manager. Used for debugging purposes only. Field introduced in 20.1.6.",
                     "type": "boolean"
                 },
                 "fatal_error_lease_time": {
