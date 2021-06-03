@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class JWTServerProfile extends AviRestResource  {
+    @JsonProperty("is_federated")
+    private Boolean isFederated = false;
+
     @JsonProperty("issuer")
     private String issuer = null;
 
@@ -40,6 +43,32 @@ public class JWTServerProfile extends AviRestResource  {
     private String uuid = null;
 
 
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * This field describes the object's replication scope.
+     * If the field is set to false, then the object is visible within the controller-cluster.
+     * If the field is set to true, then the object is replicated across the federation.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return isFederated
+     */
+    public Boolean getIsFederated() {
+        return isFederated;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * This field describes the object's replication scope.
+     * If the field is set to false, then the object is visible within the controller-cluster.
+     * If the field is set to true, then the object is replicated across the federation.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param isFederated set the isFederated.
+     */
+    public void setIsFederated(Boolean  isFederated) {
+        this.isFederated = isFederated;
+    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -184,14 +213,16 @@ public class JWTServerProfile extends AviRestResource  {
   Objects.equals(this.name, objJWTServerProfile.name)&&
   Objects.equals(this.jwksKeys, objJWTServerProfile.jwksKeys)&&
   Objects.equals(this.issuer, objJWTServerProfile.issuer)&&
-  Objects.equals(this.tenantRef, objJWTServerProfile.tenantRef);
+  Objects.equals(this.tenantRef, objJWTServerProfile.tenantRef)&&
+  Objects.equals(this.isFederated, objJWTServerProfile.isFederated);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class JWTServerProfile {\n");
-                  sb.append("    issuer: ").append(toIndentedString(issuer)).append("\n");
+                  sb.append("    isFederated: ").append(toIndentedString(isFederated)).append("\n");
+                        sb.append("    issuer: ").append(toIndentedString(issuer)).append("\n");
                         sb.append("    jwksKeys: ").append(toIndentedString(jwksKeys)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");

@@ -57,6 +57,9 @@ public class ControllerProperties extends AviRestResource  {
     @JsonProperty("bm_use_ansible")
     private Boolean bmUseAnsible = true;
 
+    @JsonProperty("check_fqdn_syntax")
+    private Boolean checkFqdnSyntax = true;
+
     @JsonProperty("cleanup_expired_authtoken_timeout_period")
     private Integer cleanupExpiredAuthtokenTimeoutPeriod = 60;
 
@@ -540,6 +543,28 @@ public class ControllerProperties extends AviRestResource  {
      */
     public void setBmUseAnsible(Boolean  bmUseAnsible) {
         this.bmUseAnsible = bmUseAnsible;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Enforce fqdn syntax checks.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as true.
+     * @return checkFqdnSyntax
+     */
+    public Boolean getCheckFqdnSyntax() {
+        return checkFqdnSyntax;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Enforce fqdn syntax checks.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as true.
+     * @param checkFqdnSyntax set the checkFqdnSyntax.
+     */
+    public void setCheckFqdnSyntax(Boolean  checkFqdnSyntax) {
+        this.checkFqdnSyntax = checkFqdnSyntax;
     }
 
     /**
@@ -2254,7 +2279,8 @@ public class ControllerProperties extends AviRestResource  {
   Objects.equals(this.resmgrLogCachingPeriod, objControllerProperties.resmgrLogCachingPeriod)&&
   Objects.equals(this.userAgentCacheConfig, objControllerProperties.userAgentCacheConfig)&&
   Objects.equals(this.delOfflineSeAfterRebootDelay, objControllerProperties.delOfflineSeAfterRebootDelay)&&
-  Objects.equals(this.enablePerProcessStop, objControllerProperties.enablePerProcessStop);
+  Objects.equals(this.enablePerProcessStop, objControllerProperties.enablePerProcessStop)&&
+  Objects.equals(this.checkFqdnSyntax, objControllerProperties.checkFqdnSyntax);
     }
 
     @Override
@@ -2273,6 +2299,7 @@ public class ControllerProperties extends AviRestResource  {
                         sb.append("    attachIpRetryInterval: ").append(toIndentedString(attachIpRetryInterval)).append("\n");
                         sb.append("    attachIpRetryLimit: ").append(toIndentedString(attachIpRetryLimit)).append("\n");
                         sb.append("    bmUseAnsible: ").append(toIndentedString(bmUseAnsible)).append("\n");
+                        sb.append("    checkFqdnSyntax: ").append(toIndentedString(checkFqdnSyntax)).append("\n");
                         sb.append("    cleanupExpiredAuthtokenTimeoutPeriod: ").append(toIndentedString(cleanupExpiredAuthtokenTimeoutPeriod)).append("\n");
                         sb.append("    cleanupSessionsTimeoutPeriod: ").append(toIndentedString(cleanupSessionsTimeoutPeriod)).append("\n");
                         sb.append("    cloudReconcile: ").append(toIndentedString(cloudReconcile)).append("\n");
