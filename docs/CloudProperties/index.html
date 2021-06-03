@@ -350,6 +350,7 @@ font-style: italic;
         "shared_ssl_certificates" : true,
         "configpb_attributes" : "",
         "seupgrade_segroup_min_dead_timeout" : 123,
+        "check_fqdn_syntax" : true,
         "se_vnic_cooldown" : 123,
         "safenet_hsm_version" : "aeiou",
         "secure_channel_cleanup_timeout" : 123,
@@ -551,6 +552,7 @@ font-style: italic;
       "shared_ssl_certificates" : true,
       "configpb_attributes" : "",
       "seupgrade_segroup_min_dead_timeout" : 123,
+      "check_fqdn_syntax" : true,
       "se_vnic_cooldown" : 123,
       "safenet_hsm_version" : "aeiou",
       "secure_channel_cleanup_timeout" : 123,
@@ -823,6 +825,7 @@ font-style: italic;
       "shared_ssl_certificates" : true,
       "configpb_attributes" : "",
       "seupgrade_segroup_min_dead_timeout" : 123,
+      "check_fqdn_syntax" : true,
       "se_vnic_cooldown" : 123,
       "safenet_hsm_version" : "aeiou",
       "secure_channel_cleanup_timeout" : 123,
@@ -1035,6 +1038,7 @@ font-style: italic;
       "shared_ssl_certificates" : true,
       "configpb_attributes" : "",
       "seupgrade_segroup_min_dead_timeout" : 123,
+      "check_fqdn_syntax" : true,
       "se_vnic_cooldown" : 123,
       "safenet_hsm_version" : "aeiou",
       "secure_channel_cleanup_timeout" : 123,
@@ -1247,6 +1251,7 @@ font-style: italic;
       "shared_ssl_certificates" : true,
       "configpb_attributes" : "",
       "seupgrade_segroup_min_dead_timeout" : 123,
+      "check_fqdn_syntax" : true,
       "se_vnic_cooldown" : 123,
       "safenet_hsm_version" : "aeiou",
       "secure_channel_cleanup_timeout" : 123,
@@ -1416,6 +1421,7 @@ font-style: italic;
       "version" : 123
     },
     "seupgrade_segroup_min_dead_timeout" : 123,
+    "check_fqdn_syntax" : true,
     "se_vnic_cooldown" : 123,
     "safenet_hsm_version" : "aeiou",
     "secure_channel_cleanup_timeout" : 123,
@@ -1569,6 +1575,7 @@ font-style: italic;
     "version" : 123
   },
   "seupgrade_segroup_min_dead_timeout" : 123,
+  "check_fqdn_syntax" : true,
   "se_vnic_cooldown" : 123,
   "safenet_hsm_version" : "aeiou",
   "secure_channel_cleanup_timeout" : 123,
@@ -1793,6 +1800,7 @@ font-style: italic;
     "version" : 123
   },
   "seupgrade_segroup_min_dead_timeout" : 123,
+  "check_fqdn_syntax" : true,
   "se_vnic_cooldown" : 123,
   "safenet_hsm_version" : "aeiou",
   "secure_channel_cleanup_timeout" : 123,
@@ -1957,6 +1965,7 @@ font-style: italic;
     "version" : 123
   },
   "seupgrade_segroup_min_dead_timeout" : 123,
+  "check_fqdn_syntax" : true,
   "se_vnic_cooldown" : 123,
   "safenet_hsm_version" : "aeiou",
   "secure_channel_cleanup_timeout" : 123,
@@ -2121,6 +2130,7 @@ font-style: italic;
     "version" : 123
   },
   "seupgrade_segroup_min_dead_timeout" : 123,
+  "check_fqdn_syntax" : true,
   "se_vnic_cooldown" : 123,
   "safenet_hsm_version" : "aeiou",
   "secure_channel_cleanup_timeout" : 123,
@@ -2319,6 +2329,7 @@ font-style: italic;
 <div class="param">attach_ip_retry_interval (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Unit is SEC. format: int32</div>
 <div class="param">attach_ip_retry_limit (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of attach_ip_retry_limit. format: int32</div>
 <div class="param">bm_use_ansible (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use Ansible for SE creation in baremetal. Field introduced in 17.2.2. </div>
+<div class="param">check_fqdn_syntax (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enforce FQDN syntax checks. Field introduced in 20.1.6. </div>
 <div class="param">cleanup_expired_authtoken_timeout_period (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Period for auth token cleanup job. Field introduced in 18.1.1. Unit is MIN. format: int32</div>
 <div class="param">cleanup_sessions_timeout_period (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Period for sessions cleanup job. Field introduced in 18.1.1. Unit is MIN. format: int32</div>
 <div class="param">cloud_reconcile (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable/Disable periodic reconcile for all the clouds. Field introduced in 17.2.14,18.1.5,18.2.1. </div>
@@ -2336,7 +2347,7 @@ font-style: italic;
 <div class="param">enable_api_sharding (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> This setting enables the controller leader to shard API requests to the followers (if any). Field introduced in 18.1.5, 18.2.1. </div>
 <div class="param">enable_memory_balancer (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable/Disable Memory Balancer. Field introduced in 17.2.8. </div>
 <div class="param">enable_per_process_stop (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable stopping of individual processes if process cross the given threshold limit, even when the total controller memory usage is belowits threshold limit. Field introduced in 21.1.1. </div>
-<div class="param">enable_resmgr_log_cache_print (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable printing of cached logs inside Resource Manager. Used for debugging purposes only. Field introduced in 21.1.1. </div>
+<div class="param">enable_resmgr_log_cache_print (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable printing of cached logs inside Resource Manager. Used for debugging purposes only. Field introduced in 20.1.6. </div>
 <div class="param">fatal_error_lease_time (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Unit is SEC. format: int32</div>
 <div class="param">federated_datastore_cleanup_duration (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> Federated datastore will not cleanup diffs unless they are at least this duration in the past. Field introduced in 20.1.1. Unit is HOURS. format: int64</div>
 <div class="param">file_object_cleanup_period (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Period for file object cleanup job. Field introduced in 20.1.1. Unit is MIN. format: int32</div>
