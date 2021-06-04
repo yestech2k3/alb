@@ -340,8 +340,8 @@
                     "type": "boolean",
                     "default": true
                 },
-                "check_fqdn_syntax": {
-                    "description": "Enforce FQDN syntax checks. Field introduced in 20.1.6.",
+                "check_vsvip_fqdn_syntax": {
+                    "description": "Enforce VsVip FQDN syntax checks. Field introduced in 20.1.6.",
                     "type": "boolean",
                     "default": true
                 },

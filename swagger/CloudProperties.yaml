@@ -925,8 +925,8 @@ definitions:
                 description: "Use Ansible for SE creation in baremetal. Field introduced in 17.2.2."
                 type: boolean
                 default: True
-            check_fqdn_syntax:
-                description: "Enforce FQDN syntax checks. Field introduced in 20.1.6."
+            check_vsvip_fqdn_syntax:
+                description: "Enforce VsVip FQDN syntax checks. Field introduced in 20.1.6."
                 type: boolean
                 default: True
             cleanup_expired_authtoken_timeout_period:
