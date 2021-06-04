@@ -565,11 +565,48 @@
         }
     },
     "definitions": {
+        "ControllerInternalAuth": {
+            "type": "object",
+            "properties": {
+                "symmetric_jwks_keys": {
+                    "description": "Symmetric keys used for signing/validating the JWT, only allowed with profile_type CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6. Minimum of 1 items required. Maximum of 1 items allowed.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/JWSKey"
+                    }
+                }
+            }
+        },
+        "JWSKey": {
+            "type": "object",
+            "required": [
+                "key",
+                "kid"
+            ],
+            "properties": {
+                "alg": {
+                    "description": "Algorithm that need to be used while signing/validation, allowed values  HS256, HS384, HS512. Field introduced in 20.1.6.",
+                    "type": "string",
+                    "default": "HS256"
+                },
+                "key": {
+                    "description": "Secret JWK for signing/validation, length of the key varies depending upon the type of algorithm used for key generation {HS256  32 bytes, HS384  48bytes, HS512  64 bytes}. Field introduced in 20.1.6.",
+                    "type": "string"
+                },
+                "kid": {
+                    "description": "Unique key id across all keys, example  uuid.uuid4(). Field introduced in 20.1.6.",
+                    "type": "string"
+                },
+                "kty": {
+                    "description": "Secret key type/format, allowed value  octet(oct). Field introduced in 20.1.6.",
+                    "type": "string",
+                    "default": "oct"
+                }
+            }
+        },
         "JWTServerProfile": {
             "type": "object",
             "required": [
-                "issuer",
-                "jwks_keys",
                 "name"
             ],
             "properties": {
@@ -583,12 +620,21 @@
                     "type": "boolean"
                 },
                 "issuer": {
-                    "description": "Uniquely identifiable name of the Token Issuer. Field introduced in 20.1.3.",
+                    "description": "Uniquely identifiable name of the Token Issuer, only allowed with profile_type CLIENT_AUTH. Field introduced in 20.1.3.",
                     "type": "string"
                 },
                 "jwks_keys": {
-                    "description": "JWKS key set used for validating the JWT. Field introduced in 20.1.3.",
+                    "description": "JWKS key set used for validating the JWT, only allowed with profile_type CLIENT_AUTH. Field introduced in 20.1.3.",
                     "type": "string"
+                },
+                "jwt_profile_type": {
+                    "description": "Type of JWT Server profile which defines the usage type. Enum options - CLIENT_AUTH, CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6.",
+                    "type": "string",
+                    "default": "CLIENT_AUTH"
+                },
+                "jwt_server_profile_config": {
+                    "description": "This is the union of all supported jwt auth profiles. Field introduced in 20.1.6.",
+                    "$ref": "#/definitions/JWTServerProfileConfig"
                 },
                 "name": {
                     "description": "Name of the JWT Profile. Field introduced in 20.1.3.",
@@ -628,6 +674,15 @@
                 },
                 "next": {
                     "type": "string"
+                }
+            }
+        },
+        "JWTServerProfileConfig": {
+            "type": "object",
+            "properties": {
+                "controller_internal_auth": {
+                    "description": "JWT Auth configuration for profile_type CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6.",
+                    "$ref": "#/definitions/ControllerInternalAuth"
                 }
             }
         }
