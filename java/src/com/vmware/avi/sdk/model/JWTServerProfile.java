@@ -30,6 +30,12 @@ public class JWTServerProfile extends AviRestResource  {
     @JsonProperty("jwks_keys")
     private String jwksKeys = null;
 
+    @JsonProperty("jwt_profile_type")
+    private String jwtProfileType = "CLIENT_AUTH";
+
+    @JsonProperty("jwt_server_profile_config")
+    private JWTServerProfileConfig jwtServerProfileConfig = null;
+
     @JsonProperty("name")
     private String name = null;
 
@@ -72,7 +78,7 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Uniquely identifiable name of the token issuer.
+     * Uniquely identifiable name of the token issuer, only allowed with profile_type client_auth.
      * Field introduced in 20.1.3.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return issuer
@@ -83,7 +89,7 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Uniquely identifiable name of the token issuer.
+     * Uniquely identifiable name of the token issuer, only allowed with profile_type client_auth.
      * Field introduced in 20.1.3.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param issuer set the issuer.
@@ -94,7 +100,7 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Jwks key set used for validating the jwt.
+     * Jwks key set used for validating the jwt, only allowed with profile_type client_auth.
      * Field introduced in 20.1.3.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return jwksKeys
@@ -105,13 +111,59 @@ public class JWTServerProfile extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Jwks key set used for validating the jwt.
+     * Jwks key set used for validating the jwt, only allowed with profile_type client_auth.
      * Field introduced in 20.1.3.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param jwksKeys set the jwksKeys.
      */
     public void setJwksKeys(String  jwksKeys) {
         this.jwksKeys = jwksKeys;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Type of jwt server profile which defines the usage type.
+     * Enum options - CLIENT_AUTH, CONTROLLER_INTERNAL_AUTH.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "CLIENT_AUTH".
+     * @return jwtProfileType
+     */
+    public String getJwtProfileType() {
+        return jwtProfileType;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Type of jwt server profile which defines the usage type.
+     * Enum options - CLIENT_AUTH, CONTROLLER_INTERNAL_AUTH.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "CLIENT_AUTH".
+     * @param jwtProfileType set the jwtProfileType.
+     */
+    public void setJwtProfileType(String  jwtProfileType) {
+        this.jwtProfileType = jwtProfileType;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * This is the union of all supported jwt auth profiles.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return jwtServerProfileConfig
+     */
+    public JWTServerProfileConfig getJwtServerProfileConfig() {
+        return jwtServerProfileConfig;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * This is the union of all supported jwt auth profiles.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param jwtServerProfileConfig set the jwtServerProfileConfig.
+     */
+    public void setJwtServerProfileConfig(JWTServerProfileConfig jwtServerProfileConfig) {
+        this.jwtServerProfileConfig = jwtServerProfileConfig;
     }
 
     /**
@@ -214,7 +266,9 @@ public class JWTServerProfile extends AviRestResource  {
   Objects.equals(this.jwksKeys, objJWTServerProfile.jwksKeys)&&
   Objects.equals(this.issuer, objJWTServerProfile.issuer)&&
   Objects.equals(this.tenantRef, objJWTServerProfile.tenantRef)&&
-  Objects.equals(this.isFederated, objJWTServerProfile.isFederated);
+  Objects.equals(this.isFederated, objJWTServerProfile.isFederated)&&
+  Objects.equals(this.jwtProfileType, objJWTServerProfile.jwtProfileType)&&
+  Objects.equals(this.jwtServerProfileConfig, objJWTServerProfile.jwtServerProfileConfig);
     }
 
     @Override
@@ -224,6 +278,8 @@ public class JWTServerProfile extends AviRestResource  {
                   sb.append("    isFederated: ").append(toIndentedString(isFederated)).append("\n");
                         sb.append("    issuer: ").append(toIndentedString(issuer)).append("\n");
                         sb.append("    jwksKeys: ").append(toIndentedString(jwksKeys)).append("\n");
+                        sb.append("    jwtProfileType: ").append(toIndentedString(jwtProfileType)).append("\n");
+                        sb.append("    jwtServerProfileConfig: ").append(toIndentedString(jwtServerProfileConfig)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
