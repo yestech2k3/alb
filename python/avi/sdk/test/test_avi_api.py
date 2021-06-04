@@ -893,6 +893,9 @@ class Test(unittest.TestCase):
         resp = aviapi.delete_by_name("pool", pool_name,
                                   api_version=login_info.get("api_version"))
         assert resp.status_code in (200, 204)
+        resp = aviapi.delete_by_name("vsvip", vsvip_name,
+                                  api_version=login_info.get("api_version"))
+        assert resp.status_code in (200, 204)
 
 
 if __name__ == "__main__":
