@@ -83,7 +83,7 @@ public class JWSKey  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Unique key id across all keys, example  uuid.uuid4().
+     * Unique key id across all keys.
      * Field introduced in 20.1.6.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return kid
@@ -94,7 +94,7 @@ public class JWSKey  {
 
     /**
      * This is the setter method to the attribute.
-     * Unique key id across all keys, example  uuid.uuid4().
+     * Unique key id across all keys.
      * Field introduced in 20.1.6.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param kid set the kid.

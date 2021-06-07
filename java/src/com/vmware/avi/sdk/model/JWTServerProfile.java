@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class JWTServerProfile extends AviRestResource  {
+    @JsonProperty("controller_internal_auth")
+    private ControllerInternalAuth controllerInternalAuth = null;
+
     @JsonProperty("is_federated")
     private Boolean isFederated = false;
 
@@ -32,9 +35,6 @@ public class JWTServerProfile extends AviRestResource  {
 
     @JsonProperty("jwt_profile_type")
     private String jwtProfileType = "CLIENT_AUTH";
-
-    @JsonProperty("jwt_server_profile_config")
-    private JWTServerProfileConfig jwtServerProfileConfig = null;
 
     @JsonProperty("name")
     private String name = null;
@@ -49,6 +49,28 @@ public class JWTServerProfile extends AviRestResource  {
     private String uuid = null;
 
 
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Jwt auth configuration for profile_type controller_internal_auth.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return controllerInternalAuth
+     */
+    public ControllerInternalAuth getControllerInternalAuth() {
+        return controllerInternalAuth;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Jwt auth configuration for profile_type controller_internal_auth.
+     * Field introduced in 20.1.6.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param controllerInternalAuth set the controllerInternalAuth.
+     */
+    public void setControllerInternalAuth(ControllerInternalAuth controllerInternalAuth) {
+        this.controllerInternalAuth = controllerInternalAuth;
+    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -142,28 +164,6 @@ public class JWTServerProfile extends AviRestResource  {
      */
     public void setJwtProfileType(String  jwtProfileType) {
         this.jwtProfileType = jwtProfileType;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This is the union of all supported jwt auth profiles.
-     * Field introduced in 20.1.6.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return jwtServerProfileConfig
-     */
-    public JWTServerProfileConfig getJwtServerProfileConfig() {
-        return jwtServerProfileConfig;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This is the union of all supported jwt auth profiles.
-     * Field introduced in 20.1.6.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param jwtServerProfileConfig set the jwtServerProfileConfig.
-     */
-    public void setJwtServerProfileConfig(JWTServerProfileConfig jwtServerProfileConfig) {
-        this.jwtServerProfileConfig = jwtServerProfileConfig;
     }
 
     /**
@@ -268,18 +268,18 @@ public class JWTServerProfile extends AviRestResource  {
   Objects.equals(this.tenantRef, objJWTServerProfile.tenantRef)&&
   Objects.equals(this.isFederated, objJWTServerProfile.isFederated)&&
   Objects.equals(this.jwtProfileType, objJWTServerProfile.jwtProfileType)&&
-  Objects.equals(this.jwtServerProfileConfig, objJWTServerProfile.jwtServerProfileConfig);
+  Objects.equals(this.controllerInternalAuth, objJWTServerProfile.controllerInternalAuth);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class JWTServerProfile {\n");
-                  sb.append("    isFederated: ").append(toIndentedString(isFederated)).append("\n");
+                  sb.append("    controllerInternalAuth: ").append(toIndentedString(controllerInternalAuth)).append("\n");
+                        sb.append("    isFederated: ").append(toIndentedString(isFederated)).append("\n");
                         sb.append("    issuer: ").append(toIndentedString(issuer)).append("\n");
                         sb.append("    jwksKeys: ").append(toIndentedString(jwksKeys)).append("\n");
                         sb.append("    jwtProfileType: ").append(toIndentedString(jwtProfileType)).append("\n");
-                        sb.append("    jwtServerProfileConfig: ").append(toIndentedString(jwtServerProfileConfig)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
