@@ -12,6 +12,9 @@ type JWTServerProfile struct {
 	// Read Only: true
 	LastModified *string `json:"_last_modified,omitempty"`
 
+	// JWT Auth configuration for profile_type CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6.
+	ControllerInternalAuth *ControllerInternalAuth `json:"controller_internal_auth,omitempty"`
+
 	// This field describes the object's replication scope. If the field is set to false, then the object is visible within the controller-cluster.  If the field is set to true, then the object is replicated across the federation.  . Field introduced in 20.1.6.
 	IsFederated *bool `json:"is_federated,omitempty"`
 
@@ -23,9 +26,6 @@ type JWTServerProfile struct {
 
 	// Type of JWT Server profile which defines the usage type. Enum options - CLIENT_AUTH, CONTROLLER_INTERNAL_AUTH. Field introduced in 20.1.6.
 	JwtProfileType *string `json:"jwt_profile_type,omitempty"`
-
-	// This is the union of all supported jwt auth profiles. Field introduced in 20.1.6.
-	JwtServerProfileConfig *JWTServerProfileConfig `json:"jwt_server_profile_config,omitempty"`
 
 	// Name of the JWT Profile. Field introduced in 20.1.3.
 	// Required: true

@@ -15,7 +15,7 @@ type JWSKey struct {
 	// Required: true
 	Key *string `json:"key"`
 
-	// Unique key id across all keys, example  uuid.uuid4(). Field introduced in 20.1.6.
+	// Unique key id across all keys. Field introduced in 20.1.6.
 	// Required: true
 	Kid *string `json:"kid"`
 
