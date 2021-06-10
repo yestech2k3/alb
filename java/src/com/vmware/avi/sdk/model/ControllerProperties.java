@@ -543,6 +543,7 @@ public class ControllerProperties extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Enforce vsvip fqdn syntax checks.
      * Field introduced in 20.1.6.
+     * Allowed in basic edition, essentials edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return checkVsvipFqdnSyntax
      */
@@ -554,6 +555,7 @@ public class ControllerProperties extends AviRestResource  {
      * This is the setter method to the attribute.
      * Enforce vsvip fqdn syntax checks.
      * Field introduced in 20.1.6.
+     * Allowed in basic edition, essentials edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param checkVsvipFqdnSyntax set the checkVsvipFqdnSyntax.
      */
