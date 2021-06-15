@@ -12,7 +12,7 @@ type CertificateManagementProfile struct {
 	// Read Only: true
 	LastModified *string `json:"_last_modified,omitempty"`
 
-	// List of labels to be used for granular RBAC. Field introduced in 20.1.6.
+	// List of labels to be used for granular RBAC. Field introduced in 20.1.6. Allowed in Basic edition, Essentials edition, Enterprise edition.
 	Markers []*RoleFilterMatchLabel `json:"markers,omitempty"`
 
 	// Name of the PKI Profile.
