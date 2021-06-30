@@ -5,7 +5,7 @@
 ---
 swagger: '2.0'
 info:
-    version: '20.1.6'
+    version: '20.1.7'
     title: Avi Gslb Object API
     contact:
         name: Avi Networks Inc.
@@ -695,7 +695,7 @@ definitions:
                 type: string
                 default: "GSLB_PASSIVE_MEMBER"
             name:
-                description: "Name for the Site Controller Cluster."
+                description: "Name for the Site Controller Cluster. After any changes to site name, references to GSLB site name should be updated manually. Ex  Site name used in DNS policies or Topology policies should be updated to use the new site name."
                 type: string
             password:
                 description: "The password used when authenticating with the Site."
