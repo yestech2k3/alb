@@ -20347,46 +20347,6 @@ paths:
                 401:
                     description: log in failed
     /cloud/{uuid}/gc/:
-        patch:
-            consumes:
-                -   application/json
-            produces:
-                -   application/json
-            parameters:
-                -   in: header
-                    name: X-Avi-Tenant
-                    type: string
-                    required: false
-                    description: Avi Tenant Header
-                -   name: X-Avi-Tenant-UUID
-                    in: header
-                    type: string
-                    required: false
-                    description: Avi Tenant Header UUID
-                -   name: X-CSRFToken
-                    in: header
-                    type: string
-                    required: false
-                    description: Avi Controller may send back CSRF token in the response cookies. The caller should update the request headers with this token else controller will reject requests.
-                -   name: X-Avi-Version
-                    in: header
-                    type: string
-                    required: true
-                    description: The caller is required to set Avi Version Header to the expected version of configuration. The response from the controller will provide and accept data according to the specified version. The controller will reject POST and PUT requests where the data is not compatible with the specified version.
-                -   in: path
-                    name: uuid
-                    description: UUID of the object to fetch
-                    required: true
-                    type: string
-            security:
-                - basicAuth: []
-            responses:
-                200:
-                    description: OK
-                    schema:
-                        type: string
-                401:
-                    description: log in failed
         put:
             consumes:
                 -   application/json
@@ -20421,6 +20381,46 @@ paths:
                         type: object
                         additionalProperties:
                             type: string
+                -   in: path
+                    name: uuid
+                    description: UUID of the object to fetch
+                    required: true
+                    type: string
+            security:
+                - basicAuth: []
+            responses:
+                200:
+                    description: OK
+                    schema:
+                        type: string
+                401:
+                    description: log in failed
+        patch:
+            consumes:
+                -   application/json
+            produces:
+                -   application/json
+            parameters:
+                -   in: header
+                    name: X-Avi-Tenant
+                    type: string
+                    required: false
+                    description: Avi Tenant Header
+                -   name: X-Avi-Tenant-UUID
+                    in: header
+                    type: string
+                    required: false
+                    description: Avi Tenant Header UUID
+                -   name: X-CSRFToken
+                    in: header
+                    type: string
+                    required: false
+                    description: Avi Controller may send back CSRF token in the response cookies. The caller should update the request headers with this token else controller will reject requests.
+                -   name: X-Avi-Version
+                    in: header
+                    type: string
+                    required: true
+                    description: The caller is required to set Avi Version Header to the expected version of configuration. The response from the controller will provide and accept data according to the specified version. The controller will reject POST and PUT requests where the data is not compatible with the specified version.
                 -   in: path
                     name: uuid
                     description: UUID of the object to fetch
@@ -55329,7 +55329,7 @@ definitions:
                 items:
                     $ref: '#/definitions/CustomParams'
             script_uri:
-                description: "Script URI of form controller //ipamdnsscripts/<file-name>. Field introduced in 17.1.1."
+                description: "Script URI of form controller //ipamdnsscripts/<file-name>, file-name must have a .py extension and conform to PEP8 naming convention. Field introduced in 17.1.1."
                 type: string
             tenant_ref:
                 description: " It is a reference to an object of type Tenant. Field introduced in 17.1.1."
@@ -65062,21 +65062,21 @@ definitions:
         type: object
         properties:
             enable_appsignature_sync:
-                description: "Enable to subscribe to automated Application Signature Rulesets updates. Field introduced in 20.1.4. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition."
+                description: "Enable to receive Application specific signature updates. Field introduced in 20.1.4. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition."
                 type: boolean
             enable_ip_reputation:
-                description: "Enable to subscribe to IP reputation updates. This is a requirement for using IP reputation in the product. Field introduced in 20.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition."
+                description: "Enable to receive IP reputation updates. Field introduced in 20.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition."
                 type: boolean
             enable_pulse_case_management:
                 description: "Enable Pulse Case Management. Field introduced in 21.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition. Special default for Basic edition is false, Essentials edition is false, Enterprise is True."
                 type: boolean
                 default: True
             enable_pulse_waf_management:
-                description: "Enable Pulse WAF Management. Field introduced in 21.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition. Special default for Basic edition is false, Essentials edition is false, Enterprise is True."
+                description: "Enable to receive WAF CRS updates. Field introduced in 21.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition. Special default for Basic edition is false, Essentials edition is false, Enterprise is True."
                 type: boolean
                 default: True
             enable_user_agent_db_sync:
-                description: "Enable subscription to User-Agent database used for Bot Management. Field introduced in 21.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition."
+                description: "Enable to receive Bot Management updates. Field introduced in 21.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition."
                 type: boolean
     PortMatch:
         type: object
