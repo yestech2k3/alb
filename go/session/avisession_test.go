@@ -603,7 +603,7 @@ func testTenantSwitch(t *testing.T, avisess *AviSession) {
 	// Test PutRaw before deleting the pool
 	raw_pool := "raw-pool"
 	npool4.Name = &raw_pool
-	resp, err := avisess.PutRaw("api/pool/"+*npool4.UUID, &npool4)
+	resp, err := avisess.PutRaw("api/pool/" + *npool4.UUID, &npool4)
 	if err != nil {
 		t.Errorf("Pool Patch failed %s", err)
 	}
@@ -612,7 +612,7 @@ func testTenantSwitch(t *testing.T, avisess *AviSession) {
 		t.Errorf("Error in Unmarshing poolResp: %+v", err)
 	}
 	glog.Infof("pool: %+v", poolResp)
-
+	
 	uri := "api/pool/" + *npool3.UUID
 	err = avisess.DeleteObject(uri, SetOptTenant(tenant))
 	if err != nil {
