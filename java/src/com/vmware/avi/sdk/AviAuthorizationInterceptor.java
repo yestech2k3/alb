@@ -45,11 +45,10 @@ public class AviAuthorizationInterceptor implements ClientHttpRequestInterceptor
 		try {
 			numApiExecCount = 0;
 			HttpHeaders headers = request.getHeaders();
-			if (!addIfAbsent("Content-Type", headers)) {
-				headers.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
-			}
-			if(headers.getAccept().isEmpty()) {
-				headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            if ((headers.getContentType() != null) && (!(headers.getContentType().toString()
+					.contains(MediaType.MULTIPART_FORM_DATA_VALUE.toString())))) {
+				System.out.println("True");
+				headers.setContentType(MediaType.APPLICATION_JSON);
 			}
 			if (!addIfAbsent("X-Avi-Version", headers)) {
 				headers.add("X-Avi-Version", this.aviCredentials.getVersion());
