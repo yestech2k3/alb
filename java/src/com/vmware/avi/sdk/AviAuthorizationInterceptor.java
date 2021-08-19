@@ -27,7 +27,11 @@ public class AviAuthorizationInterceptor implements ClientHttpRequestInterceptor
 	}
 
 	public Boolean addIfAbsent(String key, HttpHeaders headers) {
-		Boolean flag = false;
+      	Boolean flag = false;
+		if ((headers.getContentType() != null)
+				&& ((headers.getContentType().toString().contains(MediaType.MULTIPART_FORM_DATA_VALUE.toString())))) {
+			return flag;
+		}
 		if (headers.containsKey(key)) {
 			flag = true;
 		}
@@ -45,9 +49,8 @@ public class AviAuthorizationInterceptor implements ClientHttpRequestInterceptor
 		try {
 			numApiExecCount = 0;
 			HttpHeaders headers = request.getHeaders();
-            if ((headers.getContentType() != null) && (!(headers.getContentType().toString()
-					.contains(MediaType.MULTIPART_FORM_DATA_VALUE.toString())))) {
-				System.out.println("True");
+
+            if (addIfAbsent("Content-Type", headers)) {
 				headers.setContentType(MediaType.APPLICATION_JSON);
 			}
 			if (!addIfAbsent("X-Avi-Version", headers)) {
