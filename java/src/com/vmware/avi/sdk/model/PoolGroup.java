@@ -36,6 +36,9 @@ public class PoolGroup extends AviRestResource  {
     @JsonProperty("description")
     private String description = null;
 
+    @JsonProperty("disable_primary_pool_on_down")
+    private Boolean disablePrimaryPoolOnDown = false;
+
     @JsonProperty("enable_http2")
     private Boolean enableHttp2 = false;
 
@@ -179,6 +182,28 @@ public class PoolGroup extends AviRestResource  {
      */
     public void setDescription(String  description) {
         this.description = description;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Disable primary pool for selection when down until it is enabled by user via clear poolgroup command.
+     * Field introduced in 20.1.7.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return disablePrimaryPoolOnDown
+     */
+    public Boolean getDisablePrimaryPoolOnDown() {
+        return disablePrimaryPoolOnDown;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Disable primary pool for selection when down until it is enabled by user via clear poolgroup command.
+     * Field introduced in 20.1.7.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param disablePrimaryPoolOnDown set the disablePrimaryPoolOnDown.
+     */
+    public void setDisablePrimaryPoolOnDown(Boolean  disablePrimaryPoolOnDown) {
+        this.disablePrimaryPoolOnDown = disablePrimaryPoolOnDown;
     }
 
     /**
@@ -542,7 +567,8 @@ public class PoolGroup extends AviRestResource  {
   Objects.equals(this.description, objPoolGroup.description)&&
   Objects.equals(this.tenantRef, objPoolGroup.tenantRef)&&
   Objects.equals(this.cloudRef, objPoolGroup.cloudRef)&&
-  Objects.equals(this.enableHttp2, objPoolGroup.enableHttp2);
+  Objects.equals(this.enableHttp2, objPoolGroup.enableHttp2)&&
+  Objects.equals(this.disablePrimaryPoolOnDown, objPoolGroup.disablePrimaryPoolOnDown);
     }
 
     @Override
@@ -554,6 +580,7 @@ public class PoolGroup extends AviRestResource  {
                         sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
                         sb.append("    deploymentPolicyRef: ").append(toIndentedString(deploymentPolicyRef)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
+                        sb.append("    disablePrimaryPoolOnDown: ").append(toIndentedString(disablePrimaryPoolOnDown)).append("\n");
                         sb.append("    enableHttp2: ").append(toIndentedString(enableHttp2)).append("\n");
                         sb.append("    failAction: ").append(toIndentedString(failAction)).append("\n");
                         sb.append("    implicitPriorityLabels: ").append(toIndentedString(implicitPriorityLabels)).append("\n");
