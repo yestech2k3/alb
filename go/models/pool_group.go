@@ -27,6 +27,9 @@ type PoolGroup struct {
 	// Description of Pool Group.
 	Description *string `json:"description,omitempty"`
 
+	// Disable primary pool for selection when down until it is enabled by user via clear poolgroup command. Field introduced in 20.1.7.
+	DisablePrimaryPoolOnDown *bool `json:"disable_primary_pool_on_down,omitempty"`
+
 	// Enable HTTP/2 for traffic from VirtualService to all the backend servers in all the pools configured under this PoolGroup. Field introduced in 20.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition.
 	EnableHttp2 *bool `json:"enable_http2,omitempty"`
 
