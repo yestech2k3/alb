@@ -558,6 +558,9 @@ public class EventDetails  {
     @JsonProperty("vca_infra_details")
     private VCASetup vcaInfraDetails = null;
 
+    @JsonProperty("vcenter_cluster_details")
+    private VcenterClusterDetails vcenterClusterDetails = null;
+
     @JsonProperty("vcenter_connectivity_status")
     private VinfraVcenterConnectivityStatus vcenterConnectivityStatus = null;
 
@@ -4204,6 +4207,28 @@ public class EventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Vcenter cluster event.
+     * Field introduced in 20.1.7.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return vcenterClusterDetails
+     */
+    public VcenterClusterDetails getVcenterClusterDetails() {
+        return vcenterClusterDetails;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Vcenter cluster event.
+     * Field introduced in 20.1.7.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param vcenterClusterDetails set the vcenterClusterDetails.
+     */
+    public void setVcenterClusterDetails(VcenterClusterDetails vcenterClusterDetails) {
+        this.vcenterClusterDetails = vcenterClusterDetails;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Placeholder for description of property vcenter_connectivity_status of obj type eventdetails field type str  type ref.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vcenterConnectivityStatus
@@ -4715,6 +4740,7 @@ public class EventDetails  {
   Objects.equals(this.appSignatureEventData, objEventDetails.appSignatureEventData)&&
   Objects.equals(this.nsxtInfo, objEventDetails.nsxtInfo)&&
   Objects.equals(this.nsxtImgDetails, objEventDetails.nsxtImgDetails)&&
+  Objects.equals(this.vcenterClusterDetails, objEventDetails.vcenterClusterDetails)&&
   Objects.equals(this.psmProgramDetails, objEventDetails.psmProgramDetails)&&
   Objects.equals(this.secMgrDataEvent, objEventDetails.secMgrDataEvent)&&
   Objects.equals(this.cloudAsgNotifDetails, objEventDetails.cloudAsgNotifDetails)&&
@@ -4912,6 +4938,7 @@ public class EventDetails  {
                         sb.append("    upgradeEntry: ").append(toIndentedString(upgradeEntry)).append("\n");
                         sb.append("    upgradeStatusInfo: ").append(toIndentedString(upgradeStatusInfo)).append("\n");
                         sb.append("    vcaInfraDetails: ").append(toIndentedString(vcaInfraDetails)).append("\n");
+                        sb.append("    vcenterClusterDetails: ").append(toIndentedString(vcenterClusterDetails)).append("\n");
                         sb.append("    vcenterConnectivityStatus: ").append(toIndentedString(vcenterConnectivityStatus)).append("\n");
                         sb.append("    vcenterDetails: ").append(toIndentedString(vcenterDetails)).append("\n");
                         sb.append("    vcenterDiscFailure: ").append(toIndentedString(vcenterDiscFailure)).append("\n");
