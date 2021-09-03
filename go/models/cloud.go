@@ -81,6 +81,9 @@ type Cloud struct {
 	// Placeholder for description of property linuxserver_configuration of obj type Cloud field type str  type object
 	LinuxserverConfiguration *LinuxServerConfiguration `json:"linuxserver_configuration,omitempty"`
 
+	// Cloud is in maintenance mode. Field introduced in 21.1.2.
+	MaintenanceMode *bool `json:"maintenance_mode,omitempty"`
+
 	//  Field deprecated in 18.2.2.
 	MesosConfiguration *MesosConfiguration `json:"mesos_configuration,omitempty"`
 
