@@ -65,4 +65,10 @@ type SeMgrEventDetails struct {
 
 	// Unique object identifier of vs.
 	VsUUID []string `json:"vs_uuid,omitempty"`
+
+	// vSphere HA on cluster enabled. Field introduced in 20.1.7.
+	VsphereHaEnabled *bool `json:"vsphere_ha_enabled,omitempty"`
+
+	// If set to True, vCenter vSphere HA will handle Service Engine failure. This flag is set dynamically based on underlying ESX HA state (connected, hostDown, etc). Field introduced in 20.1.7.
+	VsphereHaInprogress *bool `json:"vsphere_ha_inprogress,omitempty"`
 }
