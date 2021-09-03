@@ -548,6 +548,9 @@ type EventDetails struct {
 	// Placeholder for description of property vca_infra_details of obj type EventDetails field type str  type object
 	VcaInfraDetails *VCASetup `json:"vca_infra_details,omitempty"`
 
+	// VCenter Cluster event. Field introduced in 20.1.7.
+	VcenterClusterDetails *VcenterClusterDetails `json:"vcenter_cluster_details,omitempty"`
+
 	// Placeholder for description of property vcenter_connectivity_status of obj type EventDetails field type str  type object
 	VcenterConnectivityStatus *VinfraVcenterConnectivityStatus `json:"vcenter_connectivity_status,omitempty"`
 
