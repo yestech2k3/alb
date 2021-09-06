@@ -21,14 +21,14 @@ type PoolGroup struct {
 	// Name of the user who created the object.
 	CreatedBy *string `json:"created_by,omitempty"`
 
+	// Deactivate primary pool for selection when down until it is activated by user via clear poolgroup command. Field introduced in 20.1.7.
+	DeactivatePrimaryPoolOnDown *bool `json:"deactivate_primary_pool_on_down,omitempty"`
+
 	// When setup autoscale manager will automatically promote new pools into production when deployment goals are met. It is a reference to an object of type PoolGroupDeploymentPolicy.
 	DeploymentPolicyRef *string `json:"deployment_policy_ref,omitempty"`
 
 	// Description of Pool Group.
 	Description *string `json:"description,omitempty"`
-
-	// Disable primary pool for selection when down until it is enabled by user via clear poolgroup command. Field introduced in 20.1.7.
-	DisablePrimaryPoolOnDown *bool `json:"disable_primary_pool_on_down,omitempty"`
 
 	// Enable HTTP/2 for traffic from VirtualService to all the backend servers in all the pools configured under this PoolGroup. Field introduced in 20.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition.
 	EnableHttp2 *bool `json:"enable_http2,omitempty"`
