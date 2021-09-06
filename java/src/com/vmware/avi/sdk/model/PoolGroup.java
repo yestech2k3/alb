@@ -30,14 +30,14 @@ public class PoolGroup extends AviRestResource  {
     @JsonProperty("created_by")
     private String createdBy = null;
 
+    @JsonProperty("deactivate_primary_pool_on_down")
+    private Boolean deactivatePrimaryPoolOnDown = false;
+
     @JsonProperty("deployment_policy_ref")
     private String deploymentPolicyRef = null;
 
     @JsonProperty("description")
     private String description = null;
-
-    @JsonProperty("disable_primary_pool_on_down")
-    private Boolean disablePrimaryPoolOnDown = false;
 
     @JsonProperty("enable_http2")
     private Boolean enableHttp2 = false;
@@ -144,6 +144,28 @@ public class PoolGroup extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Deactivate primary pool for selection when down until it is activated by user via clear poolgroup command.
+     * Field introduced in 20.1.7.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return deactivatePrimaryPoolOnDown
+     */
+    public Boolean getDeactivatePrimaryPoolOnDown() {
+        return deactivatePrimaryPoolOnDown;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Deactivate primary pool for selection when down until it is activated by user via clear poolgroup command.
+     * Field introduced in 20.1.7.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param deactivatePrimaryPoolOnDown set the deactivatePrimaryPoolOnDown.
+     */
+    public void setDeactivatePrimaryPoolOnDown(Boolean  deactivatePrimaryPoolOnDown) {
+        this.deactivatePrimaryPoolOnDown = deactivatePrimaryPoolOnDown;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * When setup autoscale manager will automatically promote new pools into production when deployment goals are met.
      * It is a reference to an object of type poolgroupdeploymentpolicy.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -182,28 +204,6 @@ public class PoolGroup extends AviRestResource  {
      */
     public void setDescription(String  description) {
         this.description = description;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Disable primary pool for selection when down until it is enabled by user via clear poolgroup command.
-     * Field introduced in 20.1.7.
-     * Default value when not specified in API or module is interpreted by Avi Controller as false.
-     * @return disablePrimaryPoolOnDown
-     */
-    public Boolean getDisablePrimaryPoolOnDown() {
-        return disablePrimaryPoolOnDown;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Disable primary pool for selection when down until it is enabled by user via clear poolgroup command.
-     * Field introduced in 20.1.7.
-     * Default value when not specified in API or module is interpreted by Avi Controller as false.
-     * @param disablePrimaryPoolOnDown set the disablePrimaryPoolOnDown.
-     */
-    public void setDisablePrimaryPoolOnDown(Boolean  disablePrimaryPoolOnDown) {
-        this.disablePrimaryPoolOnDown = disablePrimaryPoolOnDown;
     }
 
     /**
@@ -568,7 +568,7 @@ public class PoolGroup extends AviRestResource  {
   Objects.equals(this.tenantRef, objPoolGroup.tenantRef)&&
   Objects.equals(this.cloudRef, objPoolGroup.cloudRef)&&
   Objects.equals(this.enableHttp2, objPoolGroup.enableHttp2)&&
-  Objects.equals(this.disablePrimaryPoolOnDown, objPoolGroup.disablePrimaryPoolOnDown);
+  Objects.equals(this.deactivatePrimaryPoolOnDown, objPoolGroup.deactivatePrimaryPoolOnDown);
     }
 
     @Override
@@ -578,9 +578,9 @@ public class PoolGroup extends AviRestResource  {
                   sb.append("    cloudConfigCksum: ").append(toIndentedString(cloudConfigCksum)).append("\n");
                         sb.append("    cloudRef: ").append(toIndentedString(cloudRef)).append("\n");
                         sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
+                        sb.append("    deactivatePrimaryPoolOnDown: ").append(toIndentedString(deactivatePrimaryPoolOnDown)).append("\n");
                         sb.append("    deploymentPolicyRef: ").append(toIndentedString(deploymentPolicyRef)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
-                        sb.append("    disablePrimaryPoolOnDown: ").append(toIndentedString(disablePrimaryPoolOnDown)).append("\n");
                         sb.append("    enableHttp2: ").append(toIndentedString(enableHttp2)).append("\n");
                         sb.append("    failAction: ").append(toIndentedString(failAction)).append("\n");
                         sb.append("    implicitPriorityLabels: ").append(toIndentedString(implicitPriorityLabels)).append("\n");
