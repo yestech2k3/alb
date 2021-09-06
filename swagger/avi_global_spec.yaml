@@ -3001,7 +3001,7 @@ paths:
                 401:
                     description: log in failed
 
-    /poolgroup/{uuid}/runtime/:
+    /poolgroup/{uuid}/runtime/detail/:
         get:
             consumes:
                 -   application/json
@@ -18191,6 +18191,46 @@ paths:
                 401:
                     description: log in failed
     /cloud/{uuid}/gc/:
+        patch:
+            consumes:
+                -   application/json
+            produces:
+                -   application/json
+            parameters:
+                -   in: header
+                    name: X-Avi-Tenant
+                    type: string
+                    required: false
+                    description: Avi Tenant Header
+                -   name: X-Avi-Tenant-UUID
+                    in: header
+                    type: string
+                    required: false
+                    description: Avi Tenant Header UUID
+                -   name: X-CSRFToken
+                    in: header
+                    type: string
+                    required: false
+                    description: Avi Controller may send back CSRF token in the response cookies. The caller should update the request headers with this token else controller will reject requests.
+                -   name: X-Avi-Version
+                    in: header
+                    type: string
+                    required: true
+                    description: The caller is required to set Avi Version Header to the expected version of configuration. The response from the controller will provide and accept data according to the specified version. The controller will reject POST and PUT requests where the data is not compatible with the specified version.
+                -   in: path
+                    name: uuid
+                    description: UUID of the object to fetch
+                    required: true
+                    type: string
+            security:
+                - basicAuth: []
+            responses:
+                200:
+                    description: OK
+                    schema:
+                        type: string
+                401:
+                    description: log in failed
         put:
             consumes:
                 -   application/json
@@ -18225,46 +18265,6 @@ paths:
                         type: object
                         additionalProperties:
                             type: string
-                -   in: path
-                    name: uuid
-                    description: UUID of the object to fetch
-                    required: true
-                    type: string
-            security:
-                - basicAuth: []
-            responses:
-                200:
-                    description: OK
-                    schema:
-                        type: string
-                401:
-                    description: log in failed
-        patch:
-            consumes:
-                -   application/json
-            produces:
-                -   application/json
-            parameters:
-                -   in: header
-                    name: X-Avi-Tenant
-                    type: string
-                    required: false
-                    description: Avi Tenant Header
-                -   name: X-Avi-Tenant-UUID
-                    in: header
-                    type: string
-                    required: false
-                    description: Avi Tenant Header UUID
-                -   name: X-CSRFToken
-                    in: header
-                    type: string
-                    required: false
-                    description: Avi Controller may send back CSRF token in the response cookies. The caller should update the request headers with this token else controller will reject requests.
-                -   name: X-Avi-Version
-                    in: header
-                    type: string
-                    required: true
-                    description: The caller is required to set Avi Version Header to the expected version of configuration. The response from the controller will provide and accept data according to the specified version. The controller will reject POST and PUT requests where the data is not compatible with the specified version.
                 -   in: path
                     name: uuid
                     description: UUID of the object to fetch
@@ -52588,6 +52588,21 @@ definitions:
                 type: integer
                 default: 120
                 format: int32
+            vsphere_ha_detection_timeout:
+                description: "vSphere HA monitor detection timeout. If vsphere_ha_enabled is true and the controller is not able to reach the SE, placement will wait for this duration for vsphere_ha_inprogress to be marked true before taking corrective action. Field introduced in 20.1.7. Unit is SEC."
+                type: integer
+                default: 120
+                format: int32
+            vsphere_ha_recovery_timeout:
+                description: "vSphere HA monitor recovery timeout. Once vsphere_ha_inprogress is set to true (meaning host failure detected and vSphere HA will recover the Service Engine), placement will wait for at least this duration for the SE to reconnect to the controller before taking corrective action. Field introduced in 20.1.7. Unit is SEC."
+                type: integer
+                default: 480
+                format: int32
+            vsphere_ha_timer_interval:
+                description: "vSphere HA monitor timer interval for sending cc_check_se_status to Cloud Connector. Field introduced in 20.1.7. Unit is SEC."
+                type: integer
+                default: 20
+                format: int32
             warmstart_se_reconnect_wait_time:
                 description: " Unit is SEC."
                 type: integer
@@ -61801,15 +61816,15 @@ definitions:
             created_by:
                 description: "Name of the user who created the object."
                 type: string
+            deactivate_primary_pool_on_down:
+                description: "Deactivate primary pool for selection when down until it is activated by user via clear poolgroup command. Field introduced in 20.1.7."
+                type: boolean
             deployment_policy_ref:
                 description: "When setup autoscale manager will automatically promote new pools into production when deployment goals are met. It is a reference to an object of type PoolGroupDeploymentPolicy."
                 type: string
             description:
                 description: "Description of Pool Group."
                 type: string
-            disable_primary_pool_on_down:
-                description: "Disable primary pool for selection when down until it is enabled by user via clear poolgroup command. Field introduced in 20.1.7."
-                type: boolean
             enable_http2:
                 description: "Enable HTTP/2 for traffic from VirtualService to all the backend servers in all the pools configured under this PoolGroup. Field introduced in 20.1.1. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition."
                 type: boolean
