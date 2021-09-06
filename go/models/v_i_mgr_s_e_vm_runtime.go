@@ -54,6 +54,9 @@ type VIMgrSEVMRuntime struct {
 	// flavor of VIMgrSEVMRuntime.
 	Flavor *string `json:"flavor,omitempty"`
 
+	// GCP Project ID in which SE is created. This field is applicable for GCP cloud type only. Field introduced in 21.1.2.
+	GcpSeProjectID *string `json:"gcp_se_project_id,omitempty"`
+
 	// Placeholder for description of property guest_nic of obj type VIMgrSEVMRuntime field type str  type object
 	GuestNic []*VIMgrGuestNicRuntime `json:"guest_nic,omitempty"`
 
