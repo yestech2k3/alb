@@ -516,8 +516,8 @@ public class SeMgrEventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * If set to true, vcenter vsphere ha will handle service engine failure.
-     * This flag is set dynamically based on underlying esx ha state (connected, hostdown, etc).
+     * This flag is set to true when cloud connector has detected an esx host failure.
+     * This flag is set to false when the se connects back to the controller, or when vsphere ha recovery timeout has occurred.
      * Field introduced in 20.1.7.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vsphereHaInprogress
@@ -528,8 +528,8 @@ public class SeMgrEventDetails  {
 
     /**
      * This is the setter method to the attribute.
-     * If set to true, vcenter vsphere ha will handle service engine failure.
-     * This flag is set dynamically based on underlying esx ha state (connected, hostdown, etc).
+     * This flag is set to true when cloud connector has detected an esx host failure.
+     * This flag is set to false when the se connects back to the controller, or when vsphere ha recovery timeout has occurred.
      * Field introduced in 20.1.7.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vsphereHaInprogress set the vsphereHaInprogress.
