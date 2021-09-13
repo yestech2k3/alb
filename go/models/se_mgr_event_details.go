@@ -69,6 +69,6 @@ type SeMgrEventDetails struct {
 	// vSphere HA on cluster enabled. Field introduced in 20.1.7.
 	VsphereHaEnabled *bool `json:"vsphere_ha_enabled,omitempty"`
 
-	// If set to True, vCenter vSphere HA will handle Service Engine failure. This flag is set dynamically based on underlying ESX HA state (connected, hostDown, etc). Field introduced in 20.1.7.
+	// This flag is set to true when Cloud Connector has detected an ESX host failure. This flag is set to false when the SE connects back to the controller, or when vSphere HA recovery timeout has occurred. Field introduced in 20.1.7.
 	VsphereHaInprogress *bool `json:"vsphere_ha_inprogress,omitempty"`
 }
