@@ -8,7 +8,7 @@ package models
 // swagger:model PlacementScopeConfig
 type PlacementScopeConfig struct {
 
-	// List of transport node clusters include or exclude. Field introduced in 20.1.6.
+	// List of transport node clusters include or exclude. Field introduced in 20.1.6. Allowed in Basic edition, Enterprise edition.
 	NsxtClusters *NsxtClusters `json:"nsxt_clusters,omitempty"`
 
 	// List of shared datastores to include or exclude. Field introduced in 20.1.2. Allowed in Basic edition, Enterprise edition.
