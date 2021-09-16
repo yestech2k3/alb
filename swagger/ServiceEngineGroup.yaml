@@ -878,12 +878,12 @@ definitions:
         type: object
         properties:
             cluster_ids:
-                description: "List of transport node clusters. Field introduced in 20.1.6."
+                description: "List of transport node clusters. Field introduced in 20.1.6. Allowed in Basic edition, Enterprise edition."
                 type: array
                 items:
                     type: string
             include:
-                description: "Include or Exclude. Field introduced in 20.1.6."
+                description: "Include or Exclude. Field introduced in 20.1.6. Allowed in Basic edition, Enterprise edition."
                 type: boolean
     NsxtDatastores:
         type: object
@@ -931,7 +931,7 @@ definitions:
             -   vcenter_ref
         properties:
             nsxt_clusters:
-                description: "List of transport node clusters include or exclude. Field introduced in 20.1.6."
+                description: "List of transport node clusters include or exclude. Field introduced in 20.1.6. Allowed in Basic edition, Enterprise edition."
                 $ref: '#/definitions/NsxtClusters'
             nsxt_datastores:
                 description: "List of shared datastores to include or exclude. Field introduced in 20.1.2. Allowed in Basic edition, Enterprise edition."
