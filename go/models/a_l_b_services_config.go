@@ -52,7 +52,7 @@ type ALBServicesConfig struct {
 	// Read Only: true
 	URL *string `json:"url,omitempty"`
 
-	// By default, use system proxy configuration.If true, use split proxy configuration. Field introduced in 20.1.1.
+	// By default, pulse uses proxy added in system configuration. If pulse needs to use a seperate proxy, set this flag to true and configure split proxy configuration. Field introduced in 20.1.1.
 	UseSplitProxy *bool `json:"use_split_proxy,omitempty"`
 
 	// Secure the controller to PULSE communication over TLS. Field introduced in 20.1.3. Allowed in Basic edition, Enterprise edition.
