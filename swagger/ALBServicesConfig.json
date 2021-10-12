@@ -611,7 +611,7 @@
                     "type": "string"
                 },
                 "use_split_proxy": {
-                    "description": "By default, use system proxy configuration.If true, use split proxy configuration. Field introduced in 20.1.1.",
+                    "description": "By default, pulse uses proxy added in system configuration. If pulse needs to use a seperate proxy, set this flag to true and configure split proxy configuration. Field introduced in 20.1.1.",
                     "type": "boolean"
                 },
                 "use_tls": {
