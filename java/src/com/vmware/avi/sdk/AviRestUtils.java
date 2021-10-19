@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.net.ssl.SSLContext;
@@ -112,7 +113,7 @@ public class AviRestUtils {
 			return new RestTemplate(new HttpComponentsClientHttpRequestFactory(client));
 
 		} catch (Exception e) {
-			LOGGER.severe("Exception in creating rest template for AVI connection");
+			LOGGER.log(Level.SEVERE,"Exception in creating rest template for AVI connection", e);
 		}
 		return null;
 	}
@@ -242,6 +243,7 @@ public class AviRestUtils {
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		} finally {
 			if (null != httpClient) {
 				try {
