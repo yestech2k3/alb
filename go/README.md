@@ -96,7 +96,7 @@ if err != nil {
 
 ```go
 vsVip := models.VsVip{}
-vipAddr := "10.90.20.51"
+vipAddr := "10.90.20.20"
 vipip := models.IPAddr{Type: &ipType, Addr: &vipAddr}
 vipId := "1"
 vipObj := models.Vip{VipID: &vipId, IPAddress: &vipip}
