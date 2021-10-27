@@ -58,7 +58,7 @@ public class VirtualService extends AviRestResource  {
     private Boolean aviAllocatedVip;
 
     @JsonProperty("azure_availability_set")
-    private String azureAvailabilitySet = null;
+    private String azureAvailabilitySet;
 
     @JsonProperty("bgp_peer_labels")
     private List<String> bgpPeerLabels = null;
@@ -115,7 +115,7 @@ public class VirtualService extends AviRestResource  {
     private Boolean eastWestPlacement = false;
 
     @JsonProperty("enable_autogw")
-    private Boolean enableAutogw = true;
+    private Boolean enableAutogw;
 
     @JsonProperty("enable_rhi")
     private Boolean enableRhi = null;
@@ -250,7 +250,7 @@ public class VirtualService extends AviRestResource  {
     private List<IpAddr> snatIp = null;
 
     @JsonProperty("sp_pool_refs")
-    private List<String> spPoolRefs = null;
+    private List<String> spPoolRefs;
 
     @JsonProperty("ssl_key_and_certificate_refs")
     private List<String> sslKeyAndCertificateRefs = null;
@@ -319,7 +319,7 @@ public class VirtualService extends AviRestResource  {
     private String vhParentVsUuid = null;
 
     @JsonProperty("vh_type")
-    private String vhType = "VS_TYPE_VH_SNI";
+    private String vhType;
 
     @JsonProperty("vip")
     private List<Vip> vip = null;
@@ -627,7 +627,6 @@ public class VirtualService extends AviRestResource  {
      * Azure availability set to which this vs is associated.
      * Internally set by the cloud connector.
      * Field introduced in 17.2.12, 18.1.2.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return azureAvailabilitySet
      */
     public String getAzureAvailabilitySet() {
@@ -640,7 +639,6 @@ public class VirtualService extends AviRestResource  {
      * Azure availability set to which this vs is associated.
      * Internally set by the cloud connector.
      * Field introduced in 17.2.12, 18.1.2.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param azureAvailabilitySet set the azureAvailabilitySet.
      */
     public void setAzureAvailabilitySet(String  azureAvailabilitySet) {
@@ -1148,7 +1146,6 @@ public class VirtualService extends AviRestResource  {
      * Response traffic to clients will be sent back to the source mac address of the connection, rather than statically sent to a default gateway.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enableAutogw
      */
     public Boolean getEnableAutogw() {
@@ -1160,7 +1157,6 @@ public class VirtualService extends AviRestResource  {
      * Response traffic to clients will be sent back to the source mac address of the connection, rather than statically sent to a default gateway.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enableAutogw set the enableAutogw.
      */
     public void setEnableAutogw(Boolean  enableAutogw) {
@@ -2277,7 +2273,6 @@ public class VirtualService extends AviRestResource  {
      * This is a read-only field for the user.
      * It is a reference to an object of type pool.
      * Field introduced in 17.2.2.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return spPoolRefs
      */
     public List<String> getSpPoolRefs() {
@@ -2291,7 +2286,6 @@ public class VirtualService extends AviRestResource  {
      * This is a read-only field for the user.
      * It is a reference to an object of type pool.
      * Field introduced in 17.2.2.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return spPoolRefs
      */
     public void setSpPoolRefs(List<String>  spPoolRefs) {
@@ -2305,7 +2299,6 @@ public class VirtualService extends AviRestResource  {
      * This is a read-only field for the user.
      * It is a reference to an object of type pool.
      * Field introduced in 17.2.2.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return spPoolRefs
      */
     public VirtualService addSpPoolRefsItem(String spPoolRefsItem) {
@@ -2911,7 +2904,6 @@ public class VirtualService extends AviRestResource  {
      * Field introduced in 20.1.3.
      * Allowed in basic(allowed values- vs_type_vh_enhanced) edition, enterprise edition.
      * Special default for basic edition is vs_type_vh_enhanced, enterprise is vs_type_vh_sni.
-     * Default value when not specified in API or module is interpreted by Avi Controller as "VS_TYPE_VH_SNI".
      * @return vhType
      */
     public String getVhType() {
@@ -2925,7 +2917,6 @@ public class VirtualService extends AviRestResource  {
      * Field introduced in 20.1.3.
      * Allowed in basic(allowed values- vs_type_vh_enhanced) edition, enterprise edition.
      * Special default for basic edition is vs_type_vh_enhanced, enterprise is vs_type_vh_sni.
-     * Default value when not specified in API or module is interpreted by Avi Controller as "VS_TYPE_VH_SNI".
      * @param vhType set the vhType.
      */
     public void setVhType(String  vhType) {
