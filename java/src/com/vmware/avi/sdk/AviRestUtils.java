@@ -173,7 +173,7 @@ public class AviRestUtils {
 			SSLConnectionSocketFactory sslConnectionSocketFactory = new SSLConnectionSocketFactory(sslcontext,
 					(s, sslSession) -> true);
 			RequestConfig requestConfig = RequestConfig.custom().
-					setSocketTimeout(creds.getConnectionTimeout()).
+					setSocketTimeout(creds.getConnectionTimeout()*1000).
 					setConnectionRequestTimeout((creds.getTimeout())*1000).
 					setConnectTimeout((creds.getConnectionTimeout())*1000).
 					build();
