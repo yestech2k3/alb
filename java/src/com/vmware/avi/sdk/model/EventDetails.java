@@ -309,11 +309,23 @@ public class EventDetails  {
     @JsonProperty("network_subnet_details")
     private NetworkSubnetInfo networkSubnetDetails = null;
 
+    @JsonProperty("nsxt_endpoint_details")
+    private NsxtSIEndpointDetails nsxtEndpointDetails = null;
+
     @JsonProperty("nsxt_img_details")
     private NsxtImageDetails nsxtImgDetails = null;
 
     @JsonProperty("nsxt_info")
     private NsxtSetup nsxtInfo = null;
+
+    @JsonProperty("nsxt_policy_details")
+    private NsxtSIPolicyDetails nsxtPolicyDetails = null;
+
+    @JsonProperty("nsxt_rule_details")
+    private NsxtSIRuleDetails nsxtRuleDetails = null;
+
+    @JsonProperty("nsxt_service_details")
+    private NsxtSIServiceDetails nsxtServiceDetails = null;
 
     @JsonProperty("nw_subnet_clash_details")
     private NetworkSubnetClash nwSubnetClashDetails = null;
@@ -2537,6 +2549,28 @@ public class EventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Nsx-t serviceinsertion virtualendpoint event.
+     * Field introduced in 20.1.8.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return nsxtEndpointDetails
+     */
+    public NsxtSIEndpointDetails getNsxtEndpointDetails() {
+        return nsxtEndpointDetails;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Nsx-t serviceinsertion virtualendpoint event.
+     * Field introduced in 20.1.8.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param nsxtEndpointDetails set the nsxtEndpointDetails.
+     */
+    public void setNsxtEndpointDetails(NsxtSIEndpointDetails nsxtEndpointDetails) {
+        this.nsxtEndpointDetails = nsxtEndpointDetails;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Nsxt image event.
      * Field introduced in 20.1.1.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -2577,6 +2611,72 @@ public class EventDetails  {
      */
     public void setNsxtInfo(NsxtSetup nsxtInfo) {
         this.nsxtInfo = nsxtInfo;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Nsx-t serviceinsertion redirectpolicy event.
+     * Field introduced in 20.1.8.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return nsxtPolicyDetails
+     */
+    public NsxtSIPolicyDetails getNsxtPolicyDetails() {
+        return nsxtPolicyDetails;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Nsx-t serviceinsertion redirectpolicy event.
+     * Field introduced in 20.1.8.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param nsxtPolicyDetails set the nsxtPolicyDetails.
+     */
+    public void setNsxtPolicyDetails(NsxtSIPolicyDetails nsxtPolicyDetails) {
+        this.nsxtPolicyDetails = nsxtPolicyDetails;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Nsx-t serviceinsertion redirectrule event.
+     * Field introduced in 20.1.8.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return nsxtRuleDetails
+     */
+    public NsxtSIRuleDetails getNsxtRuleDetails() {
+        return nsxtRuleDetails;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Nsx-t serviceinsertion redirectrule event.
+     * Field introduced in 20.1.8.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param nsxtRuleDetails set the nsxtRuleDetails.
+     */
+    public void setNsxtRuleDetails(NsxtSIRuleDetails nsxtRuleDetails) {
+        this.nsxtRuleDetails = nsxtRuleDetails;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Nsx-t serviceinsertion service event.
+     * Field introduced in 20.1.8.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return nsxtServiceDetails
+     */
+    public NsxtSIServiceDetails getNsxtServiceDetails() {
+        return nsxtServiceDetails;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Nsx-t serviceinsertion service event.
+     * Field introduced in 20.1.8.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param nsxtServiceDetails set the nsxtServiceDetails.
+     */
+    public void setNsxtServiceDetails(NsxtSIServiceDetails nsxtServiceDetails) {
+        this.nsxtServiceDetails = nsxtServiceDetails;
     }
 
     /**
@@ -4741,6 +4841,10 @@ public class EventDetails  {
   Objects.equals(this.nsxtInfo, objEventDetails.nsxtInfo)&&
   Objects.equals(this.nsxtImgDetails, objEventDetails.nsxtImgDetails)&&
   Objects.equals(this.vcenterClusterDetails, objEventDetails.vcenterClusterDetails)&&
+  Objects.equals(this.nsxtServiceDetails, objEventDetails.nsxtServiceDetails)&&
+  Objects.equals(this.nsxtEndpointDetails, objEventDetails.nsxtEndpointDetails)&&
+  Objects.equals(this.nsxtPolicyDetails, objEventDetails.nsxtPolicyDetails)&&
+  Objects.equals(this.nsxtRuleDetails, objEventDetails.nsxtRuleDetails)&&
   Objects.equals(this.psmProgramDetails, objEventDetails.psmProgramDetails)&&
   Objects.equals(this.secMgrDataEvent, objEventDetails.secMgrDataEvent)&&
   Objects.equals(this.cloudAsgNotifDetails, objEventDetails.cloudAsgNotifDetails)&&
@@ -4855,8 +4959,12 @@ public class EventDetails  {
                         sb.append("    mgmtNwChangeDetails: ").append(toIndentedString(mgmtNwChangeDetails)).append("\n");
                         sb.append("    modifyNetworksDetails: ").append(toIndentedString(modifyNetworksDetails)).append("\n");
                         sb.append("    networkSubnetDetails: ").append(toIndentedString(networkSubnetDetails)).append("\n");
+                        sb.append("    nsxtEndpointDetails: ").append(toIndentedString(nsxtEndpointDetails)).append("\n");
                         sb.append("    nsxtImgDetails: ").append(toIndentedString(nsxtImgDetails)).append("\n");
                         sb.append("    nsxtInfo: ").append(toIndentedString(nsxtInfo)).append("\n");
+                        sb.append("    nsxtPolicyDetails: ").append(toIndentedString(nsxtPolicyDetails)).append("\n");
+                        sb.append("    nsxtRuleDetails: ").append(toIndentedString(nsxtRuleDetails)).append("\n");
+                        sb.append("    nsxtServiceDetails: ").append(toIndentedString(nsxtServiceDetails)).append("\n");
                         sb.append("    nwSubnetClashDetails: ").append(toIndentedString(nwSubnetClashDetails)).append("\n");
                         sb.append("    nwSummarizedDetails: ").append(toIndentedString(nwSummarizedDetails)).append("\n");
                         sb.append("    ociInfo: ").append(toIndentedString(ociInfo)).append("\n");
