@@ -714,6 +714,7 @@ font-style: italic;
           },
           "manual" : {
             "tier1_lrs" : [ {
+              "locale_service" : "aeiou",
               "segment_id" : "aeiou",
               "tier1_lr_id" : "aeiou"
             } ]
@@ -1370,6 +1371,7 @@ font-style: italic;
         },
         "manual" : {
           "tier1_lrs" : [ {
+            "locale_service" : "aeiou",
             "segment_id" : "aeiou",
             "tier1_lr_id" : "aeiou"
           } ]
@@ -2259,6 +2261,7 @@ font-style: italic;
         },
         "manual" : {
           "tier1_lrs" : [ {
+            "locale_service" : "aeiou",
             "segment_id" : "aeiou",
             "tier1_lr_id" : "aeiou"
           } ]
@@ -3030,6 +3033,7 @@ font-style: italic;
         },
         "manual" : {
           "tier1_lrs" : [ {
+            "locale_service" : "aeiou",
             "segment_id" : "aeiou",
             "tier1_lr_id" : "aeiou"
           } ]
@@ -3645,6 +3649,7 @@ font-style: italic;
         },
         "manual" : {
           "tier1_lrs" : [ {
+            "locale_service" : "aeiou",
             "segment_id" : "aeiou",
             "tier1_lr_id" : "aeiou"
           } ]
@@ -4648,7 +4653,8 @@ font-style: italic;
   <div class="model">
     <h3 class="field-label"><a name="Tier1LogicalRouterInfo">Tier1LogicalRouterInfo</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">segment_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Overlay segment path. Example- /infra/segments/Seg-Web-T1-01. Field introduced in 20.1.1. </div>
+      <div class="param">locale_service (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Locale-services configuration, holds T1 edge-cluster information. When VirtualService is enabled with preserve client IP, ServiceInsertion VirtualEndpoint will be created in this locale-service. By default Avi controller picks default locale-service on T1. If more than one locale-services are present, this will be used for resolving the same. Example locale-service path - /infra/tier-1s/London_Tier1Gateway1/locale-services/London_Tier1LocalServices-1. Field introduced in 20.1.8. </div>
+<div class="param">segment_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Overlay segment path. Example- /infra/segments/Seg-Web-T1-01. Field introduced in 20.1.1. </div>
 <div class="param">tier1_lr_id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Tier1 logical router path. Example- /infra/tier-1s/T1-01. Field introduced in 20.1.1. </div>
     </div>  <!-- field-items -->
   </div>
