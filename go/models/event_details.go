@@ -299,11 +299,23 @@ type EventDetails struct {
 	// Placeholder for description of property network_subnet_details of obj type EventDetails field type str  type object
 	NetworkSubnetDetails *NetworkSubnetInfo `json:"network_subnet_details,omitempty"`
 
+	// NSX-T ServiceInsertion VirtualEndpoint event. Field introduced in 20.1.8.
+	NsxtEndpointDetails *NsxtSIEndpointDetails `json:"nsxt_endpoint_details,omitempty"`
+
 	// Nsxt Image event. Field introduced in 20.1.1.
 	NsxtImgDetails *NsxtImageDetails `json:"nsxt_img_details,omitempty"`
 
 	// Nsxt cloud event. Field introduced in 20.1.1.
 	NsxtInfo *NsxtSetup `json:"nsxt_info,omitempty"`
+
+	// NSX-T ServiceInsertion RedirectPolicy event. Field introduced in 20.1.8.
+	NsxtPolicyDetails *NsxtSIpolicyDetails `json:"nsxt_policy_details,omitempty"`
+
+	// NSX-T ServiceInsertion RedirectRule event. Field introduced in 20.1.8.
+	NsxtRuleDetails *NsxtSIRuleDetails `json:"nsxt_rule_details,omitempty"`
+
+	// NSX-T ServiceInsertion Service event. Field introduced in 20.1.8.
+	NsxtServiceDetails *NsxtSIServiceDetails `json:"nsxt_service_details,omitempty"`
 
 	// Placeholder for description of property nw_subnet_clash_details of obj type EventDetails field type str  type object
 	NwSubnetClashDetails *NetworkSubnetClash `json:"nw_subnet_clash_details,omitempty"`

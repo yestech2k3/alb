@@ -162,7 +162,7 @@ type ControllerProperties struct {
 	// Interval between attempting failovers to an SE. Unit is SEC.
 	SeFailoverAttemptInterval *int32 `json:"se_failover_attempt_interval,omitempty"`
 
-	// This setting decides whether SE is to be deployed from the cloud marketplace or to be created by the controller. The setting is applicable only when BYOL license is selected. Enum options - MARKETPLACE, IMAGE. Field introduced in 18.1.4, 18.2.1.
+	// This setting decides whether SE is to be deployed from the cloud marketplace or to be created by the controller. The setting is applicable only when BYOL license is selected. Enum options - MARKETPLACE, IMAGE_SE. Field introduced in 18.1.4, 18.2.1.
 	SeFromMarketplace *string `json:"se_from_marketplace,omitempty"`
 
 	//  Unit is SEC.
