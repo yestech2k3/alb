@@ -1,5 +1,11 @@
-from avi.migrationtools.nsxt_converter import nsxt_client as nsx_client_util
+from avi.migrationtools.nsxt_converter import nsxt_client as nsx_client_util, conversion_util
+
+
 def update_alb_type(lb_pr, alb_pr):
+    alb_pr['url'],alb_pr['uuid']=conversion_util.get_obj_url_uuid(lb_pr['path'],lb_pr['unique_id'])
+    tenant=conversion_util.get_tenant_ref(alb_pr['url'])
+    alb_pr['tenant_ref']=conversion_util.get_object_ref('admin','tenant')
+
     if lb_pr['resource_type'] == 'LBHttpProfile':
         alb_pr['type'] = 'APPLICATION_PROFILE_TYPE_HTTP'
 
@@ -26,7 +32,7 @@ def update_alb_type(lb_pr, alb_pr):
             )
         )
 
-def convert(alb_config, nsx_lb_config):
+def convert(alb_config, nsx_lb_config,cloud_name):
     alb_config['ApplicationProfile'] = list()
     alb_config['NetworkProfile'] = list()
     for lb_pr in nsx_lb_config['LbAppProfiles']:
@@ -35,6 +41,9 @@ def convert(alb_config, nsx_lb_config):
         )
         update_alb_type(lb_pr, alb_pr)
         if lb_pr['resource_type'] == 'LBHttpProfile':
+            alb_pr['cloud_ref'] = conversion_util.get_object_ref(cloud_name, 'cloud')
             alb_config['ApplicationProfile'].append(alb_pr)
+
         else:
+            alb_pr['cloud_ref'] = conversion_util.get_object_ref(cloud_name, 'cloud')
             alb_config['NetworkProfile'].append(alb_pr)
