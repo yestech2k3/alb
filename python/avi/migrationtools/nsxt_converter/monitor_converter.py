@@ -32,18 +32,18 @@ def update_alb_type(lb_hm, alb_hm):
     if lb_hm['resource_type'] == 'LBHttpMonitorProfile':
         alb_hm['type'] = 'HEALTH_MONITOR_HTTP'
         alb_hm['http_monitor'] = dict(
-            http_request=lb_hm['request_url'],
+            http_request=lb_hm.get('request_url'),
             http_request_body=lb_hm.get('request_body'),
             http_response=lb_hm.get('response_body'),
-            http_response_code=get_alb_response_codes(lb_hm['response_status_codes']),
+            http_response_code=get_alb_response_codes(lb_hm.get('response_status_codes')),
         )
     elif lb_hm['resource_type'] == 'LBHttpsMonitorProfile':
         alb_hm['type'] = 'HEALTH_MONITOR_HTTPS'
         alb_hm['https_monitor'] = dict(
-            http_request=lb_hm['request_url'],
+            http_request=lb_hm.get('request_url'),
             http_request_body=lb_hm.get('request_body'),
             http_response=lb_hm.get('response_body'),
-            http_response_code=get_alb_response_codes(lb_hm['response_status_codes']),
+            http_response_code=get_alb_response_codes(lb_hm.get('response_status_codes')),
         )
     elif lb_hm['resource_type'] == 'LBIcmpMonitorProfile':
         alb_hm['type'] = 'HEALTH_MONITOR_PING'
@@ -51,23 +51,25 @@ def update_alb_type(lb_hm, alb_hm):
         alb_hm['type'] = 'HEALTH_MONITOR_TCP'
     elif lb_hm['resource_type'] == 'LbUdpMonitorProfile':
         alb_hm['type'] = 'HEALTH_MONITOR_UDP'
-    alb_hm['url'], alb_hm['uuid'] = conversion_util.get_obj_url_uuid(lb_hm['path'], lb_hm['unique_id'])
-    tenant = conversion_util.get_tenant_ref(alb_hm['url'])
+
     alb_hm['tenant_ref'] = conversion_util.get_object_ref('admin', 'tenant')
 
-def convert(alb_config, nsx_lb_config,cloud_name):
+def convert(alb_config, nsx_lb_config,cloud_name,prefix):
     alb_config['HealthMonitor'] = list()
 
     for lb_hm in nsx_lb_config['LbMonitorProfiles']:
         if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
             continue
+        if prefix:
+            name='%s-%s' % (prefix,lb_hm['display_name'])
+        else :
+            name=lb_hm.get('display_name')
         alb_hm = dict(
-            name=lb_hm['display_name'],
-            failed_checks=lb_hm['fall_count'],
-            receive_timeout=lb_hm['timeout'],
-            send_interval=lb_hm['interval'],
+            name=name,
+            failed_checks=lb_hm.get('fall_count'),
+            receive_timeout=lb_hm.get('timeout'),
+            send_interval=lb_hm.get('interval'),
             monitor_port=lb_hm.get('monitor_port', None),
         )
         update_alb_type(lb_hm, alb_hm)
-        alb_hm['cloud_ref'] = conversion_util.get_object_ref(cloud_name, 'cloud')
         alb_config['HealthMonitor'].append(alb_hm)
