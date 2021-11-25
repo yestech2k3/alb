@@ -15,7 +15,7 @@ class PoolConfigConv(object):
 
     def convert(self, alb_config, nsx_lb_config):
         '''
-
+        LBPool to Avi Config pool converter
         '''
         alb_config['Pool'] = list()
         for lb_pl in nsx_lb_config['LbPools']:
