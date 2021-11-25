@@ -1,4 +1,3 @@
-
 import sys
 
 from avi.migrationtools.ace_converter import pool_converter
@@ -17,7 +16,7 @@ import os
 import json
 
 
-def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir,cloud_name='Default-Cloud'):
+def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix):
     nsx_util = NSXUtil(nsx_un, nsx_pw, nsx_ip, nsx_port)
     nsx_lb_config = nsx_util.get_nsx_config()
     input_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "input"
@@ -27,13 +26,12 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir,cloud_name='Default-Clo
     with open(input_config, "w", encoding='utf-8') as text_file:
         json.dump(nsx_lb_config, text_file, indent=4)
 
-
     alb_config = dict()  # Result Config
 
-    monitor_converter.convert(alb_config, nsx_lb_config,cloud_name)
-    profiles_converter.convert(alb_config, nsx_lb_config,cloud_name)
-    pools_converter.convert(alb_config, nsx_lb_config,cloud_name)
-    vs_converter.convert(alb_config,nsx_lb_config,cloud_name)
+    monitor_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
+    profiles_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
+    pools_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
+    # vs_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
 
     output_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "output"
     print(output_path)
@@ -42,7 +40,6 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir,cloud_name='Default-Clo
     output_config = output_path + os.path.sep + "avi_config.json"
     with open(output_config, "w", encoding='utf-8') as text_file:
         json.dump(alb_config, text_file, indent=4)
-
 
     pp = PrettyPrinter()
     pp.pprint(alb_config)
