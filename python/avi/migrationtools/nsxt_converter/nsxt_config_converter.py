@@ -16,7 +16,11 @@ import os
 import json
 
 
+<<<<<<< HEAD
 def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix):
+=======
+def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir,cloud_name,prefix):
+>>>>>>> 5fb000a9b7a05505177061270c1bc49d9cb4e675
     nsx_util = NSXUtil(nsx_un, nsx_pw, nsx_ip, nsx_port)
     nsx_lb_config = nsx_util.get_nsx_config()
     input_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "input"
@@ -28,10 +32,17 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix):
 
     alb_config = dict()  # Result Config
 
+<<<<<<< HEAD
     monitor_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
     profiles_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
     pools_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
     # vs_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
+=======
+    monitor_converter.convert(alb_config, nsx_lb_config,cloud_name,prefix)
+    profiles_converter.convert(alb_config, nsx_lb_config,cloud_name,prefix)
+    pools_converter.convert(alb_config, nsx_lb_config,cloud_name,prefix)
+    vs_converter.convert(alb_config,nsx_lb_config,cloud_name,prefix)
+>>>>>>> 5fb000a9b7a05505177061270c1bc49d9cb4e675
 
     output_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "output"
     print(output_path)

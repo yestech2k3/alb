@@ -35,6 +35,7 @@ def get_object_ref( object_name, object_type,
     else:
         ref='/api/%s/?tenant=admin&name=%s' % (object_type,object_name )
     return ref
+<<<<<<< HEAD
 
 
 
@@ -42,3 +43,5 @@ def get_object_ref( object_name, object_type,
 
 
 
+=======
+>>>>>>> 5fb000a9b7a05505177061270c1bc49d9cb4e675

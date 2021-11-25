@@ -53,17 +53,27 @@ def update_alb_type(lb_hm, alb_hm):
 
     alb_hm['tenant_ref'] = conversion_util.get_object_ref('admin', 'tenant')
 
+<<<<<<< HEAD
 
 def convert(alb_config, nsx_lb_config, cloud_name, prefix):
+=======
+def convert(alb_config, nsx_lb_config,cloud_name,prefix):
+>>>>>>> 5fb000a9b7a05505177061270c1bc49d9cb4e675
     alb_config['HealthMonitor'] = list()
 
     for lb_hm in nsx_lb_config['LbMonitorProfiles']:
         if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
             continue
         if prefix:
+<<<<<<< HEAD
             name = '%s-%s' % (prefix, lb_hm['display_name'])
         else:
             name = lb_hm.get('display_name')
+=======
+            name='%s-%s' % (prefix,lb_hm['display_name'])
+        else :
+            name=lb_hm.get('display_name')
+>>>>>>> 5fb000a9b7a05505177061270c1bc49d9cb4e675
         alb_hm = dict(
             name=name,
             failed_checks=lb_hm.get('fall_count'),
