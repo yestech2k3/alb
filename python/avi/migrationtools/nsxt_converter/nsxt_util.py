@@ -17,6 +17,6 @@ class NSXUtil():
         return nsx_lb_config
 
 if __name__ == "__main__":
-    nsx_util = NSXUtil('admin', 'Admin!23Admin', '10.168.204.70', '443')
+    nsx_util = NSXUtil('admin', 'Admin!23Admin', '10.206.96.85', '443')
     nsx_lb_config = nsx_util.get_nsx_config()
     print(nsx_lb_config)

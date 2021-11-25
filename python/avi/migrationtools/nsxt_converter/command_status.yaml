@@ -1,0 +1,92 @@
+# This fie defines the list of F5 commands.
+# Supported commands defines that these commands are supported by F5 tool
+# Not Applicable commands are not applicable in AVI. Those commands are F5 specific commands
+# Indirect commands are supported indirectly in AVI
+# Not Supported commands are not supported by this tool yet
+
+# Attributes for f5 version 11
+VERSION_11:
+    Monitor_Supported_Types:
+     - "LBHttpMonitorProfile"
+     - "LBHttpsMonitorProfile"
+     - "LBIcmpMonitorProfile"
+     - "LBTcpMonitorProfile"
+     - "LBUdpMonitorProfile"
+
+    Monitor_Supported_Attributes:
+     - "monitor_port"
+     - "interval"
+     - "timeout"
+     - "rise_count"
+     - "fall_count"
+     - "display_name"
+     - "resource_type"
+     - "id"
+
+    Monitor_http_attr:
+    - "request_url"
+    - "request_method"
+    - "request_version"
+    - "request_body"
+    - "response_status_codes"
+    - "response_body"
+
+    Monitor_https_attr:
+    - "request_url"
+    - "request_method"
+    - "request_version"
+    - "request_body"
+    - "response_status_codes"
+    - "response_body"
+    - "server_ssl_profile_binding"
+
+    Monitor_tcp_attr:
+    - "send"
+    - "receive"
+
+    Monitor_udp_attr:
+    - "send"
+    - "receive"
+
+    Monitor_ping_attr:
+
+    Pool_supported_attr:
+    - "display_name"
+    - "members"
+    - "algorithm"
+    - "member_group"
+    - "active_monitor_paths"
+    - "snat_translation"
+    - "tcp_multiplexing_enabled"
+    - "tcp_multiplexing_number"
+    - "min_active_members"
+    - "resource_type"
+    - "id"
+
+    Pool_supported_attr_convert_servers_config:
+    - "display_name"
+    - "ip_address"
+    - "port"
+    - "admin_state"
+    - "weight"
+    - "max_concurrent_connections"
+
+    Pool_supported_attr_convert_member_group:
+    - "group_path"
+    - "port"
+
+    Common_Na_List:
+    - "path"
+    - "relative_path" 
+    - "parent_path" 
+    - "unique_id" 
+    - "realization_id" 
+    - "marked_for_delete" 
+    - "overridden" 
+    - "_create_time" 
+    - "_create_user" 
+    - "_last_modified_time" 
+    - "_last_modified_user" 
+    - "_system_owned" 
+    - "_protection" 
+    - "_revision"

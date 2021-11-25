@@ -9,12 +9,21 @@ import com.vmware.nsx_policy.infra_client as infra_client
 import com.vmware.nsx_policy.model_client as model_client
 import random
 from com.vmware.vapi.std.errors_client import Error
+
+from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
+from avi.migrationtools.nsxt_converter.monitor_converter import MonitorConfigConv
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
 import os
 import json
+import avi.migrationtools.nsxt_converter.converter_constants as conv_const
+from avi.migrationtools.nsxt_converter.pools_converter import PoolConfigConv
 
+conv_utils = NsxtConvUtil()
 
 def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir):
+    # load the yaml file attribute in nsxt_attributes.
+    nsxt_attributes = conv_const.init("11")
+
     nsx_util = NSXUtil(nsx_un, nsx_pw, nsx_ip, nsx_port)
     nsx_lb_config = nsx_util.get_nsx_config()
     input_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "input"
@@ -27,7 +36,11 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir):
 
     alb_config = dict()  # Result Config
 
+    monitor_converter = MonitorConfigConv(nsxt_attributes)
     monitor_converter.convert(alb_config, nsx_lb_config)
+
+    pool_converter = PoolConfigConv(nsxt_attributes)
+    pool_converter.convert(alb_config, nsx_lb_config)
 
     output_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "output"
     if not os.path.exists(output_path):
@@ -35,6 +48,10 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir):
     output_config = output_path + os.path.sep + "avi_config.json"
     with open(output_config, "w", encoding='utf-8') as text_file:
         json.dump(alb_config, text_file, indent=4)
+
+    # Add nsxt converter status report in xslx report
+    conv_utils.add_complete_conv_status(
+        output_dir, alb_config, "nsxt-report", False)
 
     pp = PrettyPrinter()
     pp.pprint(alb_config)

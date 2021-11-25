@@ -2,7 +2,7 @@
 
 import requests
 
-from com.vmware import nsx_client
+
 from com.vmware import nsx_policy_client
 from vmware.vapi.bindings.stub import ApiClient
 from vmware.vapi.bindings.stub import StubFactory
