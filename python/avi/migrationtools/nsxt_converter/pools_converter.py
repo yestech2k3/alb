@@ -13,7 +13,7 @@ class PoolConfigConv(object):
         self.member_group_attr = nsxt_pool_attributes['Pool_supported_attr_convert_member_group']
         self.common_na_attr = nsxt_pool_attributes['Common_Na_List']
 
-    def convert(self, alb_config, nsx_lb_config):
+    def convert(self, alb_config, nsx_lb_config, cloud_name, prefix):
         '''
         LBPool to Avi Config pool converter
         '''
@@ -26,12 +26,13 @@ class PoolConfigConv(object):
                        if val in self.common_na_attr]
             servers, member_skipped_config, skipped_servers , limits= \
                 self.convert_servers_config(lb_pl.get("members", []))
-
+            if prefix:
+                name=prefix+"-"+name
             alb_pl = {
-                'name': lb_pl.get("id"),
+                'name': name,
                 'servers': servers,
                 'lb_algorithm': lb_type,
-                'cloud_ref': conv_utils.get_object_ref("Default-Cloud", 'cloud')
+                'cloud_ref': conv_utils.get_object_ref(cloud_name, 'cloud')
             }
 
             if any(server.get("port") == None for server in servers):
@@ -70,7 +71,10 @@ class PoolConfigConv(object):
             if active_monitor_paths:
                 monitor_refs = []
                 for lb_hm_path in active_monitor_paths:
-                    monitor_refs.append("/api/healthmontior/?name=" + lb_hm_path.split("/lb-monitor-profiles/")[1])
+                    ref=lb_hm_path.split("/lb-monitor-profiles/")[1]
+                    if prefix:
+                        ref=prefix+"-"+ref
+                    monitor_refs.append("/api/healthmontior/?name=" + ref)
                 alb_pl["health_monitor_refs"] = list(set(monitor_refs))
             skipped = [val for val in lb_pl.keys()
                             if val not in self.supported_attr]

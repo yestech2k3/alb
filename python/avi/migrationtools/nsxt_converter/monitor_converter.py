@@ -78,7 +78,7 @@ class MonitorConfigConv(object):
         return skipped
 
 
-    def convert(self, alb_config, nsx_lb_config):
+    def convert(self, alb_config, nsx_lb_config, prefix):
         alb_config['HealthMonitor'] = list()
 
         for lb_hm in nsx_lb_config['LbMonitorProfiles']:
@@ -90,7 +90,8 @@ class MonitorConfigConv(object):
                        if val not in self.supported_attributes]
             na_list = [val for val in lb_hm.keys()
                        if val in self.common_na_attr]
-
+            if prefix:
+                name=prefix+'-'+name
             alb_hm = dict(
                 name=name,
                 failed_checks=lb_hm['fall_count'],

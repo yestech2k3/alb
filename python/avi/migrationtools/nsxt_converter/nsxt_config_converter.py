@@ -1,4 +1,3 @@
-
 import sys
 from avi.migrationtools.nsxt_converter import nsxt_client as nsx_client_util
 from avi.migrationtools.nsxt_converter import monitor_converter
@@ -17,10 +16,12 @@ import os
 import json
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.nsxt_converter.pools_converter import PoolConfigConv
+from avi.migrationtools.nsxt_converter.profile_converter import ProfileConfigConv
 
 conv_utils = NsxtConvUtil()
 
-def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir):
+
+def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix):
     # load the yaml file attribute in nsxt_attributes.
     nsxt_attributes = conv_const.init("11")
 
@@ -33,14 +34,16 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir):
     with open(input_config, "w", encoding='utf-8') as text_file:
         json.dump(nsx_lb_config, text_file, indent=4)
 
-
     alb_config = dict()  # Result Config
 
     monitor_converter = MonitorConfigConv(nsxt_attributes)
-    monitor_converter.convert(alb_config, nsx_lb_config)
+    monitor_converter.convert(alb_config, nsx_lb_config, prefix)
 
     pool_converter = PoolConfigConv(nsxt_attributes)
-    pool_converter.convert(alb_config, nsx_lb_config)
+    pool_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
+
+    profile_converter = ProfileConfigConv(nsxt_attributes)
+    profile_converter.convert(alb_config, nsx_lb_config, prefix)
 
     output_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "output"
     if not os.path.exists(output_path):
