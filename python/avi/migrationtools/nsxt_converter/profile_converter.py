@@ -7,10 +7,14 @@ class ProfileConfigConv(object):
         """
 
         """
+        self.ap_http_supported_attributes = nsxt_profile_attributes['Application_Http_Profile_supported_attr']
+        self.common_na_attr = nsxt_profile_attributes['Common_Na_List']
+
 
     def convert(self, alb_config, nsx_lb_config, prefix):
         alb_config['ApplicationProfile'] = list()
         alb_config['NetworkProfile'] = list()
+
         for lb_pr in nsx_lb_config['LbAppProfiles']:
             name=lb_pr.get('display_name')
             if prefix:
@@ -18,6 +22,11 @@ class ProfileConfigConv(object):
             alb_pr = dict(
                 name=name,
             )
+
+            na_list = [val for val in lb_pr.keys()
+                       if val in self.common_na_attr]
+
+
             if lb_pr['resource_type'] == 'LBHttpProfile':
                 self.convert_http(alb_pr,lb_pr)
             if lb_pr['resource_type'] == 'LBFastUdpProfile':
@@ -25,8 +34,23 @@ class ProfileConfigConv(object):
             if lb_pr['resource_type'] == 'LBFastTcpProfile':
                 self.convert_tcp(alb_pr,lb_pr)
 
+            indirect = []
+            u_ignore = []
+            ignore_for_defaults = {}
+
             if lb_pr['resource_type'] == 'LBHttpProfile':
+                skipped = [val for val in lb_pr.keys()
+                           if val not in self.ap_http_supported_attributes]
+                if lb_pr.get("description"):
+                    alb_pr["description"] = lb_pr['description']
+
                 alb_config['ApplicationProfile'].append(alb_pr)
+
+                conv_status = conv_utils.get_conv_status(
+                    skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
+                    u_ignore, na_list)
+                conv_utils.add_conv_status('ApplicationHttpProfile', lb_pr['resource_type'], alb_pr['name'], conv_status,
+                                           [{'application_http_profile': alb_pr}])
             else:
                 alb_config['NetworkProfile'].append(alb_pr)
 
@@ -40,6 +64,7 @@ class ProfileConfigConv(object):
             http_to_https=lb_pr.get('httpRedirectToHttps',False),
             keepalive_timeout=lb_pr.get('idle_timeout'),
             client_max_header_size=lb_pr.get('request_header_size'),
+            keepalive_header=lb_pr.get('server_keep_alive'),
             client_max_body_size=lb_pr.get('requestBodySize')
         )
 

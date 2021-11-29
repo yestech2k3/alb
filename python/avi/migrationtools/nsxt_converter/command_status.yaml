@@ -75,6 +75,19 @@ VERSION_11:
     - "group_path"
     - "port"
 
+    Application_Http_Profile_supported_attr:
+    - "x_forwarded_for"
+    - "http_redirect_to_https"
+    - "idle_timeout"
+    - "request_header_size"
+    - "request_body_size"
+    - "description"
+    - "display_name"
+    - "resource_type"
+    - "server_keep_alive"
+    - "id"
+
+
     Common_Na_List:
     - "path"
     - "relative_path" 
