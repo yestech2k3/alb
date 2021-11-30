@@ -9,12 +9,18 @@ class ProfileConfigConv(object):
         """
         self.ap_http_supported_attributes = nsxt_profile_attributes['Application_Http_Profile_supported_attr']
         self.common_na_attr = nsxt_profile_attributes['Common_Na_List']
+        self.np_supported_attributes=nsxt_profile_attributes['Network_Profile_supported_attr']
+
+
 
 
     def convert(self, alb_config, nsx_lb_config, prefix):
         alb_config['ApplicationProfile'] = list()
         alb_config['NetworkProfile'] = list()
-
+        skipped_ap = []
+        skipped_np = []
+        attr_ap = []
+        attr_np = []
         for lb_pr in nsx_lb_config['LbAppProfiles']:
             name=lb_pr.get('display_name')
             if prefix:
@@ -38,6 +44,7 @@ class ProfileConfigConv(object):
             u_ignore = []
             ignore_for_defaults = {}
 
+
             if lb_pr['resource_type'] == 'LBHttpProfile':
                 skipped = [val for val in lb_pr.keys()
                            if val not in self.ap_http_supported_attributes]
@@ -45,14 +52,45 @@ class ProfileConfigConv(object):
                     alb_pr["description"] = lb_pr['description']
 
                 alb_config['ApplicationProfile'].append(alb_pr)
+                skipped_ap.append(skipped)
 
-                conv_status = conv_utils.get_conv_status(
-                    skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
-                    u_ignore, na_list)
-                conv_utils.add_conv_status('ApplicationHttpProfile', lb_pr['resource_type'], alb_pr['name'], conv_status,
-                                           [{'application_http_profile': alb_pr}])
+                val=dict(
+                    name=alb_pr['name'],
+                    resource_type=lb_pr['resource_type'],
+                alb_pr=alb_pr)
+                attr_ap.append(val)
+
             else:
+                skipped=[val for val in lb_pr.keys()
+                         if val not in self.np_supported_attributes]
+
                 alb_config['NetworkProfile'].append(alb_pr)
+                skipped_np.append(skipped)
+                val = dict(
+                    name=alb_pr['name'],
+                    resource_type=lb_pr['resource_type'],
+                    alb_pr=alb_pr)
+                attr_np.append(val)
+
+        if len(skipped_ap):
+            c=0
+            for skipped in skipped_ap :
+                conv_status = conv_utils.get_conv_status(
+                skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
+                u_ignore, na_list)
+                conv_utils.add_conv_status('ApplicationHttpProfile',attr_ap[c]['resource_type'] , attr_ap[c]['name'], conv_status,
+                [{'application_http_profile': attr_ap[c]['alb_pr']}])
+            c=c+1
+
+        if len(skipped_np):
+            c=0
+            for skipped in skipped_np :
+                conv_status = conv_utils.get_conv_status(
+                skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
+                u_ignore, na_list)
+                conv_utils.add_conv_status('NetworkProfile', attr_np[c]['resource_type'],attr_np[c]['name'], conv_status,
+                                               [{'network_profile': attr_np[c]['alb_pr']}])
+            c=c+1
 
 
     def convert_http(self,alb_pr,lb_pr):
