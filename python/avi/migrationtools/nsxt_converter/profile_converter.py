@@ -73,27 +73,22 @@ class ProfileConfigConv(object):
                 attr_np.append(val)
 
         if len(skipped_ap):
-            c=0
-            for skipped in skipped_ap :
+            for index, skipped in enumerate(skipped_ap):
                 conv_status = conv_utils.get_conv_status(
                 skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
                 u_ignore, na_list)
-                conv_utils.add_conv_status('ApplicationHttpProfile',attr_ap[c]['resource_type'] , attr_ap[c]['name'], conv_status,
-                [{'application_http_profile': attr_ap[c]['alb_pr']}])
-                c=c+1
+                conv_utils.add_conv_status('ApplicationHttpProfile',attr_ap[index]['resource_type'] , attr_ap[index]['name'], conv_status,
+                [{'application_http_profile': attr_ap[index]['alb_pr']}])
 
         if len(skipped_np):
-            c=0
-            for skipped in skipped_np :
+            for index, skipped in enumerate(skipped_np) :
                 conv_status = conv_utils.get_conv_status(
                 skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
                 u_ignore, na_list)
-                conv_utils.add_conv_status('NetworkProfile', attr_np[c]['resource_type'],attr_np[c]['name'], conv_status,
-                                               [{'network_profile': attr_np[c]['alb_pr']}])
-                c=c+1
+                conv_utils.add_conv_status('NetworkProfile', attr_np[index]['resource_type'],attr_np[index]['name'], conv_status,
+                                               [{'network_profile': attr_np[index]['alb_pr']}])
 
-
-    def convert_http(self,alb_pr,lb_pr):
+    def convert_http(self, alb_pr, lb_pr):
         tenant, name = conv_utils.get_tenant_ref("admin")
         alb_pr['tenant_ref'] = conv_utils.get_object_ref(tenant, 'tenant')
         alb_pr['type'] = 'APPLICATION_PROFILE_TYPE_HTTP'
