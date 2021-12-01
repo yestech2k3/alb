@@ -80,7 +80,7 @@ class ProfileConfigConv(object):
                 u_ignore, na_list)
                 conv_utils.add_conv_status('ApplicationHttpProfile',attr_ap[c]['resource_type'] , attr_ap[c]['name'], conv_status,
                 [{'application_http_profile': attr_ap[c]['alb_pr']}])
-            c=c+1
+                c=c+1
 
         if len(skipped_np):
             c=0
@@ -90,7 +90,7 @@ class ProfileConfigConv(object):
                 u_ignore, na_list)
                 conv_utils.add_conv_status('NetworkProfile', attr_np[c]['resource_type'],attr_np[c]['name'], conv_status,
                                                [{'network_profile': attr_np[c]['alb_pr']}])
-            c=c+1
+                c=c+1
 
 
     def convert_http(self,alb_pr,lb_pr):

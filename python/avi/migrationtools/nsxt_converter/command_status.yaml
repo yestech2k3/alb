@@ -87,6 +87,12 @@ VERSION_11:
     - "server_keep_alive"
     - "id"
 
+    Network_Profile_supported_attr:
+    - "display_name"
+    - "resource_type"
+    - "id"
+    - "idle_timeout"
+
 
     Common_Na_List:
     - "path"
