@@ -1,3 +1,5 @@
+import time
+
 import com.vmware.nsx_policy.model_client as model_client
 
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
@@ -131,9 +133,10 @@ class MonitorConfigConv(object):
                                            [{'health_monitor': alb_hm}])
 
             alb_config['HealthMonitor'].append(alb_hm)
-        msg = "Monitor conversion started..."
-        conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+            msg = "Monitor conversion started..."
+            conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                           prefix='Progress', suffix='')
+            time.sleep(1)
 
     def get_name_type(self, lb_hm):
         """

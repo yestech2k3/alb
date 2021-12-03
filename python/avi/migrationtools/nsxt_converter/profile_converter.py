@@ -1,3 +1,5 @@
+import time
+
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 
 conv_utils = NsxtConvUtil()
@@ -76,9 +78,10 @@ class ProfileConfigConv(object):
                     alb_pr=alb_pr)
                 attr_np.append(val)
 
-        msg = "Profile conversion started..."
-        conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+            msg = "Profile conversion started..."
+            conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                       prefix='Progress', suffix='')
+            time.sleep(1)
 
         if len(skipped_ap):
             for index, skipped in enumerate(skipped_ap):

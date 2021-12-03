@@ -1,3 +1,5 @@
+import time
+
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 
 conv_utils = NsxtConvUtil()
@@ -48,7 +50,8 @@ class PoolConfigConv(object):
             if lb_pl.get("tcp_multiplexing_enabled"):
                 #TO-DO - HANDLE In APPLICATION PROFILE
                 #Need to set in Application profile
-                print(lb_pl.get("tcp_multiplexing_enabled"))
+                pass
+
             if lb_pl.get("tcp_multiplexing_number"):
                 alb_pl['conn_pool_properties'] = {
                     'upstream_connpool_server_max_cache': lb_pl.get('tcp_multiplexing_number')
@@ -71,7 +74,7 @@ class PoolConfigConv(object):
             if lb_pl.get("snat_translation"):
                 # TO-DO - HANDLE In APPLICATION PROFILE
                 # Need to set in Application profile
-                 print(lb_pl.get("snat_translation"))
+                 pass
 
             active_monitor_paths = lb_pl.get("active_monitor_paths", None)
             if active_monitor_paths:
@@ -101,12 +104,14 @@ class PoolConfigConv(object):
 
             conv_utils.add_conv_status('pool', lb_type, alb_pl['name'], conv_status,
                                        [{'pool': alb_pl}])
+            msg = "Pools conversion started..."
+            conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+                                          prefix='Progress', suffix='')
 
             alb_config['Pool'].append(alb_pl)
+            time.sleep(1)
 
-        msg = "Pools conversion started..."
-        conv_utils.print_progress_bar(progressbar_count, total_size, msg,
-                                      prefix='Progress', suffix='')
+
 
 
 

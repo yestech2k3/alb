@@ -23,9 +23,9 @@ class ALBConverter:
     def convert(self):
 
         if not os.path.exists(self.output_file_path):
-            os.mkdir(self.output_file_path)
+            os.mkdir(self.output_file_path, mode=777)
         output_dir = os.path.normpath(self.output_file_path)
-        input_path = output_dir + os.path.sep + os.path.sep + "input-alb"
+        input_path = output_dir + os.path.sep + "input-alb"
         if not os.path.exists(input_path):
             os.makedirs(input_path)
         input_config = input_path + os.path.sep + "config.json"
@@ -49,7 +49,7 @@ class ALBConverter:
     def convert_to_alb(self, avi_config):
         alb_config = dict()
         for key in avi_config.keys():
-            if key in SUPPORTED_ALB_OBJECTS:
+            if key in nsxt_attributes['SUPPORTED_ALB_OBJECTS']:
                 config = []
                 supported_obj = avi_config[key]
                 for obj in supported_obj:
@@ -77,9 +77,9 @@ class ALBConverter:
                     if k == nsxt_attributes['REPLACE_KEYS'][0]:
                         data['display_name'] = v
                         data['id'] = v
-                    if k == nsxt_attributes['REPLACE_KEYS'][0]:
+                    if k == nsxt_attributes['REPLACE_KEYS'][1]:
                         data['cloud_name'] = v.split("name=")[1]
-                    if k == nsxt_attributes['REPLACE_KEYS[2]']:
+                    if k == nsxt_attributes['REPLACE_KEYS'][2]:
                         data['vrf_name'] = v.split("name=")[1].split("&")[0]
                     if k == nsxt_attributes['REPLACE_KEYS'][3]:
                         data['vrf_context_name'] = v.split("name=")[1].split("&")[0]
