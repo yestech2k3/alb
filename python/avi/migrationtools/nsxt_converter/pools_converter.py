@@ -13,12 +13,18 @@ class PoolConfigConv(object):
         self.member_group_attr = nsxt_pool_attributes['Pool_supported_attr_convert_member_group']
         self.common_na_attr = nsxt_pool_attributes['Common_Na_List']
 
+
     def convert(self, alb_config, nsx_lb_config, cloud_name, prefix):
         '''
         LBPool to Avi Config pool converter
         '''
         alb_config['Pool'] = list()
+        progressbar_count = 0
+
+        total_size = len(nsx_lb_config['LbPools'])
+        print("\nConverting Pools ...")
         for lb_pl in nsx_lb_config['LbPools']:
+            progressbar_count += 1
             tenant, name = conv_utils.get_tenant_ref("admin")
             lb_type, name = self.get_name_type(lb_pl)
 
@@ -65,7 +71,7 @@ class PoolConfigConv(object):
             if lb_pl.get("snat_translation"):
                 # TO-DO - HANDLE In APPLICATION PROFILE
                 # Need to set in Application profile
-                print(lb_pl.get("snat_translation"))
+                 print(lb_pl.get("snat_translation"))
 
             active_monitor_paths = lb_pl.get("active_monitor_paths", None)
             if active_monitor_paths:
@@ -74,7 +80,7 @@ class PoolConfigConv(object):
                     ref=lb_hm_path.split("/lb-monitor-profiles/")[1]
                     if prefix:
                         ref=prefix+"-"+ref
-                    monitor_refs.append("/api/healthmontior/?name=" + ref)
+                    monitor_refs.append("/api/healthmontior/?tenant=admin&name=" + ref)
                 alb_pl["health_monitor_refs"] = list(set(monitor_refs))
             skipped = [val for val in lb_pl.keys()
                             if val not in self.supported_attr]
@@ -97,6 +103,12 @@ class PoolConfigConv(object):
                                        [{'pool': alb_pl}])
 
             alb_config['Pool'].append(alb_pl)
+
+        msg = "Pools conversion started..."
+        conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+                                      prefix='Progress', suffix='')
+
+
 
 
     def get_name_type(self, lb_pl):

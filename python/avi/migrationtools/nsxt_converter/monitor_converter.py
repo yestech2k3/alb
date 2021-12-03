@@ -52,6 +52,7 @@ class MonitorConfigConv(object):
     def update_alb_type(self, lb_hm, alb_hm, skipped):
         if lb_hm['resource_type'] == 'LBHttpMonitorProfile':
             alb_hm['type'] = 'HEALTH_MONITOR_HTTP'
+
             alb_hm['http_monitor'] = dict(
                 http_request=lb_hm['request_url'],
                 http_request_body=lb_hm.get('request_body'),
@@ -66,7 +67,9 @@ class MonitorConfigConv(object):
                 http_request_body=lb_hm.get('request_body'),
                 http_response=lb_hm.get('response_body'),
                 http_response_code=self.get_alb_response_codes(lb_hm['response_status_codes']),
+
             )
+
             skipped = [key for key in skipped if key not in self.https_attr]
 
         elif lb_hm['resource_type'] == 'LBIcmpMonitorProfile':
@@ -80,8 +83,11 @@ class MonitorConfigConv(object):
 
     def convert(self, alb_config, nsx_lb_config, prefix):
         alb_config['HealthMonitor'] = list()
-
+        progressbar_count=0
+        total_size=len(nsx_lb_config['LbMonitorProfiles'])
+        print("Converting Monitors...")
         for lb_hm in nsx_lb_config['LbMonitorProfiles']:
+            progressbar_count +=1
             if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
                 continue
 
@@ -92,6 +98,7 @@ class MonitorConfigConv(object):
                        if val in self.common_na_attr]
             if prefix:
                 name=prefix+'-'+name
+
             alb_hm = dict(
                 name=name,
                 failed_checks=lb_hm['fall_count'],
@@ -100,6 +107,7 @@ class MonitorConfigConv(object):
                 successful_checks=lb_hm.get('rise_count', None),
                 monitor_port=lb_hm.get('monitor_port', None),
             )
+            alb_hm['tenant_ref']="/api/tenant/?name=admin"
 
             if monitor_type == "LBHttpMonitorProfile":
                 skipped = self.convert_http(lb_hm, alb_hm, skipped)
@@ -123,7 +131,9 @@ class MonitorConfigConv(object):
                                            [{'health_monitor': alb_hm}])
 
             alb_config['HealthMonitor'].append(alb_hm)
-
+        msg = "Monitor conversion started..."
+        conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+                                          prefix='Progress', suffix='')
 
     def get_name_type(self, lb_hm):
         """

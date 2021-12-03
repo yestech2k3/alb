@@ -6,6 +6,104 @@
 
 # Attributes for f5 version 11
 VERSION_11:
+
+    SUPPORTED_ALB_OBJECTS :
+    - "AlertScriptConfig"
+    - "AnalyticsProfile"
+    - "ApplicationPersistenceProfile"
+    - "ApplicationProfile"
+    - "Authprofiles"
+    - "AutoScaleLaunchConfig"
+    - "DnsPolicy"
+    - "ErrorPageBody"
+    - "ErrorPageProfile"
+    - "HardwareSecurityModuleGroup"
+    - "HealthMonitor"
+    - "HTTPPolicySet"
+    - "IpAddrGroup"
+    - "L4PolicySet"
+    - "NetworkProfile"
+    - "NetworkSecurityPolicy"
+    - "ObjectAccessPolicy"
+    - "PingAccessAgent"
+    - "PKIProfile"
+    - "Pool"
+    - "PoolGroup"
+    - "PoolGroupDeploymentPolicy"
+    - "PriorityLabels"
+    - "ProtocolParser"
+    - "SecurityPolicy"
+    - "ServerAutoScalePolicy"
+    - "CertificateManagementProfile"
+    - "SSLKeyAndCertificate"
+    - "SSLProfile"
+    - "SSOPolicy"
+    - "StringGroup"
+    - "TrafficCloneProfile"
+    - "VirtualService"
+    - "VSDataScriptSet"
+    - "VsVip"
+    - "WafCRS"
+    - "WafPolicy"
+    - "WafPolicyPSMGroup"
+    - "WafProfile"
+    - "Webhook"
+
+    albObjectType :
+        "alertscriptconfig": "alb-alert-script-configs"
+        "analyticsprofile": "alb-analytics-profiles"
+        "applicationpersistenceprofile": "alb-application-persistence-profiles"
+        "applicationprofile": "alb-application-profiles"
+        "authprofile": "alb-auth-profiles"
+        "autoscalelaunchconfig": "alb-auto-scale-launch-configs"
+        "certificatemanagementprofile": "alb-certificate-management-profiles"
+        "dnspolicy": "alb-dns-policies"
+        "errorpagebody": "alb-error-page-bodies"
+        "errorpageprofile": "alb-error-page-profiles"
+        "httppolicyset": "alb-http-policy-sets"
+        "hardwaresecuritymodulegroup": "alb-hardware-security-module-groups"
+        "healthmonitor": "alb-health-monitors"
+        "ipaddrgroup": "alb-ip-addr-groups"
+        "l4policyset": "alb-l4-policy-sets"
+        "networkprofile": "alb-network-profiles"
+        "networksecuritypolicy": "alb-network-security-policies"
+        "pkiprofile": "alb-pki-profiles"
+        "pingaccessagent": "alb-ping-access-agents"
+        "pool": "alb-pools"
+        "poolgroup": "alb-pool-groups"
+        "poolgroupdeploymentpolicy": "alb-pool-group-deployment-policies"
+        "prioritylabels": "alb-priority-labels"
+        "protocolparser": "alb-protocol-parsers"
+        "sslkeyandcertificate": "alb-ssl-key-and-certificates"
+        "sslprofile": "alb-ssl-profiles"
+        "ssopolicy": "alb-sso-policies"
+        "securitypolicy": "alb-security-policies"
+        "serverautoscalepolicy": "alb-server-auto-scale-policies"
+        "stringgroup": "alb-string-groups"
+        "trafficcloneprofile": "alb-traffic-clone-profiles"
+        "vsdatascriptset": "alb-vs-data-script-sets"
+        "virtualservice": "alb-virtual-services"
+        "vsvip": "alb-vs-vips"
+        "wafcrs": "alb-waf-crs"
+        "wafpolicy": "alb-waf-policies"
+        "wafpolicypsmgroup": "alb-waf-policy-psm-groups"
+        "wafprofile": "alb-waf-profiles"
+        "objectaccesspolicy": "alb-object-access-policies"
+        "webhook": "alb-webhooks"
+
+    NOT_APPLICABLE :
+        - 'url'
+        - 'uuid'
+        - 'tenant_ref'
+
+    REPLACE_KEYS :
+        - 'name'
+        - 'cloud_ref'
+        - 'vrf_ref'
+        - 'vrf_context_ref'
+        - 'tier1_lr'
+
+
     Monitor_Supported_Types:
      - "LBHttpMonitorProfile"
      - "LBHttpsMonitorProfile"

@@ -2,12 +2,14 @@
 # SPDX-License-Identifier: Apache License 2.0
 
 import argparse
+import ast
 import copy
 import getpass
 import logging
 import os
 import random
 import string
+from functools import reduce
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime
 from socket import gethostname
@@ -95,6 +97,242 @@ class MigrationUtil(object):
             return True
         except Exception as e:
             return False
+
+    def get_pool_skipped_list(self, avi_config, pool_group_name, csv_pool_rows,
+                              csv_writer_dict_list, vs_ref, profile_csv_list):
+        """
+        This method is used for getting pool skipped list.
+        :param avi_config: AVI dict
+        :param pool_group_name: Name of Pool group
+        :param csv_pool_rows: List of pool(NsxT type) csv rows
+        :param csv_writer_dict_list: List of nsxt csv rows
+        :param vs_ref: Name of VS
+        :param profile_csv_list: List of profile(NsxT type) csv rows
+        :return:
+        """
+
+        pool_group_objects = [pool_group_object for pool_group_object in
+                              avi_config['PoolGroup'] if
+                              pool_group_object['name']
+                              == pool_group_name]
+        pool_members = pool_group_objects[0]['members']
+        skipped_setting = {
+            'pools': []
+        }
+        for pool_member in pool_members:
+            pool_name = self.get_name(pool_member['pool_ref'])
+            self.get_skipped_pool(
+                avi_config, pool_name, csv_pool_rows, csv_writer_dict_list,
+                vs_ref, profile_csv_list, skipped_setting)
+        if skipped_setting['pools']:
+            return skipped_setting
+
+    def get_skipped_pool(self, avi_config, pool_name, pool_csv_rows,
+                         csv_writer_dict_list, vs_ref, profile_csv_list,
+                         skipped_setting):
+        """
+        This method get the skipped list for pool by going over the
+        references attached to it
+        :param avi_config: Converted Avi configuration
+        :param pool_name: name of the pool
+        :param pool_csv_rows:
+        :param csv_writer_dict_list: Result report dict
+        :param vs_ref: VS reference
+        :param profile_csv_list:
+        :param skipped_setting: User defined skipped settings
+        :return: skipped setting for pool
+        """
+        pool_skipped_setting = {}
+        skipped_list = self.get_pool_skipped(pool_csv_rows, pool_name, vs_ref)
+        pool_object = [pool for pool in avi_config["Pool"]
+                       if pool['name'] == pool_name]
+        if skipped_list:
+            pool_skipped_setting['pool_name'] = pool_name
+            pool_skipped_setting['pool_skipped_list'] = skipped_list
+        if pool_object:
+            if 'health_monitor_refs' in pool_object[0]:
+                health_monitor_skipped_setting = []
+                for health_monitor_ref in pool_object[0]['health_monitor_refs']:
+                    health_monitor_ref = self.get_name(health_monitor_ref)
+                    monitor_csv_object = self.get_csv_object_list(
+                        csv_writer_dict_list, ['monitor'])
+                    skipped_list = self.get_csv_skipped_list(
+                        monitor_csv_object, health_monitor_ref, vs_ref,
+                        field_key='health_monitor')
+                    if skipped_list:
+                        health_monitor_skipped_setting.append(
+                            {'health_monitor_name': health_monitor_ref,
+                             'monitor_skipped_list': skipped_list})
+                if health_monitor_skipped_setting:
+                    pool_skipped_setting['pool_name'] = pool_name
+                    pool_skipped_setting['health_monitor'] = \
+                        health_monitor_skipped_setting
+            if 'ssl_key_and_certificate_ref' in pool_object[0] and \
+                    pool_object[0]['ssl_key_and_certificate_ref']:
+                ssl_key_cert = self.get_name(
+                    pool_object[0]['ssl_key_and_certificate_ref'])
+                sslkc_skip = self.get_csv_skipped_list(
+                    profile_csv_list, ssl_key_cert, vs_ref,
+                    field_key='ssl_cert_key')
+                if sslkc_skip:
+                    pool_skipped_setting['pool_name'] = pool_name
+                    pool_skipped_setting['ssl_key_and_certificate'] = sslkc_skip
+
+            if 'ssl_profile_ref' in pool_object[0] and \
+                    pool_object[0]['ssl_profile_ref']:
+                name, skipped = self.get_ssl_profile_skipped(
+                    profile_csv_list, pool_object[0]['ssl_profile_ref'], vs_ref)
+                if skipped:
+                    pool_skipped_setting['pool_name'] = pool_name
+                    pool_skipped_setting['ssl profile'] = {}
+                    pool_skipped_setting['ssl profile']['name'] = name
+                    pool_skipped_setting['ssl profile'][
+                        'skipped_list'] = skipped
+
+            if 'application_persistence_profile_ref' in pool_object[0] and \
+                    pool_object[0]['application_persistence_profile_ref']:
+                name, skipped = self.get_app_persistence_profile_skipped(
+                    csv_writer_dict_list, pool_object[0], vs_ref)
+                if skipped:
+                    pool_skipped_setting['pool_name'] = pool_name
+                    pool_skipped_setting['Application Persistence profile'] = {}
+                    pool_skipped_setting['Application Persistence profile'][
+                        'name'] = name
+                    pool_skipped_setting['Application Persistence profile'][
+                        'skipped_list'] = skipped
+
+            if pool_skipped_setting:
+                skipped_setting['pools'].append(pool_skipped_setting)
+
+    def get_pool_skipped(self, csv_objects, pool_name, vs_ref):
+        """
+        This functions defines that get the skipped list of CSV row
+        :param csv_objects: CSV row of object from xlsx report
+        :param pool_name: Name of pool
+        :param vs_ref: Name of VS
+        :return: Skipped list of csv row
+        """
+
+        for csv_object in csv_objects:
+            avi_object = self.format_string_to_json(csv_object['Avi Object'])
+            if 'pools' in avi_object:
+                pool_object = [pool for pool in avi_object['pools']
+                               if pool['name'] == pool_name]
+                if pool_object:
+                    return self.get_and_update_csv_row(csv_object, vs_ref)
+
+    def get_csv_skipped_list(self, csv_objects, name_of_object, vs_ref,
+                             field_key=None):
+        """
+        This method is used for getting skipped list from vs.
+        :param csv_objects: CSV row of object from xlsx report
+        :param name_of_object: Name of object
+        :param vs_ref: Name of VS
+        :param field_key: Key fromm avi json which is specific for object type
+        :return: Return skipped attribute list
+        """
+
+        for csv_object in csv_objects:
+            avi_objects = self.format_string_to_json(csv_object['Avi Object'])
+            if isinstance(avi_objects, dict):
+                avi_objects = [avi_objects]
+            if not avi_objects:
+                avi_objects = []
+            for avi_object_json in avi_objects:
+                object_found = False
+                if field_key:
+                    if field_key in avi_object_json and 'Duplicate' not in \
+                            avi_object_json[field_key] and (
+                            avi_object_json[field_key]['name'] ==
+                            name_of_object):
+                        object_found = True
+                else:
+                    if avi_object_json.get('name') and \
+                            avi_object_json['name'] == name_of_object:
+                        object_found = True
+
+                if object_found:
+                    return self.get_and_update_csv_row(csv_object, vs_ref)
+
+    def get_and_update_csv_row(self, csv_object, vs_ref):
+        """
+        This function defines that update csv row.
+        :param csv_object: csv object
+        :param vs_ref: Name of VS
+        :return: Skipped attribute list
+        """
+
+        if 'VS Reference' in csv_object and \
+                vs_ref not in csv_object['VS Reference']:
+            csv_object['VS Reference'] += ',' + vs_ref
+        else:
+            csv_object['VS Reference'] = vs_ref
+        repls = ('[', ''), (']', '')
+        skipped_setting_csv = reduce(
+            lambda a, kv: a.replace(*kv), repls, csv_object['Skipped settings'])
+        if skipped_setting_csv:
+            return [skipped_setting_csv]
+
+    def get_csv_object_list(self, csv_writer_dict_list, command_list):
+        """
+        This method is used for getting csv object
+        :param csv_writer_dict_list: CSV row of object from xlsx report
+        :param command_list: List of netscaler commands
+        :return: List of CSV rows
+        """
+
+        csv_object = [row for row in csv_writer_dict_list if
+                      row['Status'] in [conv_const.STATUS_PARTIAL,
+                                        conv_const.STATUS_SUCCESSFUL] and
+                      '->' not in row['Avi Object'] and
+                      row['NsxT type'] in command_list]
+        return csv_object
+
+    def format_string_to_json(self, avi_string):
+        """
+        This function defines that it convert string into json format to
+        convert into dict
+        :param avi_string: string to be converted
+        :return: Return converted string
+        """
+        avi_string = avi_string.split('__/__')[0]
+        return ast.literal_eval(avi_string)
+
+    def get_app_persistence_profile_skipped(self, csv_writer_dict_list,
+                                            pool_object, vs_ref):
+        """
+        This functions defines that get the skipped list of CSV row
+        :param csv_writer_dict_list: List of csv rows
+        :param pool_object: object of pool
+        :param vs_ref: Name of VS
+        :return: profile name and skipped attribute list
+        """
+
+        app_persistence_profile_name = self.get_name(
+            pool_object['application_persistence_profile_ref'])
+        csv_object = self.get_csv_object_list(csv_writer_dict_list,
+                                              ['persistence'])
+        skipped_list = self.get_csv_skipped_list(
+            csv_object, app_persistence_profile_name, vs_ref,
+            field_key='app_per_profile')
+        return app_persistence_profile_name, skipped_list
+
+    def get_ssl_profile_skipped(self, profile_csv_list, ssl_profile_ref,
+                                vs_ref):
+        """
+        This functions defines that get the skipped list of CSV row
+        :param profile_csv_list: List of profile(NsxT type) csv rows
+        :param ssl_profile_ref: Reference of ssl profile
+        :param vs_ref: Name of VS
+        :return: ssl profile name and skipped sttribute list
+        """
+
+        ssl_profile_name = self.get_name(ssl_profile_ref)
+        skipped_list = self.get_csv_skipped_list(
+            profile_csv_list, ssl_profile_name, vs_ref, field_key='ssl_profile')
+        return ssl_profile_name, skipped_list
+
+
 
     def update_vs_complexity_level(self, vs_csv_row, virtual_service):
         """

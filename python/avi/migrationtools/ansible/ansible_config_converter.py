@@ -232,7 +232,9 @@ class AviAnsibleConverterMigration(AviAnsibleConverterBase):
         Returns
             Ansible dict
         """
+
         for obj in objs:
+
             task = deepcopy(obj)
             # Added tag for checking object ref.
             if isinstance(task, str):
@@ -252,13 +254,13 @@ class AviAnsibleConverterMigration(AviAnsibleConverterBase):
             task.update({'api_context': "{{api_context | default(omit)}}"})
             task.update({API_VERSION: self.api_version})
 
-            tags = self.get_task_tags(obj, obj_type, inuse_list)
+           # tags = self.get_task_tags(obj, obj_type, inuse_list)
 
             ansible_dict[TASKS].append(
                 {
                     task_id: task,
                     NAME: task_name,
-                    TAGS: tags
+                    #TAGS: tags
                 })
         return ansible_dict
 
@@ -499,6 +501,7 @@ class AviAnsibleConverterMigration(AviAnsibleConverterBase):
 
     def write_ansible_playbook(self, f5server=None, f5user=None,
                                f5password=None, instance_type=None):
+
         """
         Create the ansible playbook based on output json
         :param f5server:  Ip of f5 server

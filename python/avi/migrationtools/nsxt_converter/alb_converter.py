@@ -2,97 +2,12 @@ import argparse
 import json
 import os
 from pprint import PrettyPrinter
+import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 
-SUPPORTED_ALB_OBJECTS = [
-"AlertScriptConfig",
-"AnalyticsProfile",
-"ApplicationPersistenceProfile",
-"ApplicationProfile",
-"Authprofiles",
-"AutoScaleLaunchConfig",
-"DnsPolicy",
-"ErrorPageBody",
-"ErrorPageProfile",
-"HardwareSecurityModuleGroup",
-"HealthMonitor",
-"HTTPPolicySet",
-"IpAddrGroup",
-"L4PolicySet",
-"NetworkProfile",
-"NetworkSecurityPolicy",
-"ObjectAccessPolicy",
-"PingAccessAgent",
-"PKIProfile",
-"Pool",
-"PoolGroup",
-"PoolGroupDeploymentPolicy",
-"PriorityLabels",
-"ProtocolParser",
-"SecurityPolicy",
-"ServerAutoScalePolicy",
-"CertificateManagementProfile",
-"SSLKeyAndCertificate",
-"SSLProfile",
-"SSOPolicy",
-"StringGroup",
-"TrafficCloneProfile",
-"VirtualService",
-"VSDataScriptSet",
-"VsVip",
-"WafCRS",
-"WafPolicy",
-"WafPolicyPSMGroup",
-"WafProfile",
-"Webhook"
-]
-
-albObjectType = {
-    "alertscriptconfig" : "alb-alert-script-configs",
-    "analyticsprofile" : "alb-analytics-profiles",
-    "applicationpersistenceprofile" : "alb-application-persistence-profiles",
-    "applicationprofile" : "alb-application-profiles",
-    "authprofile" : "alb-auth-profiles",
-    "autoscalelaunchconfig" : "alb-auto-scale-launch-configs",
-    "certificatemanagementprofile" : "alb-certificate-management-profiles",
-    "dnspolicy" : "alb-dns-policies",
-    "errorpagebody" : "alb-error-page-bodies",
-    "errorpageprofile" : "alb-error-page-profiles",
-    "httppolicyset" : "alb-http-policy-sets",
-    "hardwaresecuritymodulegroup" : "alb-hardware-security-module-groups",
-    "healthmonitor" : "alb-health-monitors",
-    "ipaddrgroup" : "alb-ip-addr-groups",
-    "l4policyset" : "alb-l4-policy-sets",
-    "networkprofile" : "alb-network-profiles",
-    "networksecuritypolicy" : "alb-network-security-policies",
-    "pkiprofile" : "alb-pki-profiles",
-    "pingaccessagent" : "alb-ping-access-agents",
-    "pool" : "alb-pools",
-    "poolgroup" : "alb-pool-groups",
-    "poolgroupdeploymentpolicy" : "alb-pool-group-deployment-policies",
-    "prioritylabels" : "alb-priority-labels",
-    "protocolparser" : "alb-protocol-parsers",
-    "sslkeyandcertificate" : "alb-ssl-key-and-certificates",
-    "sslprofile" : "alb-ssl-profiles",
-    "ssopolicy" : "alb-sso-policies",
-    "securitypolicy" : "alb-security-policies",
-    "serverautoscalepolicy" : "alb-server-auto-scale-policies",
-    "stringgroup" : "alb-string-groups",
-    "trafficcloneprofile" : "alb-traffic-clone-profiles",
-    "vsdatascriptset" : "alb-vs-data-script-sets",
-    "virtualservice" : "alb-virtual-services",
-    "vsvip" : "alb-vs-vips",
-    "wafcrs" : "alb-waf-crs",
-    "wafpolicy" : "alb-waf-policies",
-    "wafpolicypsmgroup" : "alb-waf-policy-psm-groups",
-    "wafprofile" : "alb-waf-profiles",
-    "objectaccesspolicy" : "alb-object-access-policies",
-    "webhook" : "alb-webhooks"
-}
 
 # SUPPORTED_ALB_OBJECTS = ['VirtualService']
 
-NOT_APPLICABLE = ['url', 'uuid', 'tenant_ref']
-REPLACE_KEYS = ['name', 'cloud_ref', 'vrf_ref', 'vrf_context_ref', 'tier1_lr']
+
 
 class ALBConverter:
     def __init__(self, args):
@@ -103,7 +18,10 @@ class ALBConverter:
         self.output_file_path = args.output_file_path if args.output_file_path \
             else 'output-alb'
 
+
+
     def convert(self):
+
         if not os.path.exists(self.output_file_path):
             os.mkdir(self.output_file_path)
         output_dir = os.path.normpath(self.output_file_path)
@@ -141,8 +59,9 @@ class ALBConverter:
         return alb_config
 
     def recursive_items(self, obj, data):
+
         for k, v in obj.items():
-            if k not in NOT_APPLICABLE:
+            if k not in nsxt_attributes['NOT_APPLICABLE']:
                 if type(v) is dict:
                     data[k] = self.recursive_items(v, {})
                 elif not k.endswith("_refs") and type(v) is list:
@@ -153,25 +72,26 @@ class ALBConverter:
                         else:
                             tmp.append(iter_over_obj)
                     data[k] = tmp
-                elif k in REPLACE_KEYS:
-                    if k == REPLACE_KEYS[0]:
+                elif k in nsxt_attributes['REPLACE_KEYS']:
+
+                    if k == nsxt_attributes['REPLACE_KEYS'][0]:
                         data['display_name'] = v
                         data['id'] = v
-                    if k == REPLACE_KEYS[1]:
+                    if k == nsxt_attributes['REPLACE_KEYS'][0]:
                         data['cloud_name'] = v.split("name=")[1]
-                    if k == REPLACE_KEYS[2]:
+                    if k == nsxt_attributes['REPLACE_KEYS[2]']:
                         data['vrf_name'] = v.split("name=")[1].split("&")[0]
-                    if k == REPLACE_KEYS[3]:
+                    if k == nsxt_attributes['REPLACE_KEYS'][3]:
                         data['vrf_context_name'] = v.split("name=")[1].split("&")[0]
-                    if k == REPLACE_KEYS[4]:
+                    if k == nsxt_attributes['REPLACE_KEYS'][4]:
                         data["tier1_path"] = v
                 elif k.endswith("_ref"):
-                    if v.split('/')[2] not in albObjectType.keys():
+                    if v.split('/')[2] not in nsxt_attributes['albObjectType'].keys():
                         continue
-                    object_type = albObjectType[v.split('/')[2]]
+                    object_type = nsxt_attributes['albObjectType'][v.split('/')[2]]
                     data[k.replace("_ref", "_path")] = "/infra/" + object_type + "/" + v.split("name=")[1]
                 elif k.endswith("_refs"):
-                    list_of_paths = [ "/infra/" + albObjectType[data.split('/')[2]] + "/" + data.split("name=")[1] for data in v ]
+                    list_of_paths = [ "/infra/" + nsxt_attributes['albObjectType'][data.split('/')[2]] + "/" + data.split("name=")[1] for data in v ]
                     data[k.replace("_refs", "_paths")] = list_of_paths
                 else:
                     data[k] = v
@@ -197,6 +117,7 @@ if __name__ == "__main__":
                         )
 
     args = parser.parse_args()
+    nsxt_attributes = conv_const.init("11")
 
     alb_converter = ALBConverter(args)
     alb_converter.convert()

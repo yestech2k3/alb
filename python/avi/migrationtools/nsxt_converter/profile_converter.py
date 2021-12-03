@@ -21,7 +21,11 @@ class ProfileConfigConv(object):
         skipped_np = []
         attr_ap = []
         attr_np = []
+        progressbar_count=0
+        total_size = len(nsx_lb_config['LbAppProfiles'])
+        print("\nConverting Profiles ...")
         for lb_pr in nsx_lb_config['LbAppProfiles']:
+            progressbar_count += 1
             name=lb_pr.get('display_name')
             if prefix:
                 name=prefix+'-'+name
@@ -72,6 +76,10 @@ class ProfileConfigConv(object):
                     alb_pr=alb_pr)
                 attr_np.append(val)
 
+        msg = "Profile conversion started..."
+        conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+                                      prefix='Progress', suffix='')
+
         if len(skipped_ap):
             for index, skipped in enumerate(skipped_ap):
                 conv_status = conv_utils.get_conv_status(
@@ -87,6 +95,8 @@ class ProfileConfigConv(object):
                 u_ignore, na_list)
                 conv_utils.add_conv_status('NetworkProfile', attr_np[index]['resource_type'],attr_np[index]['name'], conv_status,
                                                [{'network_profile': attr_np[index]['alb_pr']}])
+
+
 
     def convert_http(self, alb_pr, lb_pr):
         tenant, name = conv_utils.get_tenant_ref("admin")
