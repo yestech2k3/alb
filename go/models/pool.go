@@ -109,6 +109,9 @@ type Pool struct {
 	// Verify server health by applying one or more health monitors.  Active monitors generate synthetic traffic from each Service Engine and mark a server up or down based on the response. The Passive monitor listens only to client to server communication. It raises or lowers the ratio of traffic destined to a server based on successful responses. It is a reference to an object of type HealthMonitor. Maximum of 50 items allowed.
 	HealthMonitorRefs []string `json:"health_monitor_refs,omitempty"`
 
+	// Horizon UAG configuration. Field introduced in 21.1.3.
+	HorizonProfile *HorizonProfile `json:"horizon_profile,omitempty"`
+
 	// Enable common name check for server certificate. If enabled and no explicit domain name is specified, Avi will use the incoming host header to do the match.
 	HostCheckEnabled *bool `json:"host_check_enabled,omitempty"`
 
@@ -237,7 +240,7 @@ type Pool struct {
 	// Read Only: true
 	URL *string `json:"url,omitempty"`
 
-	// Do not translate the client's destination port when sending the connection to the server.  The pool or servers specified service port will still be used for health monitoring. Allowed in Basic(Allowed values- false) edition, Essentials(Allowed values- false) edition, Enterprise edition.
+	// Do not translate the client's destination port when sending the connection to the server.  The pool or servers specified service port will still be used for health monitoring. Allowed in Essentials(Allowed values- false) edition, Enterprise edition.
 	UseServicePort *bool `json:"use_service_port,omitempty"`
 
 	// This applies only when use_service_port is set to true. If enabled, SSL mode of the connection to the server is decided by the SSL mode on the Virtualservice service port, on which the request was received. Field introduced in 21.1.1.
