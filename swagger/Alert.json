@@ -982,7 +982,7 @@
                 }
             }
         },
-        "/debugvirtualservice": {
+        "/virtualservice": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -1074,7 +1074,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/DebugVirtualServiceApiResponse"
+                            "$ref": "#/definitions/VirtualServiceApiResponse"
                         }
                     },
                     "401": {
@@ -1121,10 +1121,10 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "DebugVirtualService object creation",
+                        "description": "VirtualService object creation",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DebugVirtualService"
+                            "$ref": "#/definitions/VirtualService"
                         }
                     }
                 ],
@@ -1137,7 +1137,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/DebugVirtualService"
+                            "$ref": "#/definitions/VirtualService"
                         }
                     },
                     "401": {
@@ -1146,7 +1146,7 @@
                 }
             }
         },
-        "/debugvirtualservice/{uuid}": {
+        "/virtualservice/{uuid}": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -1233,7 +1233,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/DebugVirtualService"
+                            "$ref": "#/definitions/VirtualService"
                         }
                     },
                     "401": {
@@ -1287,10 +1287,10 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "DebugVirtualService object creation",
+                        "description": "VirtualService object creation",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DebugVirtualService"
+                            "$ref": "#/definitions/VirtualService"
                         }
                     },
                     {
@@ -1310,7 +1310,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/DebugVirtualService"
+                            "$ref": "#/definitions/VirtualService"
                         }
                     },
                     "401": {
@@ -1364,10 +1364,10 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "DebugVirtualService object creation",
+                        "description": "VirtualService object creation",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DebugVirtualService"
+                            "$ref": "#/definitions/VirtualService"
                         }
                     },
                     {
@@ -1387,7 +1387,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/DebugVirtualService"
+                            "$ref": "#/definitions/VirtualService"
                         }
                     },
                     "401": {
@@ -1946,7 +1946,7 @@
                 }
             }
         },
-        "/virtualservice": {
+        "/debugvirtualservice": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -2038,7 +2038,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/VirtualServiceApiResponse"
+                            "$ref": "#/definitions/DebugVirtualServiceApiResponse"
                         }
                     },
                     "401": {
@@ -2085,10 +2085,10 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "VirtualService object creation",
+                        "description": "DebugVirtualService object creation",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/VirtualService"
+                            "$ref": "#/definitions/DebugVirtualService"
                         }
                     }
                 ],
@@ -2101,7 +2101,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/VirtualService"
+                            "$ref": "#/definitions/DebugVirtualService"
                         }
                     },
                     "401": {
@@ -2110,7 +2110,7 @@
                 }
             }
         },
-        "/virtualservice/{uuid}": {
+        "/debugvirtualservice/{uuid}": {
             "get": {
                 "consumes": [
                     "application/json"
@@ -2197,7 +2197,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/VirtualService"
+                            "$ref": "#/definitions/DebugVirtualService"
                         }
                     },
                     "401": {
@@ -2251,10 +2251,10 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "VirtualService object creation",
+                        "description": "DebugVirtualService object creation",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/VirtualService"
+                            "$ref": "#/definitions/DebugVirtualService"
                         }
                     },
                     {
@@ -2274,7 +2274,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/VirtualService"
+                            "$ref": "#/definitions/DebugVirtualService"
                         }
                     },
                     "401": {
@@ -2328,10 +2328,10 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "VirtualService object creation",
+                        "description": "DebugVirtualService object creation",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/VirtualService"
+                            "$ref": "#/definitions/DebugVirtualService"
                         }
                     },
                     {
@@ -2351,7 +2351,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/VirtualService"
+                            "$ref": "#/definitions/DebugVirtualService"
                         }
                     },
                     "401": {
@@ -5119,6 +5119,13 @@
                         "type": "string"
                     }
                 },
+                "interfaces": {
+                    "description": "Interface details of the controller node. Field introduced in 20.1.8.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ControllerInterface"
+                    }
+                },
                 "ip": {
                     "description": "IP address of controller VM.",
                     "$ref": "#/definitions/IpAddr"
@@ -5135,6 +5142,13 @@
                 "public_ip_or_name": {
                     "description": "Public IP address or hostname of the controller VM. Field introduced in 17.2.3.",
                     "$ref": "#/definitions/IpAddr"
+                },
+                "static_routes": {
+                    "description": "Static routes configured on the controller node. Field introduced in 20.1.8.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StaticRoute"
+                    }
                 },
                 "vm_hostname": {
                     "description": "Hostname assigned to this controller VM.",
@@ -6262,6 +6276,42 @@
                 "to_time": {
                     "description": "Time stamp to which the time has discontinuously jumped.",
                     "type": "string"
+                }
+            }
+        },
+        "ControllerInterface": {
+            "type": "object",
+            "properties": {
+                "gateway": {
+                    "description": "Default gateway of the mgmt interface. Field introduced in 20.1.8.",
+                    "$ref": "#/definitions/IpAddr"
+                },
+                "if_name": {
+                    "description": "Interface name. Field introduced in 20.1.8.",
+                    "type": "string"
+                },
+                "ip": {
+                    "description": "IP address of the interface. Field introduced in 20.1.8.",
+                    "$ref": "#/definitions/IpAddrPrefix"
+                },
+                "labels": {
+                    "description": "Interface label like mgmt, secure channel or HSM. Enum options - MGMT, SE_SECURE_CHANNEL, HSM. Field introduced in 20.1.8.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "mac_address": {
+                    "description": "Mac address of interface. Field introduced in 20.1.8.",
+                    "type": "string"
+                },
+                "mode": {
+                    "description": "IP address mode DHCP/STATIC. Enum options - DHCP, STATIC, VIP, DOCKER_HOST. Field introduced in 20.1.8.",
+                    "type": "string"
+                },
+                "public_ip_or_name": {
+                    "description": "Public IP of interface. Field introduced in 20.1.8.",
+                    "$ref": "#/definitions/IpAddr"
                 }
             }
         },
@@ -15647,6 +15697,43 @@
                     }
                 },
                 "next": {
+                    "type": "string"
+                }
+            }
+        },
+        "StaticRoute": {
+            "type": "object",
+            "required": [
+                "next_hop",
+                "prefix",
+                "route_id"
+            ],
+            "properties": {
+                "disable_gateway_monitor": {
+                    "description": "Disable the gateway monitor for default gateway. They are monitored by default. Field introduced in 17.1.1.",
+                    "type": "boolean"
+                },
+                "if_name": {
+                    "description": "if_name of StaticRoute.",
+                    "type": "string"
+                },
+                "labels": {
+                    "description": "Labels associated with this route. Field introduced in 20.1.1. Maximum of 1 items allowed.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/KeyValue"
+                    }
+                },
+                "next_hop": {
+                    "description": "Placeholder for description of property next_hop of obj type StaticRoute field type str  type object",
+                    "$ref": "#/definitions/IpAddr"
+                },
+                "prefix": {
+                    "description": "Placeholder for description of property prefix of obj type StaticRoute field type str  type object",
+                    "$ref": "#/definitions/IpAddrPrefix"
+                },
+                "route_id": {
+                    "description": "route_id of StaticRoute.",
                     "type": "string"
                 }
             }
