@@ -1,6 +1,10 @@
+import logging
 import time
 
+from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
+import avi.migrationtools.nsxt_converter.converter_constants as conv_const
+LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
 
@@ -25,96 +29,99 @@ class PoolConfigConv(object):
 
         total_size = len(nsx_lb_config['LbPools'])
         print("\nConverting Pools ...")
+        LOG.info('Converting Pools...')
         for lb_pl in nsx_lb_config['LbPools']:
-            progressbar_count += 1
-            tenant, name = conv_utils.get_tenant_ref("admin")
-            lb_type, name = self.get_name_type(lb_pl)
+            try:
+                progressbar_count += 1
+                tenant, name = conv_utils.get_tenant_ref("admin")
+                lb_type, name = self.get_name_type(lb_pl)
 
-            na_list = [val for val in lb_pl.keys()
-                       if val in self.common_na_attr]
-            servers, member_skipped_config, skipped_servers , limits= \
-                self.convert_servers_config(lb_pl.get("members", []))
-            if prefix:
-                name=prefix+"-"+name
-            alb_pl = {
-                'name': name,
-                'servers': servers,
-                'lb_algorithm': lb_type,
-                'cloud_ref': conv_utils.get_object_ref(cloud_name, 'cloud')
-            }
-
-            if any(server.get("port") == None for server in servers):
-                alb_pl.update({"use_service_port": "true"})
-            alb_pl['tenant_ref'] = conv_utils.get_object_ref(tenant, 'tenant')
-
-            if lb_pl.get("tcp_multiplexing_enabled"):
-                #TO-DO - HANDLE In APPLICATION PROFILE
-                #Need to set in Application profile
-                pass
-
-            if lb_pl.get("tcp_multiplexing_number"):
-                alb_pl['conn_pool_properties'] = {
-                    'upstream_connpool_server_max_cache': lb_pl.get('tcp_multiplexing_number')
+                na_list = [val for val in lb_pl.keys()
+                           if val in self.common_na_attr]
+                servers, member_skipped_config, skipped_servers, limits = \
+                    self.convert_servers_config(lb_pl.get("members", []))
+                if prefix:
+                    name = prefix + "-" + name
+                alb_pl = {
+                    'name': name,
+                    'servers': servers,
+                    'lb_algorithm': lb_type,
+                    'cloud_ref': conv_utils.get_object_ref(cloud_name, 'cloud')
                 }
-            if lb_pl.get('min_active_members'):
-                alb_pl['min_servers_up'] = lb_pl.get('min_active_members')
-            if limits.get('connection_limit', 0) > 0:
-                alb_pl['max_concurrent_connections_per_server'] = \
-                    limits['connection_limit']
 
-            skipped_list_mg = []
-            if lb_pl.get('member_group'):
-                skipped_mg = [val for val in lb_pl.get('member_group').keys()
-                           if val not in self.member_group_attr]
-                skipped_list_mg.append({"skipped_mg": skipped_mg})
-                if lb_pl['member_group'].get('group_path'):
-                    alb_pl['nsx_securitygroup'] = [lb_pl.get('member_group').get('group_path')]
-                if lb_pl['member_group'].get("port", None):
-                    alb_pl['default_server_port'] = lb_pl['member_group'].get("port")
-            if lb_pl.get("snat_translation"):
-                # TO-DO - HANDLE In APPLICATION PROFILE
-                # Need to set in Application profile
-                 pass
+                if any(server.get("port") == None for server in servers):
+                    alb_pl.update({"use_service_port": "true"})
+                alb_pl['tenant_ref'] = conv_utils.get_object_ref(tenant, 'tenant')
 
-            active_monitor_paths = lb_pl.get("active_monitor_paths", None)
-            if active_monitor_paths:
-                monitor_refs = []
-                for lb_hm_path in active_monitor_paths:
-                    ref=lb_hm_path.split("/lb-monitor-profiles/")[1]
-                    if prefix:
-                        ref=prefix+"-"+ref
-                    monitor_refs.append("/api/healthmontior/?tenant=admin&name=" + ref)
-                alb_pl["health_monitor_refs"] = list(set(monitor_refs))
-            skipped = [val for val in lb_pl.keys()
-                            if val not in self.supported_attr]
+                if lb_pl.get("tcp_multiplexing_enabled"):
+                    # TO-DO - HANDLE In APPLICATION PROFILE
+                    # Need to set in Application profile
+                    pass
 
-            indirect = []
-            u_ignore = []
-            ignore_for_defaults = {}
-            if skipped_servers:
-                skipped.append({"server": skipped_servers})
-            if member_skipped_config:
-                skipped.append(member_skipped_config)
-            if skipped_list_mg:
-                skipped.append(skipped_list_mg)
+                if lb_pl.get("tcp_multiplexing_number"):
+                    alb_pl['conn_pool_properties'] = {
+                        'upstream_connpool_server_max_cache': lb_pl.get('tcp_multiplexing_number')
+                    }
+                if lb_pl.get('min_active_members'):
+                    alb_pl['min_servers_up'] = lb_pl.get('min_active_members')
+                if limits.get('connection_limit', 0) > 0:
+                    alb_pl['max_concurrent_connections_per_server'] = \
+                        limits['connection_limit']
 
-            conv_status = conv_utils.get_conv_status(
-                skipped, indirect, ignore_for_defaults, nsx_lb_config['LbPools'],
-                u_ignore, na_list)
+                skipped_list_mg = []
+                if lb_pl.get('member_group'):
+                    skipped_mg = [val for val in lb_pl.get('member_group').keys()
+                                  if val not in self.member_group_attr]
+                    skipped_list_mg.append({"skipped_mg": skipped_mg})
+                    if lb_pl['member_group'].get('group_path'):
+                        alb_pl['nsx_securitygroup'] = [lb_pl.get('member_group').get('group_path')]
+                    if lb_pl['member_group'].get("port", None):
+                        alb_pl['default_server_port'] = lb_pl['member_group'].get("port")
+                if lb_pl.get("snat_translation"):
+                    # TO-DO - HANDLE In APPLICATION PROFILE
+                    # Need to set in Application profile
+                    pass
 
-            conv_utils.add_conv_status('pool', lb_type, alb_pl['name'], conv_status,
-                                       [{'pool': alb_pl}])
-            msg = "Pools conversion started..."
-            conv_utils.print_progress_bar(progressbar_count, total_size, msg,
-                                          prefix='Progress', suffix='')
+                active_monitor_paths = lb_pl.get("active_monitor_paths", None)
+                if active_monitor_paths:
+                    monitor_refs = []
+                    for lb_hm_path in active_monitor_paths:
+                        ref = lb_hm_path.split("/lb-monitor-profiles/")[1]
+                        if prefix:
+                            ref = prefix + "-" + ref
+                        monitor_refs.append("/api/healthmontior/?tenant=admin&name=" + ref)
+                    alb_pl["health_monitor_refs"] = list(set(monitor_refs))
+                skipped = [val for val in lb_pl.keys()
+                           if val not in self.supported_attr]
 
-            alb_config['Pool'].append(alb_pl)
-            time.sleep(1)
+                indirect = []
+                u_ignore = []
+                ignore_for_defaults = {}
+                if skipped_servers:
+                    skipped.append({"server": skipped_servers})
+                if member_skipped_config:
+                    skipped.append(member_skipped_config)
+                if skipped_list_mg:
+                    skipped.append(skipped_list_mg)
 
+                conv_status = conv_utils.get_conv_status(
+                    skipped, indirect, ignore_for_defaults, nsx_lb_config['LbPools'],
+                    u_ignore, na_list)
 
+                conv_utils.add_conv_status('pool', lb_type, alb_pl['name'], conv_status,
+                                           [{'pool': alb_pl}])
+                msg = "Pools conversion started..."
+                conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+                                              prefix='Progress', suffix='')
 
-
-
+                alb_config['Pool'].append(alb_pl)
+                time.sleep(0.1)
+            except:
+                update_count('error')
+                LOG.error("Failed to convert pool: %s" % lb_pl['display_name'],
+                          exc_info=True)
+                conv_utils.add_status_row('pool', None, lb_pl['display_name'],
+                                          conv_const.STATUS_ERROR)
 
     def get_name_type(self, lb_pl):
                 """

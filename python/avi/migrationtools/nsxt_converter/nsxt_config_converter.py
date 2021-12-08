@@ -1,33 +1,26 @@
-import sys
-from avi.migrationtools.nsxt_converter import nsxt_client as nsx_client_util
-from avi.migrationtools.nsxt_converter import monitor_converter
-from vmware.vapi.bindings.struct import PrettyPrinter
-from com.vmware.vapi.std.errors_client import NotFound
-from com.vmware.nsx.loadbalancer_client import Pools
-import com.vmware.nsx_policy.infra_client as infra_client
-import com.vmware.nsx_policy.model_client as model_client
-import random
-from com.vmware.vapi.std.errors_client import Error
-from avi.migrationtools.avi_rest_lib import upload_config_to_controller
+import json
+import logging
+import os
 
+import avi.migrationtools.nsxt_converter.converter_constants as conv_const
+from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.nsxt_converter.monitor_converter \
     import MonitorConfigConv
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
-import os
-import json
-import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.nsxt_converter.pools_converter import PoolConfigConv
 from avi.migrationtools.nsxt_converter.profile_converter \
     import ProfileConfigConv
 from avi.migrationtools.nsxt_converter.ssl_profile_converter \
     import SslProfileConfigConv
 
+LOG = logging.getLogger(__name__)
+
+
 conv_utils = NsxtConvUtil()
 
 
-def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix
-            ):
+def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix):
     # load the yaml file attribute in nsxt_attributes.
     nsxt_attributes = conv_const.init("11")
 
@@ -42,17 +35,22 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix
 
     alb_config = dict()  # Result Config
 
-    monitor_converter = MonitorConfigConv(nsxt_attributes)
-    monitor_converter.convert(alb_config, nsx_lb_config, prefix)
+    try:
+        monitor_converter = MonitorConfigConv(nsxt_attributes)
+        monitor_converter.convert(alb_config, nsx_lb_config, prefix)
 
-    pool_converter = PoolConfigConv(nsxt_attributes)
-    pool_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
+        pool_converter = PoolConfigConv(nsxt_attributes)
+        pool_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
 
-    profile_converter = ProfileConfigConv(nsxt_attributes)
-    profile_converter.convert(alb_config, nsx_lb_config, prefix)
+        profile_converter = ProfileConfigConv(nsxt_attributes)
+        profile_converter.convert(alb_config, nsx_lb_config, prefix)
 
-    ssl_profile_converter = SslProfileConfigConv(nsxt_attributes)
-    ssl_profile_converter.convert(alb_config, nsx_lb_config, prefix)
+        #TO-DO
+        # ssl_profile_converter = SslProfileConfigConv(nsxt_attributes)
+        # ssl_profile_converter.convert(alb_config, nsx_lb_config, prefix)
+    except:
+        update_count('warning')
+        LOG.error("Conversion error", exc_info=True)
 
     output_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "output"
     if not os.path.exists(output_path):
@@ -65,8 +63,11 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix
     conv_utils.add_complete_conv_status(
         output_path, alb_config, "nsxt-report", False)
 
-    pp = PrettyPrinter()
-    pp.pprint(alb_config)
-
+    for key in alb_config:
+        if key != 'META':
+            LOG.info('Total Objects of %s : %s' % (key, len(
+                alb_config[key])))
+            print('Total Objects of %s : %s' % (key, len(
+                alb_config[key])))
     return alb_config
 

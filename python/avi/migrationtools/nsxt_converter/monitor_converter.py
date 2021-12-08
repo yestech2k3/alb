@@ -1,8 +1,12 @@
-import time
+import time, logging
 
 import com.vmware.nsx_policy.model_client as model_client
 
+from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
+import avi.migrationtools.nsxt_converter.converter_constants as conv_const
+
+LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
 
@@ -88,55 +92,63 @@ class MonitorConfigConv(object):
         progressbar_count=0
         total_size=len(nsx_lb_config['LbMonitorProfiles'])
         print("Converting Monitors...")
+        LOG.info('Converting Monitors...')
         for lb_hm in nsx_lb_config['LbMonitorProfiles']:
-            progressbar_count +=1
-            if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
-                continue
+            try:
+                progressbar_count +=1
+                if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
+                    continue
 
-            monitor_type, name = self.get_name_type(lb_hm)
-            skipped = [val for val in lb_hm.keys()
-                       if val not in self.supported_attributes]
-            na_list = [val for val in lb_hm.keys()
-                       if val in self.common_na_attr]
-            if prefix:
-                name=prefix+'-'+name
+                monitor_type, name = self.get_name_type(lb_hm)
+                skipped = [val for val in lb_hm.keys()
+                           if val not in self.supported_attributes]
+                na_list = [val for val in lb_hm.keys()
+                           if val in self.common_na_attr]
+                if prefix:
+                    name=prefix+'-'+name
 
-            alb_hm = dict(
-                name=name,
-                failed_checks=lb_hm['fall_count'],
-                receive_timeout=lb_hm['timeout'],
-                send_interval=lb_hm['interval'],
-                successful_checks=lb_hm.get('rise_count', None),
-                monitor_port=lb_hm.get('monitor_port', None),
-            )
-            alb_hm['tenant_ref']="/api/tenant/?name=admin"
+                alb_hm = dict(
+                    name=name,
+                    failed_checks=lb_hm['fall_count'],
+                    receive_timeout=lb_hm['timeout'],
+                    send_interval=lb_hm['interval'],
+                    successful_checks=lb_hm.get('rise_count', None),
+                    monitor_port=lb_hm.get('monitor_port', None),
+                )
+                alb_hm['tenant_ref']="/api/tenant/?name=admin"
 
-            if monitor_type == "LBHttpMonitorProfile":
-                skipped = self.convert_http(lb_hm, alb_hm, skipped)
-            elif monitor_type == "LBHttpsMonitorProfile":
-                skipped = self.convert_https(lb_hm, alb_hm, skipped)
-            elif monitor_type == "LBIcmpMonitorProfile":
-                skipped = self.convert_icmp(lb_hm, alb_hm, skipped)
-            elif monitor_type == "LBTcpMonitorProfile":
-                skipped = self.convert_tcp(lb_hm, alb_hm, skipped)
-            elif monitor_type == "LBUdpMonitorProfile":
-                skipped = self.convert_udp(lb_hm, alb_hm, skipped)
+                if monitor_type == "LBHttpMonitorProfile":
+                    skipped = self.convert_http(lb_hm, alb_hm, skipped)
+                elif monitor_type == "LBHttpsMonitorProfile":
+                    skipped = self.convert_https(lb_hm, alb_hm, skipped)
+                elif monitor_type == "LBIcmpMonitorProfile":
+                    skipped = self.convert_icmp(lb_hm, alb_hm, skipped)
+                elif monitor_type == "LBTcpMonitorProfile":
+                    skipped = self.convert_tcp(lb_hm, alb_hm, skipped)
+                elif monitor_type == "LBUdpMonitorProfile":
+                    skipped = self.convert_udp(lb_hm, alb_hm, skipped)
 
-            indirect = []
-            u_ignore = []
-            ignore_for_defaults = {}
-            conv_status = conv_utils.get_conv_status(
-                    skipped, indirect, ignore_for_defaults, nsx_lb_config['LbMonitorProfiles'],
-                    u_ignore, na_list)
+                indirect = []
+                u_ignore = []
+                ignore_for_defaults = {}
+                conv_status = conv_utils.get_conv_status(
+                        skipped, indirect, ignore_for_defaults, nsx_lb_config['LbMonitorProfiles'],
+                        u_ignore, na_list)
 
-            conv_utils.add_conv_status('monitor', monitor_type, alb_hm['name'], conv_status,
-                                           [{'health_monitor': alb_hm}])
+                conv_utils.add_conv_status('monitor', monitor_type, alb_hm['name'], conv_status,
+                                               [{'health_monitor': alb_hm}])
 
-            alb_config['HealthMonitor'].append(alb_hm)
-            msg = "Monitor conversion started..."
-            conv_utils.print_progress_bar(progressbar_count, total_size, msg,
-                                          prefix='Progress', suffix='')
-            time.sleep(1)
+                alb_config['HealthMonitor'].append(alb_hm)
+                msg = "Monitor conversion started..."
+                conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+                                              prefix='Progress', suffix='')
+                time.sleep(1)
+            except:
+                update_count('error')
+                LOG.error("Failed to convert Monitor: %s" % lb_hm['display_name'],
+                          exc_info=True)
+                conv_utils.add_status_row('applicationprofile', None, lb_hm['display_name'],
+                                          conv_const.STATUS_ERROR)
 
     def get_name_type(self, lb_hm):
         """

@@ -19,6 +19,7 @@ import pexpect
 import yaml
 from OpenSSL import crypto
 
+
 import avi.migrationtools.f5_converter.converter_constants as conv_const
 
 LOG = logging.getLogger(__name__)
@@ -60,6 +61,79 @@ class PasswordPromptAction(argparse.Action):
 
 class MigrationUtil(object):
 
+
+    def add_conv_status(self, **args):
+        pass
+
+    def add_status_row(self, **args):
+        pass
+
+    def get_conv_status(self, skipped, indirect_list, ignore_dict, input_object,
+                        user_ignore=None, na_list=None):
+        """
+        Update skipped list for conversion status
+        :param skipped: All skipped attributes after conversion
+        :param indirect_list: List of attrs to be mapped as indirect mapping
+        :param ignore_dict: Dict of default values for column skipped for defaults
+        :param input_object: Currant input object
+        :param user_ignore: List of attributes user wants not to be shown in skipped
+        :param na_list: List of attributes marked as not applicable
+        :return: Conversion status dict
+        """
+        conv_status = dict()
+        user_ignore = [] if not user_ignore else user_ignore
+        na_list = [] if not na_list else na_list
+
+        conv_status['user_ignore'] = [val for val in skipped if
+                                      val in user_ignore]
+        skipped = [attr for attr in skipped if attr not in user_ignore]
+
+        conv_status['indirect'] = [val for val in skipped if
+                                   val in indirect_list]
+        skipped = [attr for attr in skipped if attr not in indirect_list]
+
+        conv_status['na_list'] = [val for val in skipped if val in na_list]
+        skipped = [attr for attr in skipped if attr not in na_list]
+
+        default_skip = []
+        for key in ignore_dict.keys():
+            val = input_object.get(key)
+            default_val = ignore_dict.get(key)
+            if key in skipped and val == default_val:
+                default_skip.append(key)
+        if default_skip:
+            skipped = [attr for attr in skipped if attr not in default_skip]
+
+        conv_status['skipped'] = skipped
+        conv_status['default_skip'] = default_skip
+        if skipped:
+            status = conv_const.STATUS_PARTIAL
+        else:
+            status = conv_const.STATUS_SUCCESSFUL
+        conv_status['status'] = status
+        return conv_status
+
+    def get_tenant_ref(self, name):
+        tenant = 'admin'
+        if name and name.startswith('/'):
+            parts = name.split('/', 2)
+            tenant = parts[1]
+            if not parts[2]:
+                LOG.warning('Invalid tenant ref : %s' % name)
+            name = parts[2]
+        elif name and '/' in name:
+            parts = name.split('/')
+            # Changed the index to get the tenant and name in case of
+            # prefixed name
+            tenant = parts[-2]
+            name = parts[-1]
+        if tenant.lower() == 'common':
+            tenant = 'admin'
+        if '/' in name:
+            name = name.split('/')[1]
+        if ' ' in tenant:
+            tenant = tenant.split(' ')[-1]
+        return tenant, name
 
     def create_self_signed_cert(self):
         # create a key pair

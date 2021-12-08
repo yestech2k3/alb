@@ -1,7 +1,10 @@
 # !/usr/bin/env python3
+import os
+
 from avi.migrationtools import avi_rest_lib
-from avi.migrationtools.ansible.ansible_config_converter \
-    import AviAnsibleConverterMigration
+from avi.migrationtools.ansible.ansible_config_converter import AviAnsibleConverterMigration
+from avi.migrationtools.avi_converter import AviConverter
+from avi.migrationtools.avi_migration_utils import get_count
 from avi.migrationtools.nsxt_converter import nsxt_config_converter
 import argparse
 
@@ -11,33 +14,61 @@ ARG_CHOICES = {
 }
 
 
-def convert_lb_config(args):
-    output_file_path = (args.output_file_path if args.output_file_path
-                        else 'output')
-    alb_config = nsxt_config_converter.convert(
-        args.nsxt_ip, args.nsxt_user, args.nsxt_passord, args.nsxt_port,
-        output_file_path, args.cloud_name, args.prefix)
-    if args.ansible:
-        convert(args, alb_config)
-    if args.option == 'auto-upload':
-        upload_config_to_controller(alb_config, args)
+class NsxtConverter(AviConverter):
+    def __init__(self, args):
+        '''
+
+        :param args:
+        '''
+        self.nsxt_ip = args.nsxt_ip
+        self.nsxt_user = args.nsxt_user
+        self.nsxt_passord = args.nsxt_passord
+        self.nsxt_port = args.nsxt_port
+        self.cloud_name = args.cloud_name
+        self.prefix = args.prefix
+        self.prefix = args.prefix
+        self.controller_ip = args.controller_ip
+        self.user = args.user
+        self.password = args.password
+        self.tenant = args.tenant
+        self.not_in_use = args.not_in_use
+        self.ansible_skip_types = args.ansible_skip_types
+        self.controller_version = args.controller_version
+        self.ansible_filter_types = args.ansible_filter_types
+        self.output_file_path = args.output_file_path if args.output_file_path else 'output'
+
+    def conver_lb_config(self):
+
+        self.init_logger_path()
+        output_dir = os.path.normpath(self.output_file_path)
+        alb_config = nsxt_config_converter.convert(self.nsxt_ip, self.nsxt_user, self.nsxt_passord, self.nsxt_port,
+                                                   self.output_file_path, self.cloud_name, self.prefix
+                                                   )
+        avi_config = self.process_for_utils(alb_config)
+
+        output_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "output"
+        self.write_output(avi_config, output_path, 'avi_config.json')
+        if args.ansible:
+            self.convert(alb_config)
+        if args.option == 'auto-upload':
+            self.upload_config_to_controller(alb_config)
+        print("Total Warning: ", get_count('warning'))
+        print("Total Errors: ", get_count('error'))
 
 
-def upload_config_to_controller(alb_config, args):
-    avi_rest_lib.upload_config_to_controller(
-        alb_config, args.controller_ip, args.user, args.password, args.tenant)
+    def upload_config_to_controller(self, alb_config):
+        avi_rest_lib.upload_config_to_controller(alb_config, self.controller_ip, self.user, self.password, self.tenant)
 
 
-def convert(args, alb_config):
-    output_file_path = (args.output_file_path if args.output_file_path
-                        else 'output')
-    avi_traffic = AviAnsibleConverterMigration(
-        alb_config, output_file_path, args.prefix, args.not_in_use,
-        skip_types=args.ansible_skip_types,
-        controller_version=args.controller_version,
-        filter_types=args.ansible_filter_types)
-    avi_traffic.write_ansible_playbook(
-        args.nsxt_ip, args.nsxt_user, args.nsxt_passord, 'nsxt')
+    def convert(self, alb_config):
+
+        avi_traffic = AviAnsibleConverterMigration(
+            alb_config, self.output_file_path, self.prefix, self.not_in_use,
+             skip_types=self.ansible_skip_types,
+             controller_version=self.controller_version,
+            filter_types=self.ansible_filter_types)
+        avi_traffic.write_ansible_playbook(
+            self.nsxt_ip, self.nsxt_user, self.nsxt_passord, 'nsxt')
 
 
 if __name__ == "__main__":
@@ -99,4 +130,5 @@ if __name__ == "__main__":
                         action="store_true")
 
     args = parser.parse_args()
-    convert_lb_config(args)
+    nsxt_converter = NsxtConverter(args)
+    nsxt_converter.conver_lb_config()

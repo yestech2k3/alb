@@ -4,11 +4,6 @@ import os
 from pprint import PrettyPrinter
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 
-
-# SUPPORTED_ALB_OBJECTS = ['VirtualService']
-
-
-
 class ALBConverter:
     def __init__(self, args):
         '''
@@ -18,12 +13,11 @@ class ALBConverter:
         self.output_file_path = args.output_file_path if args.output_file_path \
             else 'output-alb'
 
-
-
     def convert(self):
 
         if not os.path.exists(self.output_file_path):
-            os.mkdir(self.output_file_path, mode=777)
+            os.mkdir(self.output_file_path)
+        # os.chmod(self.output_file_path, 666)
         output_dir = os.path.normpath(self.output_file_path)
         input_path = output_dir + os.path.sep + "input-alb"
         if not os.path.exists(input_path):

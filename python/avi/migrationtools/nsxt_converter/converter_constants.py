@@ -4,6 +4,12 @@
 import yaml
 import os
 
+# Status Constants which are used in CSV/report generation of the conversion
+# run.
+STATUS_SKIPPED = 'SKIPPED'
+STATUS_SUCCESSFUL = 'SUCCESSFUL'
+STATUS_ERROR = 'ERROR'
+
 def init(version):
     """
     This function defines that to initialize constant from yaml file
