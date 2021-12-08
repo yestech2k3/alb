@@ -1,13 +1,16 @@
 import json
 import logging
 import os
-
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.nsxt_converter.monitor_converter \
     import MonitorConfigConv
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
+import os
+import json
+from avi.migrationtools.nsxt_converter.alb_converter import ALBConverter
+import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.nsxt_converter.pools_converter import PoolConfigConv
 from avi.migrationtools.nsxt_converter.profile_converter \
     import ProfileConfigConv
@@ -20,9 +23,10 @@ LOG = logging.getLogger(__name__)
 conv_utils = NsxtConvUtil()
 
 
-def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix):
+def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix,
+            migrate_to):
     # load the yaml file attribute in nsxt_attributes.
-    nsxt_attributes = conv_const.init("11")
+    nsxt_attributes = conv_const.init()
 
     nsx_util = NSXUtil(nsx_un, nsx_pw, nsx_ip, nsx_port)
     nsx_lb_config = nsx_util.get_nsx_config()
@@ -69,5 +73,10 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix):
                 alb_config[key])))
             print('Total Objects of %s : %s' % (key, len(
                 alb_config[key])))
+
+    if migrate_to == 'NSX':
+        alb_converter = ALBConverter(output_config, output_path)
+        alb_converter.convert()
+
     return alb_config
 

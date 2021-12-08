@@ -1,12 +1,4 @@
-# This fie defines the list of F5 commands.
-# Supported commands defines that these commands are supported by F5 tool
-# Not Applicable commands are not applicable in AVI. Those commands are F5 specific commands
-# Indirect commands are supported indirectly in AVI
-# Not Supported commands are not supported by this tool yet
-
-# Attributes for f5 version 11
-VERSION_11:
-
+NSXT:
     SUPPORTED_ALB_OBJECTS :
     - "AlertScriptConfig"
     - "AnalyticsProfile"

@@ -1,17 +1,18 @@
 import argparse
 import json
 import os
-from pprint import PrettyPrinter
+import yaml
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 
-class ALBConverter:
-    def __init__(self, args):
-        '''
+# SUPPORTED_ALB_OBJECTS = ['VirtualService']
 
-        '''
-        self.avi_config_file = args.avi_config_file
-        self.output_file_path = args.output_file_path if args.output_file_path \
-            else 'output-alb'
+class ALBConverter:
+    def __init__(self, avi_config_file, output_file_path):
+        self.avi_config_file = avi_config_file
+        self.output_file_path = output_file_path
+        with open(os.path.dirname(__file__) + "/command_status.yaml") as stream:
+            nsxt_command_status = yaml.safe_load(stream)
+        self.nsxt_attributes = nsxt_command_status.get('NSXT')
 
     def convert(self):
 
@@ -19,43 +20,33 @@ class ALBConverter:
             os.mkdir(self.output_file_path)
         # os.chmod(self.output_file_path, 666)
         output_dir = os.path.normpath(self.output_file_path)
-        input_path = output_dir + os.path.sep + "input-alb"
-        if not os.path.exists(input_path):
-            os.makedirs(input_path)
-        input_config = input_path + os.path.sep + "config.json"
         with open(self.avi_config_file, "r") as read_file:
             avi_config = json.load(read_file)
 
-        with open(input_config, "w", encoding='utf-8') as text_file:
-            json.dump(avi_config, text_file, indent=4)
-
         alb_config = self.convert_to_alb(avi_config)
-        pp = PrettyPrinter()
-        pp.pprint(alb_config)
 
-        output_path = output_dir + os.path.sep + os.path.sep + "output-alb"
-        if not os.path.exists(output_path):
-            os.makedirs(output_path)
-        output_config = output_path + os.path.sep + "alb_config.json"
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        output_config = output_dir + os.path.sep + "alb_config.json"
         with open(output_config, "w", encoding='utf-8') as text_file:
             json.dump(alb_config, text_file, indent=4)
 
     def convert_to_alb(self, avi_config):
         alb_config = dict()
         for key in avi_config.keys():
-            if key in nsxt_attributes['SUPPORTED_ALB_OBJECTS']:
+            if key in self.nsxt_attributes['SUPPORTED_ALB_OBJECTS']:
                 config = []
                 supported_obj = avi_config[key]
                 for obj in supported_obj:
                     data = self.recursive_items(obj, {})
                     config.append(data)
-                alb_config[key] = config
+                alb_config[self.nsxt_attributes['albObjectType'].get(key.lower())] = config
         return alb_config
 
     def recursive_items(self, obj, data):
 
         for k, v in obj.items():
-            if k not in nsxt_attributes['NOT_APPLICABLE']:
+            if k not in self.nsxt_attributes['NOT_APPLICABLE']:
                 if type(v) is dict:
                     data[k] = self.recursive_items(v, {})
                 elif not k.endswith("_refs") and type(v) is list:
@@ -66,26 +57,34 @@ class ALBConverter:
                         else:
                             tmp.append(iter_over_obj)
                     data[k] = tmp
-                elif k in nsxt_attributes['REPLACE_KEYS']:
+                elif k in self.nsxt_attributes['REPLACE_KEYS']:
 
-                    if k == nsxt_attributes['REPLACE_KEYS'][0]:
+                    if k == self.nsxt_attributes['REPLACE_KEYS'][0]:
                         data['display_name'] = v
                         data['id'] = v
-                    if k == nsxt_attributes['REPLACE_KEYS'][1]:
+                    if k == self.nsxt_attributes['REPLACE_KEYS'][1]:
                         data['cloud_name'] = v.split("name=")[1]
-                    if k == nsxt_attributes['REPLACE_KEYS'][2]:
+                    if k == self.nsxt_attributes['REPLACE_KEYS'][2]:
                         data['vrf_name'] = v.split("name=")[1].split("&")[0]
-                    if k == nsxt_attributes['REPLACE_KEYS'][3]:
-                        data['vrf_context_name'] = v.split("name=")[1].split("&")[0]
-                    if k == nsxt_attributes['REPLACE_KEYS'][4]:
+                    if k == self.nsxt_attributes['REPLACE_KEYS'][3]:
+                        data['vrf_context_name'] = v.split("name=")[1].split(
+                            "&")[0]
+                    if k == self.nsxt_attributes['REPLACE_KEYS'][4]:
                         data["tier1_path"] = v
                 elif k.endswith("_ref"):
-                    if v.split('/')[2] not in nsxt_attributes['albObjectType'].keys():
+                    if (v.split('/')[2] not in
+                            self.nsxt_attributes['albObjectType'].keys()):
                         continue
-                    object_type = nsxt_attributes['albObjectType'][v.split('/')[2]]
-                    data[k.replace("_ref", "_path")] = "/infra/" + object_type + "/" + v.split("name=")[1]
+                    object_type = self.nsxt_attributes['albObjectType'][
+                        v.split('/')[2]]
+                    data[k.replace("_ref", "_path")] = "/infra/%s/%s" % (
+                        object_type, v.split("name=")[1])
                 elif k.endswith("_refs"):
-                    list_of_paths = [ "/infra/" + nsxt_attributes['albObjectType'][data.split('/')[2]] + "/" + data.split("name=")[1] for data in v ]
+                    list_of_paths = list()
+                    for refs in v:
+                        list_of_paths.append("/infra/%s/%s" % (
+                            self.nsxt_attributes['albObjectType'][
+                                refs.split('/')[2]], refs.split("name=")[1]))
                     data[k.replace("_refs", "_paths")] = list_of_paths
                 else:
                     data[k] = v
@@ -111,7 +110,8 @@ if __name__ == "__main__":
                         )
 
     args = parser.parse_args()
-    nsxt_attributes = conv_const.init("11")
 
-    alb_converter = ALBConverter(args)
+    output_file_path = args.output_file_path if args.output_file_path \
+        else 'output-alb'
+    alb_converter = ALBConverter(args.avi_config_file, output_file_path)
     alb_converter.convert()

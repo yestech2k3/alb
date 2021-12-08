@@ -2,17 +2,18 @@
 import os
 
 from avi.migrationtools import avi_rest_lib
-from avi.migrationtools.ansible.ansible_config_converter import AviAnsibleConverterMigration
+from avi.migrationtools.ansible.ansible_config_converter import \
+    AviAnsibleConverterMigration
 from avi.migrationtools.avi_converter import AviConverter
 from avi.migrationtools.avi_migration_utils import get_count
 from avi.migrationtools.nsxt_converter import nsxt_config_converter
 import argparse
 
 ARG_CHOICES = {
-    'option': ['cli-upload', 'auto-upload']
+    'option': ['cli-upload', 'auto-upload'],
+    'migrate_option': ['Avi', 'NSX']
 
 }
-
 
 class NsxtConverter(AviConverter):
     def __init__(self, args):
@@ -35,18 +36,21 @@ class NsxtConverter(AviConverter):
         self.ansible_skip_types = args.ansible_skip_types
         self.controller_version = args.controller_version
         self.ansible_filter_types = args.ansible_filter_types
-        self.output_file_path = args.output_file_path if args.output_file_path else 'output'
+        self.output_file_path = args.output_file_path if args.output_file_path \
+            else 'output'
+        self.migrate_to = args.migrate_to
 
     def conver_lb_config(self):
-
         self.init_logger_path()
         output_dir = os.path.normpath(self.output_file_path)
-        alb_config = nsxt_config_converter.convert(self.nsxt_ip, self.nsxt_user, self.nsxt_passord, self.nsxt_port,
-                                                   self.output_file_path, self.cloud_name, self.prefix
+        alb_config = nsxt_config_converter.convert(
+            self.nsxt_ip, self.nsxt_user, self.nsxt_passord, self.nsxt_port,
+            self.output_file_path, self.cloud_name, self.prefix, self.migrate_to
                                                    )
         avi_config = self.process_for_utils(alb_config)
 
-        output_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "output"
+        output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
+                       "output")
         self.write_output(avi_config, output_path, 'avi_config.json')
         if args.ansible:
             self.convert(alb_config)
@@ -55,13 +59,12 @@ class NsxtConverter(AviConverter):
         print("Total Warning: ", get_count('warning'))
         print("Total Errors: ", get_count('error'))
 
-
     def upload_config_to_controller(self, alb_config):
-        avi_rest_lib.upload_config_to_controller(alb_config, self.controller_ip, self.user, self.password, self.tenant)
-
+        avi_rest_lib.upload_config_to_controller(
+            alb_config, self.controller_ip, self.user, self.password,
+            self.tenant)
 
     def convert(self, alb_config):
-
         avi_traffic = AviAnsibleConverterMigration(
             alb_config, self.output_file_path, self.prefix, self.not_in_use,
              skip_types=self.ansible_skip_types,
@@ -113,6 +116,9 @@ if __name__ == "__main__":
                         help='Upload option cli-upload genarates Avi config ' +
                              'file auto upload will upload config to ' +
                              'controller')
+    parser.add_argument('--migrate_to', choices=ARG_CHOICES['migrate_option'],
+                        help='Select migration to NSX-T ALB or ALB Controller',
+                        default='Avi')
     # Added command line args to take skip type for ansible playbook
     parser.add_argument('--ansible_skip_types',
                         help='Comma separated list of Avi Object types to skip '
