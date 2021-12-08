@@ -6,9 +6,9 @@ conv_utils = NsxtConvUtil()
 
 class PoolConfigConv(object):
     def __init__(self, nsxt_pool_attributes):
-        '''
-
-        '''
+        """
+        :param nsxt_pool_attributes: Supported attributes for pool migration
+        """
         self.supported_attr = nsxt_pool_attributes['Pool_supported_attr']
         self.server_attributes = nsxt_pool_attributes[
             'Pool_supported_attr_convert_servers_config']

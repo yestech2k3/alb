@@ -11,14 +11,17 @@ from com.vmware.vapi.std.errors_client import Error
 from avi.migrationtools.avi_rest_lib import upload_config_to_controller
 
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
-from avi.migrationtools.nsxt_converter.monitor_converter import MonitorConfigConv
+from avi.migrationtools.nsxt_converter.monitor_converter \
+    import MonitorConfigConv
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
 import os
 import json
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.nsxt_converter.pools_converter import PoolConfigConv
-from avi.migrationtools.nsxt_converter.profile_converter import ProfileConfigConv
-from avi.migrationtools.nsxt_converter.ssl_profile_converter import SslProfileConfigConv
+from avi.migrationtools.nsxt_converter.profile_converter \
+    import ProfileConfigConv
+from avi.migrationtools.nsxt_converter.ssl_profile_converter \
+    import SslProfileConfigConv
 
 conv_utils = NsxtConvUtil()
 
