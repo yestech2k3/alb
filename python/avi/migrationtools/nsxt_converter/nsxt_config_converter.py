@@ -63,7 +63,7 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix
 
     # Add nsxt converter status report in xslx report
     conv_utils.add_complete_conv_status(
-        output_dir, alb_config, "nsxt-report", False)
+        output_path, alb_config, "nsxt-report", False)
 
     pp = PrettyPrinter()
     pp.pprint(alb_config)
