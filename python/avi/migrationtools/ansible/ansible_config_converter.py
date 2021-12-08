@@ -517,7 +517,7 @@ class AviAnsibleConverterMigration(AviAnsibleConverterBase):
                                      % self.outdir
         # Get the reference object list for not_in_use tag.
         inuse_list = []
-        if not self.not_in_use:
+        if 'VirtualService' in self.avi_cfg and not self.not_in_use:
             inuse_list = filter_for_vs(self.avi_cfg)
         ad = deepcopy(ansible_dict)
         generate_traffic_dict = deepcopy(ansible_dict)

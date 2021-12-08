@@ -142,7 +142,7 @@ class MonitorConfigConv(object):
                 msg = "Monitor conversion started..."
                 conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                               prefix='Progress', suffix='')
-                time.sleep(1)
+                # time.sleep(1)
             except:
                 update_count('error')
                 LOG.error("Failed to convert Monitor: %s" % lb_hm['display_name'],

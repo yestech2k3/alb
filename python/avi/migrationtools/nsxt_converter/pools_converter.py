@@ -125,7 +125,7 @@ class PoolConfigConv(object):
                     suffix='')
 
                 alb_config['Pool'].append(alb_pl)
-                time.sleep(0.1)
+                # time.sleep(0.1)
             except:
                 update_count('error')
                 LOG.error("Failed to convert pool: %s" % lb_pl['display_name'],

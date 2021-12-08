@@ -67,8 +67,10 @@ class NsxtConverter(AviConverter):
             self.tenant)
 
     def convert(self, alb_config):
+        output_path = (self.output_file_path + os.path.sep + self.nsxt_ip +
+                       os.path.sep + "output")
         avi_traffic = AviAnsibleConverterMigration(
-            alb_config, self.output_file_path, self.prefix, self.not_in_use,
+            alb_config, output_path, self.prefix, self.not_in_use,
              skip_types=self.ansible_skip_types,
              controller_version=self.controller_version,
             filter_types=self.ansible_filter_types)

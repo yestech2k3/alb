@@ -84,7 +84,7 @@ class ProfileConfigConv(object):
                 msg = "Profile conversion started..."
                 conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                           prefix='Progress', suffix='')
-                time.sleep(1)
+                # time.sleep(1)
             except:
                 update_count('error')
                 LOG.error("Failed to convert ApplicationProfile: %s" % lb_pr['display_name'],
