@@ -25,7 +25,7 @@ def setUpModule():
     global gSAMPLE_CONFIG
     gSAMPLE_CONFIG = json.loads(cfg)
     global nsxt_attributes
-    nsxt_attributes= conv_const.init("11")
+    nsxt_attributes= conv_const.init()
 
 class Test(unittest.TestCase):
 
