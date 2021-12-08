@@ -27,9 +27,10 @@ class ProfileConfigConv(object):
         progressbar_count=0
         total_size = len(nsx_lb_config['LbAppProfiles'])
         print("\nConverting Profiles ...")
-        LOG.info('Converting Profiles...')
+        LOG.info('[APPLICATION-PROFILE] Converting Profiles...')
         for lb_pr in nsx_lb_config['LbAppProfiles']:
             try:
+                LOG.info('[APPLICATION-PROFILE] Migration started for AP {}'.format(lb_pr['display_name']))
                 progressbar_count += 1
                 name=lb_pr.get('display_name')
                 if prefix:
@@ -85,9 +86,11 @@ class ProfileConfigConv(object):
                 conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                           prefix='Progress', suffix='')
                 # time.sleep(1)
+
+                LOG.info('[APPLICATION-PROFILE] Migration completed for AP {}'.format(lb_pr['display_name']))
             except:
                 update_count('error')
-                LOG.error("Failed to convert ApplicationProfile: %s" % lb_pr['display_name'],
+                LOG.error("[APPLICATION-PROFILE] Failed to convert ApplicationProfile: %s" % lb_pr['display_name'],
                           exc_info=True)
                 conv_utils.add_status_row('applicationprofile', None, lb_pr['display_name'],
                                           conv_const.STATUS_ERROR)
@@ -99,6 +102,8 @@ class ProfileConfigConv(object):
                 u_ignore, na_list)
                 conv_utils.add_conv_status('applicationprofile',attr_ap[index]['resource_type'] , attr_ap[index]['name'], conv_status,
                 [{'application_http_profile': attr_ap[index]['alb_pr']}])
+                if len(conv_status['skipped'])>0:
+                    LOG.debug('[APPLICATION-PROFILE] Skipped Attribute {}:{}'.format(attr_ap[index]['name'], conv_status['skipped']))
 
         if len(skipped_np):
             for index, skipped in enumerate(skipped_np) :
@@ -107,6 +112,8 @@ class ProfileConfigConv(object):
                 u_ignore, na_list)
                 conv_utils.add_conv_status('applicationprofile', attr_np[index]['resource_type'],attr_np[index]['name'], conv_status,
                                                [{'network_profile': attr_np[index]['alb_pr']}])
+                if len(conv_status['skipped'])>0:
+                    LOG.debug('[APPLICATION-PROFILE] Skipped Attribute {}:{}'.format(attr_ap[index]['name'], conv_status['skipped']))
 
 
 

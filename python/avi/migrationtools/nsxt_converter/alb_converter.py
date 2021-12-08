@@ -1,10 +1,11 @@
 import argparse
 import json
+import logging
 import os
 import yaml
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 
-# SUPPORTED_ALB_OBJECTS = ['VirtualService']
+LOG = logging.getLogger(__name__)
 
 class ALBConverter:
     def __init__(self, avi_config_file, output_file_path):
@@ -18,7 +19,6 @@ class ALBConverter:
 
         if not os.path.exists(self.output_file_path):
             os.mkdir(self.output_file_path)
-        # os.chmod(self.output_file_path, 666)
         output_dir = os.path.normpath(self.output_file_path)
         with open(self.avi_config_file, "r") as read_file:
             avi_config = json.load(read_file)

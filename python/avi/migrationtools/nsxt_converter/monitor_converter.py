@@ -92,9 +92,10 @@ class MonitorConfigConv(object):
         progressbar_count=0
         total_size=len(nsx_lb_config['LbMonitorProfiles'])
         print("Converting Monitors...")
-        LOG.info('Converting Monitors...')
+        LOG.info('[MONITOR] Converting Monitors...')
         for lb_hm in nsx_lb_config['LbMonitorProfiles']:
             try:
+                LOG.info('[MONITOR] Migration started for HM {}'.format(lb_hm['display_name']))
                 progressbar_count +=1
                 if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
                     continue
@@ -143,9 +144,13 @@ class MonitorConfigConv(object):
                 conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                               prefix='Progress', suffix='')
                 # time.sleep(1)
+                if len(conv_status['skipped'])>0:
+                    LOG.debug('[MONITOR] Skipped Attribute {}:{}'.format(lb_hm['display_name'],conv_status['skipped']))
+
+                LOG.info('[MONITOR] Migration completed for HM {}'.format(lb_hm['display_name']))
             except:
                 update_count('error')
-                LOG.error("Failed to convert Monitor: %s" % lb_hm['display_name'],
+                LOG.error("[MONITOR] Failed to convert Monitor: %s" % lb_hm['display_name'],
                           exc_info=True)
                 conv_utils.add_status_row('applicationprofile', None, lb_hm['display_name'],
                                           conv_const.STATUS_ERROR)

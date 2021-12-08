@@ -1,4 +1,5 @@
 # !/usr/bin/env python3
+import logging
 import os
 
 from avi.migrationtools import avi_rest_lib
@@ -14,6 +15,9 @@ ARG_CHOICES = {
     'migrate_option': ['Avi', 'NSX']
 
 }
+
+LOG = logging.getLogger(__name__)
+
 
 class NsxtConverter(AviConverter):
     def __init__(self, args):
@@ -60,6 +64,9 @@ class NsxtConverter(AviConverter):
             self.upload_config_to_controller(alb_config)
         print("Total Warning: ", get_count('warning'))
         print("Total Errors: ", get_count('error'))
+        LOG.info("Total Warning: {}".format(get_count('warning')))
+        LOG.info("Total Errors: {}".format(get_count('error')))
+
 
     def upload_config_to_controller(self, alb_config):
         avi_rest_lib.upload_config_to_controller(

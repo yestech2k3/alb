@@ -30,9 +30,10 @@ class PoolConfigConv(object):
 
         total_size = len(nsx_lb_config['LbPools'])
         print("\nConverting Pools ...")
-        LOG.info('Converting Pools...')
+        LOG.info('[POOL] Converting Pools...')
         for lb_pl in nsx_lb_config['LbPools']:
             try:
+                LOG.info('[POOL] Migration started for Pool {}'.format(lb_pl['display_name']))
                 progressbar_count += 1
                 tenant, name = conv_utils.get_tenant_ref("admin")
                 lb_type, name = self.get_name_type(lb_pl)
@@ -58,6 +59,7 @@ class PoolConfigConv(object):
                 if lb_pl.get("tcp_multiplexing_enabled"):
                     # TO-DO - HANDLE In APPLICATION PROFILE
                     # Need to set in Application profile
+                    LOG.info('[POOL] tcp_multiplexing_enabled Needs to Handle in Application Profile.')
                     pass
 
                 if lb_pl.get("tcp_multiplexing_number"):
@@ -87,6 +89,7 @@ class PoolConfigConv(object):
                 if lb_pl.get("snat_translation"):
                     # TO-DO - HANDLE In APPLICATION PROFILE
                     # Need to set in Application profile
+                    LOG.info('[POOL] snat_translation Needs to Handle in Application Profile.')
                     pass
 
                 active_monitor_paths = lb_pl.get("active_monitor_paths", None)
@@ -126,9 +129,13 @@ class PoolConfigConv(object):
 
                 alb_config['Pool'].append(alb_pl)
                 # time.sleep(0.1)
+
+                if len(conv_status['skipped'])>0:
+                    LOG.debug('[POOL] Skipped Attribute {}:{}'.format(lb_pl['display_name'],conv_status['skipped']))
+                LOG.info('[POOL] Migration completed for Pool {}'.format(lb_pl['display_name']))
             except:
                 update_count('error')
-                LOG.error("Failed to convert pool: %s" % lb_pl['display_name'],
+                LOG.error("[POOL] Failed to convert pool: %s" % lb_pl['display_name'],
                           exc_info=True)
                 conv_utils.add_status_row('pool', None, lb_pl['display_name'],
                                           conv_const.STATUS_ERROR)

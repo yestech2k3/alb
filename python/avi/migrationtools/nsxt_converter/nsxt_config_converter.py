@@ -37,21 +37,24 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix,
     with open(input_config, "w", encoding='utf-8') as text_file:
         json.dump(nsx_lb_config, text_file, indent=4)
 
-    alb_config = dict()  # Result Config
+    avi_config_dict = dict()  # Result Config
 
     try:
         monitor_converter = MonitorConfigConv(nsxt_attributes)
-        monitor_converter.convert(alb_config, nsx_lb_config, prefix)
+        monitor_converter.convert(avi_config_dict, nsx_lb_config, prefix)
 
         pool_converter = PoolConfigConv(nsxt_attributes)
-        pool_converter.convert(alb_config, nsx_lb_config, cloud_name, prefix)
+        pool_converter.convert(avi_config_dict, nsx_lb_config, cloud_name, prefix)
 
         profile_converter = ProfileConfigConv(nsxt_attributes)
-        profile_converter.convert(alb_config, nsx_lb_config, prefix)
+        profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
 
         #TO-DO
         # ssl_profile_converter = SslProfileConfigConv(nsxt_attributes)
         # ssl_profile_converter.convert(alb_config, nsx_lb_config, prefix)
+
+        # Validating the aviconfig after generation
+        conv_utils.validation(avi_config_dict)
     except:
         update_count('warning')
         LOG.error("Conversion error", exc_info=True)
@@ -61,22 +64,22 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix,
         os.makedirs(output_path)
     output_config = output_path + os.path.sep + "avi_config.json"
     with open(output_config, "w", encoding='utf-8') as text_file:
-        json.dump(alb_config, text_file, indent=4)
+        json.dump(avi_config_dict, text_file, indent=4)
 
     # Add nsxt converter status report in xslx report
     conv_utils.add_complete_conv_status(
-        output_path, alb_config, "nsxt-report", False)
+        output_path, avi_config_dict, "nsxt-report", False)
 
-    for key in alb_config:
+    for key in avi_config_dict:
         if key != 'META':
             LOG.info('Total Objects of %s : %s' % (key, len(
-                alb_config[key])))
+                avi_config_dict[key])))
             print('Total Objects of %s : %s' % (key, len(
-                alb_config[key])))
+                avi_config_dict[key])))
 
     if migrate_to == 'NSX':
         alb_converter = ALBConverter(output_config, output_path)
         alb_converter.convert()
 
-    return alb_config
+    return avi_config_dict
 
