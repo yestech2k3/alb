@@ -41,6 +41,8 @@ class NsxtConverter(AviConverter):
         self.migrate_to = args.migrate_to
 
     def conver_lb_config(self):
+        if not os.path.exists(self.output_file_path):
+            os.mkdir(self.output_file_path)
         self.init_logger_path()
         output_dir = os.path.normpath(self.output_file_path)
         alb_config = nsxt_config_converter.convert(
