@@ -126,6 +126,9 @@ type ServiceEngineGroup struct {
 	// If activated, IPv6 address and route discovery are deactivated.Requires SE reboot. Field introduced in 21.1.1.
 	DeactivateIPV6Discovery *bool `json:"deactivate_ipv6_discovery,omitempty"`
 
+	// Deactivate filtering of packets to KNI interface. To be used under surveillance of Avi Support. Field introduced in 21.1.3.
+	DeactivateKniFilteringAtDispatcher *bool `json:"deactivate_kni_filtering_at_dispatcher,omitempty"`
+
 	// Dedicate the core that handles packet receive/transmit from the network to just the dispatching function. Don't use it for TCP/IP and SSL functions.
 	DedicatedDispatcherCore *bool `json:"dedicated_dispatcher_core,omitempty"`
 
