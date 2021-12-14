@@ -23,16 +23,10 @@ LOG = logging.getLogger(__name__)
 conv_utils = NsxtConvUtil()
 
 
-def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix,
+def convert(nsx_lb_config,input_path, output_path, cloud_name, prefix,
             migrate_to):
     # load the yaml file attribute in nsxt_attributes.
     nsxt_attributes = conv_const.init()
-
-    nsx_util = NSXUtil(nsx_un, nsx_pw, nsx_ip, nsx_port)
-    nsx_lb_config = nsx_util.get_nsx_config()
-    input_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "input"
-    if not os.path.exists(input_path):
-        os.makedirs(input_path)
     input_config = input_path + os.path.sep + "config.json"
     with open(input_config, "w", encoding='utf-8') as text_file:
         json.dump(nsx_lb_config, text_file, indent=4)
@@ -59,9 +53,6 @@ def convert(nsx_ip, nsx_un, nsx_pw, nsx_port, output_dir, cloud_name, prefix,
         update_count('warning')
         LOG.error("Conversion error", exc_info=True)
 
-    output_path = output_dir + os.path.sep + nsx_ip + os.path.sep + "output"
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
     output_config = output_path + os.path.sep + "avi_config.json"
     with open(output_config, "w", encoding='utf-8') as text_file:
         json.dump(avi_config_dict, text_file, indent=4)

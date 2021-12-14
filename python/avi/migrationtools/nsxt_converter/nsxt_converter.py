@@ -10,6 +10,8 @@ from avi.migrationtools.avi_migration_utils import get_count
 from avi.migrationtools.nsxt_converter import nsxt_config_converter
 import argparse
 
+from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
+
 ARG_CHOICES = {
     'option': ['cli-upload', 'auto-upload'],
     'migrate_option': ['Avi', 'NSX']
@@ -43,46 +45,40 @@ class NsxtConverter(AviConverter):
         self.output_file_path = args.output_file_path if args.output_file_path \
             else 'output'
         self.migrate_to = args.migrate_to
+        self.option = args.option
+        self.ansible = args.ansible
 
     def conver_lb_config(self):
         if not os.path.exists(self.output_file_path):
             os.mkdir(self.output_file_path)
         self.init_logger_path()
         output_dir = os.path.normpath(self.output_file_path)
+        output_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "output"
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+        input_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "input"
+        if not os.path.exists(input_path):
+            os.makedirs(input_path)
+        nsx_util = NSXUtil(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port)
+        nsx_lb_config = nsx_util.get_nsx_config()
         alb_config = nsxt_config_converter.convert(
-            self.nsxt_ip, self.nsxt_user, self.nsxt_passord, self.nsxt_port,
-            self.output_file_path, self.cloud_name, self.prefix, self.migrate_to
-                                                   )
+            nsx_lb_config, input_path, output_path,
+            self.cloud_name, self.prefix, self.migrate_to)
         avi_config = self.process_for_utils(alb_config)
-
         output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
                        "output")
         self.write_output(avi_config, output_path, 'avi_config.json')
-        if args.ansible:
-            self.convert(alb_config)
-        if args.option == 'auto-upload':
+        if self.option == 'auto-upload':
             self.upload_config_to_controller(alb_config)
         print("Total Warning: ", get_count('warning'))
         print("Total Errors: ", get_count('error'))
         LOG.info("Total Warning: {}".format(get_count('warning')))
         LOG.info("Total Errors: {}".format(get_count('error')))
 
-
     def upload_config_to_controller(self, alb_config):
         avi_rest_lib.upload_config_to_controller(
             alb_config, self.controller_ip, self.user, self.password,
             self.tenant)
-
-    def convert(self, alb_config):
-        output_path = (self.output_file_path + os.path.sep + self.nsxt_ip +
-                       os.path.sep + "output")
-        avi_traffic = AviAnsibleConverterMigration(
-            alb_config, output_path, self.prefix, self.not_in_use,
-             skip_types=self.ansible_skip_types,
-             controller_version=self.controller_version,
-            filter_types=self.ansible_filter_types)
-        avi_traffic.write_ansible_playbook(
-            self.nsxt_ip, self.nsxt_user, self.nsxt_passord, 'nsxt')
 
 
 if __name__ == "__main__":
