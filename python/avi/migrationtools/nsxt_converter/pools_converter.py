@@ -9,7 +9,7 @@ LOG = logging.getLogger(__name__)
 conv_utils = NsxtConvUtil()
 
 class PoolConfigConv(object):
-    def __init__(self, nsxt_pool_attributes):
+    def __init__(self, nsxt_pool_attributes,object_merge_check,merge_object_mapping, sys_dict):
         """
         :param nsxt_pool_attributes: Supported attributes for pool migration
         """
@@ -19,6 +19,9 @@ class PoolConfigConv(object):
         self.member_group_attr = nsxt_pool_attributes[
             'Pool_supported_attr_convert_member_group']
         self.common_na_attr = nsxt_pool_attributes['Common_Na_List']
+        self.object_merge_check=object_merge_check
+        self.merge_object_mapping=merge_object_mapping
+        self.sys_dict=sys_dict
 
 
     def convert(self, alb_config, nsx_lb_config, cloud_name, prefix):
@@ -27,7 +30,6 @@ class PoolConfigConv(object):
         '''
         alb_config['Pool'] = list()
         progressbar_count = 0
-
         total_size = len(nsx_lb_config['LbPools'])
         print("\nConverting Pools ...")
         LOG.info('[POOL] Converting Pools...')
@@ -99,8 +101,16 @@ class PoolConfigConv(object):
                         ref = lb_hm_path.split("/lb-monitor-profiles/")[1]
                         if prefix:
                             ref = prefix + "-" + ref
+                        if ref in [monitor_obj.get('name') for monitor_obj in alb_config['HealthMonitor']]:
+                            ref=ref
+                        elif self.object_merge_check:
+                            if ref in self.merge_object_mapping['health_monitor'].keys():
+                                ref=self.merge_object_mapping['health_monitor'].get(ref)
+                        else:
+                            continue
                         monitor_refs.append(
                             "/api/healthmonitor/?tenant=admin&name=" + ref)
+
                     alb_pl["health_monitor_refs"] = list(set(monitor_refs))
                 skipped = [val for val in lb_pl.keys()
                            if val not in self.supported_attr]
@@ -189,3 +199,7 @@ class PoolConfigConv(object):
         if connection_limit:
             limits['connection_limit'] = min(connection_limit)
         return server_list, skipped_list, server_skipped, limits
+
+
+
+

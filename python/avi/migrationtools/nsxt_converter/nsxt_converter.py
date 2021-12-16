@@ -47,6 +47,7 @@ class NsxtConverter(AviConverter):
         self.migrate_to = args.migrate_to
         self.option = args.option
         self.ansible = args.ansible
+        self.object_merge_check = args.no_object_merge
 
     def conver_lb_config(self):
         if not os.path.exists(self.output_file_path):
@@ -63,7 +64,7 @@ class NsxtConverter(AviConverter):
         nsx_lb_config = nsx_util.get_nsx_config()
         alb_config = nsxt_config_converter.convert(
             nsx_lb_config, input_path, output_path,
-            self.cloud_name, self.prefix, self.migrate_to)
+            self.cloud_name, self.prefix, self.migrate_to,self.object_merge_check)
         avi_config = self.process_for_utils(alb_config)
         output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
                        "output")
@@ -141,6 +142,8 @@ if __name__ == "__main__":
     parser.add_argument('--not_in_use',
                         help='Flag for skipping not in use object',
                         action="store_true")
+    parser.add_argument('--no_object_merge',
+                        help='Flag for object merge', action='store_false')
 
     args = parser.parse_args()
     nsxt_converter = NsxtConverter(args)

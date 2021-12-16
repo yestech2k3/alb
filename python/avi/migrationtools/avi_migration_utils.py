@@ -19,7 +19,6 @@ import pexpect
 import yaml
 from OpenSSL import crypto
 
-
 import avi.migrationtools.f5_converter.converter_constants as conv_const
 
 LOG = logging.getLogger(__name__)
@@ -29,6 +28,7 @@ ran_str = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase
                                 + string.digits) for _ in range(3))
 warning_count = 0
 error_count = 0
+
 
 def set_update_count():
     global warning_count, error_count
@@ -43,12 +43,13 @@ def update_count(type='warning'):
     elif type == 'error':
         error_count += 1
 
+
 def get_count(type='None'):
     if type == 'warning':
         return warning_count
     elif type == 'error':
         return error_count
-    return { 'warning': warning_count, 'error': error_count }
+    return {'warning': warning_count, 'error': error_count}
 
 
 class PasswordPromptAction(argparse.Action):
@@ -60,7 +61,6 @@ class PasswordPromptAction(argparse.Action):
 
 
 class MigrationUtil(object):
-
 
     def add_conv_status(self, **args):
         pass
@@ -406,8 +406,6 @@ class MigrationUtil(object):
             profile_csv_list, ssl_profile_name, vs_ref, field_key='ssl_profile')
         return ssl_profile_name, skipped_list
 
-
-
     def update_vs_complexity_level(self, vs_csv_row, virtual_service):
         """
         This function defines that update complexity level of VS objects.
@@ -420,9 +418,9 @@ class MigrationUtil(object):
         """
 
         if ('http_policies' in virtual_service and
-                virtual_service['http_policies']) or \
+            virtual_service['http_policies']) or \
                 ('vs_datascripts' in virtual_service and
-                     virtual_service['vs_datascripts']):
+                 virtual_service['vs_datascripts']):
             vs_csv_row['Complexity Level'] = conv_const.COMPLEXITY_ADVANCED
         else:
             vs_csv_row['Complexity Level'] = conv_const.COMPLEXITY_BASIC
@@ -465,10 +463,10 @@ class MigrationUtil(object):
                     merge_object_mapping[obj_type]['no'] += 1
                     no = merge_object_mapping[obj_type]['no']
                     mid_name = ent_type and ('Merged-%s-%s-%s-%s' % (ent_type,
-                               obj_type, ran_str, str(no))) or (
-                               'Merged-%s-%s-%s' % (obj_type, ran_str, str(no)))
-                    new_name = '%s-%s' %(prefix, mid_name) if prefix else \
-                                mid_name
+                                                                     obj_type, ran_str, str(no))) or (
+                                       'Merged-%s-%s-%s' % (obj_type, ran_str, str(no)))
+                    new_name = '%s-%s' % (prefix, mid_name) if prefix else \
+                        mid_name
                     tmp_obj["name"] = new_name
                 return tmp_obj["name"], old_name
         return None, None
@@ -563,14 +561,14 @@ class MigrationUtil(object):
                 object_type, tenant, object_name, cloud_name)
         else:
             ref = '/api/%s/?tenant=%s&name=%s' % (
-            object_type, tenant, object_name)
+                object_type, tenant, object_name)
         # if cloud_name:
         #     ref += '&cloud=%s' % cloud_name
         return ref
 
     # Print iterations progress
     def print_progress_bar(self, iteration, total, msg, prefix='', suffix='',
-                           decimals=1, length=50, fill='#', printEnd = "\\r"):
+                           decimals=1, length=50, fill='#', printEnd="\\r"):
         """
         Call in a loop to create terminal progress bar
         @params:
@@ -606,9 +604,10 @@ class MigrationUtil(object):
         valid = None
         new_value = value
         msgvar = valname and entity_names and '%s-->%s-->%s' % (valname,
-                 '-->'.join(entity_names), prop_name) or valname and '%s-->%s' \
+                                                                '-->'.join(entity_names),
+                                                                prop_name) or valname and '%s-->%s' \
                  % (valname, prop_name) or entity_names and '%s-->%s' % (
-                 '-->'.join(entity_names), prop_name) or '%s' % prop_name
+                     '-->'.join(entity_names), prop_name) or '%s' % prop_name
         for key, val in limit_data.items():
             pr = val.get(obj, {})
             if not pr:
@@ -621,9 +620,9 @@ class MigrationUtil(object):
                 break
         else:
             LOG.debug("Property '%s' is not present in generated yaml, reason "
-                   "being the property doesn't have any attribute from the "
-                   "list %s", msgvar, str(['default_value', 'range',
-                   'special_values', 'ref_type']))
+                      "being the property doesn't have any attribute from the "
+                      "list %s", msgvar, str(['default_value', 'range',
+                                              'special_values', 'ref_type']))
             return None, None
         if new_value is not None:
             # commenting this since now in Python 3 strings are already in unicode format.
@@ -672,7 +671,7 @@ class MigrationUtil(object):
                         LOG.debug("Value '%s' is fine", str(new_value))
             else:
                 LOG.debug("Type of value '%s' doesn't match with type '%s' "
-                       "defined", str(type(new_value)), typ)
+                          "defined", str(type(new_value)), typ)
                 valid, new_value = None, None
         else:
             if p_key.get('required') == 'True':
@@ -700,7 +699,7 @@ class MigrationUtil(object):
                             if v.get(ref):
                                 tr = v[ref]
                                 return self.get_to_prop(v, tr, entity_names,
-                                                prop_name, limit_data)
+                                                        prop_name, limit_data)
                         else:
                             return
                     else:
@@ -744,9 +743,9 @@ class MigrationUtil(object):
                      'http_policy_set_ref', 'ssl_key_and_certificate_refs',
                      'vsvip_ref', 'description']:
                 msvar = valname and heir and '%s-->%s-->%s' % (valname,
-                        '-->'.join(heir), k) or valname and '%s-->%s' % (
-                        valname, k) or heir and '%s-->%s' % ('-->'.join(heir),
-                        k) or '%s' % k
+                                                               '-->'.join(heir), k) or valname and '%s-->%s' % (
+                            valname, k) or heir and '%s-->%s' % ('-->'.join(heir),
+                                                                 k) or '%s' % k
                 LOG.debug("Skipping validation checks for '%s'", msvar)
                 continue
             else:
@@ -759,17 +758,17 @@ class MigrationUtil(object):
                             heir and heir.pop() or None
                         else:
                             mgvar = valname and heir and '%s-->%s-->%s' % (
-                                    valname, '-->'.join(heir), k) or valname \
+                                valname, '-->'.join(heir), k) or valname \
                                     and '%s-->%s' % (valname, k) or heir and \
                                     '%s-->%s' % ('-->'.join(heir), k) or \
                                     '%s' % k
                             LOG.debug("Property '%s' has value as a list %s, "
-                                  "not supported currently", mgvar, str(v))
-                            #valid, val = self.validate_value(heir, k, listval,
-                                                    #limit_data)
-                            #if valid is False:
-                                #LOG.debug("Correcting the value for %s" % k)
-                                #dictval[k] = val
+                                      "not supported currently", mgvar, str(v))
+                            # valid, val = self.validate_value(heir, k, listval,
+                            # limit_data)
+                            # if valid is False:
+                            # LOG.debug("Correcting the value for %s" % k)
+                            # dictval[k] = val
                 elif isinstance(v, dict):
                     k not in heir and heir.append(k) or None
                     self.validate_prop(v, heir, limit_data, obj, valname)
@@ -779,9 +778,9 @@ class MigrationUtil(object):
                                                      obj, valname)
                     if valid is False:
                         mvar = valname and heir and '%s-->%s-->%s' % (valname,
-                               '-->'.join(heir), k) or valname and '%s-->%s' % (
-                               valname, k) or heir and '%s-->%s' % (
-                               '-->'.join(heir), k) or '%s' % k
+                                                                      '-->'.join(heir), k) or valname and '%s-->%s' % (
+                                   valname, k) or heir and '%s-->%s' % (
+                                   '-->'.join(heir), k) or '%s' % k
                         LOG.debug("Correcting the value for '%s' from '%s' to "
                                   "'%s'", mvar, str(v), str(val))
                         dictval[k] = val
@@ -834,7 +833,7 @@ class MigrationUtil(object):
                       tree
         """
         for key in obj_dict:
-            if (key.endswith('ref') and key not in ['cloud_ref', 'tenant_ref'])\
+            if (key.endswith('ref') and key not in ['cloud_ref', 'tenant_ref']) \
                     or key == 'ssl_profile_name':
                 if not obj_dict[key]:
                     continue
@@ -858,7 +857,7 @@ class MigrationUtil(object):
                 sername = obj_dict[key]
                 if avi_graph.has_node(sername):
                     node_type = [n[1]['type'] for n in list(
-                                 avi_graph.nodes().data()) if n[0] == sername]
+                        avi_graph.nodes().data()) if n[0] == sername]
                     node_type = '{}-{}'.format(node_type[0], 'Server')
                     avi_graph.add_node(sername, type=node_type)
                     avi_graph.add_edge(vsname, sername)
@@ -869,7 +868,7 @@ class MigrationUtil(object):
                 rule_name = obj_dict[key]
                 if avi_graph.has_node(rule_name):
                     node_type = [n[1]['type'] for n in list(
-                                 avi_graph.nodes().data()) if n[0] == rule_name]
+                        avi_graph.nodes().data()) if n[0] == rule_name]
                     node_type = '{}-{}'.format(node_type[0], 'Rule')
                     avi_graph.add_node(rule_name, type=node_type)
                     avi_graph.add_edge(vsname, rule_name)
@@ -898,7 +897,7 @@ class MigrationUtil(object):
             found_obj = found_obj[0]
             if avi_graph.has_node(name):
                 nod_type = [node[1]['type'] for node in list(
-                            avi_graph.nodes().data()) if node[0] == name]
+                    avi_graph.nodes().data()) if node[0] == name]
                 nod_type = '{}-{}'.format(nod_type[0], path_key_map[entity])
                 avi_graph.add_node(name, type=nod_type)
                 avi_graph.add_edge(vsname, name)
@@ -955,3 +954,42 @@ class MigrationUtil(object):
         new_ref = self.get_object_ref(
             new_profile_name, 'applicationprofile', tenant)
         return new_ref
+
+    def update_skip_duplicates(self, obj, obj_list, obj_type, converted_objs,
+                               name, default_profile_name, merge_object_mapping,
+                               ent_type, prefix, syslist):
+
+        """
+        Merge duplicate profiles
+        :param obj: Source object to find duplicates for
+        :param obj_list: List of object to search duplicates in
+        :param obj_type: Type of object to add in converted_objs status
+        :param converted_objs: Converted avi object or merged object name
+        :param name: Name of the object
+        :param default_profile_name : Name of root parent default profile
+        :param merge_object_mapping: merged object mappings
+        :param ent_type: Entity type
+        :param prefix: object name prefix
+        :param syslist: System object list
+        :return:
+        """
+        dup_of = None
+        if isinstance(merge_object_mapping, dict):
+            merge_object_mapping[obj_type].update({name: name})
+        # root default profiles are skipped for merging
+        if not name == default_profile_name or obj_type == 'ssl_profile':
+            dup_of, old_name = \
+                self.check_for_duplicates(obj, obj_list, obj_type,
+                                          merge_object_mapping, ent_type,
+                                          prefix, syslist)
+        if dup_of:
+            converted_objs.append({obj_type: "Duplicate of %s" % dup_of})
+            LOG.info(
+                "Duplicate profiles: %s merged in %s" % (obj['name'], dup_of))
+            if isinstance(merge_object_mapping, dict):
+                if old_name in merge_object_mapping[obj_type].keys():
+                    merge_object_mapping[obj_type].update({old_name: dup_of})
+                merge_object_mapping[obj_type].update({name: dup_of})
+        else:
+            obj_list.append(obj)
+            converted_objs.append({obj_type: obj})
