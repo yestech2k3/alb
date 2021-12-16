@@ -14,7 +14,7 @@ info:
     description: |
         CLI
         ```
-        - show state-diff <key>
+        - show statediff <key>
         ```
 
 

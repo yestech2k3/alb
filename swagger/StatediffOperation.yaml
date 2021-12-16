@@ -14,8 +14,8 @@ info:
     description: |
         CLI
         ```
-        - show state-diff
-        - delete state-diff <key>
+        - show statediff
+        - delete statediff <key>
         ```
 
 

@@ -8,7 +8,7 @@
             "url": "https://avinetworks.com/contact-us",
             "email": "support@avinetworks.com"
         },
-        "description": "CLI\n```\n- show state-diff <key>\n```\n"
+        "description": "CLI\n```\n- show statediff <key>\n```\n"
     },
     "securityDefinitions": {
         "basicAuth": {
