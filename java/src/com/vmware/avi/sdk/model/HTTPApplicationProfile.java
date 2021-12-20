@@ -79,7 +79,7 @@ public class HTTPApplicationProfile  {
     private Integer hstsMaxAge = 365;
 
     @JsonProperty("hsts_subdomains_enabled")
-    private Boolean hstsSubdomainsEnabled = true;
+    private Boolean hstsSubdomainsEnabled;
 
     @JsonProperty("http2_enabled")
     private Boolean http2Enabled;
@@ -144,6 +144,9 @@ public class HTTPApplicationProfile  {
     @JsonProperty("max_rps_uri")
     private Integer maxRpsUri = 0;
 
+    @JsonProperty("pass_through_x_accel_headers")
+    private Boolean passThroughXAccelHeaders = false;
+
     @JsonProperty("pki_profile_ref")
     private String pkiProfileRef = null;
 
@@ -177,8 +180,14 @@ public class HTTPApplicationProfile  {
     @JsonProperty("ssl_everywhere_enabled")
     private Boolean sslEverywhereEnabled;
 
+    @JsonProperty("true_client_ip")
+    private TrueClientIPConfig trueClientIp = null;
+
     @JsonProperty("use_app_keepalive_timeout")
     private Boolean useAppKeepaliveTimeout = false;
+
+    @JsonProperty("use_true_client_ip")
+    private Boolean useTrueClientIp = false;
 
     @JsonProperty("websockets_enabled")
     private Boolean websocketsEnabled = true;
@@ -672,7 +681,6 @@ public class HTTPApplicationProfile  {
      * Field introduced in 17.2.13, 18.1.4, 18.2.1.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return hstsSubdomainsEnabled
      */
     public Boolean getHstsSubdomainsEnabled() {
@@ -687,7 +695,6 @@ public class HTTPApplicationProfile  {
      * Field introduced in 17.2.13, 18.1.4, 18.2.1.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param hstsSubdomainsEnabled set the hstsSubdomainsEnabled.
      */
     public void setHstsSubdomainsEnabled(Boolean  hstsSubdomainsEnabled) {
@@ -1234,6 +1241,28 @@ public class HTTPApplicationProfile  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Pass through x-accel headers.
+     * Field introduced in 21.1.3.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return passThroughXAccelHeaders
+     */
+    public Boolean getPassThroughXAccelHeaders() {
+        return passThroughXAccelHeaders;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Pass through x-accel headers.
+     * Field introduced in 21.1.3.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param passThroughXAccelHeaders set the passThroughXAccelHeaders.
+     */
+    public void setPassThroughXAccelHeaders(Boolean  passThroughXAccelHeaders) {
+        this.passThroughXAccelHeaders = passThroughXAccelHeaders;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Select the pki profile to be associated with the virtual service.
      * This profile defines the certificate authority and revocation list.
      * It is a reference to an object of type pkiprofile.
@@ -1488,6 +1517,28 @@ public class HTTPApplicationProfile  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Detect client ip from user specified header at the configured index in the specified direction.
+     * Field introduced in 21.1.3.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return trueClientIp
+     */
+    public TrueClientIPConfig getTrueClientIp() {
+        return trueClientIp;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Detect client ip from user specified header at the configured index in the specified direction.
+     * Field introduced in 21.1.3.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param trueClientIp set the trueClientIp.
+     */
+    public void setTrueClientIp(TrueClientIPConfig trueClientIp) {
+        this.trueClientIp = trueClientIp;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Use 'keep-alive' header timeout sent by application instead of sending the http keep-alive timeout.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
@@ -1506,6 +1557,28 @@ public class HTTPApplicationProfile  {
      */
     public void setUseAppKeepaliveTimeout(Boolean  useAppKeepaliveTimeout) {
         this.useAppKeepaliveTimeout = useAppKeepaliveTimeout;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Detect client ip from user specified header.
+     * Field introduced in 21.1.3.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return useTrueClientIp
+     */
+    public Boolean getUseTrueClientIp() {
+        return useTrueClientIp;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Detect client ip from user specified header.
+     * Field introduced in 21.1.3.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param useTrueClientIp set the useTrueClientIp.
+     */
+    public void setUseTrueClientIp(Boolean  useTrueClientIp) {
+        this.useTrueClientIp = useTrueClientIp;
     }
 
     /**
@@ -1668,7 +1741,10 @@ public class HTTPApplicationProfile  {
   Objects.equals(this.httpUpstreamBufferSize, objHTTPApplicationProfile.httpUpstreamBufferSize)&&
   Objects.equals(this.enableChunkMerge, objHTTPApplicationProfile.enableChunkMerge)&&
   Objects.equals(this.http2Profile, objHTTPApplicationProfile.http2Profile)&&
-  Objects.equals(this.detectNtlmApp, objHTTPApplicationProfile.detectNtlmApp);
+  Objects.equals(this.detectNtlmApp, objHTTPApplicationProfile.detectNtlmApp)&&
+  Objects.equals(this.useTrueClientIp, objHTTPApplicationProfile.useTrueClientIp)&&
+  Objects.equals(this.trueClientIp, objHTTPApplicationProfile.trueClientIp)&&
+  Objects.equals(this.passThroughXAccelHeaders, objHTTPApplicationProfile.passThroughXAccelHeaders);
     }
 
     @Override
@@ -1716,6 +1792,7 @@ public class HTTPApplicationProfile  {
                         sb.append("    maxRpsUnknownCip: ").append(toIndentedString(maxRpsUnknownCip)).append("\n");
                         sb.append("    maxRpsUnknownUri: ").append(toIndentedString(maxRpsUnknownUri)).append("\n");
                         sb.append("    maxRpsUri: ").append(toIndentedString(maxRpsUri)).append("\n");
+                        sb.append("    passThroughXAccelHeaders: ").append(toIndentedString(passThroughXAccelHeaders)).append("\n");
                         sb.append("    pkiProfileRef: ").append(toIndentedString(pkiProfileRef)).append("\n");
                         sb.append("    postAcceptTimeout: ").append(toIndentedString(postAcceptTimeout)).append("\n");
                         sb.append("    resetConnHttpOnSslPort: ").append(toIndentedString(resetConnHttpOnSslPort)).append("\n");
@@ -1727,7 +1804,9 @@ public class HTTPApplicationProfile  {
                         sb.append("    sslClientCertificateAction: ").append(toIndentedString(sslClientCertificateAction)).append("\n");
                         sb.append("    sslClientCertificateMode: ").append(toIndentedString(sslClientCertificateMode)).append("\n");
                         sb.append("    sslEverywhereEnabled: ").append(toIndentedString(sslEverywhereEnabled)).append("\n");
+                        sb.append("    trueClientIp: ").append(toIndentedString(trueClientIp)).append("\n");
                         sb.append("    useAppKeepaliveTimeout: ").append(toIndentedString(useAppKeepaliveTimeout)).append("\n");
+                        sb.append("    useTrueClientIp: ").append(toIndentedString(useTrueClientIp)).append("\n");
                         sb.append("    websocketsEnabled: ").append(toIndentedString(websocketsEnabled)).append("\n");
                         sb.append("    xForwardedProtoEnabled: ").append(toIndentedString(xForwardedProtoEnabled)).append("\n");
                         sb.append("    xffAlternateName: ").append(toIndentedString(xffAlternateName)).append("\n");
