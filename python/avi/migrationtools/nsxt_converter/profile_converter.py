@@ -78,7 +78,6 @@ class ProfileConfigConv(object):
                     else:
                         alb_config['ApplicationProfile'].append(alb_pr)
                     skipped_ap.append(skipped)
-
                     val = dict(
                         name=alb_pr['name'],
                         resource_type=lb_pr['resource_type'],
@@ -98,7 +97,6 @@ class ProfileConfigConv(object):
                         self.np_pr_count += 1
                     else:
                         alb_config['NetworkProfile'].append(alb_pr)
-
                     skipped_np.append(skipped)
                     val = dict(
                         name=alb_pr['name'],
@@ -124,9 +122,14 @@ class ProfileConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
                     u_ignore, na_list)
+                name = attr_ap[index]['name']
+                alb_mig_app_pr = attr_ap[index]['alb_pr']
+                if self.object_merge_check:
+                    alb_mig_app_pr = [app_pr for app_pr in alb_config['ApplicationProfile'] if
+                              app_pr.get('name') == self.merge_object_mapping['app_profile'].get(name)]
                 conv_utils.add_conv_status('applicationprofile', attr_ap[index]['resource_type'],
-                                           attr_ap[index]['name'], conv_status,
-                                           [{'application_http_profile': attr_ap[index]['alb_pr']}])
+                                               attr_ap[index]['name'], conv_status,
+                                               [{'application_http_profile': alb_mig_app_pr}])
                 if len(conv_status['skipped']) > 0:
                     LOG.debug('[APPLICATION-PROFILE] Skipped Attribute {}:{}'.format(attr_ap[index]['name'],
                                                                                      conv_status['skipped']))
@@ -136,11 +139,16 @@ class ProfileConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
                     u_ignore, na_list)
+                name = attr_np[index]['name']
+                alb_mig_np_pr = attr_np[index]['alb_pr']
+                if self.object_merge_check:
+                    alb_mig_np_pr = [np_pr for np_pr in alb_config['NetworkProfile'] if
+                                      np_pr.get('name') == self.merge_object_mapping['network_profile'].get(name)]
                 conv_utils.add_conv_status('applicationprofile', attr_np[index]['resource_type'],
-                                           attr_np[index]['name'], conv_status,
-                                           [{'network_profile': attr_np[index]['alb_pr']}])
+                                               attr_np[index]['name'], conv_status,
+                                               [{'network_profile': alb_mig_np_pr}])
                 if len(conv_status['skipped']) > 0:
-                    LOG.debug('[APPLICATION-PROFILE] Skipped Attribute {}:{}'.format(attr_ap[index]['name'],
+                    LOG.debug('[APPLICATION-PROFILE] Skipped Attribute {}:{}'.format(attr_np[index]['name'],
                                                                                      conv_status['skipped']))
 
     def convert_http(self, alb_pr, lb_pr):
