@@ -11,6 +11,7 @@ import os
 import json
 from avi.migrationtools.nsxt_converter.alb_converter import ALBConverter
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
+from avi.migrationtools.nsxt_converter.vs_converter import VsConfigConv
 from avi.migrationtools.nsxt_converter.pools_converter import PoolConfigConv
 from avi.migrationtools.nsxt_converter.profile_converter \
     import ProfileConfigConv
@@ -59,6 +60,9 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
 
         profile_converter = ProfileConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping, sys_dict)
         profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
+
+        vs_converter = VsConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping,sys_dict)
+        vs_converter.convert(avi_config_dict,nsx_lb_config,cloud_name,prefix)
 
         # TO-DO
         # ssl_profile_converter = SslProfileConfigConv(nsxt_attributes)

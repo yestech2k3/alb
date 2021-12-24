@@ -13,6 +13,7 @@ from avi.migrationtools.nsxt_converter.alb_converter import ALBConverter
 from avi.migrationtools.nsxt_converter.nsxt_converter import NsxtConverter
 from avi.migrationtools.nsxt_converter.monitor_converter import MonitorConfigConv
 from avi.migrationtools.nsxt_converter.profile_converter import ProfileConfigConv
+from avi.migrationtools.nsxt_converter.vs_converter import VsConfigConv
 
 gSAMPLE_CONFIG = None
 LOG = logging.getLogger(__name__)
@@ -36,6 +37,25 @@ if not os.path.exists(input_path):
 output_path = output_dir + os.path.sep + "output"
 if not os.path.exists(output_path):
     os.makedirs(output_path)
+object_merge_check=False
+avi_config = dict()
+merge_object_mapping = {
+
+    'ssl_profile': {'no': 0},
+    'app_profile': {'no': 0},
+    'network_profile': {'no': 0},
+    'health_monitor': {'no': 0},
+    'ssl_cert_key': {'no': 0}
+}
+sys_dict={}
+sys_dict = {}
+merge_object_type = ['ApplicationProfile', 'NetworkProfile',
+                             'SSLProfile', 'PKIProfile', 'SSLKeyAndCertificate',
+                             'ApplicationPersistenceProfile', 'HealthMonitor',
+                             'IpAddrGroup']
+for key in merge_object_type:
+    sys_dict[key] = []
+
 
 def setUpModule():
     cfg_file = open(option.nsx_lb_config, 'r')
@@ -47,36 +67,11 @@ def setUpModule():
 
 class Test(unittest.TestCase):
 
-    def test_pool_conversion(self):
-
-        pool_config = nsx_config['LbPools']
-        avi_pool_config = avi_config_file.get('Pool', None)
-
-        assert avi_pool_config
-
-        for index, pool in enumerate(avi_pool_config):
-            assert pool.get('name')
-            assert pool.get('lb_algorithm')
-            if pool_config[index].get('member'):
-                assert pool.get('servers')
-            if pool_config[index].get('active_monitor_path'):
-                assert len(pool['health_monitor_refs']) == len(pool_config[index]['active_monitor_path'])
-
-        assert len(pool_config) == len(avi_pool_config)
-
-    def test_profile_conversion(self):
-
-        profile_config = nsx_config['LbAppProfiles']
-        avi_app_profile_config = avi_config_file.get('ApplicationProfile', None)
-        avi_network_profile_confg = avi_config_file.get('NetworkProfile', None)
-
-        assert avi_app_profile_config
-        assert avi_network_profile_confg
-        assert len(profile_config) == len(avi_app_profile_config) + len(avi_network_profile_confg)
-
     def test_health_monitor_conversion(self):
 
-        avi_monitor_config = avi_config_file.get('HealthMonitor', None)
+        monitor_converter = MonitorConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        monitor_converter.convert(avi_config, nsx_config, '')
+        avi_monitor_config = avi_config.get('HealthMonitor', None)
         monitor_config = nsx_config['LbMonitorProfiles']
         assert avi_monitor_config
         non_passive_monitor_count = 0
@@ -97,6 +92,39 @@ class Test(unittest.TestCase):
                 index += 1
 
         assert non_passive_monitor_count == len(avi_monitor_config)
+
+
+    def test_pool_conversion(self):
+
+        pool_config = nsx_config['LbPools']
+        pool_converter = PoolConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        pool_converter.convert(avi_config, nsx_config, '', '')
+        avi_pool_config = avi_config['Pool']
+        print(avi_pool_config)
+        assert avi_pool_config
+
+        for index, pool in enumerate(avi_pool_config):
+            assert pool.get('name')
+            assert pool.get('lb_algorithm')
+            if pool_config[index].get('member'):
+                assert pool.get('servers')
+            if pool_config[index].get('active_monitor_path'):
+                assert len(pool['health_monitor_refs']) == len(pool_config[index]['active_monitor_path'])
+
+        assert len(pool_config) == len(avi_pool_config)
+
+    def test_profile_conversion(self):
+
+        profile_config = nsx_config['LbAppProfiles']
+        profile_converter = ProfileConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        profile_converter.convert(avi_config, nsx_config, '')
+        avi_app_profile_config = avi_config.get('ApplicationProfile', None)
+        avi_network_profile_confg = avi_config.get('NetworkProfile', None)
+
+        assert avi_app_profile_config
+        assert avi_network_profile_confg
+        assert len(profile_config) == len(avi_app_profile_config) + len(avi_network_profile_confg)
+
 
     def test_config_hm_http(self):
         avi_monitor_config = avi_config_file.get('HealthMonitor', None)
@@ -180,9 +208,7 @@ class Test(unittest.TestCase):
         for testing prefix in HealthMonitors
         """
         prefix = "AVI"
-
-        avi_config = dict()
-        monitor_converter = MonitorConfigConv(nsxt_attributes)
+        monitor_converter = MonitorConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
         monitor_converter.convert(avi_config, nsx_config, prefix)
         avi_monitor_config = avi_config.get('HealthMonitor', None)
         assert avi_monitor_config
@@ -195,15 +221,14 @@ class Test(unittest.TestCase):
         for testing prefix in Pool
         """
         prefix = "AVI"
-        avi_config = dict()
-        pool_converter = PoolConfigConv(nsxt_attributes)
+        pool_converter = PoolConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
         pool_converter.convert(avi_config, nsx_config, '', prefix)
         avi_pool_config = avi_config['Pool']
 
         assert avi_pool_config
         for pools in avi_pool_config:
             assert pools['name'].startswith(prefix)
-            if pools['health_monitor_refs']:
+            if pools.get('health_monitor_refs'):
                 for pool_hm in pools['health_monitor_refs']:
                     assert pool_hm.split('name=')[1].startswith(prefix)
 
@@ -212,8 +237,7 @@ class Test(unittest.TestCase):
         for testing prefix in ApplicationProfiles
         """
         prefix = "AVI"
-        avi_config = dict()
-        profile_converter = ProfileConfigConv(nsxt_attributes)
+        profile_converter = ProfileConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
         profile_converter.convert(avi_config, nsx_config, prefix)
         avi_app_profile_config = avi_config.get('ApplicationProfile', None)
         avi_network_profile_confg = avi_config.get('NetworkProfile', None)
@@ -225,12 +249,26 @@ class Test(unittest.TestCase):
         for np_pr in avi_network_profile_confg:
             assert np_pr['name'].startswith(prefix)
 
+    def test_vs_prefix(self):
+        """
+        for testing prefix in virtual service
+        """
+        prefix = "AVI"
+        vs_converter = VsConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        vs_converter.convert(avi_config, nsx_config, '',prefix)
+        avi_vs_config = avi_config.get('VirtualService', None)
+        assert avi_vs_config
+
+        for hm in avi_vs_config:
+            assert hm['name'].startswith(prefix)
+
+
     def test_migrate_to(self):
         """
         added migrate_to
         """
         migrate_to='NSX'
-        nsxt_config_converter.convert(nsx_config,input_path,output_path,'cloud','',migrate_to)
+        nsxt_config_converter.convert(nsx_config,input_path,output_path,'cloud','',migrate_to,object_merge_check)
 
     def test_skipped_object(self):
         """
@@ -242,5 +280,9 @@ class Test(unittest.TestCase):
             if row['NsxT SubType'] in ['LBPassiveMonitorProfile']:
                 assert row['Status'] == 'SKIPPED'
 
+    def test_object_merge(self):
+        """
+        testing with object merge flag
+        """
 
 

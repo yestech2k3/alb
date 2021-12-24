@@ -183,6 +183,40 @@ NSXT:
     - "id"
     - "idle_timeout"
 
+    VS_supported_attr:
+    - 'application_profile_path'
+    - 'destination'
+    - 'pool_path'
+    - 'persist'
+    - 'source-address-translation'
+    - 'description'
+    - 'disabled'
+    - 'translate-port'
+    - 'source'
+    - 'rate-limit'
+    - 'connection-limit'
+    - 'rules'
+    - "partition"
+    - 'enabled'
+    - 'ports'
+    - 'max_concurrent_connections'
+    - 'ip_address'
+    - 'lb_persistence_profile_path'
+    - 'lb_service_path'
+    - 'display_name'
+    - 'id'
+    - 'resource_type'
+    - 'client_ssl_profile_binding'
+    - 'server_ssl_profile_binding'
+    - 'default_pool_member_ports'
+
+    VS_client_ssl_supported_attr:
+    - 'ssl_profile_path'
+    - 'default_certificate_path'
+
+    VS_server_ssl_supported_attr:
+    - 'ssl_profile_path'
+    - 'client_certificate_path'
 
     Common_Na_List:
     - "path"

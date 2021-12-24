@@ -48,16 +48,17 @@ class VsConfigConv(object):
                     cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud')
 
                 )
-                tier1_ref = ''
+                tier1_lr = ''
                 for ref in nsx_lb_config['LBServices']:
                     if lb_vs['lb_service_path'] == ref['path']:
-                        tier1_ref = ref['connectivity_path']
+                        tier1_lr = ref['connectivity_path']
 
                 if lb_vs.get('ip_address'):
                     vip = dict(
                         name=name + '-vsvip',
-                        tier1_ref=tier1_ref,
-                        vip=[
+                        tier1_lr=tier1_lr,
+                        cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
+                    vip=[
                             dict(
                                 ip_address=dict(
                                     addr=lb_vs.get('ip_address'),
@@ -113,6 +114,13 @@ class VsConfigConv(object):
                     self.update_pool_with_persistence(alb_config['Pool'], lb_vs,
                                                       pool_name, self.object_merge_check, self.merge_object_mapping,
                                                       prefix)
+
+                for pool in alb_config['Pool']:
+                    if pool.get('name') == pool_name:
+                        if lb_vs.get('default_pool_member_ports'):
+                            pool['default_port'] = lb_vs['default_pool_member_ports']
+                        pool['tier1_lr']=tier1_lr
+
                 indirect = []
                 u_ignore = []
                 ignore_for_defaults = {}
@@ -148,8 +156,6 @@ class VsConfigConv(object):
                         if ssl_name:
                             ssl_ref = ssl_name
                     pool['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_ref
-                if lb_vs.get('default_pool_member_ports'):
-                    pool['default_port'] = lb_vs['default_pool_member_ports']
 
     def update_pool_with_persistence(self, alb_pool_config, lb_vs, pool_name, object_merge_check, merge_object_mapping,
                                      prefix):

@@ -3,14 +3,15 @@ import time, logging
 import com.vmware.nsx_policy.model_client as model_client
 
 from avi.migrationtools.avi_migration_utils import update_count
-from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
+from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil, csv_writer_dict_list
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.avi_migration_utils import MigrationUtil
 
 LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
-common_avi_util=MigrationUtil()
+common_avi_util = MigrationUtil()
+
 
 class MonitorConfigConv(object):
     def __init__(self, nsxt_monitor_attributes, object_merge_check, merge_object_mapping, sys_dict):
@@ -94,6 +95,8 @@ class MonitorConfigConv(object):
         alb_config['HealthMonitor'] = list()
         converted_objs = []
         progressbar_count = 0
+        skipped_list = []
+        converted_alb_monitor = []
         total_size = len(nsx_lb_config['LbMonitorProfiles'])
         print("Converting Monitors...")
         LOG.info('[MONITOR] Converting Monitors...')
@@ -135,28 +138,27 @@ class MonitorConfigConv(object):
                 indirect = []
                 u_ignore = []
                 ignore_for_defaults = {}
+                skipped_list.append(skipped)
                 if self.object_merge_check:
                     common_avi_util.update_skip_duplicates(alb_hm,
-                                                         alb_config['HealthMonitor'], 'health_monitor',
-                                                         converted_objs, name, None, self.merge_object_mapping,
-                                                         monitor_type, prefix,
-                                                         self.sys_dict['HealthMonitor'])
+                                                           alb_config['HealthMonitor'], 'health_monitor',
+                                                           converted_objs, name, None, self.merge_object_mapping,
+                                                           monitor_type, prefix,
+                                                           self.sys_dict['HealthMonitor'])
                     self.monitor_count += 1
                 else:
                     alb_config['HealthMonitor'].append(alb_hm)
-                conv_status = conv_utils.get_conv_status(
-                    skipped, indirect, ignore_for_defaults, nsx_lb_config['LbMonitorProfiles'],
-                    u_ignore, na_list)
-                conv_utils.add_conv_status('monitor', monitor_type, alb_hm['name'], conv_status,
-                                           [{'health_monitor': alb_hm}])
+                val = dict(
+                    name=name,
+                    resource_type=lb_hm['resource_type'],
+                    alb_hm=alb_hm
 
-                # alb_config['HealthMonitor'].append(alb_hm)
+                )
+                converted_alb_monitor.append(val)
                 msg = "Monitor conversion started..."
                 conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                               prefix='Progress', suffix='')
                 # time.sleep(1)
-                if len(conv_status['skipped']) > 0:
-                    LOG.debug('[MONITOR] Skipped Attribute {}:{}'.format(lb_hm['display_name'], conv_status['skipped']))
 
                 LOG.info('[MONITOR] Migration completed for HM {}'.format(lb_hm['display_name']))
             except:
@@ -165,6 +167,21 @@ class MonitorConfigConv(object):
                           exc_info=True)
                 conv_utils.add_status_row('applicationprofile', None, lb_hm['display_name'],
                                           conv_const.STATUS_ERROR)
+
+        for index, skipped in enumerate(skipped_list):
+            conv_status = conv_utils.get_conv_status(
+                skipped_list[index], indirect, ignore_for_defaults, nsx_lb_config['LbMonitorProfiles'],
+                u_ignore, na_list)
+            name = converted_alb_monitor[index]['name']
+            alb_mig_hm = converted_alb_monitor[index]['alb_hm']
+            resource_type = converted_alb_monitor[index]['resource_type']
+            if self.object_merge_check:
+                alb_mig_hm = [hm for hm in alb_config['HealthMonitor'] if
+                              hm.get('name') == self.merge_object_mapping['health_monitor'].get(name)]
+            conv_utils.add_conv_status('monitor', resource_type, name, conv_status,
+                                           [{'health_monitor': alb_mig_hm}])
+            if len(conv_status['skipped']) > 0:
+                LOG.debug('[Monitor] Skipped Attribute {}:{}'.format(name, conv_status['skipped']))
 
     def get_name_type(self, lb_hm):
         """
