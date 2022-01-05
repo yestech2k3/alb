@@ -1,6 +1,7 @@
 
 from avi.migrationtools.nsxt_converter import nsxt_client as nsx_client_util
-
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 class NSXUtil():
 
     nsx_api_client = None
@@ -18,5 +19,6 @@ class NSXUtil():
         nsx_lb_config["LbClientSslProfiles"] = self.nsx_api_client.infra.LbClientSslProfiles.list().to_dict()["results"]
         nsx_lb_config["LbServerSslProfiles"] = self.nsx_api_client.infra.LbServerSslProfiles.list().to_dict()["results"]
         nsx_lb_config['LbVirtualServers'] = self.nsx_api_client.infra.LbVirtualServers.list().to_dict().get('results',[])
+        nsx_lb_config["LbPersistenceProfiles"] = self.nsx_api_client.infra.LbPersistenceProfiles.list().to_dict()["results"]
         return nsx_lb_config
 

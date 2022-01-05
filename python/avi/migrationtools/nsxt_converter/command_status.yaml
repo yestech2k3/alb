@@ -218,6 +218,36 @@ NSXT:
     - 'ssl_profile_path'
     - 'client_certificate_path'
 
+    SSLProfile_Client_Supported_Attributes:
+    - "ciphers"
+    - "protocols"
+    - "session_cache_enabled"
+    - "session_cache_timeout"
+    - "display_name"
+    - "id"
+    - "resource_type"
+
+    SSLProfile_Server_Supported_Attributes:
+    - "ciphers"
+    - "protocols"
+    - "session_cache_enabled"
+    - "session_cache_timeout"
+    - "display_name"
+    - "id"
+    - "resource_type"
+
+    PersistenceProfile_Supported_Attributes:
+    - "display_name"
+    - "id"
+    - "resource_type"
+
+    CookiePersistenceProfile_Supported_Attributes:
+    - "cookie_name"
+    - "cookie_max_idle"
+
+    SourcePersistenceProfile_Supported_Attributes:
+    - "timeout"
+
     Common_Na_List:
     - "path"
     - "relative_path" 

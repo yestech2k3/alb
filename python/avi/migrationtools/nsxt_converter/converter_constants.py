@@ -8,6 +8,8 @@ STATUS_SKIPPED = 'SKIPPED'
 STATUS_SUCCESSFUL = 'SUCCESSFUL'
 STATUS_ERROR = 'ERROR'
 
+PLACE_HOLDER_STR = "auto_created"
+
 def init():
     """
     This function defines that to initialize constant from yaml file

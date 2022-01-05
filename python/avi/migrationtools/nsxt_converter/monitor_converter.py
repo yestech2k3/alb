@@ -105,6 +105,8 @@ class MonitorConfigConv(object):
                 LOG.info('[MONITOR] Migration started for HM {}'.format(lb_hm['display_name']))
                 progressbar_count += 1
                 if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
+                    conv_utils.add_status_row('monitor', lb_hm['resource_type'], lb_hm['display_name'],
+                                              conv_const.STATUS_SKIPPED)
                     continue
 
                 monitor_type, name = self.get_name_type(lb_hm)
@@ -165,7 +167,7 @@ class MonitorConfigConv(object):
                 update_count('error')
                 LOG.error("[MONITOR] Failed to convert Monitor: %s" % lb_hm['display_name'],
                           exc_info=True)
-                conv_utils.add_status_row('applicationprofile', None, lb_hm['display_name'],
+                conv_utils.add_status_row('monitor', None, lb_hm['display_name'],
                                           conv_const.STATUS_ERROR)
 
         for index, skipped in enumerate(skipped_list):
@@ -216,6 +218,7 @@ class MonitorConfigConv(object):
             # self.create_sslprofile(alb_hm, lb_hm, avi_config,
             #                        tenant_ref, cloud_name, merge_object_mapping,
             #                        sys_dict)
+
 
         skipped = [key for key in skipped if key not in self.https_attr]
 
