@@ -44,6 +44,7 @@ class NsxtConverter(AviConverter):
         self.controller_version = args.controller_version
         self.ansible_filter_types = args.ansible_filter_types
         self.vs_level_status=args.vs_level_status
+        self.run_on_local = args.run_on_local
         self.output_file_path = args.output_file_path if args.output_file_path \
             else 'output'
         self.migrate_to = args.migrate_to
@@ -151,6 +152,7 @@ if __name__ == "__main__":
     parser.add_argument('--not_in_use',
                         help='Flag for skipping not in use object',
                         action="store_true")
+
     parser.add_argument('--no_object_merge',
                         help='Flag for object merge', action='store_false')
     parser.add_argument('-s', '--vs_state', choices=ARG_CHOICES['vs_state'],
@@ -158,6 +160,10 @@ if __name__ == "__main__":
     parser.add_argument('--vrf',
                         help='Update the available vrf ref with the custom vrf'
                              'reference')
+    parser.add_argument('--run_on_local',
+                        help='Flag for running script in nsx manager',
+                        action="store_true")
+
 
 
     args = parser.parse_args()

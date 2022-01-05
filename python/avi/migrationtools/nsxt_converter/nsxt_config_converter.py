@@ -12,7 +12,10 @@ import os
 import json
 from avi.migrationtools.nsxt_converter.alb_converter import ALBConverter
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
+
 from avi.migrationtools.nsxt_converter.vs_converter import VsConfigConv
+from avi.migrationtools.nsxt_converter.persistant_converter import PersistantProfileConfigConv
+
 from avi.migrationtools.nsxt_converter.pools_converter import PoolConfigConv
 from avi.migrationtools.nsxt_converter.profile_converter \
     import ProfileConfigConv
@@ -62,16 +65,22 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
         profile_converter = ProfileConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping, sys_dict)
         profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
 
+
         vs_converter = VsConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping,sys_dict)
         vs_converter.convert(avi_config_dict,nsx_lb_config,cloud_name,prefix,vs_state,controller_version,vrf)
 
-        # TO-DO
-        # ssl_profile_converter = SslProfileConfigConv(nsxt_attributes)
-        # ssl_profile_converter.convert(alb_config, nsx_lb_config, prefix)
+
+        ssl_profile_converter = SslProfileConfigConv(nsxt_attributes)
+        ssl_profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
+
+        persistence_profile_converter = PersistantProfileConfigConv(nsxt_attributes)
+        persistence_profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
+
 
         # Validating the aviconfig after generation
         conv_utils.validation(avi_config_dict)
-    except:
+    except Exception as e:
+        LOG.error(e)
         update_count('warning')
         LOG.error("Conversion error", exc_info=True)
 
