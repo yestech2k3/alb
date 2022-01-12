@@ -1737,7 +1737,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Maximum connections per second per client ip.
      * Allowed values are 10-1000.
-     * Special values are 0- 'unlimited'.
+     * Special values are 0- unlimited.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return maxCpsPerClient
      */
@@ -1749,7 +1749,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Maximum connections per second per client ip.
      * Allowed values are 10-1000.
-     * Special values are 0- 'unlimited'.
+     * Special values are 0- unlimited.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param maxCpsPerClient set the maxCpsPerClient.
      */
