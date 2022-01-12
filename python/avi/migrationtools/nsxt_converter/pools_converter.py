@@ -130,7 +130,7 @@ class PoolConfigConv(object):
                     nsx_lb_config['LbPools'], u_ignore, na_list)
 
                 conv_utils.add_conv_status(
-                    'pool', lb_type, alb_pl['name'], conv_status,
+                    'pool', None, alb_pl['name'], conv_status,
                     {'pools': [alb_pl]})
                 msg = "Pools conversion started..."
                 conv_utils.print_progress_bar(

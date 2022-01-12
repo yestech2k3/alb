@@ -4,6 +4,7 @@ from avi.migrationtools.avi_migration_utils import MigrationUtil
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.avi_migration_utils import update_count
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
+import avi.migrationtools.nsxt_converter.converter_constants as final
 
 LOG = logging.getLogger(__name__)
 
@@ -23,14 +24,17 @@ class VsConfigConv(object):
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
+        self.certkey_count = 0
 
     def convert(self, alb_config, nsx_lb_config, cloud_name, prefix, vs_state, controller_version,vrf=None):
         '''
         LBVirtualServer to Avi Config vs converter
         '''
-
+        converted_alb_ssl_certs = list()
         alb_config['VirtualService'] = list()
-        alb_config['VsVip'] = []
+        alb_config['VsVip'] = list()
+        alb_config['SSLKeyAndCertificate'] = list()
+
         progressbar_count = 0
         total_size = len(nsx_lb_config['LbVirtualServers'])
         print("\nConverting Virtual Services ...")
@@ -44,7 +48,6 @@ class VsConfigConv(object):
                 name = lb_vs.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
-                vs_name = name
                 alb_vs = dict(
                     name=name,
                     enabled=lb_vs.get('enabled'),
@@ -98,11 +101,19 @@ class VsConfigConv(object):
                         max_concurrent_connections=lb_vs.get('max_concurrent_connections')
                     )
                 if lb_vs.get('client_ssl_profile_binding'):
-                    if lb_vs['client_ssl_profile_binding'].get('ssl_profile_path'):
-                        ssl_ref = lb_vs['client_ssl_profile_binding']['ssl_profile_path'].split('/')[-1]
+                    client_ssl =  lb_vs.get('client_ssl_profile_binding')
+                    if client_ssl.get('ssl_profile_path'):
+                        ssl_ref = client_ssl['ssl_profile_path'].split('/')[-1]
                         if prefix:
                             ssl_ref = prefix + '-' + ssl_ref
                         alb_vs['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_ref
+                    if client_ssl.get('default_certificate_path', None):
+                        ca_cert_obj = self.update_ca_cert_obj(name, alb_config, [], "admin", prefix)
+                        ssl_key_cert_refs = []
+                        ssl_key_cert_refs.append("/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name"))
+                        alb_vs["ssl_key_and_certificate_refs"] = list(set(ssl_key_cert_refs))
+                        converted_alb_ssl_certs.append(ca_cert_obj)
+
                     skipped = [val for val in skipped
                                if val not in self.client_ssl_attr]
                 if lb_vs.get('pool_path'):
@@ -113,7 +124,7 @@ class VsConfigConv(object):
                     alb_vs['pool_ref'] = '/api/pool/?tenant=admin&name=' + pool_name
                     if lb_vs.get('server_ssl_profile_binding'):
                         self.update_pool_with_ssl(alb_config, lb_vs, pool_name, self.object_merge_check,
-                                                  self.merge_object_mapping, prefix)
+                                                  self.merge_object_mapping, prefix, converted_alb_ssl_certs)
                         skipped = [val for val in skipped
                                    if val not in self.server_ssl_attr]
                 if lb_vs.get('lb_persistence_profile_path'):
@@ -132,7 +143,7 @@ class VsConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbVirtualServers'],
                     u_ignore, na_list)
-                conv_utils.add_conv_status('virtual', lb_vs['resource_type'], alb_vs['name'], conv_status,
+                conv_utils.add_conv_status('virtualservice', None, alb_vs['name'], conv_status,
                                            alb_vs)
                 alb_config['VirtualService'].append(alb_vs)
 
@@ -144,23 +155,42 @@ class VsConfigConv(object):
                                                                                 conv_status['skipped']))
 
                 LOG.info('[VirtualService] Migration completed for HM {}'.format(lb_vs['display_name']))
-            except:
+            except Exception as e:
+                LOG.error("[VirtualService] Failed to convert VirtualService: {}".format(e))
                 update_count('error')
                 LOG.error("[VirtualServer] Failed to convert Monitor: %s" % lb_vs['display_name'],
                           exc_info=True)
                 conv_utils.add_status_row('virtual', None, lb_vs['display_name'],
                                           conv_const.STATUS_ERROR)
 
-    def update_pool_with_ssl(self, alb_config, lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix):
+        for cert in converted_alb_ssl_certs:
+            indirect = []
+            u_ignore = []
+            ignore_for_defaults = {}
+            conv_status = conv_utils.get_conv_status(
+                [], indirect, ignore_for_defaults, [],
+                u_ignore, [])
+            conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
+                                       cert)
+
+
+    def update_pool_with_ssl(self, alb_config, lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix, converted_alb_ssl_certs):
         for pool in alb_config['Pool']:
             if pool.get('name') == pool_name:
-                if lb_vs['server_ssl_profile_binding'].get('ssl_profile_path'):
-                    ssl_ref = prefix + '-' + lb_vs['server_ssl_profile_binding']['ssl_profile_path'].split('/')[-1]
+                server_ssl = lb_vs['server_ssl_profile_binding']
+                if server_ssl.get('ssl_profile_path'):
+                    ssl_ref = server_ssl['ssl_profile_path'].split('/')[-1]
+                    if prefix:
+                        ssl_ref = prefix + '-' + ssl_ref
                     if object_merge_check:
                         ssl_name = merge_object_mapping['ssl_profile'].get(ssl_ref)
                         if ssl_name:
                             ssl_ref = ssl_name
                     pool['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_ref
+                if server_ssl.get('client_certificate_path', None):
+                    ca_cert_obj = self.update_ca_cert_obj(pool_name, alb_config, [], "admin", prefix)
+                    pool["ssl_key_and_certificate_ref"] = "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name")
+                    converted_alb_ssl_certs.append(ca_cert_obj)
 
     def update_pool_with_persistence(self, alb_pool_config, lb_vs, pool_name, object_merge_check, merge_object_mapping,
                                      prefix):
@@ -184,3 +214,53 @@ class VsConfigConv(object):
 
         return '/api/applicationprofile/?tenant=admin&name=' + profile_name
 
+    def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant, prefix, cert_type='SSL_CERTIFICATE_TYPE_CA', ca_cert=None):
+        """
+        This method create the certs if certificate not present at location
+        it create placeholder certificate.
+        :return:
+        """
+
+        cert_name = [cert['name'] for cert in avi_config.get("SSLKeyAndCertificate", [])
+                     if cert['name'].__contains__(name) and cert['type'] == cert_type]
+
+        if cert_name:
+            LOG.warning(
+                'SSL ca cert is already exist')
+
+            for cert in avi_config.get("SSLKeyAndCertificate", []):
+                if cert['name'].__contains__(name) and cert['type'] == cert_type:
+                    return cert
+            return None
+
+        if not ca_cert:
+            key, ca_cert = conv_utils.create_self_signed_cert()
+            name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
+            LOG.warning('Create self cerificate and key for : %s' % name)
+
+        ca_cert_obj = None
+
+        if ca_cert:
+            cert = {"certificate": ca_cert if type(ca_cert) == str else ca_cert.decode()}
+            ca_cert_obj = {
+                'name': name,
+                'tenant_ref': conv_utils.get_object_ref(tenant, 'tenant'),
+                'certificate': cert,
+                'type': 'SSL_CERTIFICATE_TYPE_VIRTUALSERVICE'
+            }
+            LOG.info('Added new ca certificate for %s' % name)
+        if ca_cert_obj and self.object_merge_check:
+            if final.PLACE_HOLDER_STR not in ca_cert_obj['name']:
+                conv_utils.update_skip_duplicates(
+                    ca_cert_obj, avi_config['SSLKeyAndCertificate'],
+                    'ssl_cert_key', converted_objs, name, None,
+                    self.merge_object_mapping, None, prefix,
+                    self.sys_dict['SSLKeyAndCertificate'])
+            else:
+                converted_objs.append({'ssl_cert_key': ca_cert_obj})
+                avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
+            self.certkey_count += 1
+        else:
+            converted_objs.append({'ssl_cert_key': ca_cert_obj})
+            avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
+        return ca_cert_obj

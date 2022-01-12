@@ -69,13 +69,15 @@ class NsxtConverter(AviConverter):
         nsx_lb_config = nsx_util.get_nsx_config()
         alb_config = nsxt_config_converter.convert(
             nsx_lb_config, input_path, output_path,
-            self.cloud_name, self.prefix, self.migrate_to,self.object_merge_check,self.controller_version,self.vs_state
-            ,self.vs_level_status,self.vrf
+            self.cloud_name, self.prefix, self.migrate_to,self.object_merge_check,self.controller_version,self.vs_state ,
+            self.vs_level_status,self.vrf
             )
         avi_config = self.process_for_utils(alb_config)
         output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
                        "output")
         self.write_output(avi_config, output_path, 'avi_config.json')
+        if self.ansible:
+            self.convert(alb_config)
         if self.option == 'auto-upload':
             self.upload_config_to_controller(alb_config)
         print("Total Warning: ", get_count('warning'))
@@ -88,6 +90,16 @@ class NsxtConverter(AviConverter):
             alb_config, self.controller_ip, self.user, self.password,
             self.tenant)
 
+    def convert(self, alb_config):
+        output_path = (self.output_file_path + os.path.sep + self.nsxt_ip +
+                       os.path.sep + "output")
+        avi_traffic = AviAnsibleConverterMigration(
+            alb_config, output_path, self.prefix, self.not_in_use,
+             skip_types=self.ansible_skip_types,
+             controller_version=self.controller_version,
+            filter_types=self.ansible_filter_types)
+        avi_traffic.write_ansible_playbook(
+            self.nsxt_ip, self.nsxt_user, self.nsxt_passord, 'nsxt')
 
 if __name__ == "__main__":
     HELP_STR = """
