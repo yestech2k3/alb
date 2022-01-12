@@ -178,7 +178,7 @@ type VirtualService struct {
 	// List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Basic edition, Essentials edition, Enterprise edition.
 	Markers []*RoleFilterMatchLabel `json:"markers,omitempty"`
 
-	// Maximum connections per second per client IP. Allowed values are 10-1000. Special values are 0- 'unlimited'.
+	// Maximum connections per second per client IP. Allowed values are 10-1000. Special values are 0- unlimited.
 	MaxCpsPerClient *int32 `json:"max_cps_per_client,omitempty"`
 
 	// Microservice representing the virtual service. It is a reference to an object of type MicroService.
