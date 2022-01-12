@@ -27,12 +27,14 @@ LOG = logging.getLogger(__name__)
 conv_utils = NsxtConvUtil()
 
 merge_object_mapping = {
-
     'ssl_profile': {'no': 0},
     'app_profile': {'no': 0},
     'network_profile': {'no': 0},
+    'app_per_profile': {'no': 0},
+    'pki_profile': {'no': 0},
     'health_monitor': {'no': 0},
-    'ssl_cert_key': {'no': 0}
+    'ssl_cert_key': {'no': 0},
+    'ip_group': {'no': 0}
 }
 
 
@@ -62,19 +64,18 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
         pool_converter = PoolConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         pool_converter.convert(avi_config_dict, nsx_lb_config, cloud_name, prefix)
 
-        profile_converter = ProfileConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping, sys_dict)
+        profile_converter = ProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
+
+        ssl_profile_converter = SslProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
+        ssl_profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
+
+        persist_conv = PersistantProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
+        persist_conv.convert(avi_config_dict, nsx_lb_config, prefix)
 
 
         vs_converter = VsConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping,sys_dict)
         vs_converter.convert(avi_config_dict,nsx_lb_config,cloud_name,prefix,vs_state,controller_version,vrf)
-
-
-        ssl_profile_converter = SslProfileConfigConv(nsxt_attributes)
-        ssl_profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
-
-        persistence_profile_converter = PersistantProfileConfigConv(nsxt_attributes)
-        persistence_profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
 
 
         # Validating the aviconfig after generation
@@ -110,6 +111,15 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
 
                 continue
             # Added code to print merged count.
+            elif object_merge_check and key == 'SSLProfile':
+                mergedfile = len(avi_config_dict[key]) - ssl_profile_converter.ssl_profile_count
+                profile_merged_message = \
+                    'Total Objects of %s : %s (%s/%s profile merged)' % \
+                    (key, len(avi_config_dict[key]), abs(mergedfile),
+                     ssl_profile_converter.ssl_profile_count)
+                LOG.info(profile_merged_message)
+                print(profile_merged_message)
+                continue
             elif object_merge_check and key == 'HealthMonitor':
                 mergedmon = len(avi_config_dict[key]) - monitor_converter.monitor_count
                 monitor_merged_message = \
@@ -136,6 +146,16 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
                      profile_converter.np_pr_count)
                 LOG.info(merged_message)
                 print(merged_message)
+                continue
+            elif object_merge_check and key == 'ApplicationPersistenceProfile':
+                mergedfile = len(avi_config_dict[key]) - \
+                             persist_conv.app_per_count
+                profile_merged_message = \
+                    'Total Objects of %s : %s (%s/%s profile merged)' % \
+                    (key, len(avi_config_dict[key]), abs(mergedfile),
+                     persist_conv.app_per_count)
+                LOG.info(profile_merged_message)
+                print(profile_merged_message)
                 continue
             LOG.info('Total Objects of %s : %s' % (key, len(
                 avi_config_dict[key])))

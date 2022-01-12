@@ -1,7 +1,7 @@
 import logging
 import os
 
-from avi.migrationtools.avi_migration_utils import update_count
+from avi.migrationtools.avi_migration_utils import update_count, MigrationUtil
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 import avi.migrationtools.nsxt_converter.converter_constants as final
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
@@ -10,22 +10,29 @@ import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
+common_avi_util = MigrationUtil()
 class SslProfileConfigConv(object):
-    def __init__(self, nsxt_profile_attributes):
+    def __init__(self, nsxt_profile_attributes, object_merge_check, merge_object_mapping, sys_dict):
         """
 
         """
         self.supported_client_ssl_attributes = nsxt_profile_attributes['SSLProfile_Client_Supported_Attributes']
         self.supported_server_ssl_attributes = nsxt_profile_attributes['SSLProfile_Server_Supported_Attributes']
         self.common_na_attr = nsxt_profile_attributes['Common_Na_List']
-        #TODO
-        self.object_merge_check = None
+        self.object_merge_check = object_merge_check
+        self.merge_object_mapping = merge_object_mapping
+        self.sys_dict = sys_dict
+        self.ssl_profile_count = 0
         self.certkey_count = 0
 
 
     def convert(self, alb_config, nsx_lb_config, prefix):
         alb_config["SSLProfile"] = []
         if nsx_lb_config.get('LbClientSslProfiles'):
+            converted_objs = []
+            skipped_list = []
+            converted_alb_ssl = []
+            na_list = []
             progressbar_count = 0
             total_size = len(nsx_lb_config['LbClientSslProfiles'])
             print("\nConverting Client SSL Profile ...")
@@ -36,8 +43,9 @@ class SslProfileConfigConv(object):
                     LOG.info('[SSL-PROFILE] Migration started for AP {}'.format(lb_ssl['display_name']))
                     skipped = [val for val in lb_ssl.keys()
                                if val not in self.supported_client_ssl_attributes]
-                    na_list = [val for val in lb_ssl.keys()
+                    na_attr = [val for val in lb_ssl.keys()
                                if val in self.common_na_attr]
+                    na_list.append(na_attr)
 
                     progressbar_count += 1
                     name = lb_ssl.get('display_name')
@@ -57,34 +65,64 @@ class SslProfileConfigConv(object):
                     if lb_ssl.get("protocols"):
                         self.convert_protocols(lb_ssl['protocols'], alb_ssl)
 
-                    indirect = []
-                    u_ignore = []
-                    ignore_for_defaults = {}
-                    conv_status = conv_utils.get_conv_status(
-                        skipped, indirect, ignore_for_defaults, nsx_lb_config['LbMonitorProfiles'],
-                        u_ignore, na_list)
+                    skipped_list.append(skipped)
+                    ##
+                    if self.object_merge_check:
+                        common_avi_util.update_skip_duplicates(alb_ssl,
+                                                               alb_config['SSLProfile'],
+                                                               'ssl_profile',
+                                                               converted_objs, name, None, self.merge_object_mapping,
+                                                               lb_ssl['resource_type'], prefix,
+                                                               self.sys_dict['SSLProfile'])
+                        self.ssl_profile_count += 1
+                    else:
+                        alb_config['SSLProfile'].append(alb_ssl)
 
-                    conv_utils.add_conv_status('sslprofile', lb_ssl['resource_type'], alb_ssl['name'], conv_status,
-                                               [{'ssl_profile': alb_ssl}])
+                    val = dict(
+                        name=name,
+                        resource_type=lb_ssl['resource_type'],
+                        alb_ssl=alb_ssl
 
-                    alb_config['SSLProfile'].append(alb_ssl)
+                    )
+                    converted_alb_ssl.append(val)
+
                     msg = "SSLProfile conversion started..."
                     conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                                   prefix='Progress', suffix='')
-                    # time.sleep(1)
-                    if len(conv_status['skipped']) > 0:
-                        LOG.debug(
-                            '[SSL-PROFILE] Skipped Attribute {}:{}'.format(lb_ssl['display_name'], conv_status['skipped']))
 
                     LOG.info('[SSL-PROFILE] Migration completed for HM {}'.format(lb_ssl['display_name']))
-
                 except:
                     update_count('error')
                     LOG.error("[SSL-PROFILE] Failed to convert Client SSLProfile: %s" % lb_ssl['display_name'],
                               exc_info=True)
                     conv_utils.add_status_row('sslprofile', None, lb_ssl['display_name'],
                                               conv_const.STATUS_ERROR)
+
+            indirect = []
+            u_ignore = []
+            ignore_for_defaults = {}
+            for index, skipped in enumerate(skipped_list):
+                conv_status = conv_utils.get_conv_status(
+                    skipped_list[index], indirect, ignore_for_defaults, nsx_lb_config['LbClientSslProfiles'],
+                    u_ignore, na_list[index])
+                name = converted_alb_ssl[index]['name']
+                alb_mig_ssl = converted_alb_ssl[index]['alb_ssl']
+                resource_type = converted_alb_ssl[index]['resource_type']
+                if self.object_merge_check:
+                    alb_mig_ssl = [pp for pp in alb_config['SSLProfile'] if
+                                  pp.get('name') == self.merge_object_mapping['ssl_profile'].get(name)]
+                conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
+                                           [{'ssl_profile': alb_mig_ssl[0]}])
+                if len(conv_status['skipped']) > 0:
+                    LOG.debug(
+                        '[SSL-PROFILE] Skipped Attribute {}:{}'.format(name,
+                                                                       conv_status['skipped']))
+
         if nsx_lb_config.get('LbServerSslProfiles'):
+            converted_objs = []
+            skipped_list = []
+            converted_alb_ssl = []
+            na_list = []
             progressbar_count = 0
             total_size = len(nsx_lb_config['LbServerSslProfiles'])
             print("\nConverting Server SSL Profile ...")
@@ -95,8 +133,9 @@ class SslProfileConfigConv(object):
                     LOG.info('[SSL-PROFILE] Migration started for AP {}'.format(lb_ssl['display_name']))
                     skipped = [val for val in lb_ssl.keys()
                                if val not in self.supported_client_ssl_attributes]
-                    na_list = [val for val in lb_ssl.keys()
+                    na_attr = [val for val in lb_ssl.keys()
                                if val in self.common_na_attr]
+                    na_list.append(na_attr)
                     progressbar_count += 1
                     name = lb_ssl.get('display_name')
                     if prefix:
@@ -109,25 +148,30 @@ class SslProfileConfigConv(object):
                     if lb_ssl.get("protocols"):
                         self.convert_protocols(lb_ssl['protocols'], alb_ssl)
 
-                    indirect = []
-                    u_ignore = []
-                    ignore_for_defaults = {}
-                    conv_status = conv_utils.get_conv_status(
-                        skipped, indirect, ignore_for_defaults, nsx_lb_config['LbMonitorProfiles'],
-                        u_ignore, na_list)
+                    skipped_list.append(skipped)
+                    ##
+                    if self.object_merge_check:
+                        common_avi_util.update_skip_duplicates(alb_ssl,
+                                                               alb_config['SSLProfile'],
+                                                               'ssl_profile',
+                                                               converted_objs, name, None, self.merge_object_mapping,
+                                                               lb_ssl['resource_type'], prefix,
+                                                               self.sys_dict['SSLProfile'])
+                        self.ssl_profile_count += 1
+                    else:
+                        alb_config['SSLProfile'].append(alb_ssl)
 
-                    conv_utils.add_conv_status('sslprofile', lb_ssl['resource_type'], alb_ssl['name'], conv_status,
-                                               [{'ssl_profile': alb_ssl}])
+                    val = dict(
+                        name=name,
+                        resource_type=lb_ssl['resource_type'],
+                        alb_ssl=alb_ssl
 
-                    alb_config['SSLProfile'].append(alb_ssl)
+                    )
+                    converted_alb_ssl.append(val)
+
                     msg = "SSLProfile conversion started..."
                     conv_utils.print_progress_bar(progressbar_count, total_size, msg,
                                                   prefix='Progress', suffix='')
-                    # time.sleep(1)
-                    if len(conv_status['skipped']) > 0:
-                        LOG.debug(
-                            '[SSL-PROFILE] Skipped Attribute {}:{}'.format(lb_ssl['display_name'],
-                                                                           conv_status['skipped']))
 
                     LOG.info('[SSL-PROFILE] Migration completed for HM {}'.format(lb_ssl['display_name']))
                 except:
@@ -136,164 +180,26 @@ class SslProfileConfigConv(object):
                               exc_info=True)
                     conv_utils.add_status_row('sslprofile', None, lb_ssl['display_name'],
                                               conv_const.STATUS_ERROR)
-        alb_config['SSLKeyAndCertificate'] = list()
-        self.update_ca_cert_obj("avi-self-sighned-certificate", alb_config, [], "admin")
 
-
-    def update_key_cert_obj(self, name, key_file_name, cert_file_name,
-                            input_dir, tenant, avi_config, converted_objs,
-                            default_profile_name, key_and_cert_mapping_list,
-                            merge_object_mapping, sys_dict):
-        """
-        This method create the certs if certificate not present at location
-        it create placeholder certificate.
-        :param name: name of certificate.
-        :param key_file_name: name of keyfile of cert
-        :param cert_file_name: name of cert file
-        :param input_dir: location of cert and key
-        :param tenant: tenant name
-        :param avi_config: converted avi config dict
-        :param converted_objs: list of converted object profile
-        :param default_profile_name: name of default profile name.
-        :param key_and_cert_mapping_list: list of key and cert
-        :param merge_object_mapping: merged object dict for merging objects
-        :param sys_dict: baseline objects
-        :return:
-        """
-
-        cert_name = [cert['name'] for cert in key_and_cert_mapping_list if
-                     cert['key_file_name'] == key_file_name and
-                     cert['cert_file_name'] == cert_file_name]
-
-        if cert_name:
-            LOG.warning(
-                'SSL key and Certificate is already exist for %s and %s is %s' %
-                (key_file_name, cert_file_name, cert_name[0]))
-            return
-        folder_path = input_dir + os.path.sep
-        key = None
-        cert = None
-        if key_file_name and cert_file_name:
-            # Removed / from key_file_name to get name of file.
-            if '/' in key_file_name:
-                key_file_name = key_file_name.split('/')[-1]
-            # Removed / from cert_file_name to get name of file.
-            if '/' in cert_file_name:
-                cert_file_name = cert_file_name.split('/')[-1]
-            key = conv_utils.upload_file(folder_path + key_file_name)
-            cert = conv_utils.upload_file(folder_path + cert_file_name)
-
-        is_key_protected = False
-        if key:
-            # Check kay is passphrase protected or not
-            is_key_protected = conv_utils.is_certificate_key_protected(
-                input_dir + os.path.sep + key_file_name)
-
-        if cert and key:
-            # Flag to check expiry date of certificate. if expired then
-            # create placeholder certificate.
-            if not conv_utils.check_certificate_expiry(input_dir,
-                                                    cert_file_name):
-                cert, key = None, None
-
-        key_passphrase = None
-        # Get the key passphrase for key_file
-        if is_key_protected and self.f5_passphrase_keys:
-            key_passphrase = self.f5_passphrase_keys.get(key_file_name, None)
-
-        if is_key_protected and not key_passphrase:
-            key = None
-
-        if not key or not cert:
-            key, cert = conv_utils.create_self_signed_cert()
-            name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
-            LOG.warning('Create self cerificate and key for : %s' % name)
-
-        ssl_kc_obj = None
-        if tenant == None:
-            tenant = 'admin'
-        if key and cert:
-            cert = {"certificate": cert if type(cert) == str else cert.decode()}
-            ssl_kc_obj = {
-                'name': name,
-                'tenant_ref': conv_utils.get_object_ref(tenant, 'tenant'),
-                'key': key if type(key) == str else key.decode(),
-                'certificate': cert,
-                'type': 'SSL_CERTIFICATE_TYPE_VIRTUALSERVICE'
-            }
-        if key_passphrase:
-            ssl_kc_obj['key_passphrase'] = key_passphrase
-        if ssl_kc_obj:
-            cert_obj = {'key_file_name': key_file_name,
-                        'cert_file_name': cert_file_name,
-                        'name': name
-                        }
-            key_and_cert_mapping_list.append(cert_obj)
-            LOG.info('Added new SSL key and certificate for %s' % name)
-
-        if ssl_kc_obj:
-            if self.object_merge_check:
-                if final.PLACE_HOLDER_STR not in ssl_kc_obj['name']:
-                    conv_utils.update_skip_duplicates(ssl_kc_obj,
-                        avi_config['SSLKeyAndCertificate'],'ssl_cert_key',
-                        converted_objs, name, default_profile_name,
-                        merge_object_mapping, None, self.prefix, sys_dict[
-                        'SSLKeyAndCertificate'])
-                else:
-                    converted_objs.append({'ssl_cert_key': ssl_kc_obj})
-                    avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
-                self.certkey_count += 1
-            else:
-                converted_objs.append({'ssl_cert_key': ssl_kc_obj})
-                avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
-
-    def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant):
-        """
-        This method create the certs if certificate not present at location
-        it create placeholder certificate.
-        :return:
-        """
-
-        cert_name = [cert['name'] for cert in avi_config.get("SSLKeyAndCertificate", [])
-                     if cert['name'] == name and
-                     cert['type'] == 'SSL_CERTIFICATE_TYPE_CA']
-
-        if cert_name:
-            LOG.warning(
-                'SSL ca cert is already exist')
-            return
-        ca_cert = None
-        if not ca_cert:
-            key, ca_cert = conv_utils.create_self_signed_cert()
-            name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
-            LOG.warning('Create self cerificate and key for : %s' % name)
-
-        ca_cert_obj = None
-
-        if ca_cert:
-            cert = {"certificate": ca_cert if type(ca_cert) == str else ca_cert.decode()}
-            ca_cert_obj = {
-                'name': name,
-                'tenant_ref': conv_utils.get_object_ref(tenant, 'tenant'),
-                'certificate': cert,
-                'type': 'SSL_CERTIFICATE_TYPE_CA'
-            }
-            LOG.info('Added new ca certificate for %s' % name)
-        if ca_cert_obj and self.object_merge_check:
-            # if final.PLACE_HOLDER_STR not in ca_cert_obj['name']:
-            #     conv_utils.update_skip_duplicates(
-            #         ca_cert_obj, avi_config['SSLKeyAndCertificate'],
-            #         'ssl_cert_key', converted_objs, name, None,
-            #         merge_object_mapping, None, self.prefix,
-            #         sys_dict['SSLKeyAndCertificate'])
-            # else:
-            #     converted_objs.append({'ssl_cert_key': ca_cert_obj})
-            #     avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
-            self.certkey_count += 1
-        else:
-            converted_objs.append({'ssl_cert_key': ca_cert_obj})
-            avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
-
+            indirect = []
+            u_ignore = []
+            ignore_for_defaults = {}
+            for index, skipped in enumerate(skipped_list):
+                conv_status = conv_utils.get_conv_status(
+                    skipped_list[index], indirect, ignore_for_defaults, nsx_lb_config['LbServerSslProfiles'],
+                    u_ignore, na_list[index])
+                name = converted_alb_ssl[index]['name']
+                alb_mig_ssl = converted_alb_ssl[index]['alb_ssl']
+                resource_type = converted_alb_ssl[index]['resource_type']
+                if self.object_merge_check:
+                    alb_mig_ssl = [pp for pp in alb_config['SSLProfile'] if
+                                   pp.get('name') == self.merge_object_mapping['ssl_profile'].get(name)]
+                conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
+                                           [{'ssl_profile': alb_mig_ssl[0]}])
+                if len(conv_status['skipped']) > 0:
+                    LOG.debug(
+                        '[SSL-PROFILE] Skipped Attribute {}:{}'.format(name,
+                                                                       conv_status['skipped']))
 
     def convert_protocols(self, protocols, alb_ssl):
         accepted_version = dict(
