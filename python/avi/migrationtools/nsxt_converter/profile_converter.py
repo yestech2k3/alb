@@ -129,7 +129,7 @@ class ProfileConfigConv(object):
                               app_pr.get('name') == self.merge_object_mapping['app_profile'].get(name)]
                 conv_utils.add_conv_status('applicationprofile', attr_ap[index]['resource_type'],
                                                attr_ap[index]['name'], conv_status,
-                                               [{'application_http_profile': alb_mig_app_pr}])
+                                               [{'application_http_profile': alb_mig_app_pr[0]}])
                 if len(conv_status['skipped']) > 0:
                     LOG.debug('[APPLICATION-PROFILE] Skipped Attribute {}:{}'.format(attr_ap[index]['name'],
                                                                                      conv_status['skipped']))
@@ -146,7 +146,7 @@ class ProfileConfigConv(object):
                                       np_pr.get('name') == self.merge_object_mapping['network_profile'].get(name)]
                 conv_utils.add_conv_status('applicationprofile', attr_np[index]['resource_type'],
                                                attr_np[index]['name'], conv_status,
-                                               [{'network_profile': alb_mig_np_pr}])
+                                               [{'network_profile': alb_mig_np_pr[0]}])
                 if len(conv_status['skipped']) > 0:
                     LOG.debug('[APPLICATION-PROFILE] Skipped Attribute {}:{}'.format(attr_np[index]['name'],
                                                                                      conv_status['skipped']))

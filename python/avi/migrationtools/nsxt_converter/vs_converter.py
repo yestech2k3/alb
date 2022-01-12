@@ -24,7 +24,7 @@ class VsConfigConv(object):
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
 
-    def convert(self, alb_config, nsx_lb_config, cloud_name, prefix):
+    def convert(self, alb_config, nsx_lb_config, cloud_name, prefix, vs_state, controller_version,vrf=None):
         '''
         LBVirtualServer to Avi Config vs converter
         '''
@@ -35,13 +35,16 @@ class VsConfigConv(object):
         total_size = len(nsx_lb_config['LbVirtualServers'])
         print("\nConverting Virtual Services ...")
         LOG.info('[Virtual Service ] Converting Services...')
+
         for lb_vs in nsx_lb_config['LbVirtualServers']:
             try:
                 progressbar_count += 1
                 LOG.info('[Virtual Service] Migration started for VS {}'.format(lb_vs['display_name']))
+                #vs_name = lb_vs['name']
                 name = lb_vs.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
+                vs_name = name
                 alb_vs = dict(
                     name=name,
                     enabled=lb_vs.get('enabled'),
@@ -58,7 +61,7 @@ class VsConfigConv(object):
                         name=name + '-vsvip',
                         tier1_lr=tier1_lr,
                         cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
-                    vip=[
+                        vip=[
                             dict(
                                 ip_address=dict(
                                     addr=lb_vs.get('ip_address'),
@@ -86,7 +89,10 @@ class VsConfigConv(object):
                     app_profile_ref = self.get_vs_app_profile_ref(alb_config['ApplicationProfile'],
                                                                   profile_name, self.object_merge_check,
                                                                   self.merge_object_mapping, prefix)
-                    alb_vs['application_profile_ref'] = app_profile_ref
+                    if app_profile_ref.__contains__("networkprofile"):
+                        alb_vs['network_profile_ref']=app_profile_ref
+                    else:
+                        alb_vs['application_profile_ref'] = app_profile_ref
                 if lb_vs.get('max_concurrent_connections'):
                     alb_vs['performance_limits'] = dict(
                         max_concurrent_connections=lb_vs.get('max_concurrent_connections')
@@ -119,8 +125,7 @@ class VsConfigConv(object):
                     if pool.get('name') == pool_name:
                         if lb_vs.get('default_pool_member_ports'):
                             pool['default_port'] = lb_vs['default_pool_member_ports']
-                        pool['tier1_lr']=tier1_lr
-
+                        pool['tier1_lr'] = tier1_lr
                 indirect = []
                 u_ignore = []
                 ignore_for_defaults = {}
@@ -128,7 +133,7 @@ class VsConfigConv(object):
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbVirtualServers'],
                     u_ignore, na_list)
                 conv_utils.add_conv_status('virtual', lb_vs['resource_type'], alb_vs['name'], conv_status,
-                                           [{'virtual_service': alb_vs}])
+                                           alb_vs)
                 alb_config['VirtualService'].append(alb_vs)
 
                 msg = "Server conversion started..."
@@ -169,7 +174,13 @@ class VsConfigConv(object):
         if prefix:
             profile_name = prefix + '-' + profile_name
         if object_merge_check:
-            profile_merge_name = merge_object_mapping['app_profile'].get(profile_name)
-            if profile_merge_name:
-                profile_name = profile_merge_name
+            app_profile_merge_name = merge_object_mapping['app_profile'].get(profile_name)
+            if app_profile_merge_name:
+                profile_name = app_profile_merge_name
+            np_prodile_merge_name=merge_object_mapping['network_profile'].get(profile_name)
+            if np_prodile_merge_name:
+                profile_name=np_prodile_merge_name
+                return '/api/networkprofile/?tenant=admin&name=' + profile_name
+
         return '/api/applicationprofile/?tenant=admin&name=' + profile_name
+

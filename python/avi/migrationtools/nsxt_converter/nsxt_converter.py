@@ -14,7 +14,8 @@ from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
 
 ARG_CHOICES = {
     'option': ['cli-upload', 'auto-upload'],
-    'migrate_option': ['Avi', 'NSX']
+    'migrate_option': ['Avi', 'NSX'],
+    'vs_state': ['enable', 'disable']
 
 }
 
@@ -42,12 +43,15 @@ class NsxtConverter(AviConverter):
         self.ansible_skip_types = args.ansible_skip_types
         self.controller_version = args.controller_version
         self.ansible_filter_types = args.ansible_filter_types
+        self.vs_level_status=args.vs_level_status
         self.output_file_path = args.output_file_path if args.output_file_path \
             else 'output'
         self.migrate_to = args.migrate_to
         self.option = args.option
         self.ansible = args.ansible
         self.object_merge_check = args.no_object_merge
+        self.vs_state=args.vs_state
+        self.vrf=args.vrf
 
     def conver_lb_config(self):
         if not os.path.exists(self.output_file_path):
@@ -64,7 +68,9 @@ class NsxtConverter(AviConverter):
         nsx_lb_config = nsx_util.get_nsx_config()
         alb_config = nsxt_config_converter.convert(
             nsx_lb_config, input_path, output_path,
-            self.cloud_name, self.prefix, self.migrate_to,self.object_merge_check)
+            self.cloud_name, self.prefix, self.migrate_to,self.object_merge_check,self.controller_version,self.vs_state
+            ,self.vs_level_status,self.vrf
+            )
         avi_config = self.process_for_utils(alb_config)
         output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
                        "output")
@@ -133,6 +139,9 @@ if __name__ == "__main__":
                              'during conversion.\n  Eg. -s DebugController,'
                              'ServiceEngineGroup will skip debugcontroller and '
                              'serviceengine objects')
+    parser.add_argument('--vs_level_status', action='store_true',
+                        help='Add columns of vs reference and overall skipped '
+                             'settings in status excel sheet')
     # Added command line args to take skip type for ansible playbook
     parser.add_argument('--ansible_filter_types',
                         help='Comma separated list of Avi Objects types to '
@@ -144,6 +153,12 @@ if __name__ == "__main__":
                         action="store_true")
     parser.add_argument('--no_object_merge',
                         help='Flag for object merge', action='store_false')
+    parser.add_argument('-s', '--vs_state', choices=ARG_CHOICES['vs_state'],
+                        help='traffic_enabled state of VS created')
+    parser.add_argument('--vrf',
+                        help='Update the available vrf ref with the custom vrf'
+                             'reference')
+
 
     args = parser.parse_args()
     nsxt_converter = NsxtConverter(args)

@@ -6,6 +6,9 @@ import os
 from functools import reduce
 
 import pandas
+import re
+import random
+from pkg_resources import parse_version
 import avi.migrationtools.f5_converter.converter_constants as conv_const
 
 from xlsxwriter import Workbook
@@ -25,23 +28,23 @@ fully_migrated = 0
 used_pool_groups = {}
 used_pool = {}
 
-class NsxtConvUtil(MigrationUtil):
 
+class NsxtConvUtil(MigrationUtil):
     STATIC_PORT_MAP = {
-        "http" : conv_const.HTTP_PORT,
-        "https" : conv_const.HTTPS_PORT,
-        "ftp" : conv_const.FTP_PORT,
-        "smtp" : conv_const.SMTP_PORT,
-        "snmp" : conv_const.SNMP_PORT,
-        "telnet" : conv_const.TELNET_PORT,
-        "snmp-trap" : conv_const.SNMP_TRAP_PORT,
-        "ssh" : conv_const.SSH_PORT,
-        "xfer" : conv_const.XFER_PORT,
-        "pcsync-https" : conv_const.PCSYNC_HTTPS_PORT,
-        "macromedia-fcs" : conv_const.MACROMEDIA_FCS_PORT,
-        "imap" : conv_const.IMAP_PORT,
-        "pop3" : conv_const.POP3_PORT,
-        "any" : None
+        "http": conv_const.HTTP_PORT,
+        "https": conv_const.HTTPS_PORT,
+        "ftp": conv_const.FTP_PORT,
+        "smtp": conv_const.SMTP_PORT,
+        "snmp": conv_const.SNMP_PORT,
+        "telnet": conv_const.TELNET_PORT,
+        "snmp-trap": conv_const.SNMP_TRAP_PORT,
+        "ssh": conv_const.SSH_PORT,
+        "xfer": conv_const.XFER_PORT,
+        "pcsync-https": conv_const.PCSYNC_HTTPS_PORT,
+        "macromedia-fcs": conv_const.MACROMEDIA_FCS_PORT,
+        "imap": conv_const.IMAP_PORT,
+        "pop3": conv_const.POP3_PORT,
+        "any": None
     }
 
     def add_conv_status(self, nsxt_type, nsxt_sub_type, nsxt_id, conv_status,
@@ -124,8 +127,6 @@ class NsxtConvUtil(MigrationUtil):
 
         return self.STATIC_PORT_MAP.get(protocol, None)
 
-
-
     def update_pool_for_service_port(self, pool_list, pool_name, hm_list,
                                      sys_hm_list):
         rem_hm = []
@@ -151,12 +152,12 @@ class NsxtConvUtil(MigrationUtil):
 
                     rem_hm = [self.get_name(hmonitor) for hmonitor in rem_hm]
                     csv_row = [cl for cl in csv_writer_dict_list if cl[
-                               'NsxT type'] == 'pool' and self.get_tenant_ref(
+                        'NsxT type'] == 'pool' and self.get_tenant_ref(
                         cl['NsxT ID'])[1] == pool_name]
                     if csv_row:
                         if csv_row[0]['Skipped settings'] in ('[]', ''):
                             csv_row[0]['Skipped settings'] = str([{
-                                                            'monitor': rem_hm}])
+                                'monitor': rem_hm}])
                         else:
                             init_val = eval(csv_row[0]['Skipped settings'])
                             if not isinstance(init_val, list):
@@ -164,7 +165,7 @@ class NsxtConvUtil(MigrationUtil):
                             mon_val = [
                                 val['monitor'].extend(rem_hm) for val in
                                 init_val if isinstance(val, dict) and
-                                'monitor' in val]
+                                            'monitor' in val]
                             if bool(mon_val):
                                 csv_row[0]['Skipped settings'] = str(init_val)
                             else:
@@ -202,7 +203,7 @@ class NsxtConvUtil(MigrationUtil):
 
         # xlsx workbook
         report_path = output_dir + os.path.sep + "%s-ConversionStatus.xlsx" % \
-                                                 report_name
+                      report_name
         status_wb = Workbook(report_path)
         # xlsx worksheet
         status_ws = status_wb.add_worksheet("Status Sheet")
@@ -275,7 +276,7 @@ class NsxtConvUtil(MigrationUtil):
                           and row['NsxT type'] == 'virtual']
         # Get the list of csv rows which has profile as NsxT type
         profile_csv_list = self.get_csv_object_list(
-            csv_writer_dict_list, ['profile'])
+            csv_writer_dict_list, ['applicationprofile'])
         ptotal_count = ptotal_count + len(vs_csv_objects)
         for vs_csv_object in vs_csv_objects:
             ppcount += 1
@@ -356,7 +357,7 @@ class NsxtConvUtil(MigrationUtil):
                     for each_http_policy in avi_config['HTTPPolicySet']:
                         if each_http_policy['name'] == policy_set_name and 'http_request_policy' in each_http_policy:
                             for http_req in each_http_policy[
-                              'http_request_policy']['rules']:
+                                'http_request_policy']['rules']:
                                 if http_req.get('switching_action', {}):
                                     self.get_skip_pools_policy(
                                         policy_set_name, http_req,
@@ -364,8 +365,7 @@ class NsxtConvUtil(MigrationUtil):
                                         profile_csv_list, skipped_setting)
 
             # # Get the skipped list for application_profile_ref.
-            if 'application_profile_ref' in virtual_service and 'admin:System' \
-                    not in virtual_service['application_profile_ref']:
+            if 'application_profile_ref' in virtual_service:
                 name, skipped = self.get_application_profile_skipped(
                     profile_csv_list,
                     virtual_service['application_profile_ref'],
@@ -412,7 +412,6 @@ class NsxtConvUtil(MigrationUtil):
             if 'VS Reference' not in row or row['VS Reference'] == '':
                 row['VS Reference'] = conv_const.STATUS_NOT_IN_USE
 
-
     def correct_vs_ref(self, avi_config):
         """
         This method corrects the reference of VS to different objects
@@ -422,7 +421,7 @@ class NsxtConvUtil(MigrationUtil):
         global csv_writer_dict_list
         avi_graph = self.make_graph(avi_config)
         csv_dict_sub = [row for row in csv_writer_dict_list if row[
-                        'NsxT type'] != 'virtual' and row['Status'] in
+            'NsxT type'] != 'virtual' and row['Status'] in
                         (conv_const.STATUS_PARTIAL,
                          conv_const.STATUS_SUCCESSFUL)]
         for dict_row in csv_dict_sub:
@@ -443,4 +442,548 @@ class NsxtConvUtil(MigrationUtil):
                 dict_row['VS Reference'] = str(list(set(vs)))
             else:
                 dict_row['VS Reference'] = conv_const.STATUS_NOT_IN_USE
+
+    def get_vs_ssl_profiles(self, profiles, avi_config, prefix,
+                            merge_object_mapping, sys_dict, f5_config):
+        """
+        Searches for profile refs in converted profile config if not found
+        creates default profiles
+        :param profiles: profiles in f5 config assigned to VS
+        :param avi_config: converted avi config
+        :param prefix: prefix for objects
+        :param merge_object_mapping: Merged object mappings
+        :param sys_dict: System object dict
+        :return: returns list of profile refs assigned to VS in avi config
+        """
+        # f5_profiles = f5_config.get("profile", {})
+        vs_ssl_profile_names = []
+        pool_ssl_profile_names = []
+        if not profiles:
+            return vs_ssl_profile_names, pool_ssl_profile_names
+        if isinstance(profiles, str):
+            profiles = profiles.replace(" {}", "")
+            profiles = {profiles: None}
+        for key in profiles.keys():
+            # Called tenant ref to get object name.
+            tenant, name = self.get_tenant_ref(key)
+            if prefix:
+                name = prefix + '-' + name
+            ssl_profile_list = avi_config.get("SSLProfile", [])
+            sys_ssl = sys_dict['SSLProfile']
+            ssl_profiles = [ob for ob in sys_ssl if ob['name'] ==
+                            merge_object_mapping['ssl_profile'].get(name)
+                            ] or [obj for obj in ssl_profile_list
+                                  if (obj['name'] == name or name in
+                                      obj.get("dup_of", []))]
+            if ssl_profiles:
+                cert_name = ssl_profiles[0].get('cert_name', None)
+                if not cert_name:
+                    cert_name = name
+                ssl_key_cert_list = avi_config.get("SSLKeyAndCertificate", [])
+                sys_key_cert = sys_dict['SSLKeyAndCertificate']
+                key_cert = [ob for ob in sys_key_cert if ob['name'] ==
+                            merge_object_mapping['ssl_cert_key'].get(cert_name)
+                            ] or [obj for obj in ssl_key_cert_list if
+                                  (obj['name'] == cert_name or obj['name'] ==
+                                   '%s-%s' % (cert_name, conv_const.PLACE_HOLDER_STR) or cert_name in
+                                   obj.get("dup_of", []))]
+                # key_cert = key_cert[0]['name'] if key_cert else None
+                if key_cert:
+                    key_cert = self.get_object_ref(
+                        key_cert[0]['name'], 'sslkeyandcertificate',
+                        tenant=self.get_name(key_cert[0]['tenant_ref']))
+                profile = profiles[key]
+                context = profile.get("context") if profile else None
+                if (not context) and isinstance(profile, dict):
+                    if 'serverside' in profile:
+                        context = 'serverside'
+                    elif 'clientside' in profile:
+                        context = 'clientside'
+                pki_list = avi_config.get("PKIProfile", [])
+                syspki = sys_dict['PKIProfile']
+                pki_profiles = [ob for ob in syspki if ob['name'] ==
+                                merge_object_mapping['pki_profile'].get(
+                                    name)] or \
+                               [obj for obj in pki_list if
+                                (obj['name'] == name or
+                                 name in obj.get("dup_of", []))]
+                pki_profile = pki_profiles[0]['name'] if pki_profiles else None
+                mode = 'SSL_CLIENT_CERTIFICATE_NONE'
+                if pki_profile:
+                    mode = pki_profiles[0].pop('mode',
+                                               'SSL_CLIENT_CERTIFICATE_NONE')
+                    pki_profile = self.get_object_ref(
+                        pki_profiles[0]["name"], 'pkiprofile',
+                        tenant=self.get_name(pki_profiles[0]['tenant_ref']))
+                if context == "clientside":
+                    ssl_prof_ref = self.get_object_ref(
+                        ssl_profiles[0]["name"], 'sslprofile',
+                        tenant=self.get_name(ssl_profiles[0]['tenant_ref']))
+                    vs_ssl_profile_names.append({"profile": ssl_prof_ref,
+                                                 "cert": key_cert,
+                                                 "pki": pki_profile,
+                                                 'mode': mode})
+                elif context == "serverside":
+                    ssl_prof_ref = self.get_object_ref(
+                        ssl_profiles[0]["name"], 'sslprofile',
+                        tenant=self.get_name(ssl_profiles[0]['tenant_ref']))
+                    pool_ssl_profile_names.append(
+                        {"profile": ssl_prof_ref, "cert": key_cert,
+                         "pki": pki_profile, 'mode': mode})
+        return vs_ssl_profile_names, pool_ssl_profile_names
+
+    def get_service_obj(self, destination, avi_config, enable_ssl,
+                        controller_version, tenant_name, cloud_name, prefix,
+                        vs_name, input_vrf=None):
+        """
+        Checks port overlapping scenario for port value 0 in F5 config
+        :param destination: IP and Port destination of VS
+        :param avi_config: Dict of avi config
+        :param enable_ssl: value to put in service objects
+        :param controller_version: Version of controller
+        :param tenant_name: Name of tenant
+        :param cloud_name: Name of cloud
+        :param prefix: name prefix
+        :param vs_name: Name of VS
+        :param input_vrf: Vrf context name
+        :return: services_obj, ip_addr of vs and ref of vsvip
+        """
+
+        parts = destination.split(':')
+        ip_addr = parts[0]
+        ip_addr = ip_addr.strip()
+        vrf = None
+        # Removed unwanted string from ip address
+        if '%' in ip_addr:
+            ip_addr, vrf = ip_addr.split('%')
+        # Added support to skip virtualservice with ip address any
+        if ip_addr == 'any':
+            LOG.debug("Skipped:VS with IP address: %s" % str(destination))
+            return None, None, None, None
+        # Added check for IP V4
+        matches = re.findall('^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$', ip_addr)
+        if not matches or ip_addr == '0.0.0.0':
+            LOG.warning(
+                'Avi does not support IPv6 Generated random ipv4 for vs:'
+                ' %s' % ip_addr)
+            ip_addr = ".".join(map(str, (
+                random.randint(0, 255) for _ in range(4))))
+        port = parts[1] if len(parts) == 2 else conv_const.DEFAULT_PORT
+        # Get the list of vs which shared the same vip
+        if parse_version(controller_version) >= parse_version('17.1'):
+            # vs_dup_ips = \
+            #     [vs for vs in avi_config['VirtualService'] if
+            #      vs['vip'][0]['ip_address']['addr'] ==
+            #      ip_addr]
+            vs_dup_ips = []
+            for vs in avi_config['VirtualService']:
+                vs_ip = vs['vsvip_ref'].split('name=')[1].split('-')[0]
+                if ip_addr == vs_ip:
+                    vs_dup_ips.append(vs)
+        else:
+            vs_dup_ips = \
+                [vs for vs in avi_config['VirtualService'] if
+                 vs['ip_address']['addr'] == ip_addr]
+
+        if port == 'any':
+            port = '0'
+        if isinstance(port, str) and (not port.isdigit()):
+            port = self.get_port_by_protocol(port)
+        # Port is None then skip vs
+        if not port:
+            LOG.debug("Skipped:Port not supported %s" % str(parts[1]))
+            return None, None, None, None
+        if int(port) > 0:
+            for vs in vs_dup_ips:
+                service_updated = self.update_service(port, vs, enable_ssl)
+                if service_updated == 'duplicate_ip_port':
+                    LOG.debug('Skipped: Duplicate IP-Port for vs %s', vs_name)
+                    return None, None, None, None
+                if service_updated:
+                    break
+            services_obj = [{'port': port, 'enable_ssl': enable_ssl}]
+        else:
+            used_ports = []
+            for vs in vs_dup_ips:
+                for service in vs['services']:
+                    if service.get('port_range_end', None):
+                        used_ports.extend(range(
+                            int(service['port']),
+                            int(service['port_range_end']) + 1
+                        ))
+                    else:
+                        used_ports.append(int(service['port']))
+            if used_ports and min(used_ports) == 1 and max(used_ports) == 65535:
+                LOG.debug('Skipped: Duplicate IP-Port for vs %s', vs_name)
+                return None, None, None, None
+            if used_ports:
+                services_obj = []
+                if conv_const.PORT_END not in used_ports:
+                    used_ports.append(conv_const.PORT_END + 1)
+                used_ports = sorted(used_ports, key=int)
+                start = conv_const.PORT_START
+                for i in range(len(used_ports)):
+                    if start == used_ports[i]:
+                        start += 1
+                        continue
+                    end = int(used_ports[i]) - 1
+                    if end < start:
+                        start += 1
+                        continue
+                    services_obj.append({'port': start,
+                                         'port_range_end': end,
+                                         'enable_ssl': enable_ssl})
+                    start = int(used_ports[i]) + 1
+            else:
+                services_obj = [
+                    {'port': 1, 'port_range_end': conv_const.PORT_END,
+                     'enable_ssl': enable_ssl}]
+        # Getting vrf ref
+        if vrf:
+            self.add_vrf(avi_config, vrf, cloud_name)
+
+        vrf_config = avi_config['VrfContext']
+        vrf_ref = self.get_vrf_context_ref(destination, vrf_config,
+                                           'virtual service', vs_name,
+                                           cloud_name)
+        if input_vrf:
+            vrf_ref = self.get_object_ref(input_vrf, 'vrfcontext',
+                                          cloud_name=cloud_name)
+        if not vrf_ref:
+            vrf_ref = self.get_object_ref('global', 'vrfcontext',
+                                          cloud_name=cloud_name)
+
+        updated_vsvip_ref = None
+        if parse_version(controller_version) >= parse_version('17.1'):
+            vs_vip_name = self.create_update_vsvip(
+                ip_addr, avi_config['VsVip'],
+                self.get_object_ref(tenant_name, 'tenant'),
+                self.get_object_ref(cloud_name, 'cloud', tenant=tenant_name),
+                prefix,
+                vrf_ref)
+            if vs_vip_name == '':
+                updated_vsvip_ref = ''
+            else:
+                updated_vsvip_ref = self.get_object_ref(vs_vip_name, 'vsvip',
+                                                        tenant_name, cloud_name)
+        return services_obj, ip_addr, updated_vsvip_ref, vrf_ref
+
+    def update_service(self, port, vs, enable_ssl):
+        """
+        iterates over services of existing vs in converted list to update
+        services for port overlapping scenario
+        :param port: port for currant VS
+        :param vs: VS from converted config list
+        :param enable_ssl: value to put in service object
+        :return: boolean if service is updated or not
+        """
+        service_updated = False
+        vs_new_service = []
+        for service in vs['services']:
+            port_end = service.get('port_range_end', None)
+            if not port_end and int(service['port']) == int(port):
+                return 'duplicate_ip_port'
+            if port_end and (service['port'] <= int(port) <= port_end):
+                if port not in [conv_const.PORT_START, conv_const.PORT_END]:
+                    if service['port'] == int(port) == port_end:
+                        return 'duplicate_ip_port'
+                    elif service['port'] == int(port):
+                        service['port'] = int(port) + 1
+                    elif service['port_range_end'] == int(port):
+                        service['port_range_end'] = int(port) - 1
+                    else:
+                        new_port = int(port) + 1
+                        new_end = service['port_range_end']
+                        service['port_range_end'] = int(port) - 1
+                        new_service = {'port': new_port,
+                                       'port_range_end': new_end,
+                                       'enable_ssl': enable_ssl}
+                        vs_new_service.append(new_service)
+                elif port == conv_const.PORT_START:
+                    service['port'] = 2
+                elif port == conv_const.PORT_END:
+                    service['port_range_end'] = (conv_const.PORT_START - 1)
+                service_updated = True
+                break
+        vs['services'].extend(vs_new_service)
+        return service_updated
+
+    def add_vrf(self, avi_config, vrf, cloud_ref):
+        vrf_name = 'vrf-%s' % vrf
+        vrf_list = avi_config['VrfContext']
+        vrf_obj = [obj for obj in vrf_list if obj['name'] == vrf_name]
+        if not vrf_obj:
+            vrf_obj = {
+                "name": vrf_name,
+                "system_default": False,
+                "cloud_ref": self.get_object_ref(cloud_ref, 'cloud'),
+                "tenant_ref": self.get_object_ref('admin', 'tenant')
+            }
+            if vrf_name == 'global':
+                vrf_obj['system_default'] = True
+            vrf_list.append(vrf_obj)
+
+    def create_update_vsvip(self, vip, vsvip_config, tenant_ref, cloud_ref,
+                            prefix, vrf_ref):
+        """
+        This functions defines that create or update VSVIP object.
+        :param vip: vip of VS
+        :param vsvip_config: List of vs object
+        :param tenant_ref: tenant reference
+        :param cloud_ref: cloud reference
+        :param prefix: Name prefix
+        :param vrf_ref: VRF reference
+        :return: None
+        """
+
+        name = vip + '-vsvip'
+        # Added prefix for objects
+        if prefix:
+            name = '%s-%s' % (prefix, name)
+        # Get the exsting vsvip object list if present
+        vsvip = [vip_obj for vip_obj in vsvip_config if vip_obj['name'] == name
+                 and vip_obj.get('vrf_context_ref') == vrf_ref]
+        if vsvip:
+            diff_ten = [vips for vips in vsvip if vips['tenant_ref'] !=
+                        tenant_ref]
+            if diff_ten:
+                LOG.debug('VsVip %s is repeated with vrf %s but different '
+                          'tenant %s', name, self.get_name(vrf_ref) if vrf_ref
+                          else 'None', self.get_name(tenant_ref))
+                name = ''
+        # If VSVIP object not present then create new VSVIP object.
+        else:
+            vsvip_object = {
+                "name": name,
+                "tenant_ref": tenant_ref,
+                "cloud_ref": cloud_ref,
+                "vip": [
+                    {
+                        "vip_id": "0",
+                        "ip_address": {
+                            "type": "V4",
+                            "addr": vip
+                        }
+                    }
+                ],
+            }
+            if vrf_ref:
+                vsvip_object["vrf_context_ref"] = vrf_ref
+            vsvip_config.append(vsvip_object)
+
+        return name
+
+    def get_vrf_context_ref(self, f5_entity_mem, vrf_config, entity_string,
+                            entity_name, cloud):
+        """
+        Searches for vrf context refs in converted pool config
+        :param f5_entity_mem: f5 entity or object like pool
+        :param vrf_config: converted vrf config
+        :param entity_string: entity string
+        :param entity_name: name of f5 entity
+        :param cloud: name of the cloud
+        :return: returns list of vrf refs assigned to entity in avi config
+        """
+        vrf_ref = None
+        f5_entity_mem = ':' in f5_entity_mem and f5_entity_mem.split(':')[0] \
+                        or f5_entity_mem if f5_entity_mem else None
+        vrf = 'vrf-' + f5_entity_mem.split('%')[1] \
+            if f5_entity_mem and '%' in f5_entity_mem else None
+        vrf_obj = [obj for obj in vrf_config if vrf and obj["name"] == vrf]
+        if vrf_obj:
+            vrf_ref = self.get_object_ref(
+                vrf_obj[0]['name'], 'vrfcontext', cloud_name=cloud)
+        else:
+            LOG.warning("VRF not found for %s %s" % (entity_string,
+                                                     entity_name))
+        return vrf_ref
+
+    def get_vs_app_profiles(self, profiles, avi_config, tenant_ref, prefix,
+                            oc_prof, enable_ssl, merge_object_mapping,
+                            sys_dict):
+        """
+        Searches for profile refs in converted profile config if not found
+        creates default profiles
+        :param profiles: profiles in f5 config assigned to VS
+        :param avi_config: converted avi config
+        :param tenant_ref: Tenant referance
+        :param prefix: prefix for objects
+        :param oc_prof: one connect profile
+        :param enable_ssl: VS ssl enabled flag
+        :param merge_object_mapping: Merged object mappings
+        :param sys_dict: System object dict
+
+        :return: returns list of profile refs assigned to VS in avi config
+        """
+        app_profile_refs = []
+        app_prof_conf = dict()
+        app_profile_list = avi_config.get("ApplicationProfile", [])
+        unsupported_profiles = avi_config.get('UnsupportedProfiles', [])
+        sys_app = sys_dict['ApplicationProfile']
+        if not profiles:
+            profiles = {}
+        if isinstance(profiles, str):
+            profiles = profiles.replace(" {}", "")
+            profiles = {profiles: None}
+        for name in profiles.keys():
+            # Called tenant ref to get object name.
+            name = self.get_tenant_ref(name)[1]
+            # Added prefix for objects
+            if prefix:
+                name = '%s-%s' % (prefix, name)
+            app_profiles = [ob for ob in sys_app if ob['name'] ==
+                            merge_object_mapping['app_profile'].get(name)] or [
+                               obj for obj in app_profile_list if
+                               (obj['name'] == name
+                                or name in obj.get("dup_of", []))]
+            if app_profiles:
+                app_prof_name = app_profiles[0]['name']
+                app_profile_refs.append(self.get_object_ref(
+                    app_prof_name, 'applicationprofile',
+                    tenant=self.get_name(app_profiles[0]['tenant_ref'])))
+
+                if app_profiles[0].get('HTTPPolicySet', None):
+                    app_prof_conf['policy_name'] = app_profiles[0]['HTTPPolicySet']
+                if app_profiles[0].get('fallback_host', None):
+                    app_prof_conf['f_host'] = app_profiles[0]['fallback_host']
+                # prerequisite user need to create default auth profile
+                if app_profiles[0].get('realm', None):
+                    app_prof_conf['realm'] = {
+                        "type": "HTTP_BASIC_AUTH",
+                        "auth_profile_ref": self.get_object_ref(
+                            'System-Default-Auth-Profile', 'authprofile',
+                            tenant=self.get_name(
+                                app_profiles[0]['tenant_ref'])),
+                        "realm": app_profiles[0]['realm']
+                    }
+
+        if not app_profile_refs:
+            not_supported = [key for key in profiles.keys() if
+                             key in unsupported_profiles]
+            if not_supported:
+                LOG.warning(
+                    'Profiles not supported by Avi : %s' % not_supported)
+                return app_prof_conf
+            if enable_ssl:
+                app_profile_refs.append(
+                    self.get_object_ref('System-SSL-Application',
+                                        'applicationprofile', tenant='admin'))
+                app_prof_conf['app_prof'] = app_profile_refs
+                return app_prof_conf
+            else:
+                app_profile_refs.append(
+                    self.get_object_ref('System-L4-Application',
+                                        'applicationprofile', tenant='admin'))
+                app_prof_conf['app_prof'] = app_profile_refs
+                return app_prof_conf
+            # Added prefix for objects
+            if prefix:
+                value = '%s-%s' % (prefix, value)
+            default_app_profile = [ob for ob in sys_app if ob['name'] ==
+                                   merge_object_mapping['app_profile'].get(
+                                       value)] or [
+                                      obj for obj in app_profile_list if
+                                      (obj['name'] == value
+                                       or value in obj.get("dup_of", []))]
+            tenant = self.get_name(default_app_profile[0]['tenant_ref']) if \
+                default_app_profile else '/api/tenant/?name=admin'
+            app_profile_refs.append(
+                self.get_object_ref(default_app_profile[0]['name'],
+                                    'applicationprofile', tenant=tenant))
+        app_prof_conf['app_prof'] = app_profile_refs
+        return app_prof_conf
+
+    def get_vs_ntwk_profiles(self, profiles, avi_config, prefix,
+                             merge_object_mapping, sys_dict):
+        """
+        Searches for profile refs in converted profile config if not found
+        creates default profiles
+        :param profiles: profiles in f5 config assigned to VS
+        :param avi_config: converted avi config
+        :param prefix: prefix for objects
+        :param merge_object_mapping: merged object mappings
+        :param sys_dict: System object dict
+        :return: returns list of profile refs assigned to VS in avi config
+        """
+        network_profile_names = []
+        if not profiles:
+            return []
+        if isinstance(profiles, str):
+            profiles = profiles.replace(" {}", "")
+            profiles = {profiles: None}
+        for name in profiles.keys():
+            # Called tenant method to get object name
+            tenant, name = self.get_tenant_ref(name)
+            # Added prefix for objects
+            if prefix:
+                name = prefix + '-' + name
+            ntwk_prof_lst = avi_config.get("NetworkProfile")
+            sysnw = sys_dict['NetworkProfile']
+            network_profiles = [ob for ob in sysnw if
+                                ob['name'] == merge_object_mapping[
+                                    'network_profile'].get(name)] or \
+                               [obj for obj in ntwk_prof_lst if (
+                                       obj['name'] == name or name in
+                                       obj.get("dup_of", []))]
+            if network_profiles:
+                network_profile_ref = self.get_object_ref(
+                    network_profiles[0]['name'], 'networkprofile',
+                    tenant=self.get_name(network_profiles[0]['tenant_ref']))
+                network_profile_names.append(network_profile_ref)
+        return network_profile_names
+
+    def get_application_profile_skipped(self, profile_csv_list, app_profile_ref,
+                                        vs_ref):
+        """
+        This functions defines that get the skipped list of CSV row
+        :param profile_csv_list: List of profile(F5 type) csv rows
+        :param app_profile_ref: Reference of application profile
+        :param vs_ref: Name of VS
+        :return: application profile name and skipped sttribute list
+        """
+
+        app_profile_name = self.get_name(app_profile_ref)
+        skipped_list = self.get_csv_skipped_list(
+            profile_csv_list, app_profile_name, vs_ref, field_key='application_http_profile')
+        return app_profile_name, skipped_list
+
+    def get_vs_ntwk_profiles(self, profiles, avi_config, prefix,
+                             merge_object_mapping, sys_dict):
+        """
+        Searches for profile refs in converted profile config if not found
+        creates default profiles
+        :param profiles: profiles in f5 config assigned to VS
+        :param avi_config: converted avi config
+        :param prefix: prefix for objects
+        :param merge_object_mapping: merged object mappings
+        :param sys_dict: System object dict
+        :return: returns list of profile refs assigned to VS in avi config
+        """
+        network_profile_names = []
+        if not profiles:
+            return []
+        if isinstance(profiles, str):
+            profiles = profiles.replace(" {}", "")
+            profiles = {profiles: None}
+        for name in profiles.keys():
+            # Called tenant method to get object name
+            tenant, name = self.get_tenant_ref(name)
+            # Added prefix for objects
+            if prefix:
+                name = prefix + '-' + name
+            ntwk_prof_lst = avi_config.get("NetworkProfile")
+            sysnw = sys_dict['NetworkProfile']
+            network_profiles = [ob for ob in sysnw if
+                                ob['name'] == merge_object_mapping[
+                                    'network_profile'].get(name)] or \
+                               [obj for obj in ntwk_prof_lst if (
+                                       obj['name'] == name or name in
+                                       obj.get("dup_of", []))]
+            if network_profiles:
+                network_profile_ref = self.get_object_ref(
+                    network_profiles[0]['name'], 'networkprofile',
+                    tenant=self.get_name(network_profiles[0]['tenant_ref']))
+                network_profile_names.append(network_profile_ref)
+        return network_profile_names
+
 

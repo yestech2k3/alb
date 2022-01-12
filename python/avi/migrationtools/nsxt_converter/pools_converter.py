@@ -131,7 +131,7 @@ class PoolConfigConv(object):
 
                 conv_utils.add_conv_status(
                     'pool', lb_type, alb_pl['name'], conv_status,
-                    [{'pool': alb_pl}])
+                    {'pools': [alb_pl]})
                 msg = "Pools conversion started..."
                 conv_utils.print_progress_bar(
                     progressbar_count, total_size, msg, prefix='Progress',

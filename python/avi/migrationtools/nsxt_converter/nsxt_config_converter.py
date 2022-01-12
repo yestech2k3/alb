@@ -3,6 +3,7 @@ import logging
 import os
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.avi_migration_utils import update_count
+from avi.migrationtools.nsxt_converter import conversion_util
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.nsxt_converter.monitor_converter \
     import MonitorConfigConv
@@ -33,7 +34,7 @@ merge_object_mapping = {
 
 
 def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
-            migrate_to, object_merge_check):
+            migrate_to, object_merge_check,controller_version,vs_state,vs_level_status=False,vrf=None):
     # load the yaml file attribute in nsxt_attributes.
     nsxt_attributes = conv_const.init()
     input_config = input_path + os.path.sep + "config.json"
@@ -62,7 +63,7 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
         profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
 
         vs_converter = VsConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping,sys_dict)
-        vs_converter.convert(avi_config_dict,nsx_lb_config,cloud_name,prefix)
+        vs_converter.convert(avi_config_dict,nsx_lb_config,cloud_name,prefix,vs_state,controller_version,vrf)
 
         # TO-DO
         # ssl_profile_converter = SslProfileConfigConv(nsxt_attributes)
@@ -80,12 +81,27 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
 
     # Add nsxt converter status report in xslx report
     conv_utils.add_complete_conv_status(
-        output_path, avi_config_dict, "nsxt-report", False)
+        output_path, avi_config_dict, "nsxt-report", vs_level_status)
 
     for key in avi_config_dict:
         if key != 'META':
+            if key == 'VirtualService':
+                if vs_level_status:
+                    LOG.info('Total Objects of %s : %s (%s full conversions)'
+                             % (key, len(avi_config_dict[key]),
+                                conversion_util.fully_migrated))
+                    print('Total Objects of %s : %s (%s full conversions)' \
+                          % (key, len(avi_config_dict[key]),
+                             conversion_util.fully_migrated))
+                else:
+                    LOG.info('Total Objects of %s : %s'
+                             % (key, len(avi_config_dict[key])))
+                    print('Total Objects of %s : %s' \
+                          % (key, len(avi_config_dict[key])))
+
+                continue
             # Added code to print merged count.
-            if object_merge_check and key == 'HealthMonitor':
+            elif object_merge_check and key == 'HealthMonitor':
                 mergedmon = len(avi_config_dict[key]) - monitor_converter.monitor_count
                 monitor_merged_message = \
                     'Total Objects of %s : %s (%s/%s monitor merged)' % \
@@ -94,7 +110,7 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
                 LOG.info(monitor_merged_message)
                 print(monitor_merged_message)
                 continue
-            if object_merge_check and key == 'ApplicationProfile':
+            elif object_merge_check and key == 'ApplicationProfile':
                 merged_app_pr = len(avi_config_dict[key]) - profile_converter.app_pr_count
                 app_profile_merged_message = \
                     'Total Objects of %s : %s (%s/%s profile merged)' % \
@@ -103,7 +119,7 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
                 LOG.info(app_profile_merged_message)
                 print(app_profile_merged_message)
                 continue
-            if object_merge_check and key == 'NetworkProfile':
+            elif object_merge_check and key == 'NetworkProfile':
                 merged_np_pr = len(avi_config_dict[key]) - profile_converter.np_pr_count
                 merged_message = \
                     'Total Objects of %s : %s (%s/%s profile merged)' % \
