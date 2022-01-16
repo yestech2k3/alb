@@ -57,7 +57,7 @@ class VsConfigConv(object):
                 tier1_lr = ''
                 for ref in nsx_lb_config['LBServices']:
                     if lb_vs['lb_service_path'] == ref['path']:
-                        tier1_lr = ref['connectivity_path']
+                        tier1_lr = ref.get('connectivity_path', None)
 
                 if lb_vs.get('ip_address'):
                     vip = dict(
