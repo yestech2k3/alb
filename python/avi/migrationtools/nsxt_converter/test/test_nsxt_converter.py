@@ -14,7 +14,7 @@ from avi.migrationtools.nsxt_converter.nsxt_converter import NsxtConverter
 from avi.migrationtools.nsxt_converter.monitor_converter import MonitorConfigConv
 from avi.migrationtools.nsxt_converter.profile_converter import ProfileConfigConv
 from avi.migrationtools.nsxt_converter.vs_converter import VsConfigConv
-
+from avi.migrationtools.avi_migration_utils import get_count, set_update_count
 gSAMPLE_CONFIG = None
 LOG = logging.getLogger(__name__)
 
@@ -254,8 +254,9 @@ class Test(unittest.TestCase):
         for testing prefix in virtual service
         """
         prefix = "AVI"
+        vs_state=True
         vs_converter = VsConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
-        vs_converter.convert(avi_config, nsx_config, '',prefix)
+        vs_converter.convert(avi_config, nsx_config, '',prefix,vs_state,"","")
         avi_vs_config = avi_config.get('VirtualService', None)
         assert avi_vs_config
 
@@ -267,8 +268,10 @@ class Test(unittest.TestCase):
         """
         added migrate_to
         """
+        vs_state=False
         migrate_to='NSX'
-        nsxt_config_converter.convert(nsx_config,input_path,output_path,'cloud','',migrate_to,object_merge_check)
+        nsxt_config_converter.convert(nsx_config,input_path,output_path,'cloud','',migrate_to,object_merge_check,
+                                      "",vs_state,vs_level_status=False,vrf=None)
 
     def test_skipped_object(self):
         """
@@ -285,4 +288,46 @@ class Test(unittest.TestCase):
         testing with object merge flag
         """
 
+    def test_vs_state_level_true(self):
+        """
+        testing when vs level status is true
+        """
+        vs_state=True
+        vs_level_status=True
+        migrate_to='NSX'
+        nsxt_config_converter.convert(nsx_config,input_path,output_path,'cloud','',migrate_to,object_merge_check,
+                                      "",vs_state,vs_level_status,vrf=None)
+        excel_path = os.path.abspath(
+            os.path.join(
+                output_path, 'nsxt-report-ConversionStatus.xlsx'
+            )
+        )
+        data = pd.read_excel(excel_path, engine='openpyxl', sheet_name='Status Sheet')
+        if "Overall skipped settings" in data and "VS Reference" in data:
+            output= True
+        else:
+            output= False
+        assert output
 
+    def test_vs_level_status_false(self):
+        """
+        testing when vs level status is false
+        """
+        vs_state = True
+        vs_level_status = False
+        migrate_to = 'NSX'
+        nsxt_config_converter.convert(nsx_config, input_path, output_path, 'cloud', '', migrate_to,
+                                          object_merge_check,
+                                          "", vs_state, vs_level_status, vrf=None)
+
+
+    def test_error_and_warning_count(self):
+        set_update_count()
+        vs_state = False
+        vs_level_status = False
+        migrate_to = 'NSX'
+        nsxt_config_converter.convert(nsx_config, input_path, output_path, 'cloud', '', migrate_to,
+                                      object_merge_check,
+                                      "", vs_state, vs_level_status, vrf=None)
+
+        assert get_count('error') == 0
