@@ -180,8 +180,11 @@ class MonitorConfigConv(object):
             if self.object_merge_check:
                 alb_mig_hm = [hm for hm in alb_config['HealthMonitor'] if
                               hm.get('name') == self.merge_object_mapping['health_monitor'].get(name)]
-            conv_utils.add_conv_status('monitor', resource_type, name, conv_status,
+                conv_utils.add_conv_status('monitor', resource_type, name, conv_status,
                                            [{'health_monitor': alb_mig_hm[0]}])
+            else:
+                conv_utils.add_conv_status('monitor', resource_type, name, conv_status,
+                                           [{'health_monitor': alb_mig_hm}])
             if len(conv_status['skipped']) > 0:
                 LOG.debug('[Monitor] Skipped Attribute {}:{}'.format(name, conv_status['skipped']))
 
