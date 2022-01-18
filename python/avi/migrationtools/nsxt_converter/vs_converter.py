@@ -171,7 +171,7 @@ class VsConfigConv(object):
                 [], indirect, ignore_for_defaults, [],
                 u_ignore, [])
             conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
-                                       cert)
+                                       [{"ssl_cert_key":cert}])
 
 
     def update_pool_with_ssl(self, alb_config, lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix, converted_alb_ssl_certs):

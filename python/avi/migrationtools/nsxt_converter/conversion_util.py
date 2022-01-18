@@ -273,10 +273,14 @@ class NsxtConvUtil(MigrationUtil):
         vs_csv_objects = [row for row in csv_writer_dict_list
                           if row['Status'] in [conv_const.STATUS_PARTIAL,
                                                conv_const.STATUS_SUCCESSFUL]
-                          and row['NsxT type'] == 'virtual']
+                          and row['NsxT type'] == 'virtualservice']
         # Get the list of csv rows which has profile as NsxT type
         profile_csv_list = self.get_csv_object_list(
             csv_writer_dict_list, ['applicationprofile'])
+        ssl_profile_csv_list=self.get_csv_object_list(
+            csv_writer_dict_list, ['sslprofile'])
+        ssl_key_certificate_csv_list=self.get_csv_object_list(
+            csv_writer_dict_list, ['ssl_key_and_certificate'])
         ptotal_count = ptotal_count + len(vs_csv_objects)
         for vs_csv_object in vs_csv_objects:
             ppcount += 1
@@ -298,7 +302,7 @@ class NsxtConvUtil(MigrationUtil):
                         virtual_service['ssl_key_and_certificate_refs']:
                     ssl_key_cert = self.get_name(ssl_key_and_certificate_ref)
                     ssl_kc_skip = self.get_csv_skipped_list(
-                        profile_csv_list, ssl_key_cert, vs_ref,
+                        ssl_key_certificate_csv_list, ssl_key_cert, vs_ref,
                         field_key='ssl_cert_key')
                     if ssl_kc_skip:
                         skipped_setting['ssl cert key'] = {}
@@ -310,7 +314,7 @@ class NsxtConvUtil(MigrationUtil):
             # Changed ssl profile name to ssl profile ref.
             if 'ssl_profile_ref' in virtual_service:
                 name, skipped = self.get_ssl_profile_skipped(
-                    profile_csv_list, virtual_service['ssl_profile_ref'],
+                    ssl_profile_csv_list, virtual_service['ssl_profile_ref'],
                     vs_ref)
                 if skipped:
                     skipped_setting['ssl profile'] = {}
@@ -329,6 +333,7 @@ class NsxtConvUtil(MigrationUtil):
                     skipped_setting['Pool Group'] = pool_group_skipped_settings
             # Get the skipped list for pool.
             if 'pool_ref' in virtual_service:
+                print("pool done")
                 pool_skipped_settings = {'pools': []}
                 pool_name = self.get_name(virtual_service['pool_ref'])
                 csv_pool_rows = self.get_csv_object_list(csv_writer_dict_list,
@@ -404,7 +409,7 @@ class NsxtConvUtil(MigrationUtil):
                        if row['Status'] in [
                            conv_const.STATUS_PARTIAL,
                            conv_const.STATUS_SUCCESSFUL]
-                       and row['NsxT type'] != 'virtual']
+                       and row['NsxT type'] != 'virtualservice']
 
         # Update the vs reference not in used if objects are not attached to
         # VS directly or indirectly
@@ -421,7 +426,7 @@ class NsxtConvUtil(MigrationUtil):
         global csv_writer_dict_list
         avi_graph = self.make_graph(avi_config)
         csv_dict_sub = [row for row in csv_writer_dict_list if row[
-            'NsxT type'] != 'virtual' and row['Status'] in
+            'NsxT type'] != 'virtualservice' and row['Status'] in
                         (conv_const.STATUS_PARTIAL,
                          conv_const.STATUS_SUCCESSFUL)]
         for dict_row in csv_dict_sub:
@@ -985,5 +990,40 @@ class NsxtConvUtil(MigrationUtil):
                     tenant=self.get_name(network_profiles[0]['tenant_ref']))
                 network_profile_names.append(network_profile_ref)
         return network_profile_names
+
+
+    def get_app_persistence_profile_skipped(self, csv_writer_dict_list,
+                                            pool_object, vs_ref):
+        """
+        This functions defines that get the skipped list of CSV row
+        :param csv_writer_dict_list: List of csv rows
+        :param pool_object: object of pool
+        :param vs_ref: Name of VS
+        :return: profile name and skipped attribute list
+        """
+
+        app_persistence_profile_name = self.get_name(
+            pool_object['application_persistence_profile_ref'])
+        csv_object = self.get_csv_object_list(csv_writer_dict_list,
+                                              ['persistence'])
+        skipped_list = self.get_csv_skipped_list(
+            csv_object, app_persistence_profile_name, vs_ref,
+            field_key='app_per_profile')
+        return app_persistence_profile_name, skipped_list
+
+    def get_ssl_profile_skipped(self, profile_csv_list, ssl_profile_ref,
+                                vs_ref):
+        """
+        This functions defines that get the skipped list of CSV row
+        :param profile_csv_list: List of profile(F5 type) csv rows
+        :param ssl_profile_ref: Reference of ssl profile
+        :param vs_ref: Name of VS
+        :return: ssl profile name and skipped sttribute list
+        """
+
+        ssl_profile_name = self.get_name(ssl_profile_ref)
+        skipped_list = self.get_csv_skipped_list(
+            profile_csv_list, ssl_profile_name, vs_ref, field_key='ssl_profile')
+        return ssl_profile_name, skipped_list
 
 
