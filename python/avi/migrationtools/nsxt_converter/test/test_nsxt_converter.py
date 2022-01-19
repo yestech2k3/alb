@@ -12,9 +12,12 @@ from avi.migrationtools.nsxt_converter import nsxt_config_converter
 from avi.migrationtools.nsxt_converter.alb_converter import ALBConverter
 from avi.migrationtools.nsxt_converter.nsxt_converter import NsxtConverter
 from avi.migrationtools.nsxt_converter.monitor_converter import MonitorConfigConv
+from avi.migrationtools.nsxt_converter.persistant_converter import PersistantProfileConfigConv
 from avi.migrationtools.nsxt_converter.profile_converter import ProfileConfigConv
+from avi.migrationtools.nsxt_converter.ssl_profile_converter import SslProfileConfigConv
 from avi.migrationtools.nsxt_converter.vs_converter import VsConfigConv
 from avi.migrationtools.avi_migration_utils import get_count, set_update_count
+
 gSAMPLE_CONFIG = None
 LOG = logging.getLogger(__name__)
 
@@ -28,7 +31,7 @@ avi_cfg_file = open(option.avi_config_file, 'r')
 avi_cfg = avi_cfg_file.read()
 avi_config_file = json.loads(avi_cfg)
 output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                               'output'))
+                                          'output'))
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
 input_path = output_dir + os.path.sep + "input"
@@ -37,7 +40,7 @@ if not os.path.exists(input_path):
 output_path = output_dir + os.path.sep + "output"
 if not os.path.exists(output_path):
     os.makedirs(output_path)
-object_merge_check=False
+object_merge_check = False
 avi_config = dict()
 merge_object_mapping = {
 
@@ -47,12 +50,12 @@ merge_object_mapping = {
     'health_monitor': {'no': 0},
     'ssl_cert_key': {'no': 0}
 }
-sys_dict={}
+sys_dict = {}
 sys_dict = {}
 merge_object_type = ['ApplicationProfile', 'NetworkProfile',
-                             'SSLProfile', 'PKIProfile', 'SSLKeyAndCertificate',
-                             'ApplicationPersistenceProfile', 'HealthMonitor',
-                             'IpAddrGroup']
+                     'SSLProfile', 'PKIProfile', 'SSLKeyAndCertificate',
+                     'ApplicationPersistenceProfile', 'HealthMonitor',
+                     'IpAddrGroup']
 for key in merge_object_type:
     sys_dict[key] = []
 
@@ -65,11 +68,12 @@ def setUpModule():
     global nsxt_attributes
     nsxt_attributes = conv_const.init()
 
+
 class Test(unittest.TestCase):
 
     def test_health_monitor_conversion(self):
 
-        monitor_converter = MonitorConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        monitor_converter = MonitorConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         monitor_converter.convert(avi_config, nsx_config, '')
         avi_monitor_config = avi_config.get('HealthMonitor', None)
         monitor_config = nsx_config['LbMonitorProfiles']
@@ -93,11 +97,10 @@ class Test(unittest.TestCase):
 
         assert non_passive_monitor_count == len(avi_monitor_config)
 
-
     def test_pool_conversion(self):
 
         pool_config = nsx_config['LbPools']
-        pool_converter = PoolConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        pool_converter = PoolConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         pool_converter.convert(avi_config, nsx_config, '', '')
         avi_pool_config = avi_config['Pool']
         print(avi_pool_config)
@@ -116,7 +119,7 @@ class Test(unittest.TestCase):
     def test_profile_conversion(self):
 
         profile_config = nsx_config['LbAppProfiles']
-        profile_converter = ProfileConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        profile_converter = ProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         profile_converter.convert(avi_config, nsx_config, '')
         avi_app_profile_config = avi_config.get('ApplicationProfile', None)
         avi_network_profile_confg = avi_config.get('NetworkProfile', None)
@@ -125,8 +128,8 @@ class Test(unittest.TestCase):
         assert avi_network_profile_confg
         assert len(profile_config) == len(avi_app_profile_config) + len(avi_network_profile_confg)
 
-
     def test_config_hm_http(self):
+
         avi_monitor_config = avi_config_file.get('HealthMonitor', None)
         monitor_config = nsx_config['LbMonitorProfiles']
         lb_http = []
@@ -145,6 +148,7 @@ class Test(unittest.TestCase):
                         assert monitor['response_body'] == alb_hm['http_monitor']['http_response']
 
     def test_config_hm_https(self):
+
         avi_monitor_config = avi_config_file.get('HealthMonitor', None)
         monitor_config = nsx_config['LbMonitorProfiles']
         lb_https = []
@@ -163,9 +167,10 @@ class Test(unittest.TestCase):
                         assert monitor['response_body'] == alb_hm['https_monitor']['http_response']
 
     def test_config_hm_udp(self):
+
         avi_monitor_config = avi_config_file.get('HealthMonitor', None)
         monitor_config = nsx_config['LbMonitorProfiles']
-        lb_udp=[]
+        lb_udp = []
         for lb_hm in monitor_config:
             if lb_hm.get('resource_type') in ['LBUdpMonitorProfile']:
                 lb_udp.append(lb_hm)
@@ -179,6 +184,7 @@ class Test(unittest.TestCase):
                         assert monitor['receive'] == alb_hm['udp_monitor']['udp_response']
 
     def test_config_hm_tcp(self):
+
         avi_monitor_config = avi_config_file.get('HealthMonitor', None)
         monitor_config = nsx_config['LbMonitorProfiles']
         lb_tcp = []
@@ -201,14 +207,15 @@ class Test(unittest.TestCase):
         data_path = option.conv_excel
         data = pd.read_excel(data_path)
         for k, row in data.iterrows():
-            assert row['Status'] != "skipped"
+            assert row['Status'] != "ERROR"
 
     def test_healthmonitor_prefix(self):
         """
         for testing prefix in HealthMonitors
         """
+
         prefix = "AVI"
-        monitor_converter = MonitorConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        monitor_converter = MonitorConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         monitor_converter.convert(avi_config, nsx_config, prefix)
         avi_monitor_config = avi_config.get('HealthMonitor', None)
         assert avi_monitor_config
@@ -220,8 +227,9 @@ class Test(unittest.TestCase):
         """
         for testing prefix in Pool
         """
+
         prefix = "AVI"
-        pool_converter = PoolConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        pool_converter = PoolConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         pool_converter.convert(avi_config, nsx_config, '', prefix)
         avi_pool_config = avi_config['Pool']
 
@@ -236,8 +244,9 @@ class Test(unittest.TestCase):
         """
         for testing prefix in ApplicationProfiles
         """
+
         prefix = "AVI"
-        profile_converter = ProfileConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
+        profile_converter = ProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         profile_converter.convert(avi_config, nsx_config, prefix)
         avi_app_profile_config = avi_config.get('ApplicationProfile', None)
         avi_network_profile_confg = avi_config.get('NetworkProfile', None)
@@ -253,50 +262,60 @@ class Test(unittest.TestCase):
         """
         for testing prefix in virtual service
         """
+
         prefix = "AVI"
-        vs_state=True
-        vs_converter = VsConfigConv(nsxt_attributes,object_merge_check,merge_object_mapping,sys_dict)
-        vs_converter.convert(avi_config, nsx_config, '',prefix,vs_state,"","")
+        vs_state = True
+        vs_converter = VsConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
+        vs_converter.convert(avi_config, nsx_config, '', prefix, vs_state, "", "")
         avi_vs_config = avi_config.get('VirtualService', None)
         assert avi_vs_config
 
         for hm in avi_vs_config:
             assert hm['name'].startswith(prefix)
 
-
     def test_migrate_to(self):
         """
         added migrate_to
         """
-        vs_state=False
-        migrate_to='NSX'
-        nsxt_config_converter.convert(nsx_config,input_path,output_path,'cloud','',migrate_to,object_merge_check,
-                                      "",vs_state,vs_level_status=False,vrf=None)
+
+        vs_state = False
+        migrate_to = 'NSX'
+        nsxt_config_converter.convert(nsx_config, input_path, output_path, 'cloud', '', migrate_to, object_merge_check,
+                                      "", vs_state, vs_level_status=False, vrf=None)
 
     def test_skipped_object(self):
         """
         test case for skipped objct
         """
+
         data_path = option.conv_excel
         data = pd.read_excel(data_path)
         for k, row in data.iterrows():
-            if row['NsxT SubType'] in ['LBPassiveMonitorProfile']:
+            if row['NsxT SubType'] in ['LBPassiveMonitorProfile', "LBGenericPersistenceProfile"]:
                 assert row['Status'] == 'SKIPPED'
 
     def test_object_merge(self):
         """
         testing with object merge flag
         """
+        vs_state = True
+        vs_level_status = False
+        migrate_to = 'NSX'
+        object_merge_check = True
+        nsxt_config_converter.convert(nsx_config, input_path, output_path, 'cloud', '', migrate_to,
+                                      object_merge_check,
+                                      "", vs_state, vs_level_status, vrf=None)
 
     def test_vs_state_level_true(self):
         """
         testing when vs level status is true
         """
-        vs_state=True
-        vs_level_status=True
-        migrate_to='NSX'
-        nsxt_config_converter.convert(nsx_config,input_path,output_path,'cloud','',migrate_to,object_merge_check,
-                                      "",vs_state,vs_level_status,vrf=None)
+
+        vs_state = True
+        vs_level_status = True
+        migrate_to = 'NSX'
+        nsxt_config_converter.convert(nsx_config, input_path, output_path, 'cloud', '', migrate_to, object_merge_check,
+                                      "", vs_state, vs_level_status, vrf=None)
         excel_path = os.path.abspath(
             os.path.join(
                 output_path, 'nsxt-report-ConversionStatus.xlsx'
@@ -304,24 +323,25 @@ class Test(unittest.TestCase):
         )
         data = pd.read_excel(excel_path, engine='openpyxl', sheet_name='Status Sheet')
         if "Overall skipped settings" in data and "VS Reference" in data:
-            output= True
+            output = True
         else:
-            output= False
+            output = False
         assert output
 
     def test_vs_level_status_false(self):
         """
         testing when vs level status is false
         """
+
         vs_state = True
         vs_level_status = False
         migrate_to = 'NSX'
         nsxt_config_converter.convert(nsx_config, input_path, output_path, 'cloud', '', migrate_to,
-                                          object_merge_check,
-                                          "", vs_state, vs_level_status, vrf=None)
-
+                                      object_merge_check,
+                                      "", vs_state, vs_level_status, vrf=None)
 
     def test_error_and_warning_count(self):
+
         set_update_count()
         vs_state = False
         vs_level_status = False
@@ -331,3 +351,66 @@ class Test(unittest.TestCase):
                                       "", vs_state, vs_level_status, vrf=None)
 
         assert get_count('error') == 0
+
+    def test_ssl_prefix(self):
+        """
+        for testing prefix in ssl profile
+        """
+
+        prefix = "AVI"
+        ssl_converter = SslProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
+        ssl_converter.convert(avi_config, nsx_config, prefix)
+        avi_ssl_config = avi_config.get('SSLProfile', None)
+        assert avi_ssl_config
+
+        for hm in avi_ssl_config:
+            assert hm['name'].startswith(prefix)
+
+    def test_persistance_prefix(self):
+        """
+        for testing prefix in persistance profile
+        """
+
+        prefix = "AVI"
+        persistance_converter = PersistantProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping,
+                                                            sys_dict)
+        persistance_converter.convert(avi_config, nsx_config, prefix)
+        avi_persis_config = avi_config.get('ApplicationPersistenceProfile', None)
+        assert avi_persis_config
+
+        for hm in avi_persis_config:
+            assert hm['name'].startswith(prefix)
+
+    def test_persistence_conversion(self):
+
+        persistence_config = nsx_config['LbPersistenceProfiles']
+        persistance_converter = PersistantProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping,
+                                                            sys_dict)
+        persistance_converter.convert(avi_config, nsx_config, "")
+
+        avi_persis_config = avi_config.get('ApplicationPersistenceProfile', None)
+        for alb_persis in avi_persis_config:
+            for persis in persistence_config:
+                if alb_persis['name'] == persis['display_name'] :
+                    if persis['resource_type'] == "LBCookiePersistenceProfile":
+                        if persis['cookie_name']:
+                            assert alb_persis['http_cookie_persistence_profile']
+                            assert persis['cookie_name'] == alb_persis['http_cookie_persistence_profile']['cookie_name']
+                    elif persis['resource_type'] == "LBSourceIpPersistenceProfile":
+                        if persis['timeout']:
+                            assert alb_persis['ip_persistence_profile']
+                            assert persis['timeout'] == alb_persis['ip_persistence_profile']['ip_persistent_timeout']
+
+        assert avi_persis_config
+
+    def test_ssl_profile_conversion(self):
+
+        ssl_client_config = nsx_config['LbClientSslProfiles']
+        ssl_server_config=nsx_config['LbServerSslProfiles']
+        ssl_converter = SslProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
+        ssl_converter.convert(avi_config, nsx_config, "")
+        avi_ssl_config = avi_config.get('SSLProfile', None)
+        assert avi_ssl_config
+        assert len(avi_ssl_config) == len(ssl_client_config) + len(ssl_server_config)
+
+
