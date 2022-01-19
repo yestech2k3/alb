@@ -111,8 +111,11 @@ class SslProfileConfigConv(object):
                 if self.object_merge_check:
                     alb_mig_ssl = [pp for pp in alb_config['SSLProfile'] if
                                   pp.get('name') == self.merge_object_mapping['ssl_profile'].get(name)]
-                conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
+                    conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
                                            [{'ssl_profile': alb_mig_ssl[0]}])
+                else:
+                    conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
+                                           [{'ssl_profile': alb_mig_ssl}])
                 if len(conv_status['skipped']) > 0:
                     LOG.debug(
                         '[SSL-PROFILE] Skipped Attribute {}:{}'.format(name,
@@ -194,8 +197,11 @@ class SslProfileConfigConv(object):
                 if self.object_merge_check:
                     alb_mig_ssl = [pp for pp in alb_config['SSLProfile'] if
                                    pp.get('name') == self.merge_object_mapping['ssl_profile'].get(name)]
-                conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
+                    conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
                                            [{'ssl_profile': alb_mig_ssl[0]}])
+                else:
+                    conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
+                                              [{'ssl_profile': alb_mig_ssl}])
                 if len(conv_status['skipped']) > 0:
                     LOG.debug(
                         '[SSL-PROFILE] Skipped Attribute {}:{}'.format(name,

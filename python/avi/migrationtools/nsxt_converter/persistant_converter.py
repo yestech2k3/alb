@@ -123,8 +123,11 @@ class PersistantProfileConfigConv(object):
             if self.object_merge_check:
                 alb_mig_pp = [pp for pp in alb_config['ApplicationPersistenceProfile'] if
                               pp.get('name') == self.merge_object_mapping['app_per_profile'].get(name)]
-            conv_utils.add_conv_status('persistence', resource_type, name, conv_status,
+                conv_utils.add_conv_status('persistence', resource_type, name, conv_status,
                                            [{'app_per_profile': alb_mig_pp[0]}])
+            else:
+                conv_utils.add_conv_status('persistence', resource_type, name, conv_status,
+                                           [{'app_per_profile': alb_mig_pp}])
             if len(conv_status['skipped']) > 0:
                 LOG.debug('[ApplicationPersistenceProfile] Skipped Attribute {}:{}'.format(name,
                                                                                            conv_status['skipped']))
