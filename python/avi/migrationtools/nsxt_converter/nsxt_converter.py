@@ -53,6 +53,7 @@ class NsxtConverter(AviConverter):
         self.object_merge_check = args.no_object_merge
         self.vs_state=args.vs_state
         self.vrf=args.vrf
+        self.vs_filter=args.vs_filter
 
     def conver_lb_config(self):
         if not os.path.exists(self.output_file_path):
@@ -175,7 +176,12 @@ if __name__ == "__main__":
     parser.add_argument('--run_on_local',
                         help='Flag for running script in nsx manager',
                         action="store_true")
-
+    # Added command line args to execute vs_filter.py with vs_name.
+    parser.add_argument('--vs_filter',
+                        help='comma seperated names of virtualservices.\n'
+                             'Note: If patch data is supplied, vs_name should match '
+                             'the new name given in it'
+                        )
 
 
     args = parser.parse_args()
