@@ -205,6 +205,8 @@ def filter_for_vs(avi_config):
         vs_flag = True
         if 'tenant_ref' in vs:
             link, tenant = get_name_and_entity(vs['tenant_ref'])
+        else :
+            tenant = 'admin'
         name = '%s-%s-%s' % (vs['name'], 'VirtualService', tenant)
         new_config.append(name)
         find_and_add_objects(vs, avi_config, new_config, vs_ref_dict,

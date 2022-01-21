@@ -214,8 +214,9 @@ class MonitorConfigConv(object):
             http_response=lb_hm.get('response_body'),
             http_response_code=self.get_alb_response_codes(lb_hm['response_status_codes']),
         )
-        alb_hm["https_monitor"]['ssl_attributes'] = dict()
+
         if lb_hm.get('server_ssl_profile_binding', None):
+            alb_hm["https_monitor"]['ssl_attributes'] = dict()
             # TODO Need to convert
             print(lb_hm['server_ssl_profile_binding'])
             # self.create_sslprofile(alb_hm, lb_hm, avi_config,
