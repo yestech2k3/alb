@@ -66,6 +66,7 @@ class VsConfigConv(object):
                         cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
                         vip=[
                             dict(
+                                vip_id = 1,
                                 ip_address=dict(
                                     addr=lb_vs.get('ip_address'),
                                     type='V4'
@@ -93,9 +94,13 @@ class VsConfigConv(object):
                                                                   profile_name, self.object_merge_check,
                                                                   self.merge_object_mapping, prefix)
                     if app_profile_ref.__contains__("networkprofile"):
-                        alb_vs['network_profile_ref']=app_profile_ref
+                        alb_vs['network_profile_ref'] = app_profile_ref
+                        alb_vs['application_profile_ref'] = conv_utils.get_object_ref("System-L4-Application", 'applicationprofile',
+                                                                                      tenant="admin")
                     else:
                         alb_vs['application_profile_ref'] = app_profile_ref
+                        alb_vs['network_profile_ref'] = conv_utils.get_object_ref("System-TCP-Proxy", 'networkprofile',
+                                                                                      tenant="admin")
                 if lb_vs.get('max_concurrent_connections'):
                     alb_vs['performance_limits'] = dict(
                         max_concurrent_connections=lb_vs.get('max_concurrent_connections')
@@ -121,7 +126,10 @@ class VsConfigConv(object):
                     pool_name = pool_ref.split('/')[-1]
                     if prefix:
                         pool_name = prefix + '-' + pool_name
-                    alb_vs['pool_ref'] = '/api/pool/?tenant=admin&name=' + pool_name
+
+                    alb_vs['pool_ref']  = conv_utils.get_object_ref(
+                        pool_name, 'pool', tenant="admin", cloud_name=cloud_name)
+                    # alb_vs['pool_ref'] = '/api/pool/?tenant=admin&name=' + pool_name
                     if lb_vs.get('server_ssl_profile_binding'):
                         self.update_pool_with_ssl(alb_config, lb_vs, pool_name, self.object_merge_check,
                                                   self.merge_object_mapping, prefix, converted_alb_ssl_certs)
@@ -195,9 +203,12 @@ class VsConfigConv(object):
     def update_pool_with_persistence(self, alb_pool_config, lb_vs, pool_name, object_merge_check, merge_object_mapping,
                                      prefix):
         for pool in alb_pool_config:
-            if pool.get('name') == pool_name:
-                persistence_ref = prefix + '-' + lb_vs.get('lb_persistence_profile_path').split('/')[-1]
-                pool['persistence_profile_ref'] = '/api/persistenceprofile/?tenant=admin&name=' + persistence_ref
+            if pool.get('name') == pool_name and lb_vs.get('lb_persistence_profile_path', None):
+                if prefix:
+                    persistence_name = prefix + '-' + lb_vs.get('lb_persistence_profile_path').split('/')[-1]
+                else:
+                    persistence_name = lb_vs.get('lb_persistence_profile_path').split('/')[-1]
+                pool['persistence_profile_ref'] = '/api/applicationpersistenceprofile/?tenant=admin&name=' + persistence_name
 
     def get_vs_app_profile_ref(self, alb_profile_config, profile_name, object_merge_check,
                                merge_object_mapping, prefix):

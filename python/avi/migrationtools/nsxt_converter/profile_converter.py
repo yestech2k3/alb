@@ -163,25 +163,28 @@ class ProfileConfigConv(object):
         tenant, name = conv_utils.get_tenant_ref("admin")
         alb_pr['tenant_ref'] = conv_utils.get_object_ref(tenant, 'tenant')
         alb_pr['type'] = 'APPLICATION_PROFILE_TYPE_HTTP'
-        alb_pr['http-profile'] = dict(
+        alb_pr['http_profile'] = dict(
             xff_enabled=lb_pr.get('xForwardedFor', False),
             http_to_https=lb_pr.get('httpRedirectToHttps', False),
             keepalive_timeout=lb_pr.get('idle_timeout'),
             client_max_header_size=lb_pr.get('request_header_size'),
             keepalive_header=lb_pr.get('server_keep_alive'),
-            client_max_body_size=lb_pr.get('requestBodySize')
         )
+        if lb_pr.get('request_body_size', None):
+            alb_pr['http_profile']['client_max_body_size'] = lb_pr.get('request_body_size', None)
+
+
 
     def convert_udp(self, alb_pr, lb_pr):
         alb_pr['profile'] = dict(
-            type='APPLICATION_PROFILE_TYPE_UDP',
+            type='PROTOCOL_TYPE_UDP_FAST_PATH',
             udp_fast_path_profile=self.fast_profile_path(lb_pr)
         )
 
     def convert_tcp(self, alb_pr, lb_pr):
         alb_pr['profile'] = dict(
-            type='APPLICATION_PROFILE_TYPE_UDP',
-            udp_fast_path_profile=self.fast_profile_path(lb_pr)
+            type='PROTOCOL_TYPE_TCP_FAST_PATH',
+            tcp_fast_path_profile=self.fast_profile_path(lb_pr)
         )
 
     def fast_profile_path(self, lb_pr):

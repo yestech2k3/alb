@@ -6,6 +6,7 @@ from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil, csv_writer_dict_list
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.avi_migration_utils import MigrationUtil
+import avi.migrationtools.nsxt_converter.converter_constants as final
 
 LOG = logging.getLogger(__name__)
 
@@ -36,6 +37,7 @@ class MonitorConfigConv(object):
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
         self.monitor_count = 0
+        self.certkey_count = 0
 
     def get_alb_response_codes(self, response_codes):
         if not response_codes:
@@ -92,6 +94,7 @@ class MonitorConfigConv(object):
         return skipped
 
     def convert(self, alb_config, nsx_lb_config, prefix):
+        converted_alb_ssl_certs = list()
         alb_config['HealthMonitor'] = list()
         converted_objs = []
         progressbar_count = 0
@@ -122,14 +125,16 @@ class MonitorConfigConv(object):
                     failed_checks=lb_hm['fall_count'],
                     receive_timeout=lb_hm['timeout'],
                     send_interval=lb_hm['interval'],
-                    successful_checks=lb_hm.get('rise_count', None),
-                    monitor_port=lb_hm.get('monitor_port', None),
+                    successful_checks=lb_hm.get('rise_count', None)
                 )
+                if lb_hm.get('monitor_port', None):
+                    alb_hm['monitor_port'] = lb_hm.get('monitor_port', None)
+
                 alb_hm['tenant_ref'] = "/api/tenant/?name=admin"
                 if monitor_type == "LBHttpMonitorProfile":
                     skipped = self.convert_http(lb_hm, alb_hm, skipped)
                 elif monitor_type == "LBHttpsMonitorProfile":
-                    skipped = self.convert_https(lb_hm, alb_hm, skipped)
+                    skipped = self.convert_https(lb_hm, alb_hm, skipped, alb_config, prefix, converted_alb_ssl_certs)
                 elif monitor_type == "LBIcmpMonitorProfile":
                     skipped = self.convert_icmp(lb_hm, alb_hm, skipped)
                 elif monitor_type == "LBTcpMonitorProfile":
@@ -188,6 +193,15 @@ class MonitorConfigConv(object):
             if len(conv_status['skipped']) > 0:
                 LOG.debug('[Monitor] Skipped Attribute {}:{}'.format(name, conv_status['skipped']))
 
+        for cert in converted_alb_ssl_certs:
+            indirect = []
+            u_ignore = []
+            ignore_for_defaults = {}
+            conv_status = conv_utils.get_conv_status(
+                [], indirect, ignore_for_defaults, [],
+                u_ignore, [])
+            conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
+                                       [{"ssl_cert_key":cert}])
     def get_name_type(self, lb_hm):
         """
 
@@ -206,7 +220,9 @@ class MonitorConfigConv(object):
         skipped = [key for key in skipped if key not in self.http_attr]
         return skipped
 
-    def convert_https(self, lb_hm, alb_hm, skipped):
+    def convert_https(self, lb_hm, alb_hm, skipped, alb_config, prefix, converted_alb_ssl_certs=None):
+        if converted_alb_ssl_certs is None:
+            converted_alb_ssl_certs = []
         alb_hm['type'] = 'HEALTH_MONITOR_HTTPS'
         alb_hm['https_monitor'] = dict(
             http_request=lb_hm['request_url'],
@@ -216,13 +232,24 @@ class MonitorConfigConv(object):
         )
 
         if lb_hm.get('server_ssl_profile_binding', None):
-            alb_hm["https_monitor"]['ssl_attributes'] = dict()
-            # TODO Need to convert
-            print(lb_hm['server_ssl_profile_binding'])
-            # self.create_sslprofile(alb_hm, lb_hm, avi_config,
-            #                        tenant_ref, cloud_name, merge_object_mapping,
-            #                        sys_dict)
+            server_ssl_profile_binding  = lb_hm.get('server_ssl_profile_binding', None)
+            ssl_profile_path = server_ssl_profile_binding["ssl_profile_path"]
+            ssl_profile_name = ssl_profile_path.split('/')[-1]
+            if prefix:
+                ssl_profile_name = prefix + '-' + ssl_profile_name
+            ssl_attributes = {
+                "ssl_profile_ref" : conv_utils.get_object_ref(
+                        ssl_profile_name, 'sslprofile', tenant="admin")
+            }
 
+            if server_ssl_profile_binding.get("client_certificate_path", None):
+                ca_cert_obj = self.update_ca_cert_obj(lb_hm['display_name'], alb_config, [], "admin", prefix,
+                                                      cert_type='SSL_CERTIFICATE_TYPE_VIRTUALSERVICE')
+                ssl_attributes["ssl_key_and_certificate_ref"] = "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get(
+                    "name")
+                converted_alb_ssl_certs.append(ca_cert_obj)
+
+            alb_hm["https_monitor"]['ssl_attributes'] = ssl_attributes
 
         skipped = [key for key in skipped if key not in self.https_attr]
 
@@ -263,3 +290,54 @@ class MonitorConfigConv(object):
         skipped = [key for key in skipped if key not in self.tcp_attr]
 
         return skipped
+
+    def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant, prefix, cert_type='SSL_CERTIFICATE_TYPE_CA', ca_cert=None):
+        """
+        This method create the certs if certificate not present at location
+        it create placeholder certificate.
+        :return:
+        """
+
+        cert_name = [cert['name'] for cert in avi_config.get("SSLKeyAndCertificate", [])
+                     if cert['name'].__contains__(name) and cert['type'] == cert_type]
+
+        if cert_name:
+            LOG.warning(
+                'SSL ca cert is already exist')
+
+            for cert in avi_config.get("SSLKeyAndCertificate", []):
+                if cert['name'].__contains__(name) and cert['type'] == cert_type:
+                    return cert
+            return None
+
+        if not ca_cert:
+            key, ca_cert = conv_utils.create_self_signed_cert()
+            name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
+            LOG.warning('Create self cerificate and key for : %s' % name)
+
+        ca_cert_obj = None
+
+        if ca_cert:
+            cert = {"certificate": ca_cert if type(ca_cert) == str else ca_cert.decode()}
+            ca_cert_obj = {
+                'name': name,
+                'tenant_ref': conv_utils.get_object_ref(tenant, 'tenant'),
+                'certificate': cert,
+                'type': cert_type
+            }
+            LOG.info('Added new ca certificate for %s' % name)
+        if ca_cert_obj and self.object_merge_check:
+            if final.PLACE_HOLDER_STR not in ca_cert_obj['name']:
+                conv_utils.update_skip_duplicates(
+                    ca_cert_obj, avi_config['SSLKeyAndCertificate'],
+                    'ssl_cert_key', converted_objs, name, None,
+                    self.merge_object_mapping, None, prefix,
+                    self.sys_dict['SSLKeyAndCertificate'])
+            else:
+                converted_objs.append({'ssl_cert_key': ca_cert_obj})
+                avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
+            self.certkey_count += 1
+        else:
+            converted_objs.append({'ssl_cert_key': ca_cert_obj})
+            avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
+        return ca_cert_obj

@@ -50,7 +50,7 @@ class PoolConfigConv(object):
                     'name': name,
                     'servers': servers,
                     'lb_algorithm': lb_type,
-                    'cloud_ref': conv_utils.get_object_ref(cloud_name, 'cloud')
+                    'cloud_ref': conv_utils.get_object_ref(cloud_name, "cloud")
                 }
 
                 if any(server.get("port") == None for server in servers):
