@@ -80,7 +80,8 @@ class VsConfigConv(object):
                     alb_vs['vsvip_ref'] = vsvip_ref
                 alb_vs['services'] = [
                     dict(
-                        port=lb_vs.get('ports')[0]
+                        port=lb_vs.get('ports')[0],
+                        enable_ssl=False
                     )]
                 skipped = [val for val in lb_vs.keys()
                            if val not in self.supported_attr]
@@ -113,6 +114,7 @@ class VsConfigConv(object):
                             ssl_ref = prefix + '-' + ssl_ref
                         alb_vs['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_ref
                     if client_ssl.get('default_certificate_path', None):
+                        alb_vs['services'][0]["enable_ssl"] = True
                         ca_cert_obj = self.update_ca_cert_obj(name, alb_config, [], "admin", prefix)
                         ssl_key_cert_refs = []
                         ssl_key_cert_refs.append("/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name"))
@@ -249,29 +251,30 @@ class VsConfigConv(object):
             name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
             LOG.warning('Create self cerificate and key for : %s' % name)
 
-        ca_cert_obj = None
+        ssl_kc_obj = None
 
         if ca_cert:
             cert = {"certificate": ca_cert if type(ca_cert) == str else ca_cert.decode()}
-            ca_cert_obj = {
+            ssl_kc_obj = {
                 'name': name,
                 'tenant_ref': conv_utils.get_object_ref(tenant, 'tenant'),
+                'key': key if type(key) == str else key.decode(),
                 'certificate': cert,
                 'type': 'SSL_CERTIFICATE_TYPE_VIRTUALSERVICE'
             }
             LOG.info('Added new ca certificate for %s' % name)
-        if ca_cert_obj and self.object_merge_check:
-            if final.PLACE_HOLDER_STR not in ca_cert_obj['name']:
+        if ssl_kc_obj and self.object_merge_check:
+            if final.PLACE_HOLDER_STR not in ssl_kc_obj['name']:
                 conv_utils.update_skip_duplicates(
-                    ca_cert_obj, avi_config['SSLKeyAndCertificate'],
+                    ssl_kc_obj, avi_config['SSLKeyAndCertificate'],
                     'ssl_cert_key', converted_objs, name, None,
                     self.merge_object_mapping, None, prefix,
                     self.sys_dict['SSLKeyAndCertificate'])
             else:
-                converted_objs.append({'ssl_cert_key': ca_cert_obj})
-                avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
+                converted_objs.append({'ssl_cert_key': ssl_kc_obj})
+                avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
             self.certkey_count += 1
         else:
-            converted_objs.append({'ssl_cert_key': ca_cert_obj})
-            avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
-        return ca_cert_obj
+            converted_objs.append({'ssl_cert_key': ssl_kc_obj})
+            avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
+        return ssl_kc_obj

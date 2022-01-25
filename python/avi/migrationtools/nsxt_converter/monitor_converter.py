@@ -291,7 +291,8 @@ class MonitorConfigConv(object):
 
         return skipped
 
-    def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant, prefix, cert_type='SSL_CERTIFICATE_TYPE_CA', ca_cert=None):
+    def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant, prefix, cert_type='SSL_CERTIFICATE_TYPE_CA',
+                           ca_cert=None):
         """
         This method create the certs if certificate not present at location
         it create placeholder certificate.
@@ -315,29 +316,30 @@ class MonitorConfigConv(object):
             name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
             LOG.warning('Create self cerificate and key for : %s' % name)
 
-        ca_cert_obj = None
+        ssl_kc_obj = None
 
         if ca_cert:
             cert = {"certificate": ca_cert if type(ca_cert) == str else ca_cert.decode()}
-            ca_cert_obj = {
+            ssl_kc_obj = {
                 'name': name,
                 'tenant_ref': conv_utils.get_object_ref(tenant, 'tenant'),
+                'key': key if type(key) == str else key.decode(),
                 'certificate': cert,
-                'type': cert_type
+                'type': 'SSL_CERTIFICATE_TYPE_VIRTUALSERVICE'
             }
             LOG.info('Added new ca certificate for %s' % name)
-        if ca_cert_obj and self.object_merge_check:
-            if final.PLACE_HOLDER_STR not in ca_cert_obj['name']:
+        if ssl_kc_obj and self.object_merge_check:
+            if final.PLACE_HOLDER_STR not in ssl_kc_obj['name']:
                 conv_utils.update_skip_duplicates(
-                    ca_cert_obj, avi_config['SSLKeyAndCertificate'],
+                    ssl_kc_obj, avi_config['SSLKeyAndCertificate'],
                     'ssl_cert_key', converted_objs, name, None,
                     self.merge_object_mapping, None, prefix,
                     self.sys_dict['SSLKeyAndCertificate'])
             else:
-                converted_objs.append({'ssl_cert_key': ca_cert_obj})
-                avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
+                converted_objs.append({'ssl_cert_key': ssl_kc_obj})
+                avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
             self.certkey_count += 1
         else:
-            converted_objs.append({'ssl_cert_key': ca_cert_obj})
-            avi_config['SSLKeyAndCertificate'].append(ca_cert_obj)
-        return ca_cert_obj
+            converted_objs.append({'ssl_cert_key': ssl_kc_obj})
+            avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
+        return ssl_kc_obj

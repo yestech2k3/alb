@@ -37,6 +37,17 @@ class PoolConfigConv(object):
             try:
                 LOG.info('[POOL] Migration started for Pool {}'.format(lb_pl['display_name']))
                 progressbar_count += 1
+                is_pool_present = False
+                for vs in nsx_lb_config["LbVirtualServers"]:
+                    if vs.get("pool_path"):
+                        if lb_pl['display_name'] == vs.get('pool_path').split("/")[-1]:
+                            is_pool_present = True
+                            break
+                if not is_pool_present:
+                    conv_utils.add_status_row('pool', None, lb_pl['display_name'],
+                                              conv_const.STATUS_SKIPPED)
+                    continue
+
                 tenant, name = conv_utils.get_tenant_ref("admin")
                 lb_type, name = self.get_name_type(lb_pl)
 
