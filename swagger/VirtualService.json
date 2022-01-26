@@ -6857,8 +6857,8 @@
                         "$ref": "#/definitions/VHMatch"
                     }
                 },
-                "vh_parent_vs_uuid": {
-                    "description": "Specifies the Virtual Service acting as Virtual Hosting (SNI) parent.",
+                "vh_parent_vs_ref": {
+                    "description": "Specifies the Virtual Service acting as Virtual Hosting (SNI) parent. It is a reference to an object of type VirtualService.",
                     "type": "string"
                 },
                 "vh_type": {
