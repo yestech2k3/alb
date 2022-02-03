@@ -43,7 +43,7 @@ public class ServiceEngineGroup extends AviRestResource  {
     private Boolean allowBurst = null;
 
     @JsonProperty("app_cache_percent")
-    private Integer appCachePercent = 10;
+    private Integer appCachePercent;
 
     @JsonProperty("app_cache_threshold")
     private Integer appCacheThreshold = 5;
@@ -223,7 +223,7 @@ public class ServiceEngineGroup extends AviRestResource  {
     private Integer gratarpPermanentPeriodicity = 10;
 
     @JsonProperty("ha_mode")
-    private String haMode = "HA_MODE_SHARED";
+    private String haMode;
 
     @JsonProperty("handle_per_pkt_attack")
     private Boolean handlePerPktAttack = true;
@@ -235,7 +235,7 @@ public class ServiceEngineGroup extends AviRestResource  {
     private Integer heapMinimumConfigMemory = 8;
 
     @JsonProperty("hm_on_standby")
-    private Boolean hmOnStandby = true;
+    private Boolean hmOnStandby;
 
     @JsonProperty("host_attribute_key")
     private String hostAttributeKey = null;
@@ -661,7 +661,7 @@ public class ServiceEngineGroup extends AviRestResource  {
     private VipAutoscaleGroup vipAsg = null;
 
     @JsonProperty("vs_host_redundancy")
-    private Boolean vsHostRedundancy = true;
+    private Boolean vsHostRedundancy;
 
     @JsonProperty("vs_scalein_timeout")
     private Integer vsScaleinTimeout = 30;
@@ -869,7 +869,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      * Unit is percent.
      * Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
      * Special default for basic edition is 0, essentials edition is 0, enterprise is 10.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @return appCachePercent
      */
     public Integer getAppCachePercent() {
@@ -886,7 +885,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      * Unit is percent.
      * Allowed in basic(allowed values- 0) edition, essentials(allowed values- 0) edition, enterprise edition.
      * Special default for basic edition is 0, essentials edition is 0, enterprise is 10.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @param appCachePercent set the appCachePercent.
      */
     public void setAppCachePercent(Integer  appCachePercent) {
@@ -2387,7 +2385,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      * enterprise edition.
      * Special default for basic edition is ha_mode_legacy_active_standby, essentials edition is ha_mode_legacy_active_standby, enterprise is
      * ha_mode_shared.
-     * Default value when not specified in API or module is interpreted by Avi Controller as "HA_MODE_SHARED".
      * @return haMode
      */
     public String getHaMode() {
@@ -2402,7 +2399,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      * enterprise edition.
      * Special default for basic edition is ha_mode_legacy_active_standby, essentials edition is ha_mode_legacy_active_standby, enterprise is
      * ha_mode_shared.
-     * Default value when not specified in API or module is interpreted by Avi Controller as "HA_MODE_SHARED".
      * @param haMode set the haMode.
      */
     public void setHaMode(String  haMode) {
@@ -2484,7 +2480,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      * Enable active health monitoring from the standby se for all placed virtual services.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return hmOnStandby
      */
     public Boolean getHmOnStandby() {
@@ -2496,7 +2491,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      * Enable active health monitoring from the standby se for all placed virtual services.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param hmOnStandby set the hmOnStandby.
      */
     public void setHmOnStandby(Boolean  hmOnStandby) {
@@ -6028,7 +6022,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      * Ensure primary and secondary service engines are deployed on different physical hosts.
      * Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
      * Special default for basic edition is true, essentials edition is true, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return vsHostRedundancy
      */
     public Boolean getVsHostRedundancy() {
@@ -6040,7 +6033,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      * Ensure primary and secondary service engines are deployed on different physical hosts.
      * Allowed in basic(allowed values- true) edition, essentials(allowed values- true) edition, enterprise edition.
      * Special default for basic edition is true, essentials edition is true, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param vsHostRedundancy set the vsHostRedundancy.
      */
     public void setVsHostRedundancy(Boolean  vsHostRedundancy) {

@@ -37,7 +37,7 @@ public class PortalFeatureOptIn  {
     private Boolean enableIpReputation = false;
 
     @JsonProperty("enable_waf_signatures_notifications")
-    private Boolean enableWafSignaturesNotifications = true;
+    private Boolean enableWafSignaturesNotifications;
 
 
 
@@ -171,7 +171,6 @@ public class PortalFeatureOptIn  {
      * Field introduced in 20.1.1.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enableWafSignaturesNotifications
      */
     public Boolean getEnableWafSignaturesNotifications() {
@@ -184,7 +183,6 @@ public class PortalFeatureOptIn  {
      * Field introduced in 20.1.1.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enableWafSignaturesNotifications set the enableWafSignaturesNotifications.
      */
     public void setEnableWafSignaturesNotifications(Boolean  enableWafSignaturesNotifications) {

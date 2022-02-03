@@ -79,7 +79,7 @@ public class HTTPApplicationProfile  {
     private Integer hstsMaxAge = 365;
 
     @JsonProperty("hsts_subdomains_enabled")
-    private Boolean hstsSubdomainsEnabled = true;
+    private Boolean hstsSubdomainsEnabled;
 
     @JsonProperty("http2_enabled")
     private Boolean http2Enabled;
@@ -672,7 +672,6 @@ public class HTTPApplicationProfile  {
      * Field introduced in 17.2.13, 18.1.4, 18.2.1.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return hstsSubdomainsEnabled
      */
     public Boolean getHstsSubdomainsEnabled() {
@@ -687,7 +686,6 @@ public class HTTPApplicationProfile  {
      * Field introduced in 17.2.13, 18.1.4, 18.2.1.
      * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
      * Special default for basic edition is false, essentials edition is false, enterprise is true.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param hstsSubdomainsEnabled set the hstsSubdomainsEnabled.
      */
     public void setHstsSubdomainsEnabled(Boolean  hstsSubdomainsEnabled) {
