@@ -2,11 +2,14 @@
 import logging
 import os
 
+import yaml
+
 from avi.migrationtools import avi_rest_lib
 from avi.migrationtools.ansible.ansible_config_converter import \
     AviAnsibleConverterMigration
 from avi.migrationtools.avi_converter import AviConverter
 from avi.migrationtools.avi_migration_utils import get_count
+from avi.migrationtools.avi_orphan_object import wipe_out_not_in_use
 from avi.migrationtools.nsxt_converter import nsxt_config_converter
 import argparse
 
@@ -51,29 +54,67 @@ class NsxtConverter(AviConverter):
         self.option = args.option
         self.ansible = args.ansible
         self.object_merge_check = args.no_object_merge
-        self.vs_state=args.vs_state
-        self.vrf=args.vrf
-        self.vs_filter=args.vs_filter
+        self.vs_state = args.vs_state
+        self.vrf = args.vrf
+        self.vs_filter = args.vs_filter
+        self.segroup = args.segroup
+        self.patch=args.patch
+        # rule config for irule conversion
+        self.custom_config = args.custom_config
+        self.traffic_enabled=args.traffic_enabled
+        self.config_file = args.config_file
+
+
 
     def conver_lb_config(self):
+
         if not os.path.exists(self.output_file_path):
             os.mkdir(self.output_file_path)
         self.init_logger_path()
         output_dir = os.path.normpath(self.output_file_path)
-        output_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "output"
-        if not os.path.exists(output_path):
-            os.makedirs(output_path)
-        input_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "input"
-        if not os.path.exists(input_path):
-            os.makedirs(input_path)
-        nsx_util = NSXUtil(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port)
-        nsx_lb_config = nsx_util.get_nsx_config()
+
+        is_download_from_host = False
+        if self.nsxt_ip:
+            output_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "output"
+            if not os.path.exists(output_path):
+                os.makedirs(output_path)
+            input_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "input"
+            if not os.path.exists(input_path):
+                os.makedirs(input_path)
+            is_download_from_host = True
+        else:
+            output_path = output_dir + os.path.sep + "config-output" + os.path.sep + "output"
+            if not os.path.exists(output_path):
+                os.makedirs(output_path)
+            input_path = output_dir + os.path.sep + "config-output" + os.path.sep + "input"
+            if not os.path.exists(input_path):
+                os.makedirs(input_path)
+        nsx_lb_config = None
+        if is_download_from_host:
+            LOG.debug("Copying files from host")
+            print("Copying Files from Host...")
+            nsx_util = NSXUtil(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port)
+            nsx_lb_config = nsx_util.get_nsx_config()
+            LOG.debug("Copied input files")
+        elif self.config_file:
+            nsx_lb_config = open(self.config_file, "r")
+        if not nsx_lb_config:
+            print('Not found NSX configuration file')
+            return
+
+        custom_mappings = None
+        if self.custom_config:
+            with open(self.custom_config) as stream:
+                custom_mappings = yaml.safe_load(stream)
         alb_config = nsxt_config_converter.convert(
-            nsx_lb_config, input_path, output_path,
+            nsx_lb_config, input_path, output_path,self.tenant,
             self.cloud_name, self.prefix, self.migrate_to,self.object_merge_check,self.controller_version,self.vs_state ,
-            self.vs_level_status,self.vrf
+            self.vs_level_status, self.vrf, self.segroup,self.not_in_use,custom_mappings
             )
         avi_config = self.process_for_utils(alb_config)
+        # Check if flag true then skip not in use object
+        #if self.not_in_use:
+            #avi_config = wipe_out_not_in_use(avi_config)
         output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
                        "output")
         self.write_output(avi_config, output_path, 'avi_config.json')
@@ -89,7 +130,7 @@ class NsxtConverter(AviConverter):
     def upload_config_to_controller(self, alb_config):
         avi_rest_lib.upload_config_to_controller(
             alb_config, self.controller_ip, self.user, self.password,
-            self.tenant)
+            self.tenant,self.controller_version)
 
     def convert(self, alb_config):
         output_path = (self.output_file_path + os.path.sep + self.nsxt_ip +
@@ -139,7 +180,7 @@ if __name__ == "__main__":
                         help='Target Avi controller version')
     parser.add_argument('--user',
                         help='controller username for auto upload')
-    parser.add_argument('-t', '--tenant', help='tenant name for auto upload')
+    parser.add_argument('-t', '--tenant', help='tenant name for auto upload',default="admin")
     parser.add_argument('-O', '--option', choices=ARG_CHOICES['option'],
                         help='Upload option cli-upload genarates Avi config ' +
                              'file auto upload will upload config to ' +
@@ -162,9 +203,10 @@ if __name__ == "__main__":
                              'include during conversion.\n Eg. -f '
                              'VirtualService, Pool will do ansible conversion '
                              'only for Virtualservice and Pool objects')
+    # Added not in use flag
     parser.add_argument('--not_in_use',
                         help='Flag for skipping not in use object',
-                        action="store_true")
+                        action="store_false")
 
     parser.add_argument('--no_object_merge',
                         help='Flag for object merge', action='store_false')
@@ -182,6 +224,21 @@ if __name__ == "__main__":
                              'Note: If patch data is supplied, vs_name should match '
                              'the new name given in it'
                         )
+    parser.add_argument('--segroup',
+                        help='Update the available segroup ref with the'
+                             'custom ref')
+    # json file location and patch location
+    parser.add_argument('--patch', help='Run config_patch please provide '
+                                        'location of patch.yaml')
+    parser.add_argument('--custom_config',
+                        help='iRule/monitor custom mapping yml file path')
+    parser.add_argument('--traffic_enabled',
+                        help='Traffic Enabled on all migrated VS VIPs',
+                        action = "store_true")
+    parser.add_argument('-f', '--config_file',
+                        help='absolute path for nsx config file')
+
+
 
 
     args = parser.parse_args()

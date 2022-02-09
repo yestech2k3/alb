@@ -93,13 +93,17 @@ class MonitorConfigConv(object):
             alb_hm['type'] = 'HEALTH_MONITOR_UDP'
         return skipped
 
-    def convert(self, alb_config, nsx_lb_config, prefix):
+    def convert(self, alb_config, nsx_lb_config, prefix,tenant,custom_mapping):
         converted_alb_ssl_certs = list()
         alb_config['HealthMonitor'] = list()
         converted_objs = []
         progressbar_count = 0
+        custom_config = custom_mapping.get(
+            conv_const.HM_CUSTOM_KEY, dict()
+        ) if custom_mapping else dict()
         skipped_list = []
         converted_alb_monitor = []
+        tenant="admin"
         total_size = len(nsx_lb_config['LbMonitorProfiles'])
         print("Converting Monitors...")
         LOG.info('[MONITOR] Converting Monitors...')
@@ -107,6 +111,34 @@ class MonitorConfigConv(object):
             try:
                 LOG.info('[MONITOR] Migration started for HM {}'.format(lb_hm['display_name']))
                 progressbar_count += 1
+                monitor_type, name = self.get_name_type(lb_hm)
+                if '/' in monitor_type:
+                    monitor_type = monitor_type.split('/')[-1]
+                m_tenant, m_name = conv_utils.get_tenant_ref(name)
+                # Check if custom cofig present for this HM
+                r_hm = [obj for obj in custom_config if
+                        obj['monitor_name'] == m_name]
+                if r_hm:
+                    LOG.debug(
+                        "Found custom config for %s replacing with custom config"
+                        % m_name)
+                    r_hm = r_hm[0]
+                    avi_monitor = r_hm['avi_config']
+                    # Added prefix for objects
+                    if prefix:
+                        avi_monitor['name'] = prefix + '-' + m_name
+                    else:
+                        avi_monitor['name'] = m_name
+                    if tenant:
+                        m_tenant = tenant
+                    avi_monitor['tenant_ref'] = conv_utils.get_object_ref(
+                        m_tenant, 'tenant')
+                    alb_config["HealthMonitor"].append(avi_monitor)
+                    conv_utils.add_conv_status(
+                        'monitor', monitor_type, m_name, {
+                            'status': conv_const.STATUS_SUCCESSFUL
+                        }, [{'health_monitor': avi_monitor}])
+                    continue
                 if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
                     conv_utils.add_status_row('monitor', lb_hm['resource_type'], lb_hm['display_name'],
                                               conv_const.STATUS_SKIPPED)
@@ -279,6 +311,7 @@ class MonitorConfigConv(object):
         return skipped
 
     def convert_udp(self, lb_hm, alb_hm, skipped):
+        alb_hm['type'] = 'HEALTH_MONITOR_UDP'
         request = lb_hm.get("send", None)
         # request = self.update_request_for_avi(request, False)
         response = lb_hm.get("receive", None)

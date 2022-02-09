@@ -4,12 +4,14 @@ import time
 from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
+
 LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
 
+
 class PoolConfigConv(object):
-    def __init__(self, nsxt_pool_attributes,object_merge_check,merge_object_mapping, sys_dict):
+    def __init__(self, nsxt_pool_attributes, object_merge_check, merge_object_mapping, sys_dict):
         """
         :param nsxt_pool_attributes: Supported attributes for pool migration
         """
@@ -19,12 +21,12 @@ class PoolConfigConv(object):
         self.member_group_attr = nsxt_pool_attributes[
             'Pool_supported_attr_convert_member_group']
         self.common_na_attr = nsxt_pool_attributes['Common_Na_List']
-        self.object_merge_check=object_merge_check
-        self.merge_object_mapping=merge_object_mapping
-        self.sys_dict=sys_dict
+        self.pool_na_attr = nsxt_pool_attributes['Pool_na_list']
+        self.object_merge_check = object_merge_check
+        self.merge_object_mapping = merge_object_mapping
+        self.sys_dict = sys_dict
 
-
-    def convert(self, alb_config, nsx_lb_config, cloud_name, prefix):
+    def convert(self, alb_config, nsx_lb_config, cloud_name, prefix, tenant):
         '''
         LBPool to Avi Config pool converter
         '''
@@ -37,22 +39,11 @@ class PoolConfigConv(object):
             try:
                 LOG.info('[POOL] Migration started for Pool {}'.format(lb_pl['display_name']))
                 progressbar_count += 1
-                is_pool_present = False
-                for vs in nsx_lb_config["LbVirtualServers"]:
-                    if vs.get("pool_path"):
-                        if lb_pl['display_name'] == vs.get('pool_path').split("/")[-1]:
-                            is_pool_present = True
-                            break
-                if not is_pool_present:
-                    conv_utils.add_status_row('pool', None, lb_pl['display_name'],
-                                              conv_const.STATUS_SKIPPED)
-                    continue
 
                 tenant, name = conv_utils.get_tenant_ref("admin")
                 lb_type, name = self.get_name_type(lb_pl)
-
                 na_list = [val for val in lb_pl.keys()
-                           if val in self.common_na_attr]
+                           if val in self.common_na_attr or val in self.pool_na_attr]
                 servers, member_skipped_config, skipped_servers, limits = \
                     self.convert_servers_config(lb_pl.get("members", []))
                 if prefix:
@@ -113,10 +104,10 @@ class PoolConfigConv(object):
                         if prefix:
                             ref = prefix + "-" + ref
                         if ref in [monitor_obj.get('name') for monitor_obj in alb_config['HealthMonitor']]:
-                            ref=ref
+                            ref = ref
                         elif self.object_merge_check:
                             if ref in self.merge_object_mapping['health_monitor'].keys():
-                                ref=self.merge_object_mapping['health_monitor'].get(ref)
+                                ref = self.merge_object_mapping['health_monitor'].get(ref)
                         else:
                             continue
                         monitor_refs.append(
@@ -151,8 +142,8 @@ class PoolConfigConv(object):
                 alb_config['Pool'].append(alb_pl)
                 # time.sleep(0.1)
 
-                if len(conv_status['skipped'])>0:
-                    LOG.debug('[POOL] Skipped Attribute {}:{}'.format(lb_pl['display_name'],conv_status['skipped']))
+                if len(conv_status['skipped']) > 0:
+                    LOG.debug('[POOL] Skipped Attribute {}:{}'.format(lb_pl['display_name'], conv_status['skipped']))
                 LOG.info('[POOL] Migration completed for Pool {}'.format(lb_pl['display_name']))
             except:
                 update_count('error')
@@ -187,14 +178,14 @@ class PoolConfigConv(object):
             }
 
             if member.get("port", ""):
-                server_obj['port'] = member.get("port")
+                server_obj['port'] = int(member.get("port"))
             else:
                 server_skipped.append(member.get("display_name"))
 
             if member.get("weight"):
                 server_obj['ratio'] = member.get('weight')
 
-            server_obj["enabled"]= False
+            server_obj["enabled"] = False
             if member.get("admin_state") == "ENABLED":
                 server_obj['enabled'] = True
             if member.get("max_concurrent_connections"):
@@ -210,7 +201,3 @@ class PoolConfigConv(object):
         if connection_limit:
             limits['connection_limit'] = min(connection_limit)
         return server_list, skipped_list, server_skipped, limits
-
-
-
-

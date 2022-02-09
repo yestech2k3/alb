@@ -3,6 +3,7 @@ import logging
 import os
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.avi_migration_utils import update_count
+from avi.migrationtools.avi_orphan_object import wipe_out_not_in_use
 from avi.migrationtools.nsxt_converter import conversion_util
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.nsxt_converter.monitor_converter \
@@ -38,8 +39,9 @@ merge_object_mapping = {
 }
 
 
-def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
-            migrate_to, object_merge_check,controller_version,vs_state,vs_level_status=False,vrf=None):
+def convert(nsx_lb_config, input_path, output_path, tenant,cloud_name, prefix,
+            migrate_to, object_merge_check,controller_version,vs_state,vs_level_status=False,vrf=None,segroup=None
+            ,not_in_use=True,custom_mapping=None):
     # load the yaml file attribute in nsxt_attributes.
     nsxt_attributes = conv_const.init()
     input_config = input_path + os.path.sep + "config.json"
@@ -59,23 +61,24 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
             avi_config_dict[key] = []
 
         monitor_converter = MonitorConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        monitor_converter.convert(avi_config_dict, nsx_lb_config, prefix)
+        monitor_converter.convert(avi_config_dict, nsx_lb_config, prefix,tenant,custom_mapping)
 
         pool_converter = PoolConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        pool_converter.convert(avi_config_dict, nsx_lb_config, cloud_name, prefix)
+        pool_converter.convert(avi_config_dict, nsx_lb_config, cloud_name, prefix,tenant)
 
         profile_converter = ProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
+        profile_converter.convert(avi_config_dict, nsx_lb_config, prefix,tenant)
 
         ssl_profile_converter = SslProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        ssl_profile_converter.convert(avi_config_dict, nsx_lb_config, prefix)
+        ssl_profile_converter.convert(avi_config_dict, nsx_lb_config, prefix,tenant)
 
         persist_conv = PersistantProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        persist_conv.convert(avi_config_dict, nsx_lb_config, prefix)
+        persist_conv.convert(avi_config_dict, nsx_lb_config, prefix,tenant)
 
 
         vs_converter = VsConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping,sys_dict)
-        vs_converter.convert(avi_config_dict,nsx_lb_config,cloud_name,prefix,vs_state,controller_version,vrf)
+        vs_converter.convert(avi_config_dict,nsx_lb_config,cloud_name,prefix,tenant,vs_state,controller_version,vrf,segroup,
+                             )
 
 
         # Validating the aviconfig after generation
@@ -86,8 +89,8 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
         LOG.error("Conversion error", exc_info=True)
 
     output_config = output_path + os.path.sep + "avi_config.json"
-    with open(output_config, "w", encoding='utf-8') as text_file:
-        json.dump(avi_config_dict, text_file, indent=4)
+   # with open(output_config, "w", encoding='utf-8') as text_file:
+       # json.dump(avi_config_dict, text_file, indent=4)
 
     # Add nsxt converter status report in xslx report
     conv_utils.add_complete_conv_status(
@@ -162,8 +165,14 @@ def convert(nsx_lb_config, input_path, output_path, cloud_name, prefix,
             print('Total Objects of %s : %s' % (key, len(
                 avi_config_dict[key])))
 
+    # Check if flag true then skip not in use object
+    if not_in_use:
+        avi_config_dict = wipe_out_not_in_use(avi_config_dict)
+    with open(output_config, "w", encoding='utf-8') as text_file:
+        json.dump(avi_config_dict, text_file, indent=4)
     if migrate_to == 'NSX':
         alb_converter = ALBConverter(output_config, output_path)
         alb_converter.convert()
+
 
     return avi_config_dict

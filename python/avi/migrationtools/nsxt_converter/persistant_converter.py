@@ -6,11 +6,11 @@ from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 from avi.migrationtools.avi_migration_utils import MigrationUtil
 
-
 LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
 common_avi_util = MigrationUtil()
+
 
 class PersistantProfileConfigConv(object):
     def __init__(self, nsxt_profile_attributes, object_merge_check, merge_object_mapping, sys_dict):
@@ -26,8 +26,7 @@ class PersistantProfileConfigConv(object):
         self.sys_dict = sys_dict
         self.app_per_count = 0
 
-
-    def convert(self, alb_config, nsx_lb_config, prefix):
+    def convert(self, alb_config, nsx_lb_config, prefix, tenant):
         alb_config["ApplicationPersistenceProfile"] = list()
         converted_objs = []
         skipped_list = []
@@ -50,7 +49,7 @@ class PersistantProfileConfigConv(object):
                 pp_type, name = self.get_name_type(lb_pp)
 
                 na_attrs = [val for val in lb_pp.keys()
-                           if val in self.common_na_attr]
+                            if val in self.common_na_attr]
                 na_list.append(na_attrs)
                 if prefix:
                     name = prefix + '-' + name
@@ -61,25 +60,23 @@ class PersistantProfileConfigConv(object):
                 skipped = [val for val in lb_pp.keys()
                            if val not in self.supported_attr]
 
-                cookie_skipped_list,source_skipped_list = [],[]
+                cookie_skipped_list, source_skipped_list = [], []
                 if pp_type == "LBCookiePersistenceProfile":
                     skipped, cookie_skipped_list = self.convert_cookie(lb_pp, alb_pp, skipped, "admin")
                 elif pp_type == "LBSourceIpPersistenceProfile":
                     skipped = self.convert_source(lb_pp, alb_pp, skipped, "admin")
-
 
                 if cookie_skipped_list:
                     skipped.append(cookie_skipped_list)
                 if source_skipped_list:
                     skipped.append(source_skipped_list)
 
-
-
                 skipped_list.append(skipped)
                 ##
                 if self.object_merge_check:
                     common_avi_util.update_skip_duplicates(alb_pp,
-                                                           alb_config['ApplicationPersistenceProfile'], 'app_per_profile',
+                                                           alb_config['ApplicationPersistenceProfile'],
+                                                           'app_per_profile',
                                                            converted_objs, name, None, self.merge_object_mapping,
                                                            pp_type, prefix,
                                                            self.sys_dict['ApplicationPersistenceProfile'])
@@ -103,12 +100,14 @@ class PersistantProfileConfigConv(object):
                 LOG.info('[ApplicationPersistenceProfile] Migration completed for HM {}'.format(lb_pp['display_name']))
 
             except Exception as e:
-                LOG.error("[ApplicationPersistenceProfile] Failed to convert ApplicationPersistenceProfile: {}".format(e))
+                LOG.error(
+                    "[ApplicationPersistenceProfile] Failed to convert ApplicationPersistenceProfile: {}".format(e))
                 update_count('error')
-                LOG.error("[ApplicationPersistenceProfile] Failed to convert ApplicationPersistenceProfile: %s" % lb_pp['display_name'],
+                LOG.error("[ApplicationPersistenceProfile] Failed to convert ApplicationPersistenceProfile: %s" % lb_pp[
+                    'display_name'],
                           exc_info=True)
                 conv_utils.add_status_row('persistence', None, lb_pp['display_name'],
-                                              conv_const.STATUS_ERROR)
+                                          conv_const.STATUS_ERROR)
 
         indirect = []
         u_ignore = []
@@ -151,10 +150,9 @@ class PersistantProfileConfigConv(object):
                 if i == "cookie_time":
                     del skipped[index]
             _skipped = [key for key in lb_pp.get("cookie_time").keys()
-                       if key not in self.supported_attr_cookie]
+                        if key not in self.supported_attr_cookie]
             for keys in _skipped:
                 final_skiped_attr.append(keys)
-
 
         alb_pp['http_cookie_persistence_profile'] = http_cookie_persistence_profile
         alb_pp['tenant_ref'] = conv_utils.get_object_ref(
@@ -165,7 +163,6 @@ class PersistantProfileConfigConv(object):
             skipped_list.append({lb_pp['display_name']: final_skiped_attr})
         skipped = [key for key in skipped if key not in self.supported_attr_cookie]
         return skipped, skipped_list
-
 
     def convert_source(self, lb_pp, alb_pp, skipped, tenant):
         ip_persistence_profile = {}

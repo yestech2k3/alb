@@ -72,9 +72,9 @@ def setUpModule():
 class Test(unittest.TestCase):
 
     def test_health_monitor_conversion(self):
-
+        tenant="admin"
         monitor_converter = MonitorConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        monitor_converter.convert(avi_config, nsx_config, '')
+        monitor_converter.convert(avi_config, nsx_config, '',tenant,False)
         avi_monitor_config = avi_config.get('HealthMonitor', None)
         monitor_config = nsx_config['LbMonitorProfiles']
         assert avi_monitor_config
@@ -101,7 +101,7 @@ class Test(unittest.TestCase):
 
         pool_config = nsx_config['LbPools']
         pool_converter = PoolConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        pool_converter.convert(avi_config, nsx_config, '', '')
+        pool_converter.convert(avi_config, nsx_config, '', '', "admin")
         avi_pool_config = avi_config['Pool']
         print(avi_pool_config)
         assert avi_pool_config
@@ -120,7 +120,7 @@ class Test(unittest.TestCase):
 
         profile_config = nsx_config['LbAppProfiles']
         profile_converter = ProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        profile_converter.convert(avi_config, nsx_config, '')
+        profile_converter.convert(avi_config, nsx_config, '', 'admin')
         avi_app_profile_config = avi_config.get('ApplicationProfile', None)
         avi_network_profile_confg = avi_config.get('NetworkProfile', None)
 
@@ -216,7 +216,7 @@ class Test(unittest.TestCase):
 
         prefix = "AVI"
         monitor_converter = MonitorConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        monitor_converter.convert(avi_config, nsx_config, prefix)
+        monitor_converter.convert(avi_config, nsx_config, prefix,"admin",False)
         avi_monitor_config = avi_config.get('HealthMonitor', None)
         assert avi_monitor_config
 
@@ -230,7 +230,7 @@ class Test(unittest.TestCase):
 
         prefix = "AVI"
         pool_converter = PoolConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        pool_converter.convert(avi_config, nsx_config, '', prefix)
+        pool_converter.convert(avi_config, nsx_config, '', prefix,"admin")
         avi_pool_config = avi_config['Pool']
 
         assert avi_pool_config
@@ -247,7 +247,7 @@ class Test(unittest.TestCase):
 
         prefix = "AVI"
         profile_converter = ProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        profile_converter.convert(avi_config, nsx_config, prefix)
+        profile_converter.convert(avi_config, nsx_config, prefix,"admin")
         avi_app_profile_config = avi_config.get('ApplicationProfile', None)
         avi_network_profile_confg = avi_config.get('NetworkProfile', None)
 
@@ -266,7 +266,7 @@ class Test(unittest.TestCase):
         prefix = "AVI"
         vs_state = True
         vs_converter = VsConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        vs_converter.convert(avi_config, nsx_config, '', prefix, vs_state, "", "")
+        vs_converter.convert(avi_config, nsx_config, '', prefix,"admin",vs_state, "", "",)
         avi_vs_config = avi_config.get('VirtualService', None)
         assert avi_vs_config
 
@@ -280,8 +280,9 @@ class Test(unittest.TestCase):
 
         vs_state = False
         migrate_to = 'NSX'
-        nsxt_config_converter.convert(nsx_config, input_path, output_path, 'cloud', '', migrate_to, object_merge_check,
-                                      "", vs_state, vs_level_status=False, vrf=None)
+        nsxt_config_converter.convert(nsx_config, input_path, output_path, "admin", 'cloud', '', migrate_to,
+                                      object_merge_check,"", vs_state, vs_level_status=False, vrf=None,
+                                      segroup=None, not_in_use=True,)
 
     def test_skipped_object(self):
         """
@@ -310,12 +311,13 @@ class Test(unittest.TestCase):
         """
         testing when vs level status is true
         """
-
+        controller_version="20.1.7"
         vs_state = True
         vs_level_status = True
         migrate_to = 'NSX'
-        nsxt_config_converter.convert(nsx_config, input_path, output_path, 'cloud', '', migrate_to, object_merge_check,
-                                      "", vs_state, vs_level_status, vrf=None)
+        nsxt_config_converter.convert(nsx_config, input_path, output_path, "admin", 'cloud', '', migrate_to, object_merge_check,
+                                      controller_version, vs_state, vs_level_status, vrf=None, segroup=None,
+                                      not_in_use=True, custom_mapping=None)
         excel_path = os.path.abspath(
             os.path.join(
                 output_path, 'nsxt-report-ConversionStatus.xlsx'
@@ -359,7 +361,7 @@ class Test(unittest.TestCase):
 
         prefix = "AVI"
         ssl_converter = SslProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        ssl_converter.convert(avi_config, nsx_config, prefix)
+        ssl_converter.convert(avi_config, nsx_config, prefix, "admin")
         avi_ssl_config = avi_config.get('SSLProfile', None)
         assert avi_ssl_config
 
@@ -374,7 +376,7 @@ class Test(unittest.TestCase):
         prefix = "AVI"
         persistance_converter = PersistantProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping,
                                                             sys_dict)
-        persistance_converter.convert(avi_config, nsx_config, prefix)
+        persistance_converter.convert(avi_config, nsx_config, prefix, "admin")
         avi_persis_config = avi_config.get('ApplicationPersistenceProfile', None)
         assert avi_persis_config
 
@@ -386,7 +388,7 @@ class Test(unittest.TestCase):
         persistence_config = nsx_config['LbPersistenceProfiles']
         persistance_converter = PersistantProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping,
                                                             sys_dict)
-        persistance_converter.convert(avi_config, nsx_config, "")
+        persistance_converter.convert(avi_config, nsx_config, "","admin")
 
         avi_persis_config = avi_config.get('ApplicationPersistenceProfile', None)
         for alb_persis in avi_persis_config:
@@ -408,7 +410,7 @@ class Test(unittest.TestCase):
         ssl_client_config = nsx_config['LbClientSslProfiles']
         ssl_server_config=nsx_config['LbServerSslProfiles']
         ssl_converter = SslProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
-        ssl_converter.convert(avi_config, nsx_config, "")
+        ssl_converter.convert(avi_config, nsx_config, "", "admin")
         avi_ssl_config = avi_config.get('SSLProfile', None)
         assert avi_ssl_config
         assert len(avi_ssl_config) == len(ssl_client_config) + len(ssl_server_config)

@@ -6,11 +6,12 @@ from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 import avi.migrationtools.nsxt_converter.converter_constants as final
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 
-
 LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
 common_avi_util = MigrationUtil()
+
+
 class SslProfileConfigConv(object):
     def __init__(self, nsxt_profile_attributes, object_merge_check, merge_object_mapping, sys_dict):
         """
@@ -25,8 +26,7 @@ class SslProfileConfigConv(object):
         self.ssl_profile_count = 0
         self.certkey_count = 0
 
-
-    def convert(self, alb_config, nsx_lb_config, prefix):
+    def convert(self, alb_config, nsx_lb_config, prefix, tenant):
         alb_config["SSLProfile"] = []
         if nsx_lb_config.get('LbClientSslProfiles'):
             converted_objs = []
@@ -52,7 +52,7 @@ class SslProfileConfigConv(object):
                     if prefix:
                         name = prefix + '-' + name
                     alb_ssl = dict(
-                        name = name,
+                        name=name,
                     )
                     if lb_ssl.get("session_cache_enabled"):
                         alb_ssl['enable_ssl_session_reuse'] = lb_ssl['session_cache_enabled']
@@ -110,12 +110,12 @@ class SslProfileConfigConv(object):
                 resource_type = converted_alb_ssl[index]['resource_type']
                 if self.object_merge_check:
                     alb_mig_ssl = [pp for pp in alb_config['SSLProfile'] if
-                                  pp.get('name') == self.merge_object_mapping['ssl_profile'].get(name)]
+                                   pp.get('name') == self.merge_object_mapping['ssl_profile'].get(name)]
                     conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
-                                           [{'ssl_profile': alb_mig_ssl[0]}])
+                                               [{'ssl_profile': alb_mig_ssl[0]}])
                 else:
                     conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
-                                           [{'ssl_profile': alb_mig_ssl}])
+                                               [{'ssl_profile': alb_mig_ssl}])
                 if len(conv_status['skipped']) > 0:
                     LOG.debug(
                         '[SSL-PROFILE] Skipped Attribute {}:{}'.format(name,
@@ -144,7 +144,7 @@ class SslProfileConfigConv(object):
                     if prefix:
                         name = prefix + '-' + name
                     alb_ssl = dict(
-                        name = name,
+                        name=name,
                     )
                     if lb_ssl.get("ciphers"):
                         alb_ssl['accepted_ciphers'] = ":".join(lb_ssl['ciphers'])
@@ -198,10 +198,10 @@ class SslProfileConfigConv(object):
                     alb_mig_ssl = [pp for pp in alb_config['SSLProfile'] if
                                    pp.get('name') == self.merge_object_mapping['ssl_profile'].get(name)]
                     conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
-                                           [{'ssl_profile': alb_mig_ssl[0]}])
+                                               [{'ssl_profile': alb_mig_ssl[0]}])
                 else:
                     conv_utils.add_conv_status('sslprofile', resource_type, name, conv_status,
-                                              [{'ssl_profile': alb_mig_ssl}])
+                                               [{'ssl_profile': alb_mig_ssl}])
                 if len(conv_status['skipped']) > 0:
                     LOG.debug(
                         '[SSL-PROFILE] Skipped Attribute {}:{}'.format(name,

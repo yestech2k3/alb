@@ -18,6 +18,8 @@ class ProfileConfigConv(object):
         """
         self.ap_http_supported_attributes = nsxt_profile_attributes['Application_Http_Profile_supported_attr']
         self.common_na_attr = nsxt_profile_attributes['Common_Na_List']
+        self.http_na_attr = nsxt_profile_attributes["http_na_list"]
+        self.tcp_na_attr = nsxt_profile_attributes["tcp_na_list"]
         self.np_supported_attributes = nsxt_profile_attributes['Network_Profile_supported_attr']
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
@@ -25,11 +27,13 @@ class ProfileConfigConv(object):
         self.app_pr_count = 0
         self.np_pr_count = 0
 
-    def convert(self, alb_config, nsx_lb_config, prefix):
+    def convert(self, alb_config, nsx_lb_config, prefix, tenant):
         alb_config['ApplicationProfile'] = list()
         alb_config['NetworkProfile'] = list()
         skipped_ap = []
         skipped_np = []
+        na_ap=[]
+        na_np=[]
         attr_ap = []
         attr_np = []
         progressbar_count = 0
@@ -48,14 +52,17 @@ class ProfileConfigConv(object):
                     name=name,
                 )
 
-                na_list = [val for val in lb_pr.keys()
-                           if val in self.common_na_attr]
-
                 if lb_pr['resource_type'] == 'LBHttpProfile':
+                    na_list = [val for val in lb_pr.keys()
+                               if val in self.common_na_attr or val in self.http_na_attr]
                     self.convert_http(alb_pr, lb_pr)
                 if lb_pr['resource_type'] == 'LBFastUdpProfile':
                     self.convert_udp(alb_pr, lb_pr)
+                    na_list = [val for val in lb_pr.keys()
+                               if val in self.common_na_attr]
                 if lb_pr['resource_type'] == 'LBFastTcpProfile':
+                    na_list = [val for val in lb_pr.keys()
+                               if val in self.common_na_attr or val in self.tcp_na_attr]
                     self.convert_tcp(alb_pr, lb_pr)
 
                 indirect = []
@@ -83,6 +90,7 @@ class ProfileConfigConv(object):
                         resource_type=lb_pr['resource_type'],
                         alb_pr=alb_pr)
                     attr_ap.append(val)
+                    na_ap.append(na_list)
 
                 else:
                     skipped = [val for val in lb_pr.keys()
@@ -103,6 +111,7 @@ class ProfileConfigConv(object):
                         resource_type=lb_pr['resource_type'],
                         alb_pr=alb_pr)
                     attr_np.append(val)
+                    na_np.append(na_list)
 
                 msg = "Profile conversion started..."
                 conv_utils.print_progress_bar(progressbar_count, total_size, msg,
@@ -117,16 +126,17 @@ class ProfileConfigConv(object):
                 conv_utils.add_status_row('applicationprofile', None, lb_pr['display_name'],
                                           conv_const.STATUS_ERROR)
 
+
         if len(skipped_ap):
             for index, skipped in enumerate(skipped_ap):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
-                    u_ignore, na_list)
+                    u_ignore, na_ap[index])
                 name = attr_ap[index]['name']
                 alb_mig_app_pr = attr_ap[index]['alb_pr']
                 if self.object_merge_check:
                     alb_mig_app_pr = [app_pr for app_pr in alb_config['ApplicationProfile'] if
-                              app_pr.get('name') == self.merge_object_mapping['app_profile'].get(name)]
+                                      app_pr.get('name') == self.merge_object_mapping['app_profile'].get(name)]
                     conv_utils.add_conv_status('applicationprofile', attr_ap[index]['resource_type'],
                                                attr_ap[index]['name'], conv_status,
                                                [{'application_http_profile': alb_mig_app_pr[0]}])
@@ -142,12 +152,12 @@ class ProfileConfigConv(object):
             for index, skipped in enumerate(skipped_np):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
-                    u_ignore, na_list)
+                    u_ignore, na_np[index])
                 name = attr_np[index]['name']
                 alb_mig_np_pr = attr_np[index]['alb_pr']
                 if self.object_merge_check:
                     alb_mig_np_pr = [np_pr for np_pr in alb_config['NetworkProfile'] if
-                                      np_pr.get('name') == self.merge_object_mapping['network_profile'].get(name)]
+                                     np_pr.get('name') == self.merge_object_mapping['network_profile'].get(name)]
                     conv_utils.add_conv_status('applicationprofile', attr_np[index]['resource_type'],
                                                attr_np[index]['name'], conv_status,
                                                [{'network_profile': alb_mig_np_pr[0]}])
@@ -169,11 +179,11 @@ class ProfileConfigConv(object):
             keepalive_timeout=lb_pr.get('idle_timeout'),
             client_max_header_size=lb_pr.get('request_header_size'),
             keepalive_header=lb_pr.get('server_keep_alive'),
+            max_response_headers_size=lb_pr.get("response_header_size"),
+            detect_ntlm_app=lb_pr.get("ntlm")
         )
         if lb_pr.get('request_body_size', None):
             alb_pr['http_profile']['client_max_body_size'] = lb_pr.get('request_body_size', None)
-
-
 
     def convert_udp(self, alb_pr, lb_pr):
         alb_pr['profile'] = dict(
