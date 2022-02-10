@@ -184,6 +184,7 @@ class ProfileConfigConv(object):
         )
         if lb_pr.get('request_body_size', None):
             alb_pr['http_profile']['client_max_body_size'] = lb_pr.get('request_body_size', None)
+        alb_pr["preserve_client_ip"] = False
 
     def convert_udp(self, alb_pr, lb_pr):
         alb_pr['profile'] = dict(

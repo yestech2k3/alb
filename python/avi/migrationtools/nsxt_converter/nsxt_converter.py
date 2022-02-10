@@ -1,4 +1,5 @@
 # !/usr/bin/env python3
+import json
 import logging
 import os
 
@@ -97,7 +98,10 @@ class NsxtConverter(AviConverter):
             nsx_lb_config = nsx_util.get_nsx_config()
             LOG.debug("Copied input files")
         elif self.config_file:
-            nsx_lb_config = open(self.config_file, "r")
+            source_file = open(self.config_file, "r")
+            nsx_lb_config = source_file.read()
+            nsx_lb_config = json.loads(nsx_lb_config)
+
         if not nsx_lb_config:
             print('Not found NSX configuration file')
             return
@@ -115,11 +119,11 @@ class NsxtConverter(AviConverter):
         # Check if flag true then skip not in use object
         #if self.not_in_use:
             #avi_config = wipe_out_not_in_use(avi_config)
-        output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
-                       "output")
+       # output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
+                      # "output")
         self.write_output(avi_config, output_path, 'avi_config.json')
         if self.ansible:
-            self.convert(alb_config)
+            self.convert(alb_config, output_path)
         if self.option == 'auto-upload':
             self.upload_config_to_controller(alb_config)
         print("Total Warning: ", get_count('warning'))
@@ -132,9 +136,9 @@ class NsxtConverter(AviConverter):
             alb_config, self.controller_ip, self.user, self.password,
             self.tenant,self.controller_version)
 
-    def convert(self, alb_config):
-        output_path = (self.output_file_path + os.path.sep + self.nsxt_ip +
-                       os.path.sep + "output")
+    def convert(self, alb_config,output_path):
+        #output_path = (self.output_file_path + os.path.sep + self.nsxt_ip +
+                     #  os.path.sep + "output")
         avi_traffic = AviAnsibleConverterMigration(
             alb_config, output_path, self.prefix, self.not_in_use,
              skip_types=self.ansible_skip_types,
@@ -157,11 +161,11 @@ if __name__ == "__main__":
                         help='Flag for create ansible file',
                         action='store_true')
 
-    parser.add_argument('-n', '--nsxt_ip', required=True,
+    parser.add_argument('-n', '--nsxt_ip',
                         help='Ip of NSXT')
-    parser.add_argument('-u', '--nsxt_user', required=True,
+    parser.add_argument('-u', '--nsxt_user',
                         help='NSX-T User name')
-    parser.add_argument('-p', '--nsxt_passord', required=True,
+    parser.add_argument('-p', '--nsxt_passord',
                         help='NSX-T Password')
     parser.add_argument('-port', '--nsxt_port', default=443,
                         help='NSX-T Port')
