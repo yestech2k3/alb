@@ -113,6 +113,12 @@ type EventDetails struct {
 	// Placeholder for description of property cc_vnic_details of obj type EventDetails field type str  type object
 	CcVnicDetails *CloudVnicChange `json:"cc_vnic_details,omitempty"`
 
+	// Placeholder for description of property central_license_refresh_details of obj type EventDetails field type str  type object
+	CentralLicenseRefreshDetails *CentralLicenseRefreshDetails `json:"central_license_refresh_details,omitempty"`
+
+	// Placeholder for description of property central_license_subscription_details of obj type EventDetails field type str  type object
+	CentralLicenseSubscriptionDetails *CentralLicenseSubscriptionDetails `json:"central_license_subscription_details,omitempty"`
+
 	// Placeholder for description of property cloud_asg_notif_details of obj type EventDetails field type str  type object
 	CloudAsgNotifDetails *CloudASGNotifDetails `json:"cloud_asg_notif_details,omitempty"`
 
