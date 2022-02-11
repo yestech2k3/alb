@@ -34,9 +34,11 @@ class VsConfigConv(object):
         LBVirtualServer to Avi Config vs converter
         '''
         converted_alb_ssl_certs = list()
+        converted_http_policy_sets = list()
         alb_config['VirtualService'] = list()
         alb_config['VsVip'] = list()
         alb_config['SSLKeyAndCertificate'] = list()
+        alb_config["HTTPPolicySet"] = list()
 
         progressbar_count = 0
         total_size = len(nsx_lb_config['LbVirtualServers'])
@@ -165,9 +167,22 @@ class VsConfigConv(object):
                             pool['default_port'] = int(lb_vs['default_pool_member_ports'][0])
                         pool['tier1_lr'] = tier1_lr
 
-                preserve_client_ip = False
+                if lb_vs.get('rules'):
+                    httppolicyset = self.update_http_policy_sets(lb_vs.get("display_name"), prefix, cloud_name,
+                                                                 lb_vs.get("rules"))
+                    converted_http_policy_sets.append(httppolicyset)
+                    alb_config["HTTPPolicySet"].append(httppolicyset)
+                    alb_vs['http_policies'] = [
+                        {
+                            "http_policy_set_ref" : "/api/httppolicyset/?name=%s" % httppolicyset["name"],
+                            "index" : 11
+                        }
+                    ]
+
                 for nsx_pool in nsx_lb_config["LbPools"]:
-                    nsx_pool_name = prefix + "-" + nsx_pool["display_name"]
+                    nsx_pool_name = nsx_pool["display_name"]
+                    if prefix:
+                        nsx_pool_name = prefix + "-" + nsx_pool_name
                     if nsx_pool_name == pool_name:
                         if nsx_pool.get("snat_translation"):
                             if nsx_pool["snat_translation"].get("ip_addresses"):
@@ -213,6 +228,17 @@ class VsConfigConv(object):
                 u_ignore, [])
             conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
                                        [{"ssl_cert_key": cert}])
+
+        for policyset in converted_http_policy_sets:
+            indirect = []
+            u_ignore = []
+            ignore_for_defaults = {}
+            conv_status = conv_utils.get_conv_status(
+                [], indirect, ignore_for_defaults, [],
+                u_ignore, [])
+            conv_status['status'] = 'PARTIAL'
+            conv_utils.add_conv_status('policy', None, policyset['name'], conv_status,
+                                       [{"policy_set":policyset}])
 
     def update_pool_with_ssl(self, alb_config, lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix,
                              converted_alb_ssl_certs):
@@ -342,3 +368,338 @@ class VsConfigConv(object):
                     app_name, 'applicationprofile',
                     tenant=conv_utils.get_name(app_prof_cmd['tenant_ref']))
         return app_name
+
+    def update_http_policy_sets(self, name, prefix, cloud_name, lb_rules):
+        httppolicyset = {}
+
+        rules = []
+        policy_set_name = name + "-" + cloud_name + "-HTTP-Policy-Set"
+        if prefix:
+            policy_set_name = prefix + '-' + policy_set_name
+        httppolicyset["name"] = policy_set_name
+        httppolicyset['http_request_policy'] = {}
+        request_policy = list(filter(lambda x: x["phase"] == "HTTP_REQUEST_REWRITE", lb_rules))
+        request_counter = 0
+        for index, policy in enumerate(request_policy):
+            match_conditions = policy.get("match_conditions")
+            request_counter = index + 1
+            rule_dict = dict(name="Rule {}".format(index + 1),
+                             index=request_counter,
+                             enable=True)
+            match = {}
+            for match_condition in match_conditions:
+                if match_condition['type'] == "LBHttpRequestBodyCondition":
+                    # TODO Add skip for this match_condition
+                    continue
+                match = self.convert_match_conditions_to_match(match, match_condition)
+
+            if match:
+                rule_dict["match"] = match
+            actions = policy.get("actions")
+            for action in actions:
+                if action["type"] == "LBVariableAssignmentAction":
+                    # TODO Add skip for this match_condition
+                    continue
+                if action["type"] == "LBHttpRequestUriRewriteAction":
+                    rule_dict['rewrite_url_action'] = {}
+                    path = {"type": "URI_PARAM_TYPE_TOKENIZED",
+                            "tokens": [{'type': 'URI_TOKEN_TYPE_STRING', 'str_value': action["uri"]}]}
+                    rule_dict['rewrite_url_action']['path'] = path
+                    if action.get("uri_arguments", None):
+                        query = {'keep_query': True, 'add_string': action.get("uri_arguments", None)}
+                        rule_dict['rewrite_url_action']['query'] = query
+                if action['type'] == "LBHttpRequestHeaderRewriteAction":
+                    rule_dict['hdr_action'] = []
+                    hdr_action = {'action': 'HTTP_REPLACE_HDR', 'hdr':
+                        {'name': action.get("header_name"), 'value': {'val': action.get("header_value")}}}
+                    rule_dict['hdr_action'].append(hdr_action)
+                if action['type'] == "LBHttpRequestHeaderDeleteAction":
+                    rule_dict['hdr_action'] = []
+                    hdr_action = {'action': 'HTTP_REMOVE_HDR', 'hdr': {'name': action.get("header_name")}}
+                    rule_dict['hdr_action'].append(hdr_action)
+
+            if len(rule_dict.keys()) > 3: rules.append(rule_dict)
+        httppolicyset['http_request_policy']['rules'] = rules
+
+        transport = list(filter(lambda x: x["phase"] == "TRANSPORT", lb_rules))
+        for index, policy in enumerate(transport):
+            match_conditions = policy.get("match_conditions")
+            for match_condition in match_conditions:
+                if match_condition.get("type") == "LBSslSniCondition":
+                    # TODO skip
+                    continue
+            request_counter = request_counter + 1
+            rule_dict = dict(name="Rule {}".format(request_counter),
+                             index=request_counter,
+                             enable=True)
+            actions = policy.get("actions")
+            for action in actions:
+                if action["type"] == "LBSslModeSelectionAction":
+                    # TODO Add skip for this match_condition
+                    continue
+                if action["type"] == "LBSelectPoolAction":
+                    pool_ref = action.get('pool_id')
+                    pool_name = pool_ref.split('/')[-1]
+                    if prefix:
+                        pool_name = prefix + '-' + pool_name
+                    rule_dict['switching_action'] = {'action': 'HTTP_SWITCHING_SELECT_POOL',
+                                                     "pool_ref": conv_utils.get_object_ref(
+                                                         pool_name, 'pool', tenant="admin", cloud_name=cloud_name)}
+                    httppolicyset['http_request_policy']['rules'].append(rule_dict)
+
+        rules = []
+        httppolicyset['http_response_policy'] = {}
+        responce_policy = list(filter(lambda x: x["phase"] == "HTTP_RESPONSE_REWRITE", lb_rules))
+        for index, policy in enumerate(responce_policy):
+            match_conditions = policy.get("match_conditions")
+            rule_dict = dict(name="Rule {}".format(index + 1),
+                             index=index + 1,
+                             enable=True)
+            match = {}
+            for match_condition in match_conditions:
+                if match_condition.get("type") == "LBHttpResponseHeaderCondition":
+                    hdrs = dict(value=[match_condition.get("header_value")],
+                                match_case="SENSITIVE" if match_condition.get("case_sensitive") else "INSENSITIVE")
+                    if match_condition.get("match_type"):
+                        match_criteria = match_condition.get("match_type")
+                        if match_condition.get("match_type") == "EQUALS":
+                            match_criteria = "HDR_EQUALS"
+                        elif match_condition.get("match_type") == "STARTS_WITH":
+                            match_criteria = "HDR_BEGINS_WITH"
+                        elif match_condition.get("match_type") == "ENDS_WITH":
+                            match_criteria = "HDR_ENDS_WITH"
+                        elif match_condition.get("match_type") == "CONTAINS" or match_condition.get(
+                                "match_type") == "REGEX":
+                            match_criteria = "HDR_CONTAINS"
+                        hdrs["match_criteria"] = match_criteria
+                    if match_condition.get("header_name"):
+                        hdrs["hdr"] = match_condition.get("header_name")
+                    match['rsp_hdrs'] = [hdrs]
+                match = self.convert_match_conditions_to_match(match, match_condition)
+
+            if match: rule_dict["match"] = match
+            actions = policy.get("actions")
+            for action in actions:
+                if action["type"] == "LBVariablePersistenceLearnAction":
+                    # TODO Add skip for this match_condition
+                    continue
+                if action["type"] == "LBHttpResponseHeaderRewriteAction":
+                    rule_dict['hdr_action'] = []
+                    hdr_action = {'action': 'HTTP_REPLACE_HDR', 'hdr':
+                        {'name': action.get("header_name"), 'value': {'val': action.get("header_value")}}}
+                    rule_dict['hdr_action'].append(hdr_action)
+                if action["type"] == "LBHttpResponseHeaderDeleteAction":
+                    rule_dict['hdr_action'] = []
+                    hdr_action = {'action': 'HTTP_REMOVE_HDR', 'hdr':
+                        {'name': action.get("header_name")}}
+                    rule_dict['hdr_action'].append(hdr_action)
+            rules.append(rule_dict)
+        httppolicyset['http_response_policy']['rules'] = rules
+
+        rules = []
+        httppolicyset['http_security_policy'] = {}
+        access = list(filter(lambda x: x["phase"] == "HTTP_ACCESS", lb_rules))
+        security_policy_counter = 0
+        for index, policy in enumerate(access):
+            actions = policy.get("actions")
+            for action in actions:
+                if action["type"] == "LBVariableAssignmentAction":
+                    # TODO Add skip for this match_condition
+                    continue
+                if action["type"] == "LBJwtAuthAction":
+                    # TODO Add skip for this match_condition
+                    continue
+                if action["type"] == "LBConnectionDropAction":
+                    security_policy_counter = security_policy_counter + 1
+                    rule_dict = dict(name="Rule {}".format(security_policy_counter),
+                                     index=security_policy_counter,
+                                     enable=True)
+                    rule_dict['action'] = {'action': 'HTTP_SECURITY_ACTION_CLOSE_CONN'}
+                    rules.append(rule_dict)
+        if rules:
+            httppolicyset['http_security_policy']['rules'] = rules
+
+        http_forward = list(filter(lambda x: x["phase"] == "HTTP_FORWARDING", lb_rules))
+        for index, policy in enumerate(http_forward):
+            actions = policy.get("actions")
+            for action in actions:
+                if action["type"] == "LBHttpRedirectAction" and action.get("redirect_url").__contains__("http"):
+                    request_counter = request_counter + 1
+
+                    redirect_url = action.get("redirect_url")
+                    host_protocol = redirect_url.split("://")
+
+                    protocol = host_protocol[0].upper()
+                    host_path = host_protocol[1].split("/")
+
+                    port = 80 if protocol == "HTTP" else 443
+                    rule_dict = dict(name="Rule {}".format(request_counter),
+                                     index=request_counter,
+                                     enable=True)
+
+                    redirect_action = {
+                        "protocol": protocol,
+                        "port": port,
+                        "status_code": "HTTP_REDIRECT_STATUS_CODE_{}".format(action.get("redirect_status")),
+                        "host": {
+                            "type": "URI_PARAM_TYPE_TOKENIZED",
+                            "tokens": [
+                                {
+                                    "type": "URI_TOKEN_TYPE_STRING",
+                                    "str_value": host_path[0]
+                                }
+                            ]
+                        },
+                    }
+                    if len(host_path) > 1:
+                        redirect_action["path"] = {
+                            "type": "URI_PARAM_TYPE_TOKENIZED",
+                            "tokens": [
+                                {
+                                    "type": "URI_TOKEN_TYPE_STRING",
+                                    "str_value": host_path[1]
+                                }
+                            ]
+                        }
+
+                    rule_dict['redirect_action'] = redirect_action
+                    match_conditions = policy.get("match_conditions")
+
+                    match = {}
+                    for match_condition in match_conditions:
+                        match = self.convert_match_conditions_to_match(match, match_condition)
+                    if match: rule_dict["match"] = match
+                    httppolicyset['http_request_policy']['rules'].append(rule_dict)
+                if action['type'] == "LBHttpRejectAction":
+                    # TODO need to discuss
+                    continue
+                    security_policy_counter = security_policy_counter + 1
+                    rule_dict = dict(name="Rule {}".format(security_policy_counter),
+                                     index=security_policy_counter,
+                                     enable=True)
+                    rule_dict['action'] = {'action': 'HTTP_SECURITY_ACTION_SEND_RESPONSE',
+                                           'status_code': 'HTTP_LOCAL_RESPONSE_STATUS_CODE_{}'.format(
+                                               action.get("reply_status"))}
+                    match_conditions = policy.get("match_conditions")
+                    match = {}
+                    for match_condition in match_conditions:
+                        match = self.convert_match_conditions_to_match(match, match_condition)
+                    if match: rule_dict["match"] = match
+                    httppolicyset['http_security_policy']['rules'].append(rule_dict)
+                if action["type"] == "LBSelectPoolAction":
+                    request_counter = request_counter + 1
+                    rule_dict = dict(name="Rule {}".format(request_counter),
+                                     index=request_counter,
+                                     enable=True)
+
+                    match = {}
+                    match_conditions = policy.get("match_conditions")
+                    for match_condition in match_conditions:
+                        match = self.convert_match_conditions_to_match(match, match_condition)
+                    if match: rule_dict["match"] = match
+
+                    pool_ref = action.get('pool_id')
+                    pool_name = pool_ref.split('/')[-1]
+                    if prefix:
+                        pool_name = prefix + '-' + pool_name
+                    rule_dict['switching_action'] = {'action': 'HTTP_SWITCHING_SELECT_POOL',
+                                                     "pool_ref": conv_utils.get_object_ref(
+                                                         pool_name, 'pool', tenant="admin", cloud_name=cloud_name)}
+                    httppolicyset['http_request_policy']['rules'].append(rule_dict)
+                if action["type"] == "LBConnectionDropAction":
+                    security_policy_counter = security_policy_counter + 1
+                    rule_dict = dict(name="Rule {}".format(security_policy_counter),
+                                     index=security_policy_counter,
+                                     enable=True)
+                    rule_dict['action'] = {'action': 'HTTP_SECURITY_ACTION_CLOSE_CONN'}
+                    match_conditions = policy.get("match_conditions")
+                    match = {}
+                    for match_condition in match_conditions:
+                        match = self.convert_match_conditions_to_match(match, match_condition)
+                    if match: rule_dict["match"] = match
+                    httppolicyset['http_security_policy']['rules'].append(rule_dict)
+
+        return httppolicyset
+
+    def convert_match_conditions_to_match(self, match, match_condition):
+        if match_condition.get("type") == "LBHttpRequestUriCondition":
+            request_uri = dict(match_str=[match_condition.get("uri")],
+                               match_case="SENSITIVE" if match_condition.get("case_sensitive") else "INSENSITIVE")
+            if match_condition.get("match_type"):
+                match_criteria = match_condition.get("match_type")
+                if match_condition.get("match_type") == "EQUALS":
+                    match_criteria = "EQUALS"
+                elif match_condition.get("match_type") == "STARTS_WITH":
+                    match_criteria = "BEGINS_WITH"
+                elif match_condition.get("match_type") == "ENDS_WITH":
+                    match_criteria = "HDR_ENDS_WITH"
+                elif match_condition.get("match_type") == "CONTAINS" or match_condition.get("match_type") == "REGEX":
+                    match_criteria = "HDR_CONTAINS"
+                request_uri['match_criteria'] = match_criteria
+            match["path"] = request_uri
+        if match_condition.get("type") == "LBHttpRequestHeaderCondition":
+            hdrs = dict(value=[match_condition.get("header_value")],
+                        match_case="SENSITIVE" if match_condition.get("case_sensitive") else "INSENSITIVE")
+            if match_condition.get("match_type"):
+                match_criteria = match_condition.get("match_type")
+                if match_condition.get("match_type") == "EQUALS":
+                    match_criteria = "HDR_EQUALS"
+                elif match_condition.get("match_type") == "STARTS_WITH":
+                    match_criteria = "HDR_BEGINS_WITH"
+                elif match_condition.get("match_type") == "ENDS_WITH":
+                    match_criteria = "HDR_ENDS_WITH"
+                elif match_condition.get("match_type") == "CONTAINS" or match_condition.get("match_type") == "REGEX":
+                    match_criteria = "HDR_CONTAINS"
+                hdrs["match_criteria"] = match_criteria
+            if match_condition.get("header_name"):
+                hdrs["hdr"] = match_condition.get("header_name")
+            match['hdrs'] = [hdrs]
+        if match_condition.get("type") == "LBHttpRequestMethodCondition":
+            method = dict(methods=["HTTP_METHOD_" + match_condition.get("method")], match_criteria="IS_IN")
+            match["method"] = method
+        if match_condition.get("type") == "LBHttpRequestUriArgumentsCondition":
+            query = dict(match_str=[match_condition.get("uri_arguments")],
+                         match_case="SENSITIVE" if match_condition.get("case_sensitive") else "INSENSITIVE",
+                         match_criteria="QUERY_MATCH_CONTAINS")
+            match["query"] = query
+        if match_condition.get("type") == "LBHttpRequestVersionCondition":
+            version = dict(versions=["ONE_ONE" if match_condition.get("version") == "HTTP_VERSION_1_1" else "ONE_ZERO"],
+                           match_criteria="IS_IN")
+            match["version"] = version
+        if match_condition.get("type") == "LBHttpRequestCookieCondition":
+            cookie = dict(name=match_condition.get("cookie_name"),
+                          value=match_condition.get("cookie_value"),
+                          match_case="SENSITIVE" if match_condition.get("case_sensitive") else "INSENSITIVE")
+            if match_condition.get("match_type"):
+                match_criteria = match_condition.get("match_type")
+                if match_condition.get("match_type") == "EQUALS":
+                    match_criteria = "HDR_EQUALS"
+                elif match_condition.get("match_type") == "STARTS_WITH":
+                    match_criteria = "HDR_BEGINS_WITH"
+                elif match_condition.get("match_type") == "ENDS_WITH":
+                    match_criteria = "HDR_ENDS_WITH"
+                elif match_condition.get("match_type") == "CONTAINS" or match_condition.get("match_type") == "REGEX":
+                    match_criteria = "HDR_CONTAINS"
+                cookie["match_criteria"] = match_criteria
+            match["cookie"] = cookie
+        if match_condition.get("type") == "LBHttpSslCondition":
+            # TODO Need to skip
+            type = match_condition.get("type")
+        if match_condition.get("type") == "LBTcpHeaderCondition":
+            # TODO Need to skip
+            type = match_condition.get("type")
+        if match_condition.get("type") == "LBIpHeaderCondition":
+            client_ip = {}
+            if match_condition.get("source_address"):
+                client_ip = {
+                    "match_criteria": "IS_IN",
+                    "addrs": [{"addr": match_condition.get("source_address"), "type": "V4"}]
+                }
+                match['client_ip'] = client_ip
+            elif match_condition.get("group_path"):
+                # TODO Need to discuss
+                type = match_condition.get("type")
+        if match_condition.get("type") == "LBVariableCondition":
+            # TODO Need to skip
+            type = match_condition.get("type")
+        return match
