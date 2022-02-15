@@ -263,6 +263,30 @@ NSXT:
     SourcePersistenceProfile_Supported_Attributes:
     - "timeout"
 
+    HttpPolicySetRules_Supported_Attributes:
+    - "match_conditions"
+    - "actions"
+    - "phase"
+
+    HttpPolicySetRules_Na_List_MatchingCondition:
+    - "LBHttpRequestBodyCondition"
+    - "LBTcpHeaderCondition"
+    - "LBVariableCondition"
+    - "LBHttpSslCondition"
+    - "LBSslSniCondition"
+    - "LBClientCertificateIssuerDnConditionDto"
+    - "LBClientCertificateSubjectDnConditionDto"
+
+    HttpPolicySetRules_Na_List_Actions:
+    - "LBVariableAssignmentAction"
+    - "LBVariablePersistenceOnAction"
+    - "LBVariablePersistenceLearnAction"
+    - "LBJwtAuthAction"
+    - "LBSslModeSelectionAction"
+    - "LBJwtCertificateKey"
+    - "LBJwtSymmetricKey"
+    - "LBJwtPublicKey"
+
     Common_Na_List:
     - "path"
     - "relative_path" 

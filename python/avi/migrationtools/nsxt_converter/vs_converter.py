@@ -23,10 +23,14 @@ class VsConfigConv(object):
         self.client_ssl_attr = nsxt_profile_attributes['VS_client_ssl_supported_attr']
         self.common_na_attr = nsxt_profile_attributes['Common_Na_List']
         self.VS_na_attr = nsxt_profile_attributes["VS_na_list"]
+        self.rule_match_na = nsxt_profile_attributes["HttpPolicySetRules_Na_List_MatchingCondition"]
+        self.rules_actions_na = nsxt_profile_attributes["HttpPolicySetRules_Na_List_Actions"]
+        self.supported_attr_httppolicyset = nsxt_profile_attributes["HttpPolicySetRules_Supported_Attributes"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
         self.certkey_count = 0
+        self.policyset_rules_count = 0
 
     def convert(self, alb_config, nsx_lb_config, cloud_name, prefix, tenant, vs_state, controller_version,
                 vrf=None, segroup=None):
@@ -35,6 +39,8 @@ class VsConfigConv(object):
         '''
         converted_alb_ssl_certs = list()
         converted_http_policy_sets = list()
+        converted_http_policy_na_list = list()
+        converted_http_policy_skipped = list()
         alb_config['VirtualService'] = list()
         alb_config['VsVip'] = list()
         alb_config['SSLKeyAndCertificate'] = list()
@@ -58,7 +64,6 @@ class VsConfigConv(object):
                     enabled=lb_vs.get('enabled'),
                     cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
                     tenant_ref=conv_utils.get_object_ref(tenant, 'tenant')
-
                 )
                 tier1_lr = ''
                 for ref in nsx_lb_config['LBServices']:
@@ -238,16 +243,20 @@ class VsConfigConv(object):
                         pool['tier1_lr'] = tier1_lr
 
                 if lb_vs.get('rules'):
-                    httppolicyset = self.update_http_policy_sets(lb_vs.get("display_name"), prefix, cloud_name,
+                    httppolicyset, na_http_list, httppolicyset_skipped = self.update_http_policy_sets(lb_vs.get("display_name"), prefix, cloud_name,
                                                                  lb_vs.get("rules"))
-                    converted_http_policy_sets.append(httppolicyset)
-                    alb_config["HTTPPolicySet"].append(httppolicyset)
-                    alb_vs['http_policies'] = [
-                        {
-                            "http_policy_set_ref": "/api/httppolicyset/?name=%s" % httppolicyset["name"],
-                            "index": 11
-                        }
-                    ]
+                    if httppolicyset:
+                        converted_http_policy_sets.append(httppolicyset)
+                        converted_http_policy_na_list.append(na_http_list)
+                        converted_http_policy_skipped.append(httppolicyset_skipped)
+                        alb_config["HTTPPolicySet"].append(httppolicyset)
+                        self.policyset_rules_count +=1
+                        alb_vs['http_policies'] = [
+                            {
+                                "http_policy_set_ref" : "/api/httppolicyset/?name=%s" % httppolicyset["name"],
+                                "index" : 11
+                            }
+                        ]
 
                 for nsx_pool in nsx_lb_config["LbPools"]:
                     nsx_pool_name = nsx_pool["display_name"]
@@ -300,14 +309,18 @@ class VsConfigConv(object):
             conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
                                        [{"ssl_cert_key": cert}])
 
-        for policyset in converted_http_policy_sets:
+        for index, policyset in enumerate(converted_http_policy_sets):
             indirect = []
             u_ignore = []
             ignore_for_defaults = {}
+
             conv_status = conv_utils.get_conv_status(
                 [], indirect, ignore_for_defaults, [],
                 u_ignore, [])
-            conv_status['status'] = 'PARTIAL'
+
+            conv_status["skipped"] = converted_http_policy_skipped[index]
+            conv_status["na_list"] = converted_http_policy_na_list[index]
+            conv_status["status"] = "PARTIAL"
             conv_utils.add_conv_status('policy', None, policyset['name'], conv_status,
                                        [{"policy_set": policyset}])
 
@@ -441,6 +454,39 @@ class VsConfigConv(object):
         return app_name
 
     def update_http_policy_sets(self, name, prefix, cloud_name, lb_rules):
+        na_http_list = []
+        match_conditions = []
+        match_actions = []
+        httppolicyset_skipped = []
+        na_attr = {}
+
+
+        for policy in lb_rules:
+            skipped = [val for val in policy.keys()
+                       if val not in self.supported_attr_httppolicyset]
+            httppolicyset_skipped.append(skipped[0])
+            conditions = policy.get("match_conditions")
+            match = list(filter(lambda x: x["type"] in self.rule_match_na, conditions))
+            for condition in match:
+                match_conditions.append({condition["type"] : list(condition.keys())})
+            actions = policy.get("actions")
+            action = list(filter(lambda x: x["type"] in self.rules_actions_na, actions))
+            for ac in action:
+                match_actions.append({ ac.get("type"): list(ac.keys())})
+
+        result_dict = []
+        for i in range(len(match_conditions)):
+            if match_conditions[i] not in match_conditions[i + 1:]:
+                result_dict.append(match_conditions[i])
+
+        na_attr['match_conditions'] = result_dict
+        result_dict = []
+        for i in range(len(match_actions)):
+            if match_actions[i] not in match_actions[i + 1:]:
+                result_dict.append(match_actions[i])
+        na_attr['actions'] = result_dict
+        na_http_list.append(na_attr)
+
         httppolicyset = {}
 
         rules = []
@@ -460,7 +506,6 @@ class VsConfigConv(object):
             match = {}
             for match_condition in match_conditions:
                 if match_condition['type'] == "LBHttpRequestBodyCondition":
-                    # TODO Add skip for this match_condition
                     continue
                 match = self.convert_match_conditions_to_match(match, match_condition)
 
@@ -469,7 +514,6 @@ class VsConfigConv(object):
             actions = policy.get("actions")
             for action in actions:
                 if action["type"] == "LBVariableAssignmentAction":
-                    # TODO Add skip for this match_condition
                     continue
                 if action["type"] == "LBHttpRequestUriRewriteAction":
                     rule_dict['rewrite_url_action'] = {}
@@ -497,7 +541,6 @@ class VsConfigConv(object):
             match_conditions = policy.get("match_conditions")
             for match_condition in match_conditions:
                 if match_condition.get("type") == "LBSslSniCondition":
-                    # TODO skip
                     continue
             request_counter = request_counter + 1
             rule_dict = dict(name="Rule {}".format(request_counter),
@@ -506,7 +549,6 @@ class VsConfigConv(object):
             actions = policy.get("actions")
             for action in actions:
                 if action["type"] == "LBSslModeSelectionAction":
-                    # TODO Add skip for this match_condition
                     continue
                 if action["type"] == "LBSelectPoolAction":
                     pool_ref = action.get('pool_id')
@@ -552,7 +594,6 @@ class VsConfigConv(object):
             actions = policy.get("actions")
             for action in actions:
                 if action["type"] == "LBVariablePersistenceLearnAction":
-                    # TODO Add skip for this match_condition
                     continue
                 if action["type"] == "LBHttpResponseHeaderRewriteAction":
                     rule_dict['hdr_action'] = []
@@ -575,10 +616,8 @@ class VsConfigConv(object):
             actions = policy.get("actions")
             for action in actions:
                 if action["type"] == "LBVariableAssignmentAction":
-                    # TODO Add skip for this match_condition
                     continue
                 if action["type"] == "LBJwtAuthAction":
-                    # TODO Add skip for this match_condition
                     continue
                 if action["type"] == "LBConnectionDropAction":
                     security_policy_counter = security_policy_counter + 1
@@ -690,7 +729,7 @@ class VsConfigConv(object):
                     if match: rule_dict["match"] = match
                     httppolicyset['http_security_policy']['rules'].append(rule_dict)
 
-        return httppolicyset
+        return httppolicyset, na_http_list, list(set(httppolicyset_skipped))
 
     def convert_match_conditions_to_match(self, match, match_condition):
         if match_condition.get("type") == "LBHttpRequestUriCondition":
@@ -753,12 +792,6 @@ class VsConfigConv(object):
                     match_criteria = "HDR_CONTAINS"
                 cookie["match_criteria"] = match_criteria
             match["cookie"] = cookie
-        if match_condition.get("type") == "LBHttpSslCondition":
-            # TODO Need to skip
-            type = match_condition.get("type")
-        if match_condition.get("type") == "LBTcpHeaderCondition":
-            # TODO Need to skip
-            type = match_condition.get("type")
         if match_condition.get("type") == "LBIpHeaderCondition":
             client_ip = {}
             if match_condition.get("source_address"):
@@ -770,33 +803,30 @@ class VsConfigConv(object):
             elif match_condition.get("group_path"):
                 # TODO Need to discuss
                 type = match_condition.get("type")
-        if match_condition.get("type") == "LBVariableCondition":
-            # TODO Need to skip
-            type = match_condition.get("type")
         return match
 
     def get_ca_cert(self, ca_url):
         ca_id = """-----BEGIN CERTIFICATE-----
-MIIDXzCCAkegAwIBAgIQILuJ/vBaBpdK5/W07NmI5DANBgkqhkiG9w0BAQsFADBC
-MRMwEQYKCZImiZPyLGQBGRYDbGFiMRUwEwYKCZImiZPyLGQBGRYFcmVwcm8xFDAS
-BgNVBAMTC3JlcHJvLUFELUNBMB4XDTIwMDQyOTEzMTgwMVoXDTI1MDQyOTEzMjgw
-MVowQjETMBEGCgmSJomT8ixkARkWA2xhYjEVMBMGCgmSJomT8ixkARkWBXJlcHJv
-MRQwEgYDVQQDEwtyZXByby1BRC1DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
-AQoCggEBALj3ChNORETzK1qOIgcF6QMx2KUv/pXx7NQYin0mJgEaPcVD/lH4RR5z
-ToswIetCbz3NeajJShfoNV17H/ovvH5iUnvrdajVl7kXM0QmAaLmosKU4BLHgrDd
-LKKBDMKGw2MQWjjfBHJaH92Yg8+tdtoYCzouQn6ZDHp+7sXqtpngoRIQVHFYQNH2
-8gmkdDQQwp4fveeM7at6NktAB7uMTec6i63yigWrbvhqS0b/d6Y4aTVWH8qWwyCV
-nd+7CsEwQk2Y1iopb0Cli5M1bppoJ6a17eONqCaYMb8qShZQZWKygDkfAYD9B9c4
-x0UpRsSUDiVv7Bdc6MrlEPu9dI01BmkCAwEAAaNRME8wCwYDVR0PBAQDAgGGMA8G
-A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGrxPxqDTdksMOqnt19O1VH0jpznMBAG
-CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBCwUAA4IBAQBU6HnUmwCShJtNEiL5
-IJFgMh55tp4Vi9E1+q3XI5RwOB700UwmfWUXmOKeeD3871gg4lhqfjDKSxNrRJ3m
-CKuE4nwCSgK74BSCgWu3pTpSPjUgRED2IK/03jQCK2TuZgsTe20BUROnr+uRpORI
-pVbIDevBvuggxDHfn7JYQE/SXrUaCplaZUjZz6WVHTkLEDfoPeTp5gUPA7x/V4MI
-tHTkjIH8nND2pAJRCzLExl5Bf5PKqWjPOqaqyg+hDg2BXm70QOWIMqvxRt9TJAq4
-n6DBZ2ZDOhyFCejCDCSIbku76WGNeT8+0xXjCPaTNBL0AawR77uqa2KZpaCU7e84
-jhiq
------END CERTIFICATE----- """
+                MIIDXzCCAkegAwIBAgIQILuJ/vBaBpdK5/W07NmI5DANBgkqhkiG9w0BAQsFADBC
+                MRMwEQYKCZImiZPyLGQBGRYDbGFiMRUwEwYKCZImiZPyLGQBGRYFcmVwcm8xFDAS
+                BgNVBAMTC3JlcHJvLUFELUNBMB4XDTIwMDQyOTEzMTgwMVoXDTI1MDQyOTEzMjgw
+                MVowQjETMBEGCgmSJomT8ixkARkWA2xhYjEVMBMGCgmSJomT8ixkARkWBXJlcHJv
+                MRQwEgYDVQQDEwtyZXByby1BRC1DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+                AQoCggEBALj3ChNORETzK1qOIgcF6QMx2KUv/pXx7NQYin0mJgEaPcVD/lH4RR5z
+                ToswIetCbz3NeajJShfoNV17H/ovvH5iUnvrdajVl7kXM0QmAaLmosKU4BLHgrDd
+                LKKBDMKGw2MQWjjfBHJaH92Yg8+tdtoYCzouQn6ZDHp+7sXqtpngoRIQVHFYQNH2
+                8gmkdDQQwp4fveeM7at6NktAB7uMTec6i63yigWrbvhqS0b/d6Y4aTVWH8qWwyCV
+                nd+7CsEwQk2Y1iopb0Cli5M1bppoJ6a17eONqCaYMb8qShZQZWKygDkfAYD9B9c4
+                x0UpRsSUDiVv7Bdc6MrlEPu9dI01BmkCAwEAAaNRME8wCwYDVR0PBAQDAgGGMA8G
+                A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGrxPxqDTdksMOqnt19O1VH0jpznMBAG
+                CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBCwUAA4IBAQBU6HnUmwCShJtNEiL5
+                IJFgMh55tp4Vi9E1+q3XI5RwOB700UwmfWUXmOKeeD3871gg4lhqfjDKSxNrRJ3m
+                CKuE4nwCSgK74BSCgWu3pTpSPjUgRED2IK/03jQCK2TuZgsTe20BUROnr+uRpORI
+                pVbIDevBvuggxDHfn7JYQE/SXrUaCplaZUjZz6WVHTkLEDfoPeTp5gUPA7x/V4MI
+                tHTkjIH8nND2pAJRCzLExl5Bf5PKqWjPOqaqyg+hDg2BXm70QOWIMqvxRt9TJAq4
+                n6DBZ2ZDOhyFCejCDCSIbku76WGNeT8+0xXjCPaTNBL0AawR77uqa2KZpaCU7e84
+                jhiq
+                -----END CERTIFICATE----- """
 
         return ca_id
 
