@@ -116,6 +116,8 @@ class PersistantProfileConfigConv(object):
             conv_status = conv_utils.get_conv_status(
                 skipped_list[index], indirect, ignore_for_defaults, nsx_lb_config['LbPersistenceProfiles'],
                 u_ignore, na_list[index])
+            app_per_na_list = [val for val in na_list[index] if val not in self.common_na_attr]
+            conv_status["na_list"] = app_per_na_list
             name = converted_alb_pp[index]['name']
             alb_mig_pp = converted_alb_pp[index]['alb_pp']
             resource_type = converted_alb_pp[index]['resource_type']

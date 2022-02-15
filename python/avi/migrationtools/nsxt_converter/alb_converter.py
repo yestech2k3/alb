@@ -77,8 +77,17 @@ class ALBConverter:
                         continue
                     object_type = self.nsxt_attributes['albObjectType'][
                         v.split('/')[2]]
-                    data[k.replace("_ref", "_path")] = "/infra/%s/%s" % (
-                        object_type, v.split("name=")[1])
+                    obj_name = v.split("name=")[1]
+                    if object_type == "alb-application-persistence-profiles":
+                        data['application_persistence_profile_path'] = "/infra/%s/%s" % (
+                            object_type, obj_name)
+                    elif obj_name.__contains__("&cloud"):
+                        name = obj_name.split("&cloud")[0]
+                        data[k.replace("_ref", "_path")] = "/infra/%s/%s" % (
+                            object_type, name)
+                    else:
+                        data[k.replace("_ref", "_path")] = "/infra/%s/%s" % (
+                            object_type, obj_name)
                 elif k.endswith("_refs"):
                     list_of_paths = list()
                     for refs in v:

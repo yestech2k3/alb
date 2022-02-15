@@ -39,7 +39,7 @@ class VsConfigConv(object):
         alb_config['VsVip'] = list()
         alb_config['SSLKeyAndCertificate'] = list()
         alb_config["HTTPPolicySet"] = list()
-
+        converted_objs = []
         progressbar_count = 0
         total_size = len(nsx_lb_config['LbVirtualServers'])
         print("\nConverting Virtual Services ...")
@@ -98,6 +98,71 @@ class VsConfigConv(object):
                         segroup, 'serviceenginegroup', "admin",
                         cloud_name=cloud_name)
                     alb_vs['se_group_ref'] = segroup_ref
+                client_pki = False
+                server_pki = False
+
+                if lb_vs.get("client_ssl_profile_binding"):
+                    if lb_vs["client_ssl_profile_binding"].get("client_auth_ca_paths"):
+                        pki_client_profile=dict()
+                        error = False
+                        ca = self.get_ca_cert(lb_vs["client_ssl_profile_binding"].get("client_auth_ca_paths"))
+                        if ca:
+                            pki_client_profile["ca_certs"] = [{'certificate': ca}]
+                        else:
+                            error = True
+                        if lb_vs["client_ssl_profile_binding"].get("client_auth_crl_paths"):
+                            crl = self.get_crl_cert(lb_vs["client_ssl_profile_binding"].get("client_auth_crl_paths"))
+                            if crl:
+                                pki_client_profile["crls"] = [{'body': crl}]
+                            else:
+                                error = True
+                        else:
+                            pki_client_profile['crl_check'] = False
+                        if not error:
+                            pki_client_profile["name"] = name + "-client-pki"
+                            pki_client_profile["tenant_ref"] = conv_utils.get_object_ref(tenant, "tenant")
+                            client_pki = True
+                            if self.object_merge_check:
+                                conv_utils.update_skip_duplicates(pki_client_profile,
+                                                                  alb_config['PKIProfile'], 'pki_profile',
+                                                                  converted_objs, name, None,
+                                                                  self.merge_object_mapping, None, prefix,
+                                                                  self.sys_dict['PKIProfile'])
+                                self.pki_count += 1
+                            else:
+                                converted_objs.append({'pki_profile': pki_client_profile})
+                                alb_config['PKIProfile'].append(pki_client_profile)
+                if lb_vs.get("server_ssl_profile_binding"):
+                    if lb_vs["server_ssl_profile_binding"].get("server_auth_ca_paths"):
+                        pki_server_profile = dict()
+                        error = False
+                        ca = self.get_ca_cert(lb_vs["server_ssl_profile_binding"].get("server_auth_ca_paths"))
+                        if ca:
+                            pki_server_profile["ca_certs"] = [{'certificate': ca}]
+                        else:
+                            error = True
+                        if lb_vs["server_ssl_profile_binding"].get("server_auth_crl_paths"):
+                            crl = self.get_crl_cert(lb_vs["server_ssl_profile_binding"].get("server_auth_crl_paths"))
+                            if crl:
+                                pki_server_profile["crls"] = [{'body': crl}]
+                            else:
+                                error = True
+                        else:
+                            pki_server_profile['crl_check'] = False
+                        if not error:
+                            pki_server_profile["name"] = name + "-server-pki"
+                            pki_server_profile["tenant_ref"] = conv_utils.get_object_ref(tenant, "tenant")
+                            server_pki = True
+                            if self.object_merge_check:
+                                conv_utils.update_skip_duplicates(pki_server_profile,
+                                                                  alb_config['PKIProfile'], 'pki_profile',
+                                                                  converted_objs, name, None,
+                                                                  self.merge_object_mapping, None, prefix,
+                                                                  self.sys_dict['PKIProfile'])
+                                self.pki_count += 1
+                            else:
+                                converted_objs.append({'pki_profile': pki_server_profile})
+                                alb_config['PKIProfile'].append(pki_server_profile)
 
                 if lb_vs.get('application_profile_path'):
                     profile_path = lb_vs.get('application_profile_path')
@@ -120,6 +185,9 @@ class VsConfigConv(object):
                         alb_vs['application_profile_ref'] = app_profile_ref
                         alb_vs['network_profile_ref'] = conv_utils.get_object_ref("System-TCP-Proxy", 'networkprofile',
                                                                                   tenant="admin")
+
+                if client_pki:
+                    self.update_app_with_pki(profile_name, alb_config["ApplicationProfile"], pki_client_profile["name"])
                 if lb_vs.get('max_concurrent_connections'):
                     alb_vs['performance_limits'] = dict(
                         max_concurrent_connections=lb_vs.get('max_concurrent_connections')
@@ -139,7 +207,6 @@ class VsConfigConv(object):
                             "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name"))
                         alb_vs["ssl_key_and_certificate_refs"] = list(set(ssl_key_cert_refs))
                         converted_alb_ssl_certs.append(ca_cert_obj)
-
                     skipped = [val for val in skipped
                                if val not in self.client_ssl_attr]
                 if lb_vs.get('pool_path'):
@@ -152,10 +219,13 @@ class VsConfigConv(object):
                         pool_name, 'pool', tenant="admin", cloud_name=cloud_name)
                     # alb_vs['pool_ref'] = '/api/pool/?tenant=admin&name=' + pool_name
                     if lb_vs.get('server_ssl_profile_binding'):
+                       # if lb_vs["server_ssl_profile_binding"]
                         self.update_pool_with_ssl(alb_config, lb_vs, pool_name, self.object_merge_check,
                                                   self.merge_object_mapping, prefix, converted_alb_ssl_certs)
                         skipped = [val for val in skipped
                                    if val not in self.server_ssl_attr]
+                if server_pki:
+                    self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile["name"])
                 if lb_vs.get('lb_persistence_profile_path'):
                     self.update_pool_with_persistence(alb_config['Pool'], lb_vs,
                                                       pool_name, self.object_merge_check, self.merge_object_mapping,
@@ -174,8 +244,8 @@ class VsConfigConv(object):
                     alb_config["HTTPPolicySet"].append(httppolicyset)
                     alb_vs['http_policies'] = [
                         {
-                            "http_policy_set_ref" : "/api/httppolicyset/?name=%s" % httppolicyset["name"],
-                            "index" : 11
+                            "http_policy_set_ref": "/api/httppolicyset/?name=%s" % httppolicyset["name"],
+                            "index": 11
                         }
                     ]
 
@@ -191,8 +261,7 @@ class VsConfigConv(object):
                                                                         alb_config["ApplicationProfile"])
                                 if vs_app_name != profile_name:
                                     alb_vs['application_profile_ref'] = '/api/applicationprofile/?tenant=admin&' \
-                                                                             'name=' + vs_app_name
-
+                                                                        'name=' + vs_app_name
 
                 indirect = []
                 u_ignore = []
@@ -200,6 +269,8 @@ class VsConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbVirtualServers'],
                     u_ignore, na_list)
+                na_list = [val for val in na_list if val not in self.common_na_attr]
+                conv_status["na_list"] = na_list
                 conv_utils.add_conv_status('virtualservice', None, alb_vs['name'], conv_status,
                                            alb_vs)
                 alb_config['VirtualService'].append(alb_vs)
@@ -238,7 +309,7 @@ class VsConfigConv(object):
                 u_ignore, [])
             conv_status['status'] = 'PARTIAL'
             conv_utils.add_conv_status('policy', None, policyset['name'], conv_status,
-                                       [{"policy_set":policyset}])
+                                       [{"policy_set": policyset}])
 
     def update_pool_with_ssl(self, alb_config, lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix,
                              converted_alb_ssl_certs):
@@ -340,7 +411,7 @@ class VsConfigConv(object):
             avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
         return ssl_kc_obj
 
-    def update_app_with_snat(self, snat_ip_add, profile_name,profile_type, alb_app_config):
+    def update_app_with_snat(self, snat_ip_add, profile_name, profile_type, alb_app_config):
         app_prof_obj = [obj for obj in alb_app_config if obj['name'] == profile_name]
         if profile_type == 'APPLICATION_PROFILE_TYPE_HTTP':
             cme = app_prof_obj[0]['http_profile'].get(
@@ -348,7 +419,7 @@ class VsConfigConv(object):
         app_name = profile_name
         if app_prof_obj and not cme:
             # Check if already cloned profile present
-            app_prof_cmd = [obj for obj in  alb_app_config if
+            app_prof_cmd = [obj for obj in alb_app_config if
                             obj['name'] == '%s-cmd' % profile_name]
             if app_prof_cmd:
                 app_name = app_prof_cmd[0]['name']
@@ -364,7 +435,7 @@ class VsConfigConv(object):
                     app_prof_cmd["preserve_client_ip"] = True
                 alb_app_config.append(app_prof_cmd)
                 app_name = app_prof_cmd['name']
-                app_obj_ref= conv_utils.get_object_ref(
+                app_obj_ref = conv_utils.get_object_ref(
                     app_name, 'applicationprofile',
                     tenant=conv_utils.get_name(app_prof_cmd['tenant_ref']))
         return app_name
@@ -703,3 +774,42 @@ class VsConfigConv(object):
             # TODO Need to skip
             type = match_condition.get("type")
         return match
+
+    def get_ca_cert(self, ca_url):
+        ca_id = """-----BEGIN CERTIFICATE-----
+MIIDXzCCAkegAwIBAgIQILuJ/vBaBpdK5/W07NmI5DANBgkqhkiG9w0BAQsFADBC
+MRMwEQYKCZImiZPyLGQBGRYDbGFiMRUwEwYKCZImiZPyLGQBGRYFcmVwcm8xFDAS
+BgNVBAMTC3JlcHJvLUFELUNBMB4XDTIwMDQyOTEzMTgwMVoXDTI1MDQyOTEzMjgw
+MVowQjETMBEGCgmSJomT8ixkARkWA2xhYjEVMBMGCgmSJomT8ixkARkWBXJlcHJv
+MRQwEgYDVQQDEwtyZXByby1BRC1DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+AQoCggEBALj3ChNORETzK1qOIgcF6QMx2KUv/pXx7NQYin0mJgEaPcVD/lH4RR5z
+ToswIetCbz3NeajJShfoNV17H/ovvH5iUnvrdajVl7kXM0QmAaLmosKU4BLHgrDd
+LKKBDMKGw2MQWjjfBHJaH92Yg8+tdtoYCzouQn6ZDHp+7sXqtpngoRIQVHFYQNH2
+8gmkdDQQwp4fveeM7at6NktAB7uMTec6i63yigWrbvhqS0b/d6Y4aTVWH8qWwyCV
+nd+7CsEwQk2Y1iopb0Cli5M1bppoJ6a17eONqCaYMb8qShZQZWKygDkfAYD9B9c4
+x0UpRsSUDiVv7Bdc6MrlEPu9dI01BmkCAwEAAaNRME8wCwYDVR0PBAQDAgGGMA8G
+A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGrxPxqDTdksMOqnt19O1VH0jpznMBAG
+CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBCwUAA4IBAQBU6HnUmwCShJtNEiL5
+IJFgMh55tp4Vi9E1+q3XI5RwOB700UwmfWUXmOKeeD3871gg4lhqfjDKSxNrRJ3m
+CKuE4nwCSgK74BSCgWu3pTpSPjUgRED2IK/03jQCK2TuZgsTe20BUROnr+uRpORI
+pVbIDevBvuggxDHfn7JYQE/SXrUaCplaZUjZz6WVHTkLEDfoPeTp5gUPA7x/V4MI
+tHTkjIH8nND2pAJRCzLExl5Bf5PKqWjPOqaqyg+hDg2BXm70QOWIMqvxRt9TJAq4
+n6DBZ2ZDOhyFCejCDCSIbku76WGNeT8+0xXjCPaTNBL0AawR77uqa2KZpaCU7e84
+jhiq
+-----END CERTIFICATE----- """
+
+        return ca_id
+
+    def get_crl_cert(self, crl_url):
+        crl_id = crl_url[0].split("/")[-1] + "-CRL-Certificates"
+        return crl_id
+
+    def update_app_with_pki(self, profile_name, app_config, pki_name):
+        for profile in app_config:
+            if profile_name == profile["name"]:
+                profile["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_name
+
+    def update_pool_with_pki(self,pool_config, pool_name, pki_name):
+        for pool in pool_config:
+            if pool_name == pool["name"]:
+                pool["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_name

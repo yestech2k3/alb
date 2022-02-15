@@ -333,7 +333,6 @@ class NsxtConvUtil(MigrationUtil):
                     skipped_setting['Pool Group'] = pool_group_skipped_settings
             # Get the skipped list for pool.
             if 'pool_ref' in virtual_service:
-                print("pool done")
                 pool_skipped_settings = {'pools': []}
                 pool_name = self.get_name(virtual_service['pool_ref'])
                 csv_pool_rows = self.get_csv_object_list(csv_writer_dict_list,

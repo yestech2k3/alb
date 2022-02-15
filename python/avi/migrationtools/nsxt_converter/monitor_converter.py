@@ -211,6 +211,8 @@ class MonitorConfigConv(object):
             conv_status = conv_utils.get_conv_status(
                 skipped_list[index], indirect, ignore_for_defaults, nsx_lb_config['LbMonitorProfiles'],
                 u_ignore, na_list)
+            na_list_hm = [val for val in na_list if val not in self.common_na_attr]
+            conv_status["na_list"] = na_list_hm
             name = converted_alb_monitor[index]['name']
             alb_mig_hm = converted_alb_monitor[index]['alb_hm']
             resource_type = converted_alb_monitor[index]['resource_type']

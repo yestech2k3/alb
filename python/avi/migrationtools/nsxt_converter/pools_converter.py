@@ -130,7 +130,8 @@ class PoolConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults,
                     nsx_lb_config['LbPools'], u_ignore, na_list)
-
+                na_list = [val for val in na_list if val not in self.common_na_attr]
+                conv_status["na_list"] = na_list
                 conv_utils.add_conv_status(
                     'pool', None, alb_pl['name'], conv_status,
                     {'pools': [alb_pl]})

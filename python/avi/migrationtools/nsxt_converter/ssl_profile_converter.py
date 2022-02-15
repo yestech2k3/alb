@@ -105,6 +105,8 @@ class SslProfileConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped_list[index], indirect, ignore_for_defaults, nsx_lb_config['LbClientSslProfiles'],
                     u_ignore, na_list[index])
+                ssl_na = [val for val in na_list[index] if val not in self.common_na_attr]
+                conv_status["na_list"] = ssl_na
                 name = converted_alb_ssl[index]['name']
                 alb_mig_ssl = converted_alb_ssl[index]['alb_ssl']
                 resource_type = converted_alb_ssl[index]['resource_type']
@@ -191,6 +193,8 @@ class SslProfileConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped_list[index], indirect, ignore_for_defaults, nsx_lb_config['LbServerSslProfiles'],
                     u_ignore, na_list[index])
+                ssl_na = [val for val in na_list[index] if val not in self.common_na_attr]
+                conv_status["na_list"] = ssl_na
                 name = converted_alb_ssl[index]['name']
                 alb_mig_ssl = converted_alb_ssl[index]['alb_ssl']
                 resource_type = converted_alb_ssl[index]['resource_type']

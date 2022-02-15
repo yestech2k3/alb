@@ -132,6 +132,8 @@ class ProfileConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
                     u_ignore, na_ap[index])
+                na_list = [val for val in na_ap[index] if val not in self.common_na_attr]
+                conv_status["na_list"] = na_list
                 name = attr_ap[index]['name']
                 alb_mig_app_pr = attr_ap[index]['alb_pr']
                 if self.object_merge_check:
@@ -153,6 +155,8 @@ class ProfileConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbAppProfiles'],
                     u_ignore, na_np[index])
+                na_list = [val for val in na_np[index] if val not in self.common_na_attr]
+                conv_status["na_list"] = na_list
                 name = attr_np[index]['name']
                 alb_mig_np_pr = attr_np[index]['alb_pr']
                 if self.object_merge_check:
