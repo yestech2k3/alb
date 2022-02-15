@@ -30,7 +30,7 @@ class VsConfigConv(object):
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
         self.certkey_count = 0
-        self.policyset_rules_count = 0
+        self.pki_count = 0
 
     def convert(self, alb_config, nsx_lb_config, cloud_name, prefix, tenant, vs_state, controller_version,
                 vrf=None, segroup=None):
@@ -250,7 +250,6 @@ class VsConfigConv(object):
                         converted_http_policy_na_list.append(na_http_list)
                         converted_http_policy_skipped.append(httppolicyset_skipped)
                         alb_config["HTTPPolicySet"].append(httppolicyset)
-                        self.policyset_rules_count +=1
                         alb_vs['http_policies'] = [
                             {
                                 "http_policy_set_ref" : "/api/httppolicyset/?name=%s" % httppolicyset["name"],
@@ -728,8 +727,13 @@ class VsConfigConv(object):
                         match = self.convert_match_conditions_to_match(match, match_condition)
                     if match: rule_dict["match"] = match
                     httppolicyset['http_security_policy']['rules'].append(rule_dict)
+        valid_policy = True
+        if not httppolicyset['http_request_policy']["rules"] or \
+                not httppolicyset['http_response_policy']["rules"] or\
+                not httppolicyset['http_security_policy']["rules"]:
+            valid_policy = False
 
-        return httppolicyset, na_http_list, list(set(httppolicyset_skipped))
+        return httppolicyset if valid_policy else {}, na_http_list, list(set(httppolicyset_skipped))
 
     def convert_match_conditions_to_match(self, match, match_condition):
         if match_condition.get("type") == "LBHttpRequestUriCondition":

@@ -24,7 +24,6 @@ class SslProfileConfigConv(object):
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
         self.ssl_profile_count = 0
-        self.certkey_count = 0
 
     def convert(self, alb_config, nsx_lb_config, prefix, tenant):
         alb_config["SSLProfile"] = []

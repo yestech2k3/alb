@@ -160,6 +160,25 @@ def convert(nsx_lb_config, input_path, output_path, tenant,cloud_name, prefix,
                 LOG.info(profile_merged_message)
                 print(profile_merged_message)
                 continue
+            elif object_merge_check and key == 'PkiProfile':
+                merged_pki_pr = len(avi_config_dict[key]) - vs_converter.pki_count
+                merged_message = \
+                    'Total Objects of %s : %s (%s/%s pki profile merged)' % \
+                    (key, len(avi_config_dict[key]), abs(merged_pki_pr),
+                     vs_converter.pki_count)
+                LOG.info(merged_message)
+                print(merged_message)
+                continue
+            elif object_merge_check and key == 'SSLKeyAndCertificate':
+                mergedfile = len(avi_config_dict[key]) - \
+                             (vs_converter.certkey_count + monitor_converter.certkey_count)
+                certkey_merged_message = \
+                    'Total Objects of %s : %s (%s/%s cert key merged)' % \
+                    (key, len(avi_config_dict[key]), abs(mergedfile),
+                     vs_converter.certkey_count)
+                LOG.info(certkey_merged_message)
+                print(certkey_merged_message)
+                continue
             LOG.info('Total Objects of %s : %s' % (key, len(
                 avi_config_dict[key])))
             print('Total Objects of %s : %s' % (key, len(
