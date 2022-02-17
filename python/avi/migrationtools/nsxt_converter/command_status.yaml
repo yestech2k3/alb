@@ -140,6 +140,13 @@ NSXT:
 
     Monitor_ping_attr:
 
+    Monitor_icmp_ignore:
+    - "data_length"
+
+    Monitor_passive_indirect:
+    - "max_fails"
+    - "timeout"
+
     Pool_supported_attr:
     - "display_name"
     - "members"
@@ -182,6 +189,8 @@ NSXT:
     - "id"
     - "ntlm"
     - "response_header_size"
+    - "http_redirect_to"
+    - "response_timeout"
 
     http_na_list:
     - "response_buffering"
@@ -259,9 +268,17 @@ NSXT:
     CookiePersistenceProfile_Supported_Attributes:
     - "cookie_name"
     - "cookie_max_idle"
+    - "cookie_fallback"
+    - "cookie_time"
 
     SourcePersistenceProfile_Supported_Attributes:
     - "timeout"
+
+    SourcePersistenceProfile_NA_Attributes:
+    - "ha_persistence_mirroring_enabled"
+
+    Persistence_indirect_cookie:
+    - "cookie_garble"
 
     HttpPolicySetRules_Supported_Attributes:
     - "match_conditions"

@@ -21,6 +21,8 @@ class PersistantProfileConfigConv(object):
         self.supported_attr_cookie = nsxt_profile_attributes['CookiePersistenceProfile_Supported_Attributes']
         self.supported_attr_source = nsxt_profile_attributes['SourcePersistenceProfile_Supported_Attributes']
         self.common_na_attr = nsxt_profile_attributes['Common_Na_List']
+        self.na_attr_source = nsxt_profile_attributes["SourcePersistenceProfile_NA_Attributes"]
+        self.indirect_attr_cookie = nsxt_profile_attributes["Persistence_indirect_cookie"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
@@ -32,6 +34,7 @@ class PersistantProfileConfigConv(object):
         skipped_list = []
         converted_alb_pp = []
         na_list = []
+        indirect = []
         # Added variable to get total object count.
         progressbar_count = 0
         total_size = len(nsx_lb_config['LbPersistenceProfiles'])
@@ -48,9 +51,6 @@ class PersistantProfileConfigConv(object):
 
                 pp_type, name = self.get_name_type(lb_pp)
 
-                na_attrs = [val for val in lb_pp.keys()
-                            if val in self.common_na_attr]
-                na_list.append(na_attrs)
                 if prefix:
                     name = prefix + '-' + name
 
@@ -62,9 +62,16 @@ class PersistantProfileConfigConv(object):
 
                 cookie_skipped_list, source_skipped_list = [], []
                 if pp_type == "LBCookiePersistenceProfile":
+                    na_attrs = [val for val in lb_pp.keys()
+                                if val in self.common_na_attr]
+                    na_list.append(na_attrs)
                     skipped, cookie_skipped_list = self.convert_cookie(lb_pp, alb_pp, skipped, "admin")
                 elif pp_type == "LBSourceIpPersistenceProfile":
+                    na_attrs = [val for val in lb_pp.keys()
+                                if val in self.common_na_attr or val in self.na_attr_source]
+                    na_list.append(na_attrs)
                     skipped = self.convert_source(lb_pp, alb_pp, skipped, "admin")
+                    indirect = self.indirect_attr_cookie
 
                 if cookie_skipped_list:
                     skipped.append(cookie_skipped_list)
@@ -109,7 +116,6 @@ class PersistantProfileConfigConv(object):
                 conv_utils.add_status_row('persistence', None, lb_pp['display_name'],
                                           conv_const.STATUS_ERROR)
 
-        indirect = []
         u_ignore = []
         ignore_for_defaults = {}
         for index, skipped in enumerate(skipped_list):
@@ -160,7 +166,10 @@ class PersistantProfileConfigConv(object):
         alb_pp['tenant_ref'] = conv_utils.get_object_ref(
             tenant, 'tenant')
         alb_pp['persistence_type'] = "PERSISTENCE_TYPE_HTTP_COOKIE"
-
+        if lb_pp.get("cookie_fallback"):
+            alb_pp["server_hm_down_recovery"] = "HM_DOWN_PICK_NEW_SERVER"
+        else:
+            alb_pp["server_hm_down_recovery"] = "HM_DOWN_CONTINUE_PERSISTENT_SERVER"
         if final_skiped_attr:
             skipped_list.append({lb_pp['display_name']: final_skiped_attr})
         skipped = [key for key in skipped if key not in self.supported_attr_cookie]

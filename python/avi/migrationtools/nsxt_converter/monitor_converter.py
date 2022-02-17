@@ -33,6 +33,7 @@ class MonitorConfigConv(object):
         self.udp_attr = nsxt_monitor_attributes['Monitor_udp_attr']
         self.ping_attr = nsxt_monitor_attributes['Monitor_ping_attr']
         self.common_na_attr = nsxt_monitor_attributes['Common_Na_List']
+        self.ping_ignore_attr = nsxt_monitor_attributes["Monitor_icmp_ignore"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
@@ -97,6 +98,8 @@ class MonitorConfigConv(object):
         converted_alb_ssl_certs = list()
         alb_config['HealthMonitor'] = list()
         converted_objs = []
+        indirect = []
+        u_ignore = []
         progressbar_count = 0
         custom_config = custom_mapping.get(
             conv_const.HM_CUSTOM_KEY, dict()
@@ -168,14 +171,13 @@ class MonitorConfigConv(object):
                 elif monitor_type == "LBHttpsMonitorProfile":
                     skipped = self.convert_https(lb_hm, alb_hm, skipped, alb_config, prefix, converted_alb_ssl_certs)
                 elif monitor_type == "LBIcmpMonitorProfile":
+                    u_ignore = self.ping_ignore_attr
                     skipped = self.convert_icmp(lb_hm, alb_hm, skipped)
                 elif monitor_type == "LBTcpMonitorProfile":
                     skipped = self.convert_tcp(lb_hm, alb_hm, skipped)
                 elif monitor_type == "LBUdpMonitorProfile":
                     skipped = self.convert_udp(lb_hm, alb_hm, skipped)
 
-                indirect = []
-                u_ignore = []
                 ignore_for_defaults = {}
                 skipped_list.append(skipped)
                 if self.object_merge_check:

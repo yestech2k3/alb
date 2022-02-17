@@ -271,6 +271,8 @@ class VsConfigConv(object):
                                     alb_vs['application_profile_ref'] = '/api/applicationprofile/?tenant=admin&' \
                                                                         'name=' + vs_app_name
 
+                self.update_pool_with_app_attr( profile_name, pool_name, alb_config)
+
                 indirect = []
                 u_ignore = []
                 ignore_for_defaults = {}
@@ -811,26 +813,26 @@ class VsConfigConv(object):
 
     def get_ca_cert(self, ca_url):
         ca_id = """-----BEGIN CERTIFICATE-----
-                MIIDXzCCAkegAwIBAgIQILuJ/vBaBpdK5/W07NmI5DANBgkqhkiG9w0BAQsFADBC
-                MRMwEQYKCZImiZPyLGQBGRYDbGFiMRUwEwYKCZImiZPyLGQBGRYFcmVwcm8xFDAS
-                BgNVBAMTC3JlcHJvLUFELUNBMB4XDTIwMDQyOTEzMTgwMVoXDTI1MDQyOTEzMjgw
-                MVowQjETMBEGCgmSJomT8ixkARkWA2xhYjEVMBMGCgmSJomT8ixkARkWBXJlcHJv
-                MRQwEgYDVQQDEwtyZXByby1BRC1DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
-                AQoCggEBALj3ChNORETzK1qOIgcF6QMx2KUv/pXx7NQYin0mJgEaPcVD/lH4RR5z
-                ToswIetCbz3NeajJShfoNV17H/ovvH5iUnvrdajVl7kXM0QmAaLmosKU4BLHgrDd
-                LKKBDMKGw2MQWjjfBHJaH92Yg8+tdtoYCzouQn6ZDHp+7sXqtpngoRIQVHFYQNH2
-                8gmkdDQQwp4fveeM7at6NktAB7uMTec6i63yigWrbvhqS0b/d6Y4aTVWH8qWwyCV
-                nd+7CsEwQk2Y1iopb0Cli5M1bppoJ6a17eONqCaYMb8qShZQZWKygDkfAYD9B9c4
-                x0UpRsSUDiVv7Bdc6MrlEPu9dI01BmkCAwEAAaNRME8wCwYDVR0PBAQDAgGGMA8G
-                A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGrxPxqDTdksMOqnt19O1VH0jpznMBAG
-                CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBCwUAA4IBAQBU6HnUmwCShJtNEiL5
-                IJFgMh55tp4Vi9E1+q3XI5RwOB700UwmfWUXmOKeeD3871gg4lhqfjDKSxNrRJ3m
-                CKuE4nwCSgK74BSCgWu3pTpSPjUgRED2IK/03jQCK2TuZgsTe20BUROnr+uRpORI
-                pVbIDevBvuggxDHfn7JYQE/SXrUaCplaZUjZz6WVHTkLEDfoPeTp5gUPA7x/V4MI
-                tHTkjIH8nND2pAJRCzLExl5Bf5PKqWjPOqaqyg+hDg2BXm70QOWIMqvxRt9TJAq4
-                n6DBZ2ZDOhyFCejCDCSIbku76WGNeT8+0xXjCPaTNBL0AawR77uqa2KZpaCU7e84
-                jhiq
-                -----END CERTIFICATE----- """
+MIIDXzCCAkegAwIBAgIQILuJ/vBaBpdK5/W07NmI5DANBgkqhkiG9w0BAQsFADBC
+MRMwEQYKCZImiZPyLGQBGRYDbGFiMRUwEwYKCZImiZPyLGQBGRYFcmVwcm8xFDAS
+BgNVBAMTC3JlcHJvLUFELUNBMB4XDTIwMDQyOTEzMTgwMVoXDTI1MDQyOTEzMjgw
+MVowQjETMBEGCgmSJomT8ixkARkWA2xhYjEVMBMGCgmSJomT8ixkARkWBXJlcHJv
+MRQwEgYDVQQDEwtyZXByby1BRC1DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+AQoCggEBALj3ChNORETzK1qOIgcF6QMx2KUv/pXx7NQYin0mJgEaPcVD/lH4RR5z
+ToswIetCbz3NeajJShfoNV17H/ovvH5iUnvrdajVl7kXM0QmAaLmosKU4BLHgrDd
+LKKBDMKGw2MQWjjfBHJaH92Yg8+tdtoYCzouQn6ZDHp+7sXqtpngoRIQVHFYQNH2
+8gmkdDQQwp4fveeM7at6NktAB7uMTec6i63yigWrbvhqS0b/d6Y4aTVWH8qWwyCV
+nd+7CsEwQk2Y1iopb0Cli5M1bppoJ6a17eONqCaYMb8qShZQZWKygDkfAYD9B9c4
+x0UpRsSUDiVv7Bdc6MrlEPu9dI01BmkCAwEAAaNRME8wCwYDVR0PBAQDAgGGMA8G
+A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGrxPxqDTdksMOqnt19O1VH0jpznMBAG
+CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBCwUAA4IBAQBU6HnUmwCShJtNEiL5
+IJFgMh55tp4Vi9E1+q3XI5RwOB700UwmfWUXmOKeeD3871gg4lhqfjDKSxNrRJ3m
+CKuE4nwCSgK74BSCgWu3pTpSPjUgRED2IK/03jQCK2TuZgsTe20BUROnr+uRpORI
+pVbIDevBvuggxDHfn7JYQE/SXrUaCplaZUjZz6WVHTkLEDfoPeTp5gUPA7x/V4MI
+tHTkjIH8nND2pAJRCzLExl5Bf5PKqWjPOqaqyg+hDg2BXm70QOWIMqvxRt9TJAq4
+n6DBZ2ZDOhyFCejCDCSIbku76WGNeT8+0xXjCPaTNBL0AawR77uqa2KZpaCU7e84
+jhiq
+-----END CERTIFICATE----- """
 
         return ca_id
 
@@ -847,3 +849,18 @@ class VsConfigConv(object):
         for pool in pool_config:
             if pool_name == pool["name"]:
                 pool["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_name
+
+    def update_pool_with_app_attr(self, profile_name, pool_name, alb_config):
+        profile = [profile for profile in alb_config["ApplicationProfile"]
+                   if profile["name"] == profile_name]
+        if profile:
+            for pool in alb_config["Pool"]:
+                if pool["name"] == pool_name:
+                    pool["server_timeout"] = profile[0].get("response_timeout", 0)
+                    if profile[0].get("http_redirect_to"):
+                        pool["fail_action"] = dict(
+                            type="FAIL_ACTION_HTTP_REDIRECT",
+                            redirect=dict(
+                                host=profile[0]["http_redirect_to"]
+                            )
+                        )
