@@ -43,7 +43,6 @@ class VsConfigConv(object):
         converted_http_policy_skipped = list()
         alb_config['VirtualService'] = list()
         alb_config['VsVip'] = list()
-        alb_config['SSLKeyAndCertificate'] = list()
         alb_config["HTTPPolicySet"] = list()
         converted_objs = []
         progressbar_count = 0
@@ -130,13 +129,21 @@ class VsConfigConv(object):
                             if self.object_merge_check:
                                 conv_utils.update_skip_duplicates(pki_client_profile,
                                                                   alb_config['PKIProfile'], 'pki_profile',
-                                                                  converted_objs, name, None,
+                                                                  converted_objs, pki_client_profile["name"], None,
                                                                   self.merge_object_mapping, None, prefix,
                                                                   self.sys_dict['PKIProfile'])
                                 self.pki_count += 1
                             else:
                                 converted_objs.append({'pki_profile': pki_client_profile})
                                 alb_config['PKIProfile'].append(pki_client_profile)
+                            indirect = []
+                            u_ignore = []
+                            ignore_for_defaults = {}
+                            conv_status = conv_utils.get_conv_status(
+                                [], indirect, ignore_for_defaults, [],
+                                u_ignore, [])
+                            conv_utils.add_conv_status('pki_profile', None, pki_client_profile["name"], conv_status,
+                                                       [{"pki_profile": pki_client_profile}])
                 if lb_vs.get("server_ssl_profile_binding"):
                     if lb_vs["server_ssl_profile_binding"].get("server_auth_ca_paths"):
                         pki_server_profile = dict()
@@ -161,13 +168,21 @@ class VsConfigConv(object):
                             if self.object_merge_check:
                                 conv_utils.update_skip_duplicates(pki_server_profile,
                                                                   alb_config['PKIProfile'], 'pki_profile',
-                                                                  converted_objs, name, None,
+                                                                  converted_objs,  pki_server_profile["name"], None,
                                                                   self.merge_object_mapping, None, prefix,
                                                                   self.sys_dict['PKIProfile'])
                                 self.pki_count += 1
                             else:
                                 converted_objs.append({'pki_profile': pki_server_profile})
                                 alb_config['PKIProfile'].append(pki_server_profile)
+                            indirect = []
+                            u_ignore = []
+                            ignore_for_defaults = {}
+                            conv_status = conv_utils.get_conv_status(
+                                [], indirect, ignore_for_defaults, [],
+                                u_ignore, [])
+                            conv_utils.add_conv_status('pki_profile', None, pki_server_profile["name"], conv_status,
+                                                       [{"pki_profile": pki_server_profile}])
 
                 if lb_vs.get('application_profile_path'):
                     profile_path = lb_vs.get('application_profile_path')
@@ -175,9 +190,13 @@ class VsConfigConv(object):
                     if prefix:
                         profile_name = prefix + "-" + profile_name
                     profile_type = "network"
+                    merge_profile_name = profile_name
+                    if self.object_merge_check:
+                        merge_profile_name = self.merge_object_mapping["app_profile"].get(profile_name)
                     for profile in alb_config["ApplicationProfile"]:
-                        if profile["name"] == profile_name:
+                        if profile["name"] == profile_name or profile["name"] == merge_profile_name:
                             profile_type = profile["type"]
+
                     app_profile_ref = self.get_vs_app_profile_ref(alb_config['ApplicationProfile'],
                                                                   profile_name, self.object_merge_check,
                                                                   self.merge_object_mapping, profile_type)
@@ -192,7 +211,11 @@ class VsConfigConv(object):
                                                                                   tenant="admin")
 
                 if client_pki:
-                    self.update_app_with_pki(profile_name, alb_config["ApplicationProfile"], pki_client_profile["name"])
+                    pki_client_profile_name = pki_client_profile["name"]
+                    if self.object_merge_check:
+                        pki_client_profile_name = self.merge_object_mapping["pki_profile"].get(pki_client_profile_name)
+
+                    self.update_app_with_pki(profile_name, alb_config["ApplicationProfile"], pki_client_profile_name)
                 if lb_vs.get('max_concurrent_connections'):
                     alb_vs['performance_limits'] = dict(
                         max_concurrent_connections=lb_vs.get('max_concurrent_connections')
@@ -230,7 +253,10 @@ class VsConfigConv(object):
                         skipped = [val for val in skipped
                                    if val not in self.server_ssl_attr]
                 if server_pki:
-                    self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile["name"])
+                    pki_server_profile_name = pki_server_profile["name"]
+                    if self.object_merge_check:
+                        pki_server_profile_name = self.merge_object_mapping["pki_profile"].get(pki_server_profile_name)
+                    self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile_name)
                 if lb_vs.get('lb_persistence_profile_path'):
                     self.update_pool_with_persistence(alb_config['Pool'], lb_vs,
                                                       pool_name, self.object_merge_check, self.merge_object_mapping,
@@ -266,7 +292,8 @@ class VsConfigConv(object):
                             if nsx_pool["snat_translation"].get("ip_addresses"):
                                 snat_ip_add = nsx_pool["snat_translation"]["ip_addresses"][0]["ip_address"]
                                 vs_app_name = self.update_app_with_snat(snat_ip_add, profile_name, profile_type,
-                                                                        alb_config["ApplicationProfile"])
+                                                                        alb_config["ApplicationProfile"],
+                                                                        self.object_merge_check, self.merge_object_mapping)
                                 if vs_app_name != profile_name:
                                     alb_vs['application_profile_ref'] = '/api/applicationprofile/?tenant=admin&' \
                                                                         'name=' + vs_app_name
@@ -425,8 +452,13 @@ class VsConfigConv(object):
             avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
         return ssl_kc_obj
 
-    def update_app_with_snat(self, snat_ip_add, profile_name, profile_type, alb_app_config):
+    def update_app_with_snat(self, snat_ip_add, profile_name, profile_type, alb_app_config, object_merge_check,
+                             merge_object_mapping):
         app_prof_obj = [obj for obj in alb_app_config if obj['name'] == profile_name]
+        if object_merge_check:
+            app_profile_merge_name = merge_object_mapping['app_profile'].get(profile_name)
+            app_prof_obj = [obj for obj in alb_app_config if obj['name'] == app_profile_merge_name]
+        cme = True
         if profile_type == 'APPLICATION_PROFILE_TYPE_HTTP':
             cme = app_prof_obj[0]['http_profile'].get(
                 'connection_multiplexing_enabled', False)

@@ -120,6 +120,7 @@ NSXT:
     - "request_body"
     - "response_status_codes"
     - "response_body"
+    - "request_headers"
 
     Monitor_https_attr:
     - "request_url"
@@ -129,6 +130,7 @@ NSXT:
     - "response_status_codes"
     - "response_body"
     - "server_ssl_profile_binding"
+    - "request_headers"
 
     Monitor_tcp_attr:
     - "send"

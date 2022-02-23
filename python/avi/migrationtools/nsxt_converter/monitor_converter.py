@@ -33,12 +33,14 @@ class MonitorConfigConv(object):
         self.udp_attr = nsxt_monitor_attributes['Monitor_udp_attr']
         self.ping_attr = nsxt_monitor_attributes['Monitor_ping_attr']
         self.common_na_attr = nsxt_monitor_attributes['Common_Na_List']
-        self.ping_ignore_attr = nsxt_monitor_attributes["Monitor_icmp_ignore"]
+        self.icmp_ignore_attr = nsxt_monitor_attributes["Monitor_icmp_ignore"]
+        self.passive_indirect_attr = nsxt_monitor_attributes["Monitor_passive_indirect"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
         self.monitor_count = 0
         self.certkey_count = 0
+        self.pki_count = 0
 
     def get_alb_response_codes(self, response_codes):
         if not response_codes:
@@ -94,8 +96,9 @@ class MonitorConfigConv(object):
             alb_hm['type'] = 'HEALTH_MONITOR_UDP'
         return skipped
 
-    def convert(self, alb_config, nsx_lb_config, prefix,tenant,custom_mapping):
+    def convert(self, alb_config, nsx_lb_config, prefix, tenant, custom_mapping):
         converted_alb_ssl_certs = list()
+        converted_pki_profile = list()
         alb_config['HealthMonitor'] = list()
         converted_objs = []
         indirect = []
@@ -106,7 +109,7 @@ class MonitorConfigConv(object):
         ) if custom_mapping else dict()
         skipped_list = []
         converted_alb_monitor = []
-        tenant="admin"
+        tenant = "admin"
         total_size = len(nsx_lb_config['LbMonitorProfiles'])
         print("Converting Monitors...")
         LOG.info('[MONITOR] Converting Monitors...')
@@ -143,8 +146,11 @@ class MonitorConfigConv(object):
                         }, [{'health_monitor': avi_monitor}])
                     continue
                 if lb_hm['resource_type'] == 'LBPassiveMonitorProfile':
-                    conv_utils.add_status_row('monitor', lb_hm['resource_type'], lb_hm['display_name'],
-                                              conv_const.STATUS_SKIPPED)
+                    indirect = self.passive_indirect_attr
+                    conv_status = dict()
+                    conv_status['status'] = conv_const.STATUS_SUCCESSFUL
+                    conv_status['indirect'] = indirect
+                    conv_utils.add_conv_status('monitor', lb_hm['resource_type'], lb_hm['display_name'], conv_status)
                     continue
 
                 monitor_type, name = self.get_name_type(lb_hm)
@@ -169,9 +175,10 @@ class MonitorConfigConv(object):
                 if monitor_type == "LBHttpMonitorProfile":
                     skipped = self.convert_http(lb_hm, alb_hm, skipped)
                 elif monitor_type == "LBHttpsMonitorProfile":
-                    skipped = self.convert_https(lb_hm, alb_hm, skipped, alb_config, prefix, converted_alb_ssl_certs)
+                    skipped = self.convert_https(lb_hm, alb_hm, skipped, alb_config, prefix, tenant, converted_objs,
+                                                 converted_alb_ssl_certs, converted_pki_profile)
                 elif monitor_type == "LBIcmpMonitorProfile":
-                    u_ignore = self.ping_ignore_attr
+                    u_ignore = self.icmp_ignore_attr
                     skipped = self.convert_icmp(lb_hm, alb_hm, skipped)
                 elif monitor_type == "LBTcpMonitorProfile":
                     skipped = self.convert_tcp(lb_hm, alb_hm, skipped)
@@ -237,7 +244,19 @@ class MonitorConfigConv(object):
                 [], indirect, ignore_for_defaults, [],
                 u_ignore, [])
             conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
-                                       [{"ssl_cert_key":cert}])
+                                       [{"ssl_cert_key": cert}])
+        for pki_profile in converted_pki_profile:
+            indirect = []
+            u_ignore = []
+            ignore_for_defaults = {}
+            conv_status = conv_utils.get_conv_status(
+                [], indirect, ignore_for_defaults, [],
+                u_ignore, [])
+            conv_utils.add_conv_status('pki_profile', None, pki_profile['name'], conv_status,
+                                       [{"pki_profile": pki_profile}])
+
+
+
     def get_name_type(self, lb_hm):
         """
 
@@ -246,8 +265,9 @@ class MonitorConfigConv(object):
 
     def convert_http(self, lb_hm, alb_hm, skipped):
         alb_hm['type'] = 'HEALTH_MONITOR_HTTP'
+        http_request = self.update_http_request_for_avi(lb_hm)
         alb_hm['http_monitor'] = dict(
-            http_request=lb_hm['request_url'],
+            http_request=http_request,
             http_request_body=lb_hm.get('request_body'),
             http_response=lb_hm.get('response_body'),
             http_response_code=self.get_alb_response_codes(lb_hm['response_status_codes']),
@@ -256,36 +276,56 @@ class MonitorConfigConv(object):
         skipped = [key for key in skipped if key not in self.http_attr]
         return skipped
 
-    def convert_https(self, lb_hm, alb_hm, skipped, alb_config, prefix, converted_alb_ssl_certs=None):
+    def convert_https(self, lb_hm, alb_hm, skipped, alb_config, prefix, tenant, converted_objs,
+                      converted_alb_ssl_certs=None, converted_pki_profile=None):
         if converted_alb_ssl_certs is None:
             converted_alb_ssl_certs = []
+        if converted_pki_profile is None:
+            converted_pki_profile = []
         alb_hm['type'] = 'HEALTH_MONITOR_HTTPS'
+        https_request = self.update_http_request_for_avi(lb_hm)
         alb_hm['https_monitor'] = dict(
-            http_request=lb_hm['request_url'],
+            http_request=https_request,
             http_request_body=lb_hm.get('request_body'),
             http_response=lb_hm.get('response_body'),
             http_response_code=self.get_alb_response_codes(lb_hm['response_status_codes']),
         )
 
         if lb_hm.get('server_ssl_profile_binding', None):
-            server_ssl_profile_binding  = lb_hm.get('server_ssl_profile_binding', None)
+            server_ssl_profile_binding = lb_hm.get('server_ssl_profile_binding', None)
             ssl_profile_path = server_ssl_profile_binding["ssl_profile_path"]
             ssl_profile_name = ssl_profile_path.split('/')[-1]
             if prefix:
                 ssl_profile_name = prefix + '-' + ssl_profile_name
             ssl_attributes = {
-                "ssl_profile_ref" : conv_utils.get_object_ref(
-                        ssl_profile_name, 'sslprofile', tenant="admin")
+                "ssl_profile_ref": conv_utils.get_object_ref(
+                    ssl_profile_name, 'sslprofile', tenant="admin")
             }
 
             if server_ssl_profile_binding.get("client_certificate_path", None):
                 ca_cert_obj = self.update_ca_cert_obj(lb_hm['display_name'], alb_config, [], "admin", prefix,
                                                       cert_type='SSL_CERTIFICATE_TYPE_VIRTUALSERVICE')
-                ssl_attributes["ssl_key_and_certificate_ref"] = "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get(
+                ssl_attributes[
+                    "ssl_key_and_certificate_ref"] = "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get(
                     "name")
                 converted_alb_ssl_certs.append(ca_cert_obj)
 
             alb_hm["https_monitor"]['ssl_attributes'] = ssl_attributes
+            pki_profile = self.create_pki_profile(lb_hm, alb_hm["name"], tenant, alb_hm, converted_pki_profile)
+            if pki_profile:
+                pki_profile_name = pki_profile["name"]
+                if self.object_merge_check:
+                    conv_utils.update_skip_duplicates(pki_profile,
+                                                      alb_config['PKIProfile'], 'pki_profile',
+                                                      converted_objs, pki_profile["name"], None,
+                                                      self.merge_object_mapping, None, prefix,
+                                                      self.sys_dict['PKIProfile'])
+                    self.pki_count += 1
+                    pki_profile_name = self.merge_object_mapping["pki_profile"].get(pki_profile_name)
+                else:
+                    converted_objs.append({'pki_profile': pki_profile})
+                    alb_config['PKIProfile'].append(pki_profile)
+                alb_hm["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_profile_name
 
         skipped = [key for key in skipped if key not in self.https_attr]
 
@@ -380,3 +420,95 @@ class MonitorConfigConv(object):
             converted_objs.append({'ssl_cert_key': ssl_kc_obj})
             avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
         return ssl_kc_obj
+
+    def update_http_request_for_avi(self, lb_hm):
+        if lb_hm["request_version"] == "HTTP_VERSION_1_0":
+            version = "HTTP/1.0"
+        else:
+            version = "HTTP/1.1"
+        http_request = lb_hm["request_method"] + " " + lb_hm["request_url"] + " " + version
+        if lb_hm.get("request_headers"):
+            for header in lb_hm["request_headers"]:
+                header_set = header["header_name"] + ":" + header["header_value"]
+                http_request = http_request + "\r\n" + header_set
+        if lb_hm.get("exact_request"):
+            if lb_hm.get("request_body"):
+                http_request += "\r\n" + lb_hm["request_body"]
+        return http_request
+
+    def create_pki_profile(self, lb_hm, name, tenant, alb_hm, converted_pki_profile):
+        if lb_hm["server_ssl_profile_binding"].get("server_auth_ca_paths"):
+            pki_server_profile = dict()
+            error = False
+            ca = self.get_ca_cert(lb_hm["server_ssl_profile_binding"].get("server_auth_ca_paths"))
+            if ca:
+                pki_server_profile["ca_certs"] = [{'certificate': ca}]
+            else:
+                error = True
+            if lb_hm["server_ssl_profile_binding"].get("server_auth_crl_paths"):
+                crl = self.get_crl_cert(lb_hm["server_ssl_profile_binding"].get("server_auth_crl_paths"))
+                if crl:
+                    pki_server_profile["crls"] = [{'body': crl}]
+                else:
+                    error = True
+            else:
+                pki_server_profile['crl_check'] = False
+            if not error:
+                pki_server_profile["name"] = name + "-server-pki"
+                pki_server_profile["tenant_ref"] = conv_utils.get_object_ref(tenant, "tenant")
+                converted_pki_profile.append(pki_server_profile)
+                return pki_server_profile
+        return False
+
+
+    def get_ca_cert(self, ca_url):
+            ca_id = """-----BEGIN CERTIFICATE-----
+MIIDXzCCAkegAwIBAgIQILuJ/vBaBpdK5/W07NmI5DANBgkqhkiG9w0BAQsFADBC
+MRMwEQYKCZImiZPyLGQBGRYDbGFiMRUwEwYKCZImiZPyLGQBGRYFcmVwcm8xFDAS
+BgNVBAMTC3JlcHJvLUFELUNBMB4XDTIwMDQyOTEzMTgwMVoXDTI1MDQyOTEzMjgw
+MVowQjETMBEGCgmSJomT8ixkARkWA2xhYjEVMBMGCgmSJomT8ixkARkWBXJlcHJv
+MRQwEgYDVQQDEwtyZXByby1BRC1DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+AQoCggEBALj3ChNORETzK1qOIgcF6QMx2KUv/pXx7NQYin0mJgEaPcVD/lH4RR5z
+ToswIetCbz3NeajJShfoNV17H/ovvH5iUnvrdajVl7kXM0QmAaLmosKU4BLHgrDd
+LKKBDMKGw2MQWjjfBHJaH92Yg8+tdtoYCzouQn6ZDHp+7sXqtpngoRIQVHFYQNH2
+8gmkdDQQwp4fveeM7at6NktAB7uMTec6i63yigWrbvhqS0b/d6Y4aTVWH8qWwyCV
+nd+7CsEwQk2Y1iopb0Cli5M1bppoJ6a17eONqCaYMb8qShZQZWKygDkfAYD9B9c4
+x0UpRsSUDiVv7Bdc6MrlEPu9dI01BmkCAwEAAaNRME8wCwYDVR0PBAQDAgGGMA8G
+A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGrxPxqDTdksMOqnt19O1VH0jpznMBAG
+CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBCwUAA4IBAQBU6HnUmwCShJtNEiL5
+IJFgMh55tp4Vi9E1+q3XI5RwOB700UwmfWUXmOKeeD3871gg4lhqfjDKSxNrRJ3m
+CKuE4nwCSgK74BSCgWu3pTpSPjUgRED2IK/03jQCK2TuZgsTe20BUROnr+uRpORI
+pVbIDevBvuggxDHfn7JYQE/SXrUaCplaZUjZz6WVHTkLEDfoPeTp5gUPA7x/V4MI
+tHTkjIH8nND2pAJRCzLExl5Bf5PKqWjPOqaqyg+hDg2BXm70QOWIMqvxRt9TJAq4
+n6DBZ2ZDOhyFCejCDCSIbku76WGNeT8+0xXjCPaTNBL0AawR77uqa2KZpaCU7e84
+jhiq
+-----END CERTIFICATE----- """
+
+            return ca_id
+
+    def get_crl_cert(self, crl_url):
+        crl_id = """-----BEGIN CERTIFICATE-----
+MIIDXzCCAkegAwIBAgIQILuJ/vBaBpdK5/W07NmI5DANBgkqhkiG9w0BAQsFADBC
+MRMwEQYKCZImiZPyLGQBGRYDbGFiMRUwEwYKCZImiZPyLGQBGRYFcmVwcm8xFDAS
+BgNVBAMTC3JlcHJvLUFELUNBMB4XDTIwMDQyOTEzMTgwMVoXDTI1MDQyOTEzMjgw
+MVowQjETMBEGCgmSJomT8ixkARkWA2xhYjEVMBMGCgmSJomT8ixkARkWBXJlcHJv
+MRQwEgYDVQQDEwtyZXByby1BRC1DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+AQoCggEBALj3ChNORETzK1qOIgcF6QMx2KUv/pXx7NQYin0mJgEaPcVD/lH4RR5z
+ToswIetCbz3NeajJShfoNV17H/ovvH5iUnvrdajVl7kXM0QmAaLmosKU4BLHgrDd
+LKKBDMKGw2MQWjjfBHJaH92Yg8+tdtoYCzouQn6ZDHp+7sXqtpngoRIQVHFYQNH2
+8gmkdDQQwp4fveeM7at6NktAB7uMTec6i63yigWrbvhqS0b/d6Y4aTVWH8qWwyCV
+nd+7CsEwQk2Y1iopb0Cli5M1bppoJ6a17eONqCaYMb8qShZQZWKygDkfAYD9B9c4
+x0UpRsSUDiVv7Bdc6MrlEPu9dI01BmkCAwEAAaNRME8wCwYDVR0PBAQDAgGGMA8G
+A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGrxPxqDTdksMOqnt19O1VH0jpznMBAG
+CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBCwUAA4IBAQBU6HnUmwCShJtNEiL5
+IJFgMh55tp4Vi9E1+q3XI5RwOB700UwmfWUXmOKeeD3871gg4lhqfjDKSxNrRJ3m
+CKuE4nwCSgK74BSCgWu3pTpSPjUgRED2IK/03jQCK2TuZgsTe20BUROnr+uRpORI
+pVbIDevBvuggxDHfn7JYQE/SXrUaCplaZUjZz6WVHTkLEDfoPeTp5gUPA7x/V4MI
+tHTkjIH8nND2pAJRCzLExl5Bf5PKqWjPOqaqyg+hDg2BXm70QOWIMqvxRt9TJAq4
+n6DBZ2ZDOhyFCejCDCSIbku76WGNeT8+0xXjCPaTNBL0AawR77uqa2KZpaCU7e84
+jhiq
+-----END CERTIFICATE----- """
+
+        return crl_id
+
+

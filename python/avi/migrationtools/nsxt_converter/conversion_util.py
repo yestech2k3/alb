@@ -65,12 +65,9 @@ class NsxtConvUtil(MigrationUtil):
             'NsxT ID': nsxt_id,
             'Status': conv_status.get('status', ''),
             'Skipped settings': str(conv_status.get('skipped', '')),
-            'Skipped for defaults': str(conv_status.get('default_skip', '')),
             'Indirect mapping': str(conv_status.get('indirect', '')),
             'Not Applicable': str(conv_status.get('na_list', '')),
-            'User Ignored': str(conv_status.get('user_ignore', '')),
-            'Avi Object': str(avi_object),
-            'Needs Review': need_review
+            'Avi Object': str(avi_object)
         }
         csv_writer_dict_list.append(row)
 
@@ -190,16 +187,13 @@ class NsxtConvUtil(MigrationUtil):
         if vs_level_status:
             fieldnames = ['NsxT type', 'NsxT SubType', 'NsxT ID', 'Status',
                           'Skipped settings', 'Indirect mapping',
-                          'Not Applicable', 'User Ignored',
-                          'Skipped for defaults', 'Complexity Level',
+                          'Not Applicable', 'Complexity Level',
                           'VS Reference', 'Overall skipped settings',
-                          'Avi Object', 'Needs Review']
+                          'Avi Object']
         else:
             fieldnames = ['NsxT type', 'NsxT SubType', 'NsxT ID', 'Status',
                           'Skipped settings', 'Indirect mapping',
-                          'Not Applicable',
-                          'User Ignored', 'Skipped for defaults',
-                          'Complexity Level', 'Avi Object', 'Needs Review']
+                          'Not Applicable', 'Complexity Level', 'Avi Object']
 
         # xlsx workbook
         report_path = output_dir + os.path.sep + "%s-ConversionStatus.xlsx" % \

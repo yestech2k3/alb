@@ -39,9 +39,9 @@ merge_object_mapping = {
 }
 
 
-def convert(nsx_lb_config, input_path, output_path, tenant,cloud_name, prefix,
-            migrate_to, object_merge_check,controller_version,vs_state,vs_level_status=False,vrf=None,segroup=None
-            ,not_in_use=True,custom_mapping=None):
+def convert(nsx_lb_config, input_path, output_path, tenant, cloud_name, prefix,
+            migrate_to, object_merge_check, controller_version, vs_state=False, vs_level_status=False, vrf=None,
+            segroup=None, not_in_use=True, custom_mapping=None):
     # load the yaml file attribute in nsxt_attributes.
     nsxt_attributes = conv_const.init()
     input_config = input_path + os.path.sep + "config.json"
@@ -160,12 +160,12 @@ def convert(nsx_lb_config, input_path, output_path, tenant,cloud_name, prefix,
                 LOG.info(profile_merged_message)
                 print(profile_merged_message)
                 continue
-            elif object_merge_check and key == 'PkiProfile':
-                merged_pki_pr = len(avi_config_dict[key]) - vs_converter.pki_count
+            elif object_merge_check and key == 'PKIProfile':
+                merged_pki_pr = len(avi_config_dict[key]) - (vs_converter.pki_count + monitor_converter.pki_count)
                 merged_message = \
                     'Total Objects of %s : %s (%s/%s pki profile merged)' % \
                     (key, len(avi_config_dict[key]), abs(merged_pki_pr),
-                     vs_converter.pki_count)
+                     vs_converter.pki_count+monitor_converter.pki_count)
                 LOG.info(merged_message)
                 print(merged_message)
                 continue
