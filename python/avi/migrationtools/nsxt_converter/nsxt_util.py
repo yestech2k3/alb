@@ -22,6 +22,41 @@ class NSXUtil():
         nsx_lb_config['LbVirtualServers'] = self.nsx_api_client.infra.LbVirtualServers.list().to_dict().get('results',[])
         return nsx_lb_config
 
+    def nsx_cleanup(self):
+        nsx_lb_config = self.get_nsx_config()
+        if nsx_lb_config.get("LbVirtualServers", None):
+            for vs in nsx_lb_config["LbVirtualServers"]:
+                if not vs["_system_owned"]:
+                    self.nsx_api_client.infra.LbVirtualServers.delete(vs["id"])
+
+        if nsx_lb_config.get("LbPersistenceProfiles", None):
+            for persis in nsx_lb_config["LbPersistenceProfiles"]:
+                if not persis["_system_owned"]:
+                    self.nsx_api_client.infra.LbPersistenceProfiles.delete(persis["id"])
+        if nsx_lb_config.get("LbServerSslProfiles", None):
+            for server_ssl in nsx_lb_config["LbServerSslProfiles"]:
+                if not server_ssl["_system_owned"]:
+                    self.nsx_api_client.infra.LbServerSslProfiles.delete(server_ssl["id"])
+        if nsx_lb_config.get("LbClientSslProfiles", None):
+            for client_ssl in nsx_lb_config["LbClientSslProfiles"]:
+                if not client_ssl["_system_owned"]:
+                    self.nsx_api_client.infra.LbClientSslProfiles.delete(client_ssl["id"])
+        if nsx_lb_config.get("LbAppProfiles", None):
+            for app in nsx_lb_config["LbAppProfiles"]:
+                if not app["_system_owned"]:
+                    self.nsx_api_client.infra.LbAppProfiles.delete(app["id"])
+
+        if nsx_lb_config.get("LbPools", None):
+            for pool in nsx_lb_config["LbPools"]:
+                if not pool["_system_owned"]:
+                    self.nsx_api_client.infra.LbPools.delete(pool["id"])
+
+        if nsx_lb_config.get("LbMonitorProfiles", None):
+            for monitor in nsx_lb_config["LbMonitorProfiles"]:
+                if not monitor["_system_owned"]:
+                    self.nsx_api_client.infra.LbMonitorProfiles.delete(monitor["id"])
+
+
     def upload_alb_config(self, alb_config):
         if alb_config.get("alb-health-monitors"):
             self.upload_monitor_alb_config(alb_config.get("alb-health-monitors"))
@@ -43,13 +78,5 @@ class NSXUtil():
                 except Exception as e:
                     print(e)
 
-
-import json
-if __name__ == "__main__":
-    path = "/Users/sagar/git-source/sdk2/TALB/talb/alb-sdk/python/avi/migrationtools/nsxt_converter/output/10.191.226.85/output/alb_config.json"
-    f = open(path)
-    alb_config = json.load(f)
-    util = NSXUtil("admin", "Admin!23Admin", "10.191.226.85", "443")
-    util.upload_alb_config(alb_config)
 
 
