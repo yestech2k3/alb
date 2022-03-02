@@ -222,6 +222,12 @@ public class ControllerProperties extends AviRestResource  {
     @JsonProperty("unresponsive_se_reboot")
     private Integer unresponsiveSeReboot = 300;
 
+    @JsonProperty("update_dns_entry_retry_limit")
+    private Integer updateDnsEntryRetryLimit = 3;
+
+    @JsonProperty("update_dns_entry_timeout")
+    private Integer updateDnsEntryTimeout = 120;
+
     @JsonProperty("upgrade_dns_ttl")
     private Integer upgradeDnsTtl = 5;
 
@@ -1837,6 +1843,52 @@ public class ControllerProperties extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Number of times to retry a dns entry update/delete operation.
+     * Field introduced in 21.1.4.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 3.
+     * @return updateDnsEntryRetryLimit
+     */
+    public Integer getUpdateDnsEntryRetryLimit() {
+        return updateDnsEntryRetryLimit;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Number of times to retry a dns entry update/delete operation.
+     * Field introduced in 21.1.4.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 3.
+     * @param updateDnsEntryRetryLimit set the updateDnsEntryRetryLimit.
+     */
+    public void setUpdateDnsEntryRetryLimit(Integer  updateDnsEntryRetryLimit) {
+        this.updateDnsEntryRetryLimit = updateDnsEntryRetryLimit;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Timeout period for a dns entry update/delete operation.
+     * Field introduced in 21.1.4.
+     * Unit is sec.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 120.
+     * @return updateDnsEntryTimeout
+     */
+    public Integer getUpdateDnsEntryTimeout() {
+        return updateDnsEntryTimeout;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Timeout period for a dns entry update/delete operation.
+     * Field introduced in 21.1.4.
+     * Unit is sec.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 120.
+     * @param updateDnsEntryTimeout set the updateDnsEntryTimeout.
+     */
+    public void setUpdateDnsEntryTimeout(Integer  updateDnsEntryTimeout) {
+        this.updateDnsEntryTimeout = updateDnsEntryTimeout;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Time to account for dns ttl during upgrade.
      * This is in addition to vs_scalein_timeout_for_upgrade in se_group.
      * Field introduced in 17.1.1.
@@ -2456,7 +2508,9 @@ public class ControllerProperties extends AviRestResource  {
   Objects.equals(this.vsphereHaRecoveryTimeout, objControllerProperties.vsphereHaRecoveryTimeout)&&
   Objects.equals(this.detachIpRetryInterval, objControllerProperties.detachIpRetryInterval)&&
   Objects.equals(this.detachIpRetryLimit, objControllerProperties.detachIpRetryLimit)&&
-  Objects.equals(this.detachIpTimeout, objControllerProperties.detachIpTimeout);
+  Objects.equals(this.detachIpTimeout, objControllerProperties.detachIpTimeout)&&
+  Objects.equals(this.updateDnsEntryTimeout, objControllerProperties.updateDnsEntryTimeout)&&
+  Objects.equals(this.updateDnsEntryRetryLimit, objControllerProperties.updateDnsEntryRetryLimit);
     }
 
     @Override
@@ -2530,6 +2584,8 @@ public class ControllerProperties extends AviRestResource  {
                         sb.append("    sharedSslCertificates: ").append(toIndentedString(sharedSslCertificates)).append("\n");
                         sb.append("    sslCertificateExpiryWarningDays: ").append(toIndentedString(sslCertificateExpiryWarningDays)).append("\n");
                         sb.append("    unresponsiveSeReboot: ").append(toIndentedString(unresponsiveSeReboot)).append("\n");
+                        sb.append("    updateDnsEntryRetryLimit: ").append(toIndentedString(updateDnsEntryRetryLimit)).append("\n");
+                        sb.append("    updateDnsEntryTimeout: ").append(toIndentedString(updateDnsEntryTimeout)).append("\n");
                         sb.append("    upgradeDnsTtl: ").append(toIndentedString(upgradeDnsTtl)).append("\n");
                         sb.append("    upgradeFatSeLeaseTime: ").append(toIndentedString(upgradeFatSeLeaseTime)).append("\n");
                         sb.append("    upgradeLeaseTime: ").append(toIndentedString(upgradeLeaseTime)).append("\n");
