@@ -219,6 +219,12 @@ type ControllerProperties struct {
 	//  Unit is SEC.
 	UnresponsiveSeReboot *int32 `json:"unresponsive_se_reboot,omitempty"`
 
+	// Number of times to retry a DNS entry update/delete operation. Field introduced in 21.1.4.
+	UpdateDNSEntryRetryLimit *int32 `json:"update_dns_entry_retry_limit,omitempty"`
+
+	// Timeout period for a DNS entry update/delete operation. Field introduced in 21.1.4. Unit is SEC.
+	UpdateDNSEntryTimeout *int32 `json:"update_dns_entry_timeout,omitempty"`
+
 	// Time to account for DNS TTL during upgrade. This is in addition to vs_scalein_timeout_for_upgrade in se_group. Field introduced in 17.1.1. Unit is SEC. Allowed in Basic(Allowed values- 5) edition, Essentials(Allowed values- 5) edition, Enterprise edition.
 	UpgradeDNSTTL *int32 `json:"upgrade_dns_ttl,omitempty"`
 
