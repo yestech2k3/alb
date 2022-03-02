@@ -305,6 +305,7 @@ font-style: italic;
   "bm_use_ansible" : true,
   "process_locked_useraccounts_timeout_period" : 123,
   "detach_ip_retry_limit" : 123,
+  "update_dns_entry_timeout" : 123,
   "appviewx_compat_mode" : true,
   "cluster_ip_gratuitous_arp_period" : 123,
   "controller_resource_info_collection_period" : 123,
@@ -360,7 +361,8 @@ font-style: italic;
   "vs_awaiting_se_timeout" : 123,
   "vs_scaleout_ready_check_interval" : 123,
   "allow_unauthenticated_nodes" : true,
-  "dns_refresh_period" : 123
+  "dns_refresh_period" : 123,
+  "update_dns_entry_retry_limit" : 123
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -471,6 +473,7 @@ font-style: italic;
   "bm_use_ansible" : true,
   "process_locked_useraccounts_timeout_period" : 123,
   "detach_ip_retry_limit" : 123,
+  "update_dns_entry_timeout" : 123,
   "appviewx_compat_mode" : true,
   "cluster_ip_gratuitous_arp_period" : 123,
   "controller_resource_info_collection_period" : 123,
@@ -526,7 +529,8 @@ font-style: italic;
   "vs_awaiting_se_timeout" : 123,
   "vs_scaleout_ready_check_interval" : 123,
   "allow_unauthenticated_nodes" : true,
-  "dns_refresh_period" : 123
+  "dns_refresh_period" : 123,
+  "update_dns_entry_retry_limit" : 123
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -637,6 +641,7 @@ font-style: italic;
   "bm_use_ansible" : true,
   "process_locked_useraccounts_timeout_period" : 123,
   "detach_ip_retry_limit" : 123,
+  "update_dns_entry_timeout" : 123,
   "appviewx_compat_mode" : true,
   "cluster_ip_gratuitous_arp_period" : 123,
   "controller_resource_info_collection_period" : 123,
@@ -692,7 +697,8 @@ font-style: italic;
   "vs_awaiting_se_timeout" : 123,
   "vs_scaleout_ready_check_interval" : 123,
   "allow_unauthenticated_nodes" : true,
-  "dns_refresh_period" : 123
+  "dns_refresh_period" : 123,
+  "update_dns_entry_retry_limit" : 123
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -803,6 +809,8 @@ font-style: italic;
 <div class="param">shared_ssl_certificates (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> SSL Certificates in the admin tenant can be used in non-admin tenants. Field introduced in 18.2.5. </div>
 <div class="param">ssl_certificate_expiry_warning_days (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span> Number of days for SSL Certificate expiry warning. Unit is DAYS. </div>
 <div class="param">unresponsive_se_reboot (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Unit is SEC. format: int32</div>
+<div class="param">update_dns_entry_retry_limit (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of times to retry a DNS entry update/delete operation. Field introduced in 21.1.4. format: int32</div>
+<div class="param">update_dns_entry_timeout (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Timeout period for a DNS entry update/delete operation. Field introduced in 21.1.4. Unit is SEC. format: int32</div>
 <div class="param">upgrade_dns_ttl (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Time to account for DNS TTL during upgrade. This is in addition to vs_scalein_timeout_for_upgrade in se_group. Field introduced in 17.1.1. Unit is SEC. Allowed in Basic(Allowed values- 5) edition, Essentials(Allowed values- 5) edition, Enterprise edition. format: int32</div>
 <div class="param">upgrade_fat_se_lease_time (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Amount of time Controller waits for a large-sized SE (&gt;&#x3D;128GB memory) to reconnect after it is rebooted during upgrade. Field introduced in 18.2.10, 20.1.1. Unit is SEC. format: int32</div>
 <div class="param">upgrade_lease_time (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Amount of time Controller waits for a regular-sized SE (&lt;128GB memory) to reconnect after it is rebooted during upgrade. Starting 18.2.10/20.1.1, the default time has increased from 360 seconds to 600 seconds. Unit is SEC. format: int32</div>
