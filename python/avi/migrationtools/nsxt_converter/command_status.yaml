@@ -286,25 +286,24 @@ NSXT:
     - "match_conditions"
     - "actions"
     - "phase"
+    - "match_strategy"
 
-    HttpPolicySetRules_Na_List_MatchingCondition:
+    HttpPolicySetRules_Skiped_List_MatchingCondition:
     - "LBHttpRequestBodyCondition"
     - "LBTcpHeaderCondition"
     - "LBVariableCondition"
-    - "LBHttpSslCondition"
     - "LBSslSniCondition"
     - "LBClientCertificateIssuerDnConditionDto"
     - "LBClientCertificateSubjectDnConditionDto"
 
-    HttpPolicySetRules_Na_List_Actions:
-    - "LBVariableAssignmentAction"
-    - "LBVariablePersistenceOnAction"
-    - "LBVariablePersistenceLearnAction"
-    - "LBJwtAuthAction"
+    HttpPolicySetRules_Skiped_List_Actions:
     - "LBSslModeSelectionAction"
+    - "LBVariableAssignmentAction"
+    - "LBJwtAuthAction"
     - "LBJwtCertificateKey"
     - "LBJwtSymmetricKey"
     - "LBJwtPublicKey"
+
 
     Common_Na_List:
     - "path"

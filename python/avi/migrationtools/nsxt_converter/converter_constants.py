@@ -9,6 +9,7 @@ STATUS_SUCCESSFUL = 'SUCCESSFUL'
 STATUS_ERROR = 'ERROR'
 HM_CUSTOM_KEY = 'healthmonitor_custom_config'
 PLACE_HOLDER_STR = "auto_created"
+OBJECT_TYPE_HTTP_POLICY_SET = "httppolicyset"
 
 def init():
     """
