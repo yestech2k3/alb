@@ -1642,6 +1642,18 @@
                     "default": 300,
                     "format": "int32"
                 },
+                "update_dns_entry_retry_limit": {
+                    "description": "Number of times to retry a DNS entry update/delete operation. Field introduced in 21.1.4.",
+                    "type": "integer",
+                    "default": 3,
+                    "format": "int32"
+                },
+                "update_dns_entry_timeout": {
+                    "description": "Timeout period for a DNS entry update/delete operation. Field introduced in 21.1.4. Unit is SEC.",
+                    "type": "integer",
+                    "default": 120,
+                    "format": "int32"
+                },
                 "upgrade_dns_ttl": {
                     "description": "Time to account for DNS TTL during upgrade. This is in addition to vs_scalein_timeout_for_upgrade in se_group. Field introduced in 17.1.1. Unit is SEC. Allowed in Basic(Allowed values- 5) edition, Essentials(Allowed values- 5) edition, Enterprise edition.",
                     "type": "integer",
