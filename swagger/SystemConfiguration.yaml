@@ -404,6 +404,9 @@ definitions:
                 description: "Email address in From field."
                 type: string
                 default: "admin@avicontroller.net"
+            from_name:
+                description: "Friendly name in From field. Field introduced in 21.1.4."
+                type: string
             mail_server_name:
                 description: "Mail server host."
                 type: string
