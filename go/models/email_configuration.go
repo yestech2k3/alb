@@ -23,6 +23,9 @@ type EmailConfiguration struct {
 	// Email address in From field.
 	FromEmail *string `json:"from_email,omitempty"`
 
+	// Friendly name in From field. Field introduced in 21.1.4.
+	FromName *string `json:"from_name,omitempty"`
+
 	// Mail server host.
 	MailServerName *string `json:"mail_server_name,omitempty"`
 
