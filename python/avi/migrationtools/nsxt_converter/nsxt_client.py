@@ -21,7 +21,7 @@ def get_basic_auth_stub_config(user, password, nsx_host, tcp_port=443):
     session = requests.session()
 
     # Since the NSX manager default certificate is self-signed,
-    # we disable verification. This is dangerous and real code
+    # we deactivate verification. This is dangerous and real code
     # should verify that it is talking to a valid server.
     session.verify = False
 
@@ -52,10 +52,9 @@ def get_session_auth_stub_config(user, password, nsx_host, tcp_port=443):
     session = requests.session()
 
     # Since the NSX manager default certificate is self-signed,
-    # we disable verification. This is dangerous and real code
+    # we deactivate verification. This is dangerous and real code
     # should verify that it is talking to a valid server.
     session.verify = False
-    requests.packages.urllib3.disable_warnings()
     nsx_url = 'https://%s:%s' % (nsx_host, tcp_port)
     resp = session.post(nsx_url + "/api/session/create",
                         data={"j_username": user, "j_password": password})
