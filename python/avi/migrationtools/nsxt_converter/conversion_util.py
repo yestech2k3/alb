@@ -227,13 +227,13 @@ class NsxtConvUtil(MigrationUtil):
                                values=[], aggfunc=[len], fill_value=0)
         # create dataframe for pivot table using pandas
         pivot_df = pandas.DataFrame(pivot_table)
-        master_book = \
+        main_book = \
             load_workbook(report_path)
-        master_writer = pandas.ExcelWriter(report_path, engine='openpyxl')
-        master_writer.book = master_book
+        main_writer = pandas.ExcelWriter(report_path, engine='openpyxl')
+        main_writer.book = main_book
         # Add pivot table in Pivot sheet
-        pivot_df.to_excel(master_writer, 'Pivot Sheet')
-        master_writer.save()
+        pivot_df.to_excel(main_writer, 'Pivot Sheet')
+        main_writer.save()
 
     def vs_complexity_level(self):
         """
