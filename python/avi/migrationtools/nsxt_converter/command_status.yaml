@@ -213,7 +213,6 @@ NSXT:
     - 'persist'
     - 'source-address-translation'
     - 'description'
-    - 'disabled'
     - 'translate-port'
     - 'source'
     - 'rate-limit'
@@ -236,13 +235,25 @@ NSXT:
     VS_client_ssl_supported_attr:
     - 'ssl_profile_path'
     - 'default_certificate_path'
+    - 'client_auth'
+    - 'client_auth_ca_paths'
+    - 'client_auth_crl_paths'
 
     VS_server_ssl_supported_attr:
     - 'ssl_profile_path'
     - 'client_certificate_path'
+    - 'server_auth_crl_paths'
+    - 'client_certificate_path'
+    - 'server_auth_ca_paths'
 
     VS_na_list:
     - "log_significant_event_only"
+
+    VS_client_ssl_indirect_attr:
+    - "certificate_chain_depth"
+
+    VS_server_ssl_indirect_attr:
+    - "certificate_chain_depth"
 
     SSLProfile_Client_Supported_Attributes:
     - "ciphers"

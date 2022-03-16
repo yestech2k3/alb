@@ -24,7 +24,6 @@ def get_basic_auth_stub_config(user, password, nsx_host, tcp_port=443):
     # we disable verification. This is dangerous and real code
     # should verify that it is talking to a valid server.
     session.verify = False
-    requests.packages.urllib3.disable_warnings()
 
     nsx_url = 'https://%s:%s' % (nsx_host, tcp_port)
     connector = connect.get_requests_connector(

@@ -7,11 +7,12 @@ from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.policy_converter import PolicyConfigConverter
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 import avi.migrationtools.nsxt_converter.converter_constants as final
-
+import random
 LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
 common_avi_util = MigrationUtil()
+vs_list_with_snat_deactivated = []
 
 
 class VsConfigConv(object):
@@ -27,6 +28,8 @@ class VsConfigConv(object):
         self.VS_na_attr = nsxt_profile_attributes["VS_na_list"]
         self.rule_match_na = nsxt_profile_attributes["HttpPolicySetRules_Skiped_List_MatchingCondition"]
         self.rules_actions_na = nsxt_profile_attributes["HttpPolicySetRules_Skiped_List_Actions"]
+        self.VS_client_ssl_indirect_attr = nsxt_profile_attributes["VS_client_ssl_indirect_attr"]
+        self.VS_server_ssl_indirect_attr = nsxt_profile_attributes["VS_server_ssl_indirect_attr"]
         self.supported_attr_httppolicyset = nsxt_profile_attributes["HttpPolicySetRules_Supported_Attributes"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
@@ -41,6 +44,10 @@ class VsConfigConv(object):
         '''
         converted_alb_ssl_certs = list()
         converted_http_policy_sets = list()
+        converted_http_policy_na_list = list()
+        converted_http_policy_skipped = list()
+        indirect_client_ssl = []
+        indirect_server_ssl = []
         alb_config['VirtualService'] = list()
         alb_config['VsVip'] = list()
         alb_config["HTTPPolicySet"] = list()
@@ -109,7 +116,7 @@ class VsConfigConv(object):
 
                 if lb_vs.get("client_ssl_profile_binding"):
                     if lb_vs["client_ssl_profile_binding"].get("client_auth_ca_paths"):
-                        pki_client_profile=dict()
+                        pki_client_profile = dict()
                         error = False
                         ca = self.get_ca_cert(lb_vs["client_ssl_profile_binding"].get("client_auth_ca_paths"))
                         if ca:
@@ -170,7 +177,7 @@ class VsConfigConv(object):
                             if self.object_merge_check:
                                 conv_utils.update_skip_duplicates(pki_server_profile,
                                                                   alb_config['PKIProfile'], 'pki_profile',
-                                                                  converted_objs,  pki_server_profile["name"], None,
+                                                                  converted_objs, pki_server_profile["name"], None,
                                                                   self.merge_object_mapping, None, prefix,
                                                                   self.sys_dict['PKIProfile'])
                                 self.pki_count += 1
@@ -214,16 +221,15 @@ class VsConfigConv(object):
 
                 if client_pki:
                     pki_client_profile_name = pki_client_profile["name"]
-                    if self.object_merge_check:
-                        pki_client_profile_name = self.merge_object_mapping["pki_profile"].get(pki_client_profile_name)
-
-                    self.update_app_with_pki(profile_name, alb_config["ApplicationProfile"], pki_client_profile_name)
+                    self.update_app_with_pki(merge_profile_name, alb_config["ApplicationProfile"],
+                                             pki_client_profile_name)
                 if lb_vs.get('max_concurrent_connections'):
                     alb_vs['performance_limits'] = dict(
                         max_concurrent_connections=lb_vs.get('max_concurrent_connections')
                     )
                 if lb_vs.get('client_ssl_profile_binding'):
                     client_ssl = lb_vs.get('client_ssl_profile_binding')
+                    ssl_key_cert_refs = []
                     if client_ssl.get('ssl_profile_path'):
                         ssl_ref = client_ssl['ssl_profile_path'].split('/')[-1]
                         if prefix:
@@ -231,14 +237,39 @@ class VsConfigConv(object):
                         alb_vs['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_ref
                     if client_ssl.get('default_certificate_path', None):
                         alb_vs['services'][0]["enable_ssl"] = True
-                        ca_cert_obj = self.update_ca_cert_obj(name, alb_config, [], "admin", prefix)
-                        ssl_key_cert_refs = []
+                        cert_name = name + "-"+str(random.randint(0, 20))
+                        ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], "admin", prefix)
                         ssl_key_cert_refs.append(
                             "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name"))
-                        alb_vs["ssl_key_and_certificate_refs"] = list(set(ssl_key_cert_refs))
                         converted_alb_ssl_certs.append(ca_cert_obj)
-                    skipped = [val for val in skipped
-                               if val not in self.client_ssl_attr]
+                    if client_ssl.get('sni_certificate_paths', None):
+                        #TODO need to revisit to fix some issues
+                        alb_vs['services'][0]["enable_ssl"] = True
+                        sni_cert_list = client_ssl.get('sni_certificate_paths', None)
+                        for cert in sni_cert_list:
+                            cert_name = name + "-" + str(random.randint(0, 20))
+                            ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], "admin", prefix)
+                            ssl_key_cert_refs.append(
+                                "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name"))
+                            converted_alb_ssl_certs.append(ca_cert_obj)
+                        alb_vs["vh_type"] = "VS_TYPE_VH_SNI"
+                        alb_vs["type"] = "VS_TYPE_VH_PARENT"
+                    if client_ssl.get("client_auth"):
+                        for profile in alb_config["ApplicationProfile"]:
+                            if merge_profile_name == profile["name"]:
+                                profile["ssl_client_certificate_mode"] = client_ssl["client_auth"]
+                    if ssl_key_cert_refs:
+                        alb_vs["ssl_key_and_certificate_refs"] = list(set(ssl_key_cert_refs))
+                    skipped_client_ssl = [val for val in client_ssl.keys()
+                                          if val not in self.client_ssl_attr]
+                    indirect_client_attr = self.VS_client_ssl_indirect_attr
+
+                    indirect_client_ssl = [val for val in skipped_client_ssl if
+                                               val in indirect_client_attr]
+                    skipped_client_ssl = [attr for attr in skipped_client_ssl if attr not in indirect_client_ssl]
+                    if skipped_client_ssl:
+                        skipped.append({"client_ssl ": skipped_client_ssl})
+
                 if lb_vs.get('pool_path'):
                     pool_ref = lb_vs.get('pool_path')
                     pool_name = pool_ref.split('/')[-1]
@@ -249,15 +280,21 @@ class VsConfigConv(object):
                         pool_name, 'pool', tenant="admin", cloud_name=cloud_name)
                     # alb_vs['pool_ref'] = '/api/pool/?tenant=admin&name=' + pool_name
                     if lb_vs.get('server_ssl_profile_binding'):
-                       # if lb_vs["server_ssl_profile_binding"]
+                        # if lb_vs["server_ssl_profile_binding"]
+                        server_ssl = lb_vs.get('server_ssl_profile_binding')
                         self.update_pool_with_ssl(alb_config, lb_vs, pool_name, self.object_merge_check,
                                                   self.merge_object_mapping, prefix, converted_alb_ssl_certs)
-                        skipped = [val for val in skipped
-                                   if val not in self.server_ssl_attr]
+                        skipped_server_ssl = [val for val in server_ssl.keys()
+                                              if val not in self.server_ssl_attr]
+                        indirect_server_attr = self.VS_server_ssl_indirect_attr
+
+                        indirect_server_ssl = [val for val in skipped_server_ssl if
+                                               val in indirect_server_attr]
+                        skipped_server_ssl = [attr for attr in skipped_server_ssl if attr not in indirect_server_ssl]
+                        if skipped_server_ssl:
+                            skipped.append({"server_ssl ": skipped_server_ssl})
                 if server_pki:
                     pki_server_profile_name = pki_server_profile["name"]
-                    if self.object_merge_check:
-                        pki_server_profile_name = self.merge_object_mapping["pki_profile"].get(pki_server_profile_name)
                     self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile_name)
                 if lb_vs.get('lb_persistence_profile_path'):
                     self.update_pool_with_persistence(alb_config['Pool'], lb_vs,
@@ -271,6 +308,7 @@ class VsConfigConv(object):
                         pool['tier1_lr'] = tier1_lr
 
                 if lb_vs.get('rules'):
+
                     policy, skipped_rules = policy_converter.convert(lb_vs, alb_config, cloud_name, prefix, tenant)
                     converted_http_policy_sets.append(skipped_rules)
                     if policy:
@@ -292,16 +330,26 @@ class VsConfigConv(object):
                         nsx_pool_name = prefix + "-" + nsx_pool_name
                     if nsx_pool_name == pool_name:
                         if nsx_pool.get("snat_translation"):
-                            if nsx_pool["snat_translation"].get("ip_addresses"):
-                                snat_ip_add = nsx_pool["snat_translation"]["ip_addresses"][0]["ip_address"]
-                                vs_app_name = self.update_app_with_snat(snat_ip_add, profile_name, profile_type,
+                            if nsx_pool["snat_translation"].get("type") == "LBSnatDisabled":
+                                vs_app_name = self.update_app_with_snat(profile_name, profile_type,
                                                                         alb_config["ApplicationProfile"],
-                                                                        self.object_merge_check, self.merge_object_mapping)
+                                                                        self.object_merge_check,
+                                                                        self.merge_object_mapping)
                                 if vs_app_name != profile_name:
                                     alb_vs['application_profile_ref'] = '/api/applicationprofile/?tenant=admin&' \
                                                                         'name=' + vs_app_name
+                                vs_list_with_snat_deactivated.append(alb_vs["name"])
 
-                self.update_pool_with_app_attr( profile_name, pool_name, alb_config)
+                            if nsx_pool["snat_translation"].get("type") == "LBSnatIpPool":
+                                alb_vs["snat_ip"] = []
+                                snat_ip_pool = nsx_pool["snat_translation"]["ip_addresses"]
+                                for ip_pool in snat_ip_pool:
+                                    snat_ip = dict(
+                                        addr=ip_pool["ip_address"],
+                                        type="V4"
+                                    )
+                                    alb_vs["snat_ip"].append(snat_ip)
+                self.update_pool_with_app_attr(merge_profile_name, pool_name, alb_config)
 
                 indirect = []
                 u_ignore = []
@@ -309,6 +357,10 @@ class VsConfigConv(object):
                 conv_status = conv_utils.get_conv_status(
                     skipped, indirect, ignore_for_defaults, nsx_lb_config['LbVirtualServers'],
                     u_ignore, na_list)
+                if indirect_client_ssl:
+                    conv_status["indirect"].append({"client_ssl": indirect_client_ssl})
+                if indirect_server_ssl:
+                    conv_status["indirect"].append({"server_ssl": indirect_server_ssl})
                 na_list = [val for val in na_list if val not in self.common_na_attr]
                 conv_status["na_list"] = na_list
                 conv_utils.add_conv_status('virtualservice', None, alb_vs['name'], conv_status,
@@ -339,6 +391,8 @@ class VsConfigConv(object):
                 u_ignore, [])
             conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
                                        [{"ssl_cert_key": cert}])
+
+
 
 
     def update_pool_with_ssl(self, alb_config, lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix,
@@ -441,7 +495,7 @@ class VsConfigConv(object):
             avi_config['SSLKeyAndCertificate'].append(ssl_kc_obj)
         return ssl_kc_obj
 
-    def update_app_with_snat(self, snat_ip_add, profile_name, profile_type, alb_app_config, object_merge_check,
+    def update_app_with_snat(self, profile_name, profile_type, alb_app_config, object_merge_check,
                              merge_object_mapping):
         app_prof_obj = [obj for obj in alb_app_config if obj['name'] == profile_name]
         if object_merge_check:
@@ -509,7 +563,7 @@ jhiq
             if profile_name == profile["name"]:
                 profile["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_name
 
-    def update_pool_with_pki(self,pool_config, pool_name, pki_name):
+    def update_pool_with_pki(self, pool_config, pool_name, pki_name):
         for pool in pool_config:
             if pool_name == pool["name"]:
                 pool["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_name

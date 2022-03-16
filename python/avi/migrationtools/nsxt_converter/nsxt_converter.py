@@ -11,18 +11,17 @@ from avi.migrationtools.ansible.ansible_config_converter import \
 from avi.migrationtools.avi_converter import AviConverter
 from avi.migrationtools.avi_migration_utils import get_count
 from avi.migrationtools.avi_orphan_object import wipe_out_not_in_use
-from avi.migrationtools.nsxt_converter import nsxt_config_converter
+from avi.migrationtools.nsxt_converter import nsxt_config_converter, vs_converter
 import argparse
-
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
+from avi.migrationtools.nsxt_converter.vs_converter import vs_list_with_snat_deactivated
 
 ARG_CHOICES = {
     'option': ['cli-upload', 'auto-upload'],
     'migrate_option': ['Avi', 'NSX'],
-    'vs_state': ['enable', 'disable']
+    'vs_state': ['enable', 'deactivate']
 
 }
-
 LOG = logging.getLogger(__name__)
 
 
@@ -126,6 +125,10 @@ class NsxtConverter(AviConverter):
             self.convert(alb_config, output_path)
         if self.option == 'auto-upload':
             self.upload_config_to_controller(alb_config)
+        if vs_list_with_snat_deactivated:
+            print('\033[93m'+"Warning: for following virtual service/s please follow steps giving in KB: "+
+                  "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/"+'\033[0m')
+            print(vs_list_with_snat_deactivated)
         print("Total Warning: ", get_count('warning'))
         print("Total Errors: ", get_count('error'))
         LOG.info("Total Warning: {}".format(get_count('warning')))

@@ -79,7 +79,6 @@ def convert(nsx_lb_config, input_path, output_path, tenant, cloud_name, prefix,
         vs_converter = VsConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping,sys_dict)
         vs_converter.convert(avi_config_dict,nsx_lb_config,cloud_name,prefix,tenant,vs_state,controller_version,vrf,segroup)
 
-
         # Validating the aviconfig after generation
         conv_utils.validation(avi_config_dict)
     except Exception as e:

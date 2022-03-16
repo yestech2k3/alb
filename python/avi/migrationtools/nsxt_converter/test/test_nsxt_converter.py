@@ -651,6 +651,7 @@ class Test(unittest.TestCase, ExcelReader):
         for app in app_object:
             if app["name"].endswith("cmd"):
                 assert not app["connection_multiplexing_enabled"]
+                assert app["preserve_client_ip"]
 
     def test_remove_not_in_use_object(self):
 

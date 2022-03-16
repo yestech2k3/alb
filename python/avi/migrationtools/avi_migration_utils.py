@@ -816,7 +816,7 @@ class MigrationUtil(object):
         """
         avi_graph = nx.DiGraph()
         avi_graph.add_node('AVI', type='Tree')
-        for vs in avi_config['VirtualService']:
+        for vs in avi_config.get('VirtualService',[]):
             name = vs['name']
             avi_graph.add_node(name, type='VS')
             avi_graph.add_edge('AVI', name)

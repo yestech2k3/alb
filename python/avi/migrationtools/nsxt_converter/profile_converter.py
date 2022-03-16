@@ -207,6 +207,7 @@ class ProfileConfigConv(object):
 
     def fast_profile_path(self, lb_pr):
         path = dict(
-            session_idle_timeout=lb_pr.get('idle_timeout')
+            session_idle_timeout=lb_pr.get('idle_timeout'),
+            connection_mirror=lb_pr.get("ha_flow_mirroring_enabled")
         )
         return path
