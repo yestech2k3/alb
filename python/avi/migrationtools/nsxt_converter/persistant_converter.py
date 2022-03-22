@@ -173,6 +173,8 @@ class PersistantProfileConfigConv(object):
         if final_skiped_attr:
             skipped_list.append({lb_pp['display_name']: final_skiped_attr})
         skipped = [key for key in skipped if key not in self.supported_attr_cookie]
+        if lb_pp.get("cookie_mode", None) == "INSERT":
+            skipped.remove("cookie_mode")
         return skipped, skipped_list
 
     def convert_source(self, lb_pp, alb_pp, skipped, tenant):

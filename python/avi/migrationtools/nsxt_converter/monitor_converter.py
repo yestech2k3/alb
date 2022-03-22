@@ -35,6 +35,8 @@ class MonitorConfigConv(object):
         self.common_na_attr = nsxt_monitor_attributes['Common_Na_List']
         self.icmp_ignore_attr = nsxt_monitor_attributes["Monitor_icmp_ignore"]
         self.passive_indirect_attr = nsxt_monitor_attributes["Monitor_passive_indirect"]
+        self.server_ssl_indirect_attr = nsxt_monitor_attributes["Monitor_server_ssl_indirect_attributes"]
+        self.server_ssl_supported_attr = nsxt_monitor_attributes["Monitor_server_ssl_supported_attributes"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
@@ -108,6 +110,7 @@ class MonitorConfigConv(object):
             conv_const.HM_CUSTOM_KEY, dict()
         ) if custom_mapping else dict()
         skipped_list = []
+        server_ssl_indirect_list = []
         converted_alb_monitor = []
         tenant = "admin"
         total_size = len(nsx_lb_config['LbMonitorProfiles'])
@@ -172,10 +175,11 @@ class MonitorConfigConv(object):
                     alb_hm['monitor_port'] = lb_hm.get('monitor_port', None)
 
                 alb_hm['tenant_ref'] = "/api/tenant/?name=admin"
+                server_ssl_indirect = []
                 if monitor_type == "LBHttpMonitorProfile":
                     skipped = self.convert_http(lb_hm, alb_hm, skipped)
                 elif monitor_type == "LBHttpsMonitorProfile":
-                    skipped = self.convert_https(lb_hm, alb_hm, skipped, alb_config, prefix, tenant, converted_objs,
+                    skipped, server_ssl_indirect = self.convert_https(lb_hm, alb_hm, skipped, alb_config, prefix, tenant, converted_objs,
                                                  converted_alb_ssl_certs, converted_pki_profile)
                 elif monitor_type == "LBIcmpMonitorProfile":
                     u_ignore = self.icmp_ignore_attr
@@ -187,6 +191,7 @@ class MonitorConfigConv(object):
 
                 ignore_for_defaults = {}
                 skipped_list.append(skipped)
+                server_ssl_indirect_list.append(server_ssl_indirect)
                 if self.object_merge_check:
                     common_avi_util.update_skip_duplicates(alb_hm,
                                                            alb_config['HealthMonitor'], 'health_monitor',
@@ -222,6 +227,8 @@ class MonitorConfigConv(object):
                 u_ignore, na_list)
             na_list_hm = [val for val in na_list if val not in self.common_na_attr]
             conv_status["na_list"] = na_list_hm
+            if server_ssl_indirect_list[index]:
+                conv_status["indirect"].append({"server_ssl":server_ssl_indirect_list[index]})
             name = converted_alb_monitor[index]['name']
             alb_mig_hm = converted_alb_monitor[index]['alb_hm']
             resource_type = converted_alb_monitor[index]['resource_type']
@@ -282,6 +289,7 @@ class MonitorConfigConv(object):
             converted_alb_ssl_certs = []
         if converted_pki_profile is None:
             converted_pki_profile = []
+        indirect = []
         alb_hm['type'] = 'HEALTH_MONITOR_HTTPS'
         https_request = self.update_http_request_for_avi(lb_hm)
         alb_hm['https_monitor'] = dict(
@@ -290,7 +298,6 @@ class MonitorConfigConv(object):
             http_response=lb_hm.get('response_body'),
             http_response_code=self.get_alb_response_codes(lb_hm['response_status_codes']),
         )
-
         if lb_hm.get('server_ssl_profile_binding', None):
             server_ssl_profile_binding = lb_hm.get('server_ssl_profile_binding', None)
             ssl_profile_path = server_ssl_profile_binding["ssl_profile_path"]
@@ -326,10 +333,16 @@ class MonitorConfigConv(object):
                     converted_objs.append({'pki_profile': pki_profile})
                     alb_config['PKIProfile'].append(pki_profile)
                 alb_hm["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_profile_name
+            server_ssl_skipped = [key for key in server_ssl_profile_binding.keys()
+                                if key not in self.server_ssl_supported_attr]
+            server_ssl_indirect_list = self.server_ssl_indirect_attr
+            indirect = [val for val in server_ssl_skipped if val in server_ssl_indirect_list]
+            server_ssl_skipped = [val for val in server_ssl_skipped if val not in server_ssl_indirect_list]
+            skipped = [key for key in skipped if key not in self.https_attr]
+            if server_ssl_skipped:
+                skipped.append({"server_ssl": server_ssl_skipped})
 
-        skipped = [key for key in skipped if key not in self.https_attr]
-
-        return skipped
+        return skipped, indirect
 
     def convert_icmp(self, lb_hm, alb_hm, skipped):
         alb_hm['type'] = 'HEALTH_MONITOR_PING'

@@ -20,6 +20,8 @@ class SslProfileConfigConv(object):
         self.supported_client_ssl_attributes = nsxt_profile_attributes['SSLProfile_Client_Supported_Attributes']
         self.supported_server_ssl_attributes = nsxt_profile_attributes['SSLProfile_Server_Supported_Attributes']
         self.common_na_attr = nsxt_profile_attributes['Common_Na_List']
+        self.indirect_client_ssl_attr = nsxt_profile_attributes["SSLProfile_Client_Indirect_Attributes"]
+        self.indirect_server_ssl_attr = nsxt_profile_attributes["SSLProfile_Server_Indirect_Attributes"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
@@ -63,6 +65,8 @@ class SslProfileConfigConv(object):
 
                     if lb_ssl.get("protocols"):
                         self.convert_protocols(lb_ssl['protocols'], alb_ssl)
+                    if lb_ssl.get("prefer_server_ciphers"):
+                        alb_ssl["prefer_client_cipher_ordering"] = not lb_ssl["prefer_server_ciphers"]
 
                     skipped_list.append(skipped)
                     ##
@@ -97,7 +101,7 @@ class SslProfileConfigConv(object):
                     conv_utils.add_status_row('sslprofile', None, lb_ssl['display_name'],
                                               conv_const.STATUS_ERROR)
 
-            indirect = []
+            indirect = self.indirect_client_ssl_attr
             u_ignore = []
             ignore_for_defaults = {}
             for index, skipped in enumerate(skipped_list):
@@ -185,7 +189,7 @@ class SslProfileConfigConv(object):
                     conv_utils.add_status_row('sslprofile', None, lb_ssl['display_name'],
                                               conv_const.STATUS_ERROR)
 
-            indirect = []
+            indirect = self.indirect_server_ssl_attr
             u_ignore = []
             ignore_for_defaults = {}
             for index, skipped in enumerate(skipped_list):

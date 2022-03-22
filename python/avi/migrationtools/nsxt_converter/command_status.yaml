@@ -149,6 +149,16 @@ NSXT:
     - "max_fails"
     - "timeout"
 
+    Monitor_server_ssl_indirect_attributes:
+    - "server_auth"
+    - "certificate_chain_depth"
+
+    Monitor_server_ssl_supported_attributes:
+    - "ssl_profile_path"
+    - "server_auth_ca_paths"
+    - "client_certificate_path"
+    - "server_auth_crl_paths"
+
     Pool_supported_attr:
     - "display_name"
     - "members"
@@ -264,6 +274,10 @@ NSXT:
     - "id"
     - "resource_type"
 
+    SSLProfile_Client_Indirect_Attributes:
+     - "is_secure"
+     - "is_fips"
+
     SSLProfile_Server_Supported_Attributes:
     - "ciphers"
     - "protocols"
@@ -272,6 +286,10 @@ NSXT:
     - "display_name"
     - "id"
     - "resource_type"
+
+    SSLProfile_Server_Indirect_Attributes:
+        - "is_secure"
+        - "is_fips"
 
     PersistenceProfile_Supported_Attributes:
     - "display_name"
