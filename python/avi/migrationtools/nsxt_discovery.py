@@ -50,16 +50,6 @@ class NSXDiscoveryConv():
 
         return "Cloud Not Found"
 
-    def discovery_tool(self):
-        nsx_lb_config = dict()
-        nsx_lb_config['LbVirtualServers'] = self.nsx_api_client.infra.LbVirtualServers.list().to_dict().get('results',
-                                                                                                            [])
-        nsx_lb_config["LbPools"] = self.nsx_api_client.infra.LbPools.list().to_dict().get("results", [])
-        # path = "/Users/agarwalme/workspace/alb-sdk/python/avi/migrationtools/nsxt_converter/test/config.json"
-        # f = open(path)
-        # data = json.load(f)
-        # self.checking_vs(data)
-
     def get_lb_services_details(self):
         lb_services = self.nsx_api_client.infra.LbServices.list().to_dict().get('results', [])
         for lb in lb_services:
@@ -446,7 +436,6 @@ if __name__ == '__main__':
 
     nsx_inventory = NSXDiscoveryConv(args.nsx_user, args.nsx_password, args.nsx_ip, args.nsx_port,\
                                      args.password, args.controller_ip, args.user, args.controller_version)
-    nsx_inventory.get_lb_services_details()
     nsx_inventory.get_inventory()
     nsx_inventory.get_pool_details()
     nsx_inventory.write_output(
