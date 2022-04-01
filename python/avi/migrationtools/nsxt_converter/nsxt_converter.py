@@ -2,7 +2,7 @@
 import json
 import logging
 import os
-
+from datetime import datetime
 import yaml
 
 from avi.migrationtools import avi_rest_lib
@@ -245,9 +245,10 @@ if __name__ == "__main__":
     parser.add_argument('-f', '--config_file',
                         help='absolute path for nsx config file')
 
-
-
-
+    start = datetime.now()
     args = parser.parse_args()
     nsxt_converter = NsxtConverter(args)
     nsxt_converter.conver_lb_config()
+    end = datetime.now()
+    print("The time of execution of above program is :",
+          str(end - start))
