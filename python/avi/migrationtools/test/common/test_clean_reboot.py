@@ -35,7 +35,7 @@ def clean_reboot(controller_ip, username, password, version, licensefile_path):
         wait_until_node_ready (session)
         if version > "16.5.4" :
             session.clear_cached_sessions()
-            set_default_password(controller_ip, username)
+            set_default_password(controller_ip, username, password)
     else:
         raise Exception("Failed with error %s" % res.content)
     with open(licensefile_path, 'r') as license:
@@ -44,11 +44,13 @@ def clean_reboot(controller_ip, username, password, version, licensefile_path):
     upload_license(session, licensefile)
 
 
-def set_default_password(controller_ip, username):
+def set_default_password(controller_ip, username, password=None):
+    if not password:
+        password = 'Admin!23'
     api = ApiSession.get_session(controller_ip, username, password=os.environ['default_password'])
     passData = {
         "username": "admin",
-        "password": "admin",
+        "password": password,
         "old_password": os.environ['default_password'],
         'full_name': 'System Administrator',
     }
@@ -88,7 +90,7 @@ def wait_until_node_ready(session, interval=10, timeout=9000):
     iters = int(timeout / interval)
     for count in range(0, iters):
         try:
-            data = session.get('cluster/runtime&treat_invalid_session_as_unauthenticated=true')
+            data = session.get('cluster/runtime?treat_invalid_session_as_unauthenticated=true')
         except Exception as e:
             print("cluster api runtime exception %s" % e)
             pass
