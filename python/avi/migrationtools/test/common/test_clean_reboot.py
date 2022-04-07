@@ -32,7 +32,9 @@ def clean_reboot(controller_ip, username, password, version, licensefile_path):
                         data=json.dumps ({'mode': 'REBOOT_CLEAN'}),
                         auth=(username, password))
     if res.status_code < 300:
-        wait_until_node_ready (session)
+        api = ApiSession.get_session(controller_ip, username,
+                                     password=os.environ['default_password'])
+        wait_until_node_ready(api)
         if version > "16.5.4" :
             session.clear_cached_sessions()
             set_default_password(controller_ip, username, password)
