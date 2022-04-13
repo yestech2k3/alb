@@ -1010,7 +1010,7 @@
                     "format": "int64"
                 },
                 "client_max_header_size": {
-                    "description": "Maximum size in Kbytes of a single HTTP header in the client request. Allowed values are 1-64. Unit is KB. Allowed in Basic(Allowed values- 12) edition, Essentials(Allowed values- 12) edition, Enterprise edition.",
+                    "description": "Maximum size in Kbytes of a single HTTP header in the client request. Allowed values are 1-64. Unit is KB. Allowed in Essentials(Allowed values- 12) edition, Enterprise edition.",
                     "type": "integer",
                     "default": 12,
                     "format": "int32"
@@ -1154,7 +1154,7 @@
                     "format": "int32"
                 },
                 "max_response_headers_size": {
-                    "description": "Maximum size in Kbytes of all the HTTP response headers. Allowed values are 1-256. Unit is KB. Allowed in Basic(Allowed values- 48) edition, Essentials(Allowed values- 48) edition, Enterprise edition.",
+                    "description": "Maximum size in Kbytes of all the HTTP response headers. Allowed values are 1-256. Unit is KB. Allowed in Essentials(Allowed values- 48) edition, Enterprise edition.",
                     "type": "integer",
                     "default": 48,
                     "format": "int32"
