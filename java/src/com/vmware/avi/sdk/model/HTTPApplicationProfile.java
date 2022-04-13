@@ -325,7 +325,7 @@ public class HTTPApplicationProfile  {
      * Maximum size in kbytes of a single http header in the client request.
      * Allowed values are 1-64.
      * Unit is kb.
-     * Allowed in basic(allowed values- 12) edition, essentials(allowed values- 12) edition, enterprise edition.
+     * Allowed in essentials(allowed values- 12) edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 12.
      * @return clientMaxHeaderSize
      */
@@ -338,7 +338,7 @@ public class HTTPApplicationProfile  {
      * Maximum size in kbytes of a single http header in the client request.
      * Allowed values are 1-64.
      * Unit is kb.
-     * Allowed in basic(allowed values- 12) edition, essentials(allowed values- 12) edition, enterprise edition.
+     * Allowed in essentials(allowed values- 12) edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 12.
      * @param clientMaxHeaderSize set the clientMaxHeaderSize.
      */
@@ -1089,7 +1089,7 @@ public class HTTPApplicationProfile  {
      * Maximum size in kbytes of all the http response headers.
      * Allowed values are 1-256.
      * Unit is kb.
-     * Allowed in basic(allowed values- 48) edition, essentials(allowed values- 48) edition, enterprise edition.
+     * Allowed in essentials(allowed values- 48) edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 48.
      * @return maxResponseHeadersSize
      */
@@ -1102,7 +1102,7 @@ public class HTTPApplicationProfile  {
      * Maximum size in kbytes of all the http response headers.
      * Allowed values are 1-256.
      * Unit is kb.
-     * Allowed in basic(allowed values- 48) edition, essentials(allowed values- 48) edition, enterprise edition.
+     * Allowed in essentials(allowed values- 48) edition, enterprise edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 48.
      * @param maxResponseHeadersSize set the maxResponseHeadersSize.
      */
