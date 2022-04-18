@@ -35,7 +35,6 @@ class NsxtConverter(AviConverter):
         self.nsxt_user = args.nsxt_user
         self.nsxt_passord = args.nsxt_passord
         self.nsxt_port = args.nsxt_port
-        self.cloud_name = args.cloud_name
         self.prefix = args.prefix
         self.prefix = args.prefix
         self.controller_ip = args.controller_ip
@@ -46,7 +45,7 @@ class NsxtConverter(AviConverter):
         self.ansible_skip_types = args.ansible_skip_types
         self.controller_version = args.controller_version
         self.ansible_filter_types = args.ansible_filter_types
-        self.vs_level_status=args.vs_level_status
+        self.vs_level_status = args.vs_level_status
         self.run_on_local = args.run_on_local
         self.output_file_path = args.output_file_path if args.output_file_path \
             else 'output'
@@ -58,13 +57,11 @@ class NsxtConverter(AviConverter):
         self.vrf = args.vrf
         self.vs_filter = args.vs_filter
         self.segroup = args.segroup
-        self.patch=args.patch
+        self.patch = args.patch
         # rule config for irule conversion
         self.custom_config = args.custom_config
-        self.traffic_enabled=args.traffic_enabled
+        self.traffic_enabled = args.traffic_enabled
         self.config_file = args.config_file
-
-
 
     def conver_lb_config(self):
 
@@ -93,7 +90,12 @@ class NsxtConverter(AviConverter):
         if is_download_from_host:
             LOG.debug("Copying files from host")
             print("Copying Files from Host...")
-            nsx_util = NSXUtil(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port)
+            nsx_util = NSXUtil(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port \
+                               , self.controller_ip, self.user, self.password, self.controller_version)
+            nsx_util.get_inventory()
+            nsx_util.get_pool_details()
+            nsx_util.write_output(
+                output_path, args.nsxt_ip)
             nsx_lb_config = nsx_util.get_nsx_config()
             LOG.debug("Copied input files")
         elif self.config_file:
@@ -110,24 +112,25 @@ class NsxtConverter(AviConverter):
             with open(self.custom_config) as stream:
                 custom_mappings = yaml.safe_load(stream)
         alb_config = nsxt_config_converter.convert(
-            nsx_lb_config, input_path, output_path,self.tenant,
-            self.cloud_name, self.prefix, self.migrate_to,self.object_merge_check,self.controller_version,self.vs_state ,
-            self.vs_level_status, self.vrf, self.segroup,self.not_in_use,custom_mappings
-            )
+            nsx_lb_config, input_path, output_path, self.tenant,
+            self.prefix, self.migrate_to, self.object_merge_check, self.controller_version,
+            self.vs_state,
+            self.vs_level_status, self.vrf, self.segroup, self.not_in_use, custom_mappings
+        )
         avi_config = self.process_for_utils(alb_config)
         # Check if flag true then skip not in use object
-        #if self.not_in_use:
-            #avi_config = wipe_out_not_in_use(avi_config)
-       # output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
-                      # "output")
+        # if self.not_in_use:
+        # avi_config = wipe_out_not_in_use(avi_config)
+        # output_path = (output_dir + os.path.sep + self.nsxt_ip + os.path.sep +
+        # "output")
         self.write_output(avi_config, output_path, 'avi_config.json')
         if self.ansible:
             self.convert(alb_config, output_path)
         if self.option == 'auto-upload':
             self.upload_config_to_controller(alb_config)
         if vs_list_with_snat_deactivated:
-            print('\033[93m'+"Warning: for following virtual service/s please follow steps giving in KB: "+
-                  "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/"+'\033[0m')
+            print('\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " +
+                  "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + '\033[0m')
             print(vs_list_with_snat_deactivated)
         print("Total Warning: ", get_count('warning'))
         print("Total Errors: ", get_count('error'))
@@ -137,18 +140,19 @@ class NsxtConverter(AviConverter):
     def upload_config_to_controller(self, alb_config):
         avi_rest_lib.upload_config_to_controller(
             alb_config, self.controller_ip, self.user, self.password,
-            self.tenant,self.controller_version)
+            self.tenant, self.controller_version)
 
-    def convert(self, alb_config,output_path):
-        #output_path = (self.output_file_path + os.path.sep + self.nsxt_ip +
-                     #  os.path.sep + "output")
+    def convert(self, alb_config, output_path):
+        # output_path = (self.output_file_path + os.path.sep + self.nsxt_ip +
+        #  os.path.sep + "output")
         avi_traffic = AviAnsibleConverterMigration(
             alb_config, output_path, self.prefix, self.not_in_use,
-             skip_types=self.ansible_skip_types,
-             controller_version=self.controller_version,
+            skip_types=self.ansible_skip_types,
+            controller_version=self.controller_version,
             filter_types=self.ansible_filter_types)
         avi_traffic.write_ansible_playbook(
             self.nsxt_ip, self.nsxt_user, self.nsxt_passord, 'nsxt')
+
 
 if __name__ == "__main__":
     HELP_STR = """
@@ -176,8 +180,6 @@ if __name__ == "__main__":
                         help='Folder path for output files to be created in',
                         )
     parser.add_argument('--prefix', help='Prefix for objects')
-    parser.add_argument('--cloud_name', help='cloud name for auto upload',
-                        required=True)
     parser.add_argument('--password',
                         help='controller password for auto upload. Input '
                              'prompt will appear if no value provided')
@@ -187,7 +189,7 @@ if __name__ == "__main__":
                         help='Target Avi controller version')
     parser.add_argument('--user',
                         help='controller username for auto upload')
-    parser.add_argument('-t', '--tenant', help='tenant name for auto upload',default="admin")
+    parser.add_argument('-t', '--tenant', help='tenant name for auto upload', default="admin")
     parser.add_argument('-O', '--option', choices=ARG_CHOICES['option'],
                         help='Upload option cli-upload genarates Avi config ' +
                              'file auto upload will upload config to ' +
@@ -241,7 +243,7 @@ if __name__ == "__main__":
                         help='iRule/monitor custom mapping yml file path')
     parser.add_argument('--traffic_enabled',
                         help='Traffic Enabled on all migrated VS VIPs',
-                        action = "store_true")
+                        action="store_true")
     parser.add_argument('-f', '--config_file',
                         help='absolute path for nsx config file')
 

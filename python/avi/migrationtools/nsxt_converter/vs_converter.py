@@ -4,10 +4,14 @@ import logging
 from avi.migrationtools.avi_migration_utils import MigrationUtil
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.avi_migration_utils import update_count
+from avi.migrationtools.nsxt_converter.nsxt_util import get_vs_cloud_name, get_pool_segments
 from avi.migrationtools.nsxt_converter.policy_converter import PolicyConfigConverter
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 import avi.migrationtools.nsxt_converter.converter_constants as final
 import random
+
+from avi.migrationtools.nsxt_converter.pools_converter import skipped_pools_list, vs_pool_segment_list
+
 LOG = logging.getLogger(__name__)
 
 conv_utils = NsxtConvUtil()
@@ -37,7 +41,7 @@ class VsConfigConv(object):
         self.certkey_count = 0
         self.pki_count = 0
 
-    def convert(self, alb_config, nsx_lb_config, cloud_name, prefix, tenant, vs_state, controller_version,
+    def convert(self, alb_config, nsx_lb_config, prefix, tenant, vs_state, controller_version,
                 vrf=None, segroup=None):
         '''
         LBVirtualServer to Avi Config vs converter
@@ -64,6 +68,11 @@ class VsConfigConv(object):
                 progressbar_count += 1
                 LOG.info('[Virtual Service] Migration started for VS {}'.format(lb_vs['display_name']))
                 # vs_name = lb_vs['name']
+                cloud_name = get_vs_cloud_name(lb_vs["display_name"])
+                if cloud_name == 'Cloud Not Found':
+                    conv_utils.add_status_row('virtualservice', None, lb_vs["display_name"],
+                                              conv_const.STATUS_SKIPPED)
+                    continue
                 name = lb_vs.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
@@ -237,13 +246,13 @@ class VsConfigConv(object):
                         alb_vs['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_ref
                     if client_ssl.get('default_certificate_path', None):
                         alb_vs['services'][0]["enable_ssl"] = True
-                        cert_name = name + "-"+str(random.randint(0, 20))
+                        cert_name = name + "-" + str(random.randint(0, 20))
                         ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], "admin", prefix)
                         ssl_key_cert_refs.append(
                             "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name"))
                         converted_alb_ssl_certs.append(ca_cert_obj)
                     if client_ssl.get('sni_certificate_paths', None):
-                        #TODO need to revisit to fix some issues
+                        # TODO need to revisit to fix some issues
                         alb_vs['services'][0]["enable_ssl"] = True
                         sni_cert_list = client_ssl.get('sni_certificate_paths', None)
                         for cert in sni_cert_list:
@@ -265,47 +274,82 @@ class VsConfigConv(object):
                     indirect_client_attr = self.VS_client_ssl_indirect_attr
 
                     indirect_client_ssl = [val for val in skipped_client_ssl if
-                                               val in indirect_client_attr]
+                                           val in indirect_client_attr]
                     skipped_client_ssl = [attr for attr in skipped_client_ssl if attr not in indirect_client_ssl]
                     if skipped_client_ssl:
                         skipped.append({"client_ssl ": skipped_client_ssl})
 
+
                 if lb_vs.get('pool_path'):
                     pool_ref = lb_vs.get('pool_path')
-                    pool_name = pool_ref.split('/')[-1]
-                    if prefix:
-                        pool_name = prefix + '-' + pool_name
+                    pl_name = pool_ref.split('/')[-1]
+                    if lb_vs["display_name"] in vs_pool_segment_list.keys():
+                        pool_name = vs_pool_segment_list[lb_vs["display_name"]].get("pool_name")
+                        pool_segment = vs_pool_segment_list[lb_vs["display_name"]].get("pool_segment")
+                        if prefix:
+                            pl_name = prefix + '-' + pl_name
+                        self.update_pool_with_subnets(pool_name, pool_segment, alb_config["Pool"], pl_name,cloud_name)
+                        for pool in alb_config['Pool']:
+                            if pool.get('name') == pool_name:
+                                if lb_vs.get('default_pool_member_ports'):
+                                    pool['default_port'] = int(lb_vs['default_pool_member_ports'][0])
+                                pool['tier1_lr'] = tier1_lr
+                                pool['cloud_ref'] = conv_utils.get_object_ref(cloud_name, 'cloud')
 
-                    alb_vs['pool_ref'] = conv_utils.get_object_ref(
-                        pool_name, 'pool', tenant="admin", cloud_name=cloud_name)
-                    # alb_vs['pool_ref'] = '/api/pool/?tenant=admin&name=' + pool_name
-                    if lb_vs.get('server_ssl_profile_binding'):
-                        # if lb_vs["server_ssl_profile_binding"]
-                        server_ssl = lb_vs.get('server_ssl_profile_binding')
-                        self.update_pool_with_ssl(alb_config, lb_vs, pool_name, self.object_merge_check,
-                                                  self.merge_object_mapping, prefix, converted_alb_ssl_certs)
-                        skipped_server_ssl = [val for val in server_ssl.keys()
-                                              if val not in self.server_ssl_attr]
-                        indirect_server_attr = self.VS_server_ssl_indirect_attr
+                        alb_vs['pool_ref'] = conv_utils.get_object_ref(
+                            pool_name, 'pool', tenant="admin", cloud_name=cloud_name)
+                        # alb_vs['pool_ref'] = '/api/pool/?tenant=admin&name=' + pool_name
+                        if lb_vs.get('server_ssl_profile_binding'):
+                            # if lb_vs["server_ssl_profile_binding"]
+                            server_ssl = lb_vs.get('server_ssl_profile_binding')
+                            self.update_pool_with_ssl(alb_config, lb_vs, pool_name, self.object_merge_check,
+                                                      self.merge_object_mapping, prefix, converted_alb_ssl_certs)
+                            skipped_server_ssl = [val for val in server_ssl.keys()
+                                                  if val not in self.server_ssl_attr]
+                            indirect_server_attr = self.VS_server_ssl_indirect_attr
 
-                        indirect_server_ssl = [val for val in skipped_server_ssl if
-                                               val in indirect_server_attr]
-                        skipped_server_ssl = [attr for attr in skipped_server_ssl if attr not in indirect_server_ssl]
-                        if skipped_server_ssl:
-                            skipped.append({"server_ssl ": skipped_server_ssl})
-                if server_pki:
-                    pki_server_profile_name = pki_server_profile["name"]
-                    self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile_name)
-                if lb_vs.get('lb_persistence_profile_path'):
-                    self.update_pool_with_persistence(alb_config['Pool'], lb_vs,
-                                                      pool_name, self.object_merge_check, self.merge_object_mapping,
-                                                      prefix)
+                            indirect_server_ssl = [val for val in skipped_server_ssl if
+                                                   val in indirect_server_attr]
+                            skipped_server_ssl = [attr for attr in skipped_server_ssl if
+                                                  attr not in indirect_server_ssl]
+                            if skipped_server_ssl:
+                                skipped.append({"server_ssl ": skipped_server_ssl})
+                        if server_pki:
+                            pki_server_profile_name = pki_server_profile["name"]
+                            self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile_name)
+                        if lb_vs.get('lb_persistence_profile_path'):
+                            self.update_pool_with_persistence(alb_config['Pool'], lb_vs,
+                                                              pool_name, self.object_merge_check,
+                                                              self.merge_object_mapping,
+                                                              prefix)
 
-                for pool in alb_config['Pool']:
-                    if pool.get('name') == pool_name:
-                        if lb_vs.get('default_pool_member_ports'):
-                            pool['default_port'] = int(lb_vs['default_pool_member_ports'][0])
-                        pool['tier1_lr'] = tier1_lr
+                        for nsx_pool in nsx_lb_config["LbPools"]:
+                            nsx_pool_name = nsx_pool["display_name"]
+                            if prefix:
+                                nsx_pool_name = prefix + "-" + nsx_pool_name
+                            if nsx_pool_name == pl_name:
+                                if nsx_pool.get("snat_translation"):
+                                    if nsx_pool["snat_translation"].get("type") == "LBSnatDisabled":
+                                        vs_app_name = self.update_app_with_snat(profile_name, profile_type,
+                                                                                alb_config["ApplicationProfile"],
+                                                                                self.object_merge_check,
+                                                                                self.merge_object_mapping)
+                                        if vs_app_name != profile_name:
+                                            alb_vs['application_profile_ref'] = '/api/applicationprofile/?tenant=admin&' \
+                                                                                'name=' + vs_app_name
+                                        vs_list_with_snat_deactivated.append(alb_vs["name"])
+
+                                    if nsx_pool["snat_translation"].get("type") == "LBSnatIpPool":
+                                        alb_vs["snat_ip"] = []
+                                        snat_ip_pool = nsx_pool["snat_translation"]["ip_addresses"]
+                                        for ip_pool in snat_ip_pool:
+                                            snat_ip = dict(
+                                                addr=ip_pool["ip_address"],
+                                                type="V4"
+                                            )
+                                            alb_vs["snat_ip"].append(snat_ip)
+
+                        self.update_pool_with_app_attr(merge_profile_name, pool_name, alb_config)
 
                 if lb_vs.get('rules'):
 
@@ -322,34 +366,6 @@ class VsConfigConv(object):
                         alb_vs['http_policies'] = []
                         alb_vs['http_policies'].append(http_policies)
                         alb_config['HTTPPolicySet'].append(policy)
-
-
-                for nsx_pool in nsx_lb_config["LbPools"]:
-                    nsx_pool_name = nsx_pool["display_name"]
-                    if prefix:
-                        nsx_pool_name = prefix + "-" + nsx_pool_name
-                    if nsx_pool_name == pool_name:
-                        if nsx_pool.get("snat_translation"):
-                            if nsx_pool["snat_translation"].get("type") == "LBSnatDisabled":
-                                vs_app_name = self.update_app_with_snat(profile_name, profile_type,
-                                                                        alb_config["ApplicationProfile"],
-                                                                        self.object_merge_check,
-                                                                        self.merge_object_mapping)
-                                if vs_app_name != profile_name:
-                                    alb_vs['application_profile_ref'] = '/api/applicationprofile/?tenant=admin&' \
-                                                                        'name=' + vs_app_name
-                                vs_list_with_snat_deactivated.append(alb_vs["name"])
-
-                            if nsx_pool["snat_translation"].get("type") == "LBSnatIpPool":
-                                alb_vs["snat_ip"] = []
-                                snat_ip_pool = nsx_pool["snat_translation"]["ip_addresses"]
-                                for ip_pool in snat_ip_pool:
-                                    snat_ip = dict(
-                                        addr=ip_pool["ip_address"],
-                                        type="V4"
-                                    )
-                                    alb_vs["snat_ip"].append(snat_ip)
-                self.update_pool_with_app_attr(merge_profile_name, pool_name, alb_config)
 
                 indirect = []
                 u_ignore = []
@@ -391,9 +407,6 @@ class VsConfigConv(object):
                 u_ignore, [])
             conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
                                        [{"ssl_cert_key": cert}])
-
-
-
 
     def update_pool_with_ssl(self, alb_config, lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix,
                              converted_alb_ssl_certs):
@@ -582,3 +595,42 @@ jhiq
                                 host=profile[0]["http_redirect_to"]
                             )
                         )
+
+    def update_pool_with_subnets(self, pool_name, pool_segment, alb_pl, old_pool_name,cloud_name):
+
+        pool_present = False
+        for pool in alb_pl:
+            if pool["name"] == pool_name:
+                pool_obj = pool
+                pool_present = True
+            elif pool["name"] == old_pool_name:
+                pool_obj = copy.deepcopy(pool)
+                pool_obj["name"] = pool_name
+            else:
+                continue
+
+            pool_obj["placement_networks"] = list()
+            for sub in pool_segment:
+                ip_addreses = dict(
+                    addr=sub["subnets"]["network_range"].split("/")[0],
+                    type="V4"
+                )
+                subnets = dict(
+                    subnet={
+                        "ip_addr":ip_addreses,
+                        "mask" : sub["subnets"]["network_range"].split("/")[-1]
+                    },
+                    network_ref=conv_utils.get_object_ref(
+                        sub["seg_name"], 'network', tenant="admin", cloud_name=cloud_name)
+                )
+                pool_obj["placement_networks"].append(subnets)
+            if not pool_present:
+                alb_pl.append(pool_obj)
+            break
+
+    def get_pg_members(self, pg_pool_ref):
+        member = dict(
+            pool_ref=pg_pool_ref,
+        )
+
+        return member
