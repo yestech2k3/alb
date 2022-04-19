@@ -23,7 +23,7 @@ type HTTPApplicationProfile struct {
 	// Maximum size for the client request body.  This limits the size of the client data that can be uploaded/posted as part of a single HTTP Request.  Default 0 => Unlimited. Unit is KB.
 	ClientMaxBodySize *int64 `json:"client_max_body_size,omitempty"`
 
-	// Maximum size in Kbytes of a single HTTP header in the client request. Allowed values are 1-64. Unit is KB. Allowed in Basic(Allowed values- 12) edition, Essentials(Allowed values- 12) edition, Enterprise edition.
+	// Maximum size in Kbytes of a single HTTP header in the client request. Allowed values are 1-64. Unit is KB. Allowed in Essentials(Allowed values- 12) edition, Enterprise edition.
 	ClientMaxHeaderSize *int32 `json:"client_max_header_size,omitempty"`
 
 	// Maximum size in Kbytes of all the client HTTP request headers. Allowed values are 1-256. Unit is KB.
@@ -113,7 +113,7 @@ type HTTPApplicationProfile struct {
 	// The max number of HTTP requests that can be sent over a Keep-Alive connection. '0' means unlimited. Allowed values are 0-1000000. Special values are 0- 'Unlimited requests on a connection'. Field introduced in 18.2.5. Allowed in Basic(Allowed values- 100) edition, Essentials(Allowed values- 100) edition, Enterprise edition.
 	MaxKeepaliveRequests *int32 `json:"max_keepalive_requests,omitempty"`
 
-	// Maximum size in Kbytes of all the HTTP response headers. Allowed values are 1-256. Unit is KB. Allowed in Basic(Allowed values- 48) edition, Essentials(Allowed values- 48) edition, Enterprise edition.
+	// Maximum size in Kbytes of all the HTTP response headers. Allowed values are 1-256. Unit is KB. Allowed in Essentials(Allowed values- 48) edition, Enterprise edition.
 	MaxResponseHeadersSize *int32 `json:"max_response_headers_size,omitempty"`
 
 	// Maximum requests per second per client IP. Allowed values are 10-1000. Special values are 0- 'unlimited'.
