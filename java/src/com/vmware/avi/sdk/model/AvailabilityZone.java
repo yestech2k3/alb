@@ -46,7 +46,7 @@ public class AvailabilityZone extends AviRestResource  {
      * Availability zone belongs to cloud.
      * It is a reference to an object of type cloud.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudRef
      */
@@ -59,7 +59,7 @@ public class AvailabilityZone extends AviRestResource  {
      * Availability zone belongs to cloud.
      * It is a reference to an object of type cloud.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudRef set the cloudRef.
      */
@@ -71,7 +71,7 @@ public class AvailabilityZone extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Availabilty zone where vcenter list belongs to.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -83,7 +83,7 @@ public class AvailabilityZone extends AviRestResource  {
      * This is the setter method to the attribute.
      * Availabilty zone where vcenter list belongs to.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -96,7 +96,7 @@ public class AvailabilityZone extends AviRestResource  {
      * Availabilityzone belongs to tenant.
      * It is a reference to an object of type tenant.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -109,7 +109,7 @@ public class AvailabilityZone extends AviRestResource  {
      * Availabilityzone belongs to tenant.
      * It is a reference to an object of type tenant.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -138,7 +138,7 @@ public class AvailabilityZone extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Availability zone config uuid.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -150,7 +150,7 @@ public class AvailabilityZone extends AviRestResource  {
      * This is the setter method to the attribute.
      * Availability zone config uuid.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -163,7 +163,7 @@ public class AvailabilityZone extends AviRestResource  {
      * It is a reference to an object of type vcenterserver.
      * Field introduced in 20.1.1.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vcenterRefs
      */
@@ -177,7 +177,7 @@ public class AvailabilityZone extends AviRestResource  {
      * It is a reference to an object of type vcenterserver.
      * Field introduced in 20.1.1.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vcenterRefs
      */
@@ -191,7 +191,7 @@ public class AvailabilityZone extends AviRestResource  {
      * It is a reference to an object of type vcenterserver.
      * Field introduced in 20.1.1.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vcenterRefs
      */

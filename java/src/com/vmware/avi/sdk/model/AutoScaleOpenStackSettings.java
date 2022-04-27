@@ -35,7 +35,7 @@ public class AutoScaleOpenStackSettings  {
      * Cloud connector will automatically update the membership.
      * This is an alpha feature.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return heatScaleDownUrl
      */
@@ -49,7 +49,7 @@ public class AutoScaleOpenStackSettings  {
      * Cloud connector will automatically update the membership.
      * This is an alpha feature.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param heatScaleDownUrl set the heatScaleDownUrl.
      */
@@ -63,7 +63,7 @@ public class AutoScaleOpenStackSettings  {
      * Cloud connector will automatically update the membership.
      * This is an alpha feature.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return heatScaleUpUrl
      */
@@ -77,7 +77,7 @@ public class AutoScaleOpenStackSettings  {
      * Cloud connector will automatically update the membership.
      * This is an alpha feature.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param heatScaleUpUrl set the heatScaleUpUrl.
      */

@@ -31,7 +31,7 @@ public class VsResyncParams extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type serviceengine.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seRef
      */
@@ -42,7 +42,7 @@ public class VsResyncParams extends AviRestResource  {
     /**
      * This is the setter method. this will set the seRef
      * It is a reference to an object of type serviceengine.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seRef
      */
@@ -53,7 +53,7 @@ public class VsResyncParams extends AviRestResource  {
     /**
      * This is the setter method this will set the seRef
      * It is a reference to an object of type serviceengine.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seRef
      */
@@ -67,7 +67,7 @@ public class VsResyncParams extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -77,7 +77,7 @@ public class VsResyncParams extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */

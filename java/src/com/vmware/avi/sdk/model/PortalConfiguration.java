@@ -71,7 +71,7 @@ public class PortalConfiguration  {
     /**
      * This is the getter method this will return the attribute value.
      * Enable/disable http basic authentication.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return allowBasicAuthentication
      */
@@ -82,7 +82,7 @@ public class PortalConfiguration  {
     /**
      * This is the setter method to the attribute.
      * Enable/disable http basic authentication.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param allowBasicAuthentication set the allowBasicAuthentication.
      */
@@ -96,7 +96,7 @@ public class PortalConfiguration  {
      * Allowed values are 1-24.
      * Field introduced in 18.2.3.
      * Unit is hours.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 24.
      * @return apiForceTimeout
      */
@@ -110,7 +110,7 @@ public class PortalConfiguration  {
      * Allowed values are 1-24.
      * Field introduced in 18.2.3.
      * Unit is hours.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 24.
      * @param apiForceTimeout set the apiForceTimeout.
      */
@@ -121,7 +121,7 @@ public class PortalConfiguration  {
     /**
      * This is the getter method this will return the attribute value.
      * Disable remote cli shell client access.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return disableRemoteCliShell
      */
@@ -132,7 +132,7 @@ public class PortalConfiguration  {
     /**
      * This is the setter method to the attribute.
      * Disable remote cli shell client access.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param disableRemoteCliShell set the disableRemoteCliShell.
      */
@@ -144,7 +144,7 @@ public class PortalConfiguration  {
      * This is the getter method this will return the attribute value.
      * Disable swagger access.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return disableSwagger
      */
@@ -156,7 +156,7 @@ public class PortalConfiguration  {
      * This is the setter method to the attribute.
      * Disable swagger access.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param disableSwagger set the disableSwagger.
      */
@@ -167,7 +167,7 @@ public class PortalConfiguration  {
     /**
      * This is the getter method this will return the attribute value.
      * Enable/disable clickjacking protection.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enableClickjackingProtection
      */
@@ -178,7 +178,7 @@ public class PortalConfiguration  {
     /**
      * This is the setter method to the attribute.
      * Enable/disable clickjacking protection.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enableClickjackingProtection set the enableClickjackingProtection.
      */
@@ -188,7 +188,7 @@ public class PortalConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enableHttp
      */
@@ -198,7 +198,7 @@ public class PortalConfiguration  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enableHttp set the enableHttp.
      */
@@ -208,7 +208,7 @@ public class PortalConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enableHttps
      */
@@ -218,7 +218,7 @@ public class PortalConfiguration  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enableHttps set the enableHttps.
      */
@@ -229,7 +229,7 @@ public class PortalConfiguration  {
     /**
      * This is the getter method this will return the attribute value.
      * Http port.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpPort
      */
@@ -240,7 +240,7 @@ public class PortalConfiguration  {
     /**
      * This is the setter method to the attribute.
      * Http port.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param httpPort set the httpPort.
      */
@@ -251,7 +251,7 @@ public class PortalConfiguration  {
     /**
      * This is the getter method this will return the attribute value.
      * Https port.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpsPort
      */
@@ -262,7 +262,7 @@ public class PortalConfiguration  {
     /**
      * This is the setter method to the attribute.
      * Https port.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param httpsPort set the httpsPort.
      */
@@ -275,7 +275,7 @@ public class PortalConfiguration  {
      * Minimum password length for user accounts.
      * Allowed values are 6-32.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 8.
      * @return minimumPasswordLength
      */
@@ -288,7 +288,7 @@ public class PortalConfiguration  {
      * Minimum password length for user accounts.
      * Allowed values are 6-32.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 8.
      * @param minimumPasswordLength set the minimumPasswordLength.
      */
@@ -299,7 +299,7 @@ public class PortalConfiguration  {
     /**
      * This is the getter method this will return the attribute value.
      * Strict checking of password strength for user accounts.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return passwordStrengthCheck
      */
@@ -310,7 +310,7 @@ public class PortalConfiguration  {
     /**
      * This is the setter method to the attribute.
      * Strict checking of password strength for user accounts.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param passwordStrengthCheck set the passwordStrengthCheck.
      */
@@ -320,7 +320,7 @@ public class PortalConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return redirectToHttps
      */
@@ -330,7 +330,7 @@ public class PortalConfiguration  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param redirectToHttps set the redirectToHttps.
      */
@@ -344,7 +344,7 @@ public class PortalConfiguration  {
      * Leave list empty to use system default certs.
      * It is a reference to an object of type sslkeyandcertificate.
      * Maximum of 2 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslkeyandcertificateRefs
      */
@@ -359,7 +359,7 @@ public class PortalConfiguration  {
      * Leave list empty to use system default certs.
      * It is a reference to an object of type sslkeyandcertificate.
      * Maximum of 2 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslkeyandcertificateRefs
      */
@@ -374,7 +374,7 @@ public class PortalConfiguration  {
      * Leave list empty to use system default certs.
      * It is a reference to an object of type sslkeyandcertificate.
      * Maximum of 2 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslkeyandcertificateRefs
      */
@@ -389,7 +389,7 @@ public class PortalConfiguration  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type sslprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslprofileRef
      */
@@ -400,7 +400,7 @@ public class PortalConfiguration  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type sslprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sslprofileRef set the sslprofileRef.
      */
@@ -411,7 +411,7 @@ public class PortalConfiguration  {
     /**
      * This is the getter method this will return the attribute value.
      * Use uuid in post object data as uuid of the new object, instead of a generated uuid.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return useUuidFromInput
      */
@@ -422,7 +422,7 @@ public class PortalConfiguration  {
     /**
      * This is the setter method to the attribute.
      * Use uuid in post object data as uuid of the new object, instead of a generated uuid.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param useUuidFromInput set the useUuidFromInput.
      */

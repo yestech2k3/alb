@@ -41,7 +41,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return bridgeDomain
      */
     public String getBridgeDomain() {
@@ -51,7 +51,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param bridgeDomain set the bridgeDomain.
      */
     public void setBridgeDomain(String  bridgeDomain) {
@@ -61,7 +61,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return newVrf
      */
     public String getNewVrf() {
@@ -71,7 +71,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param newVrf set the newVrf.
      */
     public void setNewVrf(String  newVrf) {
@@ -81,7 +81,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return oldVrf
      */
     public String getOldVrf() {
@@ -91,7 +91,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param oldVrf set the oldVrf.
      */
     public void setOldVrf(String  oldVrf) {
@@ -100,7 +100,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return poolList
      */
     public List<String> getPoolList() {
@@ -110,7 +110,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the setter method. this will set the poolList
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return poolList
      */
     public void setPoolList(List<String>  poolList) {
@@ -120,7 +120,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the setter method this will set the poolList
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return poolList
      */
     public ApicAgentBridgeDomainVrfChange addPoolListItem(String poolListItem) {
@@ -133,7 +133,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return vsList
      */
     public List<String> getVsList() {
@@ -143,7 +143,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the setter method. this will set the vsList
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return vsList
      */
     public void setVsList(List<String>  vsList) {
@@ -153,7 +153,7 @@ public class ApicAgentBridgeDomainVrfChange  {
     /**
      * This is the setter method this will set the vsList
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return vsList
      */
     public ApicAgentBridgeDomainVrfChange addVsListItem(String vsListItem) {

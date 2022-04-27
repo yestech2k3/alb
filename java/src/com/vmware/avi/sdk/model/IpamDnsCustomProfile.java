@@ -42,7 +42,7 @@ public class IpamDnsCustomProfile  {
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type customipamdnsprofile.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return customIpamDnsProfileRef
      */
@@ -54,7 +54,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method to the attribute.
      * It is a reference to an object of type customipamdnsprofile.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param customIpamDnsProfileRef set the customIpamDnsProfileRef.
      */
@@ -65,7 +65,7 @@ public class IpamDnsCustomProfile  {
      * This is the getter method this will return the attribute value.
      * Custom parameters that will passed to the ipam/dns provider including but not limited to provider credentials and api version.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dynamicParams
      */
@@ -77,7 +77,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method. this will set the dynamicParams
      * Custom parameters that will passed to the ipam/dns provider including but not limited to provider credentials and api version.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dynamicParams
      */
@@ -89,7 +89,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method this will set the dynamicParams
      * Custom parameters that will passed to the ipam/dns provider including but not limited to provider credentials and api version.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dynamicParams
      */
@@ -104,7 +104,7 @@ public class IpamDnsCustomProfile  {
      * This is the getter method this will return the attribute value.
      * Networks or subnets to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return usableAllocSubnets
      */
@@ -116,7 +116,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method. this will set the usableAllocSubnets
      * Networks or subnets to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return usableAllocSubnets
      */
@@ -128,7 +128,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method this will set the usableAllocSubnets
      * Networks or subnets to use for custom ipam ip allocation.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return usableAllocSubnets
      */
@@ -143,7 +143,7 @@ public class IpamDnsCustomProfile  {
      * This is the getter method this will return the attribute value.
      * Usable domains.
      * Field introduced in 17.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return usableDomains
      */
@@ -155,7 +155,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method. this will set the usableDomains
      * Usable domains.
      * Field introduced in 17.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return usableDomains
      */
@@ -167,7 +167,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method this will set the usableDomains
      * Usable domains.
      * Field introduced in 17.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return usableDomains
      */
@@ -182,7 +182,7 @@ public class IpamDnsCustomProfile  {
      * This is the getter method this will return the attribute value.
      * Usable subnets.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return usableSubnets
      */
     public List<IpAddrPrefix> getUsableSubnets() {
@@ -193,7 +193,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method. this will set the usableSubnets
      * Usable subnets.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return usableSubnets
      */
     public void setUsableSubnets(List<IpAddrPrefix>  usableSubnets) {
@@ -204,7 +204,7 @@ public class IpamDnsCustomProfile  {
      * This is the setter method this will set the usableSubnets
      * Usable subnets.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return usableSubnets
      */
     public IpamDnsCustomProfile addUsableSubnetsItem(IpAddrPrefix usableSubnetsItem) {

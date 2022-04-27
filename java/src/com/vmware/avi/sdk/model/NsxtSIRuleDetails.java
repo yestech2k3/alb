@@ -54,7 +54,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Rule action.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return action
      */
@@ -66,7 +66,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method to the attribute.
      * Rule action.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param action set the action.
      */
@@ -78,7 +78,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Destinatios excluded or not.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return destexclude
      */
@@ -90,7 +90,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method to the attribute.
      * Destinatios excluded or not.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param destexclude set the destexclude.
      */
@@ -101,7 +101,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Destination of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dests
      */
@@ -113,7 +113,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method. this will set the dests
      * Destination of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dests
      */
@@ -125,7 +125,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method this will set the dests
      * Destination of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dests
      */
@@ -141,7 +141,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Rule direction.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return direction
      */
@@ -153,7 +153,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method to the attribute.
      * Rule direction.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param direction set the direction.
      */
@@ -165,7 +165,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Error message.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return errorString
      */
@@ -177,7 +177,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method to the attribute.
      * Error message.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param errorString set the errorString.
      */
@@ -189,7 +189,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Pool name.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return pool
      */
@@ -201,7 +201,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method to the attribute.
      * Pool name.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param pool set the pool.
      */
@@ -213,7 +213,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Serviceenginegroup name.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return segroup
      */
@@ -225,7 +225,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method to the attribute.
      * Serviceenginegroup name.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param segroup set the segroup.
      */
@@ -236,7 +236,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Services of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return services
      */
@@ -248,7 +248,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method. this will set the services
      * Services of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return services
      */
@@ -260,7 +260,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method this will set the services
      * Services of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return services
      */
@@ -275,7 +275,7 @@ public class NsxtSIRuleDetails  {
      * This is the getter method this will return the attribute value.
      * Sources of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sources
      */
@@ -287,7 +287,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method. this will set the sources
      * Sources of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sources
      */
@@ -299,7 +299,7 @@ public class NsxtSIRuleDetails  {
      * This is the setter method this will set the sources
      * Sources of redirection rule.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sources
      */

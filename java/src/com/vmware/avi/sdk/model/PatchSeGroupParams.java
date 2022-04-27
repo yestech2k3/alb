@@ -39,7 +39,7 @@ public class PatchSeGroupParams  {
      * This is the getter method this will return the attribute value.
      * Se group options for the patch operations.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupOptions
      */
@@ -51,7 +51,7 @@ public class PatchSeGroupParams  {
      * This is the setter method to the attribute.
      * Se group options for the patch operations.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param seGroupOptions set the seGroupOptions.
      */
@@ -64,7 +64,7 @@ public class PatchSeGroupParams  {
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 18.2.6.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -78,7 +78,7 @@ public class PatchSeGroupParams  {
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 18.2.6.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -92,7 +92,7 @@ public class PatchSeGroupParams  {
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 18.2.6.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -109,7 +109,7 @@ public class PatchSeGroupParams  {
      * Image uuid for identifying se patch image.
      * It is a reference to an object of type image.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sePatchRef
      */
@@ -122,7 +122,7 @@ public class PatchSeGroupParams  {
      * Image uuid for identifying se patch image.
      * It is a reference to an object of type image.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sePatchRef set the sePatchRef.
      */
@@ -134,7 +134,7 @@ public class PatchSeGroupParams  {
      * This is the getter method this will return the attribute value.
      * This is flag when set as true skips few optional must checks.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return skipWarnings
      */
@@ -146,7 +146,7 @@ public class PatchSeGroupParams  {
      * This is the setter method to the attribute.
      * This is flag when set as true skips few optional must checks.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param skipWarnings set the skipWarnings.
      */

@@ -133,7 +133,7 @@ public class SeBootupProperties  {
      * Deprecated.
      * Field deprecated in 17.2.8.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return distributeQueues
      */
     public Boolean getDistributeQueues() {
@@ -145,7 +145,7 @@ public class SeBootupProperties  {
      * Deprecated.
      * Field deprecated in 17.2.8.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param distributeQueues set the distributeQueues.
      */
     public void setDistributeQueues(Boolean  distributeQueues) {
@@ -156,7 +156,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return distributeVnics
      */
     public Boolean getDistributeVnics() {
@@ -167,7 +167,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param distributeVnics set the distributeVnics.
      */
     public void setDistributeVnics(Boolean  distributeVnics) {
@@ -177,7 +177,7 @@ public class SeBootupProperties  {
     /**
      * This is the getter method this will return the attribute value.
      * End of the local tcp port range used by se for backend connections in docker environment.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30720.
      * @return dockerBackendPortend
      */
@@ -188,7 +188,7 @@ public class SeBootupProperties  {
     /**
      * This is the setter method to the attribute.
      * End of the local tcp port range used by se for backend connections in docker environment.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30720.
      * @param dockerBackendPortend set the dockerBackendPortend.
      */
@@ -199,7 +199,7 @@ public class SeBootupProperties  {
     /**
      * This is the getter method this will return the attribute value.
      * Start of the local tcp port range used by se for backend connections in docker environment.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 20480.
      * @return dockerBackendPortstart
      */
@@ -210,7 +210,7 @@ public class SeBootupProperties  {
     /**
      * This is the setter method to the attribute.
      * Start of the local tcp port range used by se for backend connections in docker environment.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 20480.
      * @param dockerBackendPortstart set the dockerBackendPortstart.
      */
@@ -221,7 +221,7 @@ public class SeBootupProperties  {
     /**
      * This is the getter method this will return the attribute value.
      * Enable or disable fair queueing for packet transmission among virtualservices on an se.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return fairQueueingEnabled
      */
@@ -232,7 +232,7 @@ public class SeBootupProperties  {
     /**
      * This is the setter method to the attribute.
      * Enable or disable fair queueing for packet transmission among virtualservices on an se.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param fairQueueingEnabled set the fairQueueingEnabled.
      */
@@ -250,7 +250,7 @@ public class SeBootupProperties  {
      * Besides, given a smaller number of members that are separated geographically, a lower resolution is sufficient for correct load-balancing.
      * Allowed values are 1-20.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- 1) edition, basic(allowed values- 1) edition, enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 1), basic edition(allowed values- 1), enterprise with cloud
      * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1.
      * @return geoDbGranularity
@@ -269,7 +269,7 @@ public class SeBootupProperties  {
      * Besides, given a smaller number of members that are separated geographically, a lower resolution is sufficient for correct load-balancing.
      * Allowed values are 1-20.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- 1) edition, basic(allowed values- 1) edition, enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 1), basic edition(allowed values- 1), enterprise with cloud
      * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1.
      * @param geoDbGranularity set the geoDbGranularity.
@@ -281,7 +281,7 @@ public class SeBootupProperties  {
     /**
      * This is the getter method this will return the attribute value.
      * Number of l7 connections that can be cached per core.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 16384.
      * @return l7ConnsPerCore
      */
@@ -292,7 +292,7 @@ public class SeBootupProperties  {
     /**
      * This is the setter method to the attribute.
      * Number of l7 connections that can be cached per core.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 16384.
      * @param l7ConnsPerCore set the l7ConnsPerCore.
      */
@@ -303,7 +303,7 @@ public class SeBootupProperties  {
     /**
      * This is the getter method this will return the attribute value.
      * Number of reserved l7 listener connections per core.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 256.
      * @return l7ResvdListenConnsPerCore
      */
@@ -314,7 +314,7 @@ public class SeBootupProperties  {
     /**
      * This is the setter method to the attribute.
      * Number of reserved l7 listener connections per core.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 256.
      * @param l7ResvdListenConnsPerCore set the l7ResvdListenConnsPerCore.
      */
@@ -328,7 +328,7 @@ public class SeBootupProperties  {
      * Enable debug logs by default on service engine.
      * This includes all other debugging logs.
      * Debug logs can also be explcitly enabled from the cli shell.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return logAgentDebugEnabled
      */
@@ -342,7 +342,7 @@ public class SeBootupProperties  {
      * Enable debug logs by default on service engine.
      * This includes all other debugging logs.
      * Debug logs can also be explcitly enabled from the cli shell.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param logAgentDebugEnabled set the logAgentDebugEnabled.
      */
@@ -355,7 +355,7 @@ public class SeBootupProperties  {
      * Deprecated in 21.1.1.
      * Enable trace logs by default on service engine.
      * Configuration operations are logged along with other important logs by service engine.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return logAgentTraceEnabled
      */
@@ -368,7 +368,7 @@ public class SeBootupProperties  {
      * Deprecated in 21.1.1.
      * Enable trace logs by default on service engine.
      * Configuration operations are logged along with other important logs by service engine.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param logAgentTraceEnabled set the logAgentTraceEnabled.
      */
@@ -378,7 +378,7 @@ public class SeBootupProperties  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seDpCompression
      */
@@ -388,7 +388,7 @@ public class SeBootupProperties  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param seDpCompression set the seDpCompression.
      */
@@ -400,7 +400,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * This field has been moved to se_group properties 18.1.2 onwards.
      * Field deprecated in 18.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seDpdkPmd
      */
     public Integer getSeDpdkPmd() {
@@ -411,7 +411,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * This field has been moved to se_group properties 18.1.2 onwards.
      * Field deprecated in 18.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seDpdkPmd set the seDpdkPmd.
      */
     public void setSeDpdkPmd(Integer  seDpdkPmd) {
@@ -422,7 +422,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated in 21.1.3.
      * Use config in serviceenginegroup instead.
-     * Allowed in enterprise with any value edition, essentials(allowed values- 0) edition, basic(allowed values- 0) edition, enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 0), basic edition(allowed values- 0), enterprise with cloud
      * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return seEmulatedCores
@@ -435,7 +435,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated in 21.1.3.
      * Use config in serviceenginegroup instead.
-     * Allowed in enterprise with any value edition, essentials(allowed values- 0) edition, basic(allowed values- 0) edition, enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 0), basic edition(allowed values- 0), enterprise with cloud
      * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param seEmulatedCores set the seEmulatedCores.
@@ -448,7 +448,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Determines if se-se ipc messages are encapsulated in an ip header   note  this field has been moved to se_group properties 20.1.3 onwards.
      * 0        automatically determine based on hypervisor type    1        use ip encap unconditionally    ~[0,1]   don't use ip encap.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return seIpEncapIpc
      */
@@ -460,7 +460,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Determines if se-se ipc messages are encapsulated in an ip header   note  this field has been moved to se_group properties 20.1.3 onwards.
      * 0        automatically determine based on hypervisor type    1        use ip encap unconditionally    ~[0,1]   don't use ip encap.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param seIpEncapIpc set the seIpEncapIpc.
      */
@@ -472,7 +472,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Determines if se-se ipc messages use se interface ip instead of vip    note  this field has been moved to se_group properties 20.1.3 onwards.
      * 0        automatically determine based on hypervisor type    1        use se interface ip unconditionally    ~[0,1]   don't use se interface ip.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return seL3EncapIpc
      */
@@ -484,7 +484,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Determines if se-se ipc messages use se interface ip instead of vip    note  this field has been moved to se_group properties 20.1.3 onwards.
      * 0        automatically determine based on hypervisor type    1        use se interface ip unconditionally    ~[0,1]   don't use se interface ip.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param seL3EncapIpc set the seL3EncapIpc.
      */
@@ -496,7 +496,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated in 21.1.1.
      * Internal flag that blocks dataplane until all application logs are flushed to log-agent process.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return seLogBufferAppBlockingDequeue
      */
@@ -508,7 +508,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated in 21.1.1.
      * Internal flag that blocks dataplane until all application logs are flushed to log-agent process.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param seLogBufferAppBlockingDequeue set the seLogBufferAppBlockingDequeue.
      */
@@ -521,7 +521,7 @@ public class SeBootupProperties  {
      * Internal application log buffer size to use on service engine.
      * Can be fine tuned for better performance of data plane in specific environments.
      * Unit is word.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 4096.
      * @return seLogBufferApplogSize
      */
@@ -534,7 +534,7 @@ public class SeBootupProperties  {
      * Internal application log buffer size to use on service engine.
      * Can be fine tuned for better performance of data plane in specific environments.
      * Unit is word.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 4096.
      * @param seLogBufferApplogSize set the seLogBufferApplogSize.
      */
@@ -547,7 +547,7 @@ public class SeBootupProperties  {
      * Number of internal buffer chunks to use on service engine.
      * Can be fine tuned for better performance of data plane in specific environments.
      * Unit is bytes.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1024.
      * @return seLogBufferChunkCount
      */
@@ -560,7 +560,7 @@ public class SeBootupProperties  {
      * Number of internal buffer chunks to use on service engine.
      * Can be fine tuned for better performance of data plane in specific environments.
      * Unit is bytes.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1024.
      * @param seLogBufferChunkCount set the seLogBufferChunkCount.
      */
@@ -572,7 +572,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated in 21.1.1.
      * Internal flag that blocks dataplane until all connection logs are flushed to log-agent process.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return seLogBufferConnBlockingDequeue
      */
@@ -584,7 +584,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated in 21.1.1.
      * Internal flag that blocks dataplane until all connection logs are flushed to log-agent process.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param seLogBufferConnBlockingDequeue set the seLogBufferConnBlockingDequeue.
      */
@@ -597,7 +597,7 @@ public class SeBootupProperties  {
      * Internal connection log buffer size to use on service engine.
      * Can be fine tuned for better performance of data plane in specific environments.
      * Unit is word.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1024.
      * @return seLogBufferConnlogSize
      */
@@ -610,7 +610,7 @@ public class SeBootupProperties  {
      * Internal connection log buffer size to use on service engine.
      * Can be fine tuned for better performance of data plane in specific environments.
      * Unit is word.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1024.
      * @param seLogBufferConnlogSize set the seLogBufferConnlogSize.
      */
@@ -622,7 +622,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated in 21.1.1.
      * Internal flag that blocks dataplane until all outstanding events are flushed to log-agent process.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return seLogBufferEventsBlockingDequeue
      */
@@ -634,7 +634,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated in 21.1.1.
      * Internal flag that blocks dataplane until all outstanding events are flushed to log-agent process.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param seLogBufferEventsBlockingDequeue set the seLogBufferEventsBlockingDequeue.
      */
@@ -647,7 +647,7 @@ public class SeBootupProperties  {
      * Internal events buffer size to use on service engine.
      * Can be fine tuned for better performance of data plane in specific environments.
      * Unit is word.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 512.
      * @return seLogBufferEventsSize
      */
@@ -660,7 +660,7 @@ public class SeBootupProperties  {
      * Internal events buffer size to use on service engine.
      * Can be fine tuned for better performance of data plane in specific environments.
      * Unit is word.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 512.
      * @param seLogBufferEventsSize set the seLogBufferEventsSize.
      */
@@ -672,7 +672,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seLro
      */
     public Integer getSeLro() {
@@ -683,7 +683,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seLro set the seLro.
      */
     public void setSeLro(Integer  seLro) {
@@ -694,7 +694,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return sePcapPktCount
      */
     public Integer getSePcapPktCount() {
@@ -705,7 +705,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param sePcapPktCount set the sePcapPktCount.
      */
     public void setSePcapPktCount(Integer  sePcapPktCount) {
@@ -716,7 +716,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return sePcapPktSz
      */
     public Integer getSePcapPktSz() {
@@ -727,7 +727,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param sePcapPktSz set the sePcapPktSz.
      */
     public void setSePcapPktSz(Integer  sePcapPktSz) {
@@ -738,7 +738,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seRumSamplingNavInterval
      */
     public Integer getSeRumSamplingNavInterval() {
@@ -749,7 +749,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seRumSamplingNavInterval set the seRumSamplingNavInterval.
      */
     public void setSeRumSamplingNavInterval(Integer  seRumSamplingNavInterval) {
@@ -760,7 +760,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seRumSamplingNavPercent
      */
     public Integer getSeRumSamplingNavPercent() {
@@ -771,7 +771,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seRumSamplingNavPercent set the seRumSamplingNavPercent.
      */
     public void setSeRumSamplingNavPercent(Integer  seRumSamplingNavPercent) {
@@ -782,7 +782,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seRumSamplingResInterval
      */
     public Integer getSeRumSamplingResInterval() {
@@ -793,7 +793,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seRumSamplingResInterval set the seRumSamplingResInterval.
      */
     public void setSeRumSamplingResInterval(Integer  seRumSamplingResInterval) {
@@ -804,7 +804,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seRumSamplingResPercent
      */
     public Integer getSeRumSamplingResPercent() {
@@ -815,7 +815,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seRumSamplingResPercent set the seRumSamplingResPercent.
      */
     public void setSeRumSamplingResPercent(Integer  seRumSamplingResPercent) {
@@ -827,7 +827,7 @@ public class SeBootupProperties  {
      * Determines if dsr from secondary se is active or not      0        automatically determine based on hypervisor type    1        disable dsr
      * unconditionally    ~[0,1]   enable dsr unconditionally.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seTunnelMode
      */
     public Integer getSeTunnelMode() {
@@ -839,7 +839,7 @@ public class SeBootupProperties  {
      * Determines if dsr from secondary se is active or not      0        automatically determine based on hypervisor type    1        disable dsr
      * unconditionally    ~[0,1]   enable dsr unconditionally.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seTunnelMode set the seTunnelMode.
      */
     public void setSeTunnelMode(Integer  seTunnelMode) {
@@ -850,7 +850,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seTxBatchSize
      */
     public Integer getSeTxBatchSize() {
@@ -861,7 +861,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated.
      * Field deprecated in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seTxBatchSize set the seTxBatchSize.
      */
     public void setSeTxBatchSize(Integer  seTxBatchSize) {
@@ -872,7 +872,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * This field has been moved to se_group properties 18.1.2 onwards.
      * Field deprecated in 18.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seUseDpdk
      */
     public Integer getSeUseDpdk() {
@@ -883,7 +883,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * This field has been moved to se_group properties 18.1.2 onwards.
      * Field deprecated in 18.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seUseDpdk set the seUseDpdk.
      */
     public void setSeUseDpdk(Integer  seUseDpdk) {
@@ -892,7 +892,7 @@ public class SeBootupProperties  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 4096.
      * @return sslSessCachePerVs
      */
@@ -902,7 +902,7 @@ public class SeBootupProperties  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 4096.
      * @param sslSessCachePerVs set the sslSessCachePerVs.
      */
@@ -914,7 +914,7 @@ public class SeBootupProperties  {
      * This is the getter method this will return the attribute value.
      * Deprecated in 21.1.1, use session timeout in ssl profile.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return sslSessCacheTimeout
      */
     public Integer getSslSessCacheTimeout() {
@@ -925,7 +925,7 @@ public class SeBootupProperties  {
      * This is the setter method to the attribute.
      * Deprecated in 21.1.1, use session timeout in ssl profile.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param sslSessCacheTimeout set the sslSessCacheTimeout.
      */
     public void setSslSessCacheTimeout(Integer  sslSessCacheTimeout) {
@@ -935,7 +935,7 @@ public class SeBootupProperties  {
     /**
      * This is the getter method this will return the attribute value.
      * Size of the tcp syn cache hash table.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 8192.
      * @return tcpSyncacheHashsize
      */
@@ -946,7 +946,7 @@ public class SeBootupProperties  {
     /**
      * This is the setter method to the attribute.
      * Size of the tcp syn cache hash table.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 8192.
      * @param tcpSyncacheHashsize set the tcpSyncacheHashsize.
      */

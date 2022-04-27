@@ -75,7 +75,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Sha1 checksum of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return checksum
      */
@@ -87,7 +87,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Sha1 checksum of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param checksum set the checksum.
      */
@@ -99,7 +99,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * This field indicates whether the file is gzip-compressed.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return compressed
      */
@@ -111,7 +111,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * This field indicates whether the file is gzip-compressed.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param compressed set the compressed.
      */
@@ -123,7 +123,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Timestamp of creation for the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return created
      */
@@ -135,7 +135,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Timestamp of creation for the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param created set the created.
      */
@@ -147,7 +147,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Description of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -159,7 +159,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Description of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -172,7 +172,7 @@ public class FileObject extends AviRestResource  {
      * Timestamp when the file will be no longer needed and can be removed by the system.
      * If this is set, a garbage collector process will try to remove the file after this time.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return expiresAt
      */
@@ -185,7 +185,7 @@ public class FileObject extends AviRestResource  {
      * Timestamp when the file will be no longer needed and can be removed by the system.
      * If this is set, a garbage collector process will try to remove the file after this time.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param expiresAt set the expiresAt.
      */
@@ -199,7 +199,7 @@ public class FileObject extends AviRestResource  {
      * If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines.
      * If the field is set to true, then the object is replicated across the federation.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return isFederated
      */
@@ -213,7 +213,7 @@ public class FileObject extends AviRestResource  {
      * If the field is set to false, then the object is visible within the controller-cluster and its associated service-engines.
      * If the field is set to true, then the object is replicated across the federation.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param isFederated set the isFederated.
      */
@@ -225,7 +225,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Name of the file object.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -237,7 +237,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Name of the file object.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -249,7 +249,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Path to the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return path
      */
@@ -261,7 +261,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Path to the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param path set the path.
      */
@@ -273,7 +273,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Enforce read-only on the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return readOnly
      */
@@ -285,7 +285,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Enforce read-only on the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param readOnly set the readOnly.
      */
@@ -297,7 +297,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Flag to allow/restrict download of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return restrictDownload
      */
@@ -309,7 +309,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Flag to allow/restrict download of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param restrictDownload set the restrictDownload.
      */
@@ -321,7 +321,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Size of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return size
      */
@@ -333,7 +333,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Size of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param size set the size.
      */
@@ -346,7 +346,7 @@ public class FileObject extends AviRestResource  {
      * Tenant that this object belongs to.
      * It is a reference to an object of type tenant.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -359,7 +359,7 @@ public class FileObject extends AviRestResource  {
      * Tenant that this object belongs to.
      * It is a reference to an object of type tenant.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -372,8 +372,8 @@ public class FileObject extends AviRestResource  {
      * Type of the file.
      * Enum options - OTHER_FILE_TYPES, IP_REPUTATION, GEO_DB, TECH_SUPPORT, HSMPACKAGES, IPAMDNSSCRIPTS, CONTROLLER_IMAGE.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- other_file_types) edition, basic(allowed values- other_file_types)
-     * edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- other_file_types), basic edition(allowed values-
+     * other_file_types), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return type
      */
@@ -386,8 +386,8 @@ public class FileObject extends AviRestResource  {
      * Type of the file.
      * Enum options - OTHER_FILE_TYPES, IP_REPUTATION, GEO_DB, TECH_SUPPORT, HSMPACKAGES, IPAMDNSSCRIPTS, CONTROLLER_IMAGE.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- other_file_types) edition, basic(allowed values- other_file_types)
-     * edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- other_file_types), basic edition(allowed values-
+     * other_file_types), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param type set the type.
      */
@@ -416,7 +416,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Uuid of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -428,7 +428,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Uuid of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -440,7 +440,7 @@ public class FileObject extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Version of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return version
      */
@@ -452,7 +452,7 @@ public class FileObject extends AviRestResource  {
      * This is the setter method to the attribute.
      * Version of the file.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param version set the version.
      */

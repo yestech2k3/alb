@@ -47,7 +47,7 @@ public class WafRuleLog  {
      * This is the getter method this will return the attribute value.
      * Transaction data that matched the rule.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return matches
      */
@@ -59,7 +59,7 @@ public class WafRuleLog  {
      * This is the setter method. this will set the matches
      * Transaction data that matched the rule.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return matches
      */
@@ -71,7 +71,7 @@ public class WafRuleLog  {
      * This is the setter method this will set the matches
      * Transaction data that matched the rule.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return matches
      */
@@ -87,7 +87,7 @@ public class WafRuleLog  {
      * This is the getter method this will return the attribute value.
      * Rule's msg string per modsec language.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return msg
      */
@@ -99,7 +99,7 @@ public class WafRuleLog  {
      * This is the setter method to the attribute.
      * Rule's msg string per modsec language.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param msg set the msg.
      */
@@ -111,7 +111,7 @@ public class WafRuleLog  {
      * This is the getter method this will return the attribute value.
      * Phase in which transaction matched the rule - for instance, request header phase.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return phase
      */
@@ -123,7 +123,7 @@ public class WafRuleLog  {
      * This is the setter method to the attribute.
      * Phase in which transaction matched the rule - for instance, request header phase.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param phase set the phase.
      */
@@ -135,7 +135,7 @@ public class WafRuleLog  {
      * This is the getter method this will return the attribute value.
      * Rule group for the matching rule.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ruleGroup
      */
@@ -147,7 +147,7 @@ public class WafRuleLog  {
      * This is the setter method to the attribute.
      * Rule group for the matching rule.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ruleGroup set the ruleGroup.
      */
@@ -159,7 +159,7 @@ public class WafRuleLog  {
      * This is the getter method this will return the attribute value.
      * Id of the matching rule per modsec language.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ruleId
      */
@@ -171,7 +171,7 @@ public class WafRuleLog  {
      * This is the setter method to the attribute.
      * Id of the matching rule per modsec language.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ruleId set the ruleId.
      */
@@ -183,7 +183,7 @@ public class WafRuleLog  {
      * This is the getter method this will return the attribute value.
      * Name of the rule.
      * Field introduced in 17.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ruleName
      */
@@ -195,7 +195,7 @@ public class WafRuleLog  {
      * This is the setter method to the attribute.
      * Name of the rule.
      * Field introduced in 17.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ruleName set the ruleName.
      */
@@ -206,7 +206,7 @@ public class WafRuleLog  {
      * This is the getter method this will return the attribute value.
      * Rule's tags per modsec language.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tags
      */
@@ -218,7 +218,7 @@ public class WafRuleLog  {
      * This is the setter method. this will set the tags
      * Rule's tags per modsec language.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tags
      */
@@ -230,7 +230,7 @@ public class WafRuleLog  {
      * This is the setter method this will set the tags
      * Rule's tags per modsec language.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tags
      */

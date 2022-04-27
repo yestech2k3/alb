@@ -49,7 +49,7 @@ public class UpgradeParams  {
      * Image uuid for identifying controller patch.
      * It is a reference to an object of type image.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerPatchRef
      */
@@ -62,7 +62,7 @@ public class UpgradeParams  {
      * Image uuid for identifying controller patch.
      * It is a reference to an object of type image.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param controllerPatchRef set the controllerPatchRef.
      */
@@ -75,7 +75,7 @@ public class UpgradeParams  {
      * Image uuid for identifying base image.
      * It is a reference to an object of type image.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return imageRef
      */
@@ -88,7 +88,7 @@ public class UpgradeParams  {
      * Image uuid for identifying base image.
      * It is a reference to an object of type image.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param imageRef set the imageRef.
      */
@@ -100,7 +100,7 @@ public class UpgradeParams  {
      * This is the getter method this will return the attribute value.
      * This field identifies se group options that need to be applied during the upgrade operations.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupOptions
      */
@@ -112,7 +112,7 @@ public class UpgradeParams  {
      * This is the setter method to the attribute.
      * This field identifies se group options that need to be applied during the upgrade operations.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param seGroupOptions set the seGroupOptions.
      */
@@ -125,7 +125,7 @@ public class UpgradeParams  {
      * This field is ignored if the 'system' is enabled.
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -139,7 +139,7 @@ public class UpgradeParams  {
      * This field is ignored if the 'system' is enabled.
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -153,7 +153,7 @@ public class UpgradeParams  {
      * This field is ignored if the 'system' is enabled.
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -170,7 +170,7 @@ public class UpgradeParams  {
      * Image uuid for identifying service engine patch.
      * It is a reference to an object of type image.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sePatchRef
      */
@@ -183,7 +183,7 @@ public class UpgradeParams  {
      * Image uuid for identifying service engine patch.
      * It is a reference to an object of type image.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sePatchRef set the sePatchRef.
      */
@@ -195,7 +195,7 @@ public class UpgradeParams  {
      * This is the getter method this will return the attribute value.
      * This is flag when set as true skips few optional must check.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return skipWarnings
      */
@@ -207,7 +207,7 @@ public class UpgradeParams  {
      * This is the setter method to the attribute.
      * This is flag when set as true skips few optional must check.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param skipWarnings set the skipWarnings.
      */
@@ -219,7 +219,7 @@ public class UpgradeParams  {
      * This is the getter method this will return the attribute value.
      * Apply upgrade operations such as upgrade/patch to controller and all se groups.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return system
      */
@@ -231,7 +231,7 @@ public class UpgradeParams  {
      * This is the setter method to the attribute.
      * Apply upgrade operations such as upgrade/patch to controller and all se groups.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param system set the system.
      */

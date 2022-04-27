@@ -46,7 +46,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return end
      */
@@ -56,7 +56,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param end set the end.
      */
@@ -66,7 +66,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return freeControllerIps
      */
     public List<String> getFreeControllerIps() {
@@ -76,7 +76,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
     /**
      * This is the setter method. this will set the freeControllerIps
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return freeControllerIps
      */
     public void setFreeControllerIps(List<String>  freeControllerIps) {
@@ -86,7 +86,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
     /**
      * This is the setter method this will set the freeControllerIps
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return freeControllerIps
      */
     public SecureChannelAvailableLocalIPs addFreeControllerIpsItem(String freeControllerIpsItem) {
@@ -98,7 +98,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return freeIps
      */
@@ -108,7 +108,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method. this will set the freeIps
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return freeIps
      */
@@ -118,7 +118,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method this will set the freeIps
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return freeIps
      */
@@ -132,7 +132,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -142,7 +142,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -152,7 +152,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return start
      */
@@ -162,7 +162,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param start set the start.
      */
@@ -189,7 +189,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -199,7 +199,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */

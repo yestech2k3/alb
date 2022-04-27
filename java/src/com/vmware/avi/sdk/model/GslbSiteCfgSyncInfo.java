@@ -43,7 +43,7 @@ public class GslbSiteCfgSyncInfo  {
     /**
      * This is the getter method this will return the attribute value.
      * Objects that could not be synced to the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return erroredObjects
      */
@@ -54,7 +54,7 @@ public class GslbSiteCfgSyncInfo  {
     /**
      * This is the setter method. this will set the erroredObjects
      * Objects that could not be synced to the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return erroredObjects
      */
@@ -65,7 +65,7 @@ public class GslbSiteCfgSyncInfo  {
     /**
      * This is the setter method this will set the erroredObjects
      * Objects that could not be synced to the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return erroredObjects
      */
@@ -79,7 +79,7 @@ public class GslbSiteCfgSyncInfo  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return lastChangedTime
      */
@@ -89,7 +89,7 @@ public class GslbSiteCfgSyncInfo  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param lastChangedTime set the lastChangedTime.
      */
@@ -101,7 +101,7 @@ public class GslbSiteCfgSyncInfo  {
      * This is the getter method this will return the attribute value.
      * Last object having replication issue.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return lastFailObj
      */
@@ -113,7 +113,7 @@ public class GslbSiteCfgSyncInfo  {
      * This is the setter method to the attribute.
      * Last object having replication issue.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param lastFailObj set the lastFailObj.
      */
@@ -125,7 +125,7 @@ public class GslbSiteCfgSyncInfo  {
      * This is the getter method this will return the attribute value.
      * Reason for the replication issues.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return reason
      */
@@ -137,7 +137,7 @@ public class GslbSiteCfgSyncInfo  {
      * This is the setter method to the attribute.
      * Reason for the replication issues.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param reason set the reason.
      */
@@ -149,7 +149,7 @@ public class GslbSiteCfgSyncInfo  {
      * This is the getter method this will return the attribute value.
      * Recommended way to resolve replication issue.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return recommendation
      */
@@ -161,7 +161,7 @@ public class GslbSiteCfgSyncInfo  {
      * This is the setter method to the attribute.
      * Recommended way to resolve replication issue.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param recommendation set the recommendation.
      */
@@ -174,7 +174,7 @@ public class GslbSiteCfgSyncInfo  {
      * Configuration sync-state of the site.
      * Enum options - GSLB_SITE_CFG_IN_SYNC, GSLB_SITE_CFG_OUT_OF_SYNC, GSLB_SITE_CFG_SYNC_DISABLED, GSLB_SITE_CFG_SYNC_IN_PROGRESS,
      * GSLB_SITE_CFG_SYNC_NOT_APPLICABLE, GSLB_SITE_CFG_SYNCED_TILL_CHECKPOINT, GSLB_SITE_CFG_SYNC_SUSPENDED, GSLB_SITE_CFG_SYNC_STALLED.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return syncState
      */
@@ -187,7 +187,7 @@ public class GslbSiteCfgSyncInfo  {
      * Configuration sync-state of the site.
      * Enum options - GSLB_SITE_CFG_IN_SYNC, GSLB_SITE_CFG_OUT_OF_SYNC, GSLB_SITE_CFG_SYNC_DISABLED, GSLB_SITE_CFG_SYNC_IN_PROGRESS,
      * GSLB_SITE_CFG_SYNC_NOT_APPLICABLE, GSLB_SITE_CFG_SYNCED_TILL_CHECKPOINT, GSLB_SITE_CFG_SYNC_SUSPENDED, GSLB_SITE_CFG_SYNC_STALLED.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param syncState set the syncState.
      */

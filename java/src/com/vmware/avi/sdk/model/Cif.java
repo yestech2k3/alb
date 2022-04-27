@@ -41,7 +41,7 @@ public class Cif  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return adapter
      */
     public String getAdapter() {
@@ -51,7 +51,7 @@ public class Cif  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param adapter set the adapter.
      */
     public void setAdapter(String  adapter) {
@@ -61,7 +61,7 @@ public class Cif  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return cif
      */
     public String getCif() {
@@ -71,7 +71,7 @@ public class Cif  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param cif set the cif.
      */
     public void setCif(String  cif) {
@@ -81,7 +81,7 @@ public class Cif  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return macAddress
      */
     public String getMacAddress() {
@@ -91,7 +91,7 @@ public class Cif  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param macAddress set the macAddress.
      */
     public void setMacAddress(String  macAddress) {
@@ -100,7 +100,7 @@ public class Cif  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return resources
      */
     public List<String> getResources() {
@@ -110,7 +110,7 @@ public class Cif  {
     /**
      * This is the setter method. this will set the resources
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return resources
      */
     public void setResources(List<String>  resources) {
@@ -120,7 +120,7 @@ public class Cif  {
     /**
      * This is the setter method this will set the resources
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return resources
      */
     public Cif addResourcesItem(String resourcesItem) {
@@ -134,7 +134,7 @@ public class Cif  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seUuid
      */
     public String getSeUuid() {
@@ -144,7 +144,7 @@ public class Cif  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seUuid set the seUuid.
      */
     public void setSeUuid(String  seUuid) {

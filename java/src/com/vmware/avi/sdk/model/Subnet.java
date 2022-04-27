@@ -38,7 +38,7 @@ public class Subnet  {
     /**
      * This is the getter method this will return the attribute value.
      * Specify an ip subnet prefix for this network.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return prefix
      */
@@ -49,7 +49,7 @@ public class Subnet  {
     /**
      * This is the setter method to the attribute.
      * Specify an ip subnet prefix for this network.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param prefix set the prefix.
      */
@@ -60,7 +60,7 @@ public class Subnet  {
      * This is the getter method this will return the attribute value.
      * Static ip ranges for this subnet.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return staticIpRanges
      */
@@ -72,7 +72,7 @@ public class Subnet  {
      * This is the setter method. this will set the staticIpRanges
      * Static ip ranges for this subnet.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return staticIpRanges
      */
@@ -84,7 +84,7 @@ public class Subnet  {
      * This is the setter method this will set the staticIpRanges
      * Static ip ranges for this subnet.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return staticIpRanges
      */
@@ -99,7 +99,7 @@ public class Subnet  {
      * This is the getter method this will return the attribute value.
      * Use static_ip_ranges.
      * Field deprecated in 20.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return staticIps
      */
     public List<IpAddr> getStaticIps() {
@@ -110,7 +110,7 @@ public class Subnet  {
      * This is the setter method. this will set the staticIps
      * Use static_ip_ranges.
      * Field deprecated in 20.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return staticIps
      */
     public void setStaticIps(List<IpAddr>  staticIps) {
@@ -121,7 +121,7 @@ public class Subnet  {
      * This is the setter method this will set the staticIps
      * Use static_ip_ranges.
      * Field deprecated in 20.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return staticIps
      */
     public Subnet addStaticIpsItem(IpAddr staticIpsItem) {
@@ -135,7 +135,7 @@ public class Subnet  {
      * This is the getter method this will return the attribute value.
      * Use static_ip_ranges.
      * Field deprecated in 20.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return staticRanges
      */
     public List<IpAddrRange> getStaticRanges() {
@@ -146,7 +146,7 @@ public class Subnet  {
      * This is the setter method. this will set the staticRanges
      * Use static_ip_ranges.
      * Field deprecated in 20.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return staticRanges
      */
     public void setStaticRanges(List<IpAddrRange>  staticRanges) {
@@ -157,7 +157,7 @@ public class Subnet  {
      * This is the setter method this will set the staticRanges
      * Use static_ip_ranges.
      * Field deprecated in 20.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return staticRanges
      */
     public Subnet addStaticRangesItem(IpAddrRange staticRangesItem) {

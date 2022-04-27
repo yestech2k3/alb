@@ -66,7 +66,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Checksum of cloud configuration for network sec policy.
      * Internally set by cloud connector.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudConfigCksum
      */
@@ -78,7 +78,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * This is the setter method to the attribute.
      * Checksum of cloud configuration for network sec policy.
      * Internally set by cloud connector.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudConfigCksum set the cloudConfigCksum.
      */
@@ -89,7 +89,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Creator name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return createdBy
      */
@@ -100,7 +100,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Creator name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param createdBy set the createdBy.
      */
@@ -110,7 +110,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -120,7 +120,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -133,7 +133,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Geo database.
      * It is a reference to an object of type geodb.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return geoDbRef
      */
@@ -146,7 +146,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Geo database.
      * It is a reference to an object of type geodb.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param geoDbRef set the geoDbRef.
      */
@@ -159,7 +159,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Network security policy is created and modified by internal modules only.
      * Should not be modified by users.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return internal
      */
@@ -172,7 +172,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Network security policy is created and modified by internal modules only.
      * Should not be modified by users.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param internal set the internal.
      */
@@ -185,7 +185,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Ip reputation database.
      * It is a reference to an object of type ipreputationdb.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ipReputationDbRef
      */
@@ -198,7 +198,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Ip reputation database.
      * It is a reference to an object of type ipreputationdb.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ipReputationDbRef set the ipReputationDbRef.
      */
@@ -212,7 +212,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public List<KeyValue> getLabels() {
@@ -226,7 +226,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public void setLabels(List<KeyValue>  labels) {
@@ -240,7 +240,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public NetworkSecurityPolicy addLabelsItem(KeyValue labelsItem) {
@@ -254,7 +254,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -267,7 +267,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -280,7 +280,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -295,7 +295,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -305,7 +305,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -314,7 +314,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return rules
      */
@@ -324,7 +324,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
 
     /**
      * This is the setter method. this will set the rules
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return rules
      */
@@ -334,7 +334,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
 
     /**
      * This is the setter method this will set the rules
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return rules
      */
@@ -349,7 +349,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -360,7 +360,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -387,7 +387,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -397,7 +397,7 @@ public class NetworkSecurityPolicy extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */

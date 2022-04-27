@@ -44,7 +44,7 @@ public class DockerRegistry  {
     /**
      * This is the getter method this will return the attribute value.
      * Openshift integrated registry config.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return oshiftRegistry
      */
@@ -55,7 +55,7 @@ public class DockerRegistry  {
     /**
      * This is the setter method to the attribute.
      * Openshift integrated registry config.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param oshiftRegistry set the oshiftRegistry.
      */
@@ -67,7 +67,7 @@ public class DockerRegistry  {
      * This is the getter method this will return the attribute value.
      * Password for docker registry.
      * Authorized 'regular user' password if registry is openshift integrated registry.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return password
      */
@@ -79,7 +79,7 @@ public class DockerRegistry  {
      * This is the setter method to the attribute.
      * Password for docker registry.
      * Authorized 'regular user' password if registry is openshift integrated registry.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param password set the password.
      */
@@ -91,7 +91,7 @@ public class DockerRegistry  {
      * This is the getter method this will return the attribute value.
      * Set if docker registry is private.
      * Avi controller will not attempt to push se image to the registry, unless se_repository_push is set.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return privates
      */
@@ -103,7 +103,7 @@ public class DockerRegistry  {
      * This is the setter method to the attribute.
      * Set if docker registry is private.
      * Avi controller will not attempt to push se image to the registry, unless se_repository_push is set.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param privates set the privates.
      */
@@ -116,7 +116,7 @@ public class DockerRegistry  {
      * Avi serviceengine repository name.
      * For private registry, it's registry port/repository, for public registry, it's registry/repository, for openshift registry, it's registry
      * port/namespace/repo.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "avinetworks/se".
      * @return registry
      */
@@ -129,7 +129,7 @@ public class DockerRegistry  {
      * Avi serviceengine repository name.
      * For private registry, it's registry port/repository, for public registry, it's registry/repository, for openshift registry, it's registry
      * port/namespace/repo.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "avinetworks/se".
      * @param registry set the registry.
      */
@@ -141,7 +141,7 @@ public class DockerRegistry  {
      * This is the getter method this will return the attribute value.
      * Avi controller will push serviceengine image to docker repository.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seRepositoryPush
      */
     public Boolean getSeRepositoryPush() {
@@ -152,7 +152,7 @@ public class DockerRegistry  {
      * This is the setter method to the attribute.
      * Avi controller will push serviceengine image to docker repository.
      * Field deprecated in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seRepositoryPush set the seRepositoryPush.
      */
     public void setSeRepositoryPush(Boolean  seRepositoryPush) {
@@ -163,7 +163,7 @@ public class DockerRegistry  {
      * This is the getter method this will return the attribute value.
      * Username for docker registry.
      * Authorized 'regular user' if registry is openshift integrated registry.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return username
      */
@@ -175,7 +175,7 @@ public class DockerRegistry  {
      * This is the setter method to the attribute.
      * Username for docker registry.
      * Authorized 'regular user' if registry is openshift integrated registry.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param username set the username.
      */

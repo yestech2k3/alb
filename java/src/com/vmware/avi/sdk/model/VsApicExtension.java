@@ -38,7 +38,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seUuid
      */
     public String getSeUuid() {
@@ -48,7 +48,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param seUuid set the seUuid.
      */
     public void setSeUuid(String  seUuid) {
@@ -58,7 +58,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return txnUuid
      */
     public String getTxnUuid() {
@@ -68,7 +68,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param txnUuid set the txnUuid.
      */
     public void setTxnUuid(String  txnUuid) {
@@ -78,7 +78,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return uuid
      */
     public String getUuid() {
@@ -88,7 +88,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param uuid set the uuid.
      */
     public void setUuid(String  uuid) {
@@ -97,7 +97,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return vnic
      */
     public List<VsSeVnic> getVnic() {
@@ -107,7 +107,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the setter method. this will set the vnic
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return vnic
      */
     public void setVnic(List<VsSeVnic>  vnic) {
@@ -117,7 +117,7 @@ public class VsApicExtension extends AviRestResource  {
     /**
      * This is the setter method this will set the vnic
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return vnic
      */
     public VsApicExtension addVnicItem(VsSeVnic vnicItem) {

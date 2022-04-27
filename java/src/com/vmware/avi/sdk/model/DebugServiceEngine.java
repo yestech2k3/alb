@@ -82,7 +82,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Action to be invoked at configured layer.
      * Enum options - SE_BENCHMARK_MODE_DROP, SE_BENCHMARK_MODE_REFLECT.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_BENCHMARK_MODE_DROP".
      * @return benchmarkAction
      */
@@ -95,7 +95,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Action to be invoked at configured layer.
      * Enum options - SE_BENCHMARK_MODE_DROP, SE_BENCHMARK_MODE_REFLECT.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_BENCHMARK_MODE_DROP".
      * @param benchmarkAction set the benchmarkAction.
      */
@@ -111,7 +111,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * SE_BENCHMARK_LAYER_PRE_PROXY_PUNT, SE_BENCHMARK_LAYER_POST_PROXY_PUNT, SE_BENCHMARK_LAYER_ETHER_INPUT, SE_BENCHMARK_LAYER_IP_INPUT,
      * SE_BENCHMARK_LAYER_UDP_INPUT, SE_BENCHMARK_LAYER_POST_L2_PROCESSING, SE_BENCHMARK_LAYER_POST_BUILD_KEY_LITE.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_BENCHMARK_LAYER_NONE".
      * @return benchmarkLayer
      */
@@ -127,7 +127,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * SE_BENCHMARK_LAYER_PRE_PROXY_PUNT, SE_BENCHMARK_LAYER_POST_PROXY_PUNT, SE_BENCHMARK_LAYER_ETHER_INPUT, SE_BENCHMARK_LAYER_IP_INPUT,
      * SE_BENCHMARK_LAYER_UDP_INPUT, SE_BENCHMARK_LAYER_POST_L2_PROCESSING, SE_BENCHMARK_LAYER_POST_BUILD_KEY_LITE.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_BENCHMARK_LAYER_NONE".
      * @param benchmarkLayer set the benchmarkLayer.
      */
@@ -140,7 +140,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Configure different reflect modes.
      * Enum options - SE_BENCHMARK_REFLECT_SWAP_L4, SE_BENCHMARK_REFLECT_SWAP_L2, SE_BENCHMARK_REFLECT_SWAP_L3.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_BENCHMARK_REFLECT_SWAP_L4".
      * @return benchmarkOption
      */
@@ -153,7 +153,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Configure different reflect modes.
      * Enum options - SE_BENCHMARK_REFLECT_SWAP_L4, SE_BENCHMARK_REFLECT_SWAP_L2, SE_BENCHMARK_REFLECT_SWAP_L3.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_BENCHMARK_REFLECT_SWAP_L4".
      * @param benchmarkOption set the benchmarkOption.
      */
@@ -166,7 +166,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Rss hash function to be used for packet reflect in tx path.
      * Enum options - SE_BENCHMARK_DISABLE_HASH, SE_BENCHMARK_RTE_SOFT_HASH.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_BENCHMARK_DISABLE_HASH".
      * @return benchmarkRssHash
      */
@@ -179,7 +179,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Rss hash function to be used for packet reflect in tx path.
      * Enum options - SE_BENCHMARK_DISABLE_HASH, SE_BENCHMARK_RTE_SOFT_HASH.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_BENCHMARK_DISABLE_HASH".
      * @param benchmarkRssHash set the benchmarkRssHash.
      */
@@ -191,7 +191,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Enable/disable packet capture.
      * Field introduced in 18.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return capture
      */
@@ -203,7 +203,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * This is the setter method to the attribute.
      * Enable/disable packet capture.
      * Field introduced in 18.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param capture set the capture.
      */
@@ -216,7 +216,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Per packet capture filters for debug service engine.
      * Not applicable for dos pcap capture.
      * Field introduced in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return captureFilters
      */
@@ -229,7 +229,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Per packet capture filters for debug service engine.
      * Not applicable for dos pcap capture.
      * Field introduced in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param captureFilters set the captureFilters.
      */
@@ -241,7 +241,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Params for se pcap.
      * Field introduced in 17.2.14,18.1.5,18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return captureParams
      */
@@ -253,7 +253,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * This is the setter method to the attribute.
      * Params for se pcap.
      * Field introduced in 17.2.14,18.1.5,18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param captureParams set the captureParams.
      */
@@ -262,7 +262,7 @@ public class DebugServiceEngine extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cpuShares
      */
@@ -272,7 +272,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the setter method. this will set the cpuShares
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cpuShares
      */
@@ -282,7 +282,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the setter method this will set the cpuShares
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cpuShares
      */
@@ -299,7 +299,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Per packet ip filter for service engine pcap.
      * Matches with source and destination address.
      * Field introduced in 17.2.14,18.1.5,18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return debugIp
      */
@@ -312,7 +312,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Per packet ip filter for service engine pcap.
      * Matches with source and destination address.
      * Field introduced in 17.2.14,18.1.5,18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param debugIp set the debugIp.
      */
@@ -326,7 +326,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Requires se reboot.
      * Applicable only in case of vm based deployments.
      * Field introduced in 18.2.10, 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return enableKdump
      */
@@ -340,7 +340,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * Requires se reboot.
      * Applicable only in case of vm based deployments.
      * Field introduced in 18.2.10, 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param enableKdump set the enableKdump.
      */
@@ -352,7 +352,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Params for se fault injection.
      * Field introduced in 18.1.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return fault
      */
@@ -364,7 +364,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * This is the setter method to the attribute.
      * Params for se fault injection.
      * Field introduced in 18.1.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param fault set the fault.
      */
@@ -373,7 +373,7 @@ public class DebugServiceEngine extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return flags
      */
@@ -383,7 +383,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the setter method. this will set the flags
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return flags
      */
@@ -393,7 +393,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the setter method this will set the flags
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return flags
      */
@@ -407,7 +407,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "VM name unknown".
      * @return name
      */
@@ -417,7 +417,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "VM name unknown".
      * @param name set the name.
      */
@@ -426,7 +426,7 @@ public class DebugServiceEngine extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seagentDebug
      */
@@ -436,7 +436,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the setter method. this will set the seagentDebug
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seagentDebug
      */
@@ -446,7 +446,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the setter method this will set the seagentDebug
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seagentDebug
      */
@@ -462,7 +462,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Debug knob for se_log_agent process.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return selogagentDebug
      */
@@ -474,7 +474,7 @@ public class DebugServiceEngine extends AviRestResource  {
      * This is the setter method to the attribute.
      * Debug knob for se_log_agent process.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param selogagentDebug set the selogagentDebug.
      */
@@ -485,7 +485,7 @@ public class DebugServiceEngine extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -496,7 +496,7 @@ public class DebugServiceEngine extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -523,7 +523,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -533,7 +533,7 @@ public class DebugServiceEngine extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */

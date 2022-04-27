@@ -38,7 +38,7 @@ public class ObjSyncConfig  {
      * Allowed values are 15-80.
      * Field introduced in 20.1.3.
      * Unit is percent.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30.
      * @return objsyncCpuLimit
      */
@@ -52,7 +52,7 @@ public class ObjSyncConfig  {
      * Allowed values are 15-80.
      * Field introduced in 20.1.3.
      * Unit is percent.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30.
      * @param objsyncCpuLimit set the objsyncCpuLimit.
      */
@@ -66,7 +66,7 @@ public class ObjSyncConfig  {
      * Allowed values are 30-300.
      * Field introduced in 20.1.3.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 60.
      * @return objsyncHubElectInterval
      */
@@ -80,7 +80,7 @@ public class ObjSyncConfig  {
      * Allowed values are 30-300.
      * Field introduced in 20.1.3.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 60.
      * @param objsyncHubElectInterval set the objsyncHubElectInterval.
      */
@@ -94,7 +94,7 @@ public class ObjSyncConfig  {
      * Allowed values are 1-120.
      * Field introduced in 20.1.3.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @return objsyncReconcileInterval
      */
@@ -108,7 +108,7 @@ public class ObjSyncConfig  {
      * Allowed values are 1-120.
      * Field introduced in 20.1.3.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @param objsyncReconcileInterval set the objsyncReconcileInterval.
      */

@@ -56,7 +56,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Controller system limits specific to cloud type for this controller sizing.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerSizingCloudLimits
      */
@@ -68,7 +68,7 @@ public class ControllerSizingLimits  {
      * This is the setter method. this will set the controllerSizingCloudLimits
      * Controller system limits specific to cloud type for this controller sizing.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerSizingCloudLimits
      */
@@ -80,7 +80,7 @@ public class ControllerSizingLimits  {
      * This is the setter method this will set the controllerSizingCloudLimits
      * Controller system limits specific to cloud type for this controller sizing.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerSizingCloudLimits
      */
@@ -97,7 +97,7 @@ public class ControllerSizingLimits  {
      * Controller flavor (s/m/l) for this sizing limit.
      * Enum options - CONTROLLER_ESSENTIALS, CONTROLLER_SMALL, CONTROLLER_MEDIUM, CONTROLLER_LARGE.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return flavor
      */
@@ -110,7 +110,7 @@ public class ControllerSizingLimits  {
      * Controller flavor (s/m/l) for this sizing limit.
      * Enum options - CONTROLLER_ESSENTIALS, CONTROLLER_SMALL, CONTROLLER_MEDIUM, CONTROLLER_LARGE.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param flavor set the flavor.
      */
@@ -122,7 +122,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of clouds.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numClouds
      */
@@ -134,7 +134,7 @@ public class ControllerSizingLimits  {
      * This is the setter method to the attribute.
      * Maximum number of clouds.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numClouds set the numClouds.
      */
@@ -146,7 +146,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of east-west virtualservices.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numEastWestVirtualservices
      */
@@ -158,7 +158,7 @@ public class ControllerSizingLimits  {
      * This is the setter method to the attribute.
      * Maximum number of east-west virtualservices.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numEastWestVirtualservices set the numEastWestVirtualservices.
      */
@@ -170,7 +170,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of servers.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numServers
      */
@@ -182,7 +182,7 @@ public class ControllerSizingLimits  {
      * This is the setter method to the attribute.
      * Maximum number of servers.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numServers set the numServers.
      */
@@ -194,7 +194,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of serviceengines.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numServiceengines
      */
@@ -206,7 +206,7 @@ public class ControllerSizingLimits  {
      * This is the setter method to the attribute.
      * Maximum number of serviceengines.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numServiceengines set the numServiceengines.
      */
@@ -218,7 +218,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of tenants.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numTenants
      */
@@ -230,7 +230,7 @@ public class ControllerSizingLimits  {
      * This is the setter method to the attribute.
      * Maximum number of tenants.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numTenants set the numTenants.
      */
@@ -242,7 +242,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of virtualservices.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numVirtualservices
      */
@@ -254,7 +254,7 @@ public class ControllerSizingLimits  {
      * This is the setter method to the attribute.
      * Maximum number of virtualservices.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numVirtualservices set the numVirtualservices.
      */
@@ -266,7 +266,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of virtualservices with realtime metrics enabled.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numVirtualservicesRtMetrics
      */
@@ -278,7 +278,7 @@ public class ControllerSizingLimits  {
      * This is the setter method to the attribute.
      * Maximum number of virtualservices with realtime metrics enabled.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numVirtualservicesRtMetrics set the numVirtualservicesRtMetrics.
      */
@@ -290,7 +290,7 @@ public class ControllerSizingLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of vrfcontexts.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numVrfs
      */
@@ -302,7 +302,7 @@ public class ControllerSizingLimits  {
      * This is the setter method to the attribute.
      * Maximum number of vrfcontexts.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numVrfs set the numVrfs.
      */

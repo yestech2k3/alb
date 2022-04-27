@@ -57,7 +57,7 @@ public class GslbPool  {
      * This is the getter method this will return the attribute value.
      * The load balancing algorithm will pick a local member within the gslb service list of available members.
      * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "GSLB_ALGORITHM_ROUND_ROBIN".
      * @return algorithm
      */
@@ -69,7 +69,7 @@ public class GslbPool  {
      * This is the setter method to the attribute.
      * The load balancing algorithm will pick a local member within the gslb service list of available members.
      * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "GSLB_ALGORITHM_ROUND_ROBIN".
      * @param algorithm set the algorithm.
      */
@@ -81,7 +81,7 @@ public class GslbPool  {
      * This is the getter method this will return the attribute value.
      * Mask to be applied on client ip for consistent hash algorithm.
      * Allowed values are 1-31.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return consistentHashMask
      */
@@ -93,7 +93,7 @@ public class GslbPool  {
      * This is the setter method to the attribute.
      * Mask to be applied on client ip for consistent hash algorithm.
      * Allowed values are 1-31.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param consistentHashMask set the consistentHashMask.
      */
@@ -106,7 +106,7 @@ public class GslbPool  {
      * Mask to be applied on client ipv6 address for consistent hash algorithm.
      * Allowed values are 1-127.
      * Field introduced in 18.2.8, 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return consistentHashMask6
      */
@@ -119,7 +119,7 @@ public class GslbPool  {
      * Mask to be applied on client ipv6 address for consistent hash algorithm.
      * Allowed values are 1-127.
      * Field introduced in 18.2.8, 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param consistentHashMask6 set the consistentHashMask6.
      */
@@ -131,7 +131,7 @@ public class GslbPool  {
      * This is the getter method this will return the attribute value.
      * User provided information that records member details such as application owner name, contact, etc.
      * Field introduced in 17.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -143,7 +143,7 @@ public class GslbPool  {
      * This is the setter method to the attribute.
      * User provided information that records member details such as application owner name, contact, etc.
      * Field introduced in 17.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -155,7 +155,7 @@ public class GslbPool  {
      * This is the getter method this will return the attribute value.
      * Enable or disable a gslb service pool.
      * Field introduced in 17.2.14, 18.1.5, 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enabled
      */
@@ -167,7 +167,7 @@ public class GslbPool  {
      * This is the setter method to the attribute.
      * Enable or disable a gslb service pool.
      * Field introduced in 17.2.14, 18.1.5, 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enabled set the enabled.
      */
@@ -181,7 +181,7 @@ public class GslbPool  {
      * For instance when algorithm is geo and client/server do not have valid geo location.
      * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return fallbackAlgorithm
      */
@@ -195,7 +195,7 @@ public class GslbPool  {
      * For instance when algorithm is geo and client/server do not have valid geo location.
      * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param fallbackAlgorithm set the fallbackAlgorithm.
      */
@@ -206,7 +206,7 @@ public class GslbPool  {
      * This is the getter method this will return the attribute value.
      * Select list of vips belonging to this gslb service.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return members
      */
@@ -218,7 +218,7 @@ public class GslbPool  {
      * This is the setter method. this will set the members
      * Select list of vips belonging to this gslb service.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return members
      */
@@ -230,7 +230,7 @@ public class GslbPool  {
      * This is the setter method this will set the members
      * Select list of vips belonging to this gslb service.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return members
      */
@@ -246,7 +246,7 @@ public class GslbPool  {
      * This is the getter method this will return the attribute value.
      * Minimum number of health monitors in up state to mark the member up.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return minHealthMonitorsUp
      */
@@ -258,7 +258,7 @@ public class GslbPool  {
      * This is the setter method to the attribute.
      * Minimum number of health monitors in up state to mark the member up.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param minHealthMonitorsUp set the minHealthMonitorsUp.
      */
@@ -269,7 +269,7 @@ public class GslbPool  {
     /**
      * This is the getter method this will return the attribute value.
      * Name of the gslb service pool.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -280,7 +280,7 @@ public class GslbPool  {
     /**
      * This is the setter method to the attribute.
      * Name of the gslb service pool.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -295,7 +295,7 @@ public class GslbPool  {
      * The dns service chooses the pool with the highest priority that is operationally up.
      * Allowed values are 0-100.
      * Special values are 0 - do not choose members from this pool.a priority of 0 is equivalent to disabling the pool.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @return priority
      */
@@ -310,7 +310,7 @@ public class GslbPool  {
      * The dns service chooses the pool with the highest priority that is operationally up.
      * Allowed values are 0-100.
      * Special values are 0 - do not choose members from this pool.a priority of 0 is equivalent to disabling the pool.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @param priority set the priority.
      */
