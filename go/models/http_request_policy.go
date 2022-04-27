@@ -8,6 +8,6 @@ package models
 // swagger:model HTTPRequestPolicy
 type HTTPRequestPolicy struct {
 
-	// Add rules to the HTTP request policy. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Add rules to the HTTP request policy. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Rules []*HTTPRequestRule `json:"rules,omitempty"`
 }

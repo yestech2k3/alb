@@ -8,9 +8,9 @@ package models
 // swagger:model CC_Properties
 type CCProperties struct {
 
-	//  Unit is SEC. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	//  Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RPCPollInterval *int32 `json:"rpc_poll_interval,omitempty"`
 
-	//  Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RPCQueueSize *int32 `json:"rpc_queue_size,omitempty"`
 }

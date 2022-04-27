@@ -4,9 +4,9 @@ package models
 
 // This file is auto-generated.
 
-// VIMgrVcenterRuntimeAPIResponse v i mgr vcenter runtime Api response
-// swagger:model VIMgrVcenterRuntimeApiResponse
-type VIMgrVcenterRuntimeAPIResponse struct {
+// AuthMappingProfileAPIResponse auth mapping profile Api response
+// swagger:model AuthMappingProfileApiResponse
+type AuthMappingProfileAPIResponse struct {
 
 	// count
 	// Required: true
@@ -17,5 +17,5 @@ type VIMgrVcenterRuntimeAPIResponse struct {
 
 	// results
 	// Required: true
-	Results []*VIMgrVcenterRuntime `json:"results,omitempty"`
+	Results []*AuthMappingProfile `json:"results,omitempty"`
 }

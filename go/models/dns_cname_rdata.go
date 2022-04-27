@@ -8,7 +8,7 @@ package models
 // swagger:model DnsCnameRdata
 type DNSCnameRdata struct {
 
-	// Canonical name. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Canonical name. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	Cname *string `json:"cname"`
 }

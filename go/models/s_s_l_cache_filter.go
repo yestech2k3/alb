@@ -8,6 +8,6 @@ package models
 // swagger:model SSLCacheFilter
 type SSLCacheFilter struct {
 
-	// Hexadecimal representation of the SSL session ID. Field introduced in 20.1.1. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Hexadecimal representation of the SSL session ID. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SslSessionID *string `json:"ssl_session_id,omitempty"`
 }
