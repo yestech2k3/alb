@@ -5,7 +5,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Avi AlertSyslogConfig Object API</title>
+    <title>Avi AuthMappingProfile Object API</title>
     <style type="text/css">
       body { 
 	font-family: Trebuchet MS, sans-serif;
@@ -183,8 +183,8 @@ font-style: italic;
     </style>
   </head>
   <body>
-  <h1>Avi AlertSyslogConfig Object API</h1>
-    <div class="app-desc">CLI ``` - configure alertsyslogconfig <key> - show alertsyslogconfig <key> - test alerttestsyslog <key> ``` </div>
+  <h1>Avi AuthMappingProfile Object API</h1>
+    <div class="app-desc">CLI ``` - configure authmappingprofile <key> - show authmappingprofile <key> ``` </div>
     <div class="app-desc">More information: <a href="https://avinetworks.com/contact-us">https://avinetworks.com/contact-us</a></div>
     <div class="app-desc">Contact Info: <a href="support@avinetworks.com">support@avinetworks.com</a></div>
     <div class="app-desc">Version: 22.1.1</div>
@@ -202,20 +202,19 @@ font-style: italic;
   <h2>Table of Contents </h2>
   <div class="method-summary"></div>
   <ol>
-  <li><a href="#alertsyslogconfigGet"><code><span class="http-method">get</span> /alertsyslogconfig</code></a></li>
-  <li><a href="#alertsyslogconfigPost"><code><span class="http-method">post</span> /alertsyslogconfig</code></a></li>
-  <li><a href="#alertsyslogconfigUuidAlerttestsyslogPost"><code><span class="http-method">post</span> /alertsyslogconfig/{uuid}/alerttestsyslog</code></a></li>
-  <li><a href="#alertsyslogconfigUuidDelete"><code><span class="http-method">delete</span> /alertsyslogconfig/{uuid}</code></a></li>
-  <li><a href="#alertsyslogconfigUuidGet"><code><span class="http-method">get</span> /alertsyslogconfig/{uuid}</code></a></li>
-  <li><a href="#alertsyslogconfigUuidPatch"><code><span class="http-method">patch</span> /alertsyslogconfig/{uuid}</code></a></li>
-  <li><a href="#alertsyslogconfigUuidPut"><code><span class="http-method">put</span> /alertsyslogconfig/{uuid}</code></a></li>
+  <li><a href="#authmappingprofileGet"><code><span class="http-method">get</span> /authmappingprofile</code></a></li>
+  <li><a href="#authmappingprofilePost"><code><span class="http-method">post</span> /authmappingprofile</code></a></li>
+  <li><a href="#authmappingprofileUuidDelete"><code><span class="http-method">delete</span> /authmappingprofile/{uuid}</code></a></li>
+  <li><a href="#authmappingprofileUuidGet"><code><span class="http-method">get</span> /authmappingprofile/{uuid}</code></a></li>
+  <li><a href="#authmappingprofileUuidPatch"><code><span class="http-method">patch</span> /authmappingprofile/{uuid}</code></a></li>
+  <li><a href="#authmappingprofileUuidPut"><code><span class="http-method">put</span> /authmappingprofile/{uuid}</code></a></li>
   </ol>
 
-  <div class="method"><a name="alertsyslogconfigGet"/>
+  <div class="method"><a name="authmappingprofileGet"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /alertsyslogconfig</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">alertsyslogconfigGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /authmappingprofile</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">authmappingprofileGet</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -249,7 +248,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#AlertSyslogConfigApiResponse">AlertSyslogConfigApiResponse</a>
+      <a href="#AuthMappingProfileApiResponse">AuthMappingProfileApiResponse</a>
       
     </div>
 
@@ -261,15 +260,31 @@ font-style: italic;
   "next" : "aeiou",
   "count" : 123,
   "results" : [ {
-    "syslog_servers" : [ {
-      "udp" : true,
-      "ssl_key_and_certificate_ref" : "aeiou",
-      "tls_enable" : true,
-      "format" : "aeiou",
-      "syslog_server" : "aeiou",
-      "pkiprofile_ref" : "aeiou",
-      "syslog_server_port" : 123,
-      "anon_auth" : true
+    "mapping_rules" : [ {
+      "role_attribute_name" : "aeiou",
+      "userprofile_ref" : "aeiou",
+      "assign_role" : "aeiou",
+      "is_superuser" : true,
+      "assign_tenant" : "aeiou",
+      "assign_userprofile" : "aeiou",
+      "index" : 123,
+      "object_access_policy_refs" : [ "aeiou" ],
+      "policy_attribute_name" : "aeiou",
+      "role_refs" : [ "aeiou" ],
+      "default_tenant_ref" : "aeiou",
+      "tenant_refs" : [ "aeiou" ],
+      "assign_policy" : "aeiou",
+      "attribute_match" : {
+        "criteria" : "aeiou",
+        "values" : [ "aeiou" ],
+        "name" : "aeiou"
+      },
+      "group_match" : {
+        "criteria" : "aeiou",
+        "groups" : [ "aeiou" ]
+      },
+      "userprofile_attribute_name" : "aeiou",
+      "tenant_attribute_name" : "aeiou"
     } ],
     "tenant_ref" : "aeiou",
     "name" : "aeiou",
@@ -277,6 +292,7 @@ font-style: italic;
       "version" : 123
     },
     "description" : "aeiou",
+    "type" : "aeiou",
     "uuid" : "aeiou",
     "url" : "aeiou",
     "_last_modified" : "aeiou"
@@ -293,17 +309,17 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#AlertSyslogConfigApiResponse">AlertSyslogConfigApiResponse</a>
+        <a href="#AuthMappingProfileApiResponse">AuthMappingProfileApiResponse</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="alertsyslogconfigPost"/>
+  <div class="method"><a name="authmappingprofilePost"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /alertsyslogconfig</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">alertsyslogconfigPost</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /authmappingprofile</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">authmappingprofilePost</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -317,7 +333,7 @@ font-style: italic;
     <div class="field-items">
       <div class="param">body (required)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; AlertSyslogConfig object creation </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; AuthMappingProfile object creation </div>
     </div>  <!-- field-items -->
 
 
@@ -325,7 +341,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#AlertSyslogConfig">AlertSyslogConfig</a>
+      <a href="#AuthMappingProfile">AuthMappingProfile</a>
       
     </div>
 
@@ -334,15 +350,31 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "syslog_servers" : [ {
-    "udp" : true,
-    "ssl_key_and_certificate_ref" : "aeiou",
-    "tls_enable" : true,
-    "format" : "aeiou",
-    "syslog_server" : "aeiou",
-    "pkiprofile_ref" : "aeiou",
-    "syslog_server_port" : 123,
-    "anon_auth" : true
+  "mapping_rules" : [ {
+    "role_attribute_name" : "aeiou",
+    "userprofile_ref" : "aeiou",
+    "assign_role" : "aeiou",
+    "is_superuser" : true,
+    "assign_tenant" : "aeiou",
+    "assign_userprofile" : "aeiou",
+    "index" : 123,
+    "object_access_policy_refs" : [ "aeiou" ],
+    "policy_attribute_name" : "aeiou",
+    "role_refs" : [ "aeiou" ],
+    "default_tenant_ref" : "aeiou",
+    "tenant_refs" : [ "aeiou" ],
+    "assign_policy" : "aeiou",
+    "attribute_match" : {
+      "criteria" : "aeiou",
+      "values" : [ "aeiou" ],
+      "name" : "aeiou"
+    },
+    "group_match" : {
+      "criteria" : "aeiou",
+      "groups" : [ "aeiou" ]
+    },
+    "userprofile_attribute_name" : "aeiou",
+    "tenant_attribute_name" : "aeiou"
   } ],
   "tenant_ref" : "aeiou",
   "name" : "aeiou",
@@ -350,6 +382,7 @@ font-style: italic;
     "version" : 123
   },
   "description" : "aeiou",
+  "type" : "aeiou",
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
@@ -365,75 +398,17 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#AlertSyslogConfig">AlertSyslogConfig</a>
+        <a href="#AuthMappingProfile">AuthMappingProfile</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="alertsyslogconfigUuidAlerttestsyslogPost"/>
+  <div class="method"><a name="authmappingprofileUuidDelete"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /alertsyslogconfig/{uuid}/alerttestsyslog</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">alertsyslogconfigUuidAlerttestsyslogPost</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">uuid (required)</div>
-
-      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; UUID of the object to fetch </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Request body</h3>
-    <div class="field-items">
-      <div class="param">body (required)</div>
-
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; AlertTestSyslogSnmpParams </div>
-    </div>  <!-- field-items -->
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      String
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>"aeiou"</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    OK
-        <a href="#String">String</a>
-    <h4 class="field-label">401</h4>
-    log in failed
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="alertsyslogconfigUuidDelete"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /alertsyslogconfig/{uuid}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">alertsyslogconfigUuidDelete</span>)</div>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /authmappingprofile/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">authmappingprofileUuidDelete</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -487,11 +462,11 @@ font-style: italic;
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="alertsyslogconfigUuidGet"/>
+  <div class="method"><a name="authmappingprofileUuidGet"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /alertsyslogconfig/{uuid}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">alertsyslogconfigUuidGet</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /authmappingprofile/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">authmappingprofileUuidGet</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -527,7 +502,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#AlertSyslogConfig">AlertSyslogConfig</a>
+      <a href="#AuthMappingProfile">AuthMappingProfile</a>
       
     </div>
 
@@ -536,15 +511,31 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "syslog_servers" : [ {
-    "udp" : true,
-    "ssl_key_and_certificate_ref" : "aeiou",
-    "tls_enable" : true,
-    "format" : "aeiou",
-    "syslog_server" : "aeiou",
-    "pkiprofile_ref" : "aeiou",
-    "syslog_server_port" : 123,
-    "anon_auth" : true
+  "mapping_rules" : [ {
+    "role_attribute_name" : "aeiou",
+    "userprofile_ref" : "aeiou",
+    "assign_role" : "aeiou",
+    "is_superuser" : true,
+    "assign_tenant" : "aeiou",
+    "assign_userprofile" : "aeiou",
+    "index" : 123,
+    "object_access_policy_refs" : [ "aeiou" ],
+    "policy_attribute_name" : "aeiou",
+    "role_refs" : [ "aeiou" ],
+    "default_tenant_ref" : "aeiou",
+    "tenant_refs" : [ "aeiou" ],
+    "assign_policy" : "aeiou",
+    "attribute_match" : {
+      "criteria" : "aeiou",
+      "values" : [ "aeiou" ],
+      "name" : "aeiou"
+    },
+    "group_match" : {
+      "criteria" : "aeiou",
+      "groups" : [ "aeiou" ]
+    },
+    "userprofile_attribute_name" : "aeiou",
+    "tenant_attribute_name" : "aeiou"
   } ],
   "tenant_ref" : "aeiou",
   "name" : "aeiou",
@@ -552,6 +543,7 @@ font-style: italic;
     "version" : 123
   },
   "description" : "aeiou",
+  "type" : "aeiou",
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
@@ -567,17 +559,17 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#AlertSyslogConfig">AlertSyslogConfig</a>
+        <a href="#AuthMappingProfile">AuthMappingProfile</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="alertsyslogconfigUuidPatch"/>
+  <div class="method"><a name="authmappingprofileUuidPatch"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /alertsyslogconfig/{uuid}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">alertsyslogconfigUuidPatch</span>)</div>
+    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /authmappingprofile/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">authmappingprofileUuidPatch</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -597,7 +589,7 @@ font-style: italic;
     <div class="field-items">
       <div class="param">body (required)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; AlertSyslogConfig object creation </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; AuthMappingProfile object creation </div>
     </div>  <!-- field-items -->
 
 
@@ -611,7 +603,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#AlertSyslogConfig">AlertSyslogConfig</a>
+      <a href="#AuthMappingProfile">AuthMappingProfile</a>
       
     </div>
 
@@ -620,15 +612,31 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "syslog_servers" : [ {
-    "udp" : true,
-    "ssl_key_and_certificate_ref" : "aeiou",
-    "tls_enable" : true,
-    "format" : "aeiou",
-    "syslog_server" : "aeiou",
-    "pkiprofile_ref" : "aeiou",
-    "syslog_server_port" : 123,
-    "anon_auth" : true
+  "mapping_rules" : [ {
+    "role_attribute_name" : "aeiou",
+    "userprofile_ref" : "aeiou",
+    "assign_role" : "aeiou",
+    "is_superuser" : true,
+    "assign_tenant" : "aeiou",
+    "assign_userprofile" : "aeiou",
+    "index" : 123,
+    "object_access_policy_refs" : [ "aeiou" ],
+    "policy_attribute_name" : "aeiou",
+    "role_refs" : [ "aeiou" ],
+    "default_tenant_ref" : "aeiou",
+    "tenant_refs" : [ "aeiou" ],
+    "assign_policy" : "aeiou",
+    "attribute_match" : {
+      "criteria" : "aeiou",
+      "values" : [ "aeiou" ],
+      "name" : "aeiou"
+    },
+    "group_match" : {
+      "criteria" : "aeiou",
+      "groups" : [ "aeiou" ]
+    },
+    "userprofile_attribute_name" : "aeiou",
+    "tenant_attribute_name" : "aeiou"
   } ],
   "tenant_ref" : "aeiou",
   "name" : "aeiou",
@@ -636,6 +644,7 @@ font-style: italic;
     "version" : 123
   },
   "description" : "aeiou",
+  "type" : "aeiou",
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
@@ -651,17 +660,17 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#AlertSyslogConfig">AlertSyslogConfig</a>
+        <a href="#AuthMappingProfile">AuthMappingProfile</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="alertsyslogconfigUuidPut"/>
+  <div class="method"><a name="authmappingprofileUuidPut"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /alertsyslogconfig/{uuid}</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">alertsyslogconfigUuidPut</span>)</div>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /authmappingprofile/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">authmappingprofileUuidPut</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -681,7 +690,7 @@ font-style: italic;
     <div class="field-items">
       <div class="param">body (required)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; AlertSyslogConfig object creation </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; AuthMappingProfile object creation </div>
     </div>  <!-- field-items -->
 
 
@@ -695,7 +704,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#AlertSyslogConfig">AlertSyslogConfig</a>
+      <a href="#AuthMappingProfile">AuthMappingProfile</a>
       
     </div>
 
@@ -704,15 +713,31 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "syslog_servers" : [ {
-    "udp" : true,
-    "ssl_key_and_certificate_ref" : "aeiou",
-    "tls_enable" : true,
-    "format" : "aeiou",
-    "syslog_server" : "aeiou",
-    "pkiprofile_ref" : "aeiou",
-    "syslog_server_port" : 123,
-    "anon_auth" : true
+  "mapping_rules" : [ {
+    "role_attribute_name" : "aeiou",
+    "userprofile_ref" : "aeiou",
+    "assign_role" : "aeiou",
+    "is_superuser" : true,
+    "assign_tenant" : "aeiou",
+    "assign_userprofile" : "aeiou",
+    "index" : 123,
+    "object_access_policy_refs" : [ "aeiou" ],
+    "policy_attribute_name" : "aeiou",
+    "role_refs" : [ "aeiou" ],
+    "default_tenant_ref" : "aeiou",
+    "tenant_refs" : [ "aeiou" ],
+    "assign_policy" : "aeiou",
+    "attribute_match" : {
+      "criteria" : "aeiou",
+      "values" : [ "aeiou" ],
+      "name" : "aeiou"
+    },
+    "group_match" : {
+      "criteria" : "aeiou",
+      "groups" : [ "aeiou" ]
+    },
+    "userprofile_attribute_name" : "aeiou",
+    "tenant_attribute_name" : "aeiou"
   } ],
   "tenant_ref" : "aeiou",
   "name" : "aeiou",
@@ -720,6 +745,7 @@ font-style: italic;
     "version" : 123
   },
   "description" : "aeiou",
+  "type" : "aeiou",
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
@@ -735,7 +761,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        <a href="#AlertSyslogConfig">AlertSyslogConfig</a>
+        <a href="#AuthMappingProfile">AuthMappingProfile</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
@@ -748,52 +774,71 @@ font-style: italic;
 
   <h2>Table of Contents</h2>
   <ol>
-    <li><a href="#AlertSyslogConfig"><code>AlertSyslogConfig</code></a></li>
-    <li><a href="#AlertSyslogConfigApiResponse"><code>AlertSyslogConfigApiResponse</code></a></li>
-    <li><a href="#AlertSyslogServer"><code>AlertSyslogServer</code></a></li>
-    <li><a href="#AlertTestSyslogSnmpParams"><code>AlertTestSyslogSnmpParams</code></a></li>
+    <li><a href="#AuthMappingProfile"><code>AuthMappingProfile</code></a></li>
+    <li><a href="#AuthMappingProfileApiResponse"><code>AuthMappingProfileApiResponse</code></a></li>
+    <li><a href="#AuthMappingRule"><code>AuthMappingRule</code></a></li>
+    <li><a href="#AuthMatchAttribute"><code>AuthMatchAttribute</code></a></li>
+    <li><a href="#AuthMatchGroupMembership"><code>AuthMatchGroupMembership</code></a></li>
     <li><a href="#ConfigPbAttributes"><code>ConfigPbAttributes</code></a></li>
   </ol>
 
   <div class="model">
-    <h3 class="field-label"><a name="AlertSyslogConfig">AlertSyslogConfig</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3 class="field-label"><a name="AuthMappingProfile">AuthMappingProfile</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
-<div class="param">configpb_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#ConfigPbAttributes">ConfigPbAttributes</a></span> Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
-<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> User defined description for alert syslog config. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A user-friendly name of the syslog notification. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">syslog_servers (optional)</div><div class="param-desc"><span class="param-type"><a href="#AlertSyslogServer">array[AlertSyslogServer]</a></span> The list of syslog servers. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type Tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">configpb_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#ConfigPbAttributes">ConfigPbAttributes</a></span> Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Description for the AuthMappingProfile. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">mapping_rules (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuthMappingRule">array[AuthMappingRule]</a></span> Rules list for tenant or role mapping. Field introduced in 22.1.1. Minimum of 1 items required. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the AuthMappingProfile. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Description for the tenant of AuthMappingProfile. It is a reference to an object of type Tenant. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Type of the Auth Profile for which these rules can be linked. Enum options - AUTH_PROFILE_LDAP, AUTH_PROFILE_TACACS_PLUS, AUTH_PROFILE_SAML, AUTH_PROFILE_PINGACCESS, AUTH_PROFILE_JWT, AUTH_PROFILE_OAUTH. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> url </div>
-<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID of the AuthMappingProfile. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3 class="field-label"><a name="AlertSyslogConfigApiResponse">AlertSyslogConfigApiResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3 class="field-label"><a name="AuthMappingProfileApiResponse">AuthMappingProfileApiResponse</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">count </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">results </div><div class="param-desc"><span class="param-type"><a href="#AlertSyslogConfig">array[AlertSyslogConfig]</a></span>  </div>
+<div class="param">results </div><div class="param-desc"><span class="param-type"><a href="#AuthMappingProfile">array[AuthMappingProfile]</a></span>  </div>
 <div class="param">next (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3 class="field-label"><a name="AlertSyslogServer">AlertSyslogServer</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3 class="field-label"><a name="AuthMappingRule">AuthMappingRule</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">anon_auth (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable anonymous authentication of Syslog Serverwhich will disable server certificate authentication. Field introduced in 17.2.17, 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Syslog output format - legacy, RFC 5424, JSON. Enum options - SYSLOG_LEGACY, SYSLOG_RFC5424, SYSLOG_JSON, SYSLOG_RFC5425_ENHANCED. Field introduced in 17.2.8. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">pkiprofile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Select the PKIProfile containing a CA or list of CA chainswhich will validate the certificate of the syslog server. It is a reference to an object of type PKIProfile. Field introduced in 17.2.17, 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">ssl_key_and_certificate_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Select a certificate and key which will be used to authenticate to the syslog server. It is a reference to an object of type SSLKeyAndCertificate. Field introduced in 17.2.17, 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">syslog_server </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The destination Syslog server IP address or hostname. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">syslog_server_port (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The destination Syslog server&#39;s service port. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-<div class="param">tls_enable (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable TLS to the syslog server. Field introduced in 17.2.16, 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">udp </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Network protocol to establish syslog session. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+      <div class="param">assign_policy (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Assignment rule for the Object Access Policy. Enum options - ASSIGN_ALL, ASSIGN_FROM_SELECT_LIST, ASSIGN_MATCHING_GROUP_NAME, ASSIGN_MATCHING_ATTRIBUTE_VALUE, ASSIGN_MATCHING_GROUP_REGEX, ASSIGN_MATCHING_ATTRIBUTE_REGEX. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">assign_role (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - ASSIGN_ALL, ASSIGN_FROM_SELECT_LIST, ASSIGN_MATCHING_GROUP_NAME, ASSIGN_MATCHING_ATTRIBUTE_VALUE, ASSIGN_MATCHING_GROUP_REGEX, ASSIGN_MATCHING_ATTRIBUTE_REGEX. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">assign_tenant (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - ASSIGN_ALL, ASSIGN_FROM_SELECT_LIST, ASSIGN_MATCHING_GROUP_NAME, ASSIGN_MATCHING_ATTRIBUTE_VALUE, ASSIGN_MATCHING_GROUP_REGEX, ASSIGN_MATCHING_ATTRIBUTE_REGEX. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">assign_userprofile (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Assignment rule for the User Account Profile. Enum options - ASSIGN_ALL, ASSIGN_FROM_SELECT_LIST, ASSIGN_MATCHING_GROUP_NAME, ASSIGN_MATCHING_ATTRIBUTE_VALUE, ASSIGN_MATCHING_GROUP_REGEX, ASSIGN_MATCHING_ATTRIBUTE_REGEX. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">attribute_match (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuthMatchAttribute">AuthMatchAttribute</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">default_tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Default tenant ref to assign to user. It is a reference to an object of type Tenant. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">group_match (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuthMatchGroupMembership">AuthMatchGroupMembership</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">index </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">is_superuser (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">object_access_policy_refs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Object Access Policies to assign to user on successful match. It is a reference to an object of type ObjectAccessPolicy. Field deprecated in 20.1.2. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">policy_attribute_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Attribute name for Object Access Policy assignment. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">role_attribute_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">role_refs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  It is a reference to an object of type Role. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">tenant_attribute_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">tenant_refs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  It is a reference to an object of type Tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">userprofile_attribute_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Attribute name for User Account Profile assignment. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">userprofile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> User Account Profile to assign to user on successful match. It is a reference to an object of type UserAccountProfile. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3 class="field-label"><a name="AlertTestSyslogSnmpParams">AlertTestSyslogSnmpParams</a> <a class="up" href="#__Models">Up</a></h3>
+    <h3 class="field-label"><a name="AuthMatchAttribute">AuthMatchAttribute</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contents of the Syslog message/SNMP Trap contents. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+      <div class="param">criteria </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> rule match criteria. Enum options - AUTH_MATCH_CONTAINS, AUTH_MATCH_DOES_NOT_CONTAIN, AUTH_MATCH_REGEX. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">values (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="AuthMatchGroupMembership">AuthMatchGroupMembership</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">criteria </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> rule match criteria. Enum options - AUTH_MATCH_CONTAINS, AUTH_MATCH_DOES_NOT_CONTAIN, AUTH_MATCH_REGEX. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
