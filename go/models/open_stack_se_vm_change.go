@@ -8,9 +8,9 @@ package models
 // swagger:model OpenStackSeVmChange
 type OpenStackSeVMChange struct {
 
-	//  Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ErrorString *string `json:"error_string,omitempty"`
 
-	//  Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeVMUUID *string `json:"se_vm_uuid,omitempty"`
 }

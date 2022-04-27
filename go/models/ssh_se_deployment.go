@@ -8,15 +8,15 @@ package models
 // swagger:model SSHSeDeployment
 type SSHSeDeployment struct {
 
-	// Host OS distribution e.g. COREOS, UBUNTU, REDHAT. Field deprecated in 17.1.1. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Host OS distribution e.g. COREOS, UBUNTU, REDHAT. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	HostOs *string `json:"host_os,omitempty"`
 
-	// Password for ssh and/or sudo. Field deprecated in 17.1.1. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Password for ssh and/or sudo. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Password *string `json:"password,omitempty"`
 
-	// Username for SSH access to hosts. Field deprecated in 17.1.1. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Username for SSH access to hosts. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SSHUser *string `json:"ssh_user,omitempty"`
 
-	// Username for sudo. Field deprecated in 17.1.1. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Username for sudo. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SudoUser *string `json:"sudo_user,omitempty"`
 }

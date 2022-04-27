@@ -24,6 +24,7 @@ type AviClient struct {
 	Application                     *ApplicationClient
 	ApplicationPersistenceProfile   *ApplicationPersistenceProfileClient
 	ApplicationProfile              *ApplicationProfileClient
+	AuthMappingProfile              *AuthMappingProfileClient
 	AuthProfile                     *AuthProfileClient
 	AutoScaleLaunchConfig           *AutoScaleLaunchConfigClient
 	AvailabilityZone                *AvailabilityZoneClient
@@ -131,7 +132,6 @@ type AviClient struct {
 	VIMgrNWRuntime                  *VIMgrNWRuntimeClient
 	VIMgrSEVMRuntime                *VIMgrSEVMRuntimeClient
 	VIMgrVMRuntime                  *VIMgrVMRuntimeClient
-	VIMgrVcenterRuntime             *VIMgrVcenterRuntimeClient
 	VIPGNameInfo                    *VIPGNameInfoClient
 	VSDataScriptSet                 *VSDataScriptSetClient
 	VirtualService                  *VirtualServiceClient
@@ -168,6 +168,7 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.Application = NewApplicationClient(aviSession)
 	aviClient.ApplicationPersistenceProfile = NewApplicationPersistenceProfileClient(aviSession)
 	aviClient.ApplicationProfile = NewApplicationProfileClient(aviSession)
+	aviClient.AuthMappingProfile = NewAuthMappingProfileClient(aviSession)
 	aviClient.AuthProfile = NewAuthProfileClient(aviSession)
 	aviClient.AutoScaleLaunchConfig = NewAutoScaleLaunchConfigClient(aviSession)
 	aviClient.AvailabilityZone = NewAvailabilityZoneClient(aviSession)
@@ -275,7 +276,6 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.VIMgrNWRuntime = NewVIMgrNWRuntimeClient(aviSession)
 	aviClient.VIMgrSEVMRuntime = NewVIMgrSEVMRuntimeClient(aviSession)
 	aviClient.VIMgrVMRuntime = NewVIMgrVMRuntimeClient(aviSession)
-	aviClient.VIMgrVcenterRuntime = NewVIMgrVcenterRuntimeClient(aviSession)
 	aviClient.VIPGNameInfo = NewVIPGNameInfoClient(aviSession)
 	aviClient.VSDataScriptSet = NewVSDataScriptSetClient(aviSession)
 	aviClient.VirtualService = NewVirtualServiceClient(aviSession)

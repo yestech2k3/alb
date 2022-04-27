@@ -8,10 +8,10 @@ package models
 // swagger:model VIControllerVnicInfo
 type VIControllerVnicInfo struct {
 
-	//  Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	Portgroup *string `json:"portgroup"`
 
-	//  Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	VnicIP []*VIGuestvNicIPAddr `json:"vnic_ip,omitempty"`
 }

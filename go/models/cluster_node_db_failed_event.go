@@ -8,12 +8,12 @@ package models
 // swagger:model ClusterNodeDbFailedEvent
 type ClusterNodeDbFailedEvent struct {
 
-	// Number of failures. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Number of failures. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	FailureCount *int32 `json:"failure_count,omitempty"`
 
-	// IP address of the controller VM. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// IP address of the controller VM. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	IP *IPAddr `json:"ip,omitempty"`
 
-	// Name of controller node. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Name of controller node. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	NodeName *string `json:"node_name,omitempty"`
 }

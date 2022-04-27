@@ -8,9 +8,9 @@ package models
 // swagger:model ConnectionClearFilter
 type ConnectionClearFilter struct {
 
-	// IP address in dotted decimal notation. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// IP address in dotted decimal notation. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	IPAddr *string `json:"ip_addr,omitempty"`
 
-	// Port number. Allowed in Enterprise with any value edition, Essentials edition, Basic edition, Enterprise with Cloud Services edition.
+	// Port number. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Port *int32 `json:"port,omitempty"`
 }
