@@ -359,7 +359,7 @@ public class VirtualService extends AviRestResource  {
      * Redistribution of the virtualservices can be either manual or automated when the failed serviceengine recovers.
      * Redistribution is based on the auto redistribute property of the serviceenginegroup.
      * Enum options - ACTIVE_STANDBY_SE_1, ACTIVE_STANDBY_SE_2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "ACTIVE_STANDBY_SE_1".
      * @return activeStandbySeTag
      */
@@ -376,7 +376,7 @@ public class VirtualService extends AviRestResource  {
      * Redistribution of the virtualservices can be either manual or automated when the failed serviceengine recovers.
      * Redistribution is based on the auto redistribute property of the serviceenginegroup.
      * Enum options - ACTIVE_STANDBY_SE_1, ACTIVE_STANDBY_SE_2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "ACTIVE_STANDBY_SE_1".
      * @param activeStandbySeTag set the activeStandbySeTag.
      */
@@ -390,7 +390,7 @@ public class VirtualService extends AviRestResource  {
      * This setting takes effect for future virtual service flaps.
      * To advertise current vses that are down, please disable and re-enable the virtual service.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return advertiseDownVs
@@ -405,7 +405,7 @@ public class VirtualService extends AviRestResource  {
      * This setting takes effect for future virtual service flaps.
      * To advertise current vses that are down, please disable and re-enable the virtual service.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param advertiseDownVs set the advertiseDownVs.
@@ -419,7 +419,7 @@ public class VirtualService extends AviRestResource  {
      * Process request even if invalid client certificate is presented.
      * Datascript apis need to be used for processing of such requests.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return allowInvalidClientCert
@@ -433,7 +433,7 @@ public class VirtualService extends AviRestResource  {
      * Process request even if invalid client certificate is presented.
      * Datascript apis need to be used for processing of such requests.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param allowInvalidClientCert set the allowInvalidClientCert.
@@ -445,7 +445,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Determines analytics settings for the application.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return analyticsPolicy
      */
@@ -456,7 +456,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Determines analytics settings for the application.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param analyticsPolicy set the analyticsPolicy.
      */
@@ -468,7 +468,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Specifies settings related to analytics.
      * It is a reference to an object of type analyticsprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return analyticsProfileRef
      */
@@ -480,7 +480,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Specifies settings related to analytics.
      * It is a reference to an object of type analyticsprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param analyticsProfileRef set the analyticsProfileRef.
      */
@@ -495,7 +495,7 @@ public class VirtualService extends AviRestResource  {
      * This is applicable only for service integration mode with cisco apic controller.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.2.12,18.1.2.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return apicContractGraph
      */
     public String getApicContractGraph() {
@@ -509,7 +509,7 @@ public class VirtualService extends AviRestResource  {
      * This is applicable only for service integration mode with cisco apic controller.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.2.12,18.1.2.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @param apicContractGraph set the apicContractGraph.
      */
     public void setApicContractGraph(String  apicContractGraph) {
@@ -520,7 +520,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Enable application layer specific features for the virtual service.
      * It is a reference to an object of type applicationprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Special default for essentials edition is system-l4-application.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return applicationProfileRef
@@ -533,7 +533,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Enable application layer specific features for the virtual service.
      * It is a reference to an object of type applicationprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Special default for essentials edition is system-l4-application.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param applicationProfileRef set the applicationProfileRef.
@@ -546,7 +546,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Auto-allocate floating/elastic ip from the cloud infrastructure.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return autoAllocateFloatingIp
      */
     public Boolean getAutoAllocateFloatingIp() {
@@ -557,7 +557,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Auto-allocate floating/elastic ip from the cloud infrastructure.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param autoAllocateFloatingIp set the autoAllocateFloatingIp.
      */
     public void setAutoAllocateFloatingIp(Boolean  autoAllocateFloatingIp) {
@@ -568,7 +568,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Auto-allocate vip from the provided subnet.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return autoAllocateIp
      */
     public Boolean getAutoAllocateIp() {
@@ -579,7 +579,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Auto-allocate vip from the provided subnet.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param autoAllocateIp set the autoAllocateIp.
      */
     public void setAutoAllocateIp(Boolean  autoAllocateIp) {
@@ -590,7 +590,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Availability-zone to place the virtual service.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return availabilityZone
      */
     public String getAvailabilityZone() {
@@ -601,7 +601,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Availability-zone to place the virtual service.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param availabilityZone set the availabilityZone.
      */
     public void setAvailabilityZone(String  availabilityZone) {
@@ -612,7 +612,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * (internal-use) fip allocated by avi in the cloud infrastructure.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return aviAllocatedFip
      */
     public Boolean getAviAllocatedFip() {
@@ -623,7 +623,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * (internal-use) fip allocated by avi in the cloud infrastructure.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param aviAllocatedFip set the aviAllocatedFip.
      */
     public void setAviAllocatedFip(Boolean  aviAllocatedFip) {
@@ -634,7 +634,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * (internal-use) vip allocated by avi in the cloud infrastructure.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return aviAllocatedVip
      */
     public Boolean getAviAllocatedVip() {
@@ -645,7 +645,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * (internal-use) vip allocated by avi in the cloud infrastructure.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param aviAllocatedVip set the aviAllocatedVip.
      */
     public void setAviAllocatedVip(Boolean  aviAllocatedVip) {
@@ -658,7 +658,7 @@ public class VirtualService extends AviRestResource  {
      * Azure availability set to which this vs is associated.
      * Internally set by the cloud connector.
      * Field introduced in 17.2.12, 18.1.2.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * @return azureAvailabilitySet
      */
@@ -672,7 +672,7 @@ public class VirtualService extends AviRestResource  {
      * Azure availability set to which this vs is associated.
      * Internally set by the cloud connector.
      * Field introduced in 17.2.12, 18.1.2.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * @param azureAvailabilitySet set the azureAvailabilitySet.
      */
@@ -684,7 +684,7 @@ public class VirtualService extends AviRestResource  {
      * Select bgp peers, using peer label, for vsvip advertisement.
      * Field introduced in 20.1.5.
      * Maximum of 128 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return bgpPeerLabels
      */
@@ -697,7 +697,7 @@ public class VirtualService extends AviRestResource  {
      * Select bgp peers, using peer label, for vsvip advertisement.
      * Field introduced in 20.1.5.
      * Maximum of 128 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return bgpPeerLabels
      */
@@ -710,7 +710,7 @@ public class VirtualService extends AviRestResource  {
      * Select bgp peers, using peer label, for vsvip advertisement.
      * Field introduced in 20.1.5.
      * Maximum of 128 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return bgpPeerLabels
      */
@@ -753,7 +753,7 @@ public class VirtualService extends AviRestResource  {
      * For ex  ssl sessions are stored using vs's key-value cache.
      * When the vs is scaled out, the ssl session information is synced to the new se, allowing existing ssl sessions to be reused on the new se.
      * Field introduced in 17.2.7, 18.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return bulkSyncKvcache
@@ -769,7 +769,7 @@ public class VirtualService extends AviRestResource  {
      * For ex  ssl sessions are stored using vs's key-value cache.
      * When the vs is scaled out, the ssl session information is synced to the new se, allowing existing ssl sessions to be reused on the new se.
      * Field introduced in 17.2.7, 18.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param bulkSyncKvcache set the bulkSyncKvcache.
@@ -782,7 +782,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Http authentication configuration for protected resources.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return clientAuth
      */
     public HTTPClientAuthenticationParams getClientAuth() {
@@ -793,7 +793,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Http authentication configuration for protected resources.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @param clientAuth set the clientAuth.
      */
     public void setClientAuth(HTTPClientAuthenticationParams clientAuth) {
@@ -804,7 +804,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Close client connection on vs config update.
      * Field introduced in 17.2.4.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return closeClientConnOnConfigUpdate
@@ -817,7 +817,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Close client connection on vs config update.
      * Field introduced in 17.2.4.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param closeClientConnOnConfigUpdate set the closeClientConnOnConfigUpdate.
@@ -830,7 +830,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Checksum of cloud configuration for vs.
      * Internally set by cloud connector.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudConfigCksum
      */
@@ -842,7 +842,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Checksum of cloud configuration for vs.
      * Internally set by cloud connector.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudConfigCksum set the cloudConfigCksum.
      */
@@ -853,7 +853,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type cloud.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudRef
      */
@@ -864,7 +864,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type cloud.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudRef set the cloudRef.
      */
@@ -876,8 +876,8 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Enum options - CLOUD_NONE, CLOUD_VCENTER, CLOUD_OPENSTACK, CLOUD_AWS, CLOUD_VCA, CLOUD_APIC, CLOUD_MESOS, CLOUD_LINUXSERVER, CLOUD_DOCKER_UCP,
      * CLOUD_RANCHER, CLOUD_OSHIFT_K8S, CLOUD_AZURE, CLOUD_GCP, CLOUD_NSXT.
-     * Allowed in enterprise with any value edition, essentials(allowed values- cloud_none,cloud_vcenter) edition, basic(allowed values-
-     * cloud_none,cloud_nsxt) edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- cloud_none,cloud_vcenter), basic edition(allowed values-
+     * cloud_none,cloud_nsxt), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "CLOUD_NONE".
      * @return cloudType
      */
@@ -889,8 +889,8 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Enum options - CLOUD_NONE, CLOUD_VCENTER, CLOUD_OPENSTACK, CLOUD_AWS, CLOUD_VCA, CLOUD_APIC, CLOUD_MESOS, CLOUD_LINUXSERVER, CLOUD_DOCKER_UCP,
      * CLOUD_RANCHER, CLOUD_OSHIFT_K8S, CLOUD_AZURE, CLOUD_GCP, CLOUD_NSXT.
-     * Allowed in enterprise with any value edition, essentials(allowed values- cloud_none,cloud_vcenter) edition, basic(allowed values-
-     * cloud_none,cloud_nsxt) edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- cloud_none,cloud_vcenter), basic edition(allowed values-
+     * cloud_none,cloud_nsxt), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "CLOUD_NONE".
      * @param cloudType set the cloudType.
      */
@@ -901,7 +901,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Rate limit the incoming connections to this virtual service.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return connectionsRateLimit
      */
@@ -912,7 +912,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Rate limit the incoming connections to this virtual service.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param connectionsRateLimit set the connectionsRateLimit.
      */
@@ -923,7 +923,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Profile used to match and rewrite strings in request and/or response body.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return contentRewrite
      */
@@ -934,7 +934,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Profile used to match and rewrite strings in request and/or response body.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param contentRewrite set the contentRewrite.
      */
@@ -945,7 +945,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Creator name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return createdBy
      */
@@ -956,7 +956,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Creator name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param createdBy set the createdBy.
      */
@@ -968,7 +968,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Select the algorithm for qos fairness.
      * This determines how multiple virtual services sharing the same service engines will prioritize traffic over a congested network.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return delayFairness
@@ -981,7 +981,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Select the algorithm for qos fairness.
      * This determines how multiple virtual services sharing the same service engines will prioritize traffic over a congested network.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param delayFairness set the delayFairness.
@@ -992,7 +992,7 @@ public class VirtualService extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -1002,7 +1002,7 @@ public class VirtualService extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -1015,7 +1015,7 @@ public class VirtualService extends AviRestResource  {
      * This field is deprecated.
      * It is a reference to an object of type network.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredNetworkRef
      */
     public List<String> getDiscoveredNetworkRef() {
@@ -1028,7 +1028,7 @@ public class VirtualService extends AviRestResource  {
      * This field is deprecated.
      * It is a reference to an object of type network.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredNetworkRef
      */
     public void setDiscoveredNetworkRef(List<String>  discoveredNetworkRef) {
@@ -1041,7 +1041,7 @@ public class VirtualService extends AviRestResource  {
      * This field is deprecated.
      * It is a reference to an object of type network.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredNetworkRef
      */
     public VirtualService addDiscoveredNetworkRefItem(String discoveredNetworkRefItem) {
@@ -1056,7 +1056,7 @@ public class VirtualService extends AviRestResource  {
      * (internal-use) discovered networks providing reachability for client facing virtual service ip.
      * This field is used internally by avi, not editable by the user.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredNetworks
      */
     public List<DiscoveredNetwork> getDiscoveredNetworks() {
@@ -1068,7 +1068,7 @@ public class VirtualService extends AviRestResource  {
      * (internal-use) discovered networks providing reachability for client facing virtual service ip.
      * This field is used internally by avi, not editable by the user.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredNetworks
      */
     public void setDiscoveredNetworks(List<DiscoveredNetwork>  discoveredNetworks) {
@@ -1080,7 +1080,7 @@ public class VirtualService extends AviRestResource  {
      * (internal-use) discovered networks providing reachability for client facing virtual service ip.
      * This field is used internally by avi, not editable by the user.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredNetworks
      */
     public VirtualService addDiscoveredNetworksItem(DiscoveredNetwork discoveredNetworksItem) {
@@ -1095,7 +1095,7 @@ public class VirtualService extends AviRestResource  {
      * (internal-use) discovered subnets providing reachability for client facing virtual service ip.
      * This field is deprecated.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredSubnet
      */
     public List<IpAddrPrefix> getDiscoveredSubnet() {
@@ -1107,7 +1107,7 @@ public class VirtualService extends AviRestResource  {
      * (internal-use) discovered subnets providing reachability for client facing virtual service ip.
      * This field is deprecated.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredSubnet
      */
     public void setDiscoveredSubnet(List<IpAddrPrefix>  discoveredSubnet) {
@@ -1119,7 +1119,7 @@ public class VirtualService extends AviRestResource  {
      * (internal-use) discovered subnets providing reachability for client facing virtual service ip.
      * This field is deprecated.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return discoveredSubnet
      */
     public VirtualService addDiscoveredSubnetItem(IpAddrPrefix discoveredSubnetItem) {
@@ -1134,7 +1134,7 @@ public class VirtualService extends AviRestResource  {
      * Service discovery specific data including fully qualified domain name, type and time-to-live of the dns record.
      * Note that only one of fqdn and dns_info setting is allowed.
      * Maximum of 1000 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsInfo
      */
@@ -1147,7 +1147,7 @@ public class VirtualService extends AviRestResource  {
      * Service discovery specific data including fully qualified domain name, type and time-to-live of the dns record.
      * Note that only one of fqdn and dns_info setting is allowed.
      * Maximum of 1000 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsInfo
      */
@@ -1160,7 +1160,7 @@ public class VirtualService extends AviRestResource  {
      * Service discovery specific data including fully qualified domain name, type and time-to-live of the dns record.
      * Note that only one of fqdn and dns_info setting is allowed.
      * Maximum of 1000 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsInfo
      */
@@ -1175,7 +1175,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Dns policies applied on the dns traffic of the virtual service.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsPolicies
      */
@@ -1187,7 +1187,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the dnsPolicies
      * Dns policies applied on the dns traffic of the virtual service.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsPolicies
      */
@@ -1199,7 +1199,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the dnsPolicies
      * Dns policies applied on the dns traffic of the virtual service.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsPolicies
      */
@@ -1214,7 +1214,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Force placement on all se's in service group (mesos mode only).
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return eastWestPlacement
@@ -1226,7 +1226,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Force placement on all se's in service group (mesos mode only).
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param eastWestPlacement set the eastWestPlacement.
@@ -1238,7 +1238,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Response traffic to clients will be sent back to the source mac address of the connection, rather than statically sent to a default gateway.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Special default for essentials edition is false, basic edition is false, enterprise is true.
      * @return enableAutogw
@@ -1250,7 +1250,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Response traffic to clients will be sent back to the source mac address of the connection, rather than statically sent to a default gateway.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Special default for essentials edition is false, basic edition is false, enterprise is true.
      * @param enableAutogw set the enableAutogw.
@@ -1262,7 +1262,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Enable route health injection using the bgp config in the vrf context.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return enableRhi
      */
@@ -1273,7 +1273,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Enable route health injection using the bgp config in the vrf context.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param enableRhi set the enableRhi.
      */
@@ -1284,7 +1284,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Enable route health injection for source nat'ted floating ip address using the bgp config in the vrf context.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return enableRhiSnat
      */
@@ -1295,7 +1295,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Enable route health injection for source nat'ted floating ip address using the bgp config in the vrf context.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param enableRhiSnat set the enableRhiSnat.
      */
@@ -1306,7 +1306,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Enable or disable the virtual service.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enabled
      */
@@ -1317,7 +1317,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Enable or disable the virtual service.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enabled set the enabled.
      */
@@ -1330,7 +1330,7 @@ public class VirtualService extends AviRestResource  {
      * Error page profile to be used for this virtualservice.this profile is used to send the custom error page to the client generated by the proxy.
      * It is a reference to an object of type errorpageprofile.
      * Field introduced in 17.2.4.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return errorPageProfileRef
      */
@@ -1343,7 +1343,7 @@ public class VirtualService extends AviRestResource  {
      * Error page profile to be used for this virtualservice.this profile is used to send the custom error page to the client generated by the proxy.
      * It is a reference to an object of type errorpageprofile.
      * Field introduced in 17.2.4.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param errorPageProfileRef set the errorPageProfileRef.
      */
@@ -1355,7 +1355,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Floating ip to associate with this virtual service.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return floatingIp
      */
     public IpAddr getFloatingIp() {
@@ -1366,7 +1366,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Floating ip to associate with this virtual service.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param floatingIp set the floatingIp.
      */
     public void setFloatingIp(IpAddr floatingIp) {
@@ -1379,7 +1379,7 @@ public class VirtualService extends AviRestResource  {
      * This field is applicable only if the virtualservice belongs to an openstack or aws cloud.
      * In openstack or aws cloud it is required when auto_allocate_floating_ip is selected.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return floatingSubnetUuid
      */
     public String getFloatingSubnetUuid() {
@@ -1392,7 +1392,7 @@ public class VirtualService extends AviRestResource  {
      * This field is applicable only if the virtualservice belongs to an openstack or aws cloud.
      * In openstack or aws cloud it is required when auto_allocate_floating_ip is selected.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param floatingSubnetUuid set the floatingSubnetUuid.
      */
     public void setFloatingSubnetUuid(String  floatingSubnetUuid) {
@@ -1403,7 +1403,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Criteria for flow distribution among ses.
      * Enum options - LOAD_AWARE, CONSISTENT_HASH_SOURCE_IP_ADDRESS, CONSISTENT_HASH_SOURCE_IP_ADDRESS_AND_PORT.
-     * Allowed in enterprise with any value edition, essentials(allowed values- load_aware) edition, basic(allowed values- load_aware) edition,
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- load_aware), basic edition(allowed values- load_aware),
      * enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "LOAD_AWARE".
      * @return flowDist
@@ -1416,7 +1416,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Criteria for flow distribution among ses.
      * Enum options - LOAD_AWARE, CONSISTENT_HASH_SOURCE_IP_ADDRESS, CONSISTENT_HASH_SOURCE_IP_ADDRESS_AND_PORT.
-     * Allowed in enterprise with any value edition, essentials(allowed values- load_aware) edition, basic(allowed values- load_aware) edition,
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- load_aware), basic edition(allowed values- load_aware),
      * enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "LOAD_AWARE".
      * @param flowDist set the flowDist.
@@ -1429,7 +1429,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Criteria for flow labelling.
      * Enum options - NO_LABEL, APPLICATION_LABEL, SERVICE_LABEL.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "NO_LABEL".
      * @return flowLabelType
      */
@@ -1441,7 +1441,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Criteria for flow labelling.
      * Enum options - NO_LABEL, APPLICATION_LABEL, SERVICE_LABEL.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "NO_LABEL".
      * @param flowLabelType set the flowLabelType.
      */
@@ -1453,7 +1453,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Dns resolvable, fully qualified domain name of the virtualservice.
      * Only one of 'fqdn' and 'dns_info' configuration is allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return fqdn
      */
@@ -1465,7 +1465,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Dns resolvable, fully qualified domain name of the virtualservice.
      * Only one of 'fqdn' and 'dns_info' configuration is allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param fqdn set the fqdn.
      */
@@ -1477,7 +1477,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Translate the host name sent to the servers to this value.
      * Translate the host name sent from servers back to the value used by the client.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return hostNameXlate
      */
@@ -1489,7 +1489,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Translate the host name sent to the servers to this value.
      * Translate the host name sent from servers back to the value used by the client.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param hostNameXlate set the hostNameXlate.
      */
@@ -1499,7 +1499,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Http policies applied on the data traffic of the virtual service.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpPolicies
      */
@@ -1510,7 +1510,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method. this will set the httpPolicies
      * Http policies applied on the data traffic of the virtual service.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpPolicies
      */
@@ -1521,7 +1521,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method this will set the httpPolicies
      * Http policies applied on the data traffic of the virtual service.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpPolicies
      */
@@ -1538,7 +1538,7 @@ public class VirtualService extends AviRestResource  {
      * It is a reference to an object of type icapprofile.
      * Field introduced in 20.1.1.
      * Maximum of 1 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return icapRequestProfileRefs
      */
@@ -1552,7 +1552,7 @@ public class VirtualService extends AviRestResource  {
      * It is a reference to an object of type icapprofile.
      * Field introduced in 20.1.1.
      * Maximum of 1 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return icapRequestProfileRefs
      */
@@ -1566,7 +1566,7 @@ public class VirtualService extends AviRestResource  {
      * It is a reference to an object of type icapprofile.
      * Field introduced in 20.1.1.
      * Maximum of 1 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return icapRequestProfileRefs
      */
@@ -1581,7 +1581,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Ignore pool servers network reachability constraints for virtual service placement.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return ignPoolNetReach
      */
@@ -1592,7 +1592,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Ignore pool servers network reachability constraints for virtual service placement.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param ignPoolNetReach set the ignPoolNetReach.
      */
@@ -1604,7 +1604,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Ip address of the virtual service.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return ipAddress
      */
     public IpAddr getIpAddress() {
@@ -1615,7 +1615,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Ip address of the virtual service.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param ipAddress set the ipAddress.
      */
     public void setIpAddress(IpAddr ipAddress) {
@@ -1626,7 +1626,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Subnet and/or network for allocating virtualservice ip by ipam provider module.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return ipamNetworkSubnet
      */
     public IPNetworkSubnet getIpamNetworkSubnet() {
@@ -1637,7 +1637,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Subnet and/or network for allocating virtualservice ip by ipam provider module.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param ipamNetworkSubnet set the ipamNetworkSubnet.
      */
     public void setIpamNetworkSubnet(IPNetworkSubnet ipamNetworkSubnet) {
@@ -1648,7 +1648,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Application-specific config for jwt validation.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return jwtConfig
      */
@@ -1660,7 +1660,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Application-specific config for jwt validation.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param jwtConfig set the jwtConfig.
      */
@@ -1671,7 +1671,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * L4 policies applied to the data traffic of the virtual service.
      * Field introduced in 17.2.7.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return l4Policies
      */
@@ -1683,7 +1683,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the l4Policies
      * L4 policies applied to the data traffic of the virtual service.
      * Field introduced in 17.2.7.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return l4Policies
      */
@@ -1695,7 +1695,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the l4Policies
      * L4 policies applied to the data traffic of the virtual service.
      * Field introduced in 17.2.7.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return l4Policies
      */
@@ -1713,7 +1713,7 @@ public class VirtualService extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public List<KeyValue> getLabels() {
@@ -1727,7 +1727,7 @@ public class VirtualService extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public void setLabels(List<KeyValue>  labels) {
@@ -1741,7 +1741,7 @@ public class VirtualService extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public VirtualService addLabelsItem(KeyValue labelsItem) {
@@ -1756,7 +1756,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Application-specific ldap config.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ldapVsConfig
      */
@@ -1768,7 +1768,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Application-specific ldap config.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ldapVsConfig set the ldapVsConfig.
      */
@@ -1779,7 +1779,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return limitDoser
      */
@@ -1790,7 +1790,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Limit potential dos attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param limitDoser set the limitDoser.
      */
@@ -1801,7 +1801,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -1814,7 +1814,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -1827,7 +1827,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -1845,7 +1845,7 @@ public class VirtualService extends AviRestResource  {
      * Maximum connections per second per client ip.
      * Allowed values are 10-1000.
      * Special values are 0- unlimited.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return maxCpsPerClient
      */
@@ -1858,7 +1858,7 @@ public class VirtualService extends AviRestResource  {
      * Maximum connections per second per client ip.
      * Allowed values are 10-1000.
      * Special values are 0- unlimited.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param maxCpsPerClient set the maxCpsPerClient.
      */
@@ -1870,7 +1870,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Microservice representing the virtual service.
      * It is a reference to an object of type microservice.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return microserviceRef
      */
@@ -1882,7 +1882,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Microservice representing the virtual service.
      * It is a reference to an object of type microservice.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param microserviceRef set the microserviceRef.
      */
@@ -1894,7 +1894,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Minimum number of up pools to mark vs up.
      * Field introduced in 18.2.1, 17.2.12.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return minPoolsUp
      */
@@ -1906,7 +1906,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Minimum number of up pools to mark vs up.
      * Field introduced in 18.2.1, 17.2.12.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param minPoolsUp set the minPoolsUp.
      */
@@ -1917,7 +1917,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Name for the virtual service.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -1928,7 +1928,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Name for the virtual service.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -1940,7 +1940,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Determines network settings such as protocol, tcp or udp, and related options for the protocol.
      * It is a reference to an object of type networkprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Special default for essentials edition is system-tcp-fast-path.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return networkProfileRef
@@ -1953,7 +1953,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Determines network settings such as protocol, tcp or udp, and related options for the protocol.
      * It is a reference to an object of type networkprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Special default for essentials edition is system-tcp-fast-path.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param networkProfileRef set the networkProfileRef.
@@ -1967,7 +1967,7 @@ public class VirtualService extends AviRestResource  {
      * Manually override the network on which the virtual service is placed.
      * It is a reference to an object of type network.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return networkRef
      */
     public String getNetworkRef() {
@@ -1979,7 +1979,7 @@ public class VirtualService extends AviRestResource  {
      * Manually override the network on which the virtual service is placed.
      * It is a reference to an object of type network.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param networkRef set the networkRef.
      */
     public void setNetworkRef(String  networkRef) {
@@ -1990,7 +1990,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Network security policies for the virtual service.
      * It is a reference to an object of type networksecuritypolicy.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return networkSecurityPolicyRef
      */
@@ -2002,7 +2002,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Network security policies for the virtual service.
      * It is a reference to an object of type networksecuritypolicy.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param networkSecurityPolicyRef set the networkSecurityPolicyRef.
      */
@@ -2013,7 +2013,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * A list of nsx groups representing the clients which can access the virtual ip of the virtual service.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return nsxSecuritygroup
      */
@@ -2025,7 +2025,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the nsxSecuritygroup
      * A list of nsx groups representing the clients which can access the virtual ip of the virtual service.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return nsxSecuritygroup
      */
@@ -2037,7 +2037,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the nsxSecuritygroup
      * A list of nsx groups representing the clients which can access the virtual ip of the virtual service.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return nsxSecuritygroup
      */
@@ -2053,7 +2053,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Virtualservice specific oauth config.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return oauthVsConfig
      */
@@ -2065,7 +2065,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Virtualservice specific oauth config.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param oauthVsConfig set the oauthVsConfig.
      */
@@ -2076,7 +2076,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Optional settings that determine performance limits like max connections or bandwdith etc.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return performanceLimits
      */
@@ -2087,7 +2087,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Optional settings that determine performance limits like max connections or bandwdith etc.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param performanceLimits set the performanceLimits.
      */
@@ -2099,7 +2099,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * The pool group is an object that contains pools.
      * It is a reference to an object of type poolgroup.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return poolGroupRef
      */
@@ -2111,7 +2111,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * The pool group is an object that contains pools.
      * It is a reference to an object of type poolgroup.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param poolGroupRef set the poolGroupRef.
      */
@@ -2123,7 +2123,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * The pool is an object that contains destination servers and related attributes such as load-balancing and persistence.
      * It is a reference to an object of type pool.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return poolRef
      */
@@ -2135,7 +2135,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * The pool is an object that contains destination servers and related attributes such as load-balancing and persistence.
      * It is a reference to an object of type pool.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param poolRef set the poolRef.
      */
@@ -2147,7 +2147,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * (internal-use) network port assigned to the virtual service ip address.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return portUuid
      */
     public String getPortUuid() {
@@ -2158,7 +2158,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * (internal-use) network port assigned to the virtual service ip address.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param portUuid set the portUuid.
      */
     public void setPortUuid(String  portUuid) {
@@ -2168,7 +2168,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Remove listening port if virtualservice is down.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return removeListeningPortOnVsDown
      */
@@ -2179,7 +2179,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Remove listening port if virtualservice is down.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param removeListeningPortOnVsDown set the removeListeningPortOnVsDown.
      */
@@ -2190,7 +2190,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Rate limit the incoming requests to this virtual service.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requestsRateLimit
      */
@@ -2201,7 +2201,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Rate limit the incoming requests to this virtual service.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param requestsRateLimit set the requestsRateLimit.
      */
@@ -2213,7 +2213,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Application-specific saml config.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return samlSpConfig
      */
@@ -2225,7 +2225,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Application-specific saml config.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param samlSpConfig set the samlSpConfig.
      */
@@ -2237,7 +2237,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Disable re-distribution of flows across service engines for a virtual service.
      * Enable if the network itself performs flow hashing with ecmp in environments such as gcp.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return scaleoutEcmp
      */
@@ -2249,7 +2249,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Disable re-distribution of flows across service engines for a virtual service.
      * Enable if the network itself performs flow hashing with ecmp in environments such as gcp.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param scaleoutEcmp set the scaleoutEcmp.
      */
@@ -2262,7 +2262,7 @@ public class VirtualService extends AviRestResource  {
      * The service engine group to use for this virtual service.
      * Moving to a new se group is disruptive to existing connections for this vs.
      * It is a reference to an object of type serviceenginegroup.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRef
      */
@@ -2275,7 +2275,7 @@ public class VirtualService extends AviRestResource  {
      * The service engine group to use for this virtual service.
      * Moving to a new se group is disruptive to existing connections for this vs.
      * It is a reference to an object of type serviceenginegroup.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param seGroupRef set the seGroupRef.
      */
@@ -2289,7 +2289,7 @@ public class VirtualService extends AviRestResource  {
      * This policy is used to perform security actions such as distributed denial of service (ddos) attack mitigation, etc.
      * It is a reference to an object of type securitypolicy.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return securityPolicyRef
      */
@@ -2303,7 +2303,7 @@ public class VirtualService extends AviRestResource  {
      * This policy is used to perform security actions such as distributed denial of service (ddos) attack mitigation, etc.
      * It is a reference to an object of type securitypolicy.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param securityPolicyRef set the securityPolicyRef.
      */
@@ -2316,7 +2316,7 @@ public class VirtualService extends AviRestResource  {
      * Determines the network settings profile for the server side of tcp proxied connections.
      * Leave blank to use the same settings as the client to vs side of the connection.
      * It is a reference to an object of type networkprofile.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return serverNetworkProfileRef
      */
@@ -2329,7 +2329,7 @@ public class VirtualService extends AviRestResource  {
      * Determines the network settings profile for the server side of tcp proxied connections.
      * Leave blank to use the same settings as the client to vs side of the connection.
      * It is a reference to an object of type networkprofile.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param serverNetworkProfileRef set the serverNetworkProfileRef.
      */
@@ -2342,7 +2342,7 @@ public class VirtualService extends AviRestResource  {
      * Metadata pertaining to the service provided by this virtual service.
      * In openshift/kubernetes environments, egress pod info is stored.
      * Any user input to this field will be overwritten by avi vantage.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return serviceMetadata
      */
@@ -2355,7 +2355,7 @@ public class VirtualService extends AviRestResource  {
      * Metadata pertaining to the service provided by this virtual service.
      * In openshift/kubernetes environments, egress pod info is stored.
      * Any user input to this field will be overwritten by avi vantage.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param serviceMetadata set the serviceMetadata.
      */
@@ -2365,7 +2365,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Select pool based on destination port.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return servicePoolSelect
      */
@@ -2376,7 +2376,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method. this will set the servicePoolSelect
      * Select pool based on destination port.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return servicePoolSelect
      */
@@ -2387,7 +2387,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method this will set the servicePoolSelect
      * Select pool based on destination port.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return servicePoolSelect
      */
@@ -2402,7 +2402,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * List of services defined for this virtual service.
      * Maximum of 2048 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return services
      */
@@ -2414,7 +2414,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the services
      * List of services defined for this virtual service.
      * Maximum of 2048 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return services
      */
@@ -2426,7 +2426,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the services
      * List of services defined for this virtual service.
      * Maximum of 2048 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return services
      */
@@ -2441,7 +2441,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Sideband configuration to be used for this virtualservice.it can be used for sending traffic to sideband vips for external inspection etc.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sidebandProfile
      */
@@ -2452,7 +2452,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Sideband configuration to be used for this virtualservice.it can be used for sending traffic to sideband vips for external inspection etc.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sidebandProfile set the sidebandProfile.
      */
@@ -2463,7 +2463,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Nat'ted floating source ip address(es) for upstream connection to servers.
      * Maximum of 32 items allowed.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return snatIp
      */
@@ -2475,7 +2475,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the snatIp
      * Nat'ted floating source ip address(es) for upstream connection to servers.
      * Maximum of 32 items allowed.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return snatIp
      */
@@ -2487,7 +2487,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the snatIp
      * Nat'ted floating source ip address(es) for upstream connection to servers.
      * Maximum of 32 items allowed.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return snatIp
      */
@@ -2505,7 +2505,7 @@ public class VirtualService extends AviRestResource  {
      * This is a read-only field for the user.
      * It is a reference to an object of type pool.
      * Field introduced in 17.2.2.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * @return spPoolRefs
      */
@@ -2520,7 +2520,7 @@ public class VirtualService extends AviRestResource  {
      * This is a read-only field for the user.
      * It is a reference to an object of type pool.
      * Field introduced in 17.2.2.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * @return spPoolRefs
      */
@@ -2535,7 +2535,7 @@ public class VirtualService extends AviRestResource  {
      * This is a read-only field for the user.
      * It is a reference to an object of type pool.
      * Field introduced in 17.2.2.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * @return spPoolRefs
      */
@@ -2550,7 +2550,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Select or create one or two certificates, ec and/or rsa, that will be presented to ssl/tls terminated connections.
      * It is a reference to an object of type sslkeyandcertificate.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslKeyAndCertificateRefs
      */
@@ -2562,7 +2562,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the sslKeyAndCertificateRefs
      * Select or create one or two certificates, ec and/or rsa, that will be presented to ssl/tls terminated connections.
      * It is a reference to an object of type sslkeyandcertificate.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslKeyAndCertificateRefs
      */
@@ -2574,7 +2574,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the sslKeyAndCertificateRefs
      * Select or create one or two certificates, ec and/or rsa, that will be presented to ssl/tls terminated connections.
      * It is a reference to an object of type sslkeyandcertificate.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslKeyAndCertificateRefs
      */
@@ -2590,7 +2590,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Determines the set of ssl versions and ciphers to accept for ssl/tls terminated connections.
      * It is a reference to an object of type sslprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslProfileRef
      */
@@ -2602,7 +2602,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Determines the set of ssl versions and ciphers to accept for ssl/tls terminated connections.
      * It is a reference to an object of type sslprofile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sslProfileRef set the sslProfileRef.
      */
@@ -2613,7 +2613,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Select ssl profile based on client ip address match.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslProfileSelectors
      */
@@ -2625,7 +2625,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the sslProfileSelectors
      * Select ssl profile based on client ip address match.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslProfileSelectors
      */
@@ -2637,7 +2637,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the sslProfileSelectors
      * Select ssl profile based on client ip address match.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslProfileSelectors
      */
@@ -2653,7 +2653,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Expected number of ssl session cache entries (may be exceeded).
      * Allowed values are 1024-16383.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1024.
      * @return sslSessCacheAvgSize
      */
@@ -2665,7 +2665,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Expected number of ssl session cache entries (may be exceeded).
      * Allowed values are 1024-16383.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1024.
      * @param sslSessCacheAvgSize set the sslSessCacheAvgSize.
      */
@@ -2678,7 +2678,7 @@ public class VirtualService extends AviRestResource  {
      * Client authentication and authorization policy for the virtualservice.
      * Field deprecated in 18.2.3.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return ssoPolicy
      */
     public SSOPolicy getSsoPolicy() {
@@ -2690,7 +2690,7 @@ public class VirtualService extends AviRestResource  {
      * Client authentication and authorization policy for the virtualservice.
      * Field deprecated in 18.2.3.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @param ssoPolicy set the ssoPolicy.
      */
     public void setSsoPolicy(SSOPolicy ssoPolicy) {
@@ -2702,7 +2702,7 @@ public class VirtualService extends AviRestResource  {
      * The sso policy attached to the virtualservice.
      * It is a reference to an object of type ssopolicy.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ssoPolicyRef
      */
@@ -2715,7 +2715,7 @@ public class VirtualService extends AviRestResource  {
      * The sso policy attached to the virtualservice.
      * It is a reference to an object of type ssopolicy.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ssoPolicyRef set the ssoPolicyRef.
      */
@@ -2727,7 +2727,7 @@ public class VirtualService extends AviRestResource  {
      * List of static dns records applied to this virtual service.
      * These are static entries and no health monitoring is performed against the ip addresses.
      * Maximum of 1000 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return staticDnsRecords
      */
@@ -2740,7 +2740,7 @@ public class VirtualService extends AviRestResource  {
      * List of static dns records applied to this virtual service.
      * These are static entries and no health monitoring is performed against the ip addresses.
      * Maximum of 1000 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return staticDnsRecords
      */
@@ -2753,7 +2753,7 @@ public class VirtualService extends AviRestResource  {
      * List of static dns records applied to this virtual service.
      * These are static entries and no health monitoring is performed against the ip addresses.
      * Maximum of 1000 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return staticDnsRecords
      */
@@ -2769,7 +2769,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Subnet providing reachability for client facing virtual service ip.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return subnet
      */
     public IpAddrPrefix getSubnet() {
@@ -2780,7 +2780,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Subnet providing reachability for client facing virtual service ip.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param subnet set the subnet.
      */
     public void setSubnet(IpAddrPrefix subnet) {
@@ -2792,7 +2792,7 @@ public class VirtualService extends AviRestResource  {
      * It represents subnet for the virtual service ip address allocation when auto_allocate_ip is true.it is only applicable in openstack or aws cloud.
      * This field is required if auto_allocate_ip is true.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return subnetUuid
      */
     public String getSubnetUuid() {
@@ -2804,7 +2804,7 @@ public class VirtualService extends AviRestResource  {
      * It represents subnet for the virtual service ip address allocation when auto_allocate_ip is true.it is only applicable in openstack or aws cloud.
      * This field is required if auto_allocate_ip is true.
      * Field deprecated in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param subnetUuid set the subnetUuid.
      */
     public void setSubnetUuid(String  subnetUuid) {
@@ -2814,7 +2814,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -2825,7 +2825,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -2838,7 +2838,7 @@ public class VirtualService extends AviRestResource  {
      * Used for testing se datastore upgrade 2.0 functionality.
      * It is a reference to an object of type testsedatastorelevel1.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return testSeDatastoreLevel1Ref
      */
@@ -2851,7 +2851,7 @@ public class VirtualService extends AviRestResource  {
      * Used for testing se datastore upgrade 2.0 functionality.
      * It is a reference to an object of type testsedatastorelevel1.
      * Field introduced in 18.2.6.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param testSeDatastoreLevel1Ref set the testSeDatastoreLevel1Ref.
      */
@@ -2862,7 +2862,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Topology policies applied on the dns traffic of the virtual service based ongslb topology algorithm.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return topologyPolicies
      */
@@ -2874,7 +2874,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the topologyPolicies
      * Topology policies applied on the dns traffic of the virtual service based ongslb topology algorithm.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return topologyPolicies
      */
@@ -2886,7 +2886,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the topologyPolicies
      * Topology policies applied on the dns traffic of the virtual service based ongslb topology algorithm.
      * Field introduced in 18.2.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return topologyPolicies
      */
@@ -2903,7 +2903,7 @@ public class VirtualService extends AviRestResource  {
      * Server network or list of servers for cloning traffic.
      * It is a reference to an object of type trafficcloneprofile.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return trafficCloneProfileRef
      */
@@ -2916,7 +2916,7 @@ public class VirtualService extends AviRestResource  {
      * Server network or list of servers for cloning traffic.
      * It is a reference to an object of type trafficcloneprofile.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param trafficCloneProfileRef set the trafficCloneProfileRef.
      */
@@ -2929,7 +2929,7 @@ public class VirtualService extends AviRestResource  {
      * Knob to enable the virtual service traffic on its assigned service engines.
      * This setting is effective only when the enabled flag is set to true.
      * Field introduced in 17.2.8.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return trafficEnabled
      */
@@ -2942,7 +2942,7 @@ public class VirtualService extends AviRestResource  {
      * Knob to enable the virtual service traffic on its assigned service engines.
      * This setting is effective only when the enabled flag is set to true.
      * Field introduced in 17.2.8.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param trafficEnabled set the trafficEnabled.
      */
@@ -2954,8 +2954,8 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Specify if this is a normal virtual service, or if it is the parent or child of an sni-enabled virtual hosted virtual service.
      * Enum options - VS_TYPE_NORMAL, VS_TYPE_VH_PARENT, VS_TYPE_VH_CHILD.
-     * Allowed in enterprise with any value edition, essentials(allowed values- vs_type_normal) edition, basic(allowed values-
-     * vs_type_normal,vs_type_vh_parent) edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- vs_type_normal), basic edition(allowed values-
+     * vs_type_normal,vs_type_vh_parent), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "VS_TYPE_NORMAL".
      * @return type
      */
@@ -2967,8 +2967,8 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Specify if this is a normal virtual service, or if it is the parent or child of an sni-enabled virtual hosted virtual service.
      * Enum options - VS_TYPE_NORMAL, VS_TYPE_VH_PARENT, VS_TYPE_VH_CHILD.
-     * Allowed in enterprise with any value edition, essentials(allowed values- vs_type_normal) edition, basic(allowed values-
-     * vs_type_normal,vs_type_vh_parent) edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- vs_type_normal), basic edition(allowed values-
+     * vs_type_normal,vs_type_vh_parent), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "VS_TYPE_NORMAL".
      * @param type set the type.
      */
@@ -2996,7 +2996,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Use bridge ip as vip on each host in mesos deployments.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return useBridgeIpAsVip
@@ -3008,7 +3008,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Use bridge ip as vip on each host in mesos deployments.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param useBridgeIpAsVip set the useBridgeIpAsVip.
@@ -3023,7 +3023,7 @@ public class VirtualService extends AviRestResource  {
      * The caveat of enabling this option is that the virtualservice cannot be configued in an active-active ha mode.
      * Dns based multi vip solution has to be used for ha & non-disruptive upgrade purposes.
      * Field introduced in 17.1.9,17.2.3.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return useVipAsSnat
      */
@@ -3037,7 +3037,7 @@ public class VirtualService extends AviRestResource  {
      * The caveat of enabling this option is that the virtualservice cannot be configued in an active-active ha mode.
      * Dns based multi vip solution has to be used for ha & non-disruptive upgrade purposes.
      * Field introduced in 17.1.9,17.2.3.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param useVipAsSnat set the useVipAsSnat.
      */
@@ -3048,7 +3048,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Uuid of the virtualservice.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -3059,7 +3059,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Uuid of the virtualservice.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -3070,7 +3070,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * The exact name requested from the client's sni-enabled tls hello domain name field.
      * If this is a match, the parent vs will forward the connection to this child vs.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vhDomainName
      */
@@ -3082,7 +3082,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the vhDomainName
      * The exact name requested from the client's sni-enabled tls hello domain name field.
      * If this is a match, the parent vs will forward the connection to this child vs.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vhDomainName
      */
@@ -3094,7 +3094,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the vhDomainName
      * The exact name requested from the client's sni-enabled tls hello domain name field.
      * If this is a match, the parent vs will forward the connection to this child vs.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vhDomainName
      */
@@ -3109,7 +3109,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Host and path match criteria to select this child vs.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vhMatches
      */
@@ -3121,7 +3121,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method. this will set the vhMatches
      * Host and path match criteria to select this child vs.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vhMatches
      */
@@ -3133,7 +3133,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method this will set the vhMatches
      * Host and path match criteria to select this child vs.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vhMatches
      */
@@ -3149,7 +3149,7 @@ public class VirtualService extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Specifies the virtual service acting as virtual hosting (sni) parent.
      * It is a reference to an object of type virtualservice.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vhParentVsRef
      */
@@ -3161,7 +3161,7 @@ public class VirtualService extends AviRestResource  {
      * This is the setter method to the attribute.
      * Specifies the virtual service acting as virtual hosting (sni) parent.
      * It is a reference to an object of type virtualservice.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vhParentVsRef set the vhParentVsRef.
      */
@@ -3174,7 +3174,7 @@ public class VirtualService extends AviRestResource  {
      * Specify if the virtual hosting vs is of type sni or enhanced.
      * Enum options - VS_TYPE_VH_SNI, VS_TYPE_VH_ENHANCED.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, basic(allowed values- vs_type_vh_enhanced) edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic edition(allowed values- vs_type_vh_enhanced), enterprise with cloud services edition.
      * Special default for basic edition is vs_type_vh_enhanced, enterprise is vs_type_vh_sni.
      * @return vhType
      */
@@ -3187,7 +3187,7 @@ public class VirtualService extends AviRestResource  {
      * Specify if the virtual hosting vs is of type sni or enhanced.
      * Enum options - VS_TYPE_VH_SNI, VS_TYPE_VH_ENHANCED.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, basic(allowed values- vs_type_vh_enhanced) edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic edition(allowed values- vs_type_vh_enhanced), enterprise with cloud services edition.
      * Special default for basic edition is vs_type_vh_enhanced, enterprise is vs_type_vh_sni.
      * @param vhType set the vhType.
      */
@@ -3199,7 +3199,7 @@ public class VirtualService extends AviRestResource  {
      * List of virtual service ips.
      * While creating a 'shared vs',please use vsvip_ref to point to the shared entities.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vip
      */
@@ -3212,7 +3212,7 @@ public class VirtualService extends AviRestResource  {
      * List of virtual service ips.
      * While creating a 'shared vs',please use vsvip_ref to point to the shared entities.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vip
      */
@@ -3225,7 +3225,7 @@ public class VirtualService extends AviRestResource  {
      * List of virtual service ips.
      * While creating a 'shared vs',please use vsvip_ref to point to the shared entities.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vip
      */
@@ -3242,7 +3242,7 @@ public class VirtualService extends AviRestResource  {
      * Virtual routing context that the virtual service is bound to.
      * This is used to provide the isolation of the set of networks the application is attached to.
      * It is a reference to an object of type vrfcontext.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vrfContextRef
      */
@@ -3255,7 +3255,7 @@ public class VirtualService extends AviRestResource  {
      * Virtual routing context that the virtual service is bound to.
      * This is used to provide the isolation of the set of networks the application is attached to.
      * It is a reference to an object of type vrfcontext.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vrfContextRef set the vrfContextRef.
      */
@@ -3265,7 +3265,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Datascripts applied on the data traffic of the virtual service.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vsDatascripts
      */
@@ -3276,7 +3276,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method. this will set the vsDatascripts
      * Datascripts applied on the data traffic of the virtual service.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vsDatascripts
      */
@@ -3287,7 +3287,7 @@ public class VirtualService extends AviRestResource  {
     /**
      * This is the setter method this will set the vsDatascripts
      * Datascripts applied on the data traffic of the virtual service.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vsDatascripts
      */
@@ -3304,7 +3304,7 @@ public class VirtualService extends AviRestResource  {
      * Mostly used during the creation of shared vs, this field refers to entities that can be shared across virtual services.
      * It is a reference to an object of type vsvip.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vsvipRef
      */
@@ -3317,7 +3317,7 @@ public class VirtualService extends AviRestResource  {
      * Mostly used during the creation of shared vs, this field refers to entities that can be shared across virtual services.
      * It is a reference to an object of type vsvip.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vsvipRef set the vsvipRef.
      */
@@ -3330,7 +3330,7 @@ public class VirtualService extends AviRestResource  {
      * Waf policy for the virtual service.
      * It is a reference to an object of type wafpolicy.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return wafPolicyRef
      */
@@ -3343,7 +3343,7 @@ public class VirtualService extends AviRestResource  {
      * Waf policy for the virtual service.
      * It is a reference to an object of type wafpolicy.
      * Field introduced in 17.2.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param wafPolicyRef set the wafPolicyRef.
      */
@@ -3356,7 +3356,7 @@ public class VirtualService extends AviRestResource  {
      * The quality of service weight to assign to traffic transmitted from this virtual service.
      * A higher weight will prioritize traffic versus other virtual services sharing the same service engines.
      * Allowed values are 1-128.
-     * Allowed in enterprise with any value edition, essentials(allowed values- 1) edition, basic(allowed values- 1) edition, enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 1), basic edition(allowed values- 1), enterprise with cloud
      * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1.
      * @return weight
@@ -3370,7 +3370,7 @@ public class VirtualService extends AviRestResource  {
      * The quality of service weight to assign to traffic transmitted from this virtual service.
      * A higher weight will prioritize traffic versus other virtual services sharing the same service engines.
      * Allowed values are 1-128.
-     * Allowed in enterprise with any value edition, essentials(allowed values- 1) edition, basic(allowed values- 1) edition, enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 1), basic edition(allowed values- 1), enterprise with cloud
      * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1.
      * @param weight set the weight.

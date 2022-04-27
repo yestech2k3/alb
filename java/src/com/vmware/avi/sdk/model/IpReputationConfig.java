@@ -35,7 +35,7 @@ public class IpReputationConfig  {
      * Allowed values are 1-7.
      * Field introduced in 20.1.1.
      * Unit is days.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 3.
      * @return ipReputationFileObjectExpiryDuration
      */
@@ -49,7 +49,7 @@ public class IpReputationConfig  {
      * Allowed values are 1-7.
      * Field introduced in 20.1.1.
      * Unit is days.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 3.
      * @param ipReputationFileObjectExpiryDuration set the ipReputationFileObjectExpiryDuration.
      */
@@ -63,7 +63,7 @@ public class IpReputationConfig  {
      * Allowed values are 2-1440.
      * Field introduced in 20.1.1.
      * Unit is min.
-     * Allowed in enterprise with any value edition, essentials(allowed values- 60) edition, basic(allowed values- 60) edition, enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 60), basic edition(allowed values- 60), enterprise with cloud
      * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 60.
      * @return ipReputationSyncInterval
@@ -78,7 +78,7 @@ public class IpReputationConfig  {
      * Allowed values are 2-1440.
      * Field introduced in 20.1.1.
      * Unit is min.
-     * Allowed in enterprise with any value edition, essentials(allowed values- 60) edition, basic(allowed values- 60) edition, enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 60), basic edition(allowed values- 60), enterprise with cloud
      * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 60.
      * @param ipReputationSyncInterval set the ipReputationSyncInterval.

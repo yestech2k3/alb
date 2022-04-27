@@ -74,7 +74,7 @@ public class GslbSite  {
     /**
      * This is the getter method this will return the attribute value.
      * Ip address or a dns resolvable, fully qualified domain name of the site controller cluster.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return address
      */
@@ -85,7 +85,7 @@ public class GslbSite  {
     /**
      * This is the setter method to the attribute.
      * Ip address or a dns resolvable, fully qualified domain name of the site controller cluster.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param address set the address.
      */
@@ -96,7 +96,7 @@ public class GslbSite  {
     /**
      * This is the getter method this will return the attribute value.
      * Uuid of the 'cluster' object of the controller cluster in this site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return clusterUuid
      */
@@ -107,7 +107,7 @@ public class GslbSite  {
     /**
      * This is the setter method to the attribute.
      * Uuid of the 'cluster' object of the controller cluster in this site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param clusterUuid set the clusterUuid.
      */
@@ -120,7 +120,7 @@ public class GslbSite  {
      * The site has to be an active member.
      * This field is deprecated in 17.2.3 and replaced by 'dns_vses' field.
      * Field deprecated in 17.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return dnsVsUuids
      */
     public List<String> getDnsVsUuids() {
@@ -133,7 +133,7 @@ public class GslbSite  {
      * The site has to be an active member.
      * This field is deprecated in 17.2.3 and replaced by 'dns_vses' field.
      * Field deprecated in 17.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return dnsVsUuids
      */
     public void setDnsVsUuids(List<String>  dnsVsUuids) {
@@ -146,7 +146,7 @@ public class GslbSite  {
      * The site has to be an active member.
      * This field is deprecated in 17.2.3 and replaced by 'dns_vses' field.
      * Field deprecated in 17.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return dnsVsUuids
      */
     public GslbSite addDnsVsUuidsItem(String dnsVsUuidsItem) {
@@ -160,7 +160,7 @@ public class GslbSite  {
      * This is the getter method this will return the attribute value.
      * This field identifies the dns vs and the subdomains it hosts for gslb services.
      * Field introduced in 17.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsVses
      */
@@ -172,7 +172,7 @@ public class GslbSite  {
      * This is the setter method. this will set the dnsVses
      * This field identifies the dns vs and the subdomains it hosts for gslb services.
      * Field introduced in 17.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsVses
      */
@@ -184,7 +184,7 @@ public class GslbSite  {
      * This is the setter method this will set the dnsVses
      * This field identifies the dns vs and the subdomains it hosts for gslb services.
      * Field introduced in 17.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsVses
      */
@@ -204,7 +204,7 @@ public class GslbSite  {
      * It shall not participate in health-status monitoring.
      * Vips of the virtual services on the disabled site shall not be sent in dns response.
      * When a site transitions from disabled to enabled, it is treated similar to the addition of a new site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enabled
      */
@@ -220,7 +220,7 @@ public class GslbSite  {
      * It shall not participate in health-status monitoring.
      * Vips of the virtual services on the disabled site shall not be sent in dns response.
      * When a site transitions from disabled to enabled, it is treated similar to the addition of a new site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enabled set the enabled.
      */
@@ -236,7 +236,7 @@ public class GslbSite  {
      * the reachable members.
      * If the health monitor proxies are not configured, then the default behavior is to run health monitor probes from all the active sites.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return hmProxies
      */
@@ -253,7 +253,7 @@ public class GslbSite  {
      * the reachable members.
      * If the health monitor proxies are not configured, then the default behavior is to run health monitor probes from all the active sites.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return hmProxies
      */
@@ -270,7 +270,7 @@ public class GslbSite  {
      * the reachable members.
      * If the health monitor proxies are not configured, then the default behavior is to run health monitor probes from all the active sites.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return hmProxies
      */
@@ -286,7 +286,7 @@ public class GslbSite  {
      * This is the getter method this will return the attribute value.
      * This field enables the health monitor shard functionality on a site-basis.
      * Field introduced in 18.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return hmShardEnabled
      */
@@ -298,7 +298,7 @@ public class GslbSite  {
      * This is the setter method to the attribute.
      * This field enables the health monitor shard functionality on a site-basis.
      * Field introduced in 18.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param hmShardEnabled set the hmShardEnabled.
      */
@@ -310,7 +310,7 @@ public class GslbSite  {
      * Ip address(es) of the site's cluster.
      * For a 3-node cluster, either the cluster vip is provided, or the list of controller ips in the cluster are provided.
      * Maximum of 3 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ipAddresses
      */
@@ -323,7 +323,7 @@ public class GslbSite  {
      * Ip address(es) of the site's cluster.
      * For a 3-node cluster, either the cluster vip is provided, or the list of controller ips in the cluster are provided.
      * Maximum of 3 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ipAddresses
      */
@@ -336,7 +336,7 @@ public class GslbSite  {
      * Ip address(es) of the site's cluster.
      * For a 3-node cluster, either the cluster vip is provided, or the list of controller ips in the cluster are provided.
      * Maximum of 3 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ipAddresses
      */
@@ -352,7 +352,7 @@ public class GslbSite  {
      * This is the getter method this will return the attribute value.
      * Geographic location of the site.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return location
      */
@@ -364,7 +364,7 @@ public class GslbSite  {
      * This is the setter method to the attribute.
      * Geographic location of the site.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param location set the location.
      */
@@ -376,7 +376,7 @@ public class GslbSite  {
      * This is the getter method this will return the attribute value.
      * The site's member type  a leader is set to active while allmembers are set to passive.
      * Enum options - GSLB_ACTIVE_MEMBER, GSLB_PASSIVE_MEMBER.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "GSLB_PASSIVE_MEMBER".
      * @return memberType
      */
@@ -388,7 +388,7 @@ public class GslbSite  {
      * This is the setter method to the attribute.
      * The site's member type  a leader is set to active while allmembers are set to passive.
      * Enum options - GSLB_ACTIVE_MEMBER, GSLB_PASSIVE_MEMBER.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "GSLB_PASSIVE_MEMBER".
      * @param memberType set the memberType.
      */
@@ -401,7 +401,7 @@ public class GslbSite  {
      * Name for the site controller cluster.
      * After any changes to site name, references to gslb site name should be updated manually.
      * Ex  site name used in dns policies or topology policies should be updated to use the new site name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -414,7 +414,7 @@ public class GslbSite  {
      * Name for the site controller cluster.
      * After any changes to site name, references to gslb site name should be updated manually.
      * Ex  site name used in dns policies or topology policies should be updated to use the new site name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -425,7 +425,7 @@ public class GslbSite  {
     /**
      * This is the getter method this will return the attribute value.
      * The password used when authenticating with the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return password
      */
@@ -436,7 +436,7 @@ public class GslbSite  {
     /**
      * This is the setter method to the attribute.
      * The password used when authenticating with the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param password set the password.
      */
@@ -448,7 +448,7 @@ public class GslbSite  {
      * This is the getter method this will return the attribute value.
      * The site controller cluster's rest api port number.
      * Allowed values are 1-65535.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 443.
      * @return port
      */
@@ -460,7 +460,7 @@ public class GslbSite  {
      * This is the setter method to the attribute.
      * The site controller cluster's rest api port number.
      * Allowed values are 1-65535.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 443.
      * @param port set the port.
      */
@@ -474,7 +474,7 @@ public class GslbSite  {
      * If this field is not  configured then the gslbpoolmember ratio gets applied.
      * Allowed values are 1-20.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ratio
      */
@@ -488,7 +488,7 @@ public class GslbSite  {
      * If this field is not  configured then the gslbpoolmember ratio gets applied.
      * Allowed values are 1-20.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ratio set the ratio.
      */
@@ -501,7 +501,7 @@ public class GslbSite  {
      * This modes applies to follower sites.
      * When an active site is in suspend mode, the site does not receive any further federated objects.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return suspendMode
      */
@@ -514,7 +514,7 @@ public class GslbSite  {
      * This modes applies to follower sites.
      * When an active site is in suspend mode, the site does not receive any further federated objects.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param suspendMode set the suspendMode.
      */
@@ -525,7 +525,7 @@ public class GslbSite  {
     /**
      * This is the getter method this will return the attribute value.
      * The username used when authenticating with the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return username
      */
@@ -536,7 +536,7 @@ public class GslbSite  {
     /**
      * This is the setter method to the attribute.
      * The username used when authenticating with the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param username set the username.
      */

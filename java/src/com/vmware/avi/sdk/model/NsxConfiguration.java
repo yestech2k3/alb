@@ -44,7 +44,7 @@ public class NsxConfiguration  {
      * It should be unique across all the avi controller clusters.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return aviNsxPrefix
      */
     public String getAviNsxPrefix() {
@@ -57,7 +57,7 @@ public class NsxConfiguration  {
      * It should be unique across all the avi controller clusters.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param aviNsxPrefix set the aviNsxPrefix.
      */
     public void setAviNsxPrefix(String  aviNsxPrefix) {
@@ -69,7 +69,7 @@ public class NsxConfiguration  {
      * The hostname or ip address of the nsx mgr.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return nsxManagerName
      */
     public String getNsxManagerName() {
@@ -81,7 +81,7 @@ public class NsxConfiguration  {
      * The hostname or ip address of the nsx mgr.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param nsxManagerName set the nsxManagerName.
      */
     public void setNsxManagerName(String  nsxManagerName) {
@@ -93,7 +93,7 @@ public class NsxConfiguration  {
      * The password avi vantage will use when authenticating with nsx mgr.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return nsxManagerPassword
      */
     public String getNsxManagerPassword() {
@@ -105,7 +105,7 @@ public class NsxConfiguration  {
      * The password avi vantage will use when authenticating with nsx mgr.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param nsxManagerPassword set the nsxManagerPassword.
      */
     public void setNsxManagerPassword(String  nsxManagerPassword) {
@@ -117,7 +117,7 @@ public class NsxConfiguration  {
      * The username avi vantage will use when authenticating with nsx mgr.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return nsxManagerUsername
      */
     public String getNsxManagerUsername() {
@@ -129,7 +129,7 @@ public class NsxConfiguration  {
      * The username avi vantage will use when authenticating with nsx mgr.
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param nsxManagerUsername set the nsxManagerUsername.
      */
     public void setNsxManagerUsername(String  nsxManagerUsername) {
@@ -142,7 +142,7 @@ public class NsxConfiguration  {
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
      * Unit is seconds.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return nsxPollTime
      */
     public Integer getNsxPollTime() {
@@ -155,7 +155,7 @@ public class NsxConfiguration  {
      * Field deprecated in 21.1.1.
      * Field introduced in 17.1.1.
      * Unit is seconds.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param nsxPollTime set the nsxPollTime.
      */
     public void setNsxPollTime(Integer  nsxPollTime) {

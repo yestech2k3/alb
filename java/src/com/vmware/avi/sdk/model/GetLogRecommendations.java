@@ -30,7 +30,7 @@ public class GetLogRecommendations  {
      * Describe the recommendation we want to get.
      * Field introduced in 21.1.3.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requests
      */
@@ -43,7 +43,7 @@ public class GetLogRecommendations  {
      * Describe the recommendation we want to get.
      * Field introduced in 21.1.3.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requests
      */
@@ -56,7 +56,7 @@ public class GetLogRecommendations  {
      * Describe the recommendation we want to get.
      * Field introduced in 21.1.3.
      * Minimum of 1 items required.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requests
      */

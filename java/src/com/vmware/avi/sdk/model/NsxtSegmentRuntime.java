@@ -88,7 +88,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * Nsxt segment belongs to cloud.
      * It is a reference to an object of type cloud.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudRef
      */
@@ -101,7 +101,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * Nsxt segment belongs to cloud.
      * It is a reference to an object of type cloud.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudRef set the cloudRef.
      */
@@ -112,7 +112,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * V6 dhcp ranges configured in nsxt.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dhcp6Ranges
      */
@@ -124,7 +124,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method. this will set the dhcp6Ranges
      * V6 dhcp ranges configured in nsxt.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dhcp6Ranges
      */
@@ -136,7 +136,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method this will set the dhcp6Ranges
      * V6 dhcp ranges configured in nsxt.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dhcp6Ranges
      */
@@ -152,7 +152,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Ip address management scheme for this segment associated network.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return dhcpEnabled
      */
@@ -164,7 +164,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Ip address management scheme for this segment associated network.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param dhcpEnabled set the dhcpEnabled.
      */
@@ -175,7 +175,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Dhcp ranges configured in nsxt.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dhcpRanges
      */
@@ -187,7 +187,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method. this will set the dhcpRanges
      * Dhcp ranges configured in nsxt.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dhcpRanges
      */
@@ -199,7 +199,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method this will set the dhcpRanges
      * Dhcp ranges configured in nsxt.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dhcpRanges
      */
@@ -215,7 +215,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Segment object name.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -227,7 +227,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Segment object name.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -239,7 +239,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Network name.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return nwName
      */
@@ -251,7 +251,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Network name.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param nwName set the nwName.
      */
@@ -264,7 +264,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * Corresponding network object in avi.
      * It is a reference to an object of type network.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return nwRef
      */
@@ -277,7 +277,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * Corresponding network object in avi.
      * It is a reference to an object of type network.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param nwRef set the nwRef.
      */
@@ -289,7 +289,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Opaque network id.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return opaqueNetworkId
      */
@@ -301,7 +301,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Opaque network id.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param opaqueNetworkId set the opaqueNetworkId.
      */
@@ -313,7 +313,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Segment gateway.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return segmentGw
      */
@@ -325,7 +325,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Segment gateway.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param segmentGw set the segmentGw.
      */
@@ -337,7 +337,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * V6 segment gateway.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return segmentGw6
      */
@@ -349,7 +349,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * V6 segment gateway.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param segmentGw6 set the segmentGw6.
      */
@@ -361,7 +361,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Segment id.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return segmentId
      */
@@ -373,7 +373,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Segment id.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param segmentId set the segmentId.
      */
@@ -385,7 +385,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Segment name.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return segname
      */
@@ -397,7 +397,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Segment name.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param segname set the segname.
      */
@@ -409,7 +409,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Segment cidr.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return subnet
      */
@@ -421,7 +421,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Segment cidr.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param subnet set the subnet.
      */
@@ -433,7 +433,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * V6 segment cidr.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return subnet6
      */
@@ -445,7 +445,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * V6 segment cidr.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param subnet6 set the subnet6.
      */
@@ -458,7 +458,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * Nsxt segment belongs to tenant.
      * It is a reference to an object of type tenant.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -471,7 +471,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * Nsxt segment belongs to tenant.
      * It is a reference to an object of type tenant.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -483,7 +483,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Tier1 router id.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tier1Id
      */
@@ -495,7 +495,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Tier1 router id.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tier1Id set the tier1Id.
      */
@@ -524,7 +524,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Uuid.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -536,7 +536,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method to the attribute.
      * Uuid.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -547,7 +547,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Segment vlan ids.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vlanIds
      */
@@ -559,7 +559,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method. this will set the vlanIds
      * Segment vlan ids.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vlanIds
      */
@@ -571,7 +571,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * This is the setter method this will set the vlanIds
      * Segment vlan ids.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vlanIds
      */
@@ -588,7 +588,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * Corresponding vrf context object in avi.
      * It is a reference to an object of type vrfcontext.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vrfContextRef
      */
@@ -601,7 +601,7 @@ public class NsxtSegmentRuntime extends AviRestResource  {
      * Corresponding vrf context object in avi.
      * It is a reference to an object of type vrfcontext.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vrfContextRef set the vrfContextRef.
      */

@@ -57,7 +57,7 @@ public class MetricsMgrDebugFilter  {
      * This is the getter method this will return the attribute value.
      * Set to ignore skip_eval_period field in metrics_anomaly_option.
      * Field introduced in 20.1.4.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return debugSkipEvalPeriod
      */
@@ -69,7 +69,7 @@ public class MetricsMgrDebugFilter  {
      * This is the setter method to the attribute.
      * Set to ignore skip_eval_period field in metrics_anomaly_option.
      * Field introduced in 20.1.4.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param debugSkipEvalPeriod set the debugSkipEvalPeriod.
      */
@@ -79,7 +79,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return disableHwTraining
      */
@@ -89,7 +89,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param disableHwTraining set the disableHwTraining.
      */
@@ -99,7 +99,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return entity
      */
@@ -109,7 +109,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param entity set the entity.
      */
@@ -120,7 +120,7 @@ public class MetricsMgrDebugFilter  {
     /**
      * This is the getter method this will return the attribute value.
      * Setting to reduce the grace period for license expiry in hours.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return licenseGracePeriod
      */
@@ -131,7 +131,7 @@ public class MetricsMgrDebugFilter  {
     /**
      * This is the setter method to the attribute.
      * Setting to reduce the grace period for license expiry in hours.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param licenseGracePeriod set the licenseGracePeriod.
      */
@@ -141,7 +141,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return logFirstN
      */
@@ -151,7 +151,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param logFirstN set the logFirstN.
      */
@@ -161,7 +161,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return loggingFreq
      */
@@ -171,7 +171,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param loggingFreq set the loggingFreq.
      */
@@ -181,7 +181,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return metricInstanceId
      */
@@ -191,7 +191,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param metricInstanceId set the metricInstanceId.
      */
@@ -201,7 +201,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return obj
      */
@@ -211,7 +211,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param obj set the obj.
      */
@@ -221,7 +221,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return skipClusterMapCheck
      */
@@ -231,7 +231,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param skipClusterMapCheck set the skipClusterMapCheck.
      */
@@ -241,7 +241,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return skipMetricsDbWrites
      */
@@ -251,7 +251,7 @@ public class MetricsMgrDebugFilter  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param skipMetricsDbWrites set the skipMetricsDbWrites.
      */

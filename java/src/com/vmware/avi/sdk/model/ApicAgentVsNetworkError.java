@@ -38,7 +38,7 @@ public class ApicAgentVsNetworkError  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return poolName
      */
     public String getPoolName() {
@@ -48,7 +48,7 @@ public class ApicAgentVsNetworkError  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param poolName set the poolName.
      */
     public void setPoolName(String  poolName) {
@@ -58,7 +58,7 @@ public class ApicAgentVsNetworkError  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return poolNetwork
      */
     public String getPoolNetwork() {
@@ -68,7 +68,7 @@ public class ApicAgentVsNetworkError  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param poolNetwork set the poolNetwork.
      */
     public void setPoolNetwork(String  poolNetwork) {
@@ -78,7 +78,7 @@ public class ApicAgentVsNetworkError  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return vsName
      */
     public String getVsName() {
@@ -88,7 +88,7 @@ public class ApicAgentVsNetworkError  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param vsName set the vsName.
      */
     public void setVsName(String  vsName) {
@@ -98,7 +98,7 @@ public class ApicAgentVsNetworkError  {
     /**
      * This is the getter method this will return the attribute value.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return vsNetwork
      */
     public String getVsNetwork() {
@@ -108,7 +108,7 @@ public class ApicAgentVsNetworkError  {
     /**
      * This is the setter method to the attribute.
      * Field deprecated in 21.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param vsNetwork set the vsNetwork.
      */
     public void setVsNetwork(String  vsNetwork) {

@@ -43,7 +43,7 @@ public class RecommendationRequest  {
      * The match element for this a false positive should be mitigated.
      * If this is not gives, all match elements will be considered.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return matchElement
      */
@@ -56,7 +56,7 @@ public class RecommendationRequest  {
      * The match element for this a false positive should be mitigated.
      * If this is not gives, all match elements will be considered.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param matchElement set the matchElement.
      */
@@ -68,7 +68,7 @@ public class RecommendationRequest  {
      * This is the getter method this will return the attribute value.
      * The report_timestamp field of the log entry.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return reportTimestamp
      */
@@ -80,7 +80,7 @@ public class RecommendationRequest  {
      * This is the setter method to the attribute.
      * The report_timestamp field of the log entry.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param reportTimestamp set the reportTimestamp.
      */
@@ -92,7 +92,7 @@ public class RecommendationRequest  {
      * This is the getter method this will return the attribute value.
      * The request_id field of the log entry.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requestId
      */
@@ -104,7 +104,7 @@ public class RecommendationRequest  {
      * This is the setter method to the attribute.
      * The request_id field of the log entry.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param requestId set the requestId.
      */
@@ -117,7 +117,7 @@ public class RecommendationRequest  {
      * The rule id for which a false positive should be mitigated.
      * If this is not given, all rules will be considered.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ruleId
      */
@@ -130,7 +130,7 @@ public class RecommendationRequest  {
      * The rule id for which a false positive should be mitigated.
      * If this is not given, all rules will be considered.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ruleId set the ruleId.
      */
@@ -144,7 +144,7 @@ public class RecommendationRequest  {
      * Recommendation_request_false_positive.
      * Enum options - RECOMMENDATION_REQUEST_FALSE_POSITIVE.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return type
      */
@@ -158,7 +158,7 @@ public class RecommendationRequest  {
      * Recommendation_request_false_positive.
      * Enum options - RECOMMENDATION_REQUEST_FALSE_POSITIVE.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param type set the type.
      */

@@ -38,7 +38,7 @@ public class HdrMatch  {
     /**
      * This is the getter method this will return the attribute value.
      * Name of the http header whose value is to be matched.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return hdr
      */
@@ -49,7 +49,7 @@ public class HdrMatch  {
     /**
      * This is the setter method to the attribute.
      * Name of the http header whose value is to be matched.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param hdr set the hdr.
      */
@@ -61,7 +61,7 @@ public class HdrMatch  {
      * This is the getter method this will return the attribute value.
      * Case sensitivity to use for the match.
      * Enum options - SENSITIVE, INSENSITIVE.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "INSENSITIVE".
      * @return matchCase
      */
@@ -73,7 +73,7 @@ public class HdrMatch  {
      * This is the setter method to the attribute.
      * Case sensitivity to use for the match.
      * Enum options - SENSITIVE, INSENSITIVE.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "INSENSITIVE".
      * @param matchCase set the matchCase.
      */
@@ -86,7 +86,7 @@ public class HdrMatch  {
      * Criterion to use for matching headers in the http request.
      * Enum options - HDR_EXISTS, HDR_DOES_NOT_EXIST, HDR_BEGINS_WITH, HDR_DOES_NOT_BEGIN_WITH, HDR_CONTAINS, HDR_DOES_NOT_CONTAIN, HDR_ENDS_WITH,
      * HDR_DOES_NOT_END_WITH, HDR_EQUALS, HDR_DOES_NOT_EQUAL.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return matchCriteria
      */
@@ -99,7 +99,7 @@ public class HdrMatch  {
      * Criterion to use for matching headers in the http request.
      * Enum options - HDR_EXISTS, HDR_DOES_NOT_EXIST, HDR_BEGINS_WITH, HDR_DOES_NOT_BEGIN_WITH, HDR_CONTAINS, HDR_DOES_NOT_CONTAIN, HDR_ENDS_WITH,
      * HDR_DOES_NOT_END_WITH, HDR_EQUALS, HDR_DOES_NOT_EQUAL.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param matchCriteria set the matchCriteria.
      */
@@ -109,7 +109,7 @@ public class HdrMatch  {
     /**
      * This is the getter method this will return the attribute value.
      * String values to match in the http header.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return value
      */
@@ -120,7 +120,7 @@ public class HdrMatch  {
     /**
      * This is the setter method. this will set the value
      * String values to match in the http header.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return value
      */
@@ -131,7 +131,7 @@ public class HdrMatch  {
     /**
      * This is the setter method this will set the value
      * String values to match in the http header.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return value
      */

@@ -44,7 +44,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the getter method this will return the attribute value.
      * Keystone's hostname or ip address.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return keystoneHost
      */
@@ -55,7 +55,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the setter method to the attribute.
      * Keystone's hostname or ip address.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param keystoneHost set the keystoneHost.
      */
@@ -66,7 +66,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the getter method this will return the attribute value.
      * The password avi vantage will use when authenticating to keystone.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return password
      */
@@ -77,7 +77,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the setter method to the attribute.
      * The password avi vantage will use when authenticating to keystone.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param password set the password.
      */
@@ -88,7 +88,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the getter method this will return the attribute value.
      * Region name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return region
      */
@@ -99,7 +99,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the setter method to the attribute.
      * Region name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param region set the region.
      */
@@ -110,7 +110,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the getter method this will return the attribute value.
      * Openstack tenant name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenant
      */
@@ -121,7 +121,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the setter method to the attribute.
      * Openstack tenant name.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenant set the tenant.
      */
@@ -132,7 +132,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the getter method this will return the attribute value.
      * The username avi vantage will use when authenticating to keystone.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return username
      */
@@ -143,7 +143,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the setter method to the attribute.
      * The username avi vantage will use when authenticating to keystone.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param username set the username.
      */
@@ -154,7 +154,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the getter method this will return the attribute value.
      * Network to be used for vip allocation.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vipNetworkName
      */
@@ -165,7 +165,7 @@ public class IpamDnsOpenstackProfile  {
     /**
      * This is the setter method to the attribute.
      * Network to be used for vip allocation.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vipNetworkName set the vipNetworkName.
      */

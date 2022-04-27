@@ -36,7 +36,7 @@ public class RetryPlacementParams extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Retry placement operations for all east-west services.
      * Field introduced in 17.1.6,17.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return allEastWest
      */
@@ -48,7 +48,7 @@ public class RetryPlacementParams extends AviRestResource  {
      * This is the setter method to the attribute.
      * Retry placement operations for all east-west services.
      * Field introduced in 17.1.6,17.2.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param allEastWest set the allEastWest.
      */
@@ -58,7 +58,7 @@ public class RetryPlacementParams extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -68,7 +68,7 @@ public class RetryPlacementParams extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -80,7 +80,7 @@ public class RetryPlacementParams extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Indicates the vip_id that needs placement retrial.
      * Field introduced in 17.1.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vipId
      */
@@ -92,7 +92,7 @@ public class RetryPlacementParams extends AviRestResource  {
      * This is the setter method to the attribute.
      * Indicates the vip_id that needs placement retrial.
      * Field introduced in 17.1.2.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vipId set the vipId.
      */

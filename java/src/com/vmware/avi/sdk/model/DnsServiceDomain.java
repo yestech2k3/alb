@@ -38,7 +38,7 @@ public class DnsServiceDomain  {
     /**
      * This is the getter method this will return the attribute value.
      * Service domain string used for fqdn.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return domainName
      */
@@ -49,7 +49,7 @@ public class DnsServiceDomain  {
     /**
      * This is the setter method to the attribute.
      * Service domain string used for fqdn.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param domainName set the domainName.
      */
@@ -62,7 +62,7 @@ public class DnsServiceDomain  {
      * [deprecated] useless fieldplease refer to dnsserviceapplicationprofile's num_dns_ip for default valueplease refer to vsvip's dns_info
      * num_records_in_response for user config valuespecifies the number of a recordsreturned by avi dns service.
      * Field deprecated in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return numDnsIp
      */
     public Integer getNumDnsIp() {
@@ -74,7 +74,7 @@ public class DnsServiceDomain  {
      * [deprecated] useless fieldplease refer to dnsserviceapplicationprofile's num_dns_ip for default valueplease refer to vsvip's dns_info
      * num_records_in_response for user config valuespecifies the number of a recordsreturned by avi dns service.
      * Field deprecated in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param numDnsIp set the numDnsIp.
      */
     public void setNumDnsIp(Integer  numDnsIp) {
@@ -84,7 +84,7 @@ public class DnsServiceDomain  {
     /**
      * This is the getter method this will return the attribute value.
      * Third-party authoritative domain requests are delegated todns virtualservice's pool of nameservers.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return passThrough
      */
@@ -95,7 +95,7 @@ public class DnsServiceDomain  {
     /**
      * This is the setter method to the attribute.
      * Third-party authoritative domain requests are delegated todns virtualservice's pool of nameservers.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param passThrough set the passThrough.
      */
@@ -108,7 +108,7 @@ public class DnsServiceDomain  {
      * Ttl value for dns records.
      * Allowed values are 1-604800.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return recordTtl
      */
@@ -121,7 +121,7 @@ public class DnsServiceDomain  {
      * Ttl value for dns records.
      * Allowed values are 1-604800.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param recordTtl set the recordTtl.
      */

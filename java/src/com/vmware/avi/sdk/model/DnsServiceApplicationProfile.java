@@ -68,7 +68,7 @@ public class DnsServiceApplicationProfile  {
     /**
      * This is the getter method this will return the attribute value.
      * Respond to aaaa queries with empty response when there are only ipv4 records.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return aaaaEmptyResponse
      */
@@ -79,7 +79,7 @@ public class DnsServiceApplicationProfile  {
     /**
      * This is the setter method to the attribute.
      * Respond to aaaa queries with empty response when there are only ipv4 records.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param aaaaEmptyResponse set the aaaaEmptyResponse.
      */
@@ -93,7 +93,7 @@ public class DnsServiceApplicationProfile  {
      * This field is used in soa records (rname) pertaining to all domain names specified as authoritative domain names.
      * If not configured, the default value 'hostmaster' is used in soa responses.
      * Field introduced in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "hostmaster".
      * @return adminEmail
      */
@@ -107,7 +107,7 @@ public class DnsServiceApplicationProfile  {
      * This field is used in soa records (rname) pertaining to all domain names specified as authoritative domain names.
      * If not configured, the default value 'hostmaster' is used in soa responses.
      * Field introduced in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "hostmaster".
      * @param adminEmail set the adminEmail.
      */
@@ -122,7 +122,7 @@ public class DnsServiceApplicationProfile  {
      * Field deprecated in 18.2.6.
      * Field introduced in 17.1.6,17.2.2.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return authoritativeDomainNames
      */
     public List<String> getAuthoritativeDomainNames() {
@@ -137,7 +137,7 @@ public class DnsServiceApplicationProfile  {
      * Field deprecated in 18.2.6.
      * Field introduced in 17.1.6,17.2.2.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return authoritativeDomainNames
      */
     public void setAuthoritativeDomainNames(List<String>  authoritativeDomainNames) {
@@ -152,7 +152,7 @@ public class DnsServiceApplicationProfile  {
      * Field deprecated in 18.2.6.
      * Field introduced in 17.1.6,17.2.2.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return authoritativeDomainNames
      */
     public DnsServiceApplicationProfile addAuthoritativeDomainNamesItem(String authoritativeDomainNamesItem) {
@@ -168,7 +168,7 @@ public class DnsServiceApplicationProfile  {
      * Enable dns query/response over tcp.
      * This enables analytics for pass-through queries as well.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return dnsOverTcpEnabled
      */
@@ -181,7 +181,7 @@ public class DnsServiceApplicationProfile  {
      * Enable dns query/response over tcp.
      * This enables analytics for pass-through queries as well.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param dnsOverTcpEnabled set the dnsOverTcpEnabled.
      */
@@ -193,7 +193,7 @@ public class DnsServiceApplicationProfile  {
      * Dns zones hosted on this virtual service.
      * Field introduced in 18.2.6.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsZones
      */
@@ -206,7 +206,7 @@ public class DnsServiceApplicationProfile  {
      * Dns zones hosted on this virtual service.
      * Field introduced in 18.2.6.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsZones
      */
@@ -219,7 +219,7 @@ public class DnsServiceApplicationProfile  {
      * Dns zones hosted on this virtual service.
      * Field introduced in 18.2.6.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsZones
      */
@@ -235,7 +235,7 @@ public class DnsServiceApplicationProfile  {
      * Subdomain names serviced by this virtual service.
      * These are configured as ends-with semantics.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return domainNames
      */
@@ -248,7 +248,7 @@ public class DnsServiceApplicationProfile  {
      * Subdomain names serviced by this virtual service.
      * These are configured as ends-with semantics.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return domainNames
      */
@@ -261,7 +261,7 @@ public class DnsServiceApplicationProfile  {
      * Subdomain names serviced by this virtual service.
      * These are configured as ends-with semantics.
      * Maximum of 100 items allowed.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return domainNames
      */
@@ -277,7 +277,7 @@ public class DnsServiceApplicationProfile  {
      * This is the getter method this will return the attribute value.
      * Enable stripping of edns client subnet (ecs) option towards client if dns service inserts ecs option in the dns query towards upstream servers.
      * Field introduced in 17.1.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return ecsStrippingEnabled
      */
@@ -289,7 +289,7 @@ public class DnsServiceApplicationProfile  {
      * This is the setter method to the attribute.
      * Enable stripping of edns client subnet (ecs) option towards client if dns service inserts ecs option in the dns query towards upstream servers.
      * Field introduced in 17.1.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param ecsStrippingEnabled set the ecsStrippingEnabled.
      */
@@ -303,7 +303,7 @@ public class DnsServiceApplicationProfile  {
      * Edns extensions are parsed and shown in logs.
      * For gslb services, the edns client subnet option can be used to influence load balancing.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return edns
      */
@@ -317,7 +317,7 @@ public class DnsServiceApplicationProfile  {
      * Edns extensions are parsed and shown in logs.
      * For gslb services, the edns client subnet option can be used to influence load balancing.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param edns set the edns.
      */
@@ -334,7 +334,7 @@ public class DnsServiceApplicationProfile  {
      * minimum of the prefix length present in the incoming and the configured prefix length, before passing the request to upstream server.
      * Allowed values are 1-32.
      * Field introduced in 17.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ednsClientSubnetPrefixLen
      */
@@ -351,7 +351,7 @@ public class DnsServiceApplicationProfile  {
      * minimum of the prefix length present in the incoming and the configured prefix length, before passing the request to upstream server.
      * Allowed values are 1-32.
      * Field introduced in 17.1.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ednsClientSubnetPrefixLen set the ednsClientSubnetPrefixLen.
      */
@@ -366,7 +366,7 @@ public class DnsServiceApplicationProfile  {
      * When set to respond, an appropriate response is sent to client, e.g.
      * Nxdomain response for non-existent records, empty noerror response for unsupported queries, etc.
      * Enum options - DNS_ERROR_RESPONSE_ERROR, DNS_ERROR_RESPONSE_NONE.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "DNS_ERROR_RESPONSE_NONE".
      * @return errorResponse
      */
@@ -381,7 +381,7 @@ public class DnsServiceApplicationProfile  {
      * When set to respond, an appropriate response is sent to client, e.g.
      * Nxdomain response for non-existent records, empty noerror response for unsupported queries, etc.
      * Enum options - DNS_ERROR_RESPONSE_ERROR, DNS_ERROR_RESPONSE_NONE.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "DNS_ERROR_RESPONSE_NONE".
      * @param errorResponse set the errorResponse.
      */
@@ -395,7 +395,7 @@ public class DnsServiceApplicationProfile  {
      * This field is used in soa records (mname) pertaining to all domain names specified as authoritative domain names.
      * If not configured, domain name is used as name server in soa response.
      * Field introduced in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return nameServer
      */
@@ -409,7 +409,7 @@ public class DnsServiceApplicationProfile  {
      * This field is used in soa records (mname) pertaining to all domain names specified as authoritative domain names.
      * If not configured, domain name is used as name server in soa response.
      * Field introduced in 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param nameServer set the nameServer.
      */
@@ -424,7 +424,7 @@ public class DnsServiceApplicationProfile  {
      * Allowed values are 0-86400.
      * Field introduced in 17.2.4.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30.
      * @return negativeCachingTtl
      */
@@ -439,7 +439,7 @@ public class DnsServiceApplicationProfile  {
      * Allowed values are 0-86400.
      * Field introduced in 17.2.4.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30.
      * @param negativeCachingTtl set the negativeCachingTtl.
      */
@@ -453,7 +453,7 @@ public class DnsServiceApplicationProfile  {
      * Enter 0 to return all ip addresses.
      * Allowed values are 1-20.
      * Special values are 0- return all ip addresses.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1.
      * @return numDnsIp
      */
@@ -467,7 +467,7 @@ public class DnsServiceApplicationProfile  {
      * Enter 0 to return all ip addresses.
      * Allowed values are 1-20.
      * Special values are 0- return all ip addresses.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1.
      * @param numDnsIp set the numDnsIp.
      */
@@ -480,7 +480,7 @@ public class DnsServiceApplicationProfile  {
      * Specifies the ttl value (in seconds) for records served by dns service.
      * Allowed values are 0-86400.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30.
      * @return ttl
      */
@@ -493,7 +493,7 @@ public class DnsServiceApplicationProfile  {
      * Specifies the ttl value (in seconds) for records served by dns service.
      * Allowed values are 0-86400.
      * Unit is sec.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30.
      * @param ttl set the ttl.
      */

@@ -34,7 +34,7 @@ public class Action  {
      * A description of the change to this object.
      * This field is opaque to the caller, it should not be interpreted or modified.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return data
      */
@@ -47,7 +47,7 @@ public class Action  {
      * A description of the change to this object.
      * This field is opaque to the caller, it should not be interpreted or modified.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param data set the data.
      */
@@ -59,7 +59,7 @@ public class Action  {
      * This is the getter method this will return the attribute value.
      * The referenced object on which this action will be applied.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return urlRef
      */
@@ -71,7 +71,7 @@ public class Action  {
      * This is the setter method to the attribute.
      * The referenced object on which this action will be applied.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param urlRef set the urlRef.
      */

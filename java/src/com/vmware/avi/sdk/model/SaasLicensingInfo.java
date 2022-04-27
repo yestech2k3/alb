@@ -35,7 +35,7 @@ public class SaasLicensingInfo  {
      * Allowed values are 0-1000.
      * Special values are 0 - infinite.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.0f.
      * @return maxServiceUnits
      */
@@ -49,7 +49,7 @@ public class SaasLicensingInfo  {
      * Allowed values are 0-1000.
      * Special values are 0 - infinite.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.0f.
      * @param maxServiceUnits set the maxServiceUnits.
      */
@@ -62,7 +62,7 @@ public class SaasLicensingInfo  {
      * Minimum service units that always remain reserved on controller.
      * Allowed values are 0-1000.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.0f.
      * @return reserveServiceUnits
      */
@@ -75,7 +75,7 @@ public class SaasLicensingInfo  {
      * Minimum service units that always remain reserved on controller.
      * Allowed values are 0-1000.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.0f.
      * @param reserveServiceUnits set the reserveServiceUnits.
      */

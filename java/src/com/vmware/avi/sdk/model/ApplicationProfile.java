@@ -82,7 +82,7 @@ public class ApplicationProfile extends AviRestResource  {
      * Specifies app service type for an application.
      * Enum options - APP_SERVICE_TYPE_L7_HORIZON, APP_SERVICE_TYPE_L4_BLAST, APP_SERVICE_TYPE_L4_PCOIP.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return appServiceType
      */
@@ -95,7 +95,7 @@ public class ApplicationProfile extends AviRestResource  {
      * Specifies app service type for an application.
      * Enum options - APP_SERVICE_TYPE_L7_HORIZON, APP_SERVICE_TYPE_L4_BLAST, APP_SERVICE_TYPE_L4_PCOIP.
      * Field introduced in 21.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param appServiceType set the appServiceType.
      */
@@ -108,7 +108,7 @@ public class ApplicationProfile extends AviRestResource  {
      * Checksum of application profiles.
      * Internally set by cloud connector.
      * Field introduced in 17.2.14, 18.1.5, 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudConfigCksum
      */
@@ -121,7 +121,7 @@ public class ApplicationProfile extends AviRestResource  {
      * Checksum of application profiles.
      * Internally set by cloud connector.
      * Field introduced in 17.2.14, 18.1.5, 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudConfigCksum set the cloudConfigCksum.
      */
@@ -133,7 +133,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Name of the application profile creator.
      * Field introduced in 17.2.14, 18.1.5, 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return createdBy
      */
@@ -145,7 +145,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Name of the application profile creator.
      * Field introduced in 17.2.14, 18.1.5, 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param createdBy set the createdBy.
      */
@@ -155,7 +155,7 @@ public class ApplicationProfile extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -165,7 +165,7 @@ public class ApplicationProfile extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -176,7 +176,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Specifies various dns service related controls for virtual service.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsServiceProfile
      */
@@ -187,7 +187,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Specifies various dns service related controls for virtual service.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param dnsServiceProfile set the dnsServiceProfile.
      */
@@ -198,7 +198,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Specifies various security related controls for virtual service.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dosRlProfile
      */
@@ -209,7 +209,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Specifies various security related controls for virtual service.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param dosRlProfile set the dosRlProfile.
      */
@@ -220,7 +220,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Specifies the http application proxy profile parameters.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpProfile
      */
@@ -231,7 +231,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Specifies the http application proxy profile parameters.
-     * Allowed in enterprise with any value edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param httpProfile set the httpProfile.
      */
@@ -242,7 +242,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -255,7 +255,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -268,7 +268,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -284,7 +284,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * The name of the application profile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -295,7 +295,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * The name of the application profile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -307,7 +307,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Specifies if client ip needs to be preserved for backend connection.
      * Not compatible with connection multiplexing.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return preserveClientIp
      */
@@ -319,7 +319,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Specifies if client ip needs to be preserved for backend connection.
      * Not compatible with connection multiplexing.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param preserveClientIp set the preserveClientIp.
      */
@@ -331,7 +331,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Specifies if we need to preserve client port while preserving client ip for backend connections.
      * Field introduced in 17.2.7.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return preserveClientPort
      */
@@ -343,7 +343,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Specifies if we need to preserve client port while preserving client ip for backend connections.
      * Field introduced in 17.2.7.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param preserveClientPort set the preserveClientPort.
      */
@@ -355,7 +355,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Specifies if destination ip and port needs to be preserved for backend connection.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return preserveDestIpPort
@@ -368,7 +368,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Specifies if destination ip and port needs to be preserved for backend connection.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials(allowed values- false) edition, basic(allowed values- false) edition, enterprise with
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
      * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param preserveDestIpPort set the preserveDestIpPort.
@@ -381,7 +381,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Specifies various sip service related controls for virtual service.
      * Field introduced in 17.2.8, 18.1.3, 18.2.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sipServiceProfile
      */
@@ -393,7 +393,7 @@ public class ApplicationProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Specifies various sip service related controls for virtual service.
      * Field introduced in 17.2.8, 18.1.3, 18.2.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sipServiceProfile set the sipServiceProfile.
      */
@@ -404,7 +404,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Specifies the tcp application proxy profile parameters.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tcpAppProfile
      */
@@ -415,7 +415,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Specifies the tcp application proxy profile parameters.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tcpAppProfile set the tcpAppProfile.
      */
@@ -426,7 +426,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -437,7 +437,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -450,8 +450,8 @@ public class ApplicationProfile extends AviRestResource  {
      * Specifies which application layer proxy is enabled for the virtual service.
      * Enum options - APPLICATION_PROFILE_TYPE_L4, APPLICATION_PROFILE_TYPE_HTTP, APPLICATION_PROFILE_TYPE_SYSLOG, APPLICATION_PROFILE_TYPE_DNS,
      * APPLICATION_PROFILE_TYPE_SSL, APPLICATION_PROFILE_TYPE_SIP.
-     * Allowed in enterprise with any value edition, essentials(allowed values- application_profile_type_l4) edition, basic(allowed values-
-     * application_profile_type_l4,application_profile_type_http) edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- application_profile_type_l4), basic edition(allowed values-
+     * application_profile_type_l4,application_profile_type_http), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return type
      */
@@ -464,8 +464,8 @@ public class ApplicationProfile extends AviRestResource  {
      * Specifies which application layer proxy is enabled for the virtual service.
      * Enum options - APPLICATION_PROFILE_TYPE_L4, APPLICATION_PROFILE_TYPE_HTTP, APPLICATION_PROFILE_TYPE_SYSLOG, APPLICATION_PROFILE_TYPE_DNS,
      * APPLICATION_PROFILE_TYPE_SSL, APPLICATION_PROFILE_TYPE_SIP.
-     * Allowed in enterprise with any value edition, essentials(allowed values- application_profile_type_l4) edition, basic(allowed values-
-     * application_profile_type_l4,application_profile_type_http) edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- application_profile_type_l4), basic edition(allowed values-
+     * application_profile_type_l4,application_profile_type_http), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param type set the type.
      */
@@ -493,7 +493,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Uuid of the application profile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -504,7 +504,7 @@ public class ApplicationProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Uuid of the application profile.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */

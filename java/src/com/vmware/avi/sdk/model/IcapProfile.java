@@ -84,7 +84,7 @@ public class IcapProfile extends AviRestResource  {
      * If disabled, preview_size request body will be buffered if enable_preview is set to true, and rest of the request body will be streamed to the
      * icap server.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return allow204
      */
@@ -99,7 +99,7 @@ public class IcapProfile extends AviRestResource  {
      * If disabled, preview_size request body will be buffered if enable_preview is set to true, and rest of the request body will be streamed to the
      * icap server.
      * Field introduced in 20.1.3.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param allow204 set the allow204.
      */
@@ -115,7 +115,7 @@ public class IcapProfile extends AviRestResource  {
      * Allowed values are 1-51200.
      * Field introduced in 20.1.1.
      * Unit is kb.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 51200.
      * @return bufferSize
      */
@@ -131,7 +131,7 @@ public class IcapProfile extends AviRestResource  {
      * Allowed values are 1-51200.
      * Field introduced in 20.1.1.
      * Unit is kb.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 51200.
      * @param bufferSize set the bufferSize.
      */
@@ -146,7 +146,7 @@ public class IcapProfile extends AviRestResource  {
      * If this is set to fail closed, the request will be rejected with 413 status code.
      * Enum options - ICAP_FAIL_OPEN, ICAP_FAIL_CLOSED.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "ICAP_FAIL_OPEN".
      * @return bufferSizeExceedAction
      */
@@ -161,7 +161,7 @@ public class IcapProfile extends AviRestResource  {
      * If this is set to fail closed, the request will be rejected with 413 status code.
      * Enum options - ICAP_FAIL_OPEN, ICAP_FAIL_CLOSED.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "ICAP_FAIL_OPEN".
      * @param bufferSizeExceedAction set the bufferSizeExceedAction.
      */
@@ -175,7 +175,7 @@ public class IcapProfile extends AviRestResource  {
      * This must match the cloud referenced in the pool group below.
      * It is a reference to an object of type cloud.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudRef
      */
@@ -189,7 +189,7 @@ public class IcapProfile extends AviRestResource  {
      * This must match the cloud referenced in the pool group below.
      * It is a reference to an object of type cloud.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudRef set the cloudRef.
      */
@@ -201,7 +201,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * A description for this icap profile.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -213,7 +213,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * A description for this icap profile.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -225,7 +225,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Use the icap preview feature as described in rfc 3507 section 4.5.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enablePreview
      */
@@ -237,7 +237,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Use the icap preview feature as described in rfc 3507 section 4.5.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enablePreview set the enablePreview.
      */
@@ -252,7 +252,7 @@ public class IcapProfile extends AviRestResource  {
      * If this is set to fail closed, the request will be rejected with a 500 status code.
      * Enum options - ICAP_FAIL_OPEN, ICAP_FAIL_CLOSED.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "ICAP_FAIL_OPEN".
      * @return failAction
      */
@@ -267,7 +267,7 @@ public class IcapProfile extends AviRestResource  {
      * If this is set to fail closed, the request will be rejected with a 500 status code.
      * Enum options - ICAP_FAIL_OPEN, ICAP_FAIL_CLOSED.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "ICAP_FAIL_OPEN".
      * @param failAction set the failAction.
      */
@@ -279,7 +279,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Name of the icap profile.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -291,7 +291,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Name of the icap profile.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -303,7 +303,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Nsxdefender specific icap configurations.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return nsxDefenderConfig
      */
@@ -315,7 +315,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Nsxdefender specific icap configurations.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param nsxDefenderConfig set the nsxDefenderConfig.
      */
@@ -328,7 +328,7 @@ public class IcapProfile extends AviRestResource  {
      * The pool group which is used to connect to icap servers.
      * It is a reference to an object of type poolgroup.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return poolGroupRef
      */
@@ -341,7 +341,7 @@ public class IcapProfile extends AviRestResource  {
      * The pool group which is used to connect to icap servers.
      * It is a reference to an object of type poolgroup.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param poolGroupRef set the poolGroupRef.
      */
@@ -359,7 +359,7 @@ public class IcapProfile extends AviRestResource  {
      * Allowed values are 0-5000.
      * Field introduced in 20.1.1.
      * Unit is bytes.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 5000.
      * @return previewSize
      */
@@ -377,7 +377,7 @@ public class IcapProfile extends AviRestResource  {
      * Allowed values are 0-5000.
      * Field introduced in 20.1.1.
      * Unit is bytes.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 5000.
      * @param previewSize set the previewSize.
      */
@@ -392,7 +392,7 @@ public class IcapProfile extends AviRestResource  {
      * Allowed values are 50-3600000.
      * Field introduced in 20.1.1.
      * Unit is milliseconds.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 60000.
      * @return responseTimeout
      */
@@ -407,7 +407,7 @@ public class IcapProfile extends AviRestResource  {
      * Allowed values are 50-3600000.
      * Field introduced in 20.1.1.
      * Unit is milliseconds.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 60000.
      * @param responseTimeout set the responseTimeout.
      */
@@ -420,7 +420,7 @@ public class IcapProfile extends AviRestResource  {
      * The path and query component of the icap url.
      * Host name and port will be taken from the pool.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return serviceUri
      */
@@ -433,7 +433,7 @@ public class IcapProfile extends AviRestResource  {
      * The path and query component of the icap url.
      * Host name and port will be taken from the pool.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param serviceUri set the serviceUri.
      */
@@ -447,7 +447,7 @@ public class IcapProfile extends AviRestResource  {
      * Allowed values are 50-3600000.
      * Field introduced in 20.1.1.
      * Unit is milliseconds.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10000.
      * @return slowResponseWarningThreshold
      */
@@ -461,7 +461,7 @@ public class IcapProfile extends AviRestResource  {
      * Allowed values are 50-3600000.
      * Field introduced in 20.1.1.
      * Unit is milliseconds.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10000.
      * @param slowResponseWarningThreshold set the slowResponseWarningThreshold.
      */
@@ -474,7 +474,7 @@ public class IcapProfile extends AviRestResource  {
      * Tenant which this object belongs to.
      * It is a reference to an object of type tenant.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -487,7 +487,7 @@ public class IcapProfile extends AviRestResource  {
      * Tenant which this object belongs to.
      * It is a reference to an object of type tenant.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -516,7 +516,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Uuid of the icap profile.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -528,7 +528,7 @@ public class IcapProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * Uuid of the icap profile.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -541,7 +541,7 @@ public class IcapProfile extends AviRestResource  {
      * The vendor of the icap server.
      * Enum options - ICAP_VENDOR_GENERIC, ICAP_VENDOR_OPSWAT, ICAP_VENDOR_LASTLINE.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "ICAP_VENDOR_OPSWAT".
      * @return vendor
      */
@@ -554,7 +554,7 @@ public class IcapProfile extends AviRestResource  {
      * The vendor of the icap server.
      * Enum options - ICAP_VENDOR_GENERIC, ICAP_VENDOR_OPSWAT, ICAP_VENDOR_LASTLINE.
      * Field introduced in 20.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "ICAP_VENDOR_OPSWAT".
      * @param vendor set the vendor.
      */

@@ -41,7 +41,7 @@ public class GslbDnsInfo  {
     /**
      * This is the getter method this will return the attribute value.
      * This field indicates that atleast one dns is active at the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsActive
      */
@@ -52,7 +52,7 @@ public class GslbDnsInfo  {
     /**
      * This is the setter method to the attribute.
      * This field indicates that atleast one dns is active at the site.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param dnsActive set the dnsActive.
      */
@@ -61,7 +61,7 @@ public class GslbDnsInfo  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsVsStates
      */
@@ -71,7 +71,7 @@ public class GslbDnsInfo  {
 
     /**
      * This is the setter method. this will set the dnsVsStates
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsVsStates
      */
@@ -81,7 +81,7 @@ public class GslbDnsInfo  {
 
     /**
      * This is the setter method this will set the dnsVsStates
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsVsStates
      */
@@ -97,7 +97,7 @@ public class GslbDnsInfo  {
      * This is the getter method this will return the attribute value.
      * This field encapsulates the gs-status edge-triggered framework.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return gsStatus
      */
@@ -109,7 +109,7 @@ public class GslbDnsInfo  {
      * This is the setter method to the attribute.
      * This field encapsulates the gs-status edge-triggered framework.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param gsStatus set the gsStatus.
      */
@@ -121,7 +121,7 @@ public class GslbDnsInfo  {
      * This is the getter method this will return the attribute value.
      * This field is used to track the retry attempts for se download errors.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return retryCount
      */
@@ -133,7 +133,7 @@ public class GslbDnsInfo  {
      * This is the setter method to the attribute.
      * This field is used to track the retry attempts for se download errors.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param retryCount set the retryCount.
      */
@@ -145,7 +145,7 @@ public class GslbDnsInfo  {
      * This tables holds all the se-related info across all dns-vs(es).
      * Field deprecated in 18.2.3.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seTable
      */
     public List<GslbDnsSeInfo> getSeTable() {
@@ -157,7 +157,7 @@ public class GslbDnsInfo  {
      * This tables holds all the se-related info across all dns-vs(es).
      * Field deprecated in 18.2.3.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seTable
      */
     public void setSeTable(List<GslbDnsSeInfo>  seTable) {
@@ -169,7 +169,7 @@ public class GslbDnsInfo  {
      * This tables holds all the se-related info across all dns-vs(es).
      * Field deprecated in 18.2.3.
      * Field introduced in 17.1.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return seTable
      */
     public GslbDnsInfo addSeTableItem(GslbDnsSeInfo seTableItem) {

@@ -64,7 +64,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Security policy is used to specify various configuration information used to perform distributed denial of service (ddos) attacks detection and
      * mitigation.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -77,7 +77,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Security policy is used to specify various configuration information used to perform distributed denial of service (ddos) attacks detection and
      * mitigation.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -89,7 +89,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Source ports and port ranges to deny in dns amplification attacks.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsAmplificationDenyports
      */
@@ -101,7 +101,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the setter method to the attribute.
      * Source ports and port ranges to deny in dns amplification attacks.
      * Field introduced in 21.1.1.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param dnsAmplificationDenyports set the dnsAmplificationDenyports.
      */
@@ -113,7 +113,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Attacks utilizing the dns protocol operations.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dnsAttacks
      */
@@ -125,7 +125,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the setter method to the attribute.
      * Attacks utilizing the dns protocol operations.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param dnsAttacks set the dnsAttacks.
      */
@@ -137,7 +137,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Index of the dns policy to use for the mitigation rules applied to the dns attacks.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return dnsPolicyIndex
      */
@@ -149,7 +149,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the setter method to the attribute.
      * Index of the dns policy to use for the mitigation rules applied to the dns attacks.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param dnsPolicyIndex set the dnsPolicyIndex.
      */
@@ -163,7 +163,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public List<KeyValue> getLabels() {
@@ -177,7 +177,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public void setLabels(List<KeyValue>  labels) {
@@ -191,7 +191,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Field deprecated in 20.1.5.
      * Field introduced in 20.1.2.
      * Maximum of 4 items allowed.
-     * Allowed in enterprise with any value edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * @return labels
      */
     public SecurityPolicy addLabelsItem(KeyValue labelsItem) {
@@ -205,7 +205,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -218,7 +218,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -231,7 +231,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in enterprise with any value edition, essentials with any value edition, basic with any value edition, enterprise with cloud services
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
      * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
@@ -248,7 +248,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * The name of the security policy.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -260,7 +260,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the setter method to the attribute.
      * The name of the security policy.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -272,7 +272,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Index of the network security policy to use for the mitigation rules applied to the attacks.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return networkSecurityPolicyIndex
      */
@@ -284,7 +284,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the setter method to the attribute.
      * Index of the network security policy to use for the mitigation rules applied to the attacks.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param networkSecurityPolicyIndex set the networkSecurityPolicyIndex.
      */
@@ -297,7 +297,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks.
      * Enum options - DETECTION, MITIGATION.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "DETECTION".
      * @return operMode
      */
@@ -310,7 +310,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks.
      * Enum options - DETECTION, MITIGATION.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "DETECTION".
      * @param operMode set the operMode.
      */
@@ -323,7 +323,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Tenancy of the security policy.
      * It is a reference to an object of type tenant.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -336,7 +336,7 @@ public class SecurityPolicy extends AviRestResource  {
      * Tenancy of the security policy.
      * It is a reference to an object of type tenant.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -365,7 +365,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * The uuid of the security policy.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -377,7 +377,7 @@ public class SecurityPolicy extends AviRestResource  {
      * This is the setter method to the attribute.
      * The uuid of the security policy.
      * Field introduced in 18.2.1.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */

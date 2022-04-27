@@ -51,7 +51,7 @@ public class AlertSyslogServer  {
      * This is the getter method this will return the attribute value.
      * Enable anonymous authentication of syslog serverwhich will disable server certificate authentication.
      * Field introduced in 17.2.17, 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return anonAuth
      */
@@ -63,7 +63,7 @@ public class AlertSyslogServer  {
      * This is the setter method to the attribute.
      * Enable anonymous authentication of syslog serverwhich will disable server certificate authentication.
      * Field introduced in 17.2.17, 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param anonAuth set the anonAuth.
      */
@@ -76,7 +76,7 @@ public class AlertSyslogServer  {
      * Syslog output format - legacy, rfc 5424, json.
      * Enum options - SYSLOG_LEGACY, SYSLOG_RFC5424, SYSLOG_JSON, SYSLOG_RFC5425_ENHANCED.
      * Field introduced in 17.2.8.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SYSLOG_LEGACY".
      * @return format
      */
@@ -89,7 +89,7 @@ public class AlertSyslogServer  {
      * Syslog output format - legacy, rfc 5424, json.
      * Enum options - SYSLOG_LEGACY, SYSLOG_RFC5424, SYSLOG_JSON, SYSLOG_RFC5425_ENHANCED.
      * Field introduced in 17.2.8.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SYSLOG_LEGACY".
      * @param format set the format.
      */
@@ -102,7 +102,7 @@ public class AlertSyslogServer  {
      * Select the pkiprofile containing a ca or list of ca chainswhich will validate the certificate of the syslog server.
      * It is a reference to an object of type pkiprofile.
      * Field introduced in 17.2.17, 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return pkiprofileRef
      */
@@ -115,7 +115,7 @@ public class AlertSyslogServer  {
      * Select the pkiprofile containing a ca or list of ca chainswhich will validate the certificate of the syslog server.
      * It is a reference to an object of type pkiprofile.
      * Field introduced in 17.2.17, 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param pkiprofileRef set the pkiprofileRef.
      */
@@ -128,7 +128,7 @@ public class AlertSyslogServer  {
      * Select a certificate and key which will be used to authenticate to the syslog server.
      * It is a reference to an object of type sslkeyandcertificate.
      * Field introduced in 17.2.17, 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslKeyAndCertificateRef
      */
@@ -141,7 +141,7 @@ public class AlertSyslogServer  {
      * Select a certificate and key which will be used to authenticate to the syslog server.
      * It is a reference to an object of type sslkeyandcertificate.
      * Field introduced in 17.2.17, 18.2.5.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sslKeyAndCertificateRef set the sslKeyAndCertificateRef.
      */
@@ -152,7 +152,7 @@ public class AlertSyslogServer  {
     /**
      * This is the getter method this will return the attribute value.
      * The destination syslog server ip address or hostname.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return syslogServer
      */
@@ -163,7 +163,7 @@ public class AlertSyslogServer  {
     /**
      * This is the setter method to the attribute.
      * The destination syslog server ip address or hostname.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param syslogServer set the syslogServer.
      */
@@ -174,7 +174,7 @@ public class AlertSyslogServer  {
     /**
      * This is the getter method this will return the attribute value.
      * The destination syslog server's service port.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 514.
      * @return syslogServerPort
      */
@@ -185,7 +185,7 @@ public class AlertSyslogServer  {
     /**
      * This is the setter method to the attribute.
      * The destination syslog server's service port.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 514.
      * @param syslogServerPort set the syslogServerPort.
      */
@@ -197,7 +197,7 @@ public class AlertSyslogServer  {
      * This is the getter method this will return the attribute value.
      * Enable tls to the syslog server.
      * Field introduced in 17.2.16, 18.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return tlsEnable
      */
@@ -209,7 +209,7 @@ public class AlertSyslogServer  {
      * This is the setter method to the attribute.
      * Enable tls to the syslog server.
      * Field introduced in 17.2.16, 18.2.3.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param tlsEnable set the tlsEnable.
      */
@@ -220,7 +220,7 @@ public class AlertSyslogServer  {
     /**
      * This is the getter method this will return the attribute value.
      * Network protocol to establish syslog session.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return udp
      */
@@ -231,7 +231,7 @@ public class AlertSyslogServer  {
     /**
      * This is the setter method to the attribute.
      * Network protocol to establish syslog session.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param udp set the udp.
      */
