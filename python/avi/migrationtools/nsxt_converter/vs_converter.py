@@ -10,7 +10,8 @@ import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 import avi.migrationtools.nsxt_converter.converter_constants as final
 import random
 
-from avi.migrationtools.nsxt_converter.pools_converter import skipped_pools_list, vs_pool_segment_list
+from avi.migrationtools.nsxt_converter.pools_converter import skipped_pools_list, vs_pool_segment_list,\
+    vs_sorry_pool_segment_list
 
 LOG = logging.getLogger(__name__)
 
@@ -55,6 +56,7 @@ class VsConfigConv(object):
         alb_config['VirtualService'] = list()
         alb_config['VsVip'] = list()
         alb_config["HTTPPolicySet"] = list()
+        alb_config["PoolGroup"] = list()
         converted_objs = []
         progressbar_count = 0
         total_size = len(nsx_lb_config['LbVirtualServers'])
@@ -279,6 +281,37 @@ class VsConfigConv(object):
                     if skipped_client_ssl:
                         skipped.append({"client_ssl ": skipped_client_ssl})
 
+                pg_obj = dict(
+                    cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
+                    tenant_ref=conv_utils.get_object_ref(tenant, 'tenant')
+                )
+                pg_obj["members"] =[]
+                pg_name =''
+                lb_pl_config = nsx_lb_config['LbPools']
+                sry_pool_present = False
+                if lb_vs.get("sorry_pool_path"):
+                    sry_pool_present = True
+                    sry_pl = lb_vs.get("sorry_pool_path").split("/")[-1]
+
+                    if lb_vs["display_name"] in vs_sorry_pool_segment_list.keys():
+                        pool_name = vs_sorry_pool_segment_list[lb_vs["display_name"]].get("pool_name")
+                        pool_segment = vs_sorry_pool_segment_list[lb_vs["display_name"]].get("pool_segment")
+                        if prefix:
+                            pl_name = prefix + '-' + sry_pl
+                        self.update_pool_with_subnets(pool_name, pool_segment, alb_config["Pool"], pl_name,
+                                                          cloud_name)
+                        for pool in alb_config['Pool']:
+                            if pool.get('name') == pool_name:
+                                if lb_vs.get('default_pool_member_ports'):
+                                    pool['default_port'] = int(lb_vs['default_pool_member_ports'][0])
+                                pool['tier1_lr'] = tier1_lr
+                                pool['cloud_ref'] = conv_utils.get_object_ref(cloud_name, 'cloud')
+                        pg_name = sry_pl+"-"
+                        lb_pool = [lb_pl for lb_pl in lb_pl_config if lb_pl["display_name"] == sry_pl]
+                        if prefix:
+                            sry_pl = prefix + "-"+sry_pl
+                        self.create_pool_group(cloud_name, pg_obj, alb_config, lb_pool[0], sorry_pool=pool_name,
+                                               sry_pool_present=True)
 
                 if lb_vs.get('pool_path'):
                     pool_ref = lb_vs.get('pool_path')
@@ -288,7 +321,7 @@ class VsConfigConv(object):
                         pool_segment = vs_pool_segment_list[lb_vs["display_name"]].get("pool_segment")
                         if prefix:
                             pl_name = prefix + '-' + pl_name
-                        self.update_pool_with_subnets(pool_name, pool_segment, alb_config["Pool"], pl_name,cloud_name)
+                        self.update_pool_with_subnets(pool_name, pool_segment, alb_config["Pool"], pl_name, cloud_name)
                         for pool in alb_config['Pool']:
                             if pool.get('name') == pool_name:
                                 if lb_vs.get('default_pool_member_ports'):
@@ -348,8 +381,24 @@ class VsConfigConv(object):
                                                 type="V4"
                                             )
                                             alb_vs["snat_ip"].append(snat_ip)
-
+                                pg_flag = [member for member in nsx_pool.get("members") if member.get("backup_member")]
+                                if pg_flag:
+                                    self.create_pool_group(cloud_name, pg_obj, alb_config, nsx_pool, backup_pool=pool_name,
+                                                           sry_pool_present=sry_pool_present)
+                                    pg_name = pool_name + pg_name
                         self.update_pool_with_app_attr(merge_profile_name, pool_name, alb_config)
+
+                if pg_obj.get("members"):
+                    if prefix:
+                        if not pg_name.__contains__(prefix+"-"):
+                            pg_name = prefix+"-"+pg_name
+                    pg_obj["name"] = pg_name+"-poolgroup"
+                    alb_config["PoolGroup"].append(pg_obj)
+                    if alb_vs.get("pool_ref"):
+                        del alb_vs["pool_ref"]
+
+                    alb_vs["pool_group_ref"] = conv_utils.get_object_ref(
+                        pg_obj["name"], 'poolgroup', tenant="admin", cloud_name=cloud_name)
 
                 if lb_vs.get('rules'):
 
@@ -596,7 +645,7 @@ jhiq
                             )
                         )
 
-    def update_pool_with_subnets(self, pool_name, pool_segment, alb_pl, old_pool_name,cloud_name):
+    def update_pool_with_subnets(self, pool_name, pool_segment, alb_pl, old_pool_name, cloud_name):
 
         pool_present = False
         for pool in alb_pl:
@@ -617,8 +666,8 @@ jhiq
                 )
                 subnets = dict(
                     subnet={
-                        "ip_addr":ip_addreses,
-                        "mask" : sub["subnets"]["network_range"].split("/")[-1]
+                        "ip_addr": ip_addreses,
+                        "mask": sub["subnets"]["network_range"].split("/")[-1]
                     },
                     network_ref=conv_utils.get_object_ref(
                         sub["seg_name"], 'network', tenant="admin", cloud_name=cloud_name)
@@ -628,9 +677,70 @@ jhiq
                 alb_pl.append(pool_obj)
             break
 
-    def get_pg_members(self, pg_pool_ref):
-        member = dict(
-            pool_ref=pg_pool_ref,
-        )
+    def create_pool_group(self, cloud_name, pg_obj, alb_config, lb_pool, backup_pool=None, sorry_pool=None,
+                          sry_pool_present=False):
 
-        return member
+        if backup_pool:
+            alb_pool_config = [pl for pl in alb_config["Pool"] if pl["name"] == backup_pool]
+            suffix = "backup_pool"
+        elif sorry_pool:
+            alb_pool_config = [pl for pl in alb_config["Pool"] if pl["name"] == sorry_pool]
+            suffix = "sorry_pool"
+        pool_bmd = []
+        pool_bme = []
+        for member in alb_pool_config[0].get("servers"):
+            if member.get("backup_member"):
+                pool_bme.append(member)
+            else:
+                pool_bmd.append(member)
+        if pool_bme and pool_bmd:
+            new_pool = copy.deepcopy(alb_pool_config[0])
+            new_pool["name"] = new_pool["name"] +"-"+ suffix
+            new_pool["servers"] = pool_bme
+            alb_config["Pool"].append(new_pool)
+            alb_pool_config[0]["servers"] = pool_bmd
+            if suffix == "backup_pool":
+                bmd_priority = "3"
+                bme_priority = "2"
+            else:
+                bmd_priority = "1"
+                bme_priority = "0"
+            pg_obj["members"].append(dict(
+                ratio="1",
+                priority_level=bme_priority,
+                pool_ref=conv_utils.get_object_ref(
+                    new_pool["name"], 'pool', tenant="admin", cloud_name=cloud_name)
+            ))
+            pg_obj["members"].append(dict(
+                    ratio="1",
+                    priority_level=bmd_priority,
+                    pool_ref=conv_utils.get_object_ref(
+                        alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
+                )
+            )
+
+        elif pool_bme:
+            alb_pool_config[0]["servers"] = pool_bme
+            if suffix == "backup_pool":
+                priority = "2"
+            else:
+                priority = "0"
+            pg_obj["members"].append(dict(
+                ratio="1",
+                priority_level=priority,
+                pool_ref=conv_utils.get_object_ref(
+                    alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
+            ))
+        else:
+            alb_pool_config[0]["servers"] = pool_bmd
+            if sry_pool_present:
+                if suffix == "backup_pool":
+                    priority = "3"
+                else:
+                    priority = "1"
+                pg_obj["members"].append(dict(
+                    ratio="1",
+                    priority_level=priority,
+                    pool_ref=conv_utils.get_object_ref(
+                        alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
+                ))

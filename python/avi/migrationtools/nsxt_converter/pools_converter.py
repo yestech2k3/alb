@@ -13,6 +13,7 @@ LOG = logging.getLogger(__name__)
 conv_utils = NsxtConvUtil()
 skipped_pools_list = []
 vs_pool_segment_list = dict()
+vs_sorry_pool_segment_list = dict()
 
 
 class PoolConfigConv(object):
@@ -51,6 +52,8 @@ class PoolConfigConv(object):
                 }
                 vs_list = [vs["display_name"] for vs in nsx_lb_config["LbVirtualServers"] if
                            (vs.get("pool_path") and vs.get("pool_path").split("/")[-1] == name)]
+                vs_list_for_sorry_pool = [vs["display_name"] for vs in nsx_lb_config["LbVirtualServers"] if
+                            (vs.get("sorry_pool_path") and vs.get("sorry_pool_path").split("/")[-1] == name)]
                 if prefix:
                     name = prefix+"-"+name
                 pool_skip = True
@@ -84,6 +87,33 @@ class PoolConfigConv(object):
                                     }
                                     lb_list[lb] = vs_pool_segment_list[vs]
                                 pool_count += 1
+                        for vs in vs_list_for_sorry_pool:
+                            if vs in vs_sorry_pool_segment_list.keys():
+                                continue
+                            lb = get_lb_service_name(vs)
+                            pool_segment = get_pool_segments(vs,
+                                                             member["ip_address"])
+                            if pool_segment:
+                                if lb in lb_list.keys():
+                                    vs_sorry_pool_segment_list[vs] = lb_list[lb]
+                                    continue
+
+                                pool_skip = False
+                                if pool_count == 0:
+                                    vs_sorry_pool_segment_list[vs] = {
+                                        "pool_name": name,
+                                        "pool_segment": pool_segment
+                                    }
+                                    lb_list[lb] = vs_sorry_pool_segment_list[vs]
+
+                                else:
+                                    vs_sorry_pool_segment_list[vs] = {
+                                        "pool_name": '%s-%s' % (name, pool_segment[0]["subnets"]["network_range"]),
+                                        "pool_segment": pool_segment
+                                    }
+                                    lb_list[lb] = vs_sorry_pool_segment_list[vs]
+                                pool_count += 1
+
                     if pool_skip:
                         skipped_pools_list.append(name)
                         conv_utils.add_status_row('pool', None, lb_pl['display_name'],
@@ -211,6 +241,7 @@ class PoolConfigConv(object):
         skipped_list = []
         server_skipped = []
         connection_limit = []
+        pg_obj =[]
         for member in servers_config:
             server_obj = {
                 'ip': {
@@ -219,7 +250,8 @@ class PoolConfigConv(object):
                 },
                 'description': member.get("display_name"),
             }
-
+            if member["backup_member"]:
+                server_obj['backup_member'] = member["backup_member"]
             if member.get("port", ""):
                 server_obj['port'] = int(member.get("port"))
             else:
@@ -236,6 +268,7 @@ class PoolConfigConv(object):
                 if c_lim > 0:
                     connection_limit.append(c_lim)
             server_list.append(server_obj)
+
             skipped = [key for key in member.keys()
                        if key not in self.server_attributes]
             if skipped:
@@ -244,5 +277,4 @@ class PoolConfigConv(object):
         if connection_limit:
             limits['connection_limit'] = min(connection_limit)
         return server_list, skipped_list, server_skipped, limits
-
 
