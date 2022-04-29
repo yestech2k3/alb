@@ -187,7 +187,7 @@ font-style: italic;
     <div class="app-desc">CLI ``` - show useractivity <key> ``` </div>
     <div class="app-desc">More information: <a href="https://avinetworks.com/contact-us">https://avinetworks.com/contact-us</a></div>
     <div class="app-desc">Contact Info: <a href="support@avinetworks.com">support@avinetworks.com</a></div>
-    <div class="app-desc">Version: 21.1.4</div>
+    <div class="app-desc">Version: 21.1.5</div>
     <div class="app-desc">BasePath:/api</div>
     <div class="license-info">All rights reserved</div>
     <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
@@ -657,16 +657,16 @@ font-style: italic;
     <h3 class="field-label"><a name="UserActivity">UserActivity</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
-<div class="param">concurrent_sessions (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of concurrent user sessions open. format: int32</div>
-<div class="param">failed_login_attempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of failed login attempts before a successful login. format: int32</div>
-<div class="param">last_login_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> IP of the machine the user was last logged in from. </div>
-<div class="param">last_login_timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Timestamp of last login. </div>
-<div class="param">last_password_update (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Timestamp of last password update. </div>
-<div class="param">logged_in (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Indicates whether the user is logged in or not. </div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the user this object refers to. </div>
-<div class="param">previous_password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Stores the previous n passwords  where n is ControllerProperties.max_password_history_count. . </div>
+<div class="param">concurrent_sessions (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of concurrent user sessions open. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">failed_login_attempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of failed login attempts before a successful login. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">last_login_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> IP of the machine the user was last logged in from. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">last_login_timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Timestamp of last login. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">last_password_update (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Timestamp of last password update. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">logged_in (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Indicates whether the user is logged in or not. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the user this object refers to. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">previous_password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Stores the previous n passwords  where n is ControllerProperties.max_password_history_count. . Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> url </div>
-<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Unique object identifier of the object. </div>
+<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
