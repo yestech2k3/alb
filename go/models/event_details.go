@@ -324,6 +324,9 @@ type EventDetails struct {
 	MetricsDbSyncFailureDetails *MetricsDbSyncFailureEventDetails `json:"metrics_db_sync_failure_details,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
+	MetricsGrpcAuthFailureDetails *MetricsGRPCAuthFailureDetails `json:"metrics_grpc_auth_failure_details,omitempty"`
+
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	MgmtNwChangeDetails *VinfraMgmtNwChangeDetails `json:"mgmt_nw_change_details,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
