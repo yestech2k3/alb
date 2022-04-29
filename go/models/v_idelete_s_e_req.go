@@ -8,16 +8,16 @@ package models
 // swagger:model VIDeleteSEReq
 type VIdeleteSEReq struct {
 
-	// Unique object identifier of cloud.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	CloudUUID *string `json:"cloud_uuid,omitempty"`
 
-	// Unique object identifier of segroup.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SegroupUUID *string `json:"segroup_uuid,omitempty"`
 
-	// Unique object identifier of sevm.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	SevmUUID *string `json:"sevm_uuid"`
 
-	// Placeholder for description of property vcenter_admin of obj type VIDeleteSEReq field type str  type object
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	VcenterAdmin *VIAdminCredentials `json:"vcenter_admin,omitempty"`
 }

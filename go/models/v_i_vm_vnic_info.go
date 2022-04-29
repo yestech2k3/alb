@@ -8,13 +8,13 @@ package models
 // swagger:model VIVmVnicInfo
 type VIVMVnicInfo struct {
 
-	// mac_addr of VIVmVnicInfo.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	MacAddr *string `json:"mac_addr"`
 
-	// vcenter_portgroup of VIVmVnicInfo.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	VcenterPortgroup *string `json:"vcenter_portgroup,omitempty"`
 
-	//  Enum options - VNIC_VSWITCH, VNIC_DVS.
+	//  Enum options - VNIC_VSWITCH, VNIC_DVS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	VcenterVnicNw *string `json:"vcenter_vnic_nw,omitempty"`
 }
