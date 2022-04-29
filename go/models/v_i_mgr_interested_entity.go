@@ -8,7 +8,7 @@ package models
 // swagger:model VIMgrInterestedEntity
 type VIMgrInterestedEntity struct {
 
-	// Unique object identifier of interested.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	InterestedUUID *string `json:"interested_uuid"`
 }

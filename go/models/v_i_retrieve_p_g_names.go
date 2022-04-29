@@ -8,18 +8,18 @@ package models
 // swagger:model VIRetrievePGNames
 type VIRetrievePGNames struct {
 
-	// Unique object identifier of cloud.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	CloudUUID *string `json:"cloud_uuid,omitempty"`
 
-	// datacenter of VIRetrievePGNames.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Datacenter *string `json:"datacenter,omitempty"`
 
-	// password of VIRetrievePGNames.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Password *string `json:"password,omitempty"`
 
-	// username of VIRetrievePGNames.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Username *string `json:"username,omitempty"`
 
-	// vcenter_url of VIRetrievePGNames.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	VcenterURL *string `json:"vcenter_url,omitempty"`
 }

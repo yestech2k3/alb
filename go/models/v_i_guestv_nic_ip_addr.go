@@ -8,11 +8,11 @@ package models
 // swagger:model VIGuestvNicIPAddr
 type VIGuestvNicIPAddr struct {
 
-	// ip_addr of VIGuestvNicIPAddr.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	IPAddr *string `json:"ip_addr"`
 
-	// Number of mask.
+	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	Mask *int32 `json:"mask"`
 }
