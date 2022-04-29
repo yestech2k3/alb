@@ -41,6 +41,7 @@ public class HSMSafenetLunaServer  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 16.5.2,17.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return index
      */
@@ -51,6 +52,7 @@ public class HSMSafenetLunaServer  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 16.5.2,17.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param index set the index.
      */
@@ -61,6 +63,7 @@ public class HSMSafenetLunaServer  {
     /**
      * This is the getter method this will return the attribute value.
      * Password of the partition assigned to this client.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return partitionPasswd
      */
@@ -71,6 +74,7 @@ public class HSMSafenetLunaServer  {
     /**
      * This is the setter method to the attribute.
      * Password of the partition assigned to this client.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param partitionPasswd set the partitionPasswd.
      */
@@ -82,6 +86,7 @@ public class HSMSafenetLunaServer  {
      * This is the getter method this will return the attribute value.
      * Serial number of the partition assigned to this client.
      * Field introduced in 16.5.2,17.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return partitionSerialNumber
      */
@@ -93,6 +98,7 @@ public class HSMSafenetLunaServer  {
      * This is the setter method to the attribute.
      * Serial number of the partition assigned to this client.
      * Field introduced in 16.5.2,17.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param partitionSerialNumber set the partitionSerialNumber.
      */
@@ -103,6 +109,7 @@ public class HSMSafenetLunaServer  {
     /**
      * This is the getter method this will return the attribute value.
      * Ip address of the safenet/gemalto hsm device.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return remoteIp
      */
@@ -113,6 +120,7 @@ public class HSMSafenetLunaServer  {
     /**
      * This is the setter method to the attribute.
      * Ip address of the safenet/gemalto hsm device.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param remoteIp set the remoteIp.
      */
@@ -123,6 +131,7 @@ public class HSMSafenetLunaServer  {
     /**
      * This is the getter method this will return the attribute value.
      * Ca certificate of the server.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return serverCert
      */
@@ -133,6 +142,7 @@ public class HSMSafenetLunaServer  {
     /**
      * This is the setter method to the attribute.
      * Ca certificate of the server.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param serverCert set the serverCert.
      */

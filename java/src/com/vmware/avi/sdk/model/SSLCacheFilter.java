@@ -30,6 +30,7 @@ public class SSLCacheFilter  {
      * This is the getter method this will return the attribute value.
      * Hexadecimal representation of the ssl session id.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sslSessionId
      */
@@ -41,6 +42,7 @@ public class SSLCacheFilter  {
      * This is the setter method to the attribute.
      * Hexadecimal representation of the ssl session id.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sslSessionId set the sslSessionId.
      */
