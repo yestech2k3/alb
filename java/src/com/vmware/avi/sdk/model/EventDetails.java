@@ -333,6 +333,9 @@ public class EventDetails  {
     @JsonProperty("metrics_db_sync_failure_details")
     private MetricsDbSyncFailureEventDetails metricsDbSyncFailureDetails = null;
 
+    @JsonProperty("metrics_grpc_auth_failure_details")
+    private MetricsGRPCAuthFailureDetails metricsGrpcAuthFailureDetails = null;
+
     @JsonProperty("mgmt_nw_change_details")
     private VinfraMgmtNwChangeDetails mgmtNwChangeDetails = null;
 
@@ -2800,6 +2803,26 @@ public class EventDetails  {
      * This is the getter method this will return the attribute value.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return metricsGrpcAuthFailureDetails
+     */
+    public MetricsGRPCAuthFailureDetails getMetricsGrpcAuthFailureDetails() {
+        return metricsGrpcAuthFailureDetails;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param metricsGrpcAuthFailureDetails set the metricsGrpcAuthFailureDetails.
+     */
+    public void setMetricsGrpcAuthFailureDetails(MetricsGRPCAuthFailureDetails metricsGrpcAuthFailureDetails) {
+        this.metricsGrpcAuthFailureDetails = metricsGrpcAuthFailureDetails;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return mgmtNwChangeDetails
      */
     public VinfraMgmtNwChangeDetails getMgmtNwChangeDetails() {
@@ -5219,6 +5242,7 @@ public class EventDetails  {
   Objects.equals(this.metricsDbQueueFullDetails, objEventDetails.metricsDbQueueFullDetails)&&
   Objects.equals(this.metricsDbQueueHealthyDetails, objEventDetails.metricsDbQueueHealthyDetails)&&
   Objects.equals(this.metricsDbSyncFailureDetails, objEventDetails.metricsDbSyncFailureDetails)&&
+  Objects.equals(this.metricsGrpcAuthFailureDetails, objEventDetails.metricsGrpcAuthFailureDetails)&&
   Objects.equals(this.osInfraDetails, objEventDetails.osInfraDetails)&&
   Objects.equals(this.osSeVmDetails, objEventDetails.osSeVmDetails)&&
   Objects.equals(this.osVnicDetails, objEventDetails.osVnicDetails)&&
@@ -5427,6 +5451,7 @@ public class EventDetails  {
                         sb.append("    metricsDbQueueFullDetails: ").append(toIndentedString(metricsDbQueueFullDetails)).append("\n");
                         sb.append("    metricsDbQueueHealthyDetails: ").append(toIndentedString(metricsDbQueueHealthyDetails)).append("\n");
                         sb.append("    metricsDbSyncFailureDetails: ").append(toIndentedString(metricsDbSyncFailureDetails)).append("\n");
+                        sb.append("    metricsGrpcAuthFailureDetails: ").append(toIndentedString(metricsGrpcAuthFailureDetails)).append("\n");
                         sb.append("    mgmtNwChangeDetails: ").append(toIndentedString(mgmtNwChangeDetails)).append("\n");
                         sb.append("    modifyNetworksDetails: ").append(toIndentedString(modifyNetworksDetails)).append("\n");
                         sb.append("    networkSubnetDetails: ").append(toIndentedString(networkSubnetDetails)).append("\n");

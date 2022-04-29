@@ -136,7 +136,7 @@ public class AuthMappingProfile extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Description for the tenant of authmappingprofile.
+     * Tenant ref for the auth mapping profile.
      * It is a reference to an object of type tenant.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -149,7 +149,7 @@ public class AuthMappingProfile extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Description for the tenant of authmappingprofile.
+     * Tenant ref for the auth mapping profile.
      * It is a reference to an object of type tenant.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
