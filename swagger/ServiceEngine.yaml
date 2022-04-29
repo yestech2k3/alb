@@ -632,7 +632,7 @@ paths:
                         type: string
                 401:
                     description: log in failed
-    /serviceengine/{uuid}/connected/:
+    /serviceengine/{uuid}/internal/:
         get:
             consumes:
                 -   application/json

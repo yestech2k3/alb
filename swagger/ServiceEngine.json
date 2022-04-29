@@ -931,7 +931,7 @@
                 }
             }
         },
-        "/serviceengine/{uuid}/connected/": {
+        "/serviceengine/{uuid}/internal/": {
             "get": {
                 "consumes": [
                     "application/json"
