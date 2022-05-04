@@ -205,7 +205,6 @@ font-style: italic;
   <li><a href="#virtualserviceClearPost"><code><span class="http-method">post</span> /virtualservice/clear</code></a></li>
   <li><a href="#virtualserviceGet"><code><span class="http-method">get</span> /virtualservice</code></a></li>
   <li><a href="#virtualservicePost"><code><span class="http-method">post</span> /virtualservice</code></a></li>
-  <li><a href="#virtualserviceUuidApicplacementPost"><code><span class="http-method">post</span> /virtualservice/{uuid}/apicplacement</code></a></li>
   <li><a href="#virtualserviceUuidApplylogrecommendationPost"><code><span class="http-method">post</span> /virtualservice/{uuid}/applylogrecommendation</code></a></li>
   <li><a href="#virtualserviceUuidAuthstatsGet"><code><span class="http-method">get</span> /virtualservice/{uuid}/authstats/</code></a></li>
   <li><a href="#virtualserviceUuidBotstatsGet"><code><span class="http-method">get</span> /virtualservice/{uuid}/botstats/</code></a></li>
@@ -375,12 +374,6 @@ font-style: italic;
   "next" : "aeiou",
   "count" : 123,
   "results" : [ {
-    "client_auth" : {
-      "request_uri_path" : "",
-      "auth_profile_ref" : "aeiou",
-      "realm" : "aeiou",
-      "type" : "aeiou"
-    },
     "dns_policies" : [ {
       "dns_policy_ref" : "aeiou",
       "index" : 123
@@ -391,40 +384,66 @@ font-style: italic;
     } ],
     "azure_availability_set" : "aeiou",
     "enable_autogw" : true,
+    "icap_request_profile_refs" : [ "aeiou" ],
+    "saml_sp_config" : {
+      "sp_metadata" : "aeiou",
+      "acs_index" : 123,
+      "authn_req_acs_type" : "aeiou",
+      "signing_ssl_key_and_certificate_ref" : "aeiou",
+      "cookie_timeout" : 123,
+      "use_idp_session_timeout" : true,
+      "entity_id" : "aeiou",
+      "key" : [ "" ],
+      "cookie_name" : "aeiou",
+      "single_signon_url" : "aeiou"
+    },
+    "vrf_context_ref" : "aeiou",
+    "flow_dist" : "aeiou",
+    "dns_info" : [ {
+      "metadata" : "aeiou",
+      "fqdn" : "aeiou",
+      "num_records_in_response" : 123,
+      "cname" : {
+        "cname" : "aeiou"
+      },
+      "type" : "aeiou",
+      "ttl" : 123,
+      "algorithm" : "aeiou"
+    } ],
     "content_rewrite" : {
-      "req_match_replace_pair" : [ {
-        "match_string" : "aeiou",
-        "replacement_string" : {
-          "val" : "aeiou",
-          "type" : "aeiou"
-        }
-      } ],
-      "request_rewrite_enabled" : true,
-      "rsp_match_replace_pair" : [ "" ],
       "rewritable_content_ref" : "aeiou",
       "rsp_rewrite_rules" : [ {
         "enable" : true,
         "name" : "aeiou",
         "index" : 123,
         "pairs" : [ {
-          "replacement_string" : "",
+          "replacement_string" : {
+            "val" : "aeiou",
+            "type" : "aeiou"
+          },
           "search_string" : {
             "val" : "aeiou",
             "type" : "aeiou"
           }
         } ]
-      } ],
-      "response_rewrite_enabled" : true
+      } ]
     },
     "type" : "aeiou",
     "traffic_enabled" : true,
+    "uuid" : "aeiou",
     "bgp_peer_labels" : [ "aeiou" ],
+    "vh_domain_name" : [ "aeiou" ],
     "pool_ref" : "aeiou",
     "delay_fairness" : true,
+    "snat_ip" : [ "" ],
     "cloud_ref" : "aeiou",
+    "microservice_ref" : "aeiou",
+    "error_page_profile_ref" : "aeiou",
     "configpb_attributes" : {
       "version" : 123
     },
+    "server_network_profile_ref" : "aeiou",
+    "use_vip_as_snat" : true,
     "analytics_policy" : {
       "significant_log_throttle" : 123,
       "all_headers" : true,
@@ -472,15 +491,17 @@ font-style: italic;
         "host" : "aeiou",
         "enabled" : true
       },
-      "enabled" : true,
       "full_client_logs" : {
         "duration" : 123,
-        "all_headers" : true,
         "throttle" : 123,
         "enabled" : true
       }
     },
     "enable_rhi_snat" : true,
+    "sideband_profile" : {
+      "ip" : [ "" ],
+      "sideband_max_request_body_size" : 123
+    },
     "vip" : [ {
       "availability_zone" : "aeiou",
       "ip6_address" : "",
@@ -506,231 +527,27 @@ font-style: italic;
       "avi_allocated_fip" : true,
       "subnet6_uuid" : "aeiou",
       "floating_ip6" : "",
-      "ipam_network_subnet" : "",
+      "ipam_network_subnet" : {
+        "subnet" : "",
+        "subnet_uuid" : "aeiou",
+        "subnet6" : "",
+        "subnet6_uuid" : "aeiou",
+        "network_ref" : "aeiou"
+      },
       "network_ref" : "aeiou",
       "prefix_length" : 123,
-      "discovered_networks" : [ "" ]
+      "discovered_networks" : [ {
+        "subnet" : [ "" ],
+        "subnet6" : [ "" ],
+        "network_ref" : "aeiou"
+      } ]
     } ],
     "min_pools_up" : 123,
-    "sp_pool_refs" : [ "aeiou" ],
-    "apic_contract_graph" : "aeiou",
-    "subnet_uuid" : "aeiou",
-    "advertise_down_vs" : true,
-    "bulk_sync_kvcache" : true,
-    "waf_policy_ref" : "aeiou",
-    "labels" : [ {
-      "value" : "aeiou",
-      "key" : "aeiou"
-    } ],
-    "security_policy_ref" : "aeiou",
-    "ssl_sess_cache_avg_size" : 123,
-    "cloud_type" : "aeiou",
-    "scaleout_ecmp" : true,
-    "cloud_config_cksum" : "aeiou",
-    "remove_listening_port_on_vs_down" : true,
-    "vsvip_ref" : "aeiou",
-    "network_security_policy_ref" : "aeiou",
-    "oauth_vs_config" : {
-      "oauth_settings" : [ {
-        "app_settings" : {
-          "oidc_config" : {
-            "oidc_enable" : true,
-            "profile" : true,
-            "userinfo" : true
-          },
-          "client_secret" : "aeiou",
-          "scopes" : [ "aeiou" ],
-          "client_id" : "aeiou"
-        },
-        "resource_server" : {
-          "access_type" : "aeiou",
-          "jwt_params" : {
-            "audience" : "aeiou"
-          },
-          "opaque_token_params" : {
-            "server_secret" : "aeiou",
-            "server_id" : "aeiou"
-          }
-        },
-        "auth_profile_ref" : "aeiou"
-      } ],
-      "cookie_timeout" : 123,
-      "redirect_uri" : "aeiou",
-      "key" : [ {
-        "hmac_key" : "aeiou",
-        "aes_key" : "aeiou",
-        "name" : "aeiou"
-      } ],
-      "cookie_name" : "aeiou"
-    },
-    "topology_policies" : [ "" ],
-    "jwt_config" : {
-      "jwt_name" : "aeiou",
-      "audience" : "aeiou",
-      "jwt_location" : "aeiou"
-    },
-    "pool_group_ref" : "aeiou",
-    "ssl_profile_ref" : "aeiou",
-    "enabled" : true,
-    "limit_doser" : true,
-    "discovered_subnet" : [ "" ],
-    "max_cps_per_client" : 123,
-    "sso_policy_ref" : "aeiou",
-    "sso_policy" : {
-      "tenant_ref" : "aeiou",
-      "name" : "aeiou",
-      "authentication_policy" : {
-        "sp_metadata" : "aeiou",
-        "authn_rules" : [ {
-          "enable" : true,
-          "match" : {
-            "path" : {
-              "match_criteria" : "aeiou",
-              "string_group_refs" : [ "aeiou" ],
-              "match_str" : [ "aeiou" ],
-              "match_case" : "aeiou"
-            },
-            "host_hdr" : {
-              "match_criteria" : "aeiou",
-              "value" : [ "aeiou" ],
-              "match_case" : "aeiou"
-            },
-            "client_ip" : ""
-          },
-          "name" : "aeiou",
-          "action" : {
-            "type" : "aeiou"
-          },
-          "index" : 123
-        } ],
-        "default_auth_profile_ref" : "aeiou",
-        "cookie_timeout" : 123,
-        "auth_profile_ref" : "aeiou",
-        "entity_id" : "aeiou",
-        "key" : [ "" ],
-        "cookie_name" : "aeiou",
-        "single_signon_url" : "aeiou"
-      },
-      "configpb_attributes" : "",
-      "markers" : [ "" ],
-      "type" : "aeiou",
-      "authorization_policy" : {
-        "authz_rules" : [ {
-          "enable" : true,
-          "match" : {
-            "access_token" : {
-              "token_name" : "aeiou",
-              "matches" : [ {
-                "string_match" : "",
-                "bool_match" : true,
-                "name" : "aeiou",
-                "int_match" : 123,
-                "is_mandatory" : true,
-                "type" : "aeiou",
-                "validate" : true
-              } ]
-            },
-            "path" : "",
-            "method" : {
-              "match_criteria" : "aeiou",
-              "methods" : [ "aeiou" ]
-            },
-            "host_hdr" : "",
-            "attr_matches" : [ {
-              "attribute_name" : "aeiou",
-              "attribute_value_list" : ""
-            } ]
-          },
-          "name" : "aeiou",
-          "action" : {
-            "status_code" : "aeiou",
-            "type" : "aeiou"
-          },
-          "index" : 123
-        } ]
-      },
-      "uuid" : "aeiou",
-      "url" : "aeiou",
-      "_last_modified" : "aeiou",
-      "labels" : [ "" ]
-    },
-    "network_ref" : "aeiou",
-    "http_policies" : [ {
-      "http_policy_set_ref" : "aeiou",
-      "index" : 123
-    } ],
-    "availability_zone" : "aeiou",
-    "service_metadata" : "aeiou",
-    "bot_policy_ref" : "aeiou",
-    "services" : [ {
-      "override_network_profile_ref" : "aeiou",
-      "port" : 123,
-      "port_range_end" : 123,
-      "enable_http2" : true,
-      "horizon_internal_ports" : true,
-      "enable_ssl" : true,
-      "override_application_profile_ref" : "aeiou"
-    } ],
-    "url" : "aeiou",
-    "active_standby_se_tag" : "aeiou",
-    "nsx_securitygroup" : [ "aeiou" ],
-    "markers" : [ {
-      "values" : [ "aeiou" ],
-      "key" : "aeiou"
-    } ],
-    "vsvip_cloud_config_cksum" : "aeiou",
-    "east_west_placement" : true,
-    "subnet" : "",
-    "icap_request_profile_refs" : [ "aeiou" ],
-    "saml_sp_config" : {
-      "sp_metadata" : "aeiou",
-      "acs_index" : 123,
-      "authn_req_acs_type" : "aeiou",
-      "signing_ssl_key_and_certificate_ref" : "aeiou",
-      "cookie_timeout" : 123,
-      "use_idp_session_timeout" : true,
-      "entity_id" : "aeiou",
-      "key" : [ "" ],
-      "cookie_name" : "aeiou",
-      "single_signon_url" : "aeiou"
-    },
-    "vrf_context_ref" : "aeiou",
-    "flow_dist" : "aeiou",
-    "dns_info" : [ {
-      "metadata" : "aeiou",
-      "fqdn" : "aeiou",
-      "num_records_in_response" : 123,
-      "cname" : {
-        "cname" : "aeiou"
-      },
-      "type" : "aeiou",
-      "ttl" : 123,
-      "algorithm" : "aeiou"
-    } ],
-    "avi_allocated_vip" : true,
-    "uuid" : "aeiou",
-    "vh_domain_name" : [ "aeiou" ],
-    "snat_ip" : [ "" ],
-    "microservice_ref" : "aeiou",
-    "error_page_profile_ref" : "aeiou",
-    "avi_allocated_fip" : true,
-    "server_network_profile_ref" : "aeiou",
-    "use_vip_as_snat" : true,
-    "ipam_network_subnet" : {
-      "subnet" : "",
-      "subnet_uuid" : "aeiou",
-      "subnet6" : "",
-      "subnet6_uuid" : "aeiou",
-      "network_ref" : "aeiou"
-    },
-    "sideband_profile" : {
-      "ip" : [ "" ],
-      "sideband_max_request_body_size" : 123
-    },
     "performance_limits" : {
       "max_concurrent_connections" : 123,
       "max_throughput" : 123
     },
+    "sp_pool_refs" : [ "aeiou" ],
     "static_dns_records" : [ {
       "ip6_address" : [ {
         "ip6_address" : ""
@@ -767,10 +584,11 @@ font-style: italic;
       "delegated" : true,
       "algorithm" : "aeiou"
     } ],
+    "advertise_down_vs" : true,
     "fqdn" : "aeiou",
+    "bulk_sync_kvcache" : true,
     "vh_parent_vs_ref" : "aeiou",
     "weight" : 123,
-    "auto_allocate_floating_ip" : true,
     "ldap_vs_config" : {
       "se_auth_ldap_servers_failover_only" : true,
       "se_auth_ldap_conns_per_server" : 123,
@@ -781,6 +599,7 @@ font-style: italic;
       "se_auth_ldap_request_timeout" : 123,
       "se_auth_ldap_bind_timeout" : 123
     },
+    "waf_policy_ref" : "aeiou",
     "created_by" : "aeiou",
     "service_pool_select" : [ {
       "service_protocol" : "aeiou",
@@ -791,10 +610,17 @@ font-style: italic;
     } ],
     "vh_type" : "aeiou",
     "allow_invalid_client_cert" : true,
+    "security_policy_ref" : "aeiou",
     "application_profile_ref" : "aeiou",
+    "ssl_sess_cache_avg_size" : 123,
+    "cloud_type" : "aeiou",
+    "scaleout_ecmp" : true,
     "flow_label_type" : "aeiou",
     "name" : "aeiou",
+    "cloud_config_cksum" : "aeiou",
     "traffic_clone_profile_ref" : "aeiou",
+    "remove_listening_port_on_vs_down" : true,
+    "vsvip_ref" : "aeiou",
     "host_name_xlate" : "aeiou",
     "connections_rate_limit" : {
       "rate_limiter" : {
@@ -803,8 +629,6 @@ font-style: italic;
         "name" : "aeiou",
         "burst_sz" : 123
       },
-      "period" : 123,
-      "count" : 123,
       "action" : {
         "redirect" : {
           "keep_query" : true,
@@ -831,48 +655,111 @@ font-style: italic;
         "status_code" : "aeiou",
         "type" : "aeiou"
       },
-      "burst_sz" : 123,
       "explicit_tracking" : true,
       "fine_grain" : true,
       "http_cookie" : "aeiou",
       "http_header" : "aeiou"
     },
-    "port_uuid" : "aeiou",
+    "network_security_policy_ref" : "aeiou",
+    "oauth_vs_config" : {
+      "oauth_settings" : [ {
+        "app_settings" : {
+          "oidc_config" : {
+            "oidc_enable" : true,
+            "profile" : true,
+            "userinfo" : true
+          },
+          "client_secret" : "aeiou",
+          "scopes" : [ "aeiou" ],
+          "client_id" : "aeiou"
+        },
+        "resource_server" : {
+          "access_type" : "aeiou",
+          "jwt_params" : {
+            "audience" : "aeiou"
+          },
+          "opaque_token_params" : {
+            "server_secret" : "aeiou",
+            "server_id" : "aeiou"
+          }
+        },
+        "auth_profile_ref" : "aeiou"
+      } ],
+      "cookie_timeout" : 123,
+      "redirect_uri" : "aeiou",
+      "key" : [ {
+        "hmac_key" : "aeiou",
+        "aes_key" : "aeiou",
+        "name" : "aeiou"
+      } ],
+      "cookie_name" : "aeiou"
+    },
+    "topology_policies" : [ "" ],
     "description" : "aeiou",
     "vs_datascripts" : [ {
       "index" : 123,
       "vs_datascript_set_ref" : "aeiou"
     } ],
+    "jwt_config" : {
+      "jwt_name" : "aeiou",
+      "audience" : "aeiou",
+      "jwt_location" : "aeiou"
+    },
+    "pool_group_ref" : "aeiou",
     "ssl_key_and_certificate_refs" : [ "aeiou" ],
+    "ssl_profile_ref" : "aeiou",
+    "enabled" : true,
     "_last_modified" : "aeiou",
+    "limit_doser" : true,
     "se_group_ref" : "aeiou",
     "network_profile_ref" : "aeiou",
-    "auto_allocate_ip" : true,
     "close_client_conn_on_config_update" : true,
-    "floating_ip" : "",
-    "floating_subnet_uuid" : "aeiou",
-    "discovered_network_ref" : [ "aeiou" ],
+    "max_cps_per_client" : 123,
+    "sso_policy_ref" : "aeiou",
+    "http_policies" : [ {
+      "http_policy_set_ref" : "aeiou",
+      "index" : 123
+    } ],
     "analytics_profile_ref" : "aeiou",
+    "service_metadata" : "aeiou",
     "use_bridge_ip_as_vip" : true,
     "requests_rate_limit" : "",
+    "bot_policy_ref" : "aeiou",
     "enable_rhi" : true,
-    "ip_address" : "",
+    "services" : [ {
+      "override_network_profile_ref" : "aeiou",
+      "port" : 123,
+      "port_range_end" : 123,
+      "enable_http2" : true,
+      "horizon_internal_ports" : true,
+      "enable_ssl" : true,
+      "override_application_profile_ref" : "aeiou"
+    } ],
+    "url" : "aeiou",
     "test_se_datastore_level_1_ref" : "aeiou",
+    "active_standby_se_tag" : "aeiou",
+    "nsx_securitygroup" : [ "aeiou" ],
     "ssl_profile_selectors" : [ {
       "ssl_profile_ref" : "aeiou",
       "client_ip_list" : ""
     } ],
     "vh_matches" : [ {
-      "path" : [ "" ],
+      "path" : [ {
+        "match_criteria" : "aeiou",
+        "string_group_refs" : [ "aeiou" ],
+        "match_str" : [ "aeiou" ],
+        "match_case" : "aeiou"
+      } ],
       "host" : "aeiou"
     } ],
     "tenant_ref" : "aeiou",
     "ign_pool_net_reach" : true,
-    "discovered_networks" : [ {
-      "subnet" : [ "" ],
-      "subnet6" : [ "" ],
-      "network_ref" : "aeiou"
-    } ]
+    "markers" : [ {
+      "values" : [ "aeiou" ],
+      "key" : "aeiou"
+    } ],
+    "vsvip_cloud_config_cksum" : "aeiou",
+    "east_west_placement" : true
   } ]
 }</code></pre>
 
@@ -927,12 +814,6 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "client_auth" : {
-    "request_uri_path" : "",
-    "auth_profile_ref" : "aeiou",
-    "realm" : "aeiou",
-    "type" : "aeiou"
-  },
   "dns_policies" : [ {
     "dns_policy_ref" : "aeiou",
     "index" : 123
@@ -943,40 +824,66 @@ font-style: italic;
   } ],
   "azure_availability_set" : "aeiou",
   "enable_autogw" : true,
+  "icap_request_profile_refs" : [ "aeiou" ],
+  "saml_sp_config" : {
+    "sp_metadata" : "aeiou",
+    "acs_index" : 123,
+    "authn_req_acs_type" : "aeiou",
+    "signing_ssl_key_and_certificate_ref" : "aeiou",
+    "cookie_timeout" : 123,
+    "use_idp_session_timeout" : true,
+    "entity_id" : "aeiou",
+    "key" : [ "" ],
+    "cookie_name" : "aeiou",
+    "single_signon_url" : "aeiou"
+  },
+  "vrf_context_ref" : "aeiou",
+  "flow_dist" : "aeiou",
+  "dns_info" : [ {
+    "metadata" : "aeiou",
+    "fqdn" : "aeiou",
+    "num_records_in_response" : 123,
+    "cname" : {
+      "cname" : "aeiou"
+    },
+    "type" : "aeiou",
+    "ttl" : 123,
+    "algorithm" : "aeiou"
+  } ],
   "content_rewrite" : {
-    "req_match_replace_pair" : [ {
-      "match_string" : "aeiou",
-      "replacement_string" : {
-        "val" : "aeiou",
-        "type" : "aeiou"
-      }
-    } ],
-    "request_rewrite_enabled" : true,
-    "rsp_match_replace_pair" : [ "" ],
     "rewritable_content_ref" : "aeiou",
     "rsp_rewrite_rules" : [ {
       "enable" : true,
       "name" : "aeiou",
       "index" : 123,
       "pairs" : [ {
-        "replacement_string" : "",
+        "replacement_string" : {
+          "val" : "aeiou",
+          "type" : "aeiou"
+        },
         "search_string" : {
           "val" : "aeiou",
           "type" : "aeiou"
         }
       } ]
-    } ],
-    "response_rewrite_enabled" : true
+    } ]
   },
   "type" : "aeiou",
   "traffic_enabled" : true,
+  "uuid" : "aeiou",
   "bgp_peer_labels" : [ "aeiou" ],
+  "vh_domain_name" : [ "aeiou" ],
   "pool_ref" : "aeiou",
   "delay_fairness" : true,
+  "snat_ip" : [ "" ],
   "cloud_ref" : "aeiou",
+  "microservice_ref" : "aeiou",
+  "error_page_profile_ref" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
+  "server_network_profile_ref" : "aeiou",
+  "use_vip_as_snat" : true,
   "analytics_policy" : {
     "significant_log_throttle" : 123,
     "all_headers" : true,
@@ -1024,15 +931,17 @@ font-style: italic;
       "host" : "aeiou",
       "enabled" : true
     },
-    "enabled" : true,
     "full_client_logs" : {
       "duration" : 123,
-      "all_headers" : true,
       "throttle" : 123,
       "enabled" : true
     }
   },
   "enable_rhi_snat" : true,
+  "sideband_profile" : {
+    "ip" : [ "" ],
+    "sideband_max_request_body_size" : 123
+  },
   "vip" : [ {
     "availability_zone" : "aeiou",
     "ip6_address" : "",
@@ -1058,231 +967,27 @@ font-style: italic;
     "avi_allocated_fip" : true,
     "subnet6_uuid" : "aeiou",
     "floating_ip6" : "",
-    "ipam_network_subnet" : "",
+    "ipam_network_subnet" : {
+      "subnet" : "",
+      "subnet_uuid" : "aeiou",
+      "subnet6" : "",
+      "subnet6_uuid" : "aeiou",
+      "network_ref" : "aeiou"
+    },
     "network_ref" : "aeiou",
     "prefix_length" : 123,
-    "discovered_networks" : [ "" ]
+    "discovered_networks" : [ {
+      "subnet" : [ "" ],
+      "subnet6" : [ "" ],
+      "network_ref" : "aeiou"
+    } ]
   } ],
   "min_pools_up" : 123,
-  "sp_pool_refs" : [ "aeiou" ],
-  "apic_contract_graph" : "aeiou",
-  "subnet_uuid" : "aeiou",
-  "advertise_down_vs" : true,
-  "bulk_sync_kvcache" : true,
-  "waf_policy_ref" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
-  "security_policy_ref" : "aeiou",
-  "ssl_sess_cache_avg_size" : 123,
-  "cloud_type" : "aeiou",
-  "scaleout_ecmp" : true,
-  "cloud_config_cksum" : "aeiou",
-  "remove_listening_port_on_vs_down" : true,
-  "vsvip_ref" : "aeiou",
-  "network_security_policy_ref" : "aeiou",
-  "oauth_vs_config" : {
-    "oauth_settings" : [ {
-      "app_settings" : {
-        "oidc_config" : {
-          "oidc_enable" : true,
-          "profile" : true,
-          "userinfo" : true
-        },
-        "client_secret" : "aeiou",
-        "scopes" : [ "aeiou" ],
-        "client_id" : "aeiou"
-      },
-      "resource_server" : {
-        "access_type" : "aeiou",
-        "jwt_params" : {
-          "audience" : "aeiou"
-        },
-        "opaque_token_params" : {
-          "server_secret" : "aeiou",
-          "server_id" : "aeiou"
-        }
-      },
-      "auth_profile_ref" : "aeiou"
-    } ],
-    "cookie_timeout" : 123,
-    "redirect_uri" : "aeiou",
-    "key" : [ {
-      "hmac_key" : "aeiou",
-      "aes_key" : "aeiou",
-      "name" : "aeiou"
-    } ],
-    "cookie_name" : "aeiou"
-  },
-  "topology_policies" : [ "" ],
-  "jwt_config" : {
-    "jwt_name" : "aeiou",
-    "audience" : "aeiou",
-    "jwt_location" : "aeiou"
-  },
-  "pool_group_ref" : "aeiou",
-  "ssl_profile_ref" : "aeiou",
-  "enabled" : true,
-  "limit_doser" : true,
-  "discovered_subnet" : [ "" ],
-  "max_cps_per_client" : 123,
-  "sso_policy_ref" : "aeiou",
-  "sso_policy" : {
-    "tenant_ref" : "aeiou",
-    "name" : "aeiou",
-    "authentication_policy" : {
-      "sp_metadata" : "aeiou",
-      "authn_rules" : [ {
-        "enable" : true,
-        "match" : {
-          "path" : {
-            "match_criteria" : "aeiou",
-            "string_group_refs" : [ "aeiou" ],
-            "match_str" : [ "aeiou" ],
-            "match_case" : "aeiou"
-          },
-          "host_hdr" : {
-            "match_criteria" : "aeiou",
-            "value" : [ "aeiou" ],
-            "match_case" : "aeiou"
-          },
-          "client_ip" : ""
-        },
-        "name" : "aeiou",
-        "action" : {
-          "type" : "aeiou"
-        },
-        "index" : 123
-      } ],
-      "default_auth_profile_ref" : "aeiou",
-      "cookie_timeout" : 123,
-      "auth_profile_ref" : "aeiou",
-      "entity_id" : "aeiou",
-      "key" : [ "" ],
-      "cookie_name" : "aeiou",
-      "single_signon_url" : "aeiou"
-    },
-    "configpb_attributes" : "",
-    "markers" : [ "" ],
-    "type" : "aeiou",
-    "authorization_policy" : {
-      "authz_rules" : [ {
-        "enable" : true,
-        "match" : {
-          "access_token" : {
-            "token_name" : "aeiou",
-            "matches" : [ {
-              "string_match" : "",
-              "bool_match" : true,
-              "name" : "aeiou",
-              "int_match" : 123,
-              "is_mandatory" : true,
-              "type" : "aeiou",
-              "validate" : true
-            } ]
-          },
-          "path" : "",
-          "method" : {
-            "match_criteria" : "aeiou",
-            "methods" : [ "aeiou" ]
-          },
-          "host_hdr" : "",
-          "attr_matches" : [ {
-            "attribute_name" : "aeiou",
-            "attribute_value_list" : ""
-          } ]
-        },
-        "name" : "aeiou",
-        "action" : {
-          "status_code" : "aeiou",
-          "type" : "aeiou"
-        },
-        "index" : 123
-      } ]
-    },
-    "uuid" : "aeiou",
-    "url" : "aeiou",
-    "_last_modified" : "aeiou",
-    "labels" : [ "" ]
-  },
-  "network_ref" : "aeiou",
-  "http_policies" : [ {
-    "http_policy_set_ref" : "aeiou",
-    "index" : 123
-  } ],
-  "availability_zone" : "aeiou",
-  "service_metadata" : "aeiou",
-  "bot_policy_ref" : "aeiou",
-  "services" : [ {
-    "override_network_profile_ref" : "aeiou",
-    "port" : 123,
-    "port_range_end" : 123,
-    "enable_http2" : true,
-    "horizon_internal_ports" : true,
-    "enable_ssl" : true,
-    "override_application_profile_ref" : "aeiou"
-  } ],
-  "url" : "aeiou",
-  "active_standby_se_tag" : "aeiou",
-  "nsx_securitygroup" : [ "aeiou" ],
-  "markers" : [ {
-    "values" : [ "aeiou" ],
-    "key" : "aeiou"
-  } ],
-  "vsvip_cloud_config_cksum" : "aeiou",
-  "east_west_placement" : true,
-  "subnet" : "",
-  "icap_request_profile_refs" : [ "aeiou" ],
-  "saml_sp_config" : {
-    "sp_metadata" : "aeiou",
-    "acs_index" : 123,
-    "authn_req_acs_type" : "aeiou",
-    "signing_ssl_key_and_certificate_ref" : "aeiou",
-    "cookie_timeout" : 123,
-    "use_idp_session_timeout" : true,
-    "entity_id" : "aeiou",
-    "key" : [ "" ],
-    "cookie_name" : "aeiou",
-    "single_signon_url" : "aeiou"
-  },
-  "vrf_context_ref" : "aeiou",
-  "flow_dist" : "aeiou",
-  "dns_info" : [ {
-    "metadata" : "aeiou",
-    "fqdn" : "aeiou",
-    "num_records_in_response" : 123,
-    "cname" : {
-      "cname" : "aeiou"
-    },
-    "type" : "aeiou",
-    "ttl" : 123,
-    "algorithm" : "aeiou"
-  } ],
-  "avi_allocated_vip" : true,
-  "uuid" : "aeiou",
-  "vh_domain_name" : [ "aeiou" ],
-  "snat_ip" : [ "" ],
-  "microservice_ref" : "aeiou",
-  "error_page_profile_ref" : "aeiou",
-  "avi_allocated_fip" : true,
-  "server_network_profile_ref" : "aeiou",
-  "use_vip_as_snat" : true,
-  "ipam_network_subnet" : {
-    "subnet" : "",
-    "subnet_uuid" : "aeiou",
-    "subnet6" : "",
-    "subnet6_uuid" : "aeiou",
-    "network_ref" : "aeiou"
-  },
-  "sideband_profile" : {
-    "ip" : [ "" ],
-    "sideband_max_request_body_size" : 123
-  },
   "performance_limits" : {
     "max_concurrent_connections" : 123,
     "max_throughput" : 123
   },
+  "sp_pool_refs" : [ "aeiou" ],
   "static_dns_records" : [ {
     "ip6_address" : [ {
       "ip6_address" : ""
@@ -1319,10 +1024,11 @@ font-style: italic;
     "delegated" : true,
     "algorithm" : "aeiou"
   } ],
+  "advertise_down_vs" : true,
   "fqdn" : "aeiou",
+  "bulk_sync_kvcache" : true,
   "vh_parent_vs_ref" : "aeiou",
   "weight" : 123,
-  "auto_allocate_floating_ip" : true,
   "ldap_vs_config" : {
     "se_auth_ldap_servers_failover_only" : true,
     "se_auth_ldap_conns_per_server" : 123,
@@ -1333,6 +1039,7 @@ font-style: italic;
     "se_auth_ldap_request_timeout" : 123,
     "se_auth_ldap_bind_timeout" : 123
   },
+  "waf_policy_ref" : "aeiou",
   "created_by" : "aeiou",
   "service_pool_select" : [ {
     "service_protocol" : "aeiou",
@@ -1343,10 +1050,17 @@ font-style: italic;
   } ],
   "vh_type" : "aeiou",
   "allow_invalid_client_cert" : true,
+  "security_policy_ref" : "aeiou",
   "application_profile_ref" : "aeiou",
+  "ssl_sess_cache_avg_size" : 123,
+  "cloud_type" : "aeiou",
+  "scaleout_ecmp" : true,
   "flow_label_type" : "aeiou",
   "name" : "aeiou",
+  "cloud_config_cksum" : "aeiou",
   "traffic_clone_profile_ref" : "aeiou",
+  "remove_listening_port_on_vs_down" : true,
+  "vsvip_ref" : "aeiou",
   "host_name_xlate" : "aeiou",
   "connections_rate_limit" : {
     "rate_limiter" : {
@@ -1355,8 +1069,6 @@ font-style: italic;
       "name" : "aeiou",
       "burst_sz" : 123
     },
-    "period" : 123,
-    "count" : 123,
     "action" : {
       "redirect" : {
         "keep_query" : true,
@@ -1383,48 +1095,111 @@ font-style: italic;
       "status_code" : "aeiou",
       "type" : "aeiou"
     },
-    "burst_sz" : 123,
     "explicit_tracking" : true,
     "fine_grain" : true,
     "http_cookie" : "aeiou",
     "http_header" : "aeiou"
   },
-  "port_uuid" : "aeiou",
+  "network_security_policy_ref" : "aeiou",
+  "oauth_vs_config" : {
+    "oauth_settings" : [ {
+      "app_settings" : {
+        "oidc_config" : {
+          "oidc_enable" : true,
+          "profile" : true,
+          "userinfo" : true
+        },
+        "client_secret" : "aeiou",
+        "scopes" : [ "aeiou" ],
+        "client_id" : "aeiou"
+      },
+      "resource_server" : {
+        "access_type" : "aeiou",
+        "jwt_params" : {
+          "audience" : "aeiou"
+        },
+        "opaque_token_params" : {
+          "server_secret" : "aeiou",
+          "server_id" : "aeiou"
+        }
+      },
+      "auth_profile_ref" : "aeiou"
+    } ],
+    "cookie_timeout" : 123,
+    "redirect_uri" : "aeiou",
+    "key" : [ {
+      "hmac_key" : "aeiou",
+      "aes_key" : "aeiou",
+      "name" : "aeiou"
+    } ],
+    "cookie_name" : "aeiou"
+  },
+  "topology_policies" : [ "" ],
   "description" : "aeiou",
   "vs_datascripts" : [ {
     "index" : 123,
     "vs_datascript_set_ref" : "aeiou"
   } ],
+  "jwt_config" : {
+    "jwt_name" : "aeiou",
+    "audience" : "aeiou",
+    "jwt_location" : "aeiou"
+  },
+  "pool_group_ref" : "aeiou",
   "ssl_key_and_certificate_refs" : [ "aeiou" ],
+  "ssl_profile_ref" : "aeiou",
+  "enabled" : true,
   "_last_modified" : "aeiou",
+  "limit_doser" : true,
   "se_group_ref" : "aeiou",
   "network_profile_ref" : "aeiou",
-  "auto_allocate_ip" : true,
   "close_client_conn_on_config_update" : true,
-  "floating_ip" : "",
-  "floating_subnet_uuid" : "aeiou",
-  "discovered_network_ref" : [ "aeiou" ],
+  "max_cps_per_client" : 123,
+  "sso_policy_ref" : "aeiou",
+  "http_policies" : [ {
+    "http_policy_set_ref" : "aeiou",
+    "index" : 123
+  } ],
   "analytics_profile_ref" : "aeiou",
+  "service_metadata" : "aeiou",
   "use_bridge_ip_as_vip" : true,
   "requests_rate_limit" : "",
+  "bot_policy_ref" : "aeiou",
   "enable_rhi" : true,
-  "ip_address" : "",
+  "services" : [ {
+    "override_network_profile_ref" : "aeiou",
+    "port" : 123,
+    "port_range_end" : 123,
+    "enable_http2" : true,
+    "horizon_internal_ports" : true,
+    "enable_ssl" : true,
+    "override_application_profile_ref" : "aeiou"
+  } ],
+  "url" : "aeiou",
   "test_se_datastore_level_1_ref" : "aeiou",
+  "active_standby_se_tag" : "aeiou",
+  "nsx_securitygroup" : [ "aeiou" ],
   "ssl_profile_selectors" : [ {
     "ssl_profile_ref" : "aeiou",
     "client_ip_list" : ""
   } ],
   "vh_matches" : [ {
-    "path" : [ "" ],
+    "path" : [ {
+      "match_criteria" : "aeiou",
+      "string_group_refs" : [ "aeiou" ],
+      "match_str" : [ "aeiou" ],
+      "match_case" : "aeiou"
+    } ],
     "host" : "aeiou"
   } ],
   "tenant_ref" : "aeiou",
   "ign_pool_net_reach" : true,
-  "discovered_networks" : [ {
-    "subnet" : [ "" ],
-    "subnet6" : [ "" ],
-    "network_ref" : "aeiou"
-  } ]
+  "markers" : [ {
+    "values" : [ "aeiou" ],
+    "key" : "aeiou"
+  } ],
+  "vsvip_cloud_config_cksum" : "aeiou",
+  "east_west_placement" : true
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -1438,64 +1213,6 @@ font-style: italic;
     <h4 class="field-label">200</h4>
     OK
         <a href="#VirtualService">VirtualService</a>
-    <h4 class="field-label">401</h4>
-    log in failed
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="virtualserviceUuidApicplacementPost"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /virtualservice/{uuid}/apicplacement</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">virtualserviceUuidApicplacementPost</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">uuid (required)</div>
-
-      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; UUID of the object to fetch </div>
-    </div>  <!-- field-items -->
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Request body</h3>
-    <div class="field-items">
-      <div class="param">body (required)</div>
-
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; ApicVSPlacementReq </div>
-    </div>  <!-- field-items -->
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      String
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>"aeiou"</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    OK
-        <a href="#String">String</a>
     <h4 class="field-label">401</h4>
     log in failed
         <a href="#"></a>
@@ -2342,12 +2059,6 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "client_auth" : {
-    "request_uri_path" : "",
-    "auth_profile_ref" : "aeiou",
-    "realm" : "aeiou",
-    "type" : "aeiou"
-  },
   "dns_policies" : [ {
     "dns_policy_ref" : "aeiou",
     "index" : 123
@@ -2358,40 +2069,66 @@ font-style: italic;
   } ],
   "azure_availability_set" : "aeiou",
   "enable_autogw" : true,
+  "icap_request_profile_refs" : [ "aeiou" ],
+  "saml_sp_config" : {
+    "sp_metadata" : "aeiou",
+    "acs_index" : 123,
+    "authn_req_acs_type" : "aeiou",
+    "signing_ssl_key_and_certificate_ref" : "aeiou",
+    "cookie_timeout" : 123,
+    "use_idp_session_timeout" : true,
+    "entity_id" : "aeiou",
+    "key" : [ "" ],
+    "cookie_name" : "aeiou",
+    "single_signon_url" : "aeiou"
+  },
+  "vrf_context_ref" : "aeiou",
+  "flow_dist" : "aeiou",
+  "dns_info" : [ {
+    "metadata" : "aeiou",
+    "fqdn" : "aeiou",
+    "num_records_in_response" : 123,
+    "cname" : {
+      "cname" : "aeiou"
+    },
+    "type" : "aeiou",
+    "ttl" : 123,
+    "algorithm" : "aeiou"
+  } ],
   "content_rewrite" : {
-    "req_match_replace_pair" : [ {
-      "match_string" : "aeiou",
-      "replacement_string" : {
-        "val" : "aeiou",
-        "type" : "aeiou"
-      }
-    } ],
-    "request_rewrite_enabled" : true,
-    "rsp_match_replace_pair" : [ "" ],
     "rewritable_content_ref" : "aeiou",
     "rsp_rewrite_rules" : [ {
       "enable" : true,
       "name" : "aeiou",
       "index" : 123,
       "pairs" : [ {
-        "replacement_string" : "",
+        "replacement_string" : {
+          "val" : "aeiou",
+          "type" : "aeiou"
+        },
         "search_string" : {
           "val" : "aeiou",
           "type" : "aeiou"
         }
       } ]
-    } ],
-    "response_rewrite_enabled" : true
+    } ]
   },
   "type" : "aeiou",
   "traffic_enabled" : true,
+  "uuid" : "aeiou",
   "bgp_peer_labels" : [ "aeiou" ],
+  "vh_domain_name" : [ "aeiou" ],
   "pool_ref" : "aeiou",
   "delay_fairness" : true,
+  "snat_ip" : [ "" ],
   "cloud_ref" : "aeiou",
+  "microservice_ref" : "aeiou",
+  "error_page_profile_ref" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
+  "server_network_profile_ref" : "aeiou",
+  "use_vip_as_snat" : true,
   "analytics_policy" : {
     "significant_log_throttle" : 123,
     "all_headers" : true,
@@ -2439,15 +2176,17 @@ font-style: italic;
       "host" : "aeiou",
       "enabled" : true
     },
-    "enabled" : true,
     "full_client_logs" : {
       "duration" : 123,
-      "all_headers" : true,
       "throttle" : 123,
       "enabled" : true
     }
   },
   "enable_rhi_snat" : true,
+  "sideband_profile" : {
+    "ip" : [ "" ],
+    "sideband_max_request_body_size" : 123
+  },
   "vip" : [ {
     "availability_zone" : "aeiou",
     "ip6_address" : "",
@@ -2473,231 +2212,27 @@ font-style: italic;
     "avi_allocated_fip" : true,
     "subnet6_uuid" : "aeiou",
     "floating_ip6" : "",
-    "ipam_network_subnet" : "",
+    "ipam_network_subnet" : {
+      "subnet" : "",
+      "subnet_uuid" : "aeiou",
+      "subnet6" : "",
+      "subnet6_uuid" : "aeiou",
+      "network_ref" : "aeiou"
+    },
     "network_ref" : "aeiou",
     "prefix_length" : 123,
-    "discovered_networks" : [ "" ]
+    "discovered_networks" : [ {
+      "subnet" : [ "" ],
+      "subnet6" : [ "" ],
+      "network_ref" : "aeiou"
+    } ]
   } ],
   "min_pools_up" : 123,
-  "sp_pool_refs" : [ "aeiou" ],
-  "apic_contract_graph" : "aeiou",
-  "subnet_uuid" : "aeiou",
-  "advertise_down_vs" : true,
-  "bulk_sync_kvcache" : true,
-  "waf_policy_ref" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
-  "security_policy_ref" : "aeiou",
-  "ssl_sess_cache_avg_size" : 123,
-  "cloud_type" : "aeiou",
-  "scaleout_ecmp" : true,
-  "cloud_config_cksum" : "aeiou",
-  "remove_listening_port_on_vs_down" : true,
-  "vsvip_ref" : "aeiou",
-  "network_security_policy_ref" : "aeiou",
-  "oauth_vs_config" : {
-    "oauth_settings" : [ {
-      "app_settings" : {
-        "oidc_config" : {
-          "oidc_enable" : true,
-          "profile" : true,
-          "userinfo" : true
-        },
-        "client_secret" : "aeiou",
-        "scopes" : [ "aeiou" ],
-        "client_id" : "aeiou"
-      },
-      "resource_server" : {
-        "access_type" : "aeiou",
-        "jwt_params" : {
-          "audience" : "aeiou"
-        },
-        "opaque_token_params" : {
-          "server_secret" : "aeiou",
-          "server_id" : "aeiou"
-        }
-      },
-      "auth_profile_ref" : "aeiou"
-    } ],
-    "cookie_timeout" : 123,
-    "redirect_uri" : "aeiou",
-    "key" : [ {
-      "hmac_key" : "aeiou",
-      "aes_key" : "aeiou",
-      "name" : "aeiou"
-    } ],
-    "cookie_name" : "aeiou"
-  },
-  "topology_policies" : [ "" ],
-  "jwt_config" : {
-    "jwt_name" : "aeiou",
-    "audience" : "aeiou",
-    "jwt_location" : "aeiou"
-  },
-  "pool_group_ref" : "aeiou",
-  "ssl_profile_ref" : "aeiou",
-  "enabled" : true,
-  "limit_doser" : true,
-  "discovered_subnet" : [ "" ],
-  "max_cps_per_client" : 123,
-  "sso_policy_ref" : "aeiou",
-  "sso_policy" : {
-    "tenant_ref" : "aeiou",
-    "name" : "aeiou",
-    "authentication_policy" : {
-      "sp_metadata" : "aeiou",
-      "authn_rules" : [ {
-        "enable" : true,
-        "match" : {
-          "path" : {
-            "match_criteria" : "aeiou",
-            "string_group_refs" : [ "aeiou" ],
-            "match_str" : [ "aeiou" ],
-            "match_case" : "aeiou"
-          },
-          "host_hdr" : {
-            "match_criteria" : "aeiou",
-            "value" : [ "aeiou" ],
-            "match_case" : "aeiou"
-          },
-          "client_ip" : ""
-        },
-        "name" : "aeiou",
-        "action" : {
-          "type" : "aeiou"
-        },
-        "index" : 123
-      } ],
-      "default_auth_profile_ref" : "aeiou",
-      "cookie_timeout" : 123,
-      "auth_profile_ref" : "aeiou",
-      "entity_id" : "aeiou",
-      "key" : [ "" ],
-      "cookie_name" : "aeiou",
-      "single_signon_url" : "aeiou"
-    },
-    "configpb_attributes" : "",
-    "markers" : [ "" ],
-    "type" : "aeiou",
-    "authorization_policy" : {
-      "authz_rules" : [ {
-        "enable" : true,
-        "match" : {
-          "access_token" : {
-            "token_name" : "aeiou",
-            "matches" : [ {
-              "string_match" : "",
-              "bool_match" : true,
-              "name" : "aeiou",
-              "int_match" : 123,
-              "is_mandatory" : true,
-              "type" : "aeiou",
-              "validate" : true
-            } ]
-          },
-          "path" : "",
-          "method" : {
-            "match_criteria" : "aeiou",
-            "methods" : [ "aeiou" ]
-          },
-          "host_hdr" : "",
-          "attr_matches" : [ {
-            "attribute_name" : "aeiou",
-            "attribute_value_list" : ""
-          } ]
-        },
-        "name" : "aeiou",
-        "action" : {
-          "status_code" : "aeiou",
-          "type" : "aeiou"
-        },
-        "index" : 123
-      } ]
-    },
-    "uuid" : "aeiou",
-    "url" : "aeiou",
-    "_last_modified" : "aeiou",
-    "labels" : [ "" ]
-  },
-  "network_ref" : "aeiou",
-  "http_policies" : [ {
-    "http_policy_set_ref" : "aeiou",
-    "index" : 123
-  } ],
-  "availability_zone" : "aeiou",
-  "service_metadata" : "aeiou",
-  "bot_policy_ref" : "aeiou",
-  "services" : [ {
-    "override_network_profile_ref" : "aeiou",
-    "port" : 123,
-    "port_range_end" : 123,
-    "enable_http2" : true,
-    "horizon_internal_ports" : true,
-    "enable_ssl" : true,
-    "override_application_profile_ref" : "aeiou"
-  } ],
-  "url" : "aeiou",
-  "active_standby_se_tag" : "aeiou",
-  "nsx_securitygroup" : [ "aeiou" ],
-  "markers" : [ {
-    "values" : [ "aeiou" ],
-    "key" : "aeiou"
-  } ],
-  "vsvip_cloud_config_cksum" : "aeiou",
-  "east_west_placement" : true,
-  "subnet" : "",
-  "icap_request_profile_refs" : [ "aeiou" ],
-  "saml_sp_config" : {
-    "sp_metadata" : "aeiou",
-    "acs_index" : 123,
-    "authn_req_acs_type" : "aeiou",
-    "signing_ssl_key_and_certificate_ref" : "aeiou",
-    "cookie_timeout" : 123,
-    "use_idp_session_timeout" : true,
-    "entity_id" : "aeiou",
-    "key" : [ "" ],
-    "cookie_name" : "aeiou",
-    "single_signon_url" : "aeiou"
-  },
-  "vrf_context_ref" : "aeiou",
-  "flow_dist" : "aeiou",
-  "dns_info" : [ {
-    "metadata" : "aeiou",
-    "fqdn" : "aeiou",
-    "num_records_in_response" : 123,
-    "cname" : {
-      "cname" : "aeiou"
-    },
-    "type" : "aeiou",
-    "ttl" : 123,
-    "algorithm" : "aeiou"
-  } ],
-  "avi_allocated_vip" : true,
-  "uuid" : "aeiou",
-  "vh_domain_name" : [ "aeiou" ],
-  "snat_ip" : [ "" ],
-  "microservice_ref" : "aeiou",
-  "error_page_profile_ref" : "aeiou",
-  "avi_allocated_fip" : true,
-  "server_network_profile_ref" : "aeiou",
-  "use_vip_as_snat" : true,
-  "ipam_network_subnet" : {
-    "subnet" : "",
-    "subnet_uuid" : "aeiou",
-    "subnet6" : "",
-    "subnet6_uuid" : "aeiou",
-    "network_ref" : "aeiou"
-  },
-  "sideband_profile" : {
-    "ip" : [ "" ],
-    "sideband_max_request_body_size" : 123
-  },
   "performance_limits" : {
     "max_concurrent_connections" : 123,
     "max_throughput" : 123
   },
+  "sp_pool_refs" : [ "aeiou" ],
   "static_dns_records" : [ {
     "ip6_address" : [ {
       "ip6_address" : ""
@@ -2734,10 +2269,11 @@ font-style: italic;
     "delegated" : true,
     "algorithm" : "aeiou"
   } ],
+  "advertise_down_vs" : true,
   "fqdn" : "aeiou",
+  "bulk_sync_kvcache" : true,
   "vh_parent_vs_ref" : "aeiou",
   "weight" : 123,
-  "auto_allocate_floating_ip" : true,
   "ldap_vs_config" : {
     "se_auth_ldap_servers_failover_only" : true,
     "se_auth_ldap_conns_per_server" : 123,
@@ -2748,6 +2284,7 @@ font-style: italic;
     "se_auth_ldap_request_timeout" : 123,
     "se_auth_ldap_bind_timeout" : 123
   },
+  "waf_policy_ref" : "aeiou",
   "created_by" : "aeiou",
   "service_pool_select" : [ {
     "service_protocol" : "aeiou",
@@ -2758,10 +2295,17 @@ font-style: italic;
   } ],
   "vh_type" : "aeiou",
   "allow_invalid_client_cert" : true,
+  "security_policy_ref" : "aeiou",
   "application_profile_ref" : "aeiou",
+  "ssl_sess_cache_avg_size" : 123,
+  "cloud_type" : "aeiou",
+  "scaleout_ecmp" : true,
   "flow_label_type" : "aeiou",
   "name" : "aeiou",
+  "cloud_config_cksum" : "aeiou",
   "traffic_clone_profile_ref" : "aeiou",
+  "remove_listening_port_on_vs_down" : true,
+  "vsvip_ref" : "aeiou",
   "host_name_xlate" : "aeiou",
   "connections_rate_limit" : {
     "rate_limiter" : {
@@ -2770,8 +2314,6 @@ font-style: italic;
       "name" : "aeiou",
       "burst_sz" : 123
     },
-    "period" : 123,
-    "count" : 123,
     "action" : {
       "redirect" : {
         "keep_query" : true,
@@ -2798,48 +2340,111 @@ font-style: italic;
       "status_code" : "aeiou",
       "type" : "aeiou"
     },
-    "burst_sz" : 123,
     "explicit_tracking" : true,
     "fine_grain" : true,
     "http_cookie" : "aeiou",
     "http_header" : "aeiou"
   },
-  "port_uuid" : "aeiou",
+  "network_security_policy_ref" : "aeiou",
+  "oauth_vs_config" : {
+    "oauth_settings" : [ {
+      "app_settings" : {
+        "oidc_config" : {
+          "oidc_enable" : true,
+          "profile" : true,
+          "userinfo" : true
+        },
+        "client_secret" : "aeiou",
+        "scopes" : [ "aeiou" ],
+        "client_id" : "aeiou"
+      },
+      "resource_server" : {
+        "access_type" : "aeiou",
+        "jwt_params" : {
+          "audience" : "aeiou"
+        },
+        "opaque_token_params" : {
+          "server_secret" : "aeiou",
+          "server_id" : "aeiou"
+        }
+      },
+      "auth_profile_ref" : "aeiou"
+    } ],
+    "cookie_timeout" : 123,
+    "redirect_uri" : "aeiou",
+    "key" : [ {
+      "hmac_key" : "aeiou",
+      "aes_key" : "aeiou",
+      "name" : "aeiou"
+    } ],
+    "cookie_name" : "aeiou"
+  },
+  "topology_policies" : [ "" ],
   "description" : "aeiou",
   "vs_datascripts" : [ {
     "index" : 123,
     "vs_datascript_set_ref" : "aeiou"
   } ],
+  "jwt_config" : {
+    "jwt_name" : "aeiou",
+    "audience" : "aeiou",
+    "jwt_location" : "aeiou"
+  },
+  "pool_group_ref" : "aeiou",
   "ssl_key_and_certificate_refs" : [ "aeiou" ],
+  "ssl_profile_ref" : "aeiou",
+  "enabled" : true,
   "_last_modified" : "aeiou",
+  "limit_doser" : true,
   "se_group_ref" : "aeiou",
   "network_profile_ref" : "aeiou",
-  "auto_allocate_ip" : true,
   "close_client_conn_on_config_update" : true,
-  "floating_ip" : "",
-  "floating_subnet_uuid" : "aeiou",
-  "discovered_network_ref" : [ "aeiou" ],
+  "max_cps_per_client" : 123,
+  "sso_policy_ref" : "aeiou",
+  "http_policies" : [ {
+    "http_policy_set_ref" : "aeiou",
+    "index" : 123
+  } ],
   "analytics_profile_ref" : "aeiou",
+  "service_metadata" : "aeiou",
   "use_bridge_ip_as_vip" : true,
   "requests_rate_limit" : "",
+  "bot_policy_ref" : "aeiou",
   "enable_rhi" : true,
-  "ip_address" : "",
+  "services" : [ {
+    "override_network_profile_ref" : "aeiou",
+    "port" : 123,
+    "port_range_end" : 123,
+    "enable_http2" : true,
+    "horizon_internal_ports" : true,
+    "enable_ssl" : true,
+    "override_application_profile_ref" : "aeiou"
+  } ],
+  "url" : "aeiou",
   "test_se_datastore_level_1_ref" : "aeiou",
+  "active_standby_se_tag" : "aeiou",
+  "nsx_securitygroup" : [ "aeiou" ],
   "ssl_profile_selectors" : [ {
     "ssl_profile_ref" : "aeiou",
     "client_ip_list" : ""
   } ],
   "vh_matches" : [ {
-    "path" : [ "" ],
+    "path" : [ {
+      "match_criteria" : "aeiou",
+      "string_group_refs" : [ "aeiou" ],
+      "match_str" : [ "aeiou" ],
+      "match_case" : "aeiou"
+    } ],
     "host" : "aeiou"
   } ],
   "tenant_ref" : "aeiou",
   "ign_pool_net_reach" : true,
-  "discovered_networks" : [ {
-    "subnet" : [ "" ],
-    "subnet6" : [ "" ],
-    "network_ref" : "aeiou"
-  } ]
+  "markers" : [ {
+    "values" : [ "aeiou" ],
+    "key" : "aeiou"
+  } ],
+  "vsvip_cloud_config_cksum" : "aeiou",
+  "east_west_placement" : true
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -4009,12 +3614,6 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "client_auth" : {
-    "request_uri_path" : "",
-    "auth_profile_ref" : "aeiou",
-    "realm" : "aeiou",
-    "type" : "aeiou"
-  },
   "dns_policies" : [ {
     "dns_policy_ref" : "aeiou",
     "index" : 123
@@ -4025,40 +3624,66 @@ font-style: italic;
   } ],
   "azure_availability_set" : "aeiou",
   "enable_autogw" : true,
+  "icap_request_profile_refs" : [ "aeiou" ],
+  "saml_sp_config" : {
+    "sp_metadata" : "aeiou",
+    "acs_index" : 123,
+    "authn_req_acs_type" : "aeiou",
+    "signing_ssl_key_and_certificate_ref" : "aeiou",
+    "cookie_timeout" : 123,
+    "use_idp_session_timeout" : true,
+    "entity_id" : "aeiou",
+    "key" : [ "" ],
+    "cookie_name" : "aeiou",
+    "single_signon_url" : "aeiou"
+  },
+  "vrf_context_ref" : "aeiou",
+  "flow_dist" : "aeiou",
+  "dns_info" : [ {
+    "metadata" : "aeiou",
+    "fqdn" : "aeiou",
+    "num_records_in_response" : 123,
+    "cname" : {
+      "cname" : "aeiou"
+    },
+    "type" : "aeiou",
+    "ttl" : 123,
+    "algorithm" : "aeiou"
+  } ],
   "content_rewrite" : {
-    "req_match_replace_pair" : [ {
-      "match_string" : "aeiou",
-      "replacement_string" : {
-        "val" : "aeiou",
-        "type" : "aeiou"
-      }
-    } ],
-    "request_rewrite_enabled" : true,
-    "rsp_match_replace_pair" : [ "" ],
     "rewritable_content_ref" : "aeiou",
     "rsp_rewrite_rules" : [ {
       "enable" : true,
       "name" : "aeiou",
       "index" : 123,
       "pairs" : [ {
-        "replacement_string" : "",
+        "replacement_string" : {
+          "val" : "aeiou",
+          "type" : "aeiou"
+        },
         "search_string" : {
           "val" : "aeiou",
           "type" : "aeiou"
         }
       } ]
-    } ],
-    "response_rewrite_enabled" : true
+    } ]
   },
   "type" : "aeiou",
   "traffic_enabled" : true,
+  "uuid" : "aeiou",
   "bgp_peer_labels" : [ "aeiou" ],
+  "vh_domain_name" : [ "aeiou" ],
   "pool_ref" : "aeiou",
   "delay_fairness" : true,
+  "snat_ip" : [ "" ],
   "cloud_ref" : "aeiou",
+  "microservice_ref" : "aeiou",
+  "error_page_profile_ref" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
+  "server_network_profile_ref" : "aeiou",
+  "use_vip_as_snat" : true,
   "analytics_policy" : {
     "significant_log_throttle" : 123,
     "all_headers" : true,
@@ -4106,15 +3731,17 @@ font-style: italic;
       "host" : "aeiou",
       "enabled" : true
     },
-    "enabled" : true,
     "full_client_logs" : {
       "duration" : 123,
-      "all_headers" : true,
       "throttle" : 123,
       "enabled" : true
     }
   },
   "enable_rhi_snat" : true,
+  "sideband_profile" : {
+    "ip" : [ "" ],
+    "sideband_max_request_body_size" : 123
+  },
   "vip" : [ {
     "availability_zone" : "aeiou",
     "ip6_address" : "",
@@ -4140,231 +3767,27 @@ font-style: italic;
     "avi_allocated_fip" : true,
     "subnet6_uuid" : "aeiou",
     "floating_ip6" : "",
-    "ipam_network_subnet" : "",
+    "ipam_network_subnet" : {
+      "subnet" : "",
+      "subnet_uuid" : "aeiou",
+      "subnet6" : "",
+      "subnet6_uuid" : "aeiou",
+      "network_ref" : "aeiou"
+    },
     "network_ref" : "aeiou",
     "prefix_length" : 123,
-    "discovered_networks" : [ "" ]
+    "discovered_networks" : [ {
+      "subnet" : [ "" ],
+      "subnet6" : [ "" ],
+      "network_ref" : "aeiou"
+    } ]
   } ],
   "min_pools_up" : 123,
-  "sp_pool_refs" : [ "aeiou" ],
-  "apic_contract_graph" : "aeiou",
-  "subnet_uuid" : "aeiou",
-  "advertise_down_vs" : true,
-  "bulk_sync_kvcache" : true,
-  "waf_policy_ref" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
-  "security_policy_ref" : "aeiou",
-  "ssl_sess_cache_avg_size" : 123,
-  "cloud_type" : "aeiou",
-  "scaleout_ecmp" : true,
-  "cloud_config_cksum" : "aeiou",
-  "remove_listening_port_on_vs_down" : true,
-  "vsvip_ref" : "aeiou",
-  "network_security_policy_ref" : "aeiou",
-  "oauth_vs_config" : {
-    "oauth_settings" : [ {
-      "app_settings" : {
-        "oidc_config" : {
-          "oidc_enable" : true,
-          "profile" : true,
-          "userinfo" : true
-        },
-        "client_secret" : "aeiou",
-        "scopes" : [ "aeiou" ],
-        "client_id" : "aeiou"
-      },
-      "resource_server" : {
-        "access_type" : "aeiou",
-        "jwt_params" : {
-          "audience" : "aeiou"
-        },
-        "opaque_token_params" : {
-          "server_secret" : "aeiou",
-          "server_id" : "aeiou"
-        }
-      },
-      "auth_profile_ref" : "aeiou"
-    } ],
-    "cookie_timeout" : 123,
-    "redirect_uri" : "aeiou",
-    "key" : [ {
-      "hmac_key" : "aeiou",
-      "aes_key" : "aeiou",
-      "name" : "aeiou"
-    } ],
-    "cookie_name" : "aeiou"
-  },
-  "topology_policies" : [ "" ],
-  "jwt_config" : {
-    "jwt_name" : "aeiou",
-    "audience" : "aeiou",
-    "jwt_location" : "aeiou"
-  },
-  "pool_group_ref" : "aeiou",
-  "ssl_profile_ref" : "aeiou",
-  "enabled" : true,
-  "limit_doser" : true,
-  "discovered_subnet" : [ "" ],
-  "max_cps_per_client" : 123,
-  "sso_policy_ref" : "aeiou",
-  "sso_policy" : {
-    "tenant_ref" : "aeiou",
-    "name" : "aeiou",
-    "authentication_policy" : {
-      "sp_metadata" : "aeiou",
-      "authn_rules" : [ {
-        "enable" : true,
-        "match" : {
-          "path" : {
-            "match_criteria" : "aeiou",
-            "string_group_refs" : [ "aeiou" ],
-            "match_str" : [ "aeiou" ],
-            "match_case" : "aeiou"
-          },
-          "host_hdr" : {
-            "match_criteria" : "aeiou",
-            "value" : [ "aeiou" ],
-            "match_case" : "aeiou"
-          },
-          "client_ip" : ""
-        },
-        "name" : "aeiou",
-        "action" : {
-          "type" : "aeiou"
-        },
-        "index" : 123
-      } ],
-      "default_auth_profile_ref" : "aeiou",
-      "cookie_timeout" : 123,
-      "auth_profile_ref" : "aeiou",
-      "entity_id" : "aeiou",
-      "key" : [ "" ],
-      "cookie_name" : "aeiou",
-      "single_signon_url" : "aeiou"
-    },
-    "configpb_attributes" : "",
-    "markers" : [ "" ],
-    "type" : "aeiou",
-    "authorization_policy" : {
-      "authz_rules" : [ {
-        "enable" : true,
-        "match" : {
-          "access_token" : {
-            "token_name" : "aeiou",
-            "matches" : [ {
-              "string_match" : "",
-              "bool_match" : true,
-              "name" : "aeiou",
-              "int_match" : 123,
-              "is_mandatory" : true,
-              "type" : "aeiou",
-              "validate" : true
-            } ]
-          },
-          "path" : "",
-          "method" : {
-            "match_criteria" : "aeiou",
-            "methods" : [ "aeiou" ]
-          },
-          "host_hdr" : "",
-          "attr_matches" : [ {
-            "attribute_name" : "aeiou",
-            "attribute_value_list" : ""
-          } ]
-        },
-        "name" : "aeiou",
-        "action" : {
-          "status_code" : "aeiou",
-          "type" : "aeiou"
-        },
-        "index" : 123
-      } ]
-    },
-    "uuid" : "aeiou",
-    "url" : "aeiou",
-    "_last_modified" : "aeiou",
-    "labels" : [ "" ]
-  },
-  "network_ref" : "aeiou",
-  "http_policies" : [ {
-    "http_policy_set_ref" : "aeiou",
-    "index" : 123
-  } ],
-  "availability_zone" : "aeiou",
-  "service_metadata" : "aeiou",
-  "bot_policy_ref" : "aeiou",
-  "services" : [ {
-    "override_network_profile_ref" : "aeiou",
-    "port" : 123,
-    "port_range_end" : 123,
-    "enable_http2" : true,
-    "horizon_internal_ports" : true,
-    "enable_ssl" : true,
-    "override_application_profile_ref" : "aeiou"
-  } ],
-  "url" : "aeiou",
-  "active_standby_se_tag" : "aeiou",
-  "nsx_securitygroup" : [ "aeiou" ],
-  "markers" : [ {
-    "values" : [ "aeiou" ],
-    "key" : "aeiou"
-  } ],
-  "vsvip_cloud_config_cksum" : "aeiou",
-  "east_west_placement" : true,
-  "subnet" : "",
-  "icap_request_profile_refs" : [ "aeiou" ],
-  "saml_sp_config" : {
-    "sp_metadata" : "aeiou",
-    "acs_index" : 123,
-    "authn_req_acs_type" : "aeiou",
-    "signing_ssl_key_and_certificate_ref" : "aeiou",
-    "cookie_timeout" : 123,
-    "use_idp_session_timeout" : true,
-    "entity_id" : "aeiou",
-    "key" : [ "" ],
-    "cookie_name" : "aeiou",
-    "single_signon_url" : "aeiou"
-  },
-  "vrf_context_ref" : "aeiou",
-  "flow_dist" : "aeiou",
-  "dns_info" : [ {
-    "metadata" : "aeiou",
-    "fqdn" : "aeiou",
-    "num_records_in_response" : 123,
-    "cname" : {
-      "cname" : "aeiou"
-    },
-    "type" : "aeiou",
-    "ttl" : 123,
-    "algorithm" : "aeiou"
-  } ],
-  "avi_allocated_vip" : true,
-  "uuid" : "aeiou",
-  "vh_domain_name" : [ "aeiou" ],
-  "snat_ip" : [ "" ],
-  "microservice_ref" : "aeiou",
-  "error_page_profile_ref" : "aeiou",
-  "avi_allocated_fip" : true,
-  "server_network_profile_ref" : "aeiou",
-  "use_vip_as_snat" : true,
-  "ipam_network_subnet" : {
-    "subnet" : "",
-    "subnet_uuid" : "aeiou",
-    "subnet6" : "",
-    "subnet6_uuid" : "aeiou",
-    "network_ref" : "aeiou"
-  },
-  "sideband_profile" : {
-    "ip" : [ "" ],
-    "sideband_max_request_body_size" : 123
-  },
   "performance_limits" : {
     "max_concurrent_connections" : 123,
     "max_throughput" : 123
   },
+  "sp_pool_refs" : [ "aeiou" ],
   "static_dns_records" : [ {
     "ip6_address" : [ {
       "ip6_address" : ""
@@ -4401,10 +3824,11 @@ font-style: italic;
     "delegated" : true,
     "algorithm" : "aeiou"
   } ],
+  "advertise_down_vs" : true,
   "fqdn" : "aeiou",
+  "bulk_sync_kvcache" : true,
   "vh_parent_vs_ref" : "aeiou",
   "weight" : 123,
-  "auto_allocate_floating_ip" : true,
   "ldap_vs_config" : {
     "se_auth_ldap_servers_failover_only" : true,
     "se_auth_ldap_conns_per_server" : 123,
@@ -4415,6 +3839,7 @@ font-style: italic;
     "se_auth_ldap_request_timeout" : 123,
     "se_auth_ldap_bind_timeout" : 123
   },
+  "waf_policy_ref" : "aeiou",
   "created_by" : "aeiou",
   "service_pool_select" : [ {
     "service_protocol" : "aeiou",
@@ -4425,10 +3850,17 @@ font-style: italic;
   } ],
   "vh_type" : "aeiou",
   "allow_invalid_client_cert" : true,
+  "security_policy_ref" : "aeiou",
   "application_profile_ref" : "aeiou",
+  "ssl_sess_cache_avg_size" : 123,
+  "cloud_type" : "aeiou",
+  "scaleout_ecmp" : true,
   "flow_label_type" : "aeiou",
   "name" : "aeiou",
+  "cloud_config_cksum" : "aeiou",
   "traffic_clone_profile_ref" : "aeiou",
+  "remove_listening_port_on_vs_down" : true,
+  "vsvip_ref" : "aeiou",
   "host_name_xlate" : "aeiou",
   "connections_rate_limit" : {
     "rate_limiter" : {
@@ -4437,8 +3869,6 @@ font-style: italic;
       "name" : "aeiou",
       "burst_sz" : 123
     },
-    "period" : 123,
-    "count" : 123,
     "action" : {
       "redirect" : {
         "keep_query" : true,
@@ -4465,48 +3895,111 @@ font-style: italic;
       "status_code" : "aeiou",
       "type" : "aeiou"
     },
-    "burst_sz" : 123,
     "explicit_tracking" : true,
     "fine_grain" : true,
     "http_cookie" : "aeiou",
     "http_header" : "aeiou"
   },
-  "port_uuid" : "aeiou",
+  "network_security_policy_ref" : "aeiou",
+  "oauth_vs_config" : {
+    "oauth_settings" : [ {
+      "app_settings" : {
+        "oidc_config" : {
+          "oidc_enable" : true,
+          "profile" : true,
+          "userinfo" : true
+        },
+        "client_secret" : "aeiou",
+        "scopes" : [ "aeiou" ],
+        "client_id" : "aeiou"
+      },
+      "resource_server" : {
+        "access_type" : "aeiou",
+        "jwt_params" : {
+          "audience" : "aeiou"
+        },
+        "opaque_token_params" : {
+          "server_secret" : "aeiou",
+          "server_id" : "aeiou"
+        }
+      },
+      "auth_profile_ref" : "aeiou"
+    } ],
+    "cookie_timeout" : 123,
+    "redirect_uri" : "aeiou",
+    "key" : [ {
+      "hmac_key" : "aeiou",
+      "aes_key" : "aeiou",
+      "name" : "aeiou"
+    } ],
+    "cookie_name" : "aeiou"
+  },
+  "topology_policies" : [ "" ],
   "description" : "aeiou",
   "vs_datascripts" : [ {
     "index" : 123,
     "vs_datascript_set_ref" : "aeiou"
   } ],
+  "jwt_config" : {
+    "jwt_name" : "aeiou",
+    "audience" : "aeiou",
+    "jwt_location" : "aeiou"
+  },
+  "pool_group_ref" : "aeiou",
   "ssl_key_and_certificate_refs" : [ "aeiou" ],
+  "ssl_profile_ref" : "aeiou",
+  "enabled" : true,
   "_last_modified" : "aeiou",
+  "limit_doser" : true,
   "se_group_ref" : "aeiou",
   "network_profile_ref" : "aeiou",
-  "auto_allocate_ip" : true,
   "close_client_conn_on_config_update" : true,
-  "floating_ip" : "",
-  "floating_subnet_uuid" : "aeiou",
-  "discovered_network_ref" : [ "aeiou" ],
+  "max_cps_per_client" : 123,
+  "sso_policy_ref" : "aeiou",
+  "http_policies" : [ {
+    "http_policy_set_ref" : "aeiou",
+    "index" : 123
+  } ],
   "analytics_profile_ref" : "aeiou",
+  "service_metadata" : "aeiou",
   "use_bridge_ip_as_vip" : true,
   "requests_rate_limit" : "",
+  "bot_policy_ref" : "aeiou",
   "enable_rhi" : true,
-  "ip_address" : "",
+  "services" : [ {
+    "override_network_profile_ref" : "aeiou",
+    "port" : 123,
+    "port_range_end" : 123,
+    "enable_http2" : true,
+    "horizon_internal_ports" : true,
+    "enable_ssl" : true,
+    "override_application_profile_ref" : "aeiou"
+  } ],
+  "url" : "aeiou",
   "test_se_datastore_level_1_ref" : "aeiou",
+  "active_standby_se_tag" : "aeiou",
+  "nsx_securitygroup" : [ "aeiou" ],
   "ssl_profile_selectors" : [ {
     "ssl_profile_ref" : "aeiou",
     "client_ip_list" : ""
   } ],
   "vh_matches" : [ {
-    "path" : [ "" ],
+    "path" : [ {
+      "match_criteria" : "aeiou",
+      "string_group_refs" : [ "aeiou" ],
+      "match_str" : [ "aeiou" ],
+      "match_case" : "aeiou"
+    } ],
     "host" : "aeiou"
   } ],
   "tenant_ref" : "aeiou",
   "ign_pool_net_reach" : true,
-  "discovered_networks" : [ {
-    "subnet" : [ "" ],
-    "subnet6" : [ "" ],
-    "network_ref" : "aeiou"
-  } ]
+  "markers" : [ {
+    "values" : [ "aeiou" ],
+    "key" : "aeiou"
+  } ],
+  "vsvip_cloud_config_cksum" : "aeiou",
+  "east_west_placement" : true
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -4780,12 +4273,6 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "client_auth" : {
-    "request_uri_path" : "",
-    "auth_profile_ref" : "aeiou",
-    "realm" : "aeiou",
-    "type" : "aeiou"
-  },
   "dns_policies" : [ {
     "dns_policy_ref" : "aeiou",
     "index" : 123
@@ -4796,40 +4283,66 @@ font-style: italic;
   } ],
   "azure_availability_set" : "aeiou",
   "enable_autogw" : true,
+  "icap_request_profile_refs" : [ "aeiou" ],
+  "saml_sp_config" : {
+    "sp_metadata" : "aeiou",
+    "acs_index" : 123,
+    "authn_req_acs_type" : "aeiou",
+    "signing_ssl_key_and_certificate_ref" : "aeiou",
+    "cookie_timeout" : 123,
+    "use_idp_session_timeout" : true,
+    "entity_id" : "aeiou",
+    "key" : [ "" ],
+    "cookie_name" : "aeiou",
+    "single_signon_url" : "aeiou"
+  },
+  "vrf_context_ref" : "aeiou",
+  "flow_dist" : "aeiou",
+  "dns_info" : [ {
+    "metadata" : "aeiou",
+    "fqdn" : "aeiou",
+    "num_records_in_response" : 123,
+    "cname" : {
+      "cname" : "aeiou"
+    },
+    "type" : "aeiou",
+    "ttl" : 123,
+    "algorithm" : "aeiou"
+  } ],
   "content_rewrite" : {
-    "req_match_replace_pair" : [ {
-      "match_string" : "aeiou",
-      "replacement_string" : {
-        "val" : "aeiou",
-        "type" : "aeiou"
-      }
-    } ],
-    "request_rewrite_enabled" : true,
-    "rsp_match_replace_pair" : [ "" ],
     "rewritable_content_ref" : "aeiou",
     "rsp_rewrite_rules" : [ {
       "enable" : true,
       "name" : "aeiou",
       "index" : 123,
       "pairs" : [ {
-        "replacement_string" : "",
+        "replacement_string" : {
+          "val" : "aeiou",
+          "type" : "aeiou"
+        },
         "search_string" : {
           "val" : "aeiou",
           "type" : "aeiou"
         }
       } ]
-    } ],
-    "response_rewrite_enabled" : true
+    } ]
   },
   "type" : "aeiou",
   "traffic_enabled" : true,
+  "uuid" : "aeiou",
   "bgp_peer_labels" : [ "aeiou" ],
+  "vh_domain_name" : [ "aeiou" ],
   "pool_ref" : "aeiou",
   "delay_fairness" : true,
+  "snat_ip" : [ "" ],
   "cloud_ref" : "aeiou",
+  "microservice_ref" : "aeiou",
+  "error_page_profile_ref" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
+  "server_network_profile_ref" : "aeiou",
+  "use_vip_as_snat" : true,
   "analytics_policy" : {
     "significant_log_throttle" : 123,
     "all_headers" : true,
@@ -4877,15 +4390,17 @@ font-style: italic;
       "host" : "aeiou",
       "enabled" : true
     },
-    "enabled" : true,
     "full_client_logs" : {
       "duration" : 123,
-      "all_headers" : true,
       "throttle" : 123,
       "enabled" : true
     }
   },
   "enable_rhi_snat" : true,
+  "sideband_profile" : {
+    "ip" : [ "" ],
+    "sideband_max_request_body_size" : 123
+  },
   "vip" : [ {
     "availability_zone" : "aeiou",
     "ip6_address" : "",
@@ -4911,231 +4426,27 @@ font-style: italic;
     "avi_allocated_fip" : true,
     "subnet6_uuid" : "aeiou",
     "floating_ip6" : "",
-    "ipam_network_subnet" : "",
+    "ipam_network_subnet" : {
+      "subnet" : "",
+      "subnet_uuid" : "aeiou",
+      "subnet6" : "",
+      "subnet6_uuid" : "aeiou",
+      "network_ref" : "aeiou"
+    },
     "network_ref" : "aeiou",
     "prefix_length" : 123,
-    "discovered_networks" : [ "" ]
+    "discovered_networks" : [ {
+      "subnet" : [ "" ],
+      "subnet6" : [ "" ],
+      "network_ref" : "aeiou"
+    } ]
   } ],
   "min_pools_up" : 123,
-  "sp_pool_refs" : [ "aeiou" ],
-  "apic_contract_graph" : "aeiou",
-  "subnet_uuid" : "aeiou",
-  "advertise_down_vs" : true,
-  "bulk_sync_kvcache" : true,
-  "waf_policy_ref" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
-  "security_policy_ref" : "aeiou",
-  "ssl_sess_cache_avg_size" : 123,
-  "cloud_type" : "aeiou",
-  "scaleout_ecmp" : true,
-  "cloud_config_cksum" : "aeiou",
-  "remove_listening_port_on_vs_down" : true,
-  "vsvip_ref" : "aeiou",
-  "network_security_policy_ref" : "aeiou",
-  "oauth_vs_config" : {
-    "oauth_settings" : [ {
-      "app_settings" : {
-        "oidc_config" : {
-          "oidc_enable" : true,
-          "profile" : true,
-          "userinfo" : true
-        },
-        "client_secret" : "aeiou",
-        "scopes" : [ "aeiou" ],
-        "client_id" : "aeiou"
-      },
-      "resource_server" : {
-        "access_type" : "aeiou",
-        "jwt_params" : {
-          "audience" : "aeiou"
-        },
-        "opaque_token_params" : {
-          "server_secret" : "aeiou",
-          "server_id" : "aeiou"
-        }
-      },
-      "auth_profile_ref" : "aeiou"
-    } ],
-    "cookie_timeout" : 123,
-    "redirect_uri" : "aeiou",
-    "key" : [ {
-      "hmac_key" : "aeiou",
-      "aes_key" : "aeiou",
-      "name" : "aeiou"
-    } ],
-    "cookie_name" : "aeiou"
-  },
-  "topology_policies" : [ "" ],
-  "jwt_config" : {
-    "jwt_name" : "aeiou",
-    "audience" : "aeiou",
-    "jwt_location" : "aeiou"
-  },
-  "pool_group_ref" : "aeiou",
-  "ssl_profile_ref" : "aeiou",
-  "enabled" : true,
-  "limit_doser" : true,
-  "discovered_subnet" : [ "" ],
-  "max_cps_per_client" : 123,
-  "sso_policy_ref" : "aeiou",
-  "sso_policy" : {
-    "tenant_ref" : "aeiou",
-    "name" : "aeiou",
-    "authentication_policy" : {
-      "sp_metadata" : "aeiou",
-      "authn_rules" : [ {
-        "enable" : true,
-        "match" : {
-          "path" : {
-            "match_criteria" : "aeiou",
-            "string_group_refs" : [ "aeiou" ],
-            "match_str" : [ "aeiou" ],
-            "match_case" : "aeiou"
-          },
-          "host_hdr" : {
-            "match_criteria" : "aeiou",
-            "value" : [ "aeiou" ],
-            "match_case" : "aeiou"
-          },
-          "client_ip" : ""
-        },
-        "name" : "aeiou",
-        "action" : {
-          "type" : "aeiou"
-        },
-        "index" : 123
-      } ],
-      "default_auth_profile_ref" : "aeiou",
-      "cookie_timeout" : 123,
-      "auth_profile_ref" : "aeiou",
-      "entity_id" : "aeiou",
-      "key" : [ "" ],
-      "cookie_name" : "aeiou",
-      "single_signon_url" : "aeiou"
-    },
-    "configpb_attributes" : "",
-    "markers" : [ "" ],
-    "type" : "aeiou",
-    "authorization_policy" : {
-      "authz_rules" : [ {
-        "enable" : true,
-        "match" : {
-          "access_token" : {
-            "token_name" : "aeiou",
-            "matches" : [ {
-              "string_match" : "",
-              "bool_match" : true,
-              "name" : "aeiou",
-              "int_match" : 123,
-              "is_mandatory" : true,
-              "type" : "aeiou",
-              "validate" : true
-            } ]
-          },
-          "path" : "",
-          "method" : {
-            "match_criteria" : "aeiou",
-            "methods" : [ "aeiou" ]
-          },
-          "host_hdr" : "",
-          "attr_matches" : [ {
-            "attribute_name" : "aeiou",
-            "attribute_value_list" : ""
-          } ]
-        },
-        "name" : "aeiou",
-        "action" : {
-          "status_code" : "aeiou",
-          "type" : "aeiou"
-        },
-        "index" : 123
-      } ]
-    },
-    "uuid" : "aeiou",
-    "url" : "aeiou",
-    "_last_modified" : "aeiou",
-    "labels" : [ "" ]
-  },
-  "network_ref" : "aeiou",
-  "http_policies" : [ {
-    "http_policy_set_ref" : "aeiou",
-    "index" : 123
-  } ],
-  "availability_zone" : "aeiou",
-  "service_metadata" : "aeiou",
-  "bot_policy_ref" : "aeiou",
-  "services" : [ {
-    "override_network_profile_ref" : "aeiou",
-    "port" : 123,
-    "port_range_end" : 123,
-    "enable_http2" : true,
-    "horizon_internal_ports" : true,
-    "enable_ssl" : true,
-    "override_application_profile_ref" : "aeiou"
-  } ],
-  "url" : "aeiou",
-  "active_standby_se_tag" : "aeiou",
-  "nsx_securitygroup" : [ "aeiou" ],
-  "markers" : [ {
-    "values" : [ "aeiou" ],
-    "key" : "aeiou"
-  } ],
-  "vsvip_cloud_config_cksum" : "aeiou",
-  "east_west_placement" : true,
-  "subnet" : "",
-  "icap_request_profile_refs" : [ "aeiou" ],
-  "saml_sp_config" : {
-    "sp_metadata" : "aeiou",
-    "acs_index" : 123,
-    "authn_req_acs_type" : "aeiou",
-    "signing_ssl_key_and_certificate_ref" : "aeiou",
-    "cookie_timeout" : 123,
-    "use_idp_session_timeout" : true,
-    "entity_id" : "aeiou",
-    "key" : [ "" ],
-    "cookie_name" : "aeiou",
-    "single_signon_url" : "aeiou"
-  },
-  "vrf_context_ref" : "aeiou",
-  "flow_dist" : "aeiou",
-  "dns_info" : [ {
-    "metadata" : "aeiou",
-    "fqdn" : "aeiou",
-    "num_records_in_response" : 123,
-    "cname" : {
-      "cname" : "aeiou"
-    },
-    "type" : "aeiou",
-    "ttl" : 123,
-    "algorithm" : "aeiou"
-  } ],
-  "avi_allocated_vip" : true,
-  "uuid" : "aeiou",
-  "vh_domain_name" : [ "aeiou" ],
-  "snat_ip" : [ "" ],
-  "microservice_ref" : "aeiou",
-  "error_page_profile_ref" : "aeiou",
-  "avi_allocated_fip" : true,
-  "server_network_profile_ref" : "aeiou",
-  "use_vip_as_snat" : true,
-  "ipam_network_subnet" : {
-    "subnet" : "",
-    "subnet_uuid" : "aeiou",
-    "subnet6" : "",
-    "subnet6_uuid" : "aeiou",
-    "network_ref" : "aeiou"
-  },
-  "sideband_profile" : {
-    "ip" : [ "" ],
-    "sideband_max_request_body_size" : 123
-  },
   "performance_limits" : {
     "max_concurrent_connections" : 123,
     "max_throughput" : 123
   },
+  "sp_pool_refs" : [ "aeiou" ],
   "static_dns_records" : [ {
     "ip6_address" : [ {
       "ip6_address" : ""
@@ -5172,10 +4483,11 @@ font-style: italic;
     "delegated" : true,
     "algorithm" : "aeiou"
   } ],
+  "advertise_down_vs" : true,
   "fqdn" : "aeiou",
+  "bulk_sync_kvcache" : true,
   "vh_parent_vs_ref" : "aeiou",
   "weight" : 123,
-  "auto_allocate_floating_ip" : true,
   "ldap_vs_config" : {
     "se_auth_ldap_servers_failover_only" : true,
     "se_auth_ldap_conns_per_server" : 123,
@@ -5186,6 +4498,7 @@ font-style: italic;
     "se_auth_ldap_request_timeout" : 123,
     "se_auth_ldap_bind_timeout" : 123
   },
+  "waf_policy_ref" : "aeiou",
   "created_by" : "aeiou",
   "service_pool_select" : [ {
     "service_protocol" : "aeiou",
@@ -5196,10 +4509,17 @@ font-style: italic;
   } ],
   "vh_type" : "aeiou",
   "allow_invalid_client_cert" : true,
+  "security_policy_ref" : "aeiou",
   "application_profile_ref" : "aeiou",
+  "ssl_sess_cache_avg_size" : 123,
+  "cloud_type" : "aeiou",
+  "scaleout_ecmp" : true,
   "flow_label_type" : "aeiou",
   "name" : "aeiou",
+  "cloud_config_cksum" : "aeiou",
   "traffic_clone_profile_ref" : "aeiou",
+  "remove_listening_port_on_vs_down" : true,
+  "vsvip_ref" : "aeiou",
   "host_name_xlate" : "aeiou",
   "connections_rate_limit" : {
     "rate_limiter" : {
@@ -5208,8 +4528,6 @@ font-style: italic;
       "name" : "aeiou",
       "burst_sz" : 123
     },
-    "period" : 123,
-    "count" : 123,
     "action" : {
       "redirect" : {
         "keep_query" : true,
@@ -5236,48 +4554,111 @@ font-style: italic;
       "status_code" : "aeiou",
       "type" : "aeiou"
     },
-    "burst_sz" : 123,
     "explicit_tracking" : true,
     "fine_grain" : true,
     "http_cookie" : "aeiou",
     "http_header" : "aeiou"
   },
-  "port_uuid" : "aeiou",
+  "network_security_policy_ref" : "aeiou",
+  "oauth_vs_config" : {
+    "oauth_settings" : [ {
+      "app_settings" : {
+        "oidc_config" : {
+          "oidc_enable" : true,
+          "profile" : true,
+          "userinfo" : true
+        },
+        "client_secret" : "aeiou",
+        "scopes" : [ "aeiou" ],
+        "client_id" : "aeiou"
+      },
+      "resource_server" : {
+        "access_type" : "aeiou",
+        "jwt_params" : {
+          "audience" : "aeiou"
+        },
+        "opaque_token_params" : {
+          "server_secret" : "aeiou",
+          "server_id" : "aeiou"
+        }
+      },
+      "auth_profile_ref" : "aeiou"
+    } ],
+    "cookie_timeout" : 123,
+    "redirect_uri" : "aeiou",
+    "key" : [ {
+      "hmac_key" : "aeiou",
+      "aes_key" : "aeiou",
+      "name" : "aeiou"
+    } ],
+    "cookie_name" : "aeiou"
+  },
+  "topology_policies" : [ "" ],
   "description" : "aeiou",
   "vs_datascripts" : [ {
     "index" : 123,
     "vs_datascript_set_ref" : "aeiou"
   } ],
+  "jwt_config" : {
+    "jwt_name" : "aeiou",
+    "audience" : "aeiou",
+    "jwt_location" : "aeiou"
+  },
+  "pool_group_ref" : "aeiou",
   "ssl_key_and_certificate_refs" : [ "aeiou" ],
+  "ssl_profile_ref" : "aeiou",
+  "enabled" : true,
   "_last_modified" : "aeiou",
+  "limit_doser" : true,
   "se_group_ref" : "aeiou",
   "network_profile_ref" : "aeiou",
-  "auto_allocate_ip" : true,
   "close_client_conn_on_config_update" : true,
-  "floating_ip" : "",
-  "floating_subnet_uuid" : "aeiou",
-  "discovered_network_ref" : [ "aeiou" ],
+  "max_cps_per_client" : 123,
+  "sso_policy_ref" : "aeiou",
+  "http_policies" : [ {
+    "http_policy_set_ref" : "aeiou",
+    "index" : 123
+  } ],
   "analytics_profile_ref" : "aeiou",
+  "service_metadata" : "aeiou",
   "use_bridge_ip_as_vip" : true,
   "requests_rate_limit" : "",
+  "bot_policy_ref" : "aeiou",
   "enable_rhi" : true,
-  "ip_address" : "",
+  "services" : [ {
+    "override_network_profile_ref" : "aeiou",
+    "port" : 123,
+    "port_range_end" : 123,
+    "enable_http2" : true,
+    "horizon_internal_ports" : true,
+    "enable_ssl" : true,
+    "override_application_profile_ref" : "aeiou"
+  } ],
+  "url" : "aeiou",
   "test_se_datastore_level_1_ref" : "aeiou",
+  "active_standby_se_tag" : "aeiou",
+  "nsx_securitygroup" : [ "aeiou" ],
   "ssl_profile_selectors" : [ {
     "ssl_profile_ref" : "aeiou",
     "client_ip_list" : ""
   } ],
   "vh_matches" : [ {
-    "path" : [ "" ],
+    "path" : [ {
+      "match_criteria" : "aeiou",
+      "string_group_refs" : [ "aeiou" ],
+      "match_str" : [ "aeiou" ],
+      "match_case" : "aeiou"
+    } ],
     "host" : "aeiou"
   } ],
   "tenant_ref" : "aeiou",
   "ign_pool_net_reach" : true,
-  "discovered_networks" : [ {
-    "subnet" : [ "" ],
-    "subnet6" : [ "" ],
-    "network_ref" : "aeiou"
-  } ]
+  "markers" : [ {
+    "values" : [ "aeiou" ],
+    "key" : "aeiou"
+  } ],
+  "vsvip_cloud_config_cksum" : "aeiou",
+  "east_west_placement" : true
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -6275,10 +5656,8 @@ font-style: italic;
 
   <h2>Table of Contents</h2>
   <ol>
-    <li><a href="#APICNetworkRel"><code>APICNetworkRel</code></a></li>
     <li><a href="#Action"><code>Action</code></a></li>
     <li><a href="#AnalyticsPolicy"><code>AnalyticsPolicy</code></a></li>
-    <li><a href="#ApicVSPlacementReq"><code>ApicVSPlacementReq</code></a></li>
     <li><a href="#ApplyLogRecommendations"><code>ApplyLogRecommendations</code></a></li>
     <li><a href="#AuthAttributeMatch"><code>AuthAttributeMatch</code></a></li>
     <li><a href="#AuthenticationAction"><code>AuthenticationAction</code></a></li>
@@ -6289,7 +5668,6 @@ font-style: italic;
     <li><a href="#AuthorizationMatch"><code>AuthorizationMatch</code></a></li>
     <li><a href="#AuthorizationPolicy"><code>AuthorizationPolicy</code></a></li>
     <li><a href="#AuthorizationRule"><code>AuthorizationRule</code></a></li>
-    <li><a href="#Cif"><code>Cif</code></a></li>
     <li><a href="#ClientInsightsSampling"><code>ClientInsightsSampling</code></a></li>
     <li><a href="#ClientLogFilter"><code>ClientLogFilter</code></a></li>
     <li><a href="#ConfigPbAttributes"><code>ConfigPbAttributes</code></a></li>
@@ -6327,8 +5705,6 @@ font-style: italic;
     <li><a href="#L4Policies"><code>L4Policies</code></a></li>
     <li><a href="#LDAPVSConfig"><code>LDAPVSConfig</code></a></li>
     <li><a href="#LearningLogPolicy"><code>LearningLogPolicy</code></a></li>
-    <li><a href="#Lif"><code>Lif</code></a></li>
-    <li><a href="#MatchReplacePair"><code>MatchReplacePair</code></a></li>
     <li><a href="#MethodMatch"><code>MethodMatch</code></a></li>
     <li><a href="#MetricsRealTimeUpdate"><code>MetricsRealTimeUpdate</code></a></li>
     <li><a href="#OAuthAppSettings"><code>OAuthAppSettings</code></a></li>
@@ -6374,14 +5750,6 @@ font-style: italic;
   </ol>
 
   <div class="model">
-    <h3 class="field-label"><a name="APICNetworkRel">APICNetworkRel</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-      <div class="param">connector (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">rel_key (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">target_network (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
     <h3 class="field-label"><a name="Action">Action</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A description of the change to this object. This field is opaque to the caller, it should not be interpreted or modified. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
@@ -6395,23 +5763,11 @@ font-style: italic;
 <div class="param">client_insights (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Gain insights from sampled client to server HTTP requests and responses. Enum options - NO_INSIGHTS, PASSIVE, ACTIVE. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">client_insights_sampling (optional)</div><div class="param-desc"><span class="param-type"><a href="#ClientInsightsSampling">ClientInsightsSampling</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">client_log_filters (optional)</div><div class="param-desc"><span class="param-type"><a href="#ClientLogFilter">array[ClientLogFilter]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> [DEPRECATED] Disable Analytics on this VirtualService. This will disable the collection of both metrics and logs. Please use following fields in AnalytcsProfile to control this behavior instead. disable_vs_analytics (for VirtualServices metrics), disable_server_analytics (for Pool metrics) and client_log_config (for logs). Field deprecated in 18.2.1. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">full_client_logs (optional)</div><div class="param-desc"><span class="param-type"><a href="#FullClientLogs">FullClientLogs</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">learning_log_policy (optional)</div><div class="param-desc"><span class="param-type"><a href="#LearningLogPolicy">LearningLogPolicy</a></span> Configuration for learning logging determining whether it&#39;s enabled and where is the destination. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">metrics_realtime_update (optional)</div><div class="param-desc"><span class="param-type"><a href="#MetricsRealTimeUpdate">MetricsRealTimeUpdate</a></span> Settings to turn on realtime metrics and set duration for realtime updates. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">significant_log_throttle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> This setting limits the number of significant logs generated per second for this VS on each SE. Default is 10 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is PER_SECOND. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">udf_log_throttle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> This setting limits the total number of UDF logs generated per second for this VS on each SE. UDF logs are generated due to the configured client log filters or the rules with logging enabled. Default is 10 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is PER_SECOND. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3 class="field-label"><a name="ApicVSPlacementReq">ApicVSPlacementReq</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-      <div class="param">graph (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">lifs (optional)</div><div class="param-desc"><span class="param-type"><a href="#Lif">array[Lif]</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">network_rel (optional)</div><div class="param-desc"><span class="param-type"><a href="#APICNetworkRel">array[APICNetworkRel]</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">tenant_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">vdev (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">vgrp (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -6444,15 +5800,8 @@ font-style: italic;
   <div class="model">
     <h3 class="field-label"><a name="AuthenticationPolicy">AuthenticationPolicy</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">auth_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Auth Profile to use for validating users. It is a reference to an object of type AuthProfile. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">authn_rules (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuthenticationRule">array[AuthenticationRule]</a></span> Add rules to apply auth profile to specific targets. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">cookie_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> HTTP cookie name for authenticated session. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">cookie_timeout (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Cookie timeout in minutes. Allowed values are 1-1440. Field deprecated in 18.2.3. Field introduced in 18.2.1. Unit is MIN. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+      <div class="param">authn_rules (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuthenticationRule">array[AuthenticationRule]</a></span> Add rules to apply auth profile to specific targets. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">default_auth_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Auth Profile to use for validating users. It is a reference to an object of type AuthProfile. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">entity_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Globally unique entityID for this node. Entity ID on the IDP should match this. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">key (optional)</div><div class="param-desc"><span class="param-type"><a href="#HttpCookiePersistenceKey">array[HttpCookiePersistenceKey]</a></span> Key to generate the cookie. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">single_signon_url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Single Signon URL to be programmed on the IDP. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">sp_metadata (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> SAML SP metadata. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -6499,16 +5848,6 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3 class="field-label"><a name="Cif">Cif</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-      <div class="param">adapter (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">cif (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">mac_address (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">resources (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">se_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
     <h3 class="field-label"><a name="ClientInsightsSampling">ClientInsightsSampling</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">client_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrMatch">IpAddrMatch</a></span> Client IP addresses to check when inserting RUM script. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -6544,11 +5883,7 @@ font-style: italic;
   <div class="model">
     <h3 class="field-label"><a name="ContentRewriteProfile">ContentRewriteProfile</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">req_match_replace_pair (optional)</div><div class="param-desc"><span class="param-type"><a href="#MatchReplacePair">array[MatchReplacePair]</a></span> Strings to be matched and replaced with on the request body. This should be configured when request_rewrite_enabled is set to true. This is currently not supported. Field deprecated in 21.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">request_rewrite_enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable rewrite on request body. This is not currently supported. Field deprecated in 21.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">response_rewrite_enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable rewrite on response body. Field deprecated in 21.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">rewritable_content_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Rewrite only content types listed in this string group. Content types not present in this list are not rewritten. It is a reference to an object of type StringGroup. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">rsp_match_replace_pair (optional)</div><div class="param-desc"><span class="param-type"><a href="#MatchReplacePair">array[MatchReplacePair]</a></span> Strings to be matched and replaced with on the response body. This should be configured when response_rewrite_enabled is set to true. Field deprecated in 21.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+      <div class="param">rewritable_content_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Rewrite only content types listed in this string group. Content types not present in this list are not rewritten. It is a reference to an object of type StringGroup. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">rsp_rewrite_rules (optional)</div><div class="param-desc"><span class="param-type"><a href="#RspContentRewriteRule">array[RspContentRewriteRule]</a></span> Content Rewrite rules to be enabled on theresponse body. Field introduced in 21.1.3. Maximum of 1 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
@@ -6651,8 +5986,7 @@ font-style: italic;
   <div class="model">
     <h3 class="field-label"><a name="FullClientLogs">FullClientLogs</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">all_headers (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> [DEPRECATED] Log all headers. Please use the all_headers flag in AnalyticsPolicy. Field deprecated in 18.1.4, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">duration (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> How long should the system capture all logs, measured in minutes. Set to 0 for infinite. Special values are 0 - infinite. Unit is MIN. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+      <div class="param">duration (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> How long should the system capture all logs, measured in minutes. Set to 0 for infinite. Special values are 0 - infinite. Unit is MIN. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">enabled </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Capture all client logs including connections and requests.  When deactivated, only errors will be logged. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. Special default for Essentials edition is false, Basic edition is false, Enterprise is False. </div>
 <div class="param">throttle (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> This setting limits the number of non-significant logs generated per second for this VS on each SE. Default is 10 logs per second. Set it to zero (0) to deactivate throttling. Field introduced in 17.1.3. Unit is PER_SECOND. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
     </div>  <!-- field-items -->
@@ -6825,22 +6159,6 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3 class="field-label"><a name="Lif">Lif</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-      <div class="param">cifs (optional)</div><div class="param-desc"><span class="param-type"><a href="#Cif">array[Cif]</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">lif (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">lif_label (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3 class="field-label"><a name="MatchReplacePair">MatchReplacePair</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-      <div class="param">match_string (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> String to be matched. Field deprecated in 21.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">replacement_string (optional)</div><div class="param-desc"><span class="param-type"><a href="#ReplaceStringVar">ReplaceStringVar</a></span> Replacement string. Field deprecated in 21.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
     <h3 class="field-label"><a name="MethodMatch">MethodMatch</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">match_criteria </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Criterion to use for HTTP method matching the method in the HTTP request. Enum options - IS_IN, IS_NOT_IN. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -6942,13 +6260,10 @@ font-style: italic;
     <h3 class="field-label"><a name="RateProfile">RateProfile</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">action </div><div class="param-desc"><span class="param-type"><a href="#RateLimiterAction">RateLimiterAction</a></span> Action to perform upon rate limiting. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">burst_sz (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum number of connections or requests or packets to be let through instantaneously. Allowed values are 10-2500. Special values are 0- automatic. Field deprecated in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-<div class="param">count (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum number of connections or requests or packets. Allowed values are 1-1000000000. Special values are 0- unlimited. Field deprecated in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">explicit_tracking (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Explicitly tracks an attacker across rate periods. Allowed in Enterprise edition with any value, Basic edition(Allowed values- false), Essentials, Enterprise with Cloud Services edition. </div>
 <div class="param">fine_grain (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable fine granularity. Allowed in Enterprise edition with any value, Basic edition(Allowed values- false), Essentials, Enterprise with Cloud Services edition. </div>
 <div class="param">http_cookie (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> HTTP cookie name. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Enterprise with Cloud Services edition. </div>
 <div class="param">http_header (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> HTTP header name. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Enterprise with Cloud Services edition. </div>
-<div class="param">period (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Time value in seconds to enforce rate count. Allowed values are 1-300. Field deprecated in 18.2.9. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">rate_limiter (optional)</div><div class="param-desc"><span class="param-type"><a href="#RateLimiter">RateLimiter</a></span> The rate limiter configuration for this rate profile. Field introduced in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
@@ -7028,7 +6343,6 @@ font-style: italic;
 <div class="param">authentication_policy (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuthenticationPolicy">AuthenticationPolicy</a></span> Authentication Policy Settings. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">authorization_policy (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuthorizationPolicy">AuthorizationPolicy</a></span> Authorization Policy Settings. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">configpb_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#ConfigPbAttributes">ConfigPbAttributes</a></span> Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
-<div class="param">labels (optional)</div><div class="param-desc"><span class="param-type"><a href="#KeyValue">array[KeyValue]</a></span> Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">markers (optional)</div><div class="param-desc"><span class="param-type"><a href="#RoleFilterMatchLabel">array[RoleFilterMatchLabel]</a></span> List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the SSO Policy. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID of the Tenant. It is a reference to an object of type Tenant. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -7172,18 +6486,11 @@ font-style: italic;
 <div class="param">allow_invalid_client_cert (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Process request even if invalid client certificate is presented. Datascript APIs need to be used for processing of such requests. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
 <div class="param">analytics_policy (optional)</div><div class="param-desc"><span class="param-type"><a href="#AnalyticsPolicy">AnalyticsPolicy</a></span> Determines analytics settings for the application. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">analytics_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Specifies settings related to analytics. It is a reference to an object of type AnalyticsProfile. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_contract_graph (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the Contract/Graph associated with the Virtual Service. Should be in the &lt;Contract name&gt; &lt;Graph name&gt; format. This is applicable only for Service Integration mode with Cisco APIC Controller . Field deprecated in 21.1.1. Field introduced in 17.2.12,18.1.2. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">application_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Enable application layer specific features for the Virtual Service. It is a reference to an object of type ApplicationProfile. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. Special default for Essentials edition is System-L4-Application. </div>
-<div class="param">auto_allocate_floating_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Auto-allocate floating/elastic IP from the Cloud infrastructure. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">auto_allocate_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Auto-allocate VIP from the provided subnet. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">availability_zone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Availability-zone to place the Virtual Service. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">avi_allocated_fip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> (internal-use) FIP allocated by Avi in the Cloud infrastructure. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">avi_allocated_vip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> (internal-use) VIP allocated by Avi in the Cloud infrastructure. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">azure_availability_set (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (internal-use)Applicable for Azure only. Azure Availability set to which this VS is associated. Internally set by the cloud connector. Field introduced in 17.2.12, 18.1.2. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">bgp_peer_labels (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Select BGP peers, using peer label, for VsVip advertisement. Field introduced in 20.1.5. Maximum of 128 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">bot_policy_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Bot detection policy for the Virtual Service. It is a reference to an object of type BotDetectionPolicy. Field introduced in 21.1.1. </div>
 <div class="param">bulk_sync_kvcache (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> (This is a beta feature). Sync Key-Value cache to the new SEs when VS is scaled out. For ex  SSL sessions are stored using VS&#39;s Key-Value cache. When the VS is scaled out, the SSL session information is synced to the new SE, allowing existing SSL sessions to be reused on the new SE. . Field introduced in 17.2.7, 18.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
-<div class="param">client_auth (optional)</div><div class="param-desc"><span class="param-type"><a href="#HTTPClientAuthenticationParams">HTTPClientAuthenticationParams</a></span> HTTP authentication configuration for protected resources. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">close_client_conn_on_config_update (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> close client connection on vs config update. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
 <div class="param">cloud_config_cksum (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Checksum of cloud configuration for VS. Internally set by cloud connector. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">cloud_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type Cloud. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -7194,9 +6501,6 @@ font-style: italic;
 <div class="param">created_by (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Creator name. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">delay_fairness (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Select the algorithm for QoS fairness.  This determines how multiple Virtual Services sharing the same Service Engines will prioritize traffic over a congested network. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
 <div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">discovered_network_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> (internal-use) Discovered networks providing reachability for client facing Virtual Service IP. This field is deprecated. It is a reference to an object of type Network. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">discovered_networks (optional)</div><div class="param-desc"><span class="param-type"><a href="#DiscoveredNetwork">array[DiscoveredNetwork]</a></span> (internal-use) Discovered networks providing reachability for client facing Virtual Service IP. This field is used internally by Avi, not editable by the user. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">discovered_subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">array[IpAddrPrefix]</a></span> (internal-use) Discovered subnets providing reachability for client facing Virtual Service IP. This field is deprecated. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">dns_info (optional)</div><div class="param-desc"><span class="param-type"><a href="#DnsInfo">array[DnsInfo]</a></span> Service discovery specific data including fully qualified domain name, type and Time-To-Live of the DNS record. Note that only one of fqdn and dns_info setting is allowed. Maximum of 1000 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">dns_policies (optional)</div><div class="param-desc"><span class="param-type"><a href="#DnsPolicies">array[DnsPolicies]</a></span> DNS Policies applied on the dns traffic of the Virtual Service. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">east_west_placement (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Force placement on all SE&#39;s in service group (Mesos mode only). Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
@@ -7205,8 +6509,6 @@ font-style: italic;
 <div class="param">enable_rhi_snat (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable Route Health Injection for Source NAT&#39;ted floating IP Address using the BGP Config in the vrf context. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable or disable the Virtual Service. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">error_page_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Error Page Profile to be used for this virtualservice.This profile is used to send the custom error page to the client generated by the proxy. It is a reference to an object of type ErrorPageProfile. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">floating_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> Floating IP to associate with this Virtual Service. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">floating_subnet_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> If auto_allocate_floating_ip is True and more than one floating-ip subnets exist, then the subnet for the floating IP address allocation. This field is applicable only if the VirtualService belongs to an OpenStack or AWS cloud. In OpenStack or AWS cloud it is required when auto_allocate_floating_ip is selected. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">flow_dist (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Criteria for flow distribution among SEs. Enum options - LOAD_AWARE, CONSISTENT_HASH_SOURCE_IP_ADDRESS, CONSISTENT_HASH_SOURCE_IP_ADDRESS_AND_PORT. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- LOAD_AWARE), Basic edition(Allowed values- LOAD_AWARE), Enterprise with Cloud Services edition. </div>
 <div class="param">flow_label_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Criteria for flow labelling. Enum options - NO_LABEL, APPLICATION_LABEL, SERVICE_LABEL. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">fqdn (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> DNS resolvable, fully qualified domain name of the virtualservice. Only one of &#39;fqdn&#39; and &#39;dns_info&#39; configuration is allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
@@ -7214,11 +6516,8 @@ font-style: italic;
 <div class="param">http_policies (optional)</div><div class="param-desc"><span class="param-type"><a href="#HTTPPolicies">array[HTTPPolicies]</a></span> HTTP Policies applied on the data traffic of the Virtual Service. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">icap_request_profile_refs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> The config settings for the ICAP server when checking the HTTP request. It is a reference to an object of type IcapProfile. Field introduced in 20.1.1. Maximum of 1 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">ign_pool_net_reach (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Ignore Pool servers network reachability constraints for Virtual Service placement. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">ip_address (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> IP Address of the Virtual Service. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">ipam_network_subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPNetworkSubnet">IPNetworkSubnet</a></span> Subnet and/or Network for allocating VirtualService IP by IPAM Provider module. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">jwt_config (optional)</div><div class="param-desc"><span class="param-type"><a href="#JWTValidationVsConfig">JWTValidationVsConfig</a></span> Application-specific config for JWT validation. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">l4_policies (optional)</div><div class="param-desc"><span class="param-type"><a href="#L4Policies">array[L4Policies]</a></span> L4 Policies applied to the data traffic of the Virtual Service. Field introduced in 17.2.7. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">labels (optional)</div><div class="param-desc"><span class="param-type"><a href="#KeyValue">array[KeyValue]</a></span> Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">ldap_vs_config (optional)</div><div class="param-desc"><span class="param-type"><a href="#LDAPVSConfig">LDAPVSConfig</a></span> Application-specific LDAP config. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">limit_doser (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Limit potential DoS attackers who exceed max_cps_per_client significantly to a fraction of max_cps_per_client for a while. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">markers (optional)</div><div class="param-desc"><span class="param-type"><a href="#RoleFilterMatchLabel">array[RoleFilterMatchLabel]</a></span> List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
@@ -7227,14 +6526,12 @@ font-style: italic;
 <div class="param">min_pools_up (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Minimum number of UP pools to mark VS up. Field introduced in 18.2.1, 17.2.12. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name for the Virtual Service. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">network_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Determines network settings such as protocol, TCP or UDP, and related options for the protocol. It is a reference to an object of type NetworkProfile. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. Special default for Essentials edition is System-TCP-Fast-Path. </div>
-<div class="param">network_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Manually override the network on which the Virtual Service is placed. It is a reference to an object of type Network. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">network_security_policy_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Network security policies for the Virtual Service. It is a reference to an object of type NetworkSecurityPolicy. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">nsx_securitygroup (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> A list of NSX Groups representing the Clients which can access the Virtual IP of the Virtual Service. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">oauth_vs_config (optional)</div><div class="param-desc"><span class="param-type"><a href="#OAuthVSConfig">OAuthVSConfig</a></span> VirtualService specific OAuth config. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">performance_limits (optional)</div><div class="param-desc"><span class="param-type"><a href="#PerformanceLimits">PerformanceLimits</a></span> Optional settings that determine performance limits like max connections or bandwdith etc. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">pool_group_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The pool group is an object that contains pools. It is a reference to an object of type PoolGroup. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">pool_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The pool is an object that contains destination servers and related attributes such as load-balancing and persistence. It is a reference to an object of type Pool. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">port_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (internal-use) Network port assigned to the Virtual Service IP address. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">remove_listening_port_on_vs_down (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Remove listening port if VirtualService is down. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">requests_rate_limit (optional)</div><div class="param-desc"><span class="param-type"><a href="#RateProfile">RateProfile</a></span> Rate limit the incoming requests to this virtual service. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">saml_sp_config (optional)</div><div class="param-desc"><span class="param-type"><a href="#SAMLSPConfig">SAMLSPConfig</a></span> Application-specific SAML config. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
@@ -7252,11 +6549,8 @@ font-style: italic;
 <div class="param">ssl_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Determines the set of SSL versions and ciphers to accept for SSL/TLS terminated connections. It is a reference to an object of type SSLProfile. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ssl_profile_selectors (optional)</div><div class="param-desc"><span class="param-type"><a href="#SSLProfileSelector">array[SSLProfileSelector]</a></span> Select SSL Profile based on client IP address match. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">ssl_sess_cache_avg_size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Expected number of SSL session cache entries (may be exceeded). Allowed values are 1024-16383. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-<div class="param">sso_policy (optional)</div><div class="param-desc"><span class="param-type"><a href="#SSOPolicy">SSOPolicy</a></span> Client Authentication and Authorization Policy for the virtualservice. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">sso_policy_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SSO Policy attached to the virtualservice. It is a reference to an object of type SSOPolicy. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">static_dns_records (optional)</div><div class="param-desc"><span class="param-type"><a href="#DnsRecord">array[DnsRecord]</a></span> List of static DNS records applied to this Virtual Service. These are static entries and no health monitoring is performed against the IP addresses. Maximum of 1000 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
-<div class="param">subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> Subnet providing reachability for client facing Virtual Service IP. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">subnet_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> It represents subnet for the Virtual Service IP address allocation when auto_allocate_ip is True.It is only applicable in OpenStack or AWS cloud. This field is required if auto_allocate_ip is True. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type Tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">test_se_datastore_level_1_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Used for testing SE Datastore Upgrade 2.0 functionality. It is a reference to an object of type TestSeDatastoreLevel1. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">topology_policies (optional)</div><div class="param-desc"><span class="param-type"><a href="#DnsPolicies">array[DnsPolicies]</a></span> Topology Policies applied on the dns traffic of the Virtual Service based onGSLB Topology algorithm. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>

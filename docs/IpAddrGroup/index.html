@@ -280,10 +280,6 @@ font-style: italic;
     "uuid" : "aeiou",
     "url" : "aeiou",
     "_last_modified" : "aeiou",
-    "labels" : [ {
-      "value" : "aeiou",
-      "key" : "aeiou"
-    } ],
     "prefixes" : [ {
       "ip_addr" : "",
       "mask" : 123
@@ -297,8 +293,7 @@ font-style: italic;
     "markers" : [ {
       "values" : [ "aeiou" ],
       "key" : "aeiou"
-    } ],
-    "apic_epg_name" : "aeiou"
+    } ]
   } ]
 }</code></pre>
 
@@ -373,10 +368,6 @@ font-style: italic;
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "prefixes" : [ {
     "ip_addr" : "",
     "mask" : 123
@@ -390,8 +381,7 @@ font-style: italic;
   "markers" : [ {
     "values" : [ "aeiou" ],
     "key" : "aeiou"
-  } ],
-  "apic_epg_name" : "aeiou"
+  } ]
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -537,10 +527,6 @@ font-style: italic;
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "prefixes" : [ {
     "ip_addr" : "",
     "mask" : 123
@@ -554,8 +540,7 @@ font-style: italic;
   "markers" : [ {
     "values" : [ "aeiou" ],
     "key" : "aeiou"
-  } ],
-  "apic_epg_name" : "aeiou"
+  } ]
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -641,10 +626,6 @@ font-style: italic;
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "prefixes" : [ {
     "ip_addr" : "",
     "mask" : 123
@@ -658,8 +639,7 @@ font-style: italic;
   "markers" : [ {
     "values" : [ "aeiou" ],
     "key" : "aeiou"
-  } ],
-  "apic_epg_name" : "aeiou"
+  } ]
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -745,10 +725,6 @@ font-style: italic;
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "prefixes" : [ {
     "ip_addr" : "",
     "mask" : 123
@@ -762,8 +738,7 @@ font-style: italic;
   "markers" : [ {
     "values" : [ "aeiou" ],
     "key" : "aeiou"
-  } ],
-  "apic_epg_name" : "aeiou"
+  } ]
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -818,12 +793,10 @@ font-style: italic;
     <div class="field-items">
       <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
 <div class="param">addrs (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">array[IpAddr]</a></span> Configure IP address(es). Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_epg_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Populate IP addresses from members of this Cisco APIC EPG. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">configpb_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#ConfigPbAttributes">ConfigPbAttributes</a></span> Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">country_codes (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Populate the IP address ranges from the geo database for this country. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ip_ports (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPort">array[IpAddrPort]</a></span> Configure (IP address, port) tuple(s). Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">labels (optional)</div><div class="param-desc"><span class="param-type"><a href="#KeyValue">array[KeyValue]</a></span> Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">marathon_app_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Populate IP addresses from tasks of this Marathon app. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">marathon_service_port (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Task port associated with marathon service port. If Marathon app has multiple service ports, this is required. Else, the first task port is used. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">markers (optional)</div><div class="param-desc"><span class="param-type"><a href="#RoleFilterMatchLabel">array[RoleFilterMatchLabel]</a></span> List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>

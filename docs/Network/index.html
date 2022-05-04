@@ -266,7 +266,6 @@ font-style: italic;
   "results" : [ {
     "vrf_context_ref" : "aeiou",
     "configured_subnets" : [ {
-      "static_ranges" : [ "" ],
       "prefix" : {
         "ip_addr" : {
           "addr" : "aeiou",
@@ -274,7 +273,6 @@ font-style: italic;
         },
         "mask" : 123
       },
-      "static_ips" : [ "" ],
       "static_ip_ranges" : [ {
         "range" : {
           "end" : "",
@@ -291,7 +289,6 @@ font-style: italic;
       "value" : "aeiou",
       "key" : "aeiou"
     } ],
-    "labels" : [ "" ],
     "synced_from_se" : true,
     "dhcp_enabled" : true,
     "exclude_discovered_subnets" : true,
@@ -363,7 +360,6 @@ font-style: italic;
     <pre class="example"><code>{
   "vrf_context_ref" : "aeiou",
   "configured_subnets" : [ {
-    "static_ranges" : [ "" ],
     "prefix" : {
       "ip_addr" : {
         "addr" : "aeiou",
@@ -371,7 +367,6 @@ font-style: italic;
       },
       "mask" : 123
     },
-    "static_ips" : [ "" ],
     "static_ip_ranges" : [ {
       "range" : {
         "end" : "",
@@ -388,7 +383,6 @@ font-style: italic;
     "value" : "aeiou",
     "key" : "aeiou"
   } ],
-  "labels" : [ "" ],
   "synced_from_se" : true,
   "dhcp_enabled" : true,
   "exclude_discovered_subnets" : true,
@@ -531,7 +525,6 @@ font-style: italic;
     <pre class="example"><code>{
   "vrf_context_ref" : "aeiou",
   "configured_subnets" : [ {
-    "static_ranges" : [ "" ],
     "prefix" : {
       "ip_addr" : {
         "addr" : "aeiou",
@@ -539,7 +532,6 @@ font-style: italic;
       },
       "mask" : 123
     },
-    "static_ips" : [ "" ],
     "static_ip_ranges" : [ {
       "range" : {
         "end" : "",
@@ -556,7 +548,6 @@ font-style: italic;
     "value" : "aeiou",
     "key" : "aeiou"
   } ],
-  "labels" : [ "" ],
   "synced_from_se" : true,
   "dhcp_enabled" : true,
   "exclude_discovered_subnets" : true,
@@ -639,7 +630,6 @@ font-style: italic;
     <pre class="example"><code>{
   "vrf_context_ref" : "aeiou",
   "configured_subnets" : [ {
-    "static_ranges" : [ "" ],
     "prefix" : {
       "ip_addr" : {
         "addr" : "aeiou",
@@ -647,7 +637,6 @@ font-style: italic;
       },
       "mask" : 123
     },
-    "static_ips" : [ "" ],
     "static_ip_ranges" : [ {
       "range" : {
         "end" : "",
@@ -664,7 +653,6 @@ font-style: italic;
     "value" : "aeiou",
     "key" : "aeiou"
   } ],
-  "labels" : [ "" ],
   "synced_from_se" : true,
   "dhcp_enabled" : true,
   "exclude_discovered_subnets" : true,
@@ -747,7 +735,6 @@ font-style: italic;
     <pre class="example"><code>{
   "vrf_context_ref" : "aeiou",
   "configured_subnets" : [ {
-    "static_ranges" : [ "" ],
     "prefix" : {
       "ip_addr" : {
         "addr" : "aeiou",
@@ -755,7 +742,6 @@ font-style: italic;
       },
       "mask" : 123
     },
-    "static_ips" : [ "" ],
     "static_ip_ranges" : [ {
       "range" : {
         "end" : "",
@@ -772,7 +758,6 @@ font-style: italic;
     "value" : "aeiou",
     "key" : "aeiou"
   } ],
-  "labels" : [ "" ],
   "synced_from_se" : true,
   "dhcp_enabled" : true,
   "exclude_discovered_subnets" : true,
@@ -870,7 +855,6 @@ font-style: italic;
 <div class="param">dhcp_enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Select the IP address management scheme for this Network. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">exclude_discovered_subnets (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> When selected, excludes all discovered subnets in this network from consideration for virtual service placement. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ip6_autocfg_enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable IPv6 auto configuration. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">labels (optional)</div><div class="param-desc"><span class="param-type"><a href="#KeyValue">array[KeyValue]</a></span> Key/value labels which can be used for Object Access Policy permission scoping. Field deprecated in 20.1.5. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">markers (optional)</div><div class="param-desc"><span class="param-type"><a href="#RoleFilterMatchLabel">array[RoleFilterMatchLabel]</a></span> List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">synced_from_se (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -909,8 +893,6 @@ font-style: italic;
     <div class="field-items">
       <div class="param">prefix </div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> Specify an IP subnet prefix for this Network. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">static_ip_ranges (optional)</div><div class="param-desc"><span class="param-type"><a href="#StaticIpRange">array[StaticIpRange]</a></span> Static IP ranges for this subnet. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
-<div class="param">static_ips (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">array[IpAddr]</a></span> Use static_ip_ranges. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">static_ranges (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrRange">array[IpAddrRange]</a></span> Use static_ip_ranges. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   </body>

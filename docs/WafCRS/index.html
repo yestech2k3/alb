@@ -269,7 +269,6 @@ font-style: italic;
     },
     "description" : "aeiou",
     "groups" : [ {
-      "force_detection" : true,
       "enable" : true,
       "name" : "aeiou",
       "index" : 123,
@@ -277,7 +276,6 @@ font-style: italic;
         "mode" : "aeiou",
         "phase" : "aeiou",
         "rule_id" : "aeiou",
-        "force_detection" : true,
         "enable" : true,
         "is_sensitive" : true,
         "name" : "aeiou",
@@ -375,7 +373,6 @@ font-style: italic;
   },
   "description" : "aeiou",
   "groups" : [ {
-    "force_detection" : true,
     "enable" : true,
     "name" : "aeiou",
     "index" : 123,
@@ -383,7 +380,6 @@ font-style: italic;
       "mode" : "aeiou",
       "phase" : "aeiou",
       "rule_id" : "aeiou",
-      "force_detection" : true,
       "enable" : true,
       "is_sensitive" : true,
       "name" : "aeiou",
@@ -552,7 +548,6 @@ font-style: italic;
   },
   "description" : "aeiou",
   "groups" : [ {
-    "force_detection" : true,
     "enable" : true,
     "name" : "aeiou",
     "index" : 123,
@@ -560,7 +555,6 @@ font-style: italic;
       "mode" : "aeiou",
       "phase" : "aeiou",
       "rule_id" : "aeiou",
-      "force_detection" : true,
       "enable" : true,
       "is_sensitive" : true,
       "name" : "aeiou",
@@ -669,7 +663,6 @@ font-style: italic;
   },
   "description" : "aeiou",
   "groups" : [ {
-    "force_detection" : true,
     "enable" : true,
     "name" : "aeiou",
     "index" : 123,
@@ -677,7 +670,6 @@ font-style: italic;
       "mode" : "aeiou",
       "phase" : "aeiou",
       "rule_id" : "aeiou",
-      "force_detection" : true,
       "enable" : true,
       "is_sensitive" : true,
       "name" : "aeiou",
@@ -786,7 +778,6 @@ font-style: italic;
   },
   "description" : "aeiou",
   "groups" : [ {
-    "force_detection" : true,
     "enable" : true,
     "name" : "aeiou",
     "index" : 123,
@@ -794,7 +785,6 @@ font-style: italic;
       "mode" : "aeiou",
       "phase" : "aeiou",
       "rule_id" : "aeiou",
-      "force_detection" : true,
       "enable" : true,
       "is_sensitive" : true,
       "name" : "aeiou",
@@ -941,7 +931,6 @@ font-style: italic;
     <div class="field-items">
       <div class="param">enable </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable or disable WAF Rule Group. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">exclude_list (optional)</div><div class="param-desc"><span class="param-type"><a href="#WafExcludeListEntry">array[WafExcludeListEntry]</a></span> Exclude list for the WAF rule. The fields in the exclude list entry are logically and&#39;ed to deduce the exclusion criteria. If there are multiple excludelist entries, it will be &#39;logical or&#39; of them. Field introduced in 17.2.3. Maximum of 64 items allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">force_detection (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> When set to &#39;true&#39;, this rule will not cause &#39;deny&#39; or &#39;redirect&#39; actions to run, even if WAF Policy is set to enforcement mode. The behavior would be as if this rule operated in detection mode regardless of WAF Policy setting. Field deprecated in 18.1.5. Field introduced in 18.1.4. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">index </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">is_sensitive (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> The rule field is sensitive and will not be displayed. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> WAF Rule mode. This can be detection or enforcement. If this is not set, the Policy mode is used. This only takes effect if the policy allows delegation. Enum options - WAF_MODE_DETECTION_ONLY, WAF_MODE_ENFORCEMENT. Field introduced in 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -957,7 +946,6 @@ font-style: italic;
     <div class="field-items">
       <div class="param">enable </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable or disable WAF Rule Group. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">exclude_list (optional)</div><div class="param-desc"><span class="param-type"><a href="#WafExcludeListEntry">array[WafExcludeListEntry]</a></span> Exclude list for the WAF rule group. The fields in the exclude list entry are logically and&#39;ed to deduce the exclusion criteria. If there are multiple excludelist entries, it will be &#39;logical or&#39; of them. Field introduced in 17.2.1. Maximum of 64 items allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">force_detection (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> When set to &#39;true&#39;, any rule in this group will not cause &#39;deny&#39; or &#39;redirect&#39; actions to run, even if WAF Policy is set to enforcement mode. The behavior would be as if this rule operated in detection mode regardless of WAF Policy setting. Field deprecated in 18.1.5. Field introduced in 18.1.4. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">index </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">rules (optional)</div><div class="param-desc"><span class="param-type"><a href="#WafRule">array[WafRule]</a></span> Rules as per Modsec language. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>

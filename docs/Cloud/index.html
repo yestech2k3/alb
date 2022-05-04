@@ -274,23 +274,6 @@ font-style: italic;
     "autoscale_polling_interval" : 123,
     "maintenance_mode" : true,
     "vtype" : "aeiou",
-    "apic_configuration" : {
-      "apic_admin_tenant" : "aeiou",
-      "apic_vendor" : "aeiou",
-      "avi_controller_username" : "aeiou",
-      "minor" : "aeiou",
-      "se_tunnel_mode" : true,
-      "context_aware" : "aeiou",
-      "apic_domain" : "aeiou",
-      "apic_product" : "aeiou",
-      "managed_mode" : true,
-      "apic_username" : "aeiou",
-      "version" : "aeiou",
-      "apic_password" : "aeiou",
-      "avi_controller_password" : "aeiou",
-      "apic_name" : [ "aeiou" ],
-      "deployment" : "aeiou"
-    },
     "dns_resolvers" : [ {
       "min_ttl" : 123,
       "fixed_ttl" : 123,
@@ -307,7 +290,6 @@ font-style: italic;
       "access_key_id" : "aeiou",
       "use_sns_sqs" : true,
       "iam_assume_role" : "aeiou",
-      "wildcard_access" : true,
       "vpc_id" : "aeiou",
       "ebs_encryption" : {
         "mode" : "aeiou",
@@ -339,23 +321,7 @@ font-style: italic;
         "se_disk_kms_key_id" : "aeiou"
       },
       "gcs_bucket_name" : "aeiou",
-      "encryption_key_id" : "aeiou",
       "firewall_target_tags" : [ "aeiou" ],
-      "se_project_id" : "aeiou",
-      "zones" : [ "aeiou" ],
-      "gcp_service_account_email" : "aeiou",
-      "gcs_project_id" : "aeiou",
-      "vip_allocation_strategy" : {
-        "mode" : "aeiou",
-        "routes" : {
-          "match_se_group_subnet" : true,
-          "route_priority" : 123
-        },
-        "ilb" : {
-          "cloud_router_names" : [ "aeiou" ]
-        }
-      },
-      "match_se_group_subnet" : true,
       "network_config" : {
         "inband" : {
           "vpc_network_name" : "aeiou",
@@ -384,88 +350,24 @@ font-style: italic;
         "config" : "aeiou"
       },
       "region_name" : "aeiou",
-      "cloud_credentials_ref" : "aeiou"
+      "se_project_id" : "aeiou",
+      "cloud_credentials_ref" : "aeiou",
+      "zones" : [ "aeiou" ],
+      "gcp_service_account_email" : "aeiou",
+      "gcs_project_id" : "aeiou",
+      "vip_allocation_strategy" : {
+        "mode" : "aeiou",
+        "routes" : {
+          "match_se_group_subnet" : true,
+          "route_priority" : 123
+        },
+        "ilb" : {
+          "cloud_router_names" : [ "aeiou" ]
+        }
+      }
     },
     "uuid" : "aeiou",
     "_last_modified" : "aeiou",
-    "mesos_configuration" : {
-      "feproxy_container_port_as_service" : true,
-      "disable_auto_backend_service_sync" : true,
-      "se_volume" : "aeiou",
-      "node_availability_zone_label" : "aeiou",
-      "http_container_ports" : [ "" ],
-      "se_spawn_rate" : 123,
-      "marathon_se_deployment" : {
-        "uris" : [ "aeiou" ],
-        "host_os" : "aeiou",
-        "resource_roles" : [ "aeiou" ],
-        "docker_image" : "aeiou"
-      },
-      "nuage_controller" : {
-        "se_zone" : "aeiou",
-        "nuage_username" : "aeiou",
-        "nuage_password" : "aeiou",
-        "nuage_organization" : "aeiou",
-        "nuage_port" : 123,
-        "se_domain" : "aeiou",
-        "se_enterprise" : "aeiou",
-        "se_policy_group" : "aeiou",
-        "nuage_vsd_host" : "aeiou",
-        "se_network" : "aeiou",
-        "se_user" : "aeiou"
-      },
-      "feproxy_bridge_name" : "aeiou",
-      "fleet_endpoint" : "aeiou",
-      "all_vses_are_feproxy" : true,
-      "ssh_user_ref" : "aeiou",
-      "use_controller_image" : true,
-      "use_container_ip_port" : true,
-      "container_port_match_http_service" : true,
-      "disable_auto_gs_sync" : true,
-      "vip" : "",
-      "disable_auto_se_creation" : true,
-      "se_include_attributes" : [ "" ],
-      "feproxy_route_publish" : {
-        "mode" : "aeiou",
-        "subnet" : 123,
-        "publisher_port" : 123,
-        "token" : "aeiou"
-      },
-      "se_deployment_method" : "aeiou",
-      "services_accessible_all_interfaces" : true,
-      "disable_auto_frontend_service_sync" : true,
-      "use_vips_for_east_west_services" : true,
-      "use_bridge_ip_as_vip" : true,
-      "app_sync_frequency" : 123,
-      "feproxy_vips_enable_proxy_arp" : true,
-      "ssh_se_deployment" : "",
-      "enable_event_subscription" : true,
-      "marathon_configurations" : [ {
-        "vs_name_tag_framework" : true,
-        "marathon_url" : "aeiou",
-        "public_port_range" : "",
-        "marathon_username" : "aeiou",
-        "use_token_auth" : true,
-        "private_port_range" : {
-          "start" : 123,
-          "end" : 123
-        },
-        "framework_tag" : "aeiou",
-        "marathon_password" : "aeiou",
-        "tenant" : "aeiou"
-      } ],
-      "se_resources" : [ {
-        "memory" : 123,
-        "attribute_key" : "aeiou",
-        "cpu" : 1.3579000000000001069366817318950779736042022705078125,
-        "attribute_value" : "aeiou"
-      } ],
-      "coredump_directory" : "aeiou",
-      "docker_registry_se" : "",
-      "se_exclude_attributes" : [ "" ],
-      "east_west_placement_subnet" : "",
-      "mesos_url" : "aeiou"
-    },
     "docker_configuration" : {
       "feproxy_container_port_as_service" : true,
       "disable_auto_backend_service_sync" : true,
@@ -487,12 +389,6 @@ font-style: italic;
       "ucp_nodes" : [ "aeiou" ],
       "app_sync_frequency" : 123,
       "feproxy_vips_enable_proxy_arp" : true,
-      "ssh_se_deployment" : {
-        "password" : "aeiou",
-        "host_os" : "aeiou",
-        "ssh_user" : "aeiou",
-        "sudo_user" : "aeiou"
-      },
       "enable_event_subscription" : true,
       "coredump_directory" : "aeiou",
       "docker_registry_se" : {
@@ -504,7 +400,6 @@ font-style: italic;
           "registry_namespace" : "aeiou",
           "registry_service" : "aeiou"
         },
-        "se_repository_push" : true,
         "username" : "aeiou"
       },
       "se_exclude_attributes" : [ {
@@ -526,96 +421,11 @@ font-style: italic;
       "vca_vdc" : "aeiou",
       "privilege" : "aeiou"
     },
-    "nsx_configuration" : {
-      "nsx_manager_username" : "aeiou",
-      "nsx_manager_name" : "aeiou",
-      "avi_nsx_prefix" : "aeiou",
-      "nsx_manager_password" : "aeiou",
-      "nsx_poll_time" : 123
-    },
     "dns_provider_ref" : "aeiou",
     "configpb_attributes" : {
       "version" : 123
     },
     "metrics_polling_interval" : 123,
-    "oshiftk8s_configuration" : {
-      "disable_auto_backend_service_sync" : true,
-      "se_volume" : "aeiou",
-      "se_spawn_rate" : 123,
-      "service_account_token" : "aeiou",
-      "fleet_endpoint" : "aeiou",
-      "client_tls_key_and_certificate_ref" : "aeiou",
-      "routes" : [ {
-        "subnet" : "",
-        "if_name" : "aeiou",
-        "nexthop" : "",
-        "network_namespace" : "aeiou"
-      } ],
-      "ssh_user_ref" : "aeiou",
-      "master_nodes" : [ "aeiou" ],
-      "sdn_overlay" : true,
-      "ing_exclude_attributes" : [ {
-        "attribute" : "aeiou",
-        "value" : "aeiou"
-      } ],
-      "override_service_ports" : true,
-      "auto_assign_fqdn" : true,
-      "persistent_volume_claim" : "aeiou",
-      "se_include_attributes" : [ "" ],
-      "use_service_cluster_ip_as_ew_vip" : true,
-      "se_deployment_method" : "aeiou",
-      "app_sync_frequency" : 123,
-      "ns_include_attributes" : [ "" ],
-      "feproxy_vips_enable_proxy_arp" : true,
-      "enable_event_subscription" : true,
-      "secure_egress_mode" : true,
-      "ing_include_attributes" : [ "" ],
-      "cluster_tag" : "aeiou",
-      "docker_endpoint" : "aeiou",
-      "se_pod_tolerations" : [ {
-        "effect" : "aeiou",
-        "toleration_seconds" : 123,
-        "value" : "aeiou",
-        "key" : "aeiou",
-        "operator" : "aeiou"
-      } ],
-      "routes_share_virtualservice" : true,
-      "se_priority_class" : "aeiou",
-      "use_resource_definition_as_ssot" : true,
-      "use_scheduling_disabled_nodes" : true,
-      "l4_health_monitoring" : true,
-      "se_namespace" : "aeiou",
-      "se_restart_force" : true,
-      "enable_route_ingress_hardening" : true,
-      "node_availability_zone_label" : "aeiou",
-      "service_port_match_http_service" : true,
-      "http_container_ports" : [ "" ],
-      "ca_tls_key_and_certificate_ref" : "aeiou",
-      "nuage_controller" : "",
-      "use_controller_image" : true,
-      "container_port_match_http_service" : true,
-      "disable_auto_gs_sync" : true,
-      "disable_auto_se_creation" : true,
-      "se_restart_batch_size" : 123,
-      "se_image_pull_secret" : "aeiou",
-      "default_shared_virtualservice" : {
-        "virtualservice_name" : "aeiou"
-      },
-      "disable_auto_frontend_service_sync" : true,
-      "num_shards" : 123,
-      "ns_exclude_attributes" : [ "" ],
-      "ssh_se_deployment" : "",
-      "sync_not_ready_addresses" : true,
-      "shard_prefix" : "aeiou",
-      "coredump_directory" : "aeiou",
-      "docker_registry_se" : "",
-      "se_exclude_attributes" : [ "" ],
-      "shared_virtualservice_namespace" : true,
-      "east_west_placement_subnet" : "",
-      "avi_bridge_subnet" : "",
-      "default_service_as_east_west_service" : true,
-      "vip_default_gateway" : ""
-    },
     "proxy_configuration" : {
       "password" : "aeiou",
       "port" : 123,
@@ -623,7 +433,6 @@ font-style: italic;
       "username" : "aeiou"
     },
     "enable_vip_on_all_interfaces" : true,
-    "apic_mode" : true,
     "license_type" : "aeiou",
     "vmc_deployment" : true,
     "cloudstack_configuration" : {
@@ -653,13 +462,11 @@ font-style: italic;
         "os_network_uuid" : "aeiou",
         "os_tenant_uuids" : [ "aeiou" ]
       } ],
-      "wildcard_access" : true,
       "allowed_address_pairs" : true,
       "hypervisor_properties" : [ {
         "image_properties" : [ "" ],
         "hypervisor" : "aeiou"
       } ],
-      "nuage_password" : "aeiou",
       "privilege" : "aeiou",
       "custom_se_image_properties" : [ {
         "name" : "aeiou",
@@ -667,22 +474,15 @@ font-style: italic;
       } ],
       "mgmt_network_uuid" : "aeiou",
       "contrail_plugin" : true,
-      "port_security" : true,
-      "nuage_vsd_host" : "aeiou",
-      "se_group_ref" : "aeiou",
-      "usable_network_uuids" : [ "aeiou" ],
       "anti_affinity" : true,
       "password" : "aeiou",
       "hypervisor" : "aeiou",
-      "nuage_username" : "aeiou",
       "tenant_se" : true,
       "img_format" : "aeiou",
       "insecure" : true,
       "mgmt_network_name" : "aeiou",
-      "nuage_port" : 123,
       "admin_tenant_uuid" : "aeiou",
       "free_floatingips" : true,
-      "use_nuagevip" : true,
       "name_owner" : true,
       "contrail_endpoint" : "aeiou",
       "use_keystone_auth" : true,
@@ -691,13 +491,10 @@ font-style: italic;
       "use_internal_endpoints" : true,
       "security_groups" : true,
       "config_drive" : true,
-      "intf_sec_ips" : true,
       "prov_name" : [ "aeiou" ],
       "map_admin_to_cloudadmin" : true,
       "neutron_rbac" : true,
-      "nuage_virtualip" : true,
       "admin_tenant" : "aeiou",
-      "nuage_organization" : "aeiou",
       "role_mapping" : [ {
         "os_role" : "aeiou",
         "avi_role" : "aeiou"
@@ -738,11 +535,8 @@ font-style: italic;
       "enforcementpoint_id" : "aeiou",
       "nsxt_url" : "aeiou",
       "nsxt_credentials_ref" : "aeiou",
-      "tier1_segment_config" : "",
       "automate_dfw_rules" : true,
-      "site_id" : "aeiou",
-      "transport_zone" : "aeiou",
-      "management_segment" : ""
+      "site_id" : "aeiou"
     },
     "se_group_template_ref" : "aeiou",
     "dns_resolution_on_se" : true,
@@ -796,9 +590,7 @@ font-style: italic;
       "se_inband_mgmt" : true,
       "se_sys_disk_path" : "aeiou",
       "se_log_disk_size_GB" : 123,
-      "ssh_attr" : "",
       "se_sys_disk_size_GB" : 123,
-      "docker_registry_se" : "",
       "se_log_disk_path" : "aeiou"
     },
     "markers" : [ {
@@ -811,7 +603,19 @@ font-style: italic;
       "se_volume" : "aeiou",
       "http_container_ports" : [ "" ],
       "se_spawn_rate" : 123,
-      "nuage_controller" : "",
+      "nuage_controller" : {
+        "se_zone" : "aeiou",
+        "nuage_username" : "aeiou",
+        "nuage_password" : "aeiou",
+        "nuage_organization" : "aeiou",
+        "nuage_port" : 123,
+        "se_domain" : "aeiou",
+        "se_enterprise" : "aeiou",
+        "se_policy_group" : "aeiou",
+        "nuage_vsd_host" : "aeiou",
+        "se_network" : "aeiou",
+        "se_user" : "aeiou"
+      },
       "fleet_endpoint" : "aeiou",
       "secret_key" : "aeiou",
       "ssh_user_ref" : "aeiou",
@@ -825,7 +629,6 @@ font-style: italic;
       "disable_auto_frontend_service_sync" : true,
       "app_sync_frequency" : 123,
       "feproxy_vips_enable_proxy_arp" : true,
-      "ssh_se_deployment" : "",
       "enable_event_subscription" : true,
       "coredump_directory" : "aeiou",
       "docker_registry_se" : "",
@@ -944,23 +747,6 @@ font-style: italic;
   "autoscale_polling_interval" : 123,
   "maintenance_mode" : true,
   "vtype" : "aeiou",
-  "apic_configuration" : {
-    "apic_admin_tenant" : "aeiou",
-    "apic_vendor" : "aeiou",
-    "avi_controller_username" : "aeiou",
-    "minor" : "aeiou",
-    "se_tunnel_mode" : true,
-    "context_aware" : "aeiou",
-    "apic_domain" : "aeiou",
-    "apic_product" : "aeiou",
-    "managed_mode" : true,
-    "apic_username" : "aeiou",
-    "version" : "aeiou",
-    "apic_password" : "aeiou",
-    "avi_controller_password" : "aeiou",
-    "apic_name" : [ "aeiou" ],
-    "deployment" : "aeiou"
-  },
   "dns_resolvers" : [ {
     "min_ttl" : 123,
     "fixed_ttl" : 123,
@@ -977,7 +763,6 @@ font-style: italic;
     "access_key_id" : "aeiou",
     "use_sns_sqs" : true,
     "iam_assume_role" : "aeiou",
-    "wildcard_access" : true,
     "vpc_id" : "aeiou",
     "ebs_encryption" : {
       "mode" : "aeiou",
@@ -1009,23 +794,7 @@ font-style: italic;
       "se_disk_kms_key_id" : "aeiou"
     },
     "gcs_bucket_name" : "aeiou",
-    "encryption_key_id" : "aeiou",
     "firewall_target_tags" : [ "aeiou" ],
-    "se_project_id" : "aeiou",
-    "zones" : [ "aeiou" ],
-    "gcp_service_account_email" : "aeiou",
-    "gcs_project_id" : "aeiou",
-    "vip_allocation_strategy" : {
-      "mode" : "aeiou",
-      "routes" : {
-        "match_se_group_subnet" : true,
-        "route_priority" : 123
-      },
-      "ilb" : {
-        "cloud_router_names" : [ "aeiou" ]
-      }
-    },
-    "match_se_group_subnet" : true,
     "network_config" : {
       "inband" : {
         "vpc_network_name" : "aeiou",
@@ -1054,88 +823,24 @@ font-style: italic;
       "config" : "aeiou"
     },
     "region_name" : "aeiou",
-    "cloud_credentials_ref" : "aeiou"
+    "se_project_id" : "aeiou",
+    "cloud_credentials_ref" : "aeiou",
+    "zones" : [ "aeiou" ],
+    "gcp_service_account_email" : "aeiou",
+    "gcs_project_id" : "aeiou",
+    "vip_allocation_strategy" : {
+      "mode" : "aeiou",
+      "routes" : {
+        "match_se_group_subnet" : true,
+        "route_priority" : 123
+      },
+      "ilb" : {
+        "cloud_router_names" : [ "aeiou" ]
+      }
+    }
   },
   "uuid" : "aeiou",
   "_last_modified" : "aeiou",
-  "mesos_configuration" : {
-    "feproxy_container_port_as_service" : true,
-    "disable_auto_backend_service_sync" : true,
-    "se_volume" : "aeiou",
-    "node_availability_zone_label" : "aeiou",
-    "http_container_ports" : [ "" ],
-    "se_spawn_rate" : 123,
-    "marathon_se_deployment" : {
-      "uris" : [ "aeiou" ],
-      "host_os" : "aeiou",
-      "resource_roles" : [ "aeiou" ],
-      "docker_image" : "aeiou"
-    },
-    "nuage_controller" : {
-      "se_zone" : "aeiou",
-      "nuage_username" : "aeiou",
-      "nuage_password" : "aeiou",
-      "nuage_organization" : "aeiou",
-      "nuage_port" : 123,
-      "se_domain" : "aeiou",
-      "se_enterprise" : "aeiou",
-      "se_policy_group" : "aeiou",
-      "nuage_vsd_host" : "aeiou",
-      "se_network" : "aeiou",
-      "se_user" : "aeiou"
-    },
-    "feproxy_bridge_name" : "aeiou",
-    "fleet_endpoint" : "aeiou",
-    "all_vses_are_feproxy" : true,
-    "ssh_user_ref" : "aeiou",
-    "use_controller_image" : true,
-    "use_container_ip_port" : true,
-    "container_port_match_http_service" : true,
-    "disable_auto_gs_sync" : true,
-    "vip" : "",
-    "disable_auto_se_creation" : true,
-    "se_include_attributes" : [ "" ],
-    "feproxy_route_publish" : {
-      "mode" : "aeiou",
-      "subnet" : 123,
-      "publisher_port" : 123,
-      "token" : "aeiou"
-    },
-    "se_deployment_method" : "aeiou",
-    "services_accessible_all_interfaces" : true,
-    "disable_auto_frontend_service_sync" : true,
-    "use_vips_for_east_west_services" : true,
-    "use_bridge_ip_as_vip" : true,
-    "app_sync_frequency" : 123,
-    "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : "",
-    "enable_event_subscription" : true,
-    "marathon_configurations" : [ {
-      "vs_name_tag_framework" : true,
-      "marathon_url" : "aeiou",
-      "public_port_range" : "",
-      "marathon_username" : "aeiou",
-      "use_token_auth" : true,
-      "private_port_range" : {
-        "start" : 123,
-        "end" : 123
-      },
-      "framework_tag" : "aeiou",
-      "marathon_password" : "aeiou",
-      "tenant" : "aeiou"
-    } ],
-    "se_resources" : [ {
-      "memory" : 123,
-      "attribute_key" : "aeiou",
-      "cpu" : 1.3579000000000001069366817318950779736042022705078125,
-      "attribute_value" : "aeiou"
-    } ],
-    "coredump_directory" : "aeiou",
-    "docker_registry_se" : "",
-    "se_exclude_attributes" : [ "" ],
-    "east_west_placement_subnet" : "",
-    "mesos_url" : "aeiou"
-  },
   "docker_configuration" : {
     "feproxy_container_port_as_service" : true,
     "disable_auto_backend_service_sync" : true,
@@ -1157,12 +862,6 @@ font-style: italic;
     "ucp_nodes" : [ "aeiou" ],
     "app_sync_frequency" : 123,
     "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : {
-      "password" : "aeiou",
-      "host_os" : "aeiou",
-      "ssh_user" : "aeiou",
-      "sudo_user" : "aeiou"
-    },
     "enable_event_subscription" : true,
     "coredump_directory" : "aeiou",
     "docker_registry_se" : {
@@ -1174,7 +873,6 @@ font-style: italic;
         "registry_namespace" : "aeiou",
         "registry_service" : "aeiou"
       },
-      "se_repository_push" : true,
       "username" : "aeiou"
     },
     "se_exclude_attributes" : [ {
@@ -1196,96 +894,11 @@ font-style: italic;
     "vca_vdc" : "aeiou",
     "privilege" : "aeiou"
   },
-  "nsx_configuration" : {
-    "nsx_manager_username" : "aeiou",
-    "nsx_manager_name" : "aeiou",
-    "avi_nsx_prefix" : "aeiou",
-    "nsx_manager_password" : "aeiou",
-    "nsx_poll_time" : 123
-  },
   "dns_provider_ref" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
   "metrics_polling_interval" : 123,
-  "oshiftk8s_configuration" : {
-    "disable_auto_backend_service_sync" : true,
-    "se_volume" : "aeiou",
-    "se_spawn_rate" : 123,
-    "service_account_token" : "aeiou",
-    "fleet_endpoint" : "aeiou",
-    "client_tls_key_and_certificate_ref" : "aeiou",
-    "routes" : [ {
-      "subnet" : "",
-      "if_name" : "aeiou",
-      "nexthop" : "",
-      "network_namespace" : "aeiou"
-    } ],
-    "ssh_user_ref" : "aeiou",
-    "master_nodes" : [ "aeiou" ],
-    "sdn_overlay" : true,
-    "ing_exclude_attributes" : [ {
-      "attribute" : "aeiou",
-      "value" : "aeiou"
-    } ],
-    "override_service_ports" : true,
-    "auto_assign_fqdn" : true,
-    "persistent_volume_claim" : "aeiou",
-    "se_include_attributes" : [ "" ],
-    "use_service_cluster_ip_as_ew_vip" : true,
-    "se_deployment_method" : "aeiou",
-    "app_sync_frequency" : 123,
-    "ns_include_attributes" : [ "" ],
-    "feproxy_vips_enable_proxy_arp" : true,
-    "enable_event_subscription" : true,
-    "secure_egress_mode" : true,
-    "ing_include_attributes" : [ "" ],
-    "cluster_tag" : "aeiou",
-    "docker_endpoint" : "aeiou",
-    "se_pod_tolerations" : [ {
-      "effect" : "aeiou",
-      "toleration_seconds" : 123,
-      "value" : "aeiou",
-      "key" : "aeiou",
-      "operator" : "aeiou"
-    } ],
-    "routes_share_virtualservice" : true,
-    "se_priority_class" : "aeiou",
-    "use_resource_definition_as_ssot" : true,
-    "use_scheduling_disabled_nodes" : true,
-    "l4_health_monitoring" : true,
-    "se_namespace" : "aeiou",
-    "se_restart_force" : true,
-    "enable_route_ingress_hardening" : true,
-    "node_availability_zone_label" : "aeiou",
-    "service_port_match_http_service" : true,
-    "http_container_ports" : [ "" ],
-    "ca_tls_key_and_certificate_ref" : "aeiou",
-    "nuage_controller" : "",
-    "use_controller_image" : true,
-    "container_port_match_http_service" : true,
-    "disable_auto_gs_sync" : true,
-    "disable_auto_se_creation" : true,
-    "se_restart_batch_size" : 123,
-    "se_image_pull_secret" : "aeiou",
-    "default_shared_virtualservice" : {
-      "virtualservice_name" : "aeiou"
-    },
-    "disable_auto_frontend_service_sync" : true,
-    "num_shards" : 123,
-    "ns_exclude_attributes" : [ "" ],
-    "ssh_se_deployment" : "",
-    "sync_not_ready_addresses" : true,
-    "shard_prefix" : "aeiou",
-    "coredump_directory" : "aeiou",
-    "docker_registry_se" : "",
-    "se_exclude_attributes" : [ "" ],
-    "shared_virtualservice_namespace" : true,
-    "east_west_placement_subnet" : "",
-    "avi_bridge_subnet" : "",
-    "default_service_as_east_west_service" : true,
-    "vip_default_gateway" : ""
-  },
   "proxy_configuration" : {
     "password" : "aeiou",
     "port" : 123,
@@ -1293,7 +906,6 @@ font-style: italic;
     "username" : "aeiou"
   },
   "enable_vip_on_all_interfaces" : true,
-  "apic_mode" : true,
   "license_type" : "aeiou",
   "vmc_deployment" : true,
   "cloudstack_configuration" : {
@@ -1323,13 +935,11 @@ font-style: italic;
       "os_network_uuid" : "aeiou",
       "os_tenant_uuids" : [ "aeiou" ]
     } ],
-    "wildcard_access" : true,
     "allowed_address_pairs" : true,
     "hypervisor_properties" : [ {
       "image_properties" : [ "" ],
       "hypervisor" : "aeiou"
     } ],
-    "nuage_password" : "aeiou",
     "privilege" : "aeiou",
     "custom_se_image_properties" : [ {
       "name" : "aeiou",
@@ -1337,22 +947,15 @@ font-style: italic;
     } ],
     "mgmt_network_uuid" : "aeiou",
     "contrail_plugin" : true,
-    "port_security" : true,
-    "nuage_vsd_host" : "aeiou",
-    "se_group_ref" : "aeiou",
-    "usable_network_uuids" : [ "aeiou" ],
     "anti_affinity" : true,
     "password" : "aeiou",
     "hypervisor" : "aeiou",
-    "nuage_username" : "aeiou",
     "tenant_se" : true,
     "img_format" : "aeiou",
     "insecure" : true,
     "mgmt_network_name" : "aeiou",
-    "nuage_port" : 123,
     "admin_tenant_uuid" : "aeiou",
     "free_floatingips" : true,
-    "use_nuagevip" : true,
     "name_owner" : true,
     "contrail_endpoint" : "aeiou",
     "use_keystone_auth" : true,
@@ -1361,13 +964,10 @@ font-style: italic;
     "use_internal_endpoints" : true,
     "security_groups" : true,
     "config_drive" : true,
-    "intf_sec_ips" : true,
     "prov_name" : [ "aeiou" ],
     "map_admin_to_cloudadmin" : true,
     "neutron_rbac" : true,
-    "nuage_virtualip" : true,
     "admin_tenant" : "aeiou",
-    "nuage_organization" : "aeiou",
     "role_mapping" : [ {
       "os_role" : "aeiou",
       "avi_role" : "aeiou"
@@ -1408,11 +1008,8 @@ font-style: italic;
     "enforcementpoint_id" : "aeiou",
     "nsxt_url" : "aeiou",
     "nsxt_credentials_ref" : "aeiou",
-    "tier1_segment_config" : "",
     "automate_dfw_rules" : true,
-    "site_id" : "aeiou",
-    "transport_zone" : "aeiou",
-    "management_segment" : ""
+    "site_id" : "aeiou"
   },
   "se_group_template_ref" : "aeiou",
   "dns_resolution_on_se" : true,
@@ -1466,9 +1063,7 @@ font-style: italic;
     "se_inband_mgmt" : true,
     "se_sys_disk_path" : "aeiou",
     "se_log_disk_size_GB" : 123,
-    "ssh_attr" : "",
     "se_sys_disk_size_GB" : 123,
-    "docker_registry_se" : "",
     "se_log_disk_path" : "aeiou"
   },
   "markers" : [ {
@@ -1481,7 +1076,19 @@ font-style: italic;
     "se_volume" : "aeiou",
     "http_container_ports" : [ "" ],
     "se_spawn_rate" : 123,
-    "nuage_controller" : "",
+    "nuage_controller" : {
+      "se_zone" : "aeiou",
+      "nuage_username" : "aeiou",
+      "nuage_password" : "aeiou",
+      "nuage_organization" : "aeiou",
+      "nuage_port" : 123,
+      "se_domain" : "aeiou",
+      "se_enterprise" : "aeiou",
+      "se_policy_group" : "aeiou",
+      "nuage_vsd_host" : "aeiou",
+      "se_network" : "aeiou",
+      "se_user" : "aeiou"
+    },
     "fleet_endpoint" : "aeiou",
     "secret_key" : "aeiou",
     "ssh_user_ref" : "aeiou",
@@ -1495,7 +1102,6 @@ font-style: italic;
     "disable_auto_frontend_service_sync" : true,
     "app_sync_frequency" : 123,
     "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : "",
     "enable_event_subscription" : true,
     "coredump_directory" : "aeiou",
     "docker_registry_se" : "",
@@ -1847,23 +1453,6 @@ font-style: italic;
   "autoscale_polling_interval" : 123,
   "maintenance_mode" : true,
   "vtype" : "aeiou",
-  "apic_configuration" : {
-    "apic_admin_tenant" : "aeiou",
-    "apic_vendor" : "aeiou",
-    "avi_controller_username" : "aeiou",
-    "minor" : "aeiou",
-    "se_tunnel_mode" : true,
-    "context_aware" : "aeiou",
-    "apic_domain" : "aeiou",
-    "apic_product" : "aeiou",
-    "managed_mode" : true,
-    "apic_username" : "aeiou",
-    "version" : "aeiou",
-    "apic_password" : "aeiou",
-    "avi_controller_password" : "aeiou",
-    "apic_name" : [ "aeiou" ],
-    "deployment" : "aeiou"
-  },
   "dns_resolvers" : [ {
     "min_ttl" : 123,
     "fixed_ttl" : 123,
@@ -1880,7 +1469,6 @@ font-style: italic;
     "access_key_id" : "aeiou",
     "use_sns_sqs" : true,
     "iam_assume_role" : "aeiou",
-    "wildcard_access" : true,
     "vpc_id" : "aeiou",
     "ebs_encryption" : {
       "mode" : "aeiou",
@@ -1912,23 +1500,7 @@ font-style: italic;
       "se_disk_kms_key_id" : "aeiou"
     },
     "gcs_bucket_name" : "aeiou",
-    "encryption_key_id" : "aeiou",
     "firewall_target_tags" : [ "aeiou" ],
-    "se_project_id" : "aeiou",
-    "zones" : [ "aeiou" ],
-    "gcp_service_account_email" : "aeiou",
-    "gcs_project_id" : "aeiou",
-    "vip_allocation_strategy" : {
-      "mode" : "aeiou",
-      "routes" : {
-        "match_se_group_subnet" : true,
-        "route_priority" : 123
-      },
-      "ilb" : {
-        "cloud_router_names" : [ "aeiou" ]
-      }
-    },
-    "match_se_group_subnet" : true,
     "network_config" : {
       "inband" : {
         "vpc_network_name" : "aeiou",
@@ -1957,88 +1529,24 @@ font-style: italic;
       "config" : "aeiou"
     },
     "region_name" : "aeiou",
-    "cloud_credentials_ref" : "aeiou"
+    "se_project_id" : "aeiou",
+    "cloud_credentials_ref" : "aeiou",
+    "zones" : [ "aeiou" ],
+    "gcp_service_account_email" : "aeiou",
+    "gcs_project_id" : "aeiou",
+    "vip_allocation_strategy" : {
+      "mode" : "aeiou",
+      "routes" : {
+        "match_se_group_subnet" : true,
+        "route_priority" : 123
+      },
+      "ilb" : {
+        "cloud_router_names" : [ "aeiou" ]
+      }
+    }
   },
   "uuid" : "aeiou",
   "_last_modified" : "aeiou",
-  "mesos_configuration" : {
-    "feproxy_container_port_as_service" : true,
-    "disable_auto_backend_service_sync" : true,
-    "se_volume" : "aeiou",
-    "node_availability_zone_label" : "aeiou",
-    "http_container_ports" : [ "" ],
-    "se_spawn_rate" : 123,
-    "marathon_se_deployment" : {
-      "uris" : [ "aeiou" ],
-      "host_os" : "aeiou",
-      "resource_roles" : [ "aeiou" ],
-      "docker_image" : "aeiou"
-    },
-    "nuage_controller" : {
-      "se_zone" : "aeiou",
-      "nuage_username" : "aeiou",
-      "nuage_password" : "aeiou",
-      "nuage_organization" : "aeiou",
-      "nuage_port" : 123,
-      "se_domain" : "aeiou",
-      "se_enterprise" : "aeiou",
-      "se_policy_group" : "aeiou",
-      "nuage_vsd_host" : "aeiou",
-      "se_network" : "aeiou",
-      "se_user" : "aeiou"
-    },
-    "feproxy_bridge_name" : "aeiou",
-    "fleet_endpoint" : "aeiou",
-    "all_vses_are_feproxy" : true,
-    "ssh_user_ref" : "aeiou",
-    "use_controller_image" : true,
-    "use_container_ip_port" : true,
-    "container_port_match_http_service" : true,
-    "disable_auto_gs_sync" : true,
-    "vip" : "",
-    "disable_auto_se_creation" : true,
-    "se_include_attributes" : [ "" ],
-    "feproxy_route_publish" : {
-      "mode" : "aeiou",
-      "subnet" : 123,
-      "publisher_port" : 123,
-      "token" : "aeiou"
-    },
-    "se_deployment_method" : "aeiou",
-    "services_accessible_all_interfaces" : true,
-    "disable_auto_frontend_service_sync" : true,
-    "use_vips_for_east_west_services" : true,
-    "use_bridge_ip_as_vip" : true,
-    "app_sync_frequency" : 123,
-    "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : "",
-    "enable_event_subscription" : true,
-    "marathon_configurations" : [ {
-      "vs_name_tag_framework" : true,
-      "marathon_url" : "aeiou",
-      "public_port_range" : "",
-      "marathon_username" : "aeiou",
-      "use_token_auth" : true,
-      "private_port_range" : {
-        "start" : 123,
-        "end" : 123
-      },
-      "framework_tag" : "aeiou",
-      "marathon_password" : "aeiou",
-      "tenant" : "aeiou"
-    } ],
-    "se_resources" : [ {
-      "memory" : 123,
-      "attribute_key" : "aeiou",
-      "cpu" : 1.3579000000000001069366817318950779736042022705078125,
-      "attribute_value" : "aeiou"
-    } ],
-    "coredump_directory" : "aeiou",
-    "docker_registry_se" : "",
-    "se_exclude_attributes" : [ "" ],
-    "east_west_placement_subnet" : "",
-    "mesos_url" : "aeiou"
-  },
   "docker_configuration" : {
     "feproxy_container_port_as_service" : true,
     "disable_auto_backend_service_sync" : true,
@@ -2060,12 +1568,6 @@ font-style: italic;
     "ucp_nodes" : [ "aeiou" ],
     "app_sync_frequency" : 123,
     "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : {
-      "password" : "aeiou",
-      "host_os" : "aeiou",
-      "ssh_user" : "aeiou",
-      "sudo_user" : "aeiou"
-    },
     "enable_event_subscription" : true,
     "coredump_directory" : "aeiou",
     "docker_registry_se" : {
@@ -2077,7 +1579,6 @@ font-style: italic;
         "registry_namespace" : "aeiou",
         "registry_service" : "aeiou"
       },
-      "se_repository_push" : true,
       "username" : "aeiou"
     },
     "se_exclude_attributes" : [ {
@@ -2099,96 +1600,11 @@ font-style: italic;
     "vca_vdc" : "aeiou",
     "privilege" : "aeiou"
   },
-  "nsx_configuration" : {
-    "nsx_manager_username" : "aeiou",
-    "nsx_manager_name" : "aeiou",
-    "avi_nsx_prefix" : "aeiou",
-    "nsx_manager_password" : "aeiou",
-    "nsx_poll_time" : 123
-  },
   "dns_provider_ref" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
   "metrics_polling_interval" : 123,
-  "oshiftk8s_configuration" : {
-    "disable_auto_backend_service_sync" : true,
-    "se_volume" : "aeiou",
-    "se_spawn_rate" : 123,
-    "service_account_token" : "aeiou",
-    "fleet_endpoint" : "aeiou",
-    "client_tls_key_and_certificate_ref" : "aeiou",
-    "routes" : [ {
-      "subnet" : "",
-      "if_name" : "aeiou",
-      "nexthop" : "",
-      "network_namespace" : "aeiou"
-    } ],
-    "ssh_user_ref" : "aeiou",
-    "master_nodes" : [ "aeiou" ],
-    "sdn_overlay" : true,
-    "ing_exclude_attributes" : [ {
-      "attribute" : "aeiou",
-      "value" : "aeiou"
-    } ],
-    "override_service_ports" : true,
-    "auto_assign_fqdn" : true,
-    "persistent_volume_claim" : "aeiou",
-    "se_include_attributes" : [ "" ],
-    "use_service_cluster_ip_as_ew_vip" : true,
-    "se_deployment_method" : "aeiou",
-    "app_sync_frequency" : 123,
-    "ns_include_attributes" : [ "" ],
-    "feproxy_vips_enable_proxy_arp" : true,
-    "enable_event_subscription" : true,
-    "secure_egress_mode" : true,
-    "ing_include_attributes" : [ "" ],
-    "cluster_tag" : "aeiou",
-    "docker_endpoint" : "aeiou",
-    "se_pod_tolerations" : [ {
-      "effect" : "aeiou",
-      "toleration_seconds" : 123,
-      "value" : "aeiou",
-      "key" : "aeiou",
-      "operator" : "aeiou"
-    } ],
-    "routes_share_virtualservice" : true,
-    "se_priority_class" : "aeiou",
-    "use_resource_definition_as_ssot" : true,
-    "use_scheduling_disabled_nodes" : true,
-    "l4_health_monitoring" : true,
-    "se_namespace" : "aeiou",
-    "se_restart_force" : true,
-    "enable_route_ingress_hardening" : true,
-    "node_availability_zone_label" : "aeiou",
-    "service_port_match_http_service" : true,
-    "http_container_ports" : [ "" ],
-    "ca_tls_key_and_certificate_ref" : "aeiou",
-    "nuage_controller" : "",
-    "use_controller_image" : true,
-    "container_port_match_http_service" : true,
-    "disable_auto_gs_sync" : true,
-    "disable_auto_se_creation" : true,
-    "se_restart_batch_size" : 123,
-    "se_image_pull_secret" : "aeiou",
-    "default_shared_virtualservice" : {
-      "virtualservice_name" : "aeiou"
-    },
-    "disable_auto_frontend_service_sync" : true,
-    "num_shards" : 123,
-    "ns_exclude_attributes" : [ "" ],
-    "ssh_se_deployment" : "",
-    "sync_not_ready_addresses" : true,
-    "shard_prefix" : "aeiou",
-    "coredump_directory" : "aeiou",
-    "docker_registry_se" : "",
-    "se_exclude_attributes" : [ "" ],
-    "shared_virtualservice_namespace" : true,
-    "east_west_placement_subnet" : "",
-    "avi_bridge_subnet" : "",
-    "default_service_as_east_west_service" : true,
-    "vip_default_gateway" : ""
-  },
   "proxy_configuration" : {
     "password" : "aeiou",
     "port" : 123,
@@ -2196,7 +1612,6 @@ font-style: italic;
     "username" : "aeiou"
   },
   "enable_vip_on_all_interfaces" : true,
-  "apic_mode" : true,
   "license_type" : "aeiou",
   "vmc_deployment" : true,
   "cloudstack_configuration" : {
@@ -2226,13 +1641,11 @@ font-style: italic;
       "os_network_uuid" : "aeiou",
       "os_tenant_uuids" : [ "aeiou" ]
     } ],
-    "wildcard_access" : true,
     "allowed_address_pairs" : true,
     "hypervisor_properties" : [ {
       "image_properties" : [ "" ],
       "hypervisor" : "aeiou"
     } ],
-    "nuage_password" : "aeiou",
     "privilege" : "aeiou",
     "custom_se_image_properties" : [ {
       "name" : "aeiou",
@@ -2240,22 +1653,15 @@ font-style: italic;
     } ],
     "mgmt_network_uuid" : "aeiou",
     "contrail_plugin" : true,
-    "port_security" : true,
-    "nuage_vsd_host" : "aeiou",
-    "se_group_ref" : "aeiou",
-    "usable_network_uuids" : [ "aeiou" ],
     "anti_affinity" : true,
     "password" : "aeiou",
     "hypervisor" : "aeiou",
-    "nuage_username" : "aeiou",
     "tenant_se" : true,
     "img_format" : "aeiou",
     "insecure" : true,
     "mgmt_network_name" : "aeiou",
-    "nuage_port" : 123,
     "admin_tenant_uuid" : "aeiou",
     "free_floatingips" : true,
-    "use_nuagevip" : true,
     "name_owner" : true,
     "contrail_endpoint" : "aeiou",
     "use_keystone_auth" : true,
@@ -2264,13 +1670,10 @@ font-style: italic;
     "use_internal_endpoints" : true,
     "security_groups" : true,
     "config_drive" : true,
-    "intf_sec_ips" : true,
     "prov_name" : [ "aeiou" ],
     "map_admin_to_cloudadmin" : true,
     "neutron_rbac" : true,
-    "nuage_virtualip" : true,
     "admin_tenant" : "aeiou",
-    "nuage_organization" : "aeiou",
     "role_mapping" : [ {
       "os_role" : "aeiou",
       "avi_role" : "aeiou"
@@ -2311,11 +1714,8 @@ font-style: italic;
     "enforcementpoint_id" : "aeiou",
     "nsxt_url" : "aeiou",
     "nsxt_credentials_ref" : "aeiou",
-    "tier1_segment_config" : "",
     "automate_dfw_rules" : true,
-    "site_id" : "aeiou",
-    "transport_zone" : "aeiou",
-    "management_segment" : ""
+    "site_id" : "aeiou"
   },
   "se_group_template_ref" : "aeiou",
   "dns_resolution_on_se" : true,
@@ -2369,9 +1769,7 @@ font-style: italic;
     "se_inband_mgmt" : true,
     "se_sys_disk_path" : "aeiou",
     "se_log_disk_size_GB" : 123,
-    "ssh_attr" : "",
     "se_sys_disk_size_GB" : 123,
-    "docker_registry_se" : "",
     "se_log_disk_path" : "aeiou"
   },
   "markers" : [ {
@@ -2384,7 +1782,19 @@ font-style: italic;
     "se_volume" : "aeiou",
     "http_container_ports" : [ "" ],
     "se_spawn_rate" : 123,
-    "nuage_controller" : "",
+    "nuage_controller" : {
+      "se_zone" : "aeiou",
+      "nuage_username" : "aeiou",
+      "nuage_password" : "aeiou",
+      "nuage_organization" : "aeiou",
+      "nuage_port" : 123,
+      "se_domain" : "aeiou",
+      "se_enterprise" : "aeiou",
+      "se_policy_group" : "aeiou",
+      "nuage_vsd_host" : "aeiou",
+      "se_network" : "aeiou",
+      "se_user" : "aeiou"
+    },
     "fleet_endpoint" : "aeiou",
     "secret_key" : "aeiou",
     "ssh_user_ref" : "aeiou",
@@ -2398,7 +1808,6 @@ font-style: italic;
     "disable_auto_frontend_service_sync" : true,
     "app_sync_frequency" : 123,
     "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : "",
     "enable_event_subscription" : true,
     "coredump_directory" : "aeiou",
     "docker_registry_se" : "",
@@ -2632,23 +2041,6 @@ font-style: italic;
   "autoscale_polling_interval" : 123,
   "maintenance_mode" : true,
   "vtype" : "aeiou",
-  "apic_configuration" : {
-    "apic_admin_tenant" : "aeiou",
-    "apic_vendor" : "aeiou",
-    "avi_controller_username" : "aeiou",
-    "minor" : "aeiou",
-    "se_tunnel_mode" : true,
-    "context_aware" : "aeiou",
-    "apic_domain" : "aeiou",
-    "apic_product" : "aeiou",
-    "managed_mode" : true,
-    "apic_username" : "aeiou",
-    "version" : "aeiou",
-    "apic_password" : "aeiou",
-    "avi_controller_password" : "aeiou",
-    "apic_name" : [ "aeiou" ],
-    "deployment" : "aeiou"
-  },
   "dns_resolvers" : [ {
     "min_ttl" : 123,
     "fixed_ttl" : 123,
@@ -2665,7 +2057,6 @@ font-style: italic;
     "access_key_id" : "aeiou",
     "use_sns_sqs" : true,
     "iam_assume_role" : "aeiou",
-    "wildcard_access" : true,
     "vpc_id" : "aeiou",
     "ebs_encryption" : {
       "mode" : "aeiou",
@@ -2697,23 +2088,7 @@ font-style: italic;
       "se_disk_kms_key_id" : "aeiou"
     },
     "gcs_bucket_name" : "aeiou",
-    "encryption_key_id" : "aeiou",
     "firewall_target_tags" : [ "aeiou" ],
-    "se_project_id" : "aeiou",
-    "zones" : [ "aeiou" ],
-    "gcp_service_account_email" : "aeiou",
-    "gcs_project_id" : "aeiou",
-    "vip_allocation_strategy" : {
-      "mode" : "aeiou",
-      "routes" : {
-        "match_se_group_subnet" : true,
-        "route_priority" : 123
-      },
-      "ilb" : {
-        "cloud_router_names" : [ "aeiou" ]
-      }
-    },
-    "match_se_group_subnet" : true,
     "network_config" : {
       "inband" : {
         "vpc_network_name" : "aeiou",
@@ -2742,88 +2117,24 @@ font-style: italic;
       "config" : "aeiou"
     },
     "region_name" : "aeiou",
-    "cloud_credentials_ref" : "aeiou"
+    "se_project_id" : "aeiou",
+    "cloud_credentials_ref" : "aeiou",
+    "zones" : [ "aeiou" ],
+    "gcp_service_account_email" : "aeiou",
+    "gcs_project_id" : "aeiou",
+    "vip_allocation_strategy" : {
+      "mode" : "aeiou",
+      "routes" : {
+        "match_se_group_subnet" : true,
+        "route_priority" : 123
+      },
+      "ilb" : {
+        "cloud_router_names" : [ "aeiou" ]
+      }
+    }
   },
   "uuid" : "aeiou",
   "_last_modified" : "aeiou",
-  "mesos_configuration" : {
-    "feproxy_container_port_as_service" : true,
-    "disable_auto_backend_service_sync" : true,
-    "se_volume" : "aeiou",
-    "node_availability_zone_label" : "aeiou",
-    "http_container_ports" : [ "" ],
-    "se_spawn_rate" : 123,
-    "marathon_se_deployment" : {
-      "uris" : [ "aeiou" ],
-      "host_os" : "aeiou",
-      "resource_roles" : [ "aeiou" ],
-      "docker_image" : "aeiou"
-    },
-    "nuage_controller" : {
-      "se_zone" : "aeiou",
-      "nuage_username" : "aeiou",
-      "nuage_password" : "aeiou",
-      "nuage_organization" : "aeiou",
-      "nuage_port" : 123,
-      "se_domain" : "aeiou",
-      "se_enterprise" : "aeiou",
-      "se_policy_group" : "aeiou",
-      "nuage_vsd_host" : "aeiou",
-      "se_network" : "aeiou",
-      "se_user" : "aeiou"
-    },
-    "feproxy_bridge_name" : "aeiou",
-    "fleet_endpoint" : "aeiou",
-    "all_vses_are_feproxy" : true,
-    "ssh_user_ref" : "aeiou",
-    "use_controller_image" : true,
-    "use_container_ip_port" : true,
-    "container_port_match_http_service" : true,
-    "disable_auto_gs_sync" : true,
-    "vip" : "",
-    "disable_auto_se_creation" : true,
-    "se_include_attributes" : [ "" ],
-    "feproxy_route_publish" : {
-      "mode" : "aeiou",
-      "subnet" : 123,
-      "publisher_port" : 123,
-      "token" : "aeiou"
-    },
-    "se_deployment_method" : "aeiou",
-    "services_accessible_all_interfaces" : true,
-    "disable_auto_frontend_service_sync" : true,
-    "use_vips_for_east_west_services" : true,
-    "use_bridge_ip_as_vip" : true,
-    "app_sync_frequency" : 123,
-    "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : "",
-    "enable_event_subscription" : true,
-    "marathon_configurations" : [ {
-      "vs_name_tag_framework" : true,
-      "marathon_url" : "aeiou",
-      "public_port_range" : "",
-      "marathon_username" : "aeiou",
-      "use_token_auth" : true,
-      "private_port_range" : {
-        "start" : 123,
-        "end" : 123
-      },
-      "framework_tag" : "aeiou",
-      "marathon_password" : "aeiou",
-      "tenant" : "aeiou"
-    } ],
-    "se_resources" : [ {
-      "memory" : 123,
-      "attribute_key" : "aeiou",
-      "cpu" : 1.3579000000000001069366817318950779736042022705078125,
-      "attribute_value" : "aeiou"
-    } ],
-    "coredump_directory" : "aeiou",
-    "docker_registry_se" : "",
-    "se_exclude_attributes" : [ "" ],
-    "east_west_placement_subnet" : "",
-    "mesos_url" : "aeiou"
-  },
   "docker_configuration" : {
     "feproxy_container_port_as_service" : true,
     "disable_auto_backend_service_sync" : true,
@@ -2845,12 +2156,6 @@ font-style: italic;
     "ucp_nodes" : [ "aeiou" ],
     "app_sync_frequency" : 123,
     "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : {
-      "password" : "aeiou",
-      "host_os" : "aeiou",
-      "ssh_user" : "aeiou",
-      "sudo_user" : "aeiou"
-    },
     "enable_event_subscription" : true,
     "coredump_directory" : "aeiou",
     "docker_registry_se" : {
@@ -2862,7 +2167,6 @@ font-style: italic;
         "registry_namespace" : "aeiou",
         "registry_service" : "aeiou"
       },
-      "se_repository_push" : true,
       "username" : "aeiou"
     },
     "se_exclude_attributes" : [ {
@@ -2884,96 +2188,11 @@ font-style: italic;
     "vca_vdc" : "aeiou",
     "privilege" : "aeiou"
   },
-  "nsx_configuration" : {
-    "nsx_manager_username" : "aeiou",
-    "nsx_manager_name" : "aeiou",
-    "avi_nsx_prefix" : "aeiou",
-    "nsx_manager_password" : "aeiou",
-    "nsx_poll_time" : 123
-  },
   "dns_provider_ref" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
   "metrics_polling_interval" : 123,
-  "oshiftk8s_configuration" : {
-    "disable_auto_backend_service_sync" : true,
-    "se_volume" : "aeiou",
-    "se_spawn_rate" : 123,
-    "service_account_token" : "aeiou",
-    "fleet_endpoint" : "aeiou",
-    "client_tls_key_and_certificate_ref" : "aeiou",
-    "routes" : [ {
-      "subnet" : "",
-      "if_name" : "aeiou",
-      "nexthop" : "",
-      "network_namespace" : "aeiou"
-    } ],
-    "ssh_user_ref" : "aeiou",
-    "master_nodes" : [ "aeiou" ],
-    "sdn_overlay" : true,
-    "ing_exclude_attributes" : [ {
-      "attribute" : "aeiou",
-      "value" : "aeiou"
-    } ],
-    "override_service_ports" : true,
-    "auto_assign_fqdn" : true,
-    "persistent_volume_claim" : "aeiou",
-    "se_include_attributes" : [ "" ],
-    "use_service_cluster_ip_as_ew_vip" : true,
-    "se_deployment_method" : "aeiou",
-    "app_sync_frequency" : 123,
-    "ns_include_attributes" : [ "" ],
-    "feproxy_vips_enable_proxy_arp" : true,
-    "enable_event_subscription" : true,
-    "secure_egress_mode" : true,
-    "ing_include_attributes" : [ "" ],
-    "cluster_tag" : "aeiou",
-    "docker_endpoint" : "aeiou",
-    "se_pod_tolerations" : [ {
-      "effect" : "aeiou",
-      "toleration_seconds" : 123,
-      "value" : "aeiou",
-      "key" : "aeiou",
-      "operator" : "aeiou"
-    } ],
-    "routes_share_virtualservice" : true,
-    "se_priority_class" : "aeiou",
-    "use_resource_definition_as_ssot" : true,
-    "use_scheduling_disabled_nodes" : true,
-    "l4_health_monitoring" : true,
-    "se_namespace" : "aeiou",
-    "se_restart_force" : true,
-    "enable_route_ingress_hardening" : true,
-    "node_availability_zone_label" : "aeiou",
-    "service_port_match_http_service" : true,
-    "http_container_ports" : [ "" ],
-    "ca_tls_key_and_certificate_ref" : "aeiou",
-    "nuage_controller" : "",
-    "use_controller_image" : true,
-    "container_port_match_http_service" : true,
-    "disable_auto_gs_sync" : true,
-    "disable_auto_se_creation" : true,
-    "se_restart_batch_size" : 123,
-    "se_image_pull_secret" : "aeiou",
-    "default_shared_virtualservice" : {
-      "virtualservice_name" : "aeiou"
-    },
-    "disable_auto_frontend_service_sync" : true,
-    "num_shards" : 123,
-    "ns_exclude_attributes" : [ "" ],
-    "ssh_se_deployment" : "",
-    "sync_not_ready_addresses" : true,
-    "shard_prefix" : "aeiou",
-    "coredump_directory" : "aeiou",
-    "docker_registry_se" : "",
-    "se_exclude_attributes" : [ "" ],
-    "shared_virtualservice_namespace" : true,
-    "east_west_placement_subnet" : "",
-    "avi_bridge_subnet" : "",
-    "default_service_as_east_west_service" : true,
-    "vip_default_gateway" : ""
-  },
   "proxy_configuration" : {
     "password" : "aeiou",
     "port" : 123,
@@ -2981,7 +2200,6 @@ font-style: italic;
     "username" : "aeiou"
   },
   "enable_vip_on_all_interfaces" : true,
-  "apic_mode" : true,
   "license_type" : "aeiou",
   "vmc_deployment" : true,
   "cloudstack_configuration" : {
@@ -3011,13 +2229,11 @@ font-style: italic;
       "os_network_uuid" : "aeiou",
       "os_tenant_uuids" : [ "aeiou" ]
     } ],
-    "wildcard_access" : true,
     "allowed_address_pairs" : true,
     "hypervisor_properties" : [ {
       "image_properties" : [ "" ],
       "hypervisor" : "aeiou"
     } ],
-    "nuage_password" : "aeiou",
     "privilege" : "aeiou",
     "custom_se_image_properties" : [ {
       "name" : "aeiou",
@@ -3025,22 +2241,15 @@ font-style: italic;
     } ],
     "mgmt_network_uuid" : "aeiou",
     "contrail_plugin" : true,
-    "port_security" : true,
-    "nuage_vsd_host" : "aeiou",
-    "se_group_ref" : "aeiou",
-    "usable_network_uuids" : [ "aeiou" ],
     "anti_affinity" : true,
     "password" : "aeiou",
     "hypervisor" : "aeiou",
-    "nuage_username" : "aeiou",
     "tenant_se" : true,
     "img_format" : "aeiou",
     "insecure" : true,
     "mgmt_network_name" : "aeiou",
-    "nuage_port" : 123,
     "admin_tenant_uuid" : "aeiou",
     "free_floatingips" : true,
-    "use_nuagevip" : true,
     "name_owner" : true,
     "contrail_endpoint" : "aeiou",
     "use_keystone_auth" : true,
@@ -3049,13 +2258,10 @@ font-style: italic;
     "use_internal_endpoints" : true,
     "security_groups" : true,
     "config_drive" : true,
-    "intf_sec_ips" : true,
     "prov_name" : [ "aeiou" ],
     "map_admin_to_cloudadmin" : true,
     "neutron_rbac" : true,
-    "nuage_virtualip" : true,
     "admin_tenant" : "aeiou",
-    "nuage_organization" : "aeiou",
     "role_mapping" : [ {
       "os_role" : "aeiou",
       "avi_role" : "aeiou"
@@ -3096,11 +2302,8 @@ font-style: italic;
     "enforcementpoint_id" : "aeiou",
     "nsxt_url" : "aeiou",
     "nsxt_credentials_ref" : "aeiou",
-    "tier1_segment_config" : "",
     "automate_dfw_rules" : true,
-    "site_id" : "aeiou",
-    "transport_zone" : "aeiou",
-    "management_segment" : ""
+    "site_id" : "aeiou"
   },
   "se_group_template_ref" : "aeiou",
   "dns_resolution_on_se" : true,
@@ -3154,9 +2357,7 @@ font-style: italic;
     "se_inband_mgmt" : true,
     "se_sys_disk_path" : "aeiou",
     "se_log_disk_size_GB" : 123,
-    "ssh_attr" : "",
     "se_sys_disk_size_GB" : 123,
-    "docker_registry_se" : "",
     "se_log_disk_path" : "aeiou"
   },
   "markers" : [ {
@@ -3169,7 +2370,19 @@ font-style: italic;
     "se_volume" : "aeiou",
     "http_container_ports" : [ "" ],
     "se_spawn_rate" : 123,
-    "nuage_controller" : "",
+    "nuage_controller" : {
+      "se_zone" : "aeiou",
+      "nuage_username" : "aeiou",
+      "nuage_password" : "aeiou",
+      "nuage_organization" : "aeiou",
+      "nuage_port" : 123,
+      "se_domain" : "aeiou",
+      "se_enterprise" : "aeiou",
+      "se_policy_group" : "aeiou",
+      "nuage_vsd_host" : "aeiou",
+      "se_network" : "aeiou",
+      "se_user" : "aeiou"
+    },
     "fleet_endpoint" : "aeiou",
     "secret_key" : "aeiou",
     "ssh_user_ref" : "aeiou",
@@ -3183,7 +2396,6 @@ font-style: italic;
     "disable_auto_frontend_service_sync" : true,
     "app_sync_frequency" : 123,
     "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : "",
     "enable_event_subscription" : true,
     "coredump_directory" : "aeiou",
     "docker_registry_se" : "",
@@ -3365,23 +2577,6 @@ font-style: italic;
   "autoscale_polling_interval" : 123,
   "maintenance_mode" : true,
   "vtype" : "aeiou",
-  "apic_configuration" : {
-    "apic_admin_tenant" : "aeiou",
-    "apic_vendor" : "aeiou",
-    "avi_controller_username" : "aeiou",
-    "minor" : "aeiou",
-    "se_tunnel_mode" : true,
-    "context_aware" : "aeiou",
-    "apic_domain" : "aeiou",
-    "apic_product" : "aeiou",
-    "managed_mode" : true,
-    "apic_username" : "aeiou",
-    "version" : "aeiou",
-    "apic_password" : "aeiou",
-    "avi_controller_password" : "aeiou",
-    "apic_name" : [ "aeiou" ],
-    "deployment" : "aeiou"
-  },
   "dns_resolvers" : [ {
     "min_ttl" : 123,
     "fixed_ttl" : 123,
@@ -3398,7 +2593,6 @@ font-style: italic;
     "access_key_id" : "aeiou",
     "use_sns_sqs" : true,
     "iam_assume_role" : "aeiou",
-    "wildcard_access" : true,
     "vpc_id" : "aeiou",
     "ebs_encryption" : {
       "mode" : "aeiou",
@@ -3430,23 +2624,7 @@ font-style: italic;
       "se_disk_kms_key_id" : "aeiou"
     },
     "gcs_bucket_name" : "aeiou",
-    "encryption_key_id" : "aeiou",
     "firewall_target_tags" : [ "aeiou" ],
-    "se_project_id" : "aeiou",
-    "zones" : [ "aeiou" ],
-    "gcp_service_account_email" : "aeiou",
-    "gcs_project_id" : "aeiou",
-    "vip_allocation_strategy" : {
-      "mode" : "aeiou",
-      "routes" : {
-        "match_se_group_subnet" : true,
-        "route_priority" : 123
-      },
-      "ilb" : {
-        "cloud_router_names" : [ "aeiou" ]
-      }
-    },
-    "match_se_group_subnet" : true,
     "network_config" : {
       "inband" : {
         "vpc_network_name" : "aeiou",
@@ -3475,88 +2653,24 @@ font-style: italic;
       "config" : "aeiou"
     },
     "region_name" : "aeiou",
-    "cloud_credentials_ref" : "aeiou"
+    "se_project_id" : "aeiou",
+    "cloud_credentials_ref" : "aeiou",
+    "zones" : [ "aeiou" ],
+    "gcp_service_account_email" : "aeiou",
+    "gcs_project_id" : "aeiou",
+    "vip_allocation_strategy" : {
+      "mode" : "aeiou",
+      "routes" : {
+        "match_se_group_subnet" : true,
+        "route_priority" : 123
+      },
+      "ilb" : {
+        "cloud_router_names" : [ "aeiou" ]
+      }
+    }
   },
   "uuid" : "aeiou",
   "_last_modified" : "aeiou",
-  "mesos_configuration" : {
-    "feproxy_container_port_as_service" : true,
-    "disable_auto_backend_service_sync" : true,
-    "se_volume" : "aeiou",
-    "node_availability_zone_label" : "aeiou",
-    "http_container_ports" : [ "" ],
-    "se_spawn_rate" : 123,
-    "marathon_se_deployment" : {
-      "uris" : [ "aeiou" ],
-      "host_os" : "aeiou",
-      "resource_roles" : [ "aeiou" ],
-      "docker_image" : "aeiou"
-    },
-    "nuage_controller" : {
-      "se_zone" : "aeiou",
-      "nuage_username" : "aeiou",
-      "nuage_password" : "aeiou",
-      "nuage_organization" : "aeiou",
-      "nuage_port" : 123,
-      "se_domain" : "aeiou",
-      "se_enterprise" : "aeiou",
-      "se_policy_group" : "aeiou",
-      "nuage_vsd_host" : "aeiou",
-      "se_network" : "aeiou",
-      "se_user" : "aeiou"
-    },
-    "feproxy_bridge_name" : "aeiou",
-    "fleet_endpoint" : "aeiou",
-    "all_vses_are_feproxy" : true,
-    "ssh_user_ref" : "aeiou",
-    "use_controller_image" : true,
-    "use_container_ip_port" : true,
-    "container_port_match_http_service" : true,
-    "disable_auto_gs_sync" : true,
-    "vip" : "",
-    "disable_auto_se_creation" : true,
-    "se_include_attributes" : [ "" ],
-    "feproxy_route_publish" : {
-      "mode" : "aeiou",
-      "subnet" : 123,
-      "publisher_port" : 123,
-      "token" : "aeiou"
-    },
-    "se_deployment_method" : "aeiou",
-    "services_accessible_all_interfaces" : true,
-    "disable_auto_frontend_service_sync" : true,
-    "use_vips_for_east_west_services" : true,
-    "use_bridge_ip_as_vip" : true,
-    "app_sync_frequency" : 123,
-    "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : "",
-    "enable_event_subscription" : true,
-    "marathon_configurations" : [ {
-      "vs_name_tag_framework" : true,
-      "marathon_url" : "aeiou",
-      "public_port_range" : "",
-      "marathon_username" : "aeiou",
-      "use_token_auth" : true,
-      "private_port_range" : {
-        "start" : 123,
-        "end" : 123
-      },
-      "framework_tag" : "aeiou",
-      "marathon_password" : "aeiou",
-      "tenant" : "aeiou"
-    } ],
-    "se_resources" : [ {
-      "memory" : 123,
-      "attribute_key" : "aeiou",
-      "cpu" : 1.3579000000000001069366817318950779736042022705078125,
-      "attribute_value" : "aeiou"
-    } ],
-    "coredump_directory" : "aeiou",
-    "docker_registry_se" : "",
-    "se_exclude_attributes" : [ "" ],
-    "east_west_placement_subnet" : "",
-    "mesos_url" : "aeiou"
-  },
   "docker_configuration" : {
     "feproxy_container_port_as_service" : true,
     "disable_auto_backend_service_sync" : true,
@@ -3578,12 +2692,6 @@ font-style: italic;
     "ucp_nodes" : [ "aeiou" ],
     "app_sync_frequency" : 123,
     "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : {
-      "password" : "aeiou",
-      "host_os" : "aeiou",
-      "ssh_user" : "aeiou",
-      "sudo_user" : "aeiou"
-    },
     "enable_event_subscription" : true,
     "coredump_directory" : "aeiou",
     "docker_registry_se" : {
@@ -3595,7 +2703,6 @@ font-style: italic;
         "registry_namespace" : "aeiou",
         "registry_service" : "aeiou"
       },
-      "se_repository_push" : true,
       "username" : "aeiou"
     },
     "se_exclude_attributes" : [ {
@@ -3617,96 +2724,11 @@ font-style: italic;
     "vca_vdc" : "aeiou",
     "privilege" : "aeiou"
   },
-  "nsx_configuration" : {
-    "nsx_manager_username" : "aeiou",
-    "nsx_manager_name" : "aeiou",
-    "avi_nsx_prefix" : "aeiou",
-    "nsx_manager_password" : "aeiou",
-    "nsx_poll_time" : 123
-  },
   "dns_provider_ref" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
   "metrics_polling_interval" : 123,
-  "oshiftk8s_configuration" : {
-    "disable_auto_backend_service_sync" : true,
-    "se_volume" : "aeiou",
-    "se_spawn_rate" : 123,
-    "service_account_token" : "aeiou",
-    "fleet_endpoint" : "aeiou",
-    "client_tls_key_and_certificate_ref" : "aeiou",
-    "routes" : [ {
-      "subnet" : "",
-      "if_name" : "aeiou",
-      "nexthop" : "",
-      "network_namespace" : "aeiou"
-    } ],
-    "ssh_user_ref" : "aeiou",
-    "master_nodes" : [ "aeiou" ],
-    "sdn_overlay" : true,
-    "ing_exclude_attributes" : [ {
-      "attribute" : "aeiou",
-      "value" : "aeiou"
-    } ],
-    "override_service_ports" : true,
-    "auto_assign_fqdn" : true,
-    "persistent_volume_claim" : "aeiou",
-    "se_include_attributes" : [ "" ],
-    "use_service_cluster_ip_as_ew_vip" : true,
-    "se_deployment_method" : "aeiou",
-    "app_sync_frequency" : 123,
-    "ns_include_attributes" : [ "" ],
-    "feproxy_vips_enable_proxy_arp" : true,
-    "enable_event_subscription" : true,
-    "secure_egress_mode" : true,
-    "ing_include_attributes" : [ "" ],
-    "cluster_tag" : "aeiou",
-    "docker_endpoint" : "aeiou",
-    "se_pod_tolerations" : [ {
-      "effect" : "aeiou",
-      "toleration_seconds" : 123,
-      "value" : "aeiou",
-      "key" : "aeiou",
-      "operator" : "aeiou"
-    } ],
-    "routes_share_virtualservice" : true,
-    "se_priority_class" : "aeiou",
-    "use_resource_definition_as_ssot" : true,
-    "use_scheduling_disabled_nodes" : true,
-    "l4_health_monitoring" : true,
-    "se_namespace" : "aeiou",
-    "se_restart_force" : true,
-    "enable_route_ingress_hardening" : true,
-    "node_availability_zone_label" : "aeiou",
-    "service_port_match_http_service" : true,
-    "http_container_ports" : [ "" ],
-    "ca_tls_key_and_certificate_ref" : "aeiou",
-    "nuage_controller" : "",
-    "use_controller_image" : true,
-    "container_port_match_http_service" : true,
-    "disable_auto_gs_sync" : true,
-    "disable_auto_se_creation" : true,
-    "se_restart_batch_size" : 123,
-    "se_image_pull_secret" : "aeiou",
-    "default_shared_virtualservice" : {
-      "virtualservice_name" : "aeiou"
-    },
-    "disable_auto_frontend_service_sync" : true,
-    "num_shards" : 123,
-    "ns_exclude_attributes" : [ "" ],
-    "ssh_se_deployment" : "",
-    "sync_not_ready_addresses" : true,
-    "shard_prefix" : "aeiou",
-    "coredump_directory" : "aeiou",
-    "docker_registry_se" : "",
-    "se_exclude_attributes" : [ "" ],
-    "shared_virtualservice_namespace" : true,
-    "east_west_placement_subnet" : "",
-    "avi_bridge_subnet" : "",
-    "default_service_as_east_west_service" : true,
-    "vip_default_gateway" : ""
-  },
   "proxy_configuration" : {
     "password" : "aeiou",
     "port" : 123,
@@ -3714,7 +2736,6 @@ font-style: italic;
     "username" : "aeiou"
   },
   "enable_vip_on_all_interfaces" : true,
-  "apic_mode" : true,
   "license_type" : "aeiou",
   "vmc_deployment" : true,
   "cloudstack_configuration" : {
@@ -3744,13 +2765,11 @@ font-style: italic;
       "os_network_uuid" : "aeiou",
       "os_tenant_uuids" : [ "aeiou" ]
     } ],
-    "wildcard_access" : true,
     "allowed_address_pairs" : true,
     "hypervisor_properties" : [ {
       "image_properties" : [ "" ],
       "hypervisor" : "aeiou"
     } ],
-    "nuage_password" : "aeiou",
     "privilege" : "aeiou",
     "custom_se_image_properties" : [ {
       "name" : "aeiou",
@@ -3758,22 +2777,15 @@ font-style: italic;
     } ],
     "mgmt_network_uuid" : "aeiou",
     "contrail_plugin" : true,
-    "port_security" : true,
-    "nuage_vsd_host" : "aeiou",
-    "se_group_ref" : "aeiou",
-    "usable_network_uuids" : [ "aeiou" ],
     "anti_affinity" : true,
     "password" : "aeiou",
     "hypervisor" : "aeiou",
-    "nuage_username" : "aeiou",
     "tenant_se" : true,
     "img_format" : "aeiou",
     "insecure" : true,
     "mgmt_network_name" : "aeiou",
-    "nuage_port" : 123,
     "admin_tenant_uuid" : "aeiou",
     "free_floatingips" : true,
-    "use_nuagevip" : true,
     "name_owner" : true,
     "contrail_endpoint" : "aeiou",
     "use_keystone_auth" : true,
@@ -3782,13 +2794,10 @@ font-style: italic;
     "use_internal_endpoints" : true,
     "security_groups" : true,
     "config_drive" : true,
-    "intf_sec_ips" : true,
     "prov_name" : [ "aeiou" ],
     "map_admin_to_cloudadmin" : true,
     "neutron_rbac" : true,
-    "nuage_virtualip" : true,
     "admin_tenant" : "aeiou",
-    "nuage_organization" : "aeiou",
     "role_mapping" : [ {
       "os_role" : "aeiou",
       "avi_role" : "aeiou"
@@ -3829,11 +2838,8 @@ font-style: italic;
     "enforcementpoint_id" : "aeiou",
     "nsxt_url" : "aeiou",
     "nsxt_credentials_ref" : "aeiou",
-    "tier1_segment_config" : "",
     "automate_dfw_rules" : true,
-    "site_id" : "aeiou",
-    "transport_zone" : "aeiou",
-    "management_segment" : ""
+    "site_id" : "aeiou"
   },
   "se_group_template_ref" : "aeiou",
   "dns_resolution_on_se" : true,
@@ -3887,9 +2893,7 @@ font-style: italic;
     "se_inband_mgmt" : true,
     "se_sys_disk_path" : "aeiou",
     "se_log_disk_size_GB" : 123,
-    "ssh_attr" : "",
     "se_sys_disk_size_GB" : 123,
-    "docker_registry_se" : "",
     "se_log_disk_path" : "aeiou"
   },
   "markers" : [ {
@@ -3902,7 +2906,19 @@ font-style: italic;
     "se_volume" : "aeiou",
     "http_container_ports" : [ "" ],
     "se_spawn_rate" : 123,
-    "nuage_controller" : "",
+    "nuage_controller" : {
+      "se_zone" : "aeiou",
+      "nuage_username" : "aeiou",
+      "nuage_password" : "aeiou",
+      "nuage_organization" : "aeiou",
+      "nuage_port" : 123,
+      "se_domain" : "aeiou",
+      "se_enterprise" : "aeiou",
+      "se_policy_group" : "aeiou",
+      "nuage_vsd_host" : "aeiou",
+      "se_network" : "aeiou",
+      "se_user" : "aeiou"
+    },
     "fleet_endpoint" : "aeiou",
     "secret_key" : "aeiou",
     "ssh_user_ref" : "aeiou",
@@ -3916,7 +2932,6 @@ font-style: italic;
     "disable_auto_frontend_service_sync" : true,
     "app_sync_frequency" : 123,
     "feproxy_vips_enable_proxy_arp" : true,
-    "ssh_se_deployment" : "",
     "enable_event_subscription" : true,
     "coredump_directory" : "aeiou",
     "docker_registry_se" : "",
@@ -4003,7 +3018,6 @@ font-style: italic;
 
   <h2>Table of Contents</h2>
   <ol>
-    <li><a href="#APICConfiguration"><code>APICConfiguration</code></a></li>
     <li><a href="#AwsConfiguration"><code>AwsConfiguration</code></a></li>
     <li><a href="#AwsEncryption"><code>AwsEncryption</code></a></li>
     <li><a href="#AwsZoneConfig"><code>AwsZoneConfig</code></a></li>
@@ -4041,7 +3055,6 @@ font-style: italic;
     <li><a href="#MesosAttribute"><code>MesosAttribute</code></a></li>
     <li><a href="#MesosConfiguration"><code>MesosConfiguration</code></a></li>
     <li><a href="#MesosSeResources"><code>MesosSeResources</code></a></li>
-    <li><a href="#NsxConfiguration"><code>NsxConfiguration</code></a></li>
     <li><a href="#NsxtConfiguration"><code>NsxtConfiguration</code></a></li>
     <li><a href="#NsxtTier1SegmentAutomaticMode"><code>NsxtTier1SegmentAutomaticMode</code></a></li>
     <li><a href="#NsxtTier1SegmentConfig"><code>NsxtTier1SegmentConfig</code></a></li>
@@ -4061,32 +3074,11 @@ font-style: italic;
     <li><a href="#RancherConfiguration"><code>RancherConfiguration</code></a></li>
     <li><a href="#RoleFilterMatchLabel"><code>RoleFilterMatchLabel</code></a></li>
     <li><a href="#RouteInfo"><code>RouteInfo</code></a></li>
-    <li><a href="#SSHSeDeployment"><code>SSHSeDeployment</code></a></li>
     <li><a href="#Tier1LogicalRouterInfo"><code>Tier1LogicalRouterInfo</code></a></li>
     <li><a href="#vCenterConfiguration"><code>vCenterConfiguration</code></a></li>
     <li><a href="#vCloudAirConfiguration"><code>vCloudAirConfiguration</code></a></li>
   </ol>
 
-  <div class="model">
-    <h3 class="field-label"><a name="APICConfiguration">APICConfiguration</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-      <div class="param">apic_admin_tenant (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Avi specific tenant created within APIC. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_domain (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> vCenter&#39;s virtual machine manager domain within APIC. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> The hostname or IP address of the APIC controller. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The password Avi Vantage will use when authenticating with APIC. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_product (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_username (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The username Avi Vantage will use when authenticating with APIC. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_vendor (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">avi_controller_password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The password APIC will use when authenticating with Avi Vantage. Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">avi_controller_username (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The username APIC will use when authenticating with Avi Vantage. Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">context_aware (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Context aware for supporting Service Graphs across VRFs. Enum options - SINGLE_CONTEXT, MULTI_CONTEXT. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">deployment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">managed_mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use Managed Mode for APIC Service Insertion. Field deprecated in 17.2.10,18.1.2. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">minor (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> AVI Device Package Minor Version. Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">se_tunnel_mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Determines if DSR from secondary SE is active or not  False   DSR active. Please ensure that APIC BD&#39;s Endpoint Dataplane Learning is disabled True    Disable DSR unconditionally. . Field deprecated in 21.1.1. Field introduced in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">version (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> AVI Device Package Version. Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-    </div>  <!-- field-items -->
-  </div>
   <div class="model">
     <h3 class="field-label"><a name="AwsConfiguration">AwsConfiguration</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
@@ -4106,7 +3098,6 @@ font-style: italic;
 <div class="param">use_sns_sqs (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use SNS/SQS based notifications for monitoring Auto Scaling Groups. Field introduced in 17.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">vpc (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> VPC name. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">vpc_id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> VPC ID. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">wildcard_access (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If enabled, program SE security group with ingress rule to allow SSH (port 22) access from 0.0.0.0/0. Field deprecated in 17.1.5. Field introduced in 17.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">zones (optional)</div><div class="param-desc"><span class="param-type"><a href="#AwsZoneConfig">array[AwsZoneConfig]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
@@ -4153,8 +3144,6 @@ font-style: italic;
     <h3 class="field-label"><a name="Cloud">Cloud</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
-<div class="param">apic_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#APICConfiguration">APICConfiguration</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
-<div class="param">apic_mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
 <div class="param">autoscale_polling_interval (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> CloudConnector polling interval in seconds for external autoscale groups, minimum 60 seconds. Allowed values are 60-3600. Field introduced in 18.2.2. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 60), Basic edition(Allowed values- 60), Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">aws_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#AwsConfiguration">AwsConfiguration</a></span>  Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">azure_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#AzureConfiguration">AzureConfiguration</a></span>  Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
@@ -4178,15 +3167,12 @@ font-style: italic;
 <div class="param">linuxserver_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#LinuxServerConfiguration">LinuxServerConfiguration</a></span>  Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">maintenance_mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Cloud is in maintenance mode. Field introduced in 20.1.7,21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">markers (optional)</div><div class="param-desc"><span class="param-type"><a href="#RoleFilterMatchLabel">array[RoleFilterMatchLabel]</a></span> List of labels to be used for granular RBAC. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
-<div class="param">mesos_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#MesosConfiguration">MesosConfiguration</a></span>  Field deprecated in 18.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">metrics_polling_interval (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Cloud metrics collector polling interval in seconds. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">mtu (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> MTU setting for the cloud. Unit is BYTES. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nsx_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#NsxConfiguration">NsxConfiguration</a></span> Configuration parameters for NSX Manager. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">nsxt_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#NsxtConfiguration">NsxtConfiguration</a></span> NSX-T Cloud Platform Configuration. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">obj_name_prefix (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Default prefix for all automatically created objects in this cloud. This prefix can be overridden by the SE-Group template. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">openstack_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#OpenStackConfiguration">OpenStackConfiguration</a></span>  Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
-<div class="param">oshiftk8s_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#OShiftK8SConfiguration">OShiftK8SConfiguration</a></span>  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">prefer_static_routes (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Prefer static routes over interface routes during VirtualService placement. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">proxy_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#ProxyConfiguration">ProxyConfiguration</a></span>  Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">rancher_configuration (optional)</div><div class="param-desc"><span class="param-type"><a href="#RancherConfiguration">RancherConfiguration</a></span>  Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
@@ -4284,7 +3270,6 @@ font-style: italic;
 <div class="param">se_spawn_rate (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> New SE spawn rate per minute. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">se_volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Host volume to be used as a disk for Avi SE, This is a disruptive change. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">services_accessible_all_interfaces (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Make service ports accessible on all Host interfaces in addition to East-West VIP and/or bridge IP. Usually enabled AWS clusters to export East-West services on Host interface. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">ssh_se_deployment (optional)</div><div class="param-desc"><span class="param-type"><a href="#SSHSeDeployment">SSHSeDeployment</a></span> Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ssh_user_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ucp_nodes (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> List of Docker UCP nodes; In case of a load balanced UCP cluster, use Virtual IP of the cluster. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_container_ip_port (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use container IP address port for pool instead of host IP address hostport. This mode is applicable if the container IP is reachable (not a private NATed IP) from other hosts in a routed environment for containers. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -4298,7 +3283,6 @@ font-style: italic;
 <div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Password for docker registry. Authorized &#39;regular user&#39; password if registry is Openshift integrated registry. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">private (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Set if docker registry is private. Avi controller will not attempt to push SE image to the registry, unless se_repository_push is set. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">registry (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Avi ServiceEngine repository name. For private registry, it&#39;s registry port/repository, for public registry, it&#39;s registry/repository, for openshift registry, it&#39;s registry port/namespace/repo. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">se_repository_push (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Avi Controller will push ServiceEngine image to docker repository. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">username (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Username for docker registry. Authorized &#39;regular user&#39; if registry is Openshift integrated registry. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
@@ -4315,13 +3299,11 @@ font-style: italic;
     <h3 class="field-label"><a name="GCPConfiguration">GCPConfiguration</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">cloud_credentials_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Credentials to access Google Cloud Platform APIs. It is a reference to an object of type CloudConnectorUser. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">encryption_key_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Deprecated, please use encryption_keys field. Field deprecated in 18.2.10, 20.1.2. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">encryption_keys (optional)</div><div class="param-desc"><span class="param-type"><a href="#GCPEncryptionKeys">GCPEncryptionKeys</a></span> Encryption Keys for Google Cloud Services. Field introduced in 18.2.10, 20.1.2. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">firewall_target_tags (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Firewall rule network target tags which will be applied on Service Engines to allow ingress and egress traffic for Service Engines. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">gcp_service_account_email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Email of GCP Service Account to be associated to the Service Engines. Field introduced in 20.1.7, 21.1.2. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">gcs_bucket_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Google Cloud Storage Bucket Name where Service Engine image will be uploaded. This image will be deleted once the image is created in Google compute images. By default, a bucket will be created if this field is not specified. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">gcs_project_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Google Cloud Storage Project ID where Service Engine image will be uploaded. This image will be deleted once the image is created in Google compute images. By default, Service Engine Project ID will be used. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">match_se_group_subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Deprecated, please use match_se_group_subnet in routes mode in . vip_allocation_strategy. Field deprecated in 20.1.1. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">network_config </div><div class="param-desc"><span class="param-type"><a href="#GCPNetworkConfig">GCPNetworkConfig</a></span> Google Cloud Platform VPC Network configuration for the Service Engines. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">region_name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Google Cloud Platform Region Name where Service Engines will be spawned. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">se_project_id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Google Cloud Platform Project ID where Service Engines will be spawned. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -4432,14 +3414,12 @@ font-style: italic;
   <div class="model">
     <h3 class="field-label"><a name="LinuxServerConfiguration">LinuxServerConfiguration</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">docker_registry_se (optional)</div><div class="param-desc"><span class="param-type"><a href="#DockerRegistry">DockerRegistry</a></span> Private docker registry for SE image storage. Field deprecated in 17.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">hosts (optional)</div><div class="param-desc"><span class="param-type"><a href="#LinuxServerHost">array[LinuxServerHost]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+      <div class="param">hosts (optional)</div><div class="param-desc"><span class="param-type"><a href="#LinuxServerHost">array[LinuxServerHost]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">se_inband_mgmt (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Flag to notify the SE&#39;s in this cloud have an inband management interface, this can be overridden at SE host level by setting host_attr attr_key as SE_INBAND_MGMT with value of true or false. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">se_log_disk_path (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> SE Client Logs disk path for cloud. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">se_log_disk_size_GB (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> SE Client Log disk size for cloud. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">se_sys_disk_path (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> SE System Logs disk path for cloud. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">se_sys_disk_size_GB (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> SE System Logs disk size for cloud. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-<div class="param">ssh_attr (optional)</div><div class="param-desc"><span class="param-type"><a href="#SSHSeDeployment">SSHSeDeployment</a></span> Parameters for SSH to hosts. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ssh_user_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
@@ -4523,7 +3503,6 @@ font-style: italic;
 <div class="param">se_spawn_rate (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> New SE spawn rate per minute. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">se_volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Host volume to be used as a disk for Avi SE, This is a disruptive change. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">services_accessible_all_interfaces (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Make service ports accessible on all Host interfaces in addition to East-West VIP and/or bridge IP. Usually enabled AWS Mesos clusters to export East-West services on Host interface. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">ssh_se_deployment (optional)</div><div class="param-desc"><span class="param-type"><a href="#SSHSeDeployment">SSHSeDeployment</a></span> Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ssh_user_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_bridge_ip_as_vip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use Bridge IP on each Host as VIP. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_container_ip_port (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use container IP address port for pool instead of host IP address hostport. This mode is applicable if the container IP is reachable (not a private NATed IP) from other hosts in a routed environment for containers. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -4542,16 +3521,6 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3 class="field-label"><a name="NsxConfiguration">NsxConfiguration</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-      <div class="param">avi_nsx_prefix </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> This prefix will be added to the names of all NSX objects created by Avi Controller. It should be unique across all the Avi Controller clusters. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nsx_manager_name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The hostname or IP address of the NSX MGr. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nsx_manager_password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The password Avi Vantage will use when authenticating with NSX Mgr. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nsx_manager_username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The username Avi Vantage will use when authenticating with NSX Mgr. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nsx_poll_time </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The interval (in secs) with which Avi Controller polls the NSX Manager for updates. Field deprecated in 21.1.1. Field introduced in 17.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
     <h3 class="field-label"><a name="NsxtConfiguration">NsxtConfiguration</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">automate_dfw_rules (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Automatically create DFW rules for VirtualService in NSX-T Manager. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Basic edition(Allowed values- false), Essentials, Enterprise with Cloud Services edition. </div>
@@ -4559,12 +3528,9 @@ font-style: italic;
 <div class="param">domain_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Domain where NSGroup objects belongs to. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">enforcementpoint_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Enforcement point is where the rules of a policy to apply. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">management_network_config </div><div class="param-desc"><span class="param-type"><a href="#ManagementNetworkConfig">ManagementNetworkConfig</a></span> Management network configuration for Avi Service Engines. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
-<div class="param">management_segment (optional)</div><div class="param-desc"><span class="param-type"><a href="#Tier1LogicalRouterInfo">Tier1LogicalRouterInfo</a></span> Management network segment to use for Avi Service Engines. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">nsxt_credentials_ref </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Credentials to access NSX-T manager. It is a reference to an object of type CloudConnectorUser. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">nsxt_url </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> NSX-T manager hostname or IP address. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">site_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Site where transport zone belongs to. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">tier1_segment_config (optional)</div><div class="param-desc"><span class="param-type"><a href="#NsxtTier1SegmentConfig">NsxtTier1SegmentConfig</a></span> Nsxt tier1 segment configuration for Avi Service Engine data path. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">transport_zone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Network zone where nodes can talk via overlay. Virtual IPs and Service Engines will belong to this zone. Value should be path like /infra/sites/default/enforcement-points/default/transport-zones/xxx-xxx-xxxx. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -4617,7 +3583,6 @@ font-style: italic;
 <div class="param">container_port_match_http_service (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Perform container port matching to create a HTTP Virtualservice instead of a TCP/UDP VirtualService. By default, ports 80, 8080, 443, 8443 are considered HTTP. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">coredump_directory (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Directory to mount to check for core dumps on Service Engines. This will be mapped read only to /var/crash on any new Service Engines. This is a disruptive change. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">default_service_as_east_west_service (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If there is no explicit east_west_placement field in virtualservice configuration, treat service as a East-West service; default services such a OpenShift API server do not have virtualservice configuration. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">default_shared_virtualservice (optional)</div><div class="param-desc"><span class="param-type"><a href="#OshiftSharedVirtualService">OshiftSharedVirtualService</a></span> Deprecated. Field deprecated in 17.1.9. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">disable_auto_backend_service_sync (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Disable auto service sync for back end services. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">disable_auto_frontend_service_sync (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Disable auto service sync for front end services. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">disable_auto_gs_sync (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Disable auto sync for GSLB services. Field introduced in 17.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -4628,7 +3593,6 @@ font-style: italic;
 <div class="param">enable_event_subscription (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable Kubernetes event subscription. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">enable_route_ingress_hardening (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Knob to turn on adding of HTTP drop rules for host and path combinations in incoming request header, specified as part of Ingress/Route spec. The default state is to enable this behavior. Note  Toggling this knob only affects any new routes/ingresses, existing routes/ingresses present in Avi will continue to function as-is. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">feproxy_vips_enable_proxy_arp (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable proxy ARP from Host interface for Front End  proxies. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">fleet_endpoint (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional fleet remote endpoint if fleet is used for SE deployment. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">http_container_ports (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span> List of container ports that create a HTTP Virtualservice instead of a TCP/UDP VirtualService. Defaults to 80, 8080, 443 and 8443. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ing_exclude_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#IngAttribute">array[IngAttribute]</a></span> Do not sync applications only for ingress that have these exclude attributes configured. Field introduced in 17.2.15, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ing_include_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#IngAttribute">array[IngAttribute]</a></span> Sync applications only for ingress objects that have these include attributes configured. Default values are populated for this field if not provided. The default value are  &#39;attribute&#39;  &#39;kubernetes.io/ingress.class&#39;, &#39;value&#39; &#39;avi&#39;. Field introduced in 17.2.15, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -4637,12 +3601,10 @@ font-style: italic;
 <div class="param">node_availability_zone_label (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> OpenShift/K8S Node label to be used as OpenShift/K8S Node&#39;s availability zone in a dual availability zone deployment. ServiceEngines belonging to the availability zone will be rebooted during a manual DR failover. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ns_exclude_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#MesosAttribute">array[MesosAttribute]</a></span> Syncing of applications is disabled only for namespaces/projects that have these exclude attributes configured. If there are apps synced already for these namespaces, they will be removed from Avi. Field introduced in 17.1.9,17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ns_include_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#MesosAttribute">array[MesosAttribute]</a></span> Sync applications only for namespaces/projects that have these include attributes configured. Field introduced in 17.1.9,17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nuage_controller (optional)</div><div class="param-desc"><span class="param-type"><a href="#NuageSDNController">NuageSDNController</a></span> Nuage Overlay SDN Controller information. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">num_shards (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Enables sharding of Routes and Ingresses to this number (if non zero) of virtual services in the admin tenant per SEGroup. Sharding is done by hashing on the namespace of the Ingress/Route object. This knob is valid only if shared_virtualservice_namespace flag is set. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">override_service_ports (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Override Service Ports with well known ports (80/443) for http/https Route/Ingress VirtualServices. Field introduced in 17.2.12,18.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">persistent_volume_claim (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Persistent Volume Claim name to be used for persistent storage for Avi service engines. This could be used in scenarios where host based volumes are ephemeral. Refer https //kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims for more details on the usage of this field. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">routes (optional)</div><div class="param-desc"><span class="param-type"><a href="#RouteInfo">array[RouteInfo]</a></span> Routes support adding routes to a particular namespace routing table in Openshift/K8s cluster. Each route is a combination of subnet and nexthop ip address or nexthop interface name, and a enum type is used to distinguish an entry in the host (default behaviour) or in the container/pod or in other namespace. This knob should be enabled in the following cases  1. Forwarding the network packets to the same network interface from where it came from in the OpenShift/K8s node. 2. OpenShift/K8s Node connected to the Internet via multiple network interfaces on different networks/ISPs.3. Handling North-South traffic originating from with in the node when the default gateway for outgoing traffic of vs is configured.4. Handling the container/pod traffic by adding the routes in the container/pod. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">routes_share_virtualservice (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Deprecated. Field deprecated in 17.1.9. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">sdn_overlay (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Cluster uses overlay based SDN. Enable this flag if cluster uses a overlay based SDN for OpenShift, Flannel, Weave, Nuage. Disable for routed mode. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">se_deployment_method (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Use SSH/Pod for SE deployment. Enum options - SE_CREATE_FLEET, SE_CREATE_SSH, SE_CREATE_POD. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">se_exclude_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#MesosAttribute">array[MesosAttribute]</a></span> Exclude hosts with attributes for SE creation. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -4653,14 +3615,11 @@ font-style: italic;
 <div class="param">se_priority_class (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Priority class for AVI SEs when running as pods. User is expected to have the priority class (with this name) created in Kubernetes, beforehand. If the priority class doesn&#39;t exist while assigning this field, the SE pods may not start. If empty no priority class will be used for deploying SE pods (default behaviour). Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">se_restart_batch_size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Restart ServiceEngines by batch on ServiceEngineGroup updates (cpu, memory..etc). Field introduced in 17.2.15, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">se_restart_force (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Restart ServiceEngines forcely if VirtualServices failed to migrate to another SE. Field introduced in 17.2.15, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">se_spawn_rate (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> New SE spawn rate per minute. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">se_volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Host volume to be used as a disk for Avi SE, This is a disruptive change. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">secure_egress_mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Allow Avi Vantage to create SecurityContextConstraints and ServiceAccounts which allow Egress Pods to run in privileged mode in an Openshift environment. Enabling this would exclude egress services from &#39;disable_auto_backend_service_sync&#39; (if set) behaviour. Note  Access credentials must have cluster-admin role privileges. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">service_account_token (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Authorization token for service account instead of client certificate. One of client certificate or token is required. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">service_port_match_http_service (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Perform service port matching to create a HTTP Virtualservice instead of a TCP/UDP VirtualService. Field deprecated in 17.2.11,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">shard_prefix (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Prefix to be used for Shard VS name when num_shards knob is non zero. Format for Shard VS name will be &lt;shard_prefix&gt;-&lt;idx&gt;-CloudName-SEGroupName. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">shared_virtualservice_namespace (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Projects/Namespaces use a shared virtualservice for http/https Routes and Ingress objects unless overriden by the avi_virtualservice  dedicated|shared annotation. Field introduced in 17.1.9,17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">ssh_se_deployment (optional)</div><div class="param-desc"><span class="param-type"><a href="#SSHSeDeployment">SSHSeDeployment</a></span> Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ssh_user_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">sync_not_ready_addresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Allow the not_ready_addresses in the kubernetes endpoint object to be added as servers in the AVI pool object. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_controller_image (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If true, use controller generated SE docker image via fileservice, else use docker repository image as defined by docker_registry_se. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -4690,36 +3649,24 @@ font-style: italic;
 <div class="param">img_format (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> If OS_IMG_FMT_RAW, use RAW images else use QCOW2 for KVM. Enum options - OS_IMG_FMT_AUTO, OS_IMG_FMT_QCOW2, OS_IMG_FMT_VMDK, OS_IMG_FMT_RAW, OS_IMG_FMT_FLAT. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">import_keystone_tenants (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Import keystone tenants list into Avi. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">insecure (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Allow self-signed certificates when communicating with https service endpoints. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">intf_sec_ips (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If True, interface-secondary-ips method will be used for VIP association. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">keystone_host (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Keystone&#39;s hostname or IP address. (Deprecated) Use auth_url instead. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">map_admin_to_cloudadmin (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If True, map Avi &#39;admin&#39; tenant to the admin_tenant of the Cloud. Else map Avi &#39;admin&#39; to OpenStack &#39;admin&#39; tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">mgmt_network_name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Avi Management network name or cidr. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">mgmt_network_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Management network UUID. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">name_owner (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If True, embed owner info in VIP port &#39;name&#39;, else embed owner info in &#39;device_id&#39; field. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">neutron_rbac (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If True, enable neutron rbac discovery of networks shared across tenants/projects. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nuage_organization (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nuage_password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nuage_port (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-<div class="param">nuage_username (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nuage_virtualip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Applicable only if allowed-address-pairs is disabled or unusable. VIP placement uses Nuage virtualIp if true, else redirectionTarget. Field deprecated in 20.1.1. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">nuage_vsd_host (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Nuage VSD host name or IP address. Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The password Avi Vantage will use when authenticating to Keystone. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">port_security (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If true, port-security extension (if detected) will be used instead of security-groups, allowed-address-pairs or interface-secondary-ips. If false, port-security extension is skipped. Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">privilege </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Access privilege. Enum options - NO_ACCESS, READ_ACCESS, WRITE_ACCESS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">prov_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> LBaaS provider name. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">provider_vip_networks (optional)</div><div class="param-desc"><span class="param-type"><a href="#OpenStackVipNetwork">array[OpenStackVipNetwork]</a></span> A tenant can normally use its own networks and any networks shared with it. In addition, this setting provides extra networks that are usable by tenants. Field introduced in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">region (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Region name. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">role_mapping (optional)</div><div class="param-desc"><span class="param-type"><a href="#OpenStackRoleMapping">array[OpenStackRoleMapping]</a></span> Defines the mapping from OpenStack role names to avi local role names. For an OpenStack role, this mapping is consulted only if there is no local Avi role with the same name as the OpenStack role. This is an ordered list and only the first matching entry is used. You can use &#39;*&#39; to match all OpenStack role names. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">se_group_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> This field has been generalized for all clouds and has been renamed to se_group_template_uuid. It is a reference to an object of type ServiceEngineGroup. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">security_groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If false, security-groups extension will not be used. . Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">tenant_se (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If true, then SEs will be created in the appropriate tenants, else SEs will be created in the admin_tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">usable_network_uuids (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> Deprecated, please use provider_vip_networks. Field deprecated in 18.2.2. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_admin_url (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If admin URLs are either inaccessible or not to be accessed from Avi Controller, then set this to False. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_internal_endpoints (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use internalURL for OpenStack endpoints instead of the default publicURL endpoints. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_keystone_auth (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use keystone for user authentication. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">use_nuagevip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If True, use nuage vip as device_owner of VIP ports, else use neutron LOADBALANCER. Field deprecated in 20.1.1. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The username Avi Vantage will use when authenticating to Keystone. For Keystone v3, provide the user information in user@domain format, unless that user belongs to the Default domain. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">wildcard_access (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If enabled, program SE security group with ingress rule to allow SSH (port 22) access from 0.0.0.0/0. Field deprecated in 17.1.5. Field introduced in 17.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -4816,7 +3763,6 @@ font-style: italic;
 <div class="param">se_volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Host volume to be used as a disk for Avi SE, This is a disruptive change. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">secret_key (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Secret key. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">services_accessible_all_interfaces (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Make service ports accessible on all Host interfaces in addition to East-West VIP and/or bridge IP. Usually enabled AWS clusters to export East-West services on Host interface. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">ssh_se_deployment (optional)</div><div class="param-desc"><span class="param-type"><a href="#SSHSeDeployment">SSHSeDeployment</a></span> Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">ssh_user_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_container_ip_port (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Use container IP address port for pool instead of host IP address hostport. This mode is applicable if the container IP is reachable (not a private NATed IP) from other hosts in a routed environment for containers. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">use_controller_image (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> If true, use controller generated SE docker image via fileservice, else use docker repository image as defined by docker_registry_se. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -4836,15 +3782,6 @@ font-style: italic;
 <div class="param">network_namespace (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Network Namespace type used to add an route entry in a specific namespace. Enum options - LOCAL_NAMESPACE, HOST_NAMESPACE, OTHER_NAMESPACE. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">nexthop (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> Host nexthop ip address. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">subnet </div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> Host subnet address. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3 class="field-label"><a name="SSHSeDeployment">SSHSeDeployment</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-      <div class="param">host_os (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Host OS distribution e.g. COREOS, UBUNTU, REDHAT. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Password for ssh and/or sudo. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">ssh_user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Username for SSH access to hosts. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">sudo_user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Username for sudo. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
