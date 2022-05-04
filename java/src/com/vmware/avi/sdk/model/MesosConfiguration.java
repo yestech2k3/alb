@@ -108,9 +108,6 @@ public class MesosConfiguration  {
     @JsonProperty("services_accessible_all_interfaces")
     private Boolean servicesAccessibleAllInterfaces = false;
 
-    @JsonProperty("ssh_se_deployment")
-    private SSHSeDeployment sshSeDeployment;
-
     @JsonProperty("ssh_user_ref")
     private String sshUserRef = null;
 
@@ -862,28 +859,6 @@ public class MesosConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Parameters for ssh se deployment.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return sshSeDeployment
-     */
-    public SSHSeDeployment getSshSeDeployment() {
-        return sshSeDeployment;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Parameters for ssh se deployment.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param sshSeDeployment set the sshSeDeployment.
-     */
-    public void setSshSeDeployment(SSHSeDeployment sshSeDeployment) {
-        this.sshSeDeployment = sshSeDeployment;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Cloud connector user uuid for ssh to hosts.
      * It is a reference to an object of type cloudconnectoruser.
      * Field introduced in 17.1.1.
@@ -1057,7 +1032,6 @@ public class MesosConfiguration  {
   Objects.equals(this.seResources, objMesosConfiguration.seResources)&&
   Objects.equals(this.seVolume, objMesosConfiguration.seVolume)&&
   Objects.equals(this.coredumpDirectory, objMesosConfiguration.coredumpDirectory)&&
-  Objects.equals(this.sshSeDeployment, objMesosConfiguration.sshSeDeployment)&&
   Objects.equals(this.enableEventSubscription, objMesosConfiguration.enableEventSubscription)&&
   Objects.equals(this.nuageController, objMesosConfiguration.nuageController)&&
   Objects.equals(this.allVsesAreFeproxy, objMesosConfiguration.allVsesAreFeproxy)&&
@@ -1105,7 +1079,6 @@ public class MesosConfiguration  {
                         sb.append("    seSpawnRate: ").append(toIndentedString(seSpawnRate)).append("\n");
                         sb.append("    seVolume: ").append(toIndentedString(seVolume)).append("\n");
                         sb.append("    servicesAccessibleAllInterfaces: ").append(toIndentedString(servicesAccessibleAllInterfaces)).append("\n");
-                        sb.append("    sshSeDeployment: ").append(toIndentedString(sshSeDeployment)).append("\n");
                         sb.append("    sshUserRef: ").append(toIndentedString(sshUserRef)).append("\n");
                         sb.append("    useBridgeIpAsVip: ").append(toIndentedString(useBridgeIpAsVip)).append("\n");
                         sb.append("    useContainerIpPort: ").append(toIndentedString(useContainerIpPort)).append("\n");

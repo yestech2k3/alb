@@ -84,9 +84,6 @@ public class HTTPApplicationProfile  {
     @JsonProperty("hsts_subdomains_enabled")
     private Boolean hstsSubdomainsEnabled;
 
-    @JsonProperty("http2_enabled")
-    private Boolean http2Enabled;
-
     @JsonProperty("http2_profile")
     private HTTP2ApplicationProfile http2Profile = null;
 
@@ -116,18 +113,6 @@ public class HTTPApplicationProfile  {
 
     @JsonProperty("max_header_count")
     private Integer maxHeaderCount = 64;
-
-    @JsonProperty("max_http2_concurrent_streams_per_connection")
-    private Integer maxHttp2ConcurrentStreamsPerConnection;
-
-    @JsonProperty("max_http2_control_frames_per_connection")
-    private Integer maxHttp2ControlFramesPerConnection;
-
-    @JsonProperty("max_http2_empty_data_frames_per_connection")
-    private Integer maxHttp2EmptyDataFramesPerConnection;
-
-    @JsonProperty("max_http2_queued_frames_to_client_per_connection")
-    private Integer maxHttp2QueuedFramesToClientPerConnection;
 
     @JsonProperty("max_keepalive_requests")
     private Integer maxKeepaliveRequests = 100;
@@ -171,20 +156,11 @@ public class HTTPApplicationProfile  {
     @JsonProperty("server_side_redirect_to_https")
     private Boolean serverSideRedirectToHttps = false;
 
-    @JsonProperty("spdy_enabled")
-    private Boolean spdyEnabled;
-
-    @JsonProperty("spdy_fwd_proxy_mode")
-    private Boolean spdyFwdProxyMode;
-
     @JsonProperty("ssl_client_certificate_action")
     private SSLClientCertificateAction sslClientCertificateAction = null;
 
     @JsonProperty("ssl_client_certificate_mode")
     private String sslClientCertificateMode = "SSL_CLIENT_CERTIFICATE_NONE";
-
-    @JsonProperty("ssl_everywhere_enabled")
-    private Boolean sslEverywhereEnabled;
 
     @JsonProperty("true_client_ip")
     private TrueClientIPConfig trueClientIp = null;
@@ -771,30 +747,6 @@ public class HTTPApplicationProfile  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Enable http2 for traffic from clients to the virtual service.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return http2Enabled
-     */
-    public Boolean getHttp2Enabled() {
-        return http2Enabled;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Enable http2 for traffic from clients to the virtual service.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param http2Enabled set the http2Enabled.
-     */
-    public void setHttp2Enabled(Boolean  http2Enabled) {
-        this.http2Enabled = http2Enabled;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Specifies the http/2 specific application profile parameters.
      * Field introduced in 18.2.10, 20.1.1.
      * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
@@ -1055,122 +1007,6 @@ public class HTTPApplicationProfile  {
      */
     public void setMaxHeaderCount(Integer  maxHeaderCount) {
         this.maxHeaderCount = maxHeaderCount;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * The max number of concurrent streams over a client side http/2 connection.
-     * Allowed values are 1-256.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return maxHttp2ConcurrentStreamsPerConnection
-     */
-    public Integer getMaxHttp2ConcurrentStreamsPerConnection() {
-        return maxHttp2ConcurrentStreamsPerConnection;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The max number of concurrent streams over a client side http/2 connection.
-     * Allowed values are 1-256.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param maxHttp2ConcurrentStreamsPerConnection set the maxHttp2ConcurrentStreamsPerConnection.
-     */
-    public void setMaxHttp2ConcurrentStreamsPerConnection(Integer  maxHttp2ConcurrentStreamsPerConnection) {
-        this.maxHttp2ConcurrentStreamsPerConnection = maxHttp2ConcurrentStreamsPerConnection;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * The max number of control frames that client can send over an http/2 connection.
-     * '0' means unlimited.
-     * Allowed values are 0-10000.
-     * Special values are 0- unlimited control frames on a client side http/2 connection.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return maxHttp2ControlFramesPerConnection
-     */
-    public Integer getMaxHttp2ControlFramesPerConnection() {
-        return maxHttp2ControlFramesPerConnection;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The max number of control frames that client can send over an http/2 connection.
-     * '0' means unlimited.
-     * Allowed values are 0-10000.
-     * Special values are 0- unlimited control frames on a client side http/2 connection.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param maxHttp2ControlFramesPerConnection set the maxHttp2ControlFramesPerConnection.
-     */
-    public void setMaxHttp2ControlFramesPerConnection(Integer  maxHttp2ControlFramesPerConnection) {
-        this.maxHttp2ControlFramesPerConnection = maxHttp2ControlFramesPerConnection;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * The max number of empty data frames that client can send over an http/2 connection.
-     * '0' means unlimited.
-     * Allowed values are 0-10000.
-     * Special values are 0- unlimited empty data frames over a client side http/2 connection.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return maxHttp2EmptyDataFramesPerConnection
-     */
-    public Integer getMaxHttp2EmptyDataFramesPerConnection() {
-        return maxHttp2EmptyDataFramesPerConnection;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The max number of empty data frames that client can send over an http/2 connection.
-     * '0' means unlimited.
-     * Allowed values are 0-10000.
-     * Special values are 0- unlimited empty data frames over a client side http/2 connection.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param maxHttp2EmptyDataFramesPerConnection set the maxHttp2EmptyDataFramesPerConnection.
-     */
-    public void setMaxHttp2EmptyDataFramesPerConnection(Integer  maxHttp2EmptyDataFramesPerConnection) {
-        this.maxHttp2EmptyDataFramesPerConnection = maxHttp2EmptyDataFramesPerConnection;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * The max number of frames that can be queued waiting to be sent over a client side http/2 connection at any given time.
-     * '0' means unlimited.
-     * Allowed values are 0-10000.
-     * Special values are 0- unlimited frames can be queued on a client side http/2 connection.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return maxHttp2QueuedFramesToClientPerConnection
-     */
-    public Integer getMaxHttp2QueuedFramesToClientPerConnection() {
-        return maxHttp2QueuedFramesToClientPerConnection;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The max number of frames that can be queued waiting to be sent over a client side http/2 connection at any given time.
-     * '0' means unlimited.
-     * Allowed values are 0-10000.
-     * Special values are 0- unlimited frames can be queued on a client side http/2 connection.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param maxHttp2QueuedFramesToClientPerConnection set the maxHttp2QueuedFramesToClientPerConnection.
-     */
-    public void setMaxHttp2QueuedFramesToClientPerConnection(Integer  maxHttp2QueuedFramesToClientPerConnection) {
-        this.maxHttp2QueuedFramesToClientPerConnection = maxHttp2QueuedFramesToClientPerConnection;
     }
 
     /**
@@ -1545,50 +1381,6 @@ public class HTTPApplicationProfile  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * This field is deprecated.
-     * Field deprecated in 18.2.8.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return spdyEnabled
-     */
-    public Boolean getSpdyEnabled() {
-        return spdyEnabled;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is deprecated.
-     * Field deprecated in 18.2.8.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param spdyEnabled set the spdyEnabled.
-     */
-    public void setSpdyEnabled(Boolean  spdyEnabled) {
-        this.spdyEnabled = spdyEnabled;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is deprecated.
-     * Field deprecated in 18.2.8.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return spdyFwdProxyMode
-     */
-    public Boolean getSpdyFwdProxyMode() {
-        return spdyFwdProxyMode;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is deprecated.
-     * Field deprecated in 18.2.8.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param spdyFwdProxyMode set the spdyFwdProxyMode.
-     */
-    public void setSpdyFwdProxyMode(Boolean  spdyFwdProxyMode) {
-        this.spdyFwdProxyMode = spdyFwdProxyMode;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Set of match/action rules that govern what happens when the client certificate request is enabled.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -1633,30 +1425,6 @@ public class HTTPApplicationProfile  {
      */
     public void setSslClientCertificateMode(String  sslClientCertificateMode) {
         this.sslClientCertificateMode = sslClientCertificateMode;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Enable common settings to increase the level of security for  virtual services running http and https.
-     * For sites that are  http only, these settings will have no effect.
-     * Field deprecated in 18.2.7.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return sslEverywhereEnabled
-     */
-    public Boolean getSslEverywhereEnabled() {
-        return sslEverywhereEnabled;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Enable common settings to increase the level of security for  virtual services running http and https.
-     * For sites that are  http only, these settings will have no effect.
-     * Field deprecated in 18.2.7.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param sslEverywhereEnabled set the sslEverywhereEnabled.
-     */
-    public void setSslEverywhereEnabled(Boolean  sslEverywhereEnabled) {
-        this.sslEverywhereEnabled = sslEverywhereEnabled;
     }
 
     /**
@@ -1846,7 +1614,6 @@ public class HTTPApplicationProfile  {
       return   Objects.equals(this.connectionMultiplexingEnabled, objHTTPApplicationProfile.connectionMultiplexingEnabled)&&
   Objects.equals(this.xffEnabled, objHTTPApplicationProfile.xffEnabled)&&
   Objects.equals(this.xffAlternateName, objHTTPApplicationProfile.xffAlternateName)&&
-  Objects.equals(this.sslEverywhereEnabled, objHTTPApplicationProfile.sslEverywhereEnabled)&&
   Objects.equals(this.hstsEnabled, objHTTPApplicationProfile.hstsEnabled)&&
   Objects.equals(this.hstsMaxAge, objHTTPApplicationProfile.hstsMaxAge)&&
   Objects.equals(this.hstsSubdomainsEnabled, objHTTPApplicationProfile.hstsSubdomainsEnabled)&&
@@ -1856,8 +1623,6 @@ public class HTTPApplicationProfile  {
   Objects.equals(this.serverSideRedirectToHttps, objHTTPApplicationProfile.serverSideRedirectToHttps)&&
   Objects.equals(this.xForwardedProtoEnabled, objHTTPApplicationProfile.xForwardedProtoEnabled)&&
   Objects.equals(this.compressionProfile, objHTTPApplicationProfile.compressionProfile)&&
-  Objects.equals(this.spdyEnabled, objHTTPApplicationProfile.spdyEnabled)&&
-  Objects.equals(this.spdyFwdProxyMode, objHTTPApplicationProfile.spdyFwdProxyMode)&&
   Objects.equals(this.postAcceptTimeout, objHTTPApplicationProfile.postAcceptTimeout)&&
   Objects.equals(this.clientHeaderTimeout, objHTTPApplicationProfile.clientHeaderTimeout)&&
   Objects.equals(this.clientBodyTimeout, objHTTPApplicationProfile.clientBodyTimeout)&&
@@ -1885,16 +1650,11 @@ public class HTTPApplicationProfile  {
   Objects.equals(this.enableRequestBodyBuffering, objHTTPApplicationProfile.enableRequestBodyBuffering)&&
   Objects.equals(this.enableFireAndForget, objHTTPApplicationProfile.enableFireAndForget)&&
   Objects.equals(this.maxResponseHeadersSize, objHTTPApplicationProfile.maxResponseHeadersSize)&&
-  Objects.equals(this.http2Enabled, objHTTPApplicationProfile.http2Enabled)&&
   Objects.equals(this.respondWith100Continue, objHTTPApplicationProfile.respondWith100Continue)&&
   Objects.equals(this.enableRequestBodyMetrics, objHTTPApplicationProfile.enableRequestBodyMetrics)&&
   Objects.equals(this.fwdCloseHdrForBoundConnections, objHTTPApplicationProfile.fwdCloseHdrForBoundConnections)&&
   Objects.equals(this.maxKeepaliveRequests, objHTTPApplicationProfile.maxKeepaliveRequests)&&
   Objects.equals(this.disableSniHostnameCheck, objHTTPApplicationProfile.disableSniHostnameCheck)&&
-  Objects.equals(this.maxHttp2ControlFramesPerConnection, objHTTPApplicationProfile.maxHttp2ControlFramesPerConnection)&&
-  Objects.equals(this.maxHttp2QueuedFramesToClientPerConnection, objHTTPApplicationProfile.maxHttp2QueuedFramesToClientPerConnection)&&
-  Objects.equals(this.maxHttp2EmptyDataFramesPerConnection, objHTTPApplicationProfile.maxHttp2EmptyDataFramesPerConnection)&&
-  Objects.equals(this.maxHttp2ConcurrentStreamsPerConnection, objHTTPApplicationProfile.maxHttp2ConcurrentStreamsPerConnection)&&
   Objects.equals(this.resetConnHttpOnSslPort, objHTTPApplicationProfile.resetConnHttpOnSslPort)&&
   Objects.equals(this.httpUpstreamBufferSize, objHTTPApplicationProfile.httpUpstreamBufferSize)&&
   Objects.equals(this.enableChunkMerge, objHTTPApplicationProfile.enableChunkMerge)&&
@@ -1932,7 +1692,6 @@ public class HTTPApplicationProfile  {
                         sb.append("    hstsEnabled: ").append(toIndentedString(hstsEnabled)).append("\n");
                         sb.append("    hstsMaxAge: ").append(toIndentedString(hstsMaxAge)).append("\n");
                         sb.append("    hstsSubdomainsEnabled: ").append(toIndentedString(hstsSubdomainsEnabled)).append("\n");
-                        sb.append("    http2Enabled: ").append(toIndentedString(http2Enabled)).append("\n");
                         sb.append("    http2Profile: ").append(toIndentedString(http2Profile)).append("\n");
                         sb.append("    httpToHttps: ").append(toIndentedString(httpToHttps)).append("\n");
                         sb.append("    httpUpstreamBufferSize: ").append(toIndentedString(httpUpstreamBufferSize)).append("\n");
@@ -1943,10 +1702,6 @@ public class HTTPApplicationProfile  {
                         sb.append("    maxBadRpsCipUri: ").append(toIndentedString(maxBadRpsCipUri)).append("\n");
                         sb.append("    maxBadRpsUri: ").append(toIndentedString(maxBadRpsUri)).append("\n");
                         sb.append("    maxHeaderCount: ").append(toIndentedString(maxHeaderCount)).append("\n");
-                        sb.append("    maxHttp2ConcurrentStreamsPerConnection: ").append(toIndentedString(maxHttp2ConcurrentStreamsPerConnection)).append("\n");
-                        sb.append("    maxHttp2ControlFramesPerConnection: ").append(toIndentedString(maxHttp2ControlFramesPerConnection)).append("\n");
-                        sb.append("    maxHttp2EmptyDataFramesPerConnection: ").append(toIndentedString(maxHttp2EmptyDataFramesPerConnection)).append("\n");
-                        sb.append("    maxHttp2QueuedFramesToClientPerConnection: ").append(toIndentedString(maxHttp2QueuedFramesToClientPerConnection)).append("\n");
                         sb.append("    maxKeepaliveRequests: ").append(toIndentedString(maxKeepaliveRequests)).append("\n");
                         sb.append("    maxResponseHeadersSize: ").append(toIndentedString(maxResponseHeadersSize)).append("\n");
                         sb.append("    maxRpsCip: ").append(toIndentedString(maxRpsCip)).append("\n");
@@ -1961,11 +1716,8 @@ public class HTTPApplicationProfile  {
                         sb.append("    respondWith100Continue: ").append(toIndentedString(respondWith100Continue)).append("\n");
                         sb.append("    secureCookieEnabled: ").append(toIndentedString(secureCookieEnabled)).append("\n");
                         sb.append("    serverSideRedirectToHttps: ").append(toIndentedString(serverSideRedirectToHttps)).append("\n");
-                        sb.append("    spdyEnabled: ").append(toIndentedString(spdyEnabled)).append("\n");
-                        sb.append("    spdyFwdProxyMode: ").append(toIndentedString(spdyFwdProxyMode)).append("\n");
                         sb.append("    sslClientCertificateAction: ").append(toIndentedString(sslClientCertificateAction)).append("\n");
                         sb.append("    sslClientCertificateMode: ").append(toIndentedString(sslClientCertificateMode)).append("\n");
-                        sb.append("    sslEverywhereEnabled: ").append(toIndentedString(sslEverywhereEnabled)).append("\n");
                         sb.append("    trueClientIp: ").append(toIndentedString(trueClientIp)).append("\n");
                         sb.append("    useAppKeepaliveTimeout: ").append(toIndentedString(useAppKeepaliveTimeout)).append("\n");
                         sb.append("    useTrueClientIp: ").append(toIndentedString(useTrueClientIp)).append("\n");

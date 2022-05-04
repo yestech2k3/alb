@@ -24,9 +24,6 @@ public class DnsRuleAction  {
     @JsonProperty("allow")
     private DnsRuleActionAllowDrop allow = null;
 
-    @JsonProperty("dns_rate_limit")
-    private DnsRateProfile dnsRateLimit;
-
     @JsonProperty("dns_rate_limiter")
     private DnsRateLimiter dnsRateLimiter = null;
 
@@ -63,30 +60,6 @@ public class DnsRuleAction  {
      */
     public void setAllow(DnsRuleActionAllowDrop allow) {
         this.allow = allow;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Rate limits the dns requests.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return dnsRateLimit
-     */
-    public DnsRateProfile getDnsRateLimit() {
-        return dnsRateLimit;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Rate limits the dns requests.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param dnsRateLimit set the dnsRateLimit.
-     */
-    public void setDnsRateLimit(DnsRateProfile dnsRateLimit) {
-        this.dnsRateLimit = dnsRateLimit;
     }
 
     /**
@@ -201,7 +174,6 @@ public class DnsRuleAction  {
   Objects.equals(this.response, objDnsRuleAction.response)&&
   Objects.equals(this.gslbSiteSelection, objDnsRuleAction.gslbSiteSelection)&&
   Objects.equals(this.poolSwitching, objDnsRuleAction.poolSwitching)&&
-  Objects.equals(this.dnsRateLimit, objDnsRuleAction.dnsRateLimit)&&
   Objects.equals(this.dnsRateLimiter, objDnsRuleAction.dnsRateLimiter);
     }
 
@@ -210,7 +182,6 @@ public class DnsRuleAction  {
       StringBuilder sb = new StringBuilder();
       sb.append("class DnsRuleAction {\n");
                   sb.append("    allow: ").append(toIndentedString(allow)).append("\n");
-                        sb.append("    dnsRateLimit: ").append(toIndentedString(dnsRateLimit)).append("\n");
                         sb.append("    dnsRateLimiter: ").append(toIndentedString(dnsRateLimiter)).append("\n");
                         sb.append("    gslbSiteSelection: ").append(toIndentedString(gslbSiteSelection)).append("\n");
                         sb.append("    poolSwitching: ").append(toIndentedString(poolSwitching)).append("\n");

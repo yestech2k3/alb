@@ -48,9 +48,6 @@ public class OShiftK8SConfiguration  {
     @JsonProperty("default_service_as_east_west_service")
     private Boolean defaultServiceAsEastWestService = true;
 
-    @JsonProperty("default_shared_virtualservice")
-    private OshiftSharedVirtualService defaultSharedVirtualservice;
-
     @JsonProperty("disable_auto_backend_service_sync")
     private Boolean disableAutoBackendServiceSync = false;
 
@@ -81,9 +78,6 @@ public class OShiftK8SConfiguration  {
     @JsonProperty("feproxy_vips_enable_proxy_arp")
     private Boolean feproxyVipsEnableProxyArp = true;
 
-    @JsonProperty("fleet_endpoint")
-    private String fleetEndpoint;
-
     @JsonProperty("http_container_ports")
     private List<Integer> httpContainerPorts = null;
 
@@ -108,9 +102,6 @@ public class OShiftK8SConfiguration  {
     @JsonProperty("ns_include_attributes")
     private List<MesosAttribute> nsIncludeAttributes = null;
 
-    @JsonProperty("nuage_controller")
-    private NuageSDNController nuageController;
-
     @JsonProperty("num_shards")
     private Integer numShards = 0;
 
@@ -122,9 +113,6 @@ public class OShiftK8SConfiguration  {
 
     @JsonProperty("routes")
     private List<RouteInfo> routes = null;
-
-    @JsonProperty("routes_share_virtualservice")
-    private Boolean routesShareVirtualservice;
 
     @JsonProperty("sdn_overlay")
     private Boolean sdnOverlay = true;
@@ -156,9 +144,6 @@ public class OShiftK8SConfiguration  {
     @JsonProperty("se_restart_force")
     private Boolean seRestartForce = false;
 
-    @JsonProperty("se_spawn_rate")
-    private Integer seSpawnRate;
-
     @JsonProperty("se_volume")
     private String seVolume = "/var/lib/avi";
 
@@ -168,17 +153,11 @@ public class OShiftK8SConfiguration  {
     @JsonProperty("service_account_token")
     private String serviceAccountToken = null;
 
-    @JsonProperty("service_port_match_http_service")
-    private Boolean servicePortMatchHttpService;
-
     @JsonProperty("shard_prefix")
     private String shardPrefix = null;
 
     @JsonProperty("shared_virtualservice_namespace")
     private Boolean sharedVirtualserviceNamespace = false;
-
-    @JsonProperty("ssh_se_deployment")
-    private SSHSeDeployment sshSeDeployment;
 
     @JsonProperty("ssh_user_ref")
     private String sshUserRef = null;
@@ -425,30 +404,6 @@ public class OShiftK8SConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 17.1.9.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return defaultSharedVirtualservice
-     */
-    public OshiftSharedVirtualService getDefaultSharedVirtualservice() {
-        return defaultSharedVirtualservice;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 17.1.9.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param defaultSharedVirtualservice set the defaultSharedVirtualservice.
-     */
-    public void setDefaultSharedVirtualservice(OshiftSharedVirtualService defaultSharedVirtualservice) {
-        this.defaultSharedVirtualservice = defaultSharedVirtualservice;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Disable auto service sync for back end services.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
@@ -675,28 +630,6 @@ public class OShiftK8SConfiguration  {
      */
     public void setFeproxyVipsEnableProxyArp(Boolean  feproxyVipsEnableProxyArp) {
         this.feproxyVipsEnableProxyArp = feproxyVipsEnableProxyArp;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Optional fleet remote endpoint if fleet is used for se deployment.
-     * Field deprecated in 17.2.13,18.1.5,18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return fleetEndpoint
-     */
-    public String getFleetEndpoint() {
-        return fleetEndpoint;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Optional fleet remote endpoint if fleet is used for se deployment.
-     * Field deprecated in 17.2.13,18.1.5,18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param fleetEndpoint set the fleetEndpoint.
-     */
-    public void setFleetEndpoint(String  fleetEndpoint) {
-        this.fleetEndpoint = fleetEndpoint;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -993,28 +926,6 @@ public class OShiftK8SConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Nuage overlay sdn controller information.
-     * Field deprecated in 17.2.13,18.1.5,18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nuageController
-     */
-    public NuageSDNController getNuageController() {
-        return nuageController;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Nuage overlay sdn controller information.
-     * Field deprecated in 17.2.13,18.1.5,18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nuageController set the nuageController.
-     */
-    public void setNuageController(NuageSDNController nuageController) {
-        this.nuageController = nuageController;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Enables sharding of routes and ingresses to this number (if non zero) of virtual services in the admin tenant per segroup.
      * Sharding is done by hashing on the namespace of the ingress/route object.
      * This knob is valid only if shared_virtualservice_namespace flag is set.
@@ -1154,30 +1065,6 @@ public class OShiftK8SConfiguration  {
       }
       this.routes.add(routesItem);
       return this;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 17.1.9.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return routesShareVirtualservice
-     */
-    public Boolean getRoutesShareVirtualservice() {
-        return routesShareVirtualservice;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 17.1.9.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param routesShareVirtualservice set the routesShareVirtualservice.
-     */
-    public void setRoutesShareVirtualservice(Boolean  routesShareVirtualservice) {
-        this.routesShareVirtualservice = routesShareVirtualservice;
     }
 
     /**
@@ -1479,28 +1366,6 @@ public class OShiftK8SConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * New se spawn rate per minute.
-     * Field deprecated in 17.2.13,18.1.5,18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seSpawnRate
-     */
-    public Integer getSeSpawnRate() {
-        return seSpawnRate;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * New se spawn rate per minute.
-     * Field deprecated in 17.2.13,18.1.5,18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seSpawnRate set the seSpawnRate.
-     */
-    public void setSeSpawnRate(Integer  seSpawnRate) {
-        this.seSpawnRate = seSpawnRate;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Host volume to be used as a disk for avi se, this is a disruptive change.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "/var/lib/avi".
@@ -1577,28 +1442,6 @@ public class OShiftK8SConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Perform service port matching to create a http virtualservice instead of a tcp/udp virtualservice.
-     * Field deprecated in 17.2.11,18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return servicePortMatchHttpService
-     */
-    public Boolean getServicePortMatchHttpService() {
-        return servicePortMatchHttpService;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Perform service port matching to create a http virtualservice instead of a tcp/udp virtualservice.
-     * Field deprecated in 17.2.11,18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param servicePortMatchHttpService set the servicePortMatchHttpService.
-     */
-    public void setServicePortMatchHttpService(Boolean  servicePortMatchHttpService) {
-        this.servicePortMatchHttpService = servicePortMatchHttpService;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Prefix to be used for shard vs name when num_shards knob is non zero.
      * Format for shard vs name will be <shard_prefix>-<idx>-cloudname-segroupname.
      * Field introduced in 18.2.5.
@@ -1647,28 +1490,6 @@ public class OShiftK8SConfiguration  {
      */
     public void setSharedVirtualserviceNamespace(Boolean  sharedVirtualserviceNamespace) {
         this.sharedVirtualserviceNamespace = sharedVirtualserviceNamespace;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Parameters for ssh se deployment.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return sshSeDeployment
-     */
-    public SSHSeDeployment getSshSeDeployment() {
-        return sshSeDeployment;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Parameters for ssh se deployment.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param sshSeDeployment set the sshSeDeployment.
-     */
-    public void setSshSeDeployment(SSHSeDeployment sshSeDeployment) {
-        this.sshSeDeployment = sshSeDeployment;
     }
 
     /**
@@ -1857,21 +1678,17 @@ public class OShiftK8SConfiguration  {
   Objects.equals(this.httpContainerPorts, objOShiftK8SConfiguration.httpContainerPorts)&&
   Objects.equals(this.eastWestPlacementSubnet, objOShiftK8SConfiguration.eastWestPlacementSubnet)&&
   Objects.equals(this.seDeploymentMethod, objOShiftK8SConfiguration.seDeploymentMethod)&&
-  Objects.equals(this.fleetEndpoint, objOShiftK8SConfiguration.fleetEndpoint)&&
   Objects.equals(this.dockerRegistrySe, objOShiftK8SConfiguration.dockerRegistrySe)&&
-  Objects.equals(this.seSpawnRate, objOShiftK8SConfiguration.seSpawnRate)&&
   Objects.equals(this.appSyncFrequency, objOShiftK8SConfiguration.appSyncFrequency)&&
   Objects.equals(this.disableAutoSeCreation, objOShiftK8SConfiguration.disableAutoSeCreation)&&
   Objects.equals(this.disableAutoFrontendServiceSync, objOShiftK8SConfiguration.disableAutoFrontendServiceSync)&&
   Objects.equals(this.disableAutoBackendServiceSync, objOShiftK8SConfiguration.disableAutoBackendServiceSync)&&
   Objects.equals(this.seVolume, objOShiftK8SConfiguration.seVolume)&&
   Objects.equals(this.coredumpDirectory, objOShiftK8SConfiguration.coredumpDirectory)&&
-  Objects.equals(this.sshSeDeployment, objOShiftK8SConfiguration.sshSeDeployment)&&
   Objects.equals(this.enableEventSubscription, objOShiftK8SConfiguration.enableEventSubscription)&&
   Objects.equals(this.feproxyVipsEnableProxyArp, objOShiftK8SConfiguration.feproxyVipsEnableProxyArp)&&
   Objects.equals(this.seExcludeAttributes, objOShiftK8SConfiguration.seExcludeAttributes)&&
   Objects.equals(this.seIncludeAttributes, objOShiftK8SConfiguration.seIncludeAttributes)&&
-  Objects.equals(this.nuageController, objOShiftK8SConfiguration.nuageController)&&
   Objects.equals(this.useServiceClusterIpAsEwVip, objOShiftK8SConfiguration.useServiceClusterIpAsEwVip)&&
   Objects.equals(this.defaultServiceAsEastWestService, objOShiftK8SConfiguration.defaultServiceAsEastWestService)&&
   Objects.equals(this.sdnOverlay, objOShiftK8SConfiguration.sdnOverlay)&&
@@ -1880,12 +1697,9 @@ public class OShiftK8SConfiguration  {
   Objects.equals(this.useSchedulingDisabledNodes, objOShiftK8SConfiguration.useSchedulingDisabledNodes)&&
   Objects.equals(this.l4HealthMonitoring, objOShiftK8SConfiguration.l4HealthMonitoring)&&
   Objects.equals(this.sshUserRef, objOShiftK8SConfiguration.sshUserRef)&&
-  Objects.equals(this.routesShareVirtualservice, objOShiftK8SConfiguration.routesShareVirtualservice)&&
-  Objects.equals(this.defaultSharedVirtualservice, objOShiftK8SConfiguration.defaultSharedVirtualservice)&&
   Objects.equals(this.nodeAvailabilityZoneLabel, objOShiftK8SConfiguration.nodeAvailabilityZoneLabel)&&
   Objects.equals(this.secureEgressMode, objOShiftK8SConfiguration.secureEgressMode)&&
   Objects.equals(this.disableAutoGsSync, objOShiftK8SConfiguration.disableAutoGsSync)&&
-  Objects.equals(this.servicePortMatchHttpService, objOShiftK8SConfiguration.servicePortMatchHttpService)&&
   Objects.equals(this.sharedVirtualserviceNamespace, objOShiftK8SConfiguration.sharedVirtualserviceNamespace)&&
   Objects.equals(this.nsIncludeAttributes, objOShiftK8SConfiguration.nsIncludeAttributes)&&
   Objects.equals(this.nsExcludeAttributes, objOShiftK8SConfiguration.nsExcludeAttributes)&&
@@ -1924,7 +1738,6 @@ public class OShiftK8SConfiguration  {
                         sb.append("    containerPortMatchHttpService: ").append(toIndentedString(containerPortMatchHttpService)).append("\n");
                         sb.append("    coredumpDirectory: ").append(toIndentedString(coredumpDirectory)).append("\n");
                         sb.append("    defaultServiceAsEastWestService: ").append(toIndentedString(defaultServiceAsEastWestService)).append("\n");
-                        sb.append("    defaultSharedVirtualservice: ").append(toIndentedString(defaultSharedVirtualservice)).append("\n");
                         sb.append("    disableAutoBackendServiceSync: ").append(toIndentedString(disableAutoBackendServiceSync)).append("\n");
                         sb.append("    disableAutoFrontendServiceSync: ").append(toIndentedString(disableAutoFrontendServiceSync)).append("\n");
                         sb.append("    disableAutoGsSync: ").append(toIndentedString(disableAutoGsSync)).append("\n");
@@ -1935,7 +1748,6 @@ public class OShiftK8SConfiguration  {
                         sb.append("    enableEventSubscription: ").append(toIndentedString(enableEventSubscription)).append("\n");
                         sb.append("    enableRouteIngressHardening: ").append(toIndentedString(enableRouteIngressHardening)).append("\n");
                         sb.append("    feproxyVipsEnableProxyArp: ").append(toIndentedString(feproxyVipsEnableProxyArp)).append("\n");
-                        sb.append("    fleetEndpoint: ").append(toIndentedString(fleetEndpoint)).append("\n");
                         sb.append("    httpContainerPorts: ").append(toIndentedString(httpContainerPorts)).append("\n");
                         sb.append("    ingExcludeAttributes: ").append(toIndentedString(ingExcludeAttributes)).append("\n");
                         sb.append("    ingIncludeAttributes: ").append(toIndentedString(ingIncludeAttributes)).append("\n");
@@ -1944,12 +1756,10 @@ public class OShiftK8SConfiguration  {
                         sb.append("    nodeAvailabilityZoneLabel: ").append(toIndentedString(nodeAvailabilityZoneLabel)).append("\n");
                         sb.append("    nsExcludeAttributes: ").append(toIndentedString(nsExcludeAttributes)).append("\n");
                         sb.append("    nsIncludeAttributes: ").append(toIndentedString(nsIncludeAttributes)).append("\n");
-                        sb.append("    nuageController: ").append(toIndentedString(nuageController)).append("\n");
                         sb.append("    numShards: ").append(toIndentedString(numShards)).append("\n");
                         sb.append("    overrideServicePorts: ").append(toIndentedString(overrideServicePorts)).append("\n");
                         sb.append("    persistentVolumeClaim: ").append(toIndentedString(persistentVolumeClaim)).append("\n");
                         sb.append("    routes: ").append(toIndentedString(routes)).append("\n");
-                        sb.append("    routesShareVirtualservice: ").append(toIndentedString(routesShareVirtualservice)).append("\n");
                         sb.append("    sdnOverlay: ").append(toIndentedString(sdnOverlay)).append("\n");
                         sb.append("    seDeploymentMethod: ").append(toIndentedString(seDeploymentMethod)).append("\n");
                         sb.append("    seExcludeAttributes: ").append(toIndentedString(seExcludeAttributes)).append("\n");
@@ -1960,14 +1770,11 @@ public class OShiftK8SConfiguration  {
                         sb.append("    sePriorityClass: ").append(toIndentedString(sePriorityClass)).append("\n");
                         sb.append("    seRestartBatchSize: ").append(toIndentedString(seRestartBatchSize)).append("\n");
                         sb.append("    seRestartForce: ").append(toIndentedString(seRestartForce)).append("\n");
-                        sb.append("    seSpawnRate: ").append(toIndentedString(seSpawnRate)).append("\n");
                         sb.append("    seVolume: ").append(toIndentedString(seVolume)).append("\n");
                         sb.append("    secureEgressMode: ").append(toIndentedString(secureEgressMode)).append("\n");
                         sb.append("    serviceAccountToken: ").append(toIndentedString(serviceAccountToken)).append("\n");
-                        sb.append("    servicePortMatchHttpService: ").append(toIndentedString(servicePortMatchHttpService)).append("\n");
                         sb.append("    shardPrefix: ").append(toIndentedString(shardPrefix)).append("\n");
                         sb.append("    sharedVirtualserviceNamespace: ").append(toIndentedString(sharedVirtualserviceNamespace)).append("\n");
-                        sb.append("    sshSeDeployment: ").append(toIndentedString(sshSeDeployment)).append("\n");
                         sb.append("    sshUserRef: ").append(toIndentedString(sshUserRef)).append("\n");
                         sb.append("    syncNotReadyAddresses: ").append(toIndentedString(syncNotReadyAddresses)).append("\n");
                         sb.append("    useControllerImage: ").append(toIndentedString(useControllerImage)).append("\n");

@@ -24,9 +24,6 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
     @JsonProperty("end")
     private Integer end = null;
 
-    @JsonProperty("free_controller_ips")
-    private List<String> freeControllerIps;
-
     @JsonProperty("free_ips")
     private List<Integer> freeIps = null;
 
@@ -62,39 +59,6 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
      */
     public void setEnd(Integer  end) {
         this.end = end;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return freeControllerIps
-     */
-    public List<String> getFreeControllerIps() {
-        return freeControllerIps;
-    }
-
-    /**
-     * This is the setter method. this will set the freeControllerIps
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return freeControllerIps
-     */
-    public void setFreeControllerIps(List<String>  freeControllerIps) {
-        this.freeControllerIps = freeControllerIps;
-    }
-
-    /**
-     * This is the setter method this will set the freeControllerIps
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return freeControllerIps
-     */
-    public SecureChannelAvailableLocalIPs addFreeControllerIpsItem(String freeControllerIpsItem) {
-      if (this.freeControllerIps == null) {
-        this.freeControllerIps = new ArrayList<String>();
-      }
-      this.freeControllerIps.add(freeControllerIpsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -221,8 +185,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
   Objects.equals(this.name, objSecureChannelAvailableLocalIPs.name)&&
   Objects.equals(this.freeIps, objSecureChannelAvailableLocalIPs.freeIps)&&
   Objects.equals(this.start, objSecureChannelAvailableLocalIPs.start)&&
-  Objects.equals(this.end, objSecureChannelAvailableLocalIPs.end)&&
-  Objects.equals(this.freeControllerIps, objSecureChannelAvailableLocalIPs.freeControllerIps);
+  Objects.equals(this.end, objSecureChannelAvailableLocalIPs.end);
     }
 
     @Override
@@ -230,7 +193,6 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
       StringBuilder sb = new StringBuilder();
       sb.append("class SecureChannelAvailableLocalIPs {\n");
                   sb.append("    end: ").append(toIndentedString(end)).append("\n");
-                        sb.append("    freeControllerIps: ").append(toIndentedString(freeControllerIps)).append("\n");
                         sb.append("    freeIps: ").append(toIndentedString(freeIps)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    start: ").append(toIndentedString(start)).append("\n");

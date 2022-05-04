@@ -24,9 +24,6 @@ public class GCPConfiguration  {
     @JsonProperty("cloud_credentials_ref")
     private String cloudCredentialsRef = null;
 
-    @JsonProperty("encryption_key_id")
-    private String encryptionKeyId;
-
     @JsonProperty("encryption_keys")
     private GCPEncryptionKeys encryptionKeys = null;
 
@@ -41,9 +38,6 @@ public class GCPConfiguration  {
 
     @JsonProperty("gcs_project_id")
     private String gcsProjectId = null;
-
-    @JsonProperty("match_se_group_subnet")
-    private Boolean matchSeGroupSubnet;
 
     @JsonProperty("network_config")
     private GCPNetworkConfig networkConfig = null;
@@ -86,30 +80,6 @@ public class GCPConfiguration  {
      */
     public void setCloudCredentialsRef(String  cloudCredentialsRef) {
         this.cloudCredentialsRef = cloudCredentialsRef;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated, please use encryption_keys field.
-     * Field deprecated in 18.2.10, 20.1.2.
-     * Field introduced in 18.2.7, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return encryptionKeyId
-     */
-    public String getEncryptionKeyId() {
-        return encryptionKeyId;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated, please use encryption_keys field.
-     * Field deprecated in 18.2.10, 20.1.2.
-     * Field introduced in 18.2.7, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param encryptionKeyId set the encryptionKeyId.
-     */
-    public void setEncryptionKeyId(String  encryptionKeyId) {
-        this.encryptionKeyId = encryptionKeyId;
     }
 
     /**
@@ -253,32 +223,6 @@ public class GCPConfiguration  {
      */
     public void setGcsProjectId(String  gcsProjectId) {
         this.gcsProjectId = gcsProjectId;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated, please use match_se_group_subnet in routes mode in.
-     * Vip_allocation_strategy.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return matchSeGroupSubnet
-     */
-    public Boolean getMatchSeGroupSubnet() {
-        return matchSeGroupSubnet;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated, please use match_se_group_subnet in routes mode in.
-     * Vip_allocation_strategy.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param matchSeGroupSubnet set the matchSeGroupSubnet.
-     */
-    public void setMatchSeGroupSubnet(Boolean  matchSeGroupSubnet) {
-        this.matchSeGroupSubnet = matchSeGroupSubnet;
     }
 
     /**
@@ -435,10 +379,8 @@ public class GCPConfiguration  {
   Objects.equals(this.seProjectId, objGCPConfiguration.seProjectId)&&
   Objects.equals(this.networkConfig, objGCPConfiguration.networkConfig)&&
   Objects.equals(this.firewallTargetTags, objGCPConfiguration.firewallTargetTags)&&
-  Objects.equals(this.matchSeGroupSubnet, objGCPConfiguration.matchSeGroupSubnet)&&
   Objects.equals(this.gcsProjectId, objGCPConfiguration.gcsProjectId)&&
   Objects.equals(this.gcsBucketName, objGCPConfiguration.gcsBucketName)&&
-  Objects.equals(this.encryptionKeyId, objGCPConfiguration.encryptionKeyId)&&
   Objects.equals(this.vipAllocationStrategy, objGCPConfiguration.vipAllocationStrategy)&&
   Objects.equals(this.encryptionKeys, objGCPConfiguration.encryptionKeys)&&
   Objects.equals(this.gcpServiceAccountEmail, objGCPConfiguration.gcpServiceAccountEmail);
@@ -449,13 +391,11 @@ public class GCPConfiguration  {
       StringBuilder sb = new StringBuilder();
       sb.append("class GCPConfiguration {\n");
                   sb.append("    cloudCredentialsRef: ").append(toIndentedString(cloudCredentialsRef)).append("\n");
-                        sb.append("    encryptionKeyId: ").append(toIndentedString(encryptionKeyId)).append("\n");
                         sb.append("    encryptionKeys: ").append(toIndentedString(encryptionKeys)).append("\n");
                         sb.append("    firewallTargetTags: ").append(toIndentedString(firewallTargetTags)).append("\n");
                         sb.append("    gcpServiceAccountEmail: ").append(toIndentedString(gcpServiceAccountEmail)).append("\n");
                         sb.append("    gcsBucketName: ").append(toIndentedString(gcsBucketName)).append("\n");
                         sb.append("    gcsProjectId: ").append(toIndentedString(gcsProjectId)).append("\n");
-                        sb.append("    matchSeGroupSubnet: ").append(toIndentedString(matchSeGroupSubnet)).append("\n");
                         sb.append("    networkConfig: ").append(toIndentedString(networkConfig)).append("\n");
                         sb.append("    regionName: ").append(toIndentedString(regionName)).append("\n");
                         sb.append("    seProjectId: ").append(toIndentedString(seProjectId)).append("\n");

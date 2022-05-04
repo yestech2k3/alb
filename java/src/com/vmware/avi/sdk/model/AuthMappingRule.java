@@ -48,9 +48,6 @@ public class AuthMappingRule  {
     @JsonProperty("is_superuser")
     private Boolean isSuperuser = null;
 
-    @JsonProperty("object_access_policy_refs")
-    private List<String> objectAccessPolicyRefs;
-
     @JsonProperty("policy_attribute_name")
     private String policyAttributeName = null;
 
@@ -283,48 +280,6 @@ public class AuthMappingRule  {
     public void setIsSuperuser(Boolean  isSuperuser) {
         this.isSuperuser = isSuperuser;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Object access policies to assign to user on successful match.
-     * It is a reference to an object of type objectaccesspolicy.
-     * Field deprecated in 20.1.2.
-     * Field introduced in 18.2.7, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return objectAccessPolicyRefs
-     */
-    public List<String> getObjectAccessPolicyRefs() {
-        return objectAccessPolicyRefs;
-    }
-
-    /**
-     * This is the setter method. this will set the objectAccessPolicyRefs
-     * Object access policies to assign to user on successful match.
-     * It is a reference to an object of type objectaccesspolicy.
-     * Field deprecated in 20.1.2.
-     * Field introduced in 18.2.7, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return objectAccessPolicyRefs
-     */
-    public void setObjectAccessPolicyRefs(List<String>  objectAccessPolicyRefs) {
-        this.objectAccessPolicyRefs = objectAccessPolicyRefs;
-    }
-
-    /**
-     * This is the setter method this will set the objectAccessPolicyRefs
-     * Object access policies to assign to user on successful match.
-     * It is a reference to an object of type objectaccesspolicy.
-     * Field deprecated in 20.1.2.
-     * Field introduced in 18.2.7, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return objectAccessPolicyRefs
-     */
-    public AuthMappingRule addObjectAccessPolicyRefsItem(String objectAccessPolicyRefsItem) {
-      if (this.objectAccessPolicyRefs == null) {
-        this.objectAccessPolicyRefs = new ArrayList<String>();
-      }
-      this.objectAccessPolicyRefs.add(objectAccessPolicyRefsItem);
-      return this;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -534,7 +489,6 @@ public class AuthMappingRule  {
   Objects.equals(this.isSuperuser, objAuthMappingRule.isSuperuser)&&
   Objects.equals(this.assignPolicy, objAuthMappingRule.assignPolicy)&&
   Objects.equals(this.policyAttributeName, objAuthMappingRule.policyAttributeName)&&
-  Objects.equals(this.objectAccessPolicyRefs, objAuthMappingRule.objectAccessPolicyRefs)&&
   Objects.equals(this.assignUserprofile, objAuthMappingRule.assignUserprofile)&&
   Objects.equals(this.userprofileAttributeName, objAuthMappingRule.userprofileAttributeName)&&
   Objects.equals(this.userprofileRef, objAuthMappingRule.userprofileRef)&&
@@ -554,7 +508,6 @@ public class AuthMappingRule  {
                         sb.append("    groupMatch: ").append(toIndentedString(groupMatch)).append("\n");
                         sb.append("    index: ").append(toIndentedString(index)).append("\n");
                         sb.append("    isSuperuser: ").append(toIndentedString(isSuperuser)).append("\n");
-                        sb.append("    objectAccessPolicyRefs: ").append(toIndentedString(objectAccessPolicyRefs)).append("\n");
                         sb.append("    policyAttributeName: ").append(toIndentedString(policyAttributeName)).append("\n");
                         sb.append("    roleAttributeName: ").append(toIndentedString(roleAttributeName)).append("\n");
                         sb.append("    roleRefs: ").append(toIndentedString(roleRefs)).append("\n");

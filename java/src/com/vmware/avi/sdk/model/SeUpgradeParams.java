@@ -24,9 +24,6 @@ public class SeUpgradeParams extends AviRestResource  {
     @JsonProperty("disruptive")
     private Boolean disruptive = false;
 
-    @JsonProperty("force")
-    private Boolean force;
-
     @JsonProperty("patch")
     private Boolean patch = false;
 
@@ -41,9 +38,6 @@ public class SeUpgradeParams extends AviRestResource  {
 
     @JsonProperty("suspend_on_failure")
     private Boolean suspendOnFailure = false;
-
-    @JsonProperty("test")
-    private Boolean test;
 
     @JsonProperty("uuid")
     private String uuid = null;
@@ -70,26 +64,6 @@ public class SeUpgradeParams extends AviRestResource  {
      */
     public void setDisruptive(Boolean  disruptive) {
         this.disruptive = disruptive;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return force
-     */
-    public Boolean getForce() {
-        return force;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param force set the force.
-     */
-    public void setForce(Boolean  force) {
-        this.force = force;
     }
 
     /**
@@ -227,26 +201,6 @@ public class SeUpgradeParams extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return test
-     */
-    public Boolean getTest() {
-        return test;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param test set the test.
-     */
-    public void setTest(Boolean  test) {
-        this.test = test;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
@@ -276,9 +230,7 @@ public class SeUpgradeParams extends AviRestResource  {
       }
       SeUpgradeParams objSeUpgradeParams = (SeUpgradeParams) o;
       return   Objects.equals(this.uuid, objSeUpgradeParams.uuid)&&
-  Objects.equals(this.force, objSeUpgradeParams.force)&&
   Objects.equals(this.disruptive, objSeUpgradeParams.disruptive)&&
-  Objects.equals(this.test, objSeUpgradeParams.test)&&
   Objects.equals(this.rollback, objSeUpgradeParams.rollback)&&
   Objects.equals(this.suspendOnFailure, objSeUpgradeParams.suspendOnFailure)&&
   Objects.equals(this.patch, objSeUpgradeParams.patch)&&
@@ -291,13 +243,11 @@ public class SeUpgradeParams extends AviRestResource  {
       StringBuilder sb = new StringBuilder();
       sb.append("class SeUpgradeParams {\n");
                   sb.append("    disruptive: ").append(toIndentedString(disruptive)).append("\n");
-                        sb.append("    force: ").append(toIndentedString(force)).append("\n");
                         sb.append("    patch: ").append(toIndentedString(patch)).append("\n");
                         sb.append("    patchRollback: ").append(toIndentedString(patchRollback)).append("\n");
                         sb.append("    rollback: ").append(toIndentedString(rollback)).append("\n");
                         sb.append("    seGroupRefs: ").append(toIndentedString(seGroupRefs)).append("\n");
                         sb.append("    suspendOnFailure: ").append(toIndentedString(suspendOnFailure)).append("\n");
-                        sb.append("    test: ").append(toIndentedString(test)).append("\n");
                         sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
                   sb.append("}");
       return sb.toString();

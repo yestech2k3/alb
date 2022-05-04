@@ -84,18 +84,6 @@ public class AnalyticsProfile extends AviRestResource  {
     @JsonProperty("description")
     private String description = null;
 
-    @JsonProperty("disable_ondemand_metrics")
-    private Boolean disableOndemandMetrics;
-
-    @JsonProperty("disable_se_analytics")
-    private Boolean disableSeAnalytics;
-
-    @JsonProperty("disable_server_analytics")
-    private Boolean disableServerAnalytics;
-
-    @JsonProperty("disable_vs_analytics")
-    private Boolean disableVsAnalytics;
-
     @JsonProperty("enable_adaptive_config")
     private Boolean enableAdaptiveConfig = true;
 
@@ -257,9 +245,6 @@ public class AnalyticsProfile extends AviRestResource  {
 
     @JsonProperty("hs_security_weak_signature_algo_penalty")
     private Float hsSecurityWeakSignatureAlgoPenalty = 1.0f;
-
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
 
     @JsonProperty("latency_audit_props")
     private LatencyAuditProperties latencyAuditProps = null;
@@ -876,106 +861,6 @@ public class AnalyticsProfile extends AviRestResource  {
      */
     public void setDescription(String  description) {
         this.description = description;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Virtual service (vs) metrics are processed only when there is live data traffic on the vs.
-     * In case, vs is idle for a period of time as specified by ondemand_metrics_idle_timeout then metrics processing is suspended for that vs.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 18.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return disableOndemandMetrics
-     */
-    public Boolean getDisableOndemandMetrics() {
-        return disableOndemandMetrics;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Virtual service (vs) metrics are processed only when there is live data traffic on the vs.
-     * In case, vs is idle for a period of time as specified by ondemand_metrics_idle_timeout then metrics processing is suspended for that vs.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 18.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param disableOndemandMetrics set the disableOndemandMetrics.
-     */
-    public void setDisableOndemandMetrics(Boolean  disableOndemandMetrics) {
-        this.disableOndemandMetrics = disableOndemandMetrics;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Disable node (service engine) level analytics forvs metrics.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return disableSeAnalytics
-     */
-    public Boolean getDisableSeAnalytics() {
-        return disableSeAnalytics;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Disable node (service engine) level analytics forvs metrics.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param disableSeAnalytics set the disableSeAnalytics.
-     */
-    public void setDisableSeAnalytics(Boolean  disableSeAnalytics) {
-        this.disableSeAnalytics = disableSeAnalytics;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Disable analytics on backend servers.
-     * This may be desired in container environment when there are large number of ephemeral servers.
-     * Additionally, no healthscore of servers is computed when server analytics is disabled.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return disableServerAnalytics
-     */
-    public Boolean getDisableServerAnalytics() {
-        return disableServerAnalytics;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Disable analytics on backend servers.
-     * This may be desired in container environment when there are large number of ephemeral servers.
-     * Additionally, no healthscore of servers is computed when server analytics is disabled.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param disableServerAnalytics set the disableServerAnalytics.
-     */
-    public void setDisableServerAnalytics(Boolean  disableServerAnalytics) {
-        this.disableServerAnalytics = disableServerAnalytics;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Disable virtualservice (frontend) analytics.
-     * This flag disables metrics and healthscore for virtualservice.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return disableVsAnalytics
-     */
-    public Boolean getDisableVsAnalytics() {
-        return disableVsAnalytics;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Disable virtualservice (frontend) analytics.
-     * This flag disables metrics and healthscore for virtualservice.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param disableVsAnalytics set the disableVsAnalytics.
-     */
-    public void setDisableVsAnalytics(Boolean  disableVsAnalytics) {
-        this.disableVsAnalytics = disableVsAnalytics;
     }
 
     /**
@@ -2387,51 +2272,6 @@ public class AnalyticsProfile extends AviRestResource  {
     public void setHsSecurityWeakSignatureAlgoPenalty(Float  hsSecurityWeakSignatureAlgoPenalty) {
         this.hsSecurityWeakSignatureAlgoPenalty = hsSecurityWeakSignatureAlgoPenalty;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public AnalyticsProfile addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -2804,8 +2644,6 @@ public class AnalyticsProfile extends AviRestResource  {
   Objects.equals(this.hsSecurityEncalgoScoreNone, objAnalyticsProfile.hsSecurityEncalgoScoreNone)&&
   Objects.equals(this.hsSecurityChainInvalidityPenalty, objAnalyticsProfile.hsSecurityChainInvalidityPenalty)&&
   Objects.equals(this.hsSecurityHstsPenalty, objAnalyticsProfile.hsSecurityHstsPenalty)&&
-  Objects.equals(this.disableServerAnalytics, objAnalyticsProfile.disableServerAnalytics)&&
-  Objects.equals(this.disableSeAnalytics, objAnalyticsProfile.disableSeAnalytics)&&
   Objects.equals(this.hsPscoreTrafficThresholdL4Client, objAnalyticsProfile.hsPscoreTrafficThresholdL4Client)&&
   Objects.equals(this.hsPscoreTrafficThresholdL4Server, objAnalyticsProfile.hsPscoreTrafficThresholdL4Server)&&
   Objects.equals(this.excludeGsDownAsError, objAnalyticsProfile.excludeGsDownAsError)&&
@@ -2817,14 +2655,12 @@ public class AnalyticsProfile extends AviRestResource  {
   Objects.equals(this.respCodeBlock, objAnalyticsProfile.respCodeBlock)&&
   Objects.equals(this.excludeServerDnsErrorAsError, objAnalyticsProfile.excludeServerDnsErrorAsError)&&
   Objects.equals(this.excludeDnsPolicyDropAsSignificant, objAnalyticsProfile.excludeDnsPolicyDropAsSignificant)&&
-  Objects.equals(this.disableOndemandMetrics, objAnalyticsProfile.disableOndemandMetrics)&&
   Objects.equals(this.ondemandMetricsIdleTimeout, objAnalyticsProfile.ondemandMetricsIdleTimeout)&&
   Objects.equals(this.sensitiveLogProfile, objAnalyticsProfile.sensitiveLogProfile)&&
   Objects.equals(this.sipLogDepth, objAnalyticsProfile.sipLogDepth)&&
   Objects.equals(this.excludeSipErrorCodes, objAnalyticsProfile.excludeSipErrorCodes)&&
   Objects.equals(this.healthscoreMaxServerLimit, objAnalyticsProfile.healthscoreMaxServerLimit)&&
   Objects.equals(this.enableAdvancedAnalytics, objAnalyticsProfile.enableAdvancedAnalytics)&&
-  Objects.equals(this.disableVsAnalytics, objAnalyticsProfile.disableVsAnalytics)&&
   Objects.equals(this.hsSecurityTls13Score, objAnalyticsProfile.hsSecurityTls13Score)&&
   Objects.equals(this.excludeRevokedOcspResponsesAsError, objAnalyticsProfile.excludeRevokedOcspResponsesAsError)&&
   Objects.equals(this.excludeStaleOcspResponsesAsError, objAnalyticsProfile.excludeStaleOcspResponsesAsError)&&
@@ -2832,7 +2668,6 @@ public class AnalyticsProfile extends AviRestResource  {
   Objects.equals(this.excludeUnavailableOcspResponsesAsError, objAnalyticsProfile.excludeUnavailableOcspResponsesAsError)&&
   Objects.equals(this.hsSecurityOcspRevokedScore, objAnalyticsProfile.hsSecurityOcspRevokedScore)&&
   Objects.equals(this.enableAdaptiveConfig, objAnalyticsProfile.enableAdaptiveConfig)&&
-  Objects.equals(this.labels, objAnalyticsProfile.labels)&&
   Objects.equals(this.enableVsAnalytics, objAnalyticsProfile.enableVsAnalytics)&&
   Objects.equals(this.enableServerAnalytics, objAnalyticsProfile.enableServerAnalytics)&&
   Objects.equals(this.enableSeAnalytics, objAnalyticsProfile.enableSeAnalytics)&&
@@ -2866,10 +2701,6 @@ public class AnalyticsProfile extends AviRestResource  {
                         sb.append("    connServerLossyTotalRexmtThreshold: ").append(toIndentedString(connServerLossyTotalRexmtThreshold)).append("\n");
                         sb.append("    connServerLossyZeroWinSizeEventThreshold: ").append(toIndentedString(connServerLossyZeroWinSizeEventThreshold)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
-                        sb.append("    disableOndemandMetrics: ").append(toIndentedString(disableOndemandMetrics)).append("\n");
-                        sb.append("    disableSeAnalytics: ").append(toIndentedString(disableSeAnalytics)).append("\n");
-                        sb.append("    disableServerAnalytics: ").append(toIndentedString(disableServerAnalytics)).append("\n");
-                        sb.append("    disableVsAnalytics: ").append(toIndentedString(disableVsAnalytics)).append("\n");
                         sb.append("    enableAdaptiveConfig: ").append(toIndentedString(enableAdaptiveConfig)).append("\n");
                         sb.append("    enableAdvancedAnalytics: ").append(toIndentedString(enableAdvancedAnalytics)).append("\n");
                         sb.append("    enableOndemandMetrics: ").append(toIndentedString(enableOndemandMetrics)).append("\n");
@@ -2924,7 +2755,6 @@ public class AnalyticsProfile extends AviRestResource  {
                         sb.append("    hsSecurityTls12Score: ").append(toIndentedString(hsSecurityTls12Score)).append("\n");
                         sb.append("    hsSecurityTls13Score: ").append(toIndentedString(hsSecurityTls13Score)).append("\n");
                         sb.append("    hsSecurityWeakSignatureAlgoPenalty: ").append(toIndentedString(hsSecurityWeakSignatureAlgoPenalty)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    latencyAuditProps: ").append(toIndentedString(latencyAuditProps)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");

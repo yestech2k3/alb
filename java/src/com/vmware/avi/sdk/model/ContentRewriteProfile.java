@@ -21,113 +21,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ContentRewriteProfile  {
-    @JsonProperty("req_match_replace_pair")
-    private List<MatchReplacePair> reqMatchReplacePair;
-
-    @JsonProperty("request_rewrite_enabled")
-    private Boolean requestRewriteEnabled;
-
-    @JsonProperty("response_rewrite_enabled")
-    private Boolean responseRewriteEnabled;
-
     @JsonProperty("rewritable_content_ref")
     private String rewritableContentRef = null;
-
-    @JsonProperty("rsp_match_replace_pair")
-    private List<MatchReplacePair> rspMatchReplacePair;
 
     @JsonProperty("rsp_rewrite_rules")
     private List<RspContentRewriteRule> rspRewriteRules = null;
 
 
-    /**
-     * This is the getter method this will return the attribute value.
-     * Strings to be matched and replaced with on the request body.
-     * This should be configured when request_rewrite_enabled is set to true.
-     * This is currently not supported.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return reqMatchReplacePair
-     */
-    public List<MatchReplacePair> getReqMatchReplacePair() {
-        return reqMatchReplacePair;
-    }
-
-    /**
-     * This is the setter method. this will set the reqMatchReplacePair
-     * Strings to be matched and replaced with on the request body.
-     * This should be configured when request_rewrite_enabled is set to true.
-     * This is currently not supported.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return reqMatchReplacePair
-     */
-    public void setReqMatchReplacePair(List<MatchReplacePair>  reqMatchReplacePair) {
-        this.reqMatchReplacePair = reqMatchReplacePair;
-    }
-
-    /**
-     * This is the setter method this will set the reqMatchReplacePair
-     * Strings to be matched and replaced with on the request body.
-     * This should be configured when request_rewrite_enabled is set to true.
-     * This is currently not supported.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return reqMatchReplacePair
-     */
-    public ContentRewriteProfile addReqMatchReplacePairItem(MatchReplacePair reqMatchReplacePairItem) {
-      if (this.reqMatchReplacePair == null) {
-        this.reqMatchReplacePair = new ArrayList<MatchReplacePair>();
-      }
-      this.reqMatchReplacePair.add(reqMatchReplacePairItem);
-      return this;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Enable rewrite on request body.
-     * This is not currently supported.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return requestRewriteEnabled
-     */
-    public Boolean getRequestRewriteEnabled() {
-        return requestRewriteEnabled;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Enable rewrite on request body.
-     * This is not currently supported.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param requestRewriteEnabled set the requestRewriteEnabled.
-     */
-    public void setRequestRewriteEnabled(Boolean  requestRewriteEnabled) {
-        this.requestRewriteEnabled = requestRewriteEnabled;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Enable rewrite on response body.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return responseRewriteEnabled
-     */
-    public Boolean getResponseRewriteEnabled() {
-        return responseRewriteEnabled;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Enable rewrite on response body.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param responseRewriteEnabled set the responseRewriteEnabled.
-     */
-    public void setResponseRewriteEnabled(Boolean  responseRewriteEnabled) {
-        this.responseRewriteEnabled = responseRewriteEnabled;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -153,45 +53,6 @@ public class ContentRewriteProfile  {
      */
     public void setRewritableContentRef(String  rewritableContentRef) {
         this.rewritableContentRef = rewritableContentRef;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Strings to be matched and replaced with on the response body.
-     * This should be configured when response_rewrite_enabled is set to true.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rspMatchReplacePair
-     */
-    public List<MatchReplacePair> getRspMatchReplacePair() {
-        return rspMatchReplacePair;
-    }
-
-    /**
-     * This is the setter method. this will set the rspMatchReplacePair
-     * Strings to be matched and replaced with on the response body.
-     * This should be configured when response_rewrite_enabled is set to true.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rspMatchReplacePair
-     */
-    public void setRspMatchReplacePair(List<MatchReplacePair>  rspMatchReplacePair) {
-        this.rspMatchReplacePair = rspMatchReplacePair;
-    }
-
-    /**
-     * This is the setter method this will set the rspMatchReplacePair
-     * Strings to be matched and replaced with on the response body.
-     * This should be configured when response_rewrite_enabled is set to true.
-     * Field deprecated in 21.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rspMatchReplacePair
-     */
-    public ContentRewriteProfile addRspMatchReplacePairItem(MatchReplacePair rspMatchReplacePairItem) {
-      if (this.rspMatchReplacePair == null) {
-        this.rspMatchReplacePair = new ArrayList<MatchReplacePair>();
-      }
-      this.rspMatchReplacePair.add(rspMatchReplacePairItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -247,10 +108,6 @@ public class ContentRewriteProfile  {
       }
       ContentRewriteProfile objContentRewriteProfile = (ContentRewriteProfile) o;
       return   Objects.equals(this.rewritableContentRef, objContentRewriteProfile.rewritableContentRef)&&
-  Objects.equals(this.requestRewriteEnabled, objContentRewriteProfile.requestRewriteEnabled)&&
-  Objects.equals(this.responseRewriteEnabled, objContentRewriteProfile.responseRewriteEnabled)&&
-  Objects.equals(this.reqMatchReplacePair, objContentRewriteProfile.reqMatchReplacePair)&&
-  Objects.equals(this.rspMatchReplacePair, objContentRewriteProfile.rspMatchReplacePair)&&
   Objects.equals(this.rspRewriteRules, objContentRewriteProfile.rspRewriteRules);
     }
 
@@ -258,11 +115,7 @@ public class ContentRewriteProfile  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class ContentRewriteProfile {\n");
-                  sb.append("    reqMatchReplacePair: ").append(toIndentedString(reqMatchReplacePair)).append("\n");
-                        sb.append("    requestRewriteEnabled: ").append(toIndentedString(requestRewriteEnabled)).append("\n");
-                        sb.append("    responseRewriteEnabled: ").append(toIndentedString(responseRewriteEnabled)).append("\n");
-                        sb.append("    rewritableContentRef: ").append(toIndentedString(rewritableContentRef)).append("\n");
-                        sb.append("    rspMatchReplacePair: ").append(toIndentedString(rspMatchReplacePair)).append("\n");
+                  sb.append("    rewritableContentRef: ").append(toIndentedString(rewritableContentRef)).append("\n");
                         sb.append("    rspRewriteRules: ").append(toIndentedString(rspRewriteRules)).append("\n");
                   sb.append("}");
       return sb.toString();

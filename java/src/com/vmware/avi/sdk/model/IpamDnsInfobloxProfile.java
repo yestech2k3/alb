@@ -42,9 +42,6 @@ public class IpamDnsInfobloxProfile  {
     @JsonProperty("usable_domains")
     private List<String> usableDomains = null;
 
-    @JsonProperty("usable_subnets")
-    private List<IpAddrPrefix> usableSubnets;
-
     @JsonProperty("username")
     private String username = null;
 
@@ -254,42 +251,6 @@ public class IpamDnsInfobloxProfile  {
       this.usableDomains.add(usableDomainsItem);
       return this;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is deprecated, use usable_alloc_subnets instead.
-     * Field deprecated in 18.2.8.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableSubnets
-     */
-    public List<IpAddrPrefix> getUsableSubnets() {
-        return usableSubnets;
-    }
-
-    /**
-     * This is the setter method. this will set the usableSubnets
-     * This field is deprecated, use usable_alloc_subnets instead.
-     * Field deprecated in 18.2.8.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableSubnets
-     */
-    public void setUsableSubnets(List<IpAddrPrefix>  usableSubnets) {
-        this.usableSubnets = usableSubnets;
-    }
-
-    /**
-     * This is the setter method this will set the usableSubnets
-     * This field is deprecated, use usable_alloc_subnets instead.
-     * Field deprecated in 18.2.8.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableSubnets
-     */
-    public IpamDnsInfobloxProfile addUsableSubnetsItem(IpAddrPrefix usableSubnetsItem) {
-      if (this.usableSubnets == null) {
-        this.usableSubnets = new ArrayList<IpAddrPrefix>();
-      }
-      this.usableSubnets.add(usableSubnetsItem);
-      return this;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -351,7 +312,6 @@ public class IpamDnsInfobloxProfile  {
   Objects.equals(this.wapiVersion, objIpamDnsInfobloxProfile.wapiVersion)&&
   Objects.equals(this.dnsView, objIpamDnsInfobloxProfile.dnsView)&&
   Objects.equals(this.networkView, objIpamDnsInfobloxProfile.networkView)&&
-  Objects.equals(this.usableSubnets, objIpamDnsInfobloxProfile.usableSubnets)&&
   Objects.equals(this.usableDomains, objIpamDnsInfobloxProfile.usableDomains)&&
   Objects.equals(this.extensibleAttributes, objIpamDnsInfobloxProfile.extensibleAttributes)&&
   Objects.equals(this.usableAllocSubnets, objIpamDnsInfobloxProfile.usableAllocSubnets);
@@ -368,7 +328,6 @@ public class IpamDnsInfobloxProfile  {
                         sb.append("    password: ").append(toIndentedString(password)).append("\n");
                         sb.append("    usableAllocSubnets: ").append(toIndentedString(usableAllocSubnets)).append("\n");
                         sb.append("    usableDomains: ").append(toIndentedString(usableDomains)).append("\n");
-                        sb.append("    usableSubnets: ").append(toIndentedString(usableSubnets)).append("\n");
                         sb.append("    username: ").append(toIndentedString(username)).append("\n");
                         sb.append("    wapiVersion: ").append(toIndentedString(wapiVersion)).append("\n");
                   sb.append("}");

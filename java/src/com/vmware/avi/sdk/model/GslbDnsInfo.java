@@ -33,9 +33,6 @@ public class GslbDnsInfo  {
     @JsonProperty("retry_count")
     private Integer retryCount = null;
 
-    @JsonProperty("se_table")
-    private List<GslbDnsSeInfo> seTable;
-
 
 
     /**
@@ -140,45 +137,6 @@ public class GslbDnsInfo  {
     public void setRetryCount(Integer  retryCount) {
         this.retryCount = retryCount;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * This tables holds all the se-related info across all dns-vs(es).
-     * Field deprecated in 18.2.3.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seTable
-     */
-    public List<GslbDnsSeInfo> getSeTable() {
-        return seTable;
-    }
-
-    /**
-     * This is the setter method. this will set the seTable
-     * This tables holds all the se-related info across all dns-vs(es).
-     * Field deprecated in 18.2.3.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seTable
-     */
-    public void setSeTable(List<GslbDnsSeInfo>  seTable) {
-        this.seTable = seTable;
-    }
-
-    /**
-     * This is the setter method this will set the seTable
-     * This tables holds all the se-related info across all dns-vs(es).
-     * Field deprecated in 18.2.3.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seTable
-     */
-    public GslbDnsInfo addSeTableItem(GslbDnsSeInfo seTableItem) {
-      if (this.seTable == null) {
-        this.seTable = new ArrayList<GslbDnsSeInfo>();
-      }
-      this.seTable.add(seTableItem);
-      return this;
-    }
 
 
     @Override
@@ -192,7 +150,6 @@ public class GslbDnsInfo  {
       GslbDnsInfo objGslbDnsInfo = (GslbDnsInfo) o;
       return   Objects.equals(this.dnsActive, objGslbDnsInfo.dnsActive)&&
   Objects.equals(this.dnsVsStates, objGslbDnsInfo.dnsVsStates)&&
-  Objects.equals(this.seTable, objGslbDnsInfo.seTable)&&
   Objects.equals(this.gsStatus, objGslbDnsInfo.gsStatus)&&
   Objects.equals(this.retryCount, objGslbDnsInfo.retryCount);
     }
@@ -205,7 +162,6 @@ public class GslbDnsInfo  {
                         sb.append("    dnsVsStates: ").append(toIndentedString(dnsVsStates)).append("\n");
                         sb.append("    gsStatus: ").append(toIndentedString(gsStatus)).append("\n");
                         sb.append("    retryCount: ").append(toIndentedString(retryCount)).append("\n");
-                        sb.append("    seTable: ").append(toIndentedString(seTable)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

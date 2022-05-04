@@ -21,12 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SeBootupProperties  {
-    @JsonProperty("distribute_queues")
-    private Boolean distributeQueues;
-
-    @JsonProperty("distribute_vnics")
-    private Boolean distributeVnics;
-
     @JsonProperty("docker_backend_portend")
     private Integer dockerBackendPortend = 30720;
 
@@ -53,9 +47,6 @@ public class SeBootupProperties  {
 
     @JsonProperty("se_dp_compression")
     private SeBootupCompressionProperties seDpCompression = null;
-
-    @JsonProperty("se_dpdk_pmd")
-    private Integer seDpdkPmd;
 
     @JsonProperty("se_emulated_cores")
     private Integer seEmulatedCores = 0;
@@ -87,92 +78,13 @@ public class SeBootupProperties  {
     @JsonProperty("se_log_buffer_events_size")
     private Integer seLogBufferEventsSize = 512;
 
-    @JsonProperty("se_lro")
-    private Integer seLro;
-
-    @JsonProperty("se_pcap_pkt_count")
-    private Integer sePcapPktCount;
-
-    @JsonProperty("se_pcap_pkt_sz")
-    private Integer sePcapPktSz;
-
-    @JsonProperty("se_rum_sampling_nav_interval")
-    private Integer seRumSamplingNavInterval;
-
-    @JsonProperty("se_rum_sampling_nav_percent")
-    private Integer seRumSamplingNavPercent;
-
-    @JsonProperty("se_rum_sampling_res_interval")
-    private Integer seRumSamplingResInterval;
-
-    @JsonProperty("se_rum_sampling_res_percent")
-    private Integer seRumSamplingResPercent;
-
-    @JsonProperty("se_tunnel_mode")
-    private Integer seTunnelMode;
-
-    @JsonProperty("se_tx_batch_size")
-    private Integer seTxBatchSize;
-
-    @JsonProperty("se_use_dpdk")
-    private Integer seUseDpdk;
-
     @JsonProperty("ssl_sess_cache_per_vs")
     private Integer sslSessCachePerVs = 4096;
-
-    @JsonProperty("ssl_sess_cache_timeout")
-    private Integer sslSessCacheTimeout;
 
     @JsonProperty("tcp_syncache_hashsize")
     private Integer tcpSyncacheHashsize = 8192;
 
 
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 17.2.8.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return distributeQueues
-     */
-    public Boolean getDistributeQueues() {
-        return distributeQueues;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 17.2.8.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param distributeQueues set the distributeQueues.
-     */
-    public void setDistributeQueues(Boolean  distributeQueues) {
-        this.distributeQueues = distributeQueues;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return distributeVnics
-     */
-    public Boolean getDistributeVnics() {
-        return distributeVnics;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param distributeVnics set the distributeVnics.
-     */
-    public void setDistributeVnics(Boolean  distributeVnics) {
-        this.distributeVnics = distributeVnics;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -394,28 +306,6 @@ public class SeBootupProperties  {
      */
     public void setSeDpCompression(SeBootupCompressionProperties seDpCompression) {
         this.seDpCompression = seDpCompression;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field has been moved to se_group properties 18.1.2 onwards.
-     * Field deprecated in 18.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seDpdkPmd
-     */
-    public Integer getSeDpdkPmd() {
-        return seDpdkPmd;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field has been moved to se_group properties 18.1.2 onwards.
-     * Field deprecated in 18.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seDpdkPmd set the seDpdkPmd.
-     */
-    public void setSeDpdkPmd(Integer  seDpdkPmd) {
-        this.seDpdkPmd = seDpdkPmd;
     }
 
     /**
@@ -670,228 +560,6 @@ public class SeBootupProperties  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seLro
-     */
-    public Integer getSeLro() {
-        return seLro;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seLro set the seLro.
-     */
-    public void setSeLro(Integer  seLro) {
-        this.seLro = seLro;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return sePcapPktCount
-     */
-    public Integer getSePcapPktCount() {
-        return sePcapPktCount;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param sePcapPktCount set the sePcapPktCount.
-     */
-    public void setSePcapPktCount(Integer  sePcapPktCount) {
-        this.sePcapPktCount = sePcapPktCount;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return sePcapPktSz
-     */
-    public Integer getSePcapPktSz() {
-        return sePcapPktSz;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param sePcapPktSz set the sePcapPktSz.
-     */
-    public void setSePcapPktSz(Integer  sePcapPktSz) {
-        this.sePcapPktSz = sePcapPktSz;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRumSamplingNavInterval
-     */
-    public Integer getSeRumSamplingNavInterval() {
-        return seRumSamplingNavInterval;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRumSamplingNavInterval set the seRumSamplingNavInterval.
-     */
-    public void setSeRumSamplingNavInterval(Integer  seRumSamplingNavInterval) {
-        this.seRumSamplingNavInterval = seRumSamplingNavInterval;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRumSamplingNavPercent
-     */
-    public Integer getSeRumSamplingNavPercent() {
-        return seRumSamplingNavPercent;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRumSamplingNavPercent set the seRumSamplingNavPercent.
-     */
-    public void setSeRumSamplingNavPercent(Integer  seRumSamplingNavPercent) {
-        this.seRumSamplingNavPercent = seRumSamplingNavPercent;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRumSamplingResInterval
-     */
-    public Integer getSeRumSamplingResInterval() {
-        return seRumSamplingResInterval;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRumSamplingResInterval set the seRumSamplingResInterval.
-     */
-    public void setSeRumSamplingResInterval(Integer  seRumSamplingResInterval) {
-        this.seRumSamplingResInterval = seRumSamplingResInterval;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRumSamplingResPercent
-     */
-    public Integer getSeRumSamplingResPercent() {
-        return seRumSamplingResPercent;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRumSamplingResPercent set the seRumSamplingResPercent.
-     */
-    public void setSeRumSamplingResPercent(Integer  seRumSamplingResPercent) {
-        this.seRumSamplingResPercent = seRumSamplingResPercent;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Determines if dsr from secondary se is active or not      0        automatically determine based on hypervisor type    1        disable dsr
-     * unconditionally    ~[0,1]   enable dsr unconditionally.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seTunnelMode
-     */
-    public Integer getSeTunnelMode() {
-        return seTunnelMode;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Determines if dsr from secondary se is active or not      0        automatically determine based on hypervisor type    1        disable dsr
-     * unconditionally    ~[0,1]   enable dsr unconditionally.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seTunnelMode set the seTunnelMode.
-     */
-    public void setSeTunnelMode(Integer  seTunnelMode) {
-        this.seTunnelMode = seTunnelMode;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seTxBatchSize
-     */
-    public Integer getSeTxBatchSize() {
-        return seTxBatchSize;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seTxBatchSize set the seTxBatchSize.
-     */
-    public void setSeTxBatchSize(Integer  seTxBatchSize) {
-        this.seTxBatchSize = seTxBatchSize;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field has been moved to se_group properties 18.1.2 onwards.
-     * Field deprecated in 18.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seUseDpdk
-     */
-    public Integer getSeUseDpdk() {
-        return seUseDpdk;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field has been moved to se_group properties 18.1.2 onwards.
-     * Field deprecated in 18.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seUseDpdk set the seUseDpdk.
-     */
-    public void setSeUseDpdk(Integer  seUseDpdk) {
-        this.seUseDpdk = seUseDpdk;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 4096.
      * @return sslSessCachePerVs
@@ -908,28 +576,6 @@ public class SeBootupProperties  {
      */
     public void setSslSessCachePerVs(Integer  sslSessCachePerVs) {
         this.sslSessCachePerVs = sslSessCachePerVs;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated in 21.1.1, use session timeout in ssl profile.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return sslSessCacheTimeout
-     */
-    public Integer getSslSessCacheTimeout() {
-        return sslSessCacheTimeout;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated in 21.1.1, use session timeout in ssl profile.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param sslSessCacheTimeout set the sslSessCacheTimeout.
-     */
-    public void setSslSessCacheTimeout(Integer  sslSessCacheTimeout) {
-        this.sslSessCacheTimeout = sslSessCacheTimeout;
     }
 
     /**
@@ -968,20 +614,10 @@ public class SeBootupProperties  {
   Objects.equals(this.logAgentTraceEnabled, objSeBootupProperties.logAgentTraceEnabled)&&
   Objects.equals(this.logAgentDebugEnabled, objSeBootupProperties.logAgentDebugEnabled)&&
   Objects.equals(this.seEmulatedCores, objSeBootupProperties.seEmulatedCores)&&
-  Objects.equals(this.seTxBatchSize, objSeBootupProperties.seTxBatchSize)&&
   Objects.equals(this.l7ConnsPerCore, objSeBootupProperties.l7ConnsPerCore)&&
   Objects.equals(this.sslSessCachePerVs, objSeBootupProperties.sslSessCachePerVs)&&
   Objects.equals(this.l7ResvdListenConnsPerCore, objSeBootupProperties.l7ResvdListenConnsPerCore)&&
-  Objects.equals(this.sslSessCacheTimeout, objSeBootupProperties.sslSessCacheTimeout)&&
-  Objects.equals(this.seLro, objSeBootupProperties.seLro)&&
-  Objects.equals(this.seRumSamplingNavPercent, objSeBootupProperties.seRumSamplingNavPercent)&&
-  Objects.equals(this.seRumSamplingResPercent, objSeBootupProperties.seRumSamplingResPercent)&&
-  Objects.equals(this.seRumSamplingNavInterval, objSeBootupProperties.seRumSamplingNavInterval)&&
-  Objects.equals(this.seRumSamplingResInterval, objSeBootupProperties.seRumSamplingResInterval)&&
   Objects.equals(this.seDpCompression, objSeBootupProperties.seDpCompression)&&
-  Objects.equals(this.seDpdkPmd, objSeBootupProperties.seDpdkPmd)&&
-  Objects.equals(this.seTunnelMode, objSeBootupProperties.seTunnelMode)&&
-  Objects.equals(this.seUseDpdk, objSeBootupProperties.seUseDpdk)&&
   Objects.equals(this.seLogBufferChunkCount, objSeBootupProperties.seLogBufferChunkCount)&&
   Objects.equals(this.seLogBufferApplogSize, objSeBootupProperties.seLogBufferApplogSize)&&
   Objects.equals(this.seLogBufferConnlogSize, objSeBootupProperties.seLogBufferConnlogSize)&&
@@ -990,14 +626,10 @@ public class SeBootupProperties  {
   Objects.equals(this.seLogBufferAppBlockingDequeue, objSeBootupProperties.seLogBufferAppBlockingDequeue)&&
   Objects.equals(this.seLogBufferConnBlockingDequeue, objSeBootupProperties.seLogBufferConnBlockingDequeue)&&
   Objects.equals(this.seLogBufferEventsBlockingDequeue, objSeBootupProperties.seLogBufferEventsBlockingDequeue)&&
-  Objects.equals(this.sePcapPktSz, objSeBootupProperties.sePcapPktSz)&&
-  Objects.equals(this.sePcapPktCount, objSeBootupProperties.sePcapPktCount)&&
   Objects.equals(this.fairQueueingEnabled, objSeBootupProperties.fairQueueingEnabled)&&
   Objects.equals(this.dockerBackendPortstart, objSeBootupProperties.dockerBackendPortstart)&&
   Objects.equals(this.dockerBackendPortend, objSeBootupProperties.dockerBackendPortend)&&
-  Objects.equals(this.distributeVnics, objSeBootupProperties.distributeVnics)&&
   Objects.equals(this.seL3EncapIpc, objSeBootupProperties.seL3EncapIpc)&&
-  Objects.equals(this.distributeQueues, objSeBootupProperties.distributeQueues)&&
   Objects.equals(this.geoDbGranularity, objSeBootupProperties.geoDbGranularity);
     }
 
@@ -1005,9 +637,7 @@ public class SeBootupProperties  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class SeBootupProperties {\n");
-                  sb.append("    distributeQueues: ").append(toIndentedString(distributeQueues)).append("\n");
-                        sb.append("    distributeVnics: ").append(toIndentedString(distributeVnics)).append("\n");
-                        sb.append("    dockerBackendPortend: ").append(toIndentedString(dockerBackendPortend)).append("\n");
+                  sb.append("    dockerBackendPortend: ").append(toIndentedString(dockerBackendPortend)).append("\n");
                         sb.append("    dockerBackendPortstart: ").append(toIndentedString(dockerBackendPortstart)).append("\n");
                         sb.append("    fairQueueingEnabled: ").append(toIndentedString(fairQueueingEnabled)).append("\n");
                         sb.append("    geoDbGranularity: ").append(toIndentedString(geoDbGranularity)).append("\n");
@@ -1016,7 +646,6 @@ public class SeBootupProperties  {
                         sb.append("    logAgentDebugEnabled: ").append(toIndentedString(logAgentDebugEnabled)).append("\n");
                         sb.append("    logAgentTraceEnabled: ").append(toIndentedString(logAgentTraceEnabled)).append("\n");
                         sb.append("    seDpCompression: ").append(toIndentedString(seDpCompression)).append("\n");
-                        sb.append("    seDpdkPmd: ").append(toIndentedString(seDpdkPmd)).append("\n");
                         sb.append("    seEmulatedCores: ").append(toIndentedString(seEmulatedCores)).append("\n");
                         sb.append("    seIpEncapIpc: ").append(toIndentedString(seIpEncapIpc)).append("\n");
                         sb.append("    seL3EncapIpc: ").append(toIndentedString(seL3EncapIpc)).append("\n");
@@ -1027,18 +656,7 @@ public class SeBootupProperties  {
                         sb.append("    seLogBufferConnlogSize: ").append(toIndentedString(seLogBufferConnlogSize)).append("\n");
                         sb.append("    seLogBufferEventsBlockingDequeue: ").append(toIndentedString(seLogBufferEventsBlockingDequeue)).append("\n");
                         sb.append("    seLogBufferEventsSize: ").append(toIndentedString(seLogBufferEventsSize)).append("\n");
-                        sb.append("    seLro: ").append(toIndentedString(seLro)).append("\n");
-                        sb.append("    sePcapPktCount: ").append(toIndentedString(sePcapPktCount)).append("\n");
-                        sb.append("    sePcapPktSz: ").append(toIndentedString(sePcapPktSz)).append("\n");
-                        sb.append("    seRumSamplingNavInterval: ").append(toIndentedString(seRumSamplingNavInterval)).append("\n");
-                        sb.append("    seRumSamplingNavPercent: ").append(toIndentedString(seRumSamplingNavPercent)).append("\n");
-                        sb.append("    seRumSamplingResInterval: ").append(toIndentedString(seRumSamplingResInterval)).append("\n");
-                        sb.append("    seRumSamplingResPercent: ").append(toIndentedString(seRumSamplingResPercent)).append("\n");
-                        sb.append("    seTunnelMode: ").append(toIndentedString(seTunnelMode)).append("\n");
-                        sb.append("    seTxBatchSize: ").append(toIndentedString(seTxBatchSize)).append("\n");
-                        sb.append("    seUseDpdk: ").append(toIndentedString(seUseDpdk)).append("\n");
                         sb.append("    sslSessCachePerVs: ").append(toIndentedString(sslSessCachePerVs)).append("\n");
-                        sb.append("    sslSessCacheTimeout: ").append(toIndentedString(sslSessCacheTimeout)).append("\n");
                         sb.append("    tcpSyncacheHashsize: ").append(toIndentedString(tcpSyncacheHashsize)).append("\n");
                   sb.append("}");
       return sb.toString();

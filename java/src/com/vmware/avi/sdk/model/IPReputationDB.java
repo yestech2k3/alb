@@ -30,9 +30,6 @@ public class IPReputationDB extends AviRestResource  {
     @JsonProperty("incremental_file_refs")
     private List<String> incrementalFileRefs = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -167,51 +164,6 @@ public class IPReputationDB extends AviRestResource  {
         this.incrementalFileRefs = new ArrayList<String>();
       }
       this.incrementalFileRefs.add(incrementalFileRefsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public IPReputationDB addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
       return this;
     }
     /**
@@ -443,7 +395,6 @@ public class IPReputationDB extends AviRestResource  {
   Objects.equals(this.vendor, objIPReputationDB.vendor)&&
   Objects.equals(this.version, objIPReputationDB.version)&&
   Objects.equals(this.serviceStatus, objIPReputationDB.serviceStatus)&&
-  Objects.equals(this.labels, objIPReputationDB.labels)&&
   Objects.equals(this.markers, objIPReputationDB.markers);
     }
 
@@ -454,7 +405,6 @@ public class IPReputationDB extends AviRestResource  {
                   sb.append("    baseFileRefs: ").append(toIndentedString(baseFileRefs)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
                         sb.append("    incrementalFileRefs: ").append(toIndentedString(incrementalFileRefs)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    serviceStatus: ").append(toIndentedString(serviceStatus)).append("\n");

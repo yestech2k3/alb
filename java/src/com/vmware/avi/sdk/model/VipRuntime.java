@@ -90,9 +90,6 @@ public class VipRuntime  {
     @JsonProperty("se_list")
     private List<SeList> seList = null;
 
-    @JsonProperty("servers_configured")
-    private Boolean serversConfigured;
-
     @JsonProperty("supp_runtime_status")
     private OperationalStatus suppRuntimeStatus = null;
 
@@ -602,26 +599,6 @@ public class VipRuntime  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return serversConfigured
-     */
-    public Boolean getServersConfigured() {
-        return serversConfigured;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param serversConfigured set the serversConfigured.
-     */
-    public void setServersConfigured(Boolean  serversConfigured) {
-        this.serversConfigured = serversConfigured;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return suppRuntimeStatus
@@ -741,7 +718,6 @@ public class VipRuntime  {
       return   Objects.equals(this.vipId, objVipRuntime.vipId)&&
   Objects.equals(this.fsmStateName, objVipRuntime.fsmStateName)&&
   Objects.equals(this.fsmStateId, objVipRuntime.fsmStateId)&&
-  Objects.equals(this.serversConfigured, objVipRuntime.serversConfigured)&&
   Objects.equals(this.lastChangedTime, objVipRuntime.lastChangedTime)&&
   Objects.equals(this.markedForDelete, objVipRuntime.markedForDelete)&&
   Objects.equals(this.progressPercent, objVipRuntime.progressPercent)&&
@@ -796,7 +772,6 @@ public class VipRuntime  {
                         sb.append("    scaleinRequest: ").append(toIndentedString(scaleinRequest)).append("\n");
                         sb.append("    scaleoutInProgress: ").append(toIndentedString(scaleoutInProgress)).append("\n");
                         sb.append("    seList: ").append(toIndentedString(seList)).append("\n");
-                        sb.append("    serversConfigured: ").append(toIndentedString(serversConfigured)).append("\n");
                         sb.append("    suppRuntimeStatus: ").append(toIndentedString(suppRuntimeStatus)).append("\n");
                         sb.append("    userScaleoutPending: ").append(toIndentedString(userScaleoutPending)).append("\n");
                         sb.append("    vipId: ").append(toIndentedString(vipId)).append("\n");

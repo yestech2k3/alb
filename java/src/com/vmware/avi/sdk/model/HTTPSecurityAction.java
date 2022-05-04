@@ -30,9 +30,6 @@ public class HTTPSecurityAction  {
     @JsonProperty("https_port")
     private Integer httpsPort = null;
 
-    @JsonProperty("rate_limit")
-    private RateProfile rateLimit;
-
     @JsonProperty("rate_profile")
     private HTTPSecurityActionRateProfile rateProfile = null;
 
@@ -121,30 +118,6 @@ public class HTTPSecurityAction  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Rate limit profile to be used to rate-limit the flow.
-     * (deprecated).
-     * Field deprecated in 18.2.9.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return rateLimit
-     */
-    public RateProfile getRateLimit() {
-        return rateLimit;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Rate limit profile to be used to rate-limit the flow.
-     * (deprecated).
-     * Field deprecated in 18.2.9.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param rateLimit set the rateLimit.
-     */
-    public void setRateLimit(RateProfile rateLimit) {
-        this.rateLimit = rateLimit;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Rate limiting configuration for this action.
      * Field introduced in 18.2.9.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -207,7 +180,6 @@ public class HTTPSecurityAction  {
   Objects.equals(this.statusCode, objHTTPSecurityAction.statusCode)&&
   Objects.equals(this.httpsPort, objHTTPSecurityAction.httpsPort)&&
   Objects.equals(this.file, objHTTPSecurityAction.file)&&
-  Objects.equals(this.rateLimit, objHTTPSecurityAction.rateLimit)&&
   Objects.equals(this.rateProfile, objHTTPSecurityAction.rateProfile);
     }
 
@@ -218,7 +190,6 @@ public class HTTPSecurityAction  {
                   sb.append("    action: ").append(toIndentedString(action)).append("\n");
                         sb.append("    file: ").append(toIndentedString(file)).append("\n");
                         sb.append("    httpsPort: ").append(toIndentedString(httpsPort)).append("\n");
-                        sb.append("    rateLimit: ").append(toIndentedString(rateLimit)).append("\n");
                         sb.append("    rateProfile: ").append(toIndentedString(rateProfile)).append("\n");
                         sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
                   sb.append("}");

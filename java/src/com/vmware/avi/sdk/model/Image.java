@@ -66,9 +66,6 @@ public class Image extends AviRestResource  {
     @JsonProperty("start_time")
     private String startTime = null;
 
-    @JsonProperty("status")
-    private String status;
-
     @JsonProperty("tasks_completed")
     private Integer tasksCompleted = 0;
 
@@ -494,36 +491,6 @@ public class Image extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Status to check if the image is present.
-     * Enum options - SYSERR_SUCCESS, SYSERR_FAILURE, SYSERR_OUT_OF_MEMORY, SYSERR_NO_ENT, SYSERR_INVAL, SYSERR_ACCESS, SYSERR_FAULT, SYSERR_IO,
-     * SYSERR_TIMEOUT, SYSERR_NOT_SUPPORTED, SYSERR_NOT_READY, SYSERR_UPGRADE_IN_PROGRESS, SYSERR_WARM_START_IN_PROGRESS, SYSERR_TRY_AGAIN,
-     * SYSERR_NOT_UPGRADING, SYSERR_PENDING, SYSERR_EVENT_GEN_FAILURE, SYSERR_CONFIG_PARAM_MISSING, SYSERR_RANGE, SYSERR_BAD_REQUEST...
-     * Field deprecated in 21.1.3.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return status
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Status to check if the image is present.
-     * Enum options - SYSERR_SUCCESS, SYSERR_FAILURE, SYSERR_OUT_OF_MEMORY, SYSERR_NO_ENT, SYSERR_INVAL, SYSERR_ACCESS, SYSERR_FAULT, SYSERR_IO,
-     * SYSERR_TIMEOUT, SYSERR_NOT_SUPPORTED, SYSERR_NOT_READY, SYSERR_UPGRADE_IN_PROGRESS, SYSERR_WARM_START_IN_PROGRESS, SYSERR_TRY_AGAIN,
-     * SYSERR_NOT_UPGRADING, SYSERR_PENDING, SYSERR_EVENT_GEN_FAILURE, SYSERR_CONFIG_PARAM_MISSING, SYSERR_RANGE, SYSERR_BAD_REQUEST...
-     * Field deprecated in 21.1.3.
-     * Field introduced in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param status set the status.
-     */
-    public void setStatus(String  status) {
-        this.status = status;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Completed set of tasks for image upload.
      * Field introduced in 21.1.3.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -703,7 +670,6 @@ public class Image extends AviRestResource  {
   Objects.equals(this.seInfo, objImage.seInfo)&&
   Objects.equals(this.migrations, objImage.migrations)&&
   Objects.equals(this.type, objImage.type)&&
-  Objects.equals(this.status, objImage.status)&&
   Objects.equals(this.uberBundle, objImage.uberBundle)&&
   Objects.equals(this.controllerPatchRef, objImage.controllerPatchRef)&&
   Objects.equals(this.sePatchRef, objImage.sePatchRef)&&
@@ -740,7 +706,6 @@ public class Image extends AviRestResource  {
                         sb.append("    sePatchName: ").append(toIndentedString(sePatchName)).append("\n");
                         sb.append("    sePatchRef: ").append(toIndentedString(sePatchRef)).append("\n");
                         sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
-                        sb.append("    status: ").append(toIndentedString(status)).append("\n");
                         sb.append("    tasksCompleted: ").append(toIndentedString(tasksCompleted)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
                         sb.append("    totalTasks: ").append(toIndentedString(totalTasks)).append("\n");

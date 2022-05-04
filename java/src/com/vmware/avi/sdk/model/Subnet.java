@@ -27,12 +27,6 @@ public class Subnet  {
     @JsonProperty("static_ip_ranges")
     private List<StaticIpRange> staticIpRanges = null;
 
-    @JsonProperty("static_ips")
-    private List<IpAddr> staticIps;
-
-    @JsonProperty("static_ranges")
-    private List<IpAddrRange> staticRanges;
-
 
 
     /**
@@ -95,78 +89,6 @@ public class Subnet  {
       this.staticIpRanges.add(staticIpRangesItem);
       return this;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Use static_ip_ranges.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return staticIps
-     */
-    public List<IpAddr> getStaticIps() {
-        return staticIps;
-    }
-
-    /**
-     * This is the setter method. this will set the staticIps
-     * Use static_ip_ranges.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return staticIps
-     */
-    public void setStaticIps(List<IpAddr>  staticIps) {
-        this.staticIps = staticIps;
-    }
-
-    /**
-     * This is the setter method this will set the staticIps
-     * Use static_ip_ranges.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return staticIps
-     */
-    public Subnet addStaticIpsItem(IpAddr staticIpsItem) {
-      if (this.staticIps == null) {
-        this.staticIps = new ArrayList<IpAddr>();
-      }
-      this.staticIps.add(staticIpsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Use static_ip_ranges.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return staticRanges
-     */
-    public List<IpAddrRange> getStaticRanges() {
-        return staticRanges;
-    }
-
-    /**
-     * This is the setter method. this will set the staticRanges
-     * Use static_ip_ranges.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return staticRanges
-     */
-    public void setStaticRanges(List<IpAddrRange>  staticRanges) {
-        this.staticRanges = staticRanges;
-    }
-
-    /**
-     * This is the setter method this will set the staticRanges
-     * Use static_ip_ranges.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return staticRanges
-     */
-    public Subnet addStaticRangesItem(IpAddrRange staticRangesItem) {
-      if (this.staticRanges == null) {
-        this.staticRanges = new ArrayList<IpAddrRange>();
-      }
-      this.staticRanges.add(staticRangesItem);
-      return this;
-    }
 
 
     @Override
@@ -179,8 +101,6 @@ public class Subnet  {
       }
       Subnet objSubnet = (Subnet) o;
       return   Objects.equals(this.prefix, objSubnet.prefix)&&
-  Objects.equals(this.staticIps, objSubnet.staticIps)&&
-  Objects.equals(this.staticRanges, objSubnet.staticRanges)&&
   Objects.equals(this.staticIpRanges, objSubnet.staticIpRanges);
     }
 
@@ -190,8 +110,6 @@ public class Subnet  {
       sb.append("class Subnet {\n");
                   sb.append("    prefix: ").append(toIndentedString(prefix)).append("\n");
                         sb.append("    staticIpRanges: ").append(toIndentedString(staticIpRanges)).append("\n");
-                        sb.append("    staticIps: ").append(toIndentedString(staticIps)).append("\n");
-                        sb.append("    staticRanges: ").append(toIndentedString(staticRanges)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

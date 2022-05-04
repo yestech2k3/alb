@@ -21,12 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Cloud extends AviRestResource  {
-    @JsonProperty("apic_configuration")
-    private APICConfiguration apicConfiguration;
-
-    @JsonProperty("apic_mode")
-    private Boolean apicMode;
-
     @JsonProperty("autoscale_polling_interval")
     private Integer autoscalePollingInterval = 60;
 
@@ -93,9 +87,6 @@ public class Cloud extends AviRestResource  {
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
-    @JsonProperty("mesos_configuration")
-    private MesosConfiguration mesosConfiguration;
-
     @JsonProperty("metrics_polling_interval")
     private Integer metricsPollingInterval = 300;
 
@@ -105,9 +96,6 @@ public class Cloud extends AviRestResource  {
     @JsonProperty("name")
     private String name = null;
 
-    @JsonProperty("nsx_configuration")
-    private NsxConfiguration nsxConfiguration;
-
     @JsonProperty("nsxt_configuration")
     private NsxtConfiguration nsxtConfiguration = null;
 
@@ -116,9 +104,6 @@ public class Cloud extends AviRestResource  {
 
     @JsonProperty("openstack_configuration")
     private OpenStackConfiguration openstackConfiguration = null;
-
-    @JsonProperty("oshiftk8s_configuration")
-    private OShiftK8SConfiguration oshiftk8sConfiguration;
 
     @JsonProperty("prefer_static_routes")
     private Boolean preferStaticRoutes = false;
@@ -157,48 +142,6 @@ public class Cloud extends AviRestResource  {
     private String vtype = "CLOUD_NONE";
 
 
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return apicConfiguration
-     */
-    public APICConfiguration getApicConfiguration() {
-        return apicConfiguration;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param apicConfiguration set the apicConfiguration.
-     */
-    public void setApicConfiguration(APICConfiguration apicConfiguration) {
-        this.apicConfiguration = apicConfiguration;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @return apicMode
-     */
-    public Boolean getApicMode() {
-        return apicMode;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @param apicMode set the apicMode.
-     */
-    public void setApicMode(Boolean  apicMode) {
-        this.apicMode = apicMode;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -783,26 +726,6 @@ public class Cloud extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return mesosConfiguration
-     */
-    public MesosConfiguration getMesosConfiguration() {
-        return mesosConfiguration;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param mesosConfiguration set the mesosConfiguration.
-     */
-    public void setMesosConfiguration(MesosConfiguration mesosConfiguration) {
-        this.mesosConfiguration = mesosConfiguration;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Cloud metrics collector polling interval in seconds.
      * Field introduced in 22.1.1.
      * Unit is seconds.
@@ -873,30 +796,6 @@ public class Cloud extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Configuration parameters for nsx manager.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nsxConfiguration
-     */
-    public NsxConfiguration getNsxConfiguration() {
-        return nsxConfiguration;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Configuration parameters for nsx manager.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nsxConfiguration set the nsxConfiguration.
-     */
-    public void setNsxConfiguration(NsxConfiguration nsxConfiguration) {
-        this.nsxConfiguration = nsxConfiguration;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Nsx-t cloud platform configuration.
      * Field introduced in 20.1.1.
      * Allowed in enterprise edition with any value, basic, enterprise with cloud services edition.
@@ -961,26 +860,6 @@ public class Cloud extends AviRestResource  {
      */
     public void setOpenstackConfiguration(OpenStackConfiguration openstackConfiguration) {
         this.openstackConfiguration = openstackConfiguration;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return oshiftk8sConfiguration
-     */
-    public OShiftK8SConfiguration getOshiftk8SConfiguration() {
-        return oshiftk8sConfiguration;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param oshiftk8sConfiguration set the oshiftk8sConfiguration.
-     */
-    public void setOshiftk8SConfiguration(OShiftK8SConfiguration oshiftk8sConfiguration) {
-        this.oshiftk8sConfiguration = oshiftk8sConfiguration;
     }
 
     /**
@@ -1264,16 +1143,12 @@ public class Cloud extends AviRestResource  {
   Objects.equals(this.vcenterConfiguration, objCloud.vcenterConfiguration)&&
   Objects.equals(this.openstackConfiguration, objCloud.openstackConfiguration)&&
   Objects.equals(this.awsConfiguration, objCloud.awsConfiguration)&&
-  Objects.equals(this.apicMode, objCloud.apicMode)&&
-  Objects.equals(this.apicConfiguration, objCloud.apicConfiguration)&&
   Objects.equals(this.cloudstackConfiguration, objCloud.cloudstackConfiguration)&&
   Objects.equals(this.vcaConfiguration, objCloud.vcaConfiguration)&&
-  Objects.equals(this.mesosConfiguration, objCloud.mesosConfiguration)&&
   Objects.equals(this.proxyConfiguration, objCloud.proxyConfiguration)&&
   Objects.equals(this.linuxserverConfiguration, objCloud.linuxserverConfiguration)&&
   Objects.equals(this.dockerConfiguration, objCloud.dockerConfiguration)&&
   Objects.equals(this.rancherConfiguration, objCloud.rancherConfiguration)&&
-  Objects.equals(this.oshiftk8sConfiguration, objCloud.oshiftk8sConfiguration)&&
   Objects.equals(this.azureConfiguration, objCloud.azureConfiguration)&&
   Objects.equals(this.gcpConfiguration, objCloud.gcpConfiguration)&&
   Objects.equals(this.nsxtConfiguration, objCloud.nsxtConfiguration)&&
@@ -1287,7 +1162,6 @@ public class Cloud extends AviRestResource  {
   Objects.equals(this.dnsProviderRef, objCloud.dnsProviderRef)&&
   Objects.equals(this.eastWestIpamProviderRef, objCloud.eastWestIpamProviderRef)&&
   Objects.equals(this.eastWestDnsProviderRef, objCloud.eastWestDnsProviderRef)&&
-  Objects.equals(this.nsxConfiguration, objCloud.nsxConfiguration)&&
   Objects.equals(this.customTags, objCloud.customTags)&&
   Objects.equals(this.stateBasedDnsRegistration, objCloud.stateBasedDnsRegistration)&&
   Objects.equals(this.ip6AutocfgEnabled, objCloud.ip6AutocfgEnabled)&&
@@ -1308,9 +1182,7 @@ public class Cloud extends AviRestResource  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class Cloud {\n");
-                  sb.append("    apicConfiguration: ").append(toIndentedString(apicConfiguration)).append("\n");
-                        sb.append("    apicMode: ").append(toIndentedString(apicMode)).append("\n");
-                        sb.append("    autoscalePollingInterval: ").append(toIndentedString(autoscalePollingInterval)).append("\n");
+                  sb.append("    autoscalePollingInterval: ").append(toIndentedString(autoscalePollingInterval)).append("\n");
                         sb.append("    awsConfiguration: ").append(toIndentedString(awsConfiguration)).append("\n");
                         sb.append("    azureConfiguration: ").append(toIndentedString(azureConfiguration)).append("\n");
                         sb.append("    cloudstackConfiguration: ").append(toIndentedString(cloudstackConfiguration)).append("\n");
@@ -1332,15 +1204,12 @@ public class Cloud extends AviRestResource  {
                         sb.append("    linuxserverConfiguration: ").append(toIndentedString(linuxserverConfiguration)).append("\n");
                         sb.append("    maintenanceMode: ").append(toIndentedString(maintenanceMode)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
-                        sb.append("    mesosConfiguration: ").append(toIndentedString(mesosConfiguration)).append("\n");
                         sb.append("    metricsPollingInterval: ").append(toIndentedString(metricsPollingInterval)).append("\n");
                         sb.append("    mtu: ").append(toIndentedString(mtu)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
-                        sb.append("    nsxConfiguration: ").append(toIndentedString(nsxConfiguration)).append("\n");
                         sb.append("    nsxtConfiguration: ").append(toIndentedString(nsxtConfiguration)).append("\n");
                         sb.append("    objNamePrefix: ").append(toIndentedString(objNamePrefix)).append("\n");
                         sb.append("    openstackConfiguration: ").append(toIndentedString(openstackConfiguration)).append("\n");
-                        sb.append("    oshiftk8sConfiguration: ").append(toIndentedString(oshiftk8sConfiguration)).append("\n");
                         sb.append("    preferStaticRoutes: ").append(toIndentedString(preferStaticRoutes)).append("\n");
                         sb.append("    proxyConfiguration: ").append(toIndentedString(proxyConfiguration)).append("\n");
                         sb.append("    rancherConfiguration: ").append(toIndentedString(rancherConfiguration)).append("\n");

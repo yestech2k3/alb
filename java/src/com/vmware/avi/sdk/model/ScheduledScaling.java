@@ -36,9 +36,6 @@ public class ScheduledScaling  {
     @JsonProperty("end_date")
     private String endDate = null;
 
-    @JsonProperty("recurrence")
-    private String recurrence;
-
     @JsonProperty("schedule_max_step")
     private Integer scheduleMaxStep = 1;
 
@@ -173,32 +170,6 @@ public class ScheduledScaling  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Deprecated.frequency of the scheduled autoscale.
-     * Enum options - ONCE, EVERY_DAY, EVERY_WEEK, EVERY_MONTH.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 21.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return recurrence
-     */
-    public String getRecurrence() {
-        return recurrence;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated.frequency of the scheduled autoscale.
-     * Enum options - ONCE, EVERY_DAY, EVERY_WEEK, EVERY_MONTH.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 21.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param recurrence set the recurrence.
-     */
-    public void setRecurrence(String  recurrence) {
-        this.recurrence = recurrence;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Maximum number of simultaneous scale-in/out servers for scheduled autoscale.
      * If this value is 0, regular autoscale policy dictates this.
      * Field introduced in 21.1.1.
@@ -257,8 +228,7 @@ public class ScheduledScaling  {
           return false;
       }
       ScheduledScaling objScheduledScaling = (ScheduledScaling) o;
-      return   Objects.equals(this.recurrence, objScheduledScaling.recurrence)&&
-  Objects.equals(this.enable, objScheduledScaling.enable)&&
+      return   Objects.equals(this.enable, objScheduledScaling.enable)&&
   Objects.equals(this.desiredCapacity, objScheduledScaling.desiredCapacity)&&
   Objects.equals(this.cronExpression, objScheduledScaling.cronExpression)&&
   Objects.equals(this.startDate, objScheduledScaling.startDate)&&
@@ -276,7 +246,6 @@ public class ScheduledScaling  {
                         sb.append("    desiredCapacity: ").append(toIndentedString(desiredCapacity)).append("\n");
                         sb.append("    enable: ").append(toIndentedString(enable)).append("\n");
                         sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
-                        sb.append("    recurrence: ").append(toIndentedString(recurrence)).append("\n");
                         sb.append("    scheduleMaxStep: ").append(toIndentedString(scheduleMaxStep)).append("\n");
                         sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
                   sb.append("}");

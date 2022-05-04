@@ -24,12 +24,6 @@ public class RateProfile  {
     @JsonProperty("action")
     private RateLimiterAction action = null;
 
-    @JsonProperty("burst_sz")
-    private Integer burstSz;
-
-    @JsonProperty("count")
-    private Integer count;
-
     @JsonProperty("explicit_tracking")
     private Boolean explicitTracking = false;
 
@@ -41,9 +35,6 @@ public class RateProfile  {
 
     @JsonProperty("http_header")
     private String httpHeader = null;
-
-    @JsonProperty("period")
-    private Integer period;
 
     @JsonProperty("rate_limiter")
     private RateLimiter rateLimiter = null;
@@ -70,58 +61,6 @@ public class RateProfile  {
      */
     public void setAction(RateLimiterAction action) {
         this.action = action;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Maximum number of connections or requests or packets to be let through instantaneously.
-     * Allowed values are 10-2500.
-     * Special values are 0- automatic.
-     * Field deprecated in 18.2.9.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return burstSz
-     */
-    public Integer getBurstSz() {
-        return burstSz;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Maximum number of connections or requests or packets to be let through instantaneously.
-     * Allowed values are 10-2500.
-     * Special values are 0- automatic.
-     * Field deprecated in 18.2.9.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param burstSz set the burstSz.
-     */
-    public void setBurstSz(Integer  burstSz) {
-        this.burstSz = burstSz;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Maximum number of connections or requests or packets.
-     * Allowed values are 1-1000000000.
-     * Special values are 0- unlimited.
-     * Field deprecated in 18.2.9.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return count
-     */
-    public Integer getCount() {
-        return count;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Maximum number of connections or requests or packets.
-     * Allowed values are 1-1000000000.
-     * Special values are 0- unlimited.
-     * Field deprecated in 18.2.9.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param count set the count.
-     */
-    public void setCount(Integer  count) {
-        this.count = count;
     }
 
     /**
@@ -218,32 +157,6 @@ public class RateProfile  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Time value in seconds to enforce rate count.
-     * Allowed values are 1-300.
-     * Field deprecated in 18.2.9.
-     * Unit is sec.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return period
-     */
-    public Integer getPeriod() {
-        return period;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Time value in seconds to enforce rate count.
-     * Allowed values are 1-300.
-     * Field deprecated in 18.2.9.
-     * Unit is sec.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param period set the period.
-     */
-    public void setPeriod(Integer  period) {
-        this.period = period;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * The rate limiter configuration for this rate profile.
      * Field introduced in 18.2.9.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -276,10 +189,7 @@ public class RateProfile  {
           return false;
       }
       RateProfile objRateProfile = (RateProfile) o;
-      return   Objects.equals(this.count, objRateProfile.count)&&
-  Objects.equals(this.burstSz, objRateProfile.burstSz)&&
-  Objects.equals(this.period, objRateProfile.period)&&
-  Objects.equals(this.explicitTracking, objRateProfile.explicitTracking)&&
+      return   Objects.equals(this.explicitTracking, objRateProfile.explicitTracking)&&
   Objects.equals(this.fineGrain, objRateProfile.fineGrain)&&
   Objects.equals(this.action, objRateProfile.action)&&
   Objects.equals(this.httpHeader, objRateProfile.httpHeader)&&
@@ -292,13 +202,10 @@ public class RateProfile  {
       StringBuilder sb = new StringBuilder();
       sb.append("class RateProfile {\n");
                   sb.append("    action: ").append(toIndentedString(action)).append("\n");
-                        sb.append("    burstSz: ").append(toIndentedString(burstSz)).append("\n");
-                        sb.append("    count: ").append(toIndentedString(count)).append("\n");
                         sb.append("    explicitTracking: ").append(toIndentedString(explicitTracking)).append("\n");
                         sb.append("    fineGrain: ").append(toIndentedString(fineGrain)).append("\n");
                         sb.append("    httpCookie: ").append(toIndentedString(httpCookie)).append("\n");
                         sb.append("    httpHeader: ").append(toIndentedString(httpHeader)).append("\n");
-                        sb.append("    period: ").append(toIndentedString(period)).append("\n");
                         sb.append("    rateLimiter: ").append(toIndentedString(rateLimiter)).append("\n");
                   sb.append("}");
       return sb.toString();

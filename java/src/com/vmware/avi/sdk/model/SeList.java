@@ -30,17 +30,8 @@ public class SeList  {
     @JsonProperty("admin_down_requested")
     private Boolean adminDownRequested = false;
 
-    @JsonProperty("at_curr_ver")
-    private Boolean atCurrVer;
-
     @JsonProperty("attach_ip_in_progress")
     private Boolean attachIpInProgress = null;
-
-    @JsonProperty("attach_ip_status")
-    private String attachIpStatus;
-
-    @JsonProperty("attach_ip_success")
-    private Boolean attachIpSuccess;
 
     @JsonProperty("cloud_programming_done")
     private Boolean cloudProgrammingDone = null;
@@ -54,26 +45,11 @@ public class SeList  {
     @JsonProperty("detach_ip_in_progress")
     private Boolean detachIpInProgress = null;
 
-    @JsonProperty("download_selist_only")
-    private Boolean downloadSelistOnly;
-
     @JsonProperty("floating_intf_ip")
     private List<IpAddr> floatingIntfIp = null;
 
-    @JsonProperty("geo_download")
-    private Boolean geoDownload;
-
-    @JsonProperty("geodb_download")
-    private Boolean geodbDownload;
-
-    @JsonProperty("gslb_download")
-    private Boolean gslbDownload;
-
     @JsonProperty("incarnation")
     private String incarnation = null;
-
-    @JsonProperty("is_connected")
-    private Boolean isConnected;
 
     @JsonProperty("is_portchannel")
     private Boolean isPortchannel = false;
@@ -92,12 +68,6 @@ public class SeList  {
 
     @JsonProperty("mgmt_ip6")
     private IpAddr mgmtIp6 = null;
-
-    @JsonProperty("pending_download")
-    private Boolean pendingDownload;
-
-    @JsonProperty("scalein_in_progress")
-    private Boolean scaleinInProgress;
 
     @JsonProperty("scaleout_in_progress")
     private Boolean scaleoutInProgress = false;
@@ -119,9 +89,6 @@ public class SeList  {
 
     @JsonProperty("vcpus")
     private Integer vcpus = 2;
-
-    @JsonProperty("version")
-    private String version;
 
     @JsonProperty("vip6_subnet_mask")
     private Integer vip6SubnetMask = 128;
@@ -218,30 +185,6 @@ public class SeList  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Indicates if an se is at the current version.
-     * This state will now be derived from se group runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return atCurrVer
-     */
-    public Boolean getAtCurrVer() {
-        return atCurrVer;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Indicates if an se is at the current version.
-     * This state will now be derived from se group runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param atCurrVer set the atCurrVer.
-     */
-    public void setAtCurrVer(Boolean  atCurrVer) {
-        this.atCurrVer = atCurrVer;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Attach ip is in progress.
      * Field introduced in 21.1.3.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -262,54 +205,6 @@ public class SeList  {
      */
     public void setAttachIpInProgress(Boolean  attachIpInProgress) {
         this.attachIpInProgress = attachIpInProgress;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field indicates the status of programming network reachability to the virtual service ip in the cloud.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return attachIpStatus
-     */
-    public String getAttachIpStatus() {
-        return attachIpStatus;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field indicates the status of programming network reachability to the virtual service ip in the cloud.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param attachIpStatus set the attachIpStatus.
-     */
-    public void setAttachIpStatus(String  attachIpStatus) {
-        this.attachIpStatus = attachIpStatus;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This flag indicates if network reachability to the virtual service ip in the cloud has been successfully programmed.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return attachIpSuccess
-     */
-    public Boolean getAttachIpSuccess() {
-        return attachIpSuccess;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This flag indicates if network reachability to the virtual service ip in the cloud has been successfully programmed.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param attachIpSuccess set the attachIpSuccess.
-     */
-    public void setAttachIpSuccess(Boolean  attachIpSuccess) {
-        this.attachIpSuccess = attachIpSuccess;
     }
 
     /**
@@ -405,28 +300,6 @@ public class SeList  {
     public void setDetachIpInProgress(Boolean  detachIpInProgress) {
         this.detachIpInProgress = detachIpInProgress;
     }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is not needed with the current implementation of update rpcs to ses.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return downloadSelistOnly
-     */
-    public Boolean getDownloadSelistOnly() {
-        return downloadSelistOnly;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is not needed with the current implementation of update rpcs to ses.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param downloadSelistOnly set the downloadSelistOnly.
-     */
-    public void setDownloadSelistOnly(Boolean  downloadSelistOnly) {
-        this.downloadSelistOnly = downloadSelistOnly;
-    }
     /**
      * This is the getter method this will return the attribute value.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -463,84 +336,6 @@ public class SeList  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * This flag indicates whether the geo-files have been pushed to the dns-vs's se.
-     * No longer used, replaced by se datastore.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return geoDownload
-     */
-    public Boolean getGeoDownload() {
-        return geoDownload;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This flag indicates whether the geo-files have been pushed to the dns-vs's se.
-     * No longer used, replaced by se datastore.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param geoDownload set the geoDownload.
-     */
-    public void setGeoDownload(Boolean  geoDownload) {
-        this.geoDownload = geoDownload;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This flag indicates whether the geodb object has been pushed to the dns-vs's se.
-     * No longer used, replaced by se datastore.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Field introduced in 17.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return geodbDownload
-     */
-    public Boolean getGeodbDownload() {
-        return geodbDownload;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This flag indicates whether the geodb object has been pushed to the dns-vs's se.
-     * No longer used, replaced by se datastore.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Field introduced in 17.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param geodbDownload set the geodbDownload.
-     */
-    public void setGeodbDownload(Boolean  geodbDownload) {
-        this.geodbDownload = geodbDownload;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This flag indicates whether the gslb, ghm, gs objects have been pushed to the dns-vs's se.
-     * No longer used, replaced by se datastore.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return gslbDownload
-     */
-    public Boolean getGslbDownload() {
-        return gslbDownload;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This flag indicates whether the gslb, ghm, gs objects have been pushed to the dns-vs's se.
-     * No longer used, replaced by se datastore.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param gslbDownload set the gslbDownload.
-     */
-    public void setGslbDownload(Boolean  gslbDownload) {
-        this.gslbDownload = gslbDownload;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Updated whenever this entry is created.
      * When the sees this has changed, it means that the se should disrupt, since there was a delete then create, not an update.
      * Field introduced in 18.1.5,18.2.1.
@@ -563,30 +358,6 @@ public class SeList  {
      */
     public void setIncarnation(String  incarnation) {
         this.incarnation = incarnation;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This flag was used to display the se connected state.
-     * This state will now be derived from se group runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return isConnected
-     */
-    public Boolean getIsConnected() {
-        return isConnected;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This flag was used to display the se connected state.
-     * This state will now be derived from se group runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param isConnected set the isConnected.
-     */
-    public void setIsConnected(Boolean  isConnected) {
-        this.isConnected = isConnected;
     }
 
     /**
@@ -715,50 +486,6 @@ public class SeList  {
      */
     public void setMgmtIp6(IpAddr mgmtIp6) {
         this.mgmtIp6 = mgmtIp6;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is not needed with the current implementation of update rpcs to ses.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return pendingDownload
-     */
-    public Boolean getPendingDownload() {
-        return pendingDownload;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is not needed with the current implementation of update rpcs to ses.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param pendingDownload set the pendingDownload.
-     */
-    public void setPendingDownload(Boolean  pendingDownload) {
-        this.pendingDownload = pendingDownload;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Se scaling in status is determined by delete_in_progress.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return scaleinInProgress
-     */
-    public Boolean getScaleinInProgress() {
-        return scaleinInProgress;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Se scaling in status is determined by delete_in_progress.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param scaleinInProgress set the scaleinInProgress.
-     */
-    public void setScaleinInProgress(Boolean  scaleinInProgress) {
-        this.scaleinInProgress = scaleinInProgress;
     }
 
     /**
@@ -913,30 +640,6 @@ public class SeList  {
      */
     public void setVcpus(Integer  vcpus) {
         this.vcpus = vcpus;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Version of the se.
-     * This state will now be derived from se group runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Version of the se.
-     * This state will now be derived from se group runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param version set the version.
-     */
-    public void setVersion(String  version) {
-        this.version = version;
     }
 
     /**
@@ -1120,31 +823,20 @@ public class SeList  {
       return   Objects.equals(this.seRef, objSeList.seRef)&&
   Objects.equals(this.isPrimary, objSeList.isPrimary)&&
   Objects.equals(this.isStandby, objSeList.isStandby)&&
-  Objects.equals(this.isConnected, objSeList.isConnected)&&
   Objects.equals(this.deleteInProgress, objSeList.deleteInProgress)&&
   Objects.equals(this.vcpus, objSeList.vcpus)&&
   Objects.equals(this.memory, objSeList.memory)&&
   Objects.equals(this.vipIntfMac, objSeList.vipIntfMac)&&
   Objects.equals(this.vipSubnetMask, objSeList.vipSubnetMask)&&
   Objects.equals(this.vnic, objSeList.vnic)&&
-  Objects.equals(this.pendingDownload, objSeList.pendingDownload)&&
   Objects.equals(this.secIdx, objSeList.secIdx)&&
-  Objects.equals(this.downloadSelistOnly, objSeList.downloadSelistOnly)&&
   Objects.equals(this.vlanId, objSeList.vlanId)&&
   Objects.equals(this.snatIp, objSeList.snatIp)&&
   Objects.equals(this.vipIntfIp, objSeList.vipIntfIp)&&
   Objects.equals(this.vipIntfList, objSeList.vipIntfList)&&
   Objects.equals(this.floatingIntfIp, objSeList.floatingIntfIp)&&
   Objects.equals(this.isPortchannel, objSeList.isPortchannel)&&
-  Objects.equals(this.scaleinInProgress, objSeList.scaleinInProgress)&&
   Objects.equals(this.adminDownRequested, objSeList.adminDownRequested)&&
-  Objects.equals(this.atCurrVer, objSeList.atCurrVer)&&
-  Objects.equals(this.version, objSeList.version)&&
-  Objects.equals(this.gslbDownload, objSeList.gslbDownload)&&
-  Objects.equals(this.geoDownload, objSeList.geoDownload)&&
-  Objects.equals(this.geodbDownload, objSeList.geodbDownload)&&
-  Objects.equals(this.attachIpSuccess, objSeList.attachIpSuccess)&&
-  Objects.equals(this.attachIpStatus, objSeList.attachIpStatus)&&
   Objects.equals(this.vip6SubnetMask, objSeList.vip6SubnetMask)&&
   Objects.equals(this.incarnation, objSeList.incarnation)&&
   Objects.equals(this.scaleoutInProgress, objSeList.scaleoutInProgress)&&
@@ -1167,29 +859,19 @@ public class SeList  {
                   sb.append("    activeOnCloud: ").append(toIndentedString(activeOnCloud)).append("\n");
                         sb.append("    activeOnSe: ").append(toIndentedString(activeOnSe)).append("\n");
                         sb.append("    adminDownRequested: ").append(toIndentedString(adminDownRequested)).append("\n");
-                        sb.append("    atCurrVer: ").append(toIndentedString(atCurrVer)).append("\n");
                         sb.append("    attachIpInProgress: ").append(toIndentedString(attachIpInProgress)).append("\n");
-                        sb.append("    attachIpStatus: ").append(toIndentedString(attachIpStatus)).append("\n");
-                        sb.append("    attachIpSuccess: ").append(toIndentedString(attachIpSuccess)).append("\n");
                         sb.append("    cloudProgrammingDone: ").append(toIndentedString(cloudProgrammingDone)).append("\n");
                         sb.append("    cloudProgrammingStatus: ").append(toIndentedString(cloudProgrammingStatus)).append("\n");
                         sb.append("    deleteInProgress: ").append(toIndentedString(deleteInProgress)).append("\n");
                         sb.append("    detachIpInProgress: ").append(toIndentedString(detachIpInProgress)).append("\n");
-                        sb.append("    downloadSelistOnly: ").append(toIndentedString(downloadSelistOnly)).append("\n");
                         sb.append("    floatingIntfIp: ").append(toIndentedString(floatingIntfIp)).append("\n");
-                        sb.append("    geoDownload: ").append(toIndentedString(geoDownload)).append("\n");
-                        sb.append("    geodbDownload: ").append(toIndentedString(geodbDownload)).append("\n");
-                        sb.append("    gslbDownload: ").append(toIndentedString(gslbDownload)).append("\n");
                         sb.append("    incarnation: ").append(toIndentedString(incarnation)).append("\n");
-                        sb.append("    isConnected: ").append(toIndentedString(isConnected)).append("\n");
                         sb.append("    isPortchannel: ").append(toIndentedString(isPortchannel)).append("\n");
                         sb.append("    isPrimary: ").append(toIndentedString(isPrimary)).append("\n");
                         sb.append("    isStandby: ").append(toIndentedString(isStandby)).append("\n");
                         sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
                         sb.append("    mgmtIp: ").append(toIndentedString(mgmtIp)).append("\n");
                         sb.append("    mgmtIp6: ").append(toIndentedString(mgmtIp6)).append("\n");
-                        sb.append("    pendingDownload: ").append(toIndentedString(pendingDownload)).append("\n");
-                        sb.append("    scaleinInProgress: ").append(toIndentedString(scaleinInProgress)).append("\n");
                         sb.append("    scaleoutInProgress: ").append(toIndentedString(scaleoutInProgress)).append("\n");
                         sb.append("    seProgrammingDone: ").append(toIndentedString(seProgrammingDone)).append("\n");
                         sb.append("    seReadyInProgress: ").append(toIndentedString(seReadyInProgress)).append("\n");
@@ -1197,7 +879,6 @@ public class SeList  {
                         sb.append("    secIdx: ").append(toIndentedString(secIdx)).append("\n");
                         sb.append("    snatIp: ").append(toIndentedString(snatIp)).append("\n");
                         sb.append("    vcpus: ").append(toIndentedString(vcpus)).append("\n");
-                        sb.append("    version: ").append(toIndentedString(version)).append("\n");
                         sb.append("    vip6SubnetMask: ").append(toIndentedString(vip6SubnetMask)).append("\n");
                         sb.append("    vipIntfIp: ").append(toIndentedString(vipIntfIp)).append("\n");
                         sb.append("    vipIntfList: ").append(toIndentedString(vipIntfList)).append("\n");

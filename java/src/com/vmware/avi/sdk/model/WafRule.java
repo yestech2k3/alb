@@ -27,9 +27,6 @@ public class WafRule  {
     @JsonProperty("exclude_list")
     private List<WafExcludeListEntry> excludeList = null;
 
-    @JsonProperty("force_detection")
-    private Boolean forceDetection;
-
     @JsonProperty("index")
     private Integer index = null;
 
@@ -126,32 +123,6 @@ public class WafRule  {
       }
       this.excludeList.add(excludeListItem);
       return this;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * When set to 'true', this rule will not cause 'deny' or 'redirect' actions to run, even if waf policy is set to enforcement mode.
-     * The behavior would be as if this rule operated in detection mode regardless of waf policy setting.
-     * Field deprecated in 18.1.5.
-     * Field introduced in 18.1.4.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return forceDetection
-     */
-    public Boolean getForceDetection() {
-        return forceDetection;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * When set to 'true', this rule will not cause 'deny' or 'redirect' actions to run, even if waf policy is set to enforcement mode.
-     * The behavior would be as if this rule operated in detection mode regardless of waf policy setting.
-     * Field deprecated in 18.1.5.
-     * Field introduced in 18.1.4.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param forceDetection set the forceDetection.
-     */
-    public void setForceDetection(Boolean  forceDetection) {
-        this.forceDetection = forceDetection;
     }
 
     /**
@@ -397,7 +368,6 @@ public class WafRule  {
   Objects.equals(this.rule, objWafRule.rule)&&
   Objects.equals(this.excludeList, objWafRule.excludeList)&&
   Objects.equals(this.tags, objWafRule.tags)&&
-  Objects.equals(this.forceDetection, objWafRule.forceDetection)&&
   Objects.equals(this.mode, objWafRule.mode)&&
   Objects.equals(this.isSensitive, objWafRule.isSensitive)&&
   Objects.equals(this.phase, objWafRule.phase);
@@ -409,7 +379,6 @@ public class WafRule  {
       sb.append("class WafRule {\n");
                   sb.append("    enable: ").append(toIndentedString(enable)).append("\n");
                         sb.append("    excludeList: ").append(toIndentedString(excludeList)).append("\n");
-                        sb.append("    forceDetection: ").append(toIndentedString(forceDetection)).append("\n");
                         sb.append("    index: ").append(toIndentedString(index)).append("\n");
                         sb.append("    isSensitive: ").append(toIndentedString(isSensitive)).append("\n");
                         sb.append("    mode: ").append(toIndentedString(mode)).append("\n");

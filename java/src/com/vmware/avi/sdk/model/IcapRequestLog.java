@@ -72,26 +72,11 @@ public class IcapRequestLog  {
     @JsonProperty("pool_uuid")
     private String poolUuid = null;
 
-    @JsonProperty("reason")
-    private String reason;
-
-    @JsonProperty("server_ip")
-    private IpAddr serverIp;
-
     @JsonProperty("source_port")
     private Integer sourcePort = null;
 
-    @JsonProperty("threat_description")
-    private String threatDescription;
-
-    @JsonProperty("threat_id")
-    private String threatId;
-
     @JsonProperty("vendor")
     private String vendor = null;
-
-    @JsonProperty("violations")
-    private List<IcapViolation> violations;
 
 
 
@@ -521,56 +506,6 @@ public class IcapRequestLog  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Blocking reason for the content.
-     * It is available only if content was scanned by icap server and some violations were found.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return reason
-     */
-    public String getReason() {
-        return reason;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Blocking reason for the content.
-     * It is available only if content was scanned by icap server and some violations were found.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param reason set the reason.
-     */
-    public void setReason(String  reason) {
-        this.reason = reason;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Icap server ip for this connection.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return serverIp
-     */
-    public IpAddr getServerIp() {
-        return serverIp;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Icap server ip for this connection.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param serverIp set the serverIp.
-     */
-    public void setServerIp(IpAddr serverIp) {
-        this.serverIp = serverIp;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Source port for this connection.
      * Field introduced in 20.1.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -591,58 +526,6 @@ public class IcapRequestLog  {
      */
     public void setSourcePort(Integer  sourcePort) {
         this.sourcePort = sourcePort;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Detailed description of the threat found in the content.
-     * Available only if request was scanned by icap server and some violations were found.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return threatDescription
-     */
-    public String getThreatDescription() {
-        return threatDescription;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Detailed description of the threat found in the content.
-     * Available only if request was scanned by icap server and some violations were found.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param threatDescription set the threatDescription.
-     */
-    public void setThreatDescription(String  threatDescription) {
-        this.threatDescription = threatDescription;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Short description of the threat found in the content.
-     * Available only if content was scanned by icap server and some violations were found.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return threatId
-     */
-    public String getThreatId() {
-        return threatId;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Short description of the threat found in the content.
-     * Available only if content was scanned by icap server and some violations were found.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param threatId set the threatId.
-     */
-    public void setThreatId(String  threatId) {
-        this.threatId = threatId;
     }
 
     /**
@@ -670,48 +553,6 @@ public class IcapRequestLog  {
     public void setVendor(String  vendor) {
         this.vendor = vendor;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Threat found in the content.
-     * Available only if content was scanned by icap server and some violations were found.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.3.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return violations
-     */
-    public List<IcapViolation> getViolations() {
-        return violations;
-    }
-
-    /**
-     * This is the setter method. this will set the violations
-     * Threat found in the content.
-     * Available only if content was scanned by icap server and some violations were found.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.3.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return violations
-     */
-    public void setViolations(List<IcapViolation>  violations) {
-        this.violations = violations;
-    }
-
-    /**
-     * This is the setter method this will set the violations
-     * Threat found in the content.
-     * Available only if content was scanned by icap server and some violations were found.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.3.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return violations
-     */
-    public IcapRequestLog addViolationsItem(IcapViolation violationsItem) {
-      if (this.violations == null) {
-        this.violations = new ArrayList<IcapViolation>();
-      }
-      this.violations.add(violationsItem);
-      return this;
-    }
 
 
     @Override
@@ -732,16 +573,11 @@ public class IcapRequestLog  {
   Objects.equals(this.modifiedContentLength, objIcapRequestLog.modifiedContentLength)&&
   Objects.equals(this.poolName, objIcapRequestLog.poolName)&&
   Objects.equals(this.poolUuid, objIcapRequestLog.poolUuid)&&
-  Objects.equals(this.serverIp, objIcapRequestLog.serverIp)&&
   Objects.equals(this.sourcePort, objIcapRequestLog.sourcePort)&&
   Objects.equals(this.latency, objIcapRequestLog.latency)&&
   Objects.equals(this.icapHeadersSentToServer, objIcapRequestLog.icapHeadersSentToServer)&&
   Objects.equals(this.icapHeadersReceivedFromServer, objIcapRequestLog.icapHeadersReceivedFromServer)&&
   Objects.equals(this.action, objIcapRequestLog.action)&&
-  Objects.equals(this.reason, objIcapRequestLog.reason)&&
-  Objects.equals(this.threatId, objIcapRequestLog.threatId)&&
-  Objects.equals(this.threatDescription, objIcapRequestLog.threatDescription)&&
-  Objects.equals(this.violations, objIcapRequestLog.violations)&&
   Objects.equals(this.icapServerPort, objIcapRequestLog.icapServerPort)&&
   Objects.equals(this.icapServerIp, objIcapRequestLog.icapServerIp)&&
   Objects.equals(this.vendor, objIcapRequestLog.vendor)&&
@@ -770,13 +606,8 @@ public class IcapRequestLog  {
                         sb.append("    opswatLog: ").append(toIndentedString(opswatLog)).append("\n");
                         sb.append("    poolName: ").append(toIndentedString(poolName)).append("\n");
                         sb.append("    poolUuid: ").append(toIndentedString(poolUuid)).append("\n");
-                        sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
-                        sb.append("    serverIp: ").append(toIndentedString(serverIp)).append("\n");
                         sb.append("    sourcePort: ").append(toIndentedString(sourcePort)).append("\n");
-                        sb.append("    threatDescription: ").append(toIndentedString(threatDescription)).append("\n");
-                        sb.append("    threatId: ").append(toIndentedString(threatId)).append("\n");
                         sb.append("    vendor: ").append(toIndentedString(vendor)).append("\n");
-                        sb.append("    violations: ").append(toIndentedString(violations)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

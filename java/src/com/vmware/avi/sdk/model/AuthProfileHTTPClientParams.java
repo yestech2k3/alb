@@ -24,9 +24,6 @@ public class AuthProfileHTTPClientParams  {
     @JsonProperty("cache_expiration_time")
     private Integer cacheExpirationTime = 5;
 
-    @JsonProperty("group_member_is_full_dn")
-    private Boolean groupMemberIsFullDn;
-
     @JsonProperty("request_header")
     private String requestHeader = null;
 
@@ -59,30 +56,6 @@ public class AuthProfileHTTPClientParams  {
      */
     public void setCacheExpirationTime(Integer  cacheExpirationTime) {
         this.cacheExpirationTime = cacheExpirationTime;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Group member entries contain full dns instead of just user id attribute values.
-     * This should now be configured using the ldapdirectorysettings field instead.
-     * Field deprecated in 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return groupMemberIsFullDn
-     */
-    public Boolean getGroupMemberIsFullDn() {
-        return groupMemberIsFullDn;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Group member entries contain full dns instead of just user id attribute values.
-     * This should now be configured using the ldapdirectorysettings field instead.
-     * Field deprecated in 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param groupMemberIsFullDn set the groupMemberIsFullDn.
-     */
-    public void setGroupMemberIsFullDn(Boolean  groupMemberIsFullDn) {
-        this.groupMemberIsFullDn = groupMemberIsFullDn;
     }
 
     /**
@@ -165,8 +138,7 @@ public class AuthProfileHTTPClientParams  {
       AuthProfileHTTPClientParams objAuthProfileHTTPClientParams = (AuthProfileHTTPClientParams) o;
       return   Objects.equals(this.requestHeader, objAuthProfileHTTPClientParams.requestHeader)&&
   Objects.equals(this.cacheExpirationTime, objAuthProfileHTTPClientParams.cacheExpirationTime)&&
-  Objects.equals(this.requireUserGroups, objAuthProfileHTTPClientParams.requireUserGroups)&&
-  Objects.equals(this.groupMemberIsFullDn, objAuthProfileHTTPClientParams.groupMemberIsFullDn);
+  Objects.equals(this.requireUserGroups, objAuthProfileHTTPClientParams.requireUserGroups);
     }
 
     @Override
@@ -174,7 +146,6 @@ public class AuthProfileHTTPClientParams  {
       StringBuilder sb = new StringBuilder();
       sb.append("class AuthProfileHTTPClientParams {\n");
                   sb.append("    cacheExpirationTime: ").append(toIndentedString(cacheExpirationTime)).append("\n");
-                        sb.append("    groupMemberIsFullDn: ").append(toIndentedString(groupMemberIsFullDn)).append("\n");
                         sb.append("    requestHeader: ").append(toIndentedString(requestHeader)).append("\n");
                         sb.append("    requireUserGroups: ").append(toIndentedString(requireUserGroups)).append("\n");
                   sb.append("}");

@@ -66,9 +66,6 @@ public class SSLKeyAndCertificate extends AviRestResource  {
     @JsonProperty("key_passphrase")
     private String keyPassphrase = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -469,51 +466,6 @@ public class SSLKeyAndCertificate extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public SSLKeyAndCertificate addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
      * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
@@ -828,7 +780,6 @@ public class SSLKeyAndCertificate extends AviRestResource  {
   Objects.equals(this.ocspConfig, objSSLKeyAndCertificate.ocspConfig)&&
   Objects.equals(this.ocspResponseInfo, objSSLKeyAndCertificate.ocspResponseInfo)&&
   Objects.equals(this.ocspErrorStatus, objSSLKeyAndCertificate.ocspErrorStatus)&&
-  Objects.equals(this.labels, objSSLKeyAndCertificate.labels)&&
   Objects.equals(this.markers, objSSLKeyAndCertificate.markers);
     }
 
@@ -851,7 +802,6 @@ public class SSLKeyAndCertificate extends AviRestResource  {
                         sb.append("    keyBase64: ").append(toIndentedString(keyBase64)).append("\n");
                         sb.append("    keyParams: ").append(toIndentedString(keyParams)).append("\n");
                         sb.append("    keyPassphrase: ").append(toIndentedString(keyPassphrase)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    ocspConfig: ").append(toIndentedString(ocspConfig)).append("\n");

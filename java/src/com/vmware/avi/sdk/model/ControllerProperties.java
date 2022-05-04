@@ -258,9 +258,6 @@ public class ControllerProperties extends AviRestResource  {
     @JsonProperty("vnic_op_fail_time")
     private Integer vnicOpFailTime = 180;
 
-    @JsonProperty("vs_apic_scaleout_timeout")
-    private Integer vsApicScaleoutTimeout;
-
     @JsonProperty("vs_awaiting_se_timeout")
     private Integer vsAwaitingSeTimeout = 60;
 
@@ -2269,30 +2266,6 @@ public class ControllerProperties extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
-     * Field deprecated in 21.1.1.
-     * Unit is sec.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return vsApicScaleoutTimeout
-     */
-    public Integer getVsApicScaleoutTimeout() {
-        return vsApicScaleoutTimeout;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Time to wait for the scaled out se to become ready before marking the scaleout done, applies to apic configuration only.
-     * Field deprecated in 21.1.1.
-     * Unit is sec.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param vsApicScaleoutTimeout set the vsApicScaleoutTimeout.
-     */
-    public void setVsApicScaleoutTimeout(Integer  vsApicScaleoutTimeout) {
-        this.vsApicScaleoutTimeout = vsApicScaleoutTimeout;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Unit is sec.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 60.
@@ -2673,7 +2646,6 @@ public class ControllerProperties extends AviRestResource  {
   Objects.equals(this.secureChannelSeTokenTimeout, objControllerProperties.secureChannelSeTokenTimeout)&&
   Objects.equals(this.maxSeqVnicFailures, objControllerProperties.maxSeqVnicFailures)&&
   Objects.equals(this.vsAwaitingSeTimeout, objControllerProperties.vsAwaitingSeTimeout)&&
-  Objects.equals(this.vsApicScaleoutTimeout, objControllerProperties.vsApicScaleoutTimeout)&&
   Objects.equals(this.secureChannelCleanupTimeout, objControllerProperties.secureChannelCleanupTimeout)&&
   Objects.equals(this.attachIpRetryInterval, objControllerProperties.attachIpRetryInterval)&&
   Objects.equals(this.attachIpRetryLimit, objControllerProperties.attachIpRetryLimit)&&
@@ -2824,7 +2796,6 @@ public class ControllerProperties extends AviRestResource  {
                                     sb.append("    userAgentCacheConfig: ").append(toIndentedString(userAgentCacheConfig)).append("\n");
                         sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
                         sb.append("    vnicOpFailTime: ").append(toIndentedString(vnicOpFailTime)).append("\n");
-                        sb.append("    vsApicScaleoutTimeout: ").append(toIndentedString(vsApicScaleoutTimeout)).append("\n");
                         sb.append("    vsAwaitingSeTimeout: ").append(toIndentedString(vsAwaitingSeTimeout)).append("\n");
                         sb.append("    vsKeyRotatePeriod: ").append(toIndentedString(vsKeyRotatePeriod)).append("\n");
                         sb.append("    vsScaleoutReadyCheckInterval: ").append(toIndentedString(vsScaleoutReadyCheckInterval)).append("\n");

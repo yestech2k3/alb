@@ -33,9 +33,6 @@ public class AnalyticsPolicy  {
     @JsonProperty("client_log_filters")
     private List<ClientLogFilter> clientLogFilters = null;
 
-    @JsonProperty("enabled")
-    private Boolean enabled;
-
     @JsonProperty("full_client_logs")
     private FullClientLogs fullClientLogs = null;
 
@@ -149,36 +146,6 @@ public class AnalyticsPolicy  {
       }
       this.clientLogFilters.add(clientLogFiltersItem);
       return this;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * [deprecated] disable analytics on this virtualservice.
-     * This will disable the collection of both metrics and logs.
-     * Please use following fields in analytcsprofile to control this behavior instead.
-     * Disable_vs_analytics (for virtualservices metrics), disable_server_analytics (for pool metrics) and client_log_config (for logs).
-     * Field deprecated in 18.2.1.
-     * Field introduced in 17.2.4.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return enabled
-     */
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * [deprecated] disable analytics on this virtualservice.
-     * This will disable the collection of both metrics and logs.
-     * Please use following fields in analytcsprofile to control this behavior instead.
-     * Disable_vs_analytics (for virtualservices metrics), disable_server_analytics (for pool metrics) and client_log_config (for logs).
-     * Field deprecated in 18.2.1.
-     * Field introduced in 17.2.4.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param enabled set the enabled.
-     */
-    public void setEnabled(Boolean  enabled) {
-        this.enabled = enabled;
     }
 
     /**
@@ -302,8 +269,7 @@ public class AnalyticsPolicy  {
   Objects.equals(this.clientInsights, objAnalyticsPolicy.clientInsights)&&
   Objects.equals(this.metricsRealtimeUpdate, objAnalyticsPolicy.metricsRealtimeUpdate)&&
   Objects.equals(this.clientInsightsSampling, objAnalyticsPolicy.clientInsightsSampling)&&
-  Objects.equals(this.allHeaders, objAnalyticsPolicy.allHeaders)&&
-  Objects.equals(this.enabled, objAnalyticsPolicy.enabled);
+  Objects.equals(this.allHeaders, objAnalyticsPolicy.allHeaders);
     }
 
     @Override
@@ -314,7 +280,6 @@ public class AnalyticsPolicy  {
                         sb.append("    clientInsights: ").append(toIndentedString(clientInsights)).append("\n");
                         sb.append("    clientInsightsSampling: ").append(toIndentedString(clientInsightsSampling)).append("\n");
                         sb.append("    clientLogFilters: ").append(toIndentedString(clientLogFilters)).append("\n");
-                        sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
                         sb.append("    fullClientLogs: ").append(toIndentedString(fullClientLogs)).append("\n");
                         sb.append("    metricsRealtimeUpdate: ").append(toIndentedString(metricsRealtimeUpdate)).append("\n");
                         sb.append("    significantLogThrottle: ").append(toIndentedString(significantLogThrottle)).append("\n");

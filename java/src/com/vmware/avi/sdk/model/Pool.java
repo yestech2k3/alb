@@ -21,23 +21,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pool extends AviRestResource  {
-    @JsonProperty("a_pool")
-    private String aPool;
-
-    @JsonProperty("ab_pool")
-    private AbPool abPool;
-
-    @JsonProperty("ab_priority")
-    private Integer abPriority;
-
     @JsonProperty("analytics_policy")
     private PoolAnalyticsPolicy analyticsPolicy = null;
 
     @JsonProperty("analytics_profile_ref")
     private String analyticsProfileRef = null;
-
-    @JsonProperty("apic_epg_name")
-    private String apicEpgName;
 
     @JsonProperty("append_port")
     private String appendPort;
@@ -132,9 +120,6 @@ public class Pool extends AviRestResource  {
     @JsonProperty("ipaddrgroup_ref")
     private String ipaddrgroupRef = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("lb_algorithm")
     private String lbAlgorithm = "LB_ALGORITHM_LEAST_CONNECTIONS";
 
@@ -180,9 +165,6 @@ public class Pool extends AviRestResource  {
     @JsonProperty("placement_networks")
     private List<PlacementNetwork> placementNetworks = null;
 
-    @JsonProperty("prst_hdr_name")
-    private String prstHdrName;
-
     @JsonProperty("request_queue_depth")
     private Integer requestQueueDepth = 128;
 
@@ -197,12 +179,6 @@ public class Pool extends AviRestResource  {
 
     @JsonProperty("routing_pool")
     private Boolean routingPool = false;
-
-    @JsonProperty("server_auto_scale")
-    private Boolean serverAutoScale;
-
-    @JsonProperty("server_count")
-    private Integer serverCount;
 
     @JsonProperty("server_disable_type")
     private String serverDisableType = "DISALLOW_NEW_CONNECTION";
@@ -256,74 +232,6 @@ public class Pool extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Name of container cloud application that constitutes a pool in a a-b pool configuration, if different from vs app.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return aPool
-     */
-    public String getAPool() {
-        return aPool;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Name of container cloud application that constitutes a pool in a a-b pool configuration, if different from vs app.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param aPool set the aPool.
-     */
-    public void setAPool(String  aPool) {
-        this.aPool = aPool;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * A/b pool configuration.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return abPool
-     */
-    public AbPool getAbPool() {
-        return abPool;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * A/b pool configuration.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param abPool set the abPool.
-     */
-    public void setAbPool(AbPool abPool) {
-        this.abPool = abPool;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Priority of this pool in a a-b pool pair.
-     * Internally used.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return abPriority
-     */
-    public Integer getAbPriority() {
-        return abPriority;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Priority of this pool in a a-b pool pair.
-     * Internally used.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param abPriority set the abPriority.
-     */
-    public void setAbPriority(Integer  abPriority) {
-        this.abPriority = abPriority;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Determines analytics settings for the pool.
      * Field introduced in 18.1.5, 18.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -370,28 +278,6 @@ public class Pool extends AviRestResource  {
      */
     public void setAnalyticsProfileRef(String  analyticsProfileRef) {
         this.analyticsProfileRef = analyticsProfileRef;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Synchronize cisco apic epg members with pool servers.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return apicEpgName
-     */
-    public String getApicEpgName() {
-        return apicEpgName;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Synchronize cisco apic epg members with pool servers.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param apicEpgName set the apicEpgName.
-     */
-    public void setApicEpgName(String  apicEpgName) {
-        this.apicEpgName = apicEpgName;
     }
 
     /**
@@ -1247,51 +1133,6 @@ public class Pool extends AviRestResource  {
     public void setIpaddrgroupRef(String  ipaddrgroupRef) {
         this.ipaddrgroupRef = ipaddrgroupRef;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public Pool addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -1742,28 +1583,6 @@ public class Pool extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Header name for custom header persistence.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return prstHdrName
-     */
-    public String getPrstHdrName() {
-        return prstHdrName;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Header name for custom header persistence.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param prstHdrName set the prstHdrName.
-     */
-    public void setPrstHdrName(String  prstHdrName) {
-        this.prstHdrName = prstHdrName;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Minimum number of requests to be queued when pool is full.
      * Allowed in enterprise edition with any value, essentials edition(allowed values- 128), basic edition(allowed values- 128), enterprise with cloud
      * services edition.
@@ -1880,50 +1699,6 @@ public class Pool extends AviRestResource  {
      */
     public void setRoutingPool(Boolean  routingPool) {
         this.routingPool = routingPool;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Server autoscale.
-     * Not used anymore.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return serverAutoScale
-     */
-    public Boolean getServerAutoScale() {
-        return serverAutoScale;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Server autoscale.
-     * Not used anymore.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param serverAutoScale set the serverAutoScale.
-     */
-    public void setServerAutoScale(Boolean  serverAutoScale) {
-        this.serverAutoScale = serverAutoScale;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return serverCount
-     */
-    public Integer getServerCount() {
-        return serverCount;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param serverCount set the serverCount.
-     */
-    public void setServerCount(Integer  serverCount) {
-        this.serverCount = serverCount;
     }
 
     /**
@@ -2357,7 +2132,6 @@ public class Pool extends AviRestResource  {
   Objects.equals(this.maxConcurrentConnectionsPerServer, objPool.maxConcurrentConnectionsPerServer)&&
   Objects.equals(this.healthMonitorRefs, objPool.healthMonitorRefs)&&
   Objects.equals(this.servers, objPool.servers)&&
-  Objects.equals(this.serverCount, objPool.serverCount)&&
   Objects.equals(this.lbAlgorithm, objPool.lbAlgorithm)&&
   Objects.equals(this.lbAlgorithmHash, objPool.lbAlgorithmHash)&&
   Objects.equals(this.lbAlgorithmConsistentHashHdr, objPool.lbAlgorithmConsistentHashHdr)&&
@@ -2372,9 +2146,6 @@ public class Pool extends AviRestResource  {
   Objects.equals(this.capacityEstimationTtfbThresh, objPool.capacityEstimationTtfbThresh)&&
   Objects.equals(this.pkiProfileRef, objPool.pkiProfileRef)&&
   Objects.equals(this.sslKeyAndCertificateRef, objPool.sslKeyAndCertificateRef)&&
-  Objects.equals(this.serverAutoScale, objPool.serverAutoScale)&&
-  Objects.equals(this.prstHdrName, objPool.prstHdrName)&&
-  Objects.equals(this.apicEpgName, objPool.apicEpgName)&&
   Objects.equals(this.autoscaleNetworks, objPool.autoscaleNetworks)&&
   Objects.equals(this.autoscalePolicyRef, objPool.autoscalePolicyRef)&&
   Objects.equals(this.autoscaleLaunchConfigRef, objPool.autoscaleLaunchConfigRef)&&
@@ -2388,10 +2159,7 @@ public class Pool extends AviRestResource  {
   Objects.equals(this.cloudConfigCksum, objPool.cloudConfigCksum)&&
   Objects.equals(this.requestQueueEnabled, objPool.requestQueueEnabled)&&
   Objects.equals(this.requestQueueDepth, objPool.requestQueueDepth)&&
-  Objects.equals(this.abPool, objPool.abPool)&&
   Objects.equals(this.serverReselect, objPool.serverReselect)&&
-  Objects.equals(this.aPool, objPool.aPool)&&
-  Objects.equals(this.abPriority, objPool.abPriority)&&
   Objects.equals(this.hostCheckEnabled, objPool.hostCheckEnabled)&&
   Objects.equals(this.domainName, objPool.domainName)&&
   Objects.equals(this.sniEnabled, objPool.sniEnabled)&&
@@ -2406,7 +2174,6 @@ public class Pool extends AviRestResource  {
   Objects.equals(this.analyticsProfileRef, objPool.analyticsProfileRef)&&
   Objects.equals(this.analyticsPolicy, objPool.analyticsPolicy)&&
   Objects.equals(this.serviceMetadata, objPool.serviceMetadata)&&
-  Objects.equals(this.labels, objPool.labels)&&
   Objects.equals(this.markers, objPool.markers)&&
   Objects.equals(this.description, objPool.description)&&
   Objects.equals(this.tenantRef, objPool.tenantRef)&&
@@ -2431,12 +2198,8 @@ public class Pool extends AviRestResource  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class Pool {\n");
-                  sb.append("    aPool: ").append(toIndentedString(aPool)).append("\n");
-                        sb.append("    abPool: ").append(toIndentedString(abPool)).append("\n");
-                        sb.append("    abPriority: ").append(toIndentedString(abPriority)).append("\n");
-                        sb.append("    analyticsPolicy: ").append(toIndentedString(analyticsPolicy)).append("\n");
+                  sb.append("    analyticsPolicy: ").append(toIndentedString(analyticsPolicy)).append("\n");
                         sb.append("    analyticsProfileRef: ").append(toIndentedString(analyticsProfileRef)).append("\n");
-                        sb.append("    apicEpgName: ").append(toIndentedString(apicEpgName)).append("\n");
                         sb.append("    appendPort: ").append(toIndentedString(appendPort)).append("\n");
                         sb.append("    applicationPersistenceProfileRef: ").append(toIndentedString(applicationPersistenceProfileRef)).append("\n");
                         sb.append("    autoscaleLaunchConfigRef: ").append(toIndentedString(autoscaleLaunchConfigRef)).append("\n");
@@ -2468,7 +2231,6 @@ public class Pool extends AviRestResource  {
                         sb.append("    ignoreServerPort: ").append(toIndentedString(ignoreServerPort)).append("\n");
                         sb.append("    inlineHealthMonitor: ").append(toIndentedString(inlineHealthMonitor)).append("\n");
                         sb.append("    ipaddrgroupRef: ").append(toIndentedString(ipaddrgroupRef)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    lbAlgorithm: ").append(toIndentedString(lbAlgorithm)).append("\n");
                         sb.append("    lbAlgorithmConsistentHashHdr: ").append(toIndentedString(lbAlgorithmConsistentHashHdr)).append("\n");
                         sb.append("    lbAlgorithmCoreNonaffinity: ").append(toIndentedString(lbAlgorithmCoreNonaffinity)).append("\n");
@@ -2484,14 +2246,11 @@ public class Pool extends AviRestResource  {
                         sb.append("    nsxSecuritygroup: ").append(toIndentedString(nsxSecuritygroup)).append("\n");
                         sb.append("    pkiProfileRef: ").append(toIndentedString(pkiProfileRef)).append("\n");
                         sb.append("    placementNetworks: ").append(toIndentedString(placementNetworks)).append("\n");
-                        sb.append("    prstHdrName: ").append(toIndentedString(prstHdrName)).append("\n");
                         sb.append("    requestQueueDepth: ").append(toIndentedString(requestQueueDepth)).append("\n");
                         sb.append("    requestQueueEnabled: ").append(toIndentedString(requestQueueEnabled)).append("\n");
                         sb.append("    rewriteHostHeaderToServerName: ").append(toIndentedString(rewriteHostHeaderToServerName)).append("\n");
                         sb.append("    rewriteHostHeaderToSni: ").append(toIndentedString(rewriteHostHeaderToSni)).append("\n");
                         sb.append("    routingPool: ").append(toIndentedString(routingPool)).append("\n");
-                        sb.append("    serverAutoScale: ").append(toIndentedString(serverAutoScale)).append("\n");
-                        sb.append("    serverCount: ").append(toIndentedString(serverCount)).append("\n");
                         sb.append("    serverDisableType: ").append(toIndentedString(serverDisableType)).append("\n");
                         sb.append("    serverName: ").append(toIndentedString(serverName)).append("\n");
                         sb.append("    serverReselect: ").append(toIndentedString(serverReselect)).append("\n");

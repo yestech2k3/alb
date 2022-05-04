@@ -39,9 +39,6 @@ public class ApplicationPersistenceProfile extends AviRestResource  {
     @JsonProperty("is_federated")
     private Boolean isFederated = false;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -199,51 +196,6 @@ public class ApplicationPersistenceProfile extends AviRestResource  {
      */
     public void setIsFederated(Boolean  isFederated) {
         this.isFederated = isFederated;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public ApplicationPersistenceProfile addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -445,7 +397,6 @@ public class ApplicationPersistenceProfile extends AviRestResource  {
   Objects.equals(this.hdrPersistenceProfile, objApplicationPersistenceProfile.hdrPersistenceProfile)&&
   Objects.equals(this.appCookiePersistenceProfile, objApplicationPersistenceProfile.appCookiePersistenceProfile)&&
   Objects.equals(this.httpCookiePersistenceProfile, objApplicationPersistenceProfile.httpCookiePersistenceProfile)&&
-  Objects.equals(this.labels, objApplicationPersistenceProfile.labels)&&
   Objects.equals(this.markers, objApplicationPersistenceProfile.markers)&&
   Objects.equals(this.isFederated, objApplicationPersistenceProfile.isFederated)&&
   Objects.equals(this.description, objApplicationPersistenceProfile.description)&&
@@ -462,7 +413,6 @@ public class ApplicationPersistenceProfile extends AviRestResource  {
                         sb.append("    httpCookiePersistenceProfile: ").append(toIndentedString(httpCookiePersistenceProfile)).append("\n");
                         sb.append("    ipPersistenceProfile: ").append(toIndentedString(ipPersistenceProfile)).append("\n");
                         sb.append("    isFederated: ").append(toIndentedString(isFederated)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    persistenceType: ").append(toIndentedString(persistenceType)).append("\n");

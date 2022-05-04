@@ -39,9 +39,6 @@ public class WafPolicy extends AviRestResource  {
     @JsonProperty("created_by")
     private String createdBy = null;
 
-    @JsonProperty("crs_groups")
-    private List<WafRuleGroup> crsGroups;
-
     @JsonProperty("crs_overrides")
     private List<WafRuleGroupOverrides> crsOverrides = null;
 
@@ -59,12 +56,6 @@ public class WafPolicy extends AviRestResource  {
 
     @JsonProperty("geo_db_ref")
     private String geoDbRef = null;
-
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
-    @JsonProperty("learning")
-    private WafLearning learning;
 
     @JsonProperty("learning_params")
     private AppLearningParams learningParams = null;
@@ -107,9 +98,6 @@ public class WafPolicy extends AviRestResource  {
 
     @JsonProperty("waf_profile_ref")
     private String wafProfileRef = null;
-
-    @JsonProperty("whitelist")
-    private WafPolicyWhitelist whitelist;
 
 
 
@@ -259,48 +247,6 @@ public class WafPolicy extends AviRestResource  {
      */
     public void setCreatedBy(String  createdBy) {
         this.createdBy = createdBy;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * This entry is deprecated.
-     * If you want to change the property of a crs group or rule (enabled, mode, exclusions), please use the crs_overrides field instead.
-     * Field deprecated in 20.1.6.
-     * Field introduced in 17.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return crsGroups
-     */
-    public List<WafRuleGroup> getCrsGroups() {
-        return crsGroups;
-    }
-
-    /**
-     * This is the setter method. this will set the crsGroups
-     * This entry is deprecated.
-     * If you want to change the property of a crs group or rule (enabled, mode, exclusions), please use the crs_overrides field instead.
-     * Field deprecated in 20.1.6.
-     * Field introduced in 17.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return crsGroups
-     */
-    public void setCrsGroups(List<WafRuleGroup>  crsGroups) {
-        this.crsGroups = crsGroups;
-    }
-
-    /**
-     * This is the setter method this will set the crsGroups
-     * This entry is deprecated.
-     * If you want to change the property of a crs group or rule (enabled, mode, exclusions), please use the crs_overrides field instead.
-     * Field deprecated in 20.1.6.
-     * Field introduced in 17.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return crsGroups
-     */
-    public WafPolicy addCrsGroupsItem(WafRuleGroup crsGroupsItem) {
-      if (this.crsGroups == null) {
-        this.crsGroups = new ArrayList<WafRuleGroup>();
-      }
-      this.crsGroups.add(crsGroupsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -466,75 +412,6 @@ public class WafPolicy extends AviRestResource  {
      */
     public void setGeoDbRef(String  geoDbRef) {
         this.geoDbRef = geoDbRef;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public WafPolicy addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Configure parameters for waf learning.
-     * Field deprecated in 18.2.3.
-     * Field introduced in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return learning
-     */
-    public WafLearning getLearning() {
-        return learning;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Configure parameters for waf learning.
-     * Field deprecated in 18.2.3.
-     * Field introduced in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param learning set the learning.
-     */
-    public void setLearning(WafLearning learning) {
-        this.learning = learning;
     }
 
     /**
@@ -936,32 +813,6 @@ public class WafPolicy extends AviRestResource  {
         this.wafProfileRef = wafProfileRef;
     }
 
-    /**
-     * This is the getter method this will return the attribute value.
-     * A set of rules which describe conditions under which the request will bypass the waf.
-     * This will be executed in the request header phase before any other waf related code.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return whitelist
-     */
-    public WafPolicyWhitelist getWhitelist() {
-        return whitelist;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * A set of rules which describe conditions under which the request will bypass the waf.
-     * This will be executed in the request header phase before any other waf related code.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param whitelist set the whitelist.
-     */
-    public void setWhitelist(WafPolicyWhitelist whitelist) {
-        this.whitelist = whitelist;
-    }
-
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -979,23 +830,19 @@ public class WafPolicy extends AviRestResource  {
   Objects.equals(this.mode, objWafPolicy.mode)&&
   Objects.equals(this.wafProfileRef, objWafPolicy.wafProfileRef)&&
   Objects.equals(this.preCrsGroups, objWafPolicy.preCrsGroups)&&
-  Objects.equals(this.crsGroups, objWafPolicy.crsGroups)&&
   Objects.equals(this.postCrsGroups, objWafPolicy.postCrsGroups)&&
   Objects.equals(this.paranoiaLevel, objWafPolicy.paranoiaLevel)&&
   Objects.equals(this.createdBy, objWafPolicy.createdBy)&&
   Objects.equals(this.wafCrsRef, objWafPolicy.wafCrsRef)&&
-  Objects.equals(this.learning, objWafPolicy.learning)&&
   Objects.equals(this.failureMode, objWafPolicy.failureMode)&&
   Objects.equals(this.allowModeDelegation, objWafPolicy.allowModeDelegation)&&
   Objects.equals(this.positiveSecurityModel, objWafPolicy.positiveSecurityModel)&&
-  Objects.equals(this.whitelist, objWafPolicy.whitelist)&&
   Objects.equals(this.enableAppLearning, objWafPolicy.enableAppLearning)&&
   Objects.equals(this.applicationSignatures, objWafPolicy.applicationSignatures)&&
   Objects.equals(this.learningParams, objWafPolicy.learningParams)&&
   Objects.equals(this.minConfidence, objWafPolicy.minConfidence)&&
   Objects.equals(this.confidenceOverride, objWafPolicy.confidenceOverride)&&
   Objects.equals(this.enableAutoRuleUpdates, objWafPolicy.enableAutoRuleUpdates)&&
-  Objects.equals(this.labels, objWafPolicy.labels)&&
   Objects.equals(this.allowlist, objWafPolicy.allowlist)&&
   Objects.equals(this.geoDbRef, objWafPolicy.geoDbRef)&&
   Objects.equals(this.markers, objWafPolicy.markers)&&
@@ -1013,15 +860,12 @@ public class WafPolicy extends AviRestResource  {
                         sb.append("    bypassStaticExtensions: ").append(toIndentedString(bypassStaticExtensions)).append("\n");
                         sb.append("    confidenceOverride: ").append(toIndentedString(confidenceOverride)).append("\n");
                         sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
-                        sb.append("    crsGroups: ").append(toIndentedString(crsGroups)).append("\n");
                         sb.append("    crsOverrides: ").append(toIndentedString(crsOverrides)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
                         sb.append("    enableAppLearning: ").append(toIndentedString(enableAppLearning)).append("\n");
                         sb.append("    enableAutoRuleUpdates: ").append(toIndentedString(enableAutoRuleUpdates)).append("\n");
                         sb.append("    failureMode: ").append(toIndentedString(failureMode)).append("\n");
                         sb.append("    geoDbRef: ").append(toIndentedString(geoDbRef)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-                        sb.append("    learning: ").append(toIndentedString(learning)).append("\n");
                         sb.append("    learningParams: ").append(toIndentedString(learningParams)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    minConfidence: ").append(toIndentedString(minConfidence)).append("\n");
@@ -1035,7 +879,6 @@ public class WafPolicy extends AviRestResource  {
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
                         sb.append("    wafCrsRef: ").append(toIndentedString(wafCrsRef)).append("\n");
                         sb.append("    wafProfileRef: ").append(toIndentedString(wafProfileRef)).append("\n");
-                        sb.append("    whitelist: ").append(toIndentedString(whitelist)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

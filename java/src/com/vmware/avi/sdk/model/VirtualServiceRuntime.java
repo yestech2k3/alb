@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VirtualServiceRuntime extends AviRestResource  {
-    @JsonProperty("apic_extension")
-    private VsApicExtension apicExtension;
-
     @JsonProperty("controller_ip")
     private String controllerIp = null;
 
@@ -32,9 +29,6 @@ public class VirtualServiceRuntime extends AviRestResource  {
 
     @JsonProperty("east_west")
     private Boolean eastWest = false;
-
-    @JsonProperty("gslb_dns_geo_update")
-    private GslbDnsGeoUpdate gslbDnsGeoUpdate;
 
     @JsonProperty("gslb_dns_update")
     private GslbDnsUpdate gslbDnsUpdate = null;
@@ -81,23 +75,14 @@ public class VirtualServiceRuntime extends AviRestResource  {
     @JsonProperty("redis_db")
     private Integer redisDb = null;
 
-    @JsonProperty("redis_ip")
-    private String redisIp;
-
     @JsonProperty("redis_port")
     private Integer redisPort = null;
-
-    @JsonProperty("rules_configured")
-    private Boolean rulesConfigured;
 
     @JsonProperty("sec_mgr_info")
     private SecurityMgrRuntime secMgrInfo = null;
 
     @JsonProperty("self_se_election")
     private Boolean selfSeElection = false;
-
-    @JsonProperty("servers_configured")
-    private Boolean serversConfigured;
 
     @JsonProperty("tls_ticket_key")
     private List<TLSTicket> tlsTicketKey = null;
@@ -121,26 +106,6 @@ public class VirtualServiceRuntime extends AviRestResource  {
     private VirtualService vsUpdatePending = null;
 
 
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return apicExtension
-     */
-    public VsApicExtension getApicExtension() {
-        return apicExtension;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param apicExtension set the apicExtension.
-     */
-    public void setApicExtension(VsApicExtension apicExtension) {
-        this.apicExtension = apicExtension;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -200,30 +165,6 @@ public class VirtualServiceRuntime extends AviRestResource  {
      */
     public void setEastWest(Boolean  eastWest) {
         this.eastWest = eastWest;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated, handled by se datastore.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return gslbDnsGeoUpdate
-     */
-    public GslbDnsGeoUpdate getGslbDnsGeoUpdate() {
-        return gslbDnsGeoUpdate;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated, handled by se datastore.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param gslbDnsGeoUpdate set the gslbDnsGeoUpdate.
-     */
-    public void setGslbDnsGeoUpdate(GslbDnsGeoUpdate gslbDnsGeoUpdate) {
-        this.gslbDnsGeoUpdate = gslbDnsGeoUpdate;
     }
 
     /**
@@ -566,26 +507,6 @@ public class VirtualServiceRuntime extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return redisIp
-     */
-    public String getRedisIp() {
-        return redisIp;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param redisIp set the redisIp.
-     */
-    public void setRedisIp(String  redisIp) {
-        this.redisIp = redisIp;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return redisPort
@@ -602,26 +523,6 @@ public class VirtualServiceRuntime extends AviRestResource  {
      */
     public void setRedisPort(Integer  redisPort) {
         this.redisPort = redisPort;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rulesConfigured
-     */
-    public Boolean getRulesConfigured() {
-        return rulesConfigured;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param rulesConfigured set the rulesConfigured.
-     */
-    public void setRulesConfigured(Boolean  rulesConfigured) {
-        this.rulesConfigured = rulesConfigured;
     }
 
     /**
@@ -670,26 +571,6 @@ public class VirtualServiceRuntime extends AviRestResource  {
      */
     public void setSelfSeElection(Boolean  selfSeElection) {
         this.selfSeElection = selfSeElection;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return serversConfigured
-     */
-    public Boolean getServersConfigured() {
-        return serversConfigured;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param serversConfigured set the serversConfigured.
-     */
-    public void setServersConfigured(Boolean  serversConfigured) {
-        this.serversConfigured = serversConfigured;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -894,10 +775,7 @@ public class VirtualServiceRuntime extends AviRestResource  {
       VirtualServiceRuntime objVirtualServiceRuntime = (VirtualServiceRuntime) o;
       return   Objects.equals(this.uuid, objVirtualServiceRuntime.uuid)&&
   Objects.equals(this.datapathDebug, objVirtualServiceRuntime.datapathDebug)&&
-  Objects.equals(this.serversConfigured, objVirtualServiceRuntime.serversConfigured)&&
-  Objects.equals(this.rulesConfigured, objVirtualServiceRuntime.rulesConfigured)&&
   Objects.equals(this.onePlusOneHa, objVirtualServiceRuntime.onePlusOneHa)&&
-  Objects.equals(this.apicExtension, objVirtualServiceRuntime.apicExtension)&&
   Objects.equals(this.lastChangedTime, objVirtualServiceRuntime.lastChangedTime)&&
   Objects.equals(this.controllerIp, objVirtualServiceRuntime.controllerIp)&&
   Objects.equals(this.prevControllerIp, objVirtualServiceRuntime.prevControllerIp)&&
@@ -906,7 +784,6 @@ public class VirtualServiceRuntime extends AviRestResource  {
   Objects.equals(this.prevMetricsMgrPort, objVirtualServiceRuntime.prevMetricsMgrPort)&&
   Objects.equals(this.manualPlacement, objVirtualServiceRuntime.manualPlacement)&&
   Objects.equals(this.vhChildVsRef, objVirtualServiceRuntime.vhChildVsRef)&&
-  Objects.equals(this.redisIp, objVirtualServiceRuntime.redisIp)&&
   Objects.equals(this.redisPort, objVirtualServiceRuntime.redisPort)&&
   Objects.equals(this.redisDb, objVirtualServiceRuntime.redisDb)&&
   Objects.equals(this.tlsTicketKey, objVirtualServiceRuntime.tlsTicketKey)&&
@@ -919,7 +796,6 @@ public class VirtualServiceRuntime extends AviRestResource  {
   Objects.equals(this.ipamDnsRecords, objVirtualServiceRuntime.ipamDnsRecords)&&
   Objects.equals(this.version, objVirtualServiceRuntime.version)&&
   Objects.equals(this.vipRuntime, objVirtualServiceRuntime.vipRuntime)&&
-  Objects.equals(this.gslbDnsGeoUpdate, objVirtualServiceRuntime.gslbDnsGeoUpdate)&&
   Objects.equals(this.selfSeElection, objVirtualServiceRuntime.selfSeElection)&&
   Objects.equals(this.vsUpdatePending, objVirtualServiceRuntime.vsUpdatePending)&&
   Objects.equals(this.keyRotationCount, objVirtualServiceRuntime.keyRotationCount)&&
@@ -931,11 +807,9 @@ public class VirtualServiceRuntime extends AviRestResource  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class VirtualServiceRuntime {\n");
-                  sb.append("    apicExtension: ").append(toIndentedString(apicExtension)).append("\n");
-                        sb.append("    controllerIp: ").append(toIndentedString(controllerIp)).append("\n");
+                  sb.append("    controllerIp: ").append(toIndentedString(controllerIp)).append("\n");
                         sb.append("    datapathDebug: ").append(toIndentedString(datapathDebug)).append("\n");
                         sb.append("    eastWest: ").append(toIndentedString(eastWest)).append("\n");
-                        sb.append("    gslbDnsGeoUpdate: ").append(toIndentedString(gslbDnsGeoUpdate)).append("\n");
                         sb.append("    gslbDnsUpdate: ").append(toIndentedString(gslbDnsUpdate)).append("\n");
                         sb.append("    ipamDnsRecords: ").append(toIndentedString(ipamDnsRecords)).append("\n");
                         sb.append("    isDnsVs: ").append(toIndentedString(isDnsVs)).append("\n");
@@ -951,12 +825,9 @@ public class VirtualServiceRuntime extends AviRestResource  {
                         sb.append("    prevControllerIp: ").append(toIndentedString(prevControllerIp)).append("\n");
                         sb.append("    prevMetricsMgrPort: ").append(toIndentedString(prevMetricsMgrPort)).append("\n");
                         sb.append("    redisDb: ").append(toIndentedString(redisDb)).append("\n");
-                        sb.append("    redisIp: ").append(toIndentedString(redisIp)).append("\n");
                         sb.append("    redisPort: ").append(toIndentedString(redisPort)).append("\n");
-                        sb.append("    rulesConfigured: ").append(toIndentedString(rulesConfigured)).append("\n");
                         sb.append("    secMgrInfo: ").append(toIndentedString(secMgrInfo)).append("\n");
                         sb.append("    selfSeElection: ").append(toIndentedString(selfSeElection)).append("\n");
-                        sb.append("    serversConfigured: ").append(toIndentedString(serversConfigured)).append("\n");
                         sb.append("    tlsTicketKey: ").append(toIndentedString(tlsTicketKey)).append("\n");
                         sb.append("    type: ").append(toIndentedString(type)).append("\n");
                         sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
