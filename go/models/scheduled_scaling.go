@@ -23,9 +23,6 @@ type ScheduledScaling struct {
 	// Scheduled autoscale end date in ISO8601 format, said day will be included in scheduled and have to be in future and greater than start date. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	EndDate *string `json:"end_date,omitempty"`
 
-	// Deprecated.Frequency of the Scheduled autoscale. Enum options - ONCE, EVERY_DAY, EVERY_WEEK, EVERY_MONTH. Field deprecated in 21.1.3. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	Recurrence *string `json:"recurrence,omitempty"`
-
 	// Maximum number of simultaneous scale-in/out servers for scheduled autoscale. If this value is 0, regular autoscale policy dictates this. . Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	ScheduleMaxStep *int32 `json:"schedule_max_step,omitempty"`
 

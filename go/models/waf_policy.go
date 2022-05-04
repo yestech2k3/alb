@@ -33,9 +33,6 @@ type WafPolicy struct {
 	// Creator name. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	CreatedBy *string `json:"created_by,omitempty"`
 
-	// This entry is deprecated. If you want to change the property of a CRS group or rule (enabled, mode, exclusions), please use the crs_overrides field instead. Field deprecated in 20.1.6. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	CrsGroups []*WafRuleGroup `json:"crs_groups,omitempty"`
-
 	// Override attributes for CRS rules. Field introduced in 20.1.6. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	CrsOverrides []*WafRuleGroupOverrides `json:"crs_overrides,omitempty"`
 
@@ -56,12 +53,6 @@ type WafPolicy struct {
 
 	// Geo Location Mapping Database used by this WafPolicy. It is a reference to an object of type GeoDB. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	GeoDbRef *string `json:"geo_db_ref,omitempty"`
-
-	// Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	Labels []*KeyValue `json:"labels,omitempty"`
-
-	// Configure parameters for WAF learning. Field deprecated in 18.2.3. Field introduced in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Learning *WafLearning `json:"learning,omitempty"`
 
 	// Parameters for tuning Application learning. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	LearningParams *AppLearningParams `json:"learning_params,omitempty"`
@@ -92,9 +83,6 @@ type WafPolicy struct {
 	// WAF Rules are categorized in to groups based on their characterization. These groups are created by the user and will be  enforced before the CRS groups. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	PreCrsGroups []*WafRuleGroup `json:"pre_crs_groups,omitempty"`
 
-	// A resolved version of waf_crs_ref with waf_crs_overrides applied. Field deprecated in 21.1.3. Field introduced in 20.1.6. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
-	ResolvedCrsGroups []*WafRuleGroup `json:"resolved_crs_groups,omitempty"`
-
 	//  It is a reference to an object of type Tenant. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	TenantRef *string `json:"tenant_ref,omitempty"`
 
@@ -111,7 +99,4 @@ type WafPolicy struct {
 	// WAF Profile for WAF policy. It is a reference to an object of type WafProfile. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	WafProfileRef *string `json:"waf_profile_ref"`
-
-	// A set of rules which describe conditions under which the request will bypass the WAF. This will be executed in the request header phase before any other WAF related code. Field deprecated in 20.1.3. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Whitelist *WafPolicyWhitelist `json:"whitelist,omitempty"`
 }

@@ -256,9 +256,6 @@ type ControllerProperties struct {
 	//  Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	VnicOpFailTime *int32 `json:"vnic_op_fail_time,omitempty"`
 
-	// Time to wait for the scaled out SE to become ready before marking the scaleout done, applies to APIC configuration only. Field deprecated in 21.1.1. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	VsApicScaleoutTimeout *int32 `json:"vs_apic_scaleout_timeout,omitempty"`
-
 	//  Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	VsAwaitingSeTimeout *int32 `json:"vs_awaiting_se_timeout,omitempty"`
 

@@ -15,9 +15,6 @@ type IPAddrGroup struct {
 	// Configure IP address(es). Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Addrs []*IPAddr `json:"addrs,omitempty"`
 
-	// Populate IP addresses from members of this Cisco APIC EPG. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ApicEpgName *string `json:"apic_epg_name,omitempty"`
-
 	// Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
 	ConfigpbAttributes *ConfigPbAttributes `json:"configpb_attributes,omitempty"`
 
@@ -29,9 +26,6 @@ type IPAddrGroup struct {
 
 	// Configure (IP address, port) tuple(s). Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	IPPorts []*IPAddrPort `json:"ip_ports,omitempty"`
-
-	// Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	Labels []*KeyValue `json:"labels,omitempty"`
 
 	// Populate IP addresses from tasks of this Marathon app. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	MarathonAppName *string `json:"marathon_app_name,omitempty"`

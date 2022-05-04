@@ -12,12 +12,6 @@ type Cloud struct {
 	// Read Only: true
 	LastModified *string `json:"_last_modified,omitempty"`
 
-	//  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	ApicConfiguration *APICConfiguration `json:"apic_configuration,omitempty"`
-
-	//  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition.
-	ApicMode *bool `json:"apic_mode,omitempty"`
-
 	// CloudConnector polling interval in seconds for external autoscale groups, minimum 60 seconds. Allowed values are 60-3600. Field introduced in 18.2.2. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 60), Basic edition(Allowed values- 60), Enterprise with Cloud Services edition.
 	AutoscalePollingInterval *int32 `json:"autoscale_polling_interval,omitempty"`
 
@@ -87,9 +81,6 @@ type Cloud struct {
 	// List of labels to be used for granular RBAC. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
 	Markers []*RoleFilterMatchLabel `json:"markers,omitempty"`
 
-	//  Field deprecated in 18.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	MesosConfiguration *MesosConfiguration `json:"mesos_configuration,omitempty"`
-
 	// Cloud metrics collector polling interval in seconds. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	MetricsPollingInterval *int32 `json:"metrics_polling_interval,omitempty"`
 
@@ -100,9 +91,6 @@ type Cloud struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// Configuration parameters for NSX Manager. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NsxConfiguration *NsxConfiguration `json:"nsx_configuration,omitempty"`
-
 	// NSX-T Cloud Platform Configuration. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition.
 	NsxtConfiguration *NsxtConfiguration `json:"nsxt_configuration,omitempty"`
 
@@ -111,9 +99,6 @@ type Cloud struct {
 
 	//  Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	OpenstackConfiguration *OpenStackConfiguration `json:"openstack_configuration,omitempty"`
-
-	//  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Oshiftk8sConfiguration *OShiftK8SConfiguration `json:"oshiftk8s_configuration,omitempty"`
 
 	// Prefer static routes over interface routes during VirtualService placement. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	PreferStaticRoutes *bool `json:"prefer_static_routes,omitempty"`

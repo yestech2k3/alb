@@ -18,9 +18,6 @@ type WafApplicationSignatures struct {
 	// Override attributes of application signature rules. Field introduced in 20.1.6. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	RuleOverrides []*WafRuleOverrides `json:"rule_overrides,omitempty"`
 
-	// This entry is deprecated. If you want to deactivate a certain rule, please use the rule_overrides field instead. Field deprecated in 20.1.6. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Rules []*WafRule `json:"rules,omitempty"`
-
 	// The version in use of the provided ruleset. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
 	// Read Only: true
 	RulesetVersion *string `json:"ruleset_version,omitempty"`

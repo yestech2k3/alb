@@ -17,26 +17,11 @@ type WafConfig struct {
 	// Allowed request content type character sets in WAF. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	AllowedRequestContentTypeCharsets []string `json:"allowed_request_content_type_charsets,omitempty"`
 
-	// WAF allowed Content Types. Field deprecated in 21.1.3. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AllowedRequestContentTypes []string `json:"allowed_request_content_types,omitempty"`
-
 	// Argument seperator. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ArgumentSeparator *string `json:"argument_separator,omitempty"`
 
-	// Enable to buffer response body for inspection. Field deprecated in 18.2.2. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	BufferResponseBodyForInspection *bool `json:"buffer_response_body_for_inspection,omitempty"`
-
-	// Maximum size for the client request body for file uploads. Allowed values are 1-32768. Field deprecated in 18.1.5. Field introduced in 17.2.1. Unit is KB. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ClientFileUploadMaxBodySize *int32 `json:"client_file_upload_max_body_size,omitempty"`
-
-	// Maximum size for the client request body for non-file uploads. Allowed values are 1-32768. Field deprecated in 18.1.5. Field introduced in 17.2.1. Unit is KB. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ClientNonfileUploadMaxBodySize *int32 `json:"client_nonfile_upload_max_body_size,omitempty"`
-
 	// Maximum size for the client request body scanned by WAF. Allowed values are 1-32768. Field introduced in 18.1.5, 18.2.1. Unit is KB. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ClientRequestMaxBodySize *int32 `json:"client_request_max_body_size,omitempty"`
-
-	// Deprecated (Moved to WafPolicy). Configure thresholds for confidence labels. Field deprecated in 20.1.1. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ConfidenceOverride *AppLearningConfidenceOverride `json:"confidence_override,omitempty"`
 
 	// WAF Content-Types and their request body parsers. Use this field to configure which Content-Types should be handled by WAF and which parser should be used. All Content-Types here are treated as 'allowed'. The order of entries matters. If the request's Content-Type matches an entry, its request body parser will run and no other parser will be invoked. Field introduced in 21.1.3. Maximum of 256 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	ContentTypeMappings []*WafContentTypeMapping `json:"content_type_mappings,omitempty"`
@@ -44,20 +29,11 @@ type WafConfig struct {
 	// 0  For Netscape Cookies. 1  For version 1 cookies. Allowed values are 0-1. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	CookieFormatVersion *int32 `json:"cookie_format_version,omitempty"`
 
-	// Deprecated (Moved to WafPolicy). Enable Application Learning based rule updates on the WAF Profile. Rules will be programmed in dedicated WAF learning group. Field deprecated in 20.1.1. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	EnableAutoRuleUpdates *bool `json:"enable_auto_rule_updates,omitempty"`
-
 	// Ignore request body parsing errors due to partial scanning. Field introduced in 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	IgnoreIncompleteRequestBodyError *bool `json:"ignore_incomplete_request_body_error,omitempty"`
 
-	// Deprecated (Moved to WafPolicy). Parameters for tuning Application learning. Field deprecated in 20.1.1. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	LearningParams *AppLearningParams `json:"learning_params,omitempty"`
-
 	// The maximum period of time WAF processing is allowed to take for a single request. A value of 0 (zero) means no limit and should not be chosen in production deployments. It is only used for exceptional situations where crashes of se_dp processes are acceptable. The behavior of the system if this time is exceeded depends on two other configuration settings, the WAF policy mode and the WAF failure mode. In WAF policy mode 'Detection', the request is allowed and flagged for both failure mode 'Closed' and 'Open'. In enforcement node, 'Closed' means the request is rejected, 'Open' means the request is allowed and flagged. Irrespective of these settings, no subsequent WAF rules of this or other phases will be executed once the maximum execution time has been exceeded. Allowed values are 0-5000. Field introduced in 17.2.12, 18.1.2. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	MaxExecutionTime *int32 `json:"max_execution_time,omitempty"`
-
-	// Deprecated (Moved to WafPolicy) Minimum confidence label required for auto rule updates. Enum options - CONFIDENCE_VERY_HIGH, CONFIDENCE_HIGH, CONFIDENCE_PROBABLE, CONFIDENCE_LOW, CONFIDENCE_NONE. Field deprecated in 20.1.1. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	MinConfidence *string `json:"min_confidence,omitempty"`
 
 	// Limit CPU utilization for each regular expression match when processing rules. Field introduced in 17.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RegexMatchLimit *int32 `json:"regex_match_limit,omitempty"`

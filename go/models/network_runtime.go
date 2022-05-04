@@ -19,9 +19,6 @@ type NetworkRuntime struct {
 	// Objects using static IPs in this network. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	ObjUuids []string `json:"obj_uuids,omitempty"`
 
-	// Use obj_uuids. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeUUID []string `json:"se_uuid,omitempty"`
-
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SubnetRuntime []*SubnetRuntime `json:"subnet_runtime,omitempty"`
 

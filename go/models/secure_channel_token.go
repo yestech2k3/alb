@@ -25,9 +25,6 @@ type SecureChannelToken struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// Deprecated  Uuid of SE or controller who is using this auth_token. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NodeUUID *string `json:"node_uuid,omitempty"`
-
 	// url
 	// Read Only: true
 	URL *string `json:"url,omitempty"`

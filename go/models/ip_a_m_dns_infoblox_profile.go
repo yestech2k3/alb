@@ -31,9 +31,6 @@ type IPAMDNSInfobloxProfile struct {
 	// Usable domains to pick from Infoblox. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	UsableDomains []string `json:"usable_domains,omitempty"`
 
-	// This field is deprecated, use usable_alloc_subnets instead. Field deprecated in 18.2.8. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	UsableSubnets []*IPAddrPrefix `json:"usable_subnets,omitempty"`
-
 	// Username for API access for Infoblox appliance. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	Username *string `json:"username"`

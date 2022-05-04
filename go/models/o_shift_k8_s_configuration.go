@@ -35,9 +35,6 @@ type OShiftK8SConfiguration struct {
 	// If there is no explicit east_west_placement field in virtualservice configuration, treat service as a East-West service; default services such a OpenShift API server do not have virtualservice configuration. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	DefaultServiceAsEastWestService *bool `json:"default_service_as_east_west_service,omitempty"`
 
-	// Deprecated. Field deprecated in 17.1.9. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DefaultSharedVirtualservice *OshiftSharedVirtualService `json:"default_shared_virtualservice,omitempty"`
-
 	// Disable auto service sync for back end services. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	DisableAutoBackendServiceSync *bool `json:"disable_auto_backend_service_sync,omitempty"`
 
@@ -68,9 +65,6 @@ type OShiftK8SConfiguration struct {
 	// Enable proxy ARP from Host interface for Front End  proxies. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	FeproxyVipsEnableProxyArp *bool `json:"feproxy_vips_enable_proxy_arp,omitempty"`
 
-	// Optional fleet remote endpoint if fleet is used for SE deployment. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	FleetEndpoint *string `json:"fleet_endpoint,omitempty"`
-
 	// List of container ports that create a HTTP Virtualservice instead of a TCP/UDP VirtualService. Defaults to 80, 8080, 443 and 8443. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	HTTPContainerPorts []int64 `json:"http_container_ports,omitempty,omitempty"`
 
@@ -95,9 +89,6 @@ type OShiftK8SConfiguration struct {
 	// Sync applications only for namespaces/projects that have these include attributes configured. Field introduced in 17.1.9,17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	NsIncludeAttributes []*MesosAttribute `json:"ns_include_attributes,omitempty"`
 
-	// Nuage Overlay SDN Controller information. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NuageController *NuageSDNController `json:"nuage_controller,omitempty"`
-
 	// Enables sharding of Routes and Ingresses to this number (if non zero) of virtual services in the admin tenant per SEGroup. Sharding is done by hashing on the namespace of the Ingress/Route object. This knob is valid only if shared_virtualservice_namespace flag is set. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	NumShards *int32 `json:"num_shards,omitempty"`
 
@@ -109,9 +100,6 @@ type OShiftK8SConfiguration struct {
 
 	// Routes support adding routes to a particular namespace routing table in Openshift/K8s cluster. Each route is a combination of subnet and nexthop ip address or nexthop interface name, and a enum type is used to distinguish an entry in the host (default behaviour) or in the container/pod or in other namespace. This knob should be enabled in the following cases  1. Forwarding the network packets to the same network interface from where it came from in the OpenShift/K8s node. 2. OpenShift/K8s Node connected to the Internet via multiple network interfaces on different networks/ISPs.3. Handling North-South traffic originating from with in the node when the default gateway for outgoing traffic of vs is configured.4. Handling the container/pod traffic by adding the routes in the container/pod. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Routes []*RouteInfo `json:"routes,omitempty"`
-
-	// Deprecated. Field deprecated in 17.1.9. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	RoutesShareVirtualservice *bool `json:"routes_share_virtualservice,omitempty"`
 
 	// Cluster uses overlay based SDN. Enable this flag if cluster uses a overlay based SDN for OpenShift, Flannel, Weave, Nuage. Disable for routed mode. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SdnOverlay *bool `json:"sdn_overlay,omitempty"`
@@ -143,9 +131,6 @@ type OShiftK8SConfiguration struct {
 	// Restart ServiceEngines forcely if VirtualServices failed to migrate to another SE. Field introduced in 17.2.15, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeRestartForce *bool `json:"se_restart_force,omitempty"`
 
-	// New SE spawn rate per minute. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeSpawnRate *int32 `json:"se_spawn_rate,omitempty"`
-
 	// Host volume to be used as a disk for Avi SE, This is a disruptive change. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeVolume *string `json:"se_volume,omitempty"`
 
@@ -155,17 +140,11 @@ type OShiftK8SConfiguration struct {
 	// Authorization token for service account instead of client certificate. One of client certificate or token is required. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ServiceAccountToken *string `json:"service_account_token,omitempty"`
 
-	// Perform service port matching to create a HTTP Virtualservice instead of a TCP/UDP VirtualService. Field deprecated in 17.2.11,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ServicePortMatchHTTPService *bool `json:"service_port_match_http_service,omitempty"`
-
 	// Prefix to be used for Shard VS name when num_shards knob is non zero. Format for Shard VS name will be <shard_prefix>-<idx>-CloudName-SEGroupName. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ShardPrefix *string `json:"shard_prefix,omitempty"`
 
 	// Projects/Namespaces use a shared virtualservice for http/https Routes and Ingress objects unless overriden by the avi_virtualservice  dedicated|shared annotation. Field introduced in 17.1.9,17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SharedVirtualserviceNamespace *bool `json:"shared_virtualservice_namespace,omitempty"`
-
-	// Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SSHSeDeployment *SSHSeDeployment `json:"ssh_se_deployment,omitempty"`
 
 	// Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SSHUserRef *string `json:"ssh_user_ref,omitempty"`

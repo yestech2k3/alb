@@ -15,9 +15,6 @@ type SecureChannelAvailableLocalIps struct {
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	End *int32 `json:"end,omitempty"`
 
-	//  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	FreeControllerIps []string `json:"free_controller_ips,omitempty"`
-
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	FreeIps []int64 `json:"free_ips,omitempty,omitempty"`
 

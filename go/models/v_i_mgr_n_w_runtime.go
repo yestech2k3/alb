@@ -15,9 +15,6 @@ type VIMgrNWRuntime struct {
 	// Read Only: true
 	LastModified *string `json:"_last_modified,omitempty"`
 
-	//  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ApicVrfContext *string `json:"apic_vrf_context,omitempty"`
-
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	AutoExpand *bool `json:"auto_expand,omitempty"`
 

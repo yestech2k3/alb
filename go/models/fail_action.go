@@ -8,9 +8,6 @@ package models
 // swagger:model FailAction
 type FailAction struct {
 
-	// Backup Pool when pool experiences a failure. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	BackupPool *FailActionBackupPool `json:"backup_pool,omitempty"`
-
 	// Local response to HTTP requests when pool experiences a failure. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	LocalRsp *FailActionHTTPLocalResponse `json:"local_rsp,omitempty"`
 

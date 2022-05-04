@@ -27,26 +27,8 @@ type VirtualService struct {
 	// Specifies settings related to analytics. It is a reference to an object of type AnalyticsProfile. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	AnalyticsProfileRef *string `json:"analytics_profile_ref,omitempty"`
 
-	// The name of the Contract/Graph associated with the Virtual Service. Should be in the <Contract name> <Graph name> format. This is applicable only for Service Integration mode with Cisco APIC Controller . Field deprecated in 21.1.1. Field introduced in 17.2.12,18.1.2. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	ApicContractGraph *string `json:"apic_contract_graph,omitempty"`
-
 	// Enable application layer specific features for the Virtual Service. It is a reference to an object of type ApplicationProfile. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. Special default for Essentials edition is System-L4-Application.
 	ApplicationProfileRef *string `json:"application_profile_ref,omitempty"`
-
-	// Auto-allocate floating/elastic IP from the Cloud infrastructure. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AutoAllocateFloatingIP *bool `json:"auto_allocate_floating_ip,omitempty"`
-
-	// Auto-allocate VIP from the provided subnet. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AutoAllocateIP *bool `json:"auto_allocate_ip,omitempty"`
-
-	// Availability-zone to place the Virtual Service. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AvailabilityZone *string `json:"availability_zone,omitempty"`
-
-	// (internal-use) FIP allocated by Avi in the Cloud infrastructure. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AviAllocatedFip *bool `json:"avi_allocated_fip,omitempty"`
-
-	// (internal-use) VIP allocated by Avi in the Cloud infrastructure. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AviAllocatedVip *bool `json:"avi_allocated_vip,omitempty"`
 
 	// (internal-use)Applicable for Azure only. Azure Availability set to which this VS is associated. Internally set by the cloud connector. Field introduced in 17.2.12, 18.1.2. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
 	// Read Only: true
@@ -60,9 +42,6 @@ type VirtualService struct {
 
 	// (This is a beta feature). Sync Key-Value cache to the new SEs when VS is scaled out. For ex  SSL sessions are stored using VS's Key-Value cache. When the VS is scaled out, the SSL session information is synced to the new SE, allowing existing SSL sessions to be reused on the new SE. . Field introduced in 17.2.7, 18.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition.
 	BulkSyncKvcache *bool `json:"bulk_sync_kvcache,omitempty"`
-
-	// HTTP authentication configuration for protected resources. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	ClientAuth *HTTPClientAuthenticationParams `json:"client_auth,omitempty"`
 
 	// close client connection on vs config update. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition.
 	CloseClientConnOnConfigUpdate *bool `json:"close_client_conn_on_config_update,omitempty"`
@@ -94,15 +73,6 @@ type VirtualService struct {
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Description *string `json:"description,omitempty"`
 
-	// (internal-use) Discovered networks providing reachability for client facing Virtual Service IP. This field is deprecated. It is a reference to an object of type Network. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DiscoveredNetworkRef []string `json:"discovered_network_ref,omitempty"`
-
-	// (internal-use) Discovered networks providing reachability for client facing Virtual Service IP. This field is used internally by Avi, not editable by the user. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DiscoveredNetworks []*DiscoveredNetwork `json:"discovered_networks,omitempty"`
-
-	// (internal-use) Discovered subnets providing reachability for client facing Virtual Service IP. This field is deprecated. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DiscoveredSubnet []*IPAddrPrefix `json:"discovered_subnet,omitempty"`
-
 	// Service discovery specific data including fully qualified domain name, type and Time-To-Live of the DNS record. Note that only one of fqdn and dns_info setting is allowed. Maximum of 1000 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	DNSInfo []*DNSInfo `json:"dns_info,omitempty"`
 
@@ -127,12 +97,6 @@ type VirtualService struct {
 	// Error Page Profile to be used for this virtualservice.This profile is used to send the custom error page to the client generated by the proxy. It is a reference to an object of type ErrorPageProfile. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ErrorPageProfileRef *string `json:"error_page_profile_ref,omitempty"`
 
-	// Floating IP to associate with this Virtual Service. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	FloatingIP *IPAddr `json:"floating_ip,omitempty"`
-
-	// If auto_allocate_floating_ip is True and more than one floating-ip subnets exist, then the subnet for the floating IP address allocation. This field is applicable only if the VirtualService belongs to an OpenStack or AWS cloud. In OpenStack or AWS cloud it is required when auto_allocate_floating_ip is selected. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	FloatingSubnetUUID *string `json:"floating_subnet_uuid,omitempty"`
-
 	// Criteria for flow distribution among SEs. Enum options - LOAD_AWARE, CONSISTENT_HASH_SOURCE_IP_ADDRESS, CONSISTENT_HASH_SOURCE_IP_ADDRESS_AND_PORT. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- LOAD_AWARE), Basic edition(Allowed values- LOAD_AWARE), Enterprise with Cloud Services edition.
 	FlowDist *string `json:"flow_dist,omitempty"`
 
@@ -154,20 +118,11 @@ type VirtualService struct {
 	// Ignore Pool servers network reachability constraints for Virtual Service placement. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	IgnPoolNetReach *bool `json:"ign_pool_net_reach,omitempty"`
 
-	// IP Address of the Virtual Service. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	IPAddress *IPAddr `json:"ip_address,omitempty"`
-
-	// Subnet and/or Network for allocating VirtualService IP by IPAM Provider module. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	IPAMNetworkSubnet *IPNetworkSubnet `json:"ipam_network_subnet,omitempty"`
-
 	// Application-specific config for JWT validation. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	JwtConfig *JWTValidationVsConfig `json:"jwt_config,omitempty"`
 
 	// L4 Policies applied to the data traffic of the Virtual Service. Field introduced in 17.2.7. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	L4Policies []*L4Policies `json:"l4_policies,omitempty"`
-
-	// Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	Labels []*KeyValue `json:"labels,omitempty"`
 
 	// Application-specific LDAP config. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	LdapVsConfig *LDAPVSConfig `json:"ldap_vs_config,omitempty"`
@@ -194,9 +149,6 @@ type VirtualService struct {
 	// Determines network settings such as protocol, TCP or UDP, and related options for the protocol. It is a reference to an object of type NetworkProfile. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. Special default for Essentials edition is System-TCP-Fast-Path.
 	NetworkProfileRef *string `json:"network_profile_ref,omitempty"`
 
-	// Manually override the network on which the Virtual Service is placed. It is a reference to an object of type Network. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NetworkRef *string `json:"network_ref,omitempty"`
-
 	// Network security policies for the Virtual Service. It is a reference to an object of type NetworkSecurityPolicy. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	NetworkSecurityPolicyRef *string `json:"network_security_policy_ref,omitempty"`
 
@@ -214,9 +166,6 @@ type VirtualService struct {
 
 	// The pool is an object that contains destination servers and related attributes such as load-balancing and persistence. It is a reference to an object of type Pool. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	PoolRef *string `json:"pool_ref,omitempty"`
-
-	// (internal-use) Network port assigned to the Virtual Service IP address. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	PortUUID *string `json:"port_uuid,omitempty"`
 
 	// Remove listening port if VirtualService is down. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RemoveListeningPortOnVsDown *bool `json:"remove_listening_port_on_vs_down,omitempty"`
@@ -270,20 +219,11 @@ type VirtualService struct {
 	// Expected number of SSL session cache entries (may be exceeded). Allowed values are 1024-16383. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SslSessCacheAvgSize *int32 `json:"ssl_sess_cache_avg_size,omitempty"`
 
-	// Client Authentication and Authorization Policy for the virtualservice. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	SsoPolicy *SSOPolicy `json:"sso_policy,omitempty"`
-
 	// The SSO Policy attached to the virtualservice. It is a reference to an object of type SSOPolicy. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	SsoPolicyRef *string `json:"sso_policy_ref,omitempty"`
 
 	// List of static DNS records applied to this Virtual Service. These are static entries and no health monitoring is performed against the IP addresses. Maximum of 1000 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	StaticDNSRecords []*DNSRecord `json:"static_dns_records,omitempty"`
-
-	// Subnet providing reachability for client facing Virtual Service IP. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Subnet *IPAddrPrefix `json:"subnet,omitempty"`
-
-	// It represents subnet for the Virtual Service IP address allocation when auto_allocate_ip is True.It is only applicable in OpenStack or AWS cloud. This field is required if auto_allocate_ip is True. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SubnetUUID *string `json:"subnet_uuid,omitempty"`
 
 	//  It is a reference to an object of type Tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	TenantRef *string `json:"tenant_ref,omitempty"`

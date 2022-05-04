@@ -18,12 +18,6 @@ type ServiceEngineGroup struct {
 	// Service Engines in active/standby mode for HA failover. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ActiveStandby *bool `json:"active_standby,omitempty"`
 
-	// Indicates the percent of config memory used for config updates. Allowed values are 0-90. Field deprecated in 18.1.2. Field introduced in 18.1.1. Unit is PERCENT. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AdditionalConfigMemory *int32 `json:"additional_config_memory,omitempty"`
-
-	// Advertise reach-ability of backend server networks via ADC through BGP for default gateway feature. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AdvertiseBackendNetworks *bool `json:"advertise_backend_networks,omitempty"`
-
 	// Enable aggressive failover configuration for ha. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition.
 	AggressiveFailureDetection *bool `json:"aggressive_failure_detection,omitempty"`
 
@@ -207,15 +201,6 @@ type ServiceEngineGroup struct {
 	// Enable TX ring support in pcap mode of operation. TSO feature is not supported with TX Ring enabled. Deprecated from 18.2.8, instead use pcap_tx_mode. Requires SE Reboot. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	EnablePcapTxRing *bool `json:"enable_pcap_tx_ring,omitempty"`
 
-	// Enable routing for this ServiceEngineGroup . Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition.
-	EnableRouting *bool `json:"enable_routing,omitempty"`
-
-	// Enable VIP on all interfaces of SE. Field deprecated in 18.2.5. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	EnableVipOnAllInterfaces *bool `json:"enable_vip_on_all_interfaces,omitempty"`
-
-	// Use Virtual MAC address for interfaces on which floating interface IPs are placed. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	EnableVMAC *bool `json:"enable_vmac,omitempty"`
-
 	// End local ephemeral port number for outbound connections. Field introduced in 17.2.13, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	EphemeralPortrangeEnd *int32 `json:"ephemeral_portrange_end,omitempty"`
 
@@ -227,12 +212,6 @@ type ServiceEngineGroup struct {
 
 	// Extra config memory to support large Geo DB configuration. Field introduced in 17.1.1. Unit is MB. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ExtraSharedConfigMemory *int32 `json:"extra_shared_config_memory,omitempty"`
-
-	// If ServiceEngineGroup is configured for Legacy 1+1 Active Standby HA Mode, Floating IP's will be advertised only by the Active SE in the Pair. Virtual Services in this group must be disabled/enabled for any changes to the Floating IP's to take effect. Only active SE hosting VS tagged with Active Standby SE 1 Tag will advertise this floating IP when manual load distribution is enabled. Field deprecated in 18.2.5. Maximum of 32 items allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	FloatingIntfIP []*IPAddr `json:"floating_intf_ip,omitempty"`
-
-	// If ServiceEngineGroup is configured for Legacy 1+1 Active Standby HA Mode, Floating IP's will be advertised only by the Active SE in the Pair. Virtual Services in this group must be disabled/enabled for any changes to the Floating IP's to take effect. Only active SE hosting VS tagged with Active Standby SE 2 Tag will advertise this floating IP when manual load distribution is enabled. Field deprecated in 18.2.5. Maximum of 32 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	FloatingIntfIPSe2 []*IPAddr `json:"floating_intf_ip_se_2,omitempty"`
 
 	// Maximum number of flow table entries that have not completed TCP three-way handshake yet. Field introduced in 17.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	FlowTableNewSynMaxEntries *int32 `json:"flow_table_new_syn_max_entries,omitempty"`
@@ -444,33 +423,12 @@ type ServiceEngineGroup struct {
 	// Indicates the percent of memory reserved for connections. Allowed values are 0-100. Field introduced in 18.1.2. Unit is PERCENT. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	MinimumConnectionMemory *int32 `json:"minimum_connection_memory,omitempty"`
 
-	// Required available config memory to apply any configuration. Allowed values are 0-90. Field deprecated in 18.1.2. Field introduced in 18.1.1. Unit is PERCENT. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	MinimumRequiredConfigMemory *int32 `json:"minimum_required_config_memory,omitempty"`
-
 	// Number of threads to use for log streaming. Allowed values are 1-100. Field introduced in 17.2.12, 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	NLogStreamingThreads *int32 `json:"n_log_streaming_threads,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	Name *string `json:"name"`
-
-	// Idle timeout in seconds for nat tcp flows in closed state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NatFlowTCPClosedTimeout *int32 `json:"nat_flow_tcp_closed_timeout,omitempty"`
-
-	// Idle timeout in seconds for nat tcp flows in established state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NatFlowTCPEstablishedTimeout *int32 `json:"nat_flow_tcp_established_timeout,omitempty"`
-
-	// Idle timeout in seconds for nat tcp flows in half closed state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NatFlowTCPHalfClosedTimeout *int32 `json:"nat_flow_tcp_half_closed_timeout,omitempty"`
-
-	// Idle timeout in seconds for nat tcp flows in handshake state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NatFlowTCPHandshakeTimeout *int32 `json:"nat_flow_tcp_handshake_timeout,omitempty"`
-
-	// Idle timeout in seconds for nat udp flows in noresponse state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NatFlowUDPNoresponseTimeout *int32 `json:"nat_flow_udp_noresponse_timeout,omitempty"`
-
-	// Idle timeout in seconds for nat udp flows in response state. Allowed values are 1-3600. Field deprecated in 18.2.5. Field introduced in 18.2.5. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NatFlowUDPResponseTimeout *int32 `json:"nat_flow_udp_response_timeout,omitempty"`
 
 	// Number of threads to poll for netlink messages excluding the thread for default namespace. Requires SE Reboot. Allowed values are 1-32. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	NetlinkPollerThreads *int32 `json:"netlink_poller_threads,omitempty"`
@@ -501,9 +459,6 @@ type ServiceEngineGroup struct {
 
 	// TCP port on SE management interface for InterSE Object Distribution. Supported only for externally managed security groups. Not supported on full access deployments. Requires SE reboot. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	ObjsyncPort *int32 `json:"objsync_port,omitempty"`
-
-	//  Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	OpenstackAvailabilityZone *string `json:"openstack_availability_zone,omitempty"`
 
 	//  Field introduced in 17.1.1. Maximum of 5 items allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	OpenstackAvailabilityZones []string `json:"openstack_availability_zones,omitempty"`
@@ -537,9 +492,6 @@ type ServiceEngineGroup struct {
 
 	// Reboot the VM or host on kernel panic. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RebootOnPanic *bool `json:"reboot_on_panic,omitempty"`
-
-	// Reboot the system if the SE is stopped. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	RebootOnStop *bool `json:"reboot_on_stop,omitempty"`
 
 	// Time interval to re-sync SE's time with wall clock time. Allowed values are 8-600000. Field introduced in 20.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ResyncTimeInterval *int32 `json:"resync_time_interval,omitempty"`
@@ -616,9 +568,6 @@ type ServiceEngineGroup struct {
 	// Timeout in milliseconds for flow probe retries.Requires SE Reboot. Allowed values are 20-50. Field introduced in 18.2.5. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeFlowProbeRetryTimer *int32 `json:"se_flow_probe_retry_timer,omitempty"`
 
-	// Timeout in milliseconds for flow probe entries. Allowed values are 10-200. Field deprecated in 18.2.5. Field introduced in 18.1.4, 18.2.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeFlowProbeTimer *int32 `json:"se_flow_probe_timer,omitempty"`
-
 	// Analytics Policy for ServiceEngineGroup. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	SeGroupAnalyticsPolicy *SeGroupAnalyticsPolicy `json:"se_group_analytics_policy,omitempty"`
 
@@ -627,9 +576,6 @@ type ServiceEngineGroup struct {
 
 	// Determines if SE-SE IPC messages are encapsulated in an IP header       0        Automatically determine based on hypervisor type    1        Use IP encap unconditionally    ~[0,1]   Don't use IP encapRequires SE Reboot. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	SeIPEncapIpc *int32 `json:"se_ip_encap_ipc,omitempty"`
-
-	// UDP Port for SE_DP IPC in Docker bridge mode. Field deprecated in 20.1.1. Field introduced in 17.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeIpcUDPPort *int32 `json:"se_ipc_udp_port,omitempty"`
 
 	// This knob controls the resource availability and burst size used between SE datapath and KNI. This helps in minimising packet drops when there is higher KNI traffic (non-VIP traffic from and to Linux). The factor takes the following values      0-default.     1-doubles the burst size and KNI resources.     2-quadruples the burst size and KNI resources. Allowed values are 0-2. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeKniBurstFactor *int32 `json:"se_kni_burst_factor,omitempty"`
@@ -682,14 +628,8 @@ type ServiceEngineGroup struct {
 	// TCP port on SE where echo service will be run. Field introduced in 17.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeProbePort *int32 `json:"se_probe_port,omitempty"`
 
-	// UDP Port for punted packets in Docker bridge mode. Field deprecated in 20.1.1. Field introduced in 17.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeRemotePuntUDPPort *int32 `json:"se_remote_punt_udp_port,omitempty"`
-
 	// Rate limiter properties. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeRlProp *RateLimiterProperties `json:"se_rl_prop,omitempty"`
-
-	// Enable routing via Service Engine Datapath. When disabled, routing is done by the Linux kernel. IP Routing needs to be enabled in Service Engine Group for SE Routing to be effective. Field deprecated in 18.2.5. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeRouting *bool `json:"se_routing,omitempty"`
 
 	// Minimum time to wait on server between taking sampleswhen sampling the navigation timing data from the end user client. Field introduced in 18.2.6. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeRumSamplingNavInterval *int32 `json:"se_rum_sampling_nav_interval,omitempty"`
@@ -889,12 +829,6 @@ type ServiceEngineGroup struct {
 
 	// If set, Virtual Services will be placed on only a subset of the cores of an SE. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	VssPlacementEnabled *bool `json:"vss_placement_enabled,omitempty"`
-
-	// Frequency with which SE publishes WAF learning. Allowed values are 1-43200. Field deprecated in 18.2.3. Field introduced in 18.1.2. Unit is MIN. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	WafLearningInterval *int32 `json:"waf_learning_interval,omitempty"`
-
-	// Amount of memory reserved on SE for WAF learning. This can be atmost 5% of SE memory. Field deprecated in 18.2.3. Field introduced in 18.1.2. Unit is MB. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	WafLearningMemory *int32 `json:"waf_learning_memory,omitempty"`
 
 	// Enable memory pool for WAF.Requires SE Reboot. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	WafMempool *bool `json:"waf_mempool,omitempty"`

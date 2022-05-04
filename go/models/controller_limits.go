@@ -47,9 +47,6 @@ type ControllerLimits struct {
 	// Maximum number of routes per vrfcontext. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RoutesPerVrfcontext *int32 `json:"routes_per_vrfcontext,omitempty"`
 
-	// Maximum number of rules per httppolicy. Field deprecated in 21.1.1. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	RulesPerHttppolicy *int32 `json:"rules_per_httppolicy,omitempty"`
-
 	// Maximum number of nat rules in nat policy. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	RulesPerNatPolicy *int32 `json:"rules_per_nat_policy,omitempty"`
 

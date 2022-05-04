@@ -19,7 +19,4 @@ type IPAMDNSCustomProfile struct {
 
 	// Usable domains. Field introduced in 17.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	UsableDomains []string `json:"usable_domains,omitempty"`
-
-	// Usable subnets. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	UsableSubnets []*IPAddrPrefix `json:"usable_subnets,omitempty"`
 }

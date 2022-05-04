@@ -36,9 +36,6 @@ type AuthMappingRule struct {
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	IsSuperuser *bool `json:"is_superuser,omitempty"`
 
-	// Object Access Policies to assign to user on successful match. It is a reference to an object of type ObjectAccessPolicy. Field deprecated in 20.1.2. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ObjectAccessPolicyRefs []string `json:"object_access_policy_refs,omitempty"`
-
 	// Attribute name for Object Access Policy assignment. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	PolicyAttributeName *string `json:"policy_attribute_name,omitempty"`
 

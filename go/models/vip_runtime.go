@@ -77,9 +77,6 @@ type VipRuntime struct {
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeList []*SeList `json:"se_list,omitempty"`
 
-	//  Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ServersConfigured *bool `json:"servers_configured,omitempty"`
-
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SuppRuntimeStatus *OperationalStatus `json:"supp_runtime_status,omitempty"`
 

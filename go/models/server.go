@@ -17,14 +17,8 @@ type Server struct {
 	// A description of the Server. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Description *string `json:"description,omitempty"`
 
-	// (internal-use) Discovered network for this server. This field is deprecated. It is a reference to an object of type Network. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DiscoveredNetworkRef []string `json:"discovered_network_ref,omitempty"`
-
 	// (internal-use) Discovered networks providing reachability for server IP. This field is used internally by Avi, not editable by the user. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	DiscoveredNetworks []*DiscoveredNetwork `json:"discovered_networks,omitempty"`
-
-	// (internal-use) Discovered subnet for this server. This field is deprecated. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DiscoveredSubnet []*IPAddrPrefix `json:"discovered_subnet,omitempty"`
 
 	// Enable, Disable or Graceful Disable determine if new or existing connections to the server are allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Enabled *bool `json:"enabled,omitempty"`

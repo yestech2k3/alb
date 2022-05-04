@@ -59,24 +59,9 @@ type IcapRequestLog struct {
 	// The uuid of the pool that was used for the request. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	PoolUUID *string `json:"pool_uuid,omitempty"`
 
-	// Blocking reason for the content. It is available only if content was scanned by ICAP server and some violations were found. Field deprecated in 21.1.1. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Reason *string `json:"reason,omitempty"`
-
-	// ICAP server IP for this connection. Field deprecated in 20.1.3. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ServerIP *IPAddr `json:"server_ip,omitempty"`
-
 	// Source port for this connection. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SourcePort *int32 `json:"source_port,omitempty"`
 
-	// Detailed description of the threat found in the content. Available only if request was scanned by ICAP server and some violations were found. Field deprecated in 20.1.3. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ThreatDescription *string `json:"threat_description,omitempty"`
-
-	// Short description of the threat found in the content. Available only if content was scanned by ICAP server and some violations were found. Field deprecated in 21.1.1. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ThreatID *string `json:"threat_id,omitempty"`
-
 	// Selected ICAP vendor for the request. Enum options - ICAP_VENDOR_GENERIC, ICAP_VENDOR_OPSWAT, ICAP_VENDOR_LASTLINE. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	Vendor *string `json:"vendor,omitempty"`
-
-	// Threat found in the content.  Available only if content was scanned by ICAP server and some violations were found. Field deprecated in 21.1.1. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	Violations []*IcapViolation `json:"violations,omitempty"`
 }
