@@ -604,6 +604,11 @@
                     "description": "Whether User Agent-based Bot detection is enabled. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
                     "type": "boolean",
                     "default": true
+                },
+                "use_tls_fingerprint": {
+                    "description": "Whether to match the TLS fingerprint observed on the request against TLS fingerprints expected for the user agent. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
+                    "type": "boolean",
+                    "default": true
                 }
             }
         },
