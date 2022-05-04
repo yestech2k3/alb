@@ -35,12 +35,6 @@ type HTTPCacheConfig struct {
 	// Maximum size of an object to store in the cache. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	MaxObjectSize *int32 `json:"max_object_size,omitempty"`
 
-	// Blacklist *string group of non-cacheable mime types. It is a reference to an object of type StringGroup. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	MimeTypesBlackGroupRefs []string `json:"mime_types_black_group_refs,omitempty"`
-
-	// Blacklist of non-cacheable mime types. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	MimeTypesBlackList []string `json:"mime_types_black_list,omitempty"`
-
 	// Blocklist *string group of non-cacheable mime types. It is a reference to an object of type StringGroup. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	MimeTypesBlockGroupRefs []string `json:"mime_types_block_group_refs,omitempty"`
 

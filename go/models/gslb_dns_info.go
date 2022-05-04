@@ -19,7 +19,4 @@ type GslbDNSInfo struct {
 
 	// This field is used to track the retry attempts for SE download errors. . Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RetryCount *int32 `json:"retry_count,omitempty"`
-
-	// This tables holds all the se-related info across all DNS-VS(es). . Field deprecated in 18.2.3. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeTable []*GslbDNSSeInfo `json:"se_table,omitempty"`
 }

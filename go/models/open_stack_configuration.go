@@ -60,9 +60,6 @@ type OpenStackConfiguration struct {
 	// Allow self-signed certificates when communicating with https service endpoints. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Insecure *bool `json:"insecure,omitempty"`
 
-	// If True, interface-secondary-ips method will be used for VIP association. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	IntfSecIps *bool `json:"intf_sec_ips,omitempty"`
-
 	// Keystone's hostname or IP address. (Deprecated) Use auth_url instead. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	KeystoneHost *string `json:"keystone_host,omitempty"`
 
@@ -82,29 +79,8 @@ type OpenStackConfiguration struct {
 	// If True, enable neutron rbac discovery of networks shared across tenants/projects. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	NeutronRbac *bool `json:"neutron_rbac,omitempty"`
 
-	//  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NuageOrganization *string `json:"nuage_organization,omitempty"`
-
-	//  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NuagePassword *string `json:"nuage_password,omitempty"`
-
-	//  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NuagePort *int32 `json:"nuage_port,omitempty"`
-
-	//  Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NuageUsername *string `json:"nuage_username,omitempty"`
-
-	// Applicable only if allowed-address-pairs is disabled or unusable. VIP placement uses Nuage virtualIp if true, else redirectionTarget. Field deprecated in 20.1.1. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NuageVirtualip *bool `json:"nuage_virtualip,omitempty"`
-
-	// Nuage VSD host name or IP address. Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NuageVsdHost *string `json:"nuage_vsd_host,omitempty"`
-
 	// The password Avi Vantage will use when authenticating to Keystone. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Password *string `json:"password,omitempty"`
-
-	// If true, port-security extension (if detected) will be used instead of security-groups, allowed-address-pairs or interface-secondary-ips. If false, port-security extension is skipped. Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	PortSecurity *bool `json:"port_security,omitempty"`
 
 	// Access privilege. Enum options - NO_ACCESS, READ_ACCESS, WRITE_ACCESS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
@@ -122,17 +98,11 @@ type OpenStackConfiguration struct {
 	// Defines the mapping from OpenStack role names to avi local role names. For an OpenStack role, this mapping is consulted only if there is no local Avi role with the same name as the OpenStack role. This is an ordered list and only the first matching entry is used. You can use '*' to match all OpenStack role names. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RoleMapping []*OpenStackRoleMapping `json:"role_mapping,omitempty"`
 
-	// This field has been generalized for all clouds and has been renamed to se_group_template_uuid. It is a reference to an object of type ServiceEngineGroup. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeGroupRef *string `json:"se_group_ref,omitempty"`
-
 	// If false, security-groups extension will not be used. . Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SecurityGroups *bool `json:"security_groups,omitempty"`
 
 	// If true, then SEs will be created in the appropriate tenants, else SEs will be created in the admin_tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	TenantSe *bool `json:"tenant_se,omitempty"`
-
-	// Deprecated, please use provider_vip_networks. Field deprecated in 18.2.2. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	UsableNetworkUuids []string `json:"usable_network_uuids,omitempty"`
 
 	// If admin URLs are either inaccessible or not to be accessed from Avi Controller, then set this to False. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	UseAdminURL *bool `json:"use_admin_url,omitempty"`
@@ -143,13 +113,7 @@ type OpenStackConfiguration struct {
 	// Use keystone for user authentication. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	UseKeystoneAuth *bool `json:"use_keystone_auth,omitempty"`
 
-	// If True, use nuage vip as device_owner of VIP ports, else use neutron LOADBALANCER. Field deprecated in 20.1.1. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	UseNuagevip *bool `json:"use_nuagevip,omitempty"`
-
 	// The username Avi Vantage will use when authenticating to Keystone. For Keystone v3, provide the user information in user@domain format, unless that user belongs to the Default domain. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	Username *string `json:"username"`
-
-	// If enabled, program SE security group with ingress rule to allow SSH (port 22) access from 0.0.0.0/0. Field deprecated in 17.1.5. Field introduced in 17.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	WildcardAccess *bool `json:"wildcard_access,omitempty"`
 }

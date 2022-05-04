@@ -11,9 +11,6 @@ type GCPConfiguration struct {
 	// Credentials to access Google Cloud Platform APIs. It is a reference to an object of type CloudConnectorUser. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	CloudCredentialsRef *string `json:"cloud_credentials_ref,omitempty"`
 
-	// Deprecated, please use encryption_keys field. Field deprecated in 18.2.10, 20.1.2. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	EncryptionKeyID *string `json:"encryption_key_id,omitempty"`
-
 	// Encryption Keys for Google Cloud Services. Field introduced in 18.2.10, 20.1.2. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	EncryptionKeys *GCPEncryptionKeys `json:"encryption_keys,omitempty"`
 
@@ -28,9 +25,6 @@ type GCPConfiguration struct {
 
 	// Google Cloud Storage Project ID where Service Engine image will be uploaded. This image will be deleted once the image is created in Google compute images. By default, Service Engine Project ID will be used. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	GcsProjectID *string `json:"gcs_project_id,omitempty"`
-
-	// Deprecated, please use match_se_group_subnet in routes mode in . vip_allocation_strategy. Field deprecated in 20.1.1. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	MatchSeGroupSubnet *bool `json:"match_se_group_subnet,omitempty"`
 
 	// Google Cloud Platform VPC Network configuration for the Service Engines. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true

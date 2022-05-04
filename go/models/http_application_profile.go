@@ -71,9 +71,6 @@ type HTTPApplicationProfile struct {
 	// Insert the 'includeSubdomains' directive in the HTTP Strict-Transport-Security header. Adding the includeSubdomains directive signals the User-Agent that the HSTS Policy applies to this HSTS Host as well as any subdomains of the host's domain name. Field introduced in 17.2.13, 18.1.4, 18.2.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. Special default for Essentials edition is false, Basic edition is false, Enterprise is True.
 	HstsSubdomainsEnabled *bool `json:"hsts_subdomains_enabled,omitempty"`
 
-	// Enable HTTP2 for traffic from clients to the virtual service. Field deprecated in 20.1.1. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	Http2Enabled *bool `json:"http2_enabled,omitempty"`
-
 	// Specifies the HTTP/2 specific application profile parameters. Field introduced in 18.2.10, 20.1.1. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition.
 	Http2Profile *Http2ApplicationProfile `json:"http2_profile,omitempty"`
 
@@ -103,18 +100,6 @@ type HTTPApplicationProfile struct {
 
 	// Maximum number of headers allowed in HTTP request and response. Allowed values are 0-4096. Special values are 0- unlimited headers in request and response. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 64), Basic edition(Allowed values- 64), Enterprise with Cloud Services edition.
 	MaxHeaderCount *int32 `json:"max_header_count,omitempty"`
-
-	// The max number of concurrent streams over a client side HTTP/2 connection. Allowed values are 1-256. Field deprecated in 18.2.10, 20.1.1. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	MaxHttp2ConcurrentStreamsPerConnection *int32 `json:"max_http2_concurrent_streams_per_connection,omitempty"`
-
-	// The max number of control frames that client can send over an HTTP/2 connection. '0' means unlimited. Allowed values are 0-10000. Special values are 0- Unlimited control frames on a client side HTTP/2 connection. Field deprecated in 18.2.10, 20.1.1. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	MaxHttp2ControlFramesPerConnection *int32 `json:"max_http2_control_frames_per_connection,omitempty"`
-
-	// The max number of empty data frames that client can send over an HTTP/2 connection. '0' means unlimited. Allowed values are 0-10000. Special values are 0- Unlimited empty data frames over a client side HTTP/2 connection. Field deprecated in 18.2.10, 20.1.1. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	MaxHttp2EmptyDataFramesPerConnection *int32 `json:"max_http2_empty_data_frames_per_connection,omitempty"`
-
-	// The max number of frames that can be queued waiting to be sent over a client side HTTP/2 connection at any given time. '0' means unlimited. Allowed values are 0-10000. Special values are 0- Unlimited frames can be queued on a client side HTTP/2 connection. Field deprecated in 18.2.10, 20.1.1. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	MaxHttp2QueuedFramesToClientPerConnection *int32 `json:"max_http2_queued_frames_to_client_per_connection,omitempty"`
 
 	// The max number of HTTP requests that can be sent over a Keep-Alive connection. '0' means unlimited. Allowed values are 0-1000000. Special values are 0- Unlimited requests on a connection. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 100), Basic edition(Allowed values- 100), Enterprise with Cloud Services edition.
 	MaxKeepaliveRequests *int32 `json:"max_keepalive_requests,omitempty"`
@@ -158,20 +143,11 @@ type HTTPApplicationProfile struct {
 	// When terminating client SSL sessions at Avi, servers may incorrectly send redirect to clients as HTTP.  This option will rewrite the server's redirect responses for this virtual service from HTTP to HTTPS. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition.
 	ServerSideRedirectToHTTPS *bool `json:"server_side_redirect_to_https,omitempty"`
 
-	// This field is deprecated. Field deprecated in 18.2.8. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SpdyEnabled *bool `json:"spdy_enabled,omitempty"`
-
-	// This field is deprecated. Field deprecated in 18.2.8. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SpdyFwdProxyMode *bool `json:"spdy_fwd_proxy_mode,omitempty"`
-
 	// Set of match/action rules that govern what happens when the client certificate request is enabled. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	SslClientCertificateAction *SSLClientCertificateAction `json:"ssl_client_certificate_action,omitempty"`
 
 	// Specifies whether the client side verification is set to none, request or require. Enum options - SSL_CLIENT_CERTIFICATE_NONE, SSL_CLIENT_CERTIFICATE_REQUEST, SSL_CLIENT_CERTIFICATE_REQUIRE. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- SSL_CLIENT_CERTIFICATE_NONE,SSL_CLIENT_CERTIFICATE_REQUIRE), Basic edition(Allowed values- SSL_CLIENT_CERTIFICATE_NONE,SSL_CLIENT_CERTIFICATE_REQUIRE), Enterprise with Cloud Services edition.
 	SslClientCertificateMode *string `json:"ssl_client_certificate_mode,omitempty"`
-
-	// Enable common settings to increase the level of security for  virtual services running HTTP and HTTPS. For sites that are  HTTP only, these settings will have no effect. Field deprecated in 18.2.7. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SslEverywhereEnabled *bool `json:"ssl_everywhere_enabled,omitempty"`
 
 	// Detect client IP from user specified header at the configured index in the specified direction. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	TrueClientIP *TrueClientIPConfig `json:"true_client_ip,omitempty"`

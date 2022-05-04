@@ -15,9 +15,6 @@ type GslbSite struct {
 	// Required: true
 	ClusterUUID *string `json:"cluster_uuid"`
 
-	// The DNS VSes on which the GslbServices shall be placed. The site has to be an ACTIVE member.  This field is deprecated in 17.2.3 and replaced by 'dns_vses' field. . Field deprecated in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DNSVsUuids []string `json:"dns_vs_uuids,omitempty"`
-
 	// This field identifies the DNS VS and the subdomains it hosts for Gslb services. . Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	DNSVses []*GslbSiteDNSVs `json:"dns_vses,omitempty"`
 

@@ -57,9 +57,6 @@ type AwsConfiguration struct {
 	// Required: true
 	VpcID *string `json:"vpc_id"`
 
-	// If enabled, program SE security group with ingress rule to allow SSH (port 22) access from 0.0.0.0/0. Field deprecated in 17.1.5. Field introduced in 17.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	WildcardAccess *bool `json:"wildcard_access,omitempty"`
-
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Zones []*AwsZoneConfig `json:"zones,omitempty"`
 }

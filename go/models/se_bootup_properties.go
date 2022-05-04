@@ -8,12 +8,6 @@ package models
 // swagger:model SeBootupProperties
 type SeBootupProperties struct {
 
-	// Deprecated. Field deprecated in 17.2.8. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DistributeQueues *bool `json:"distribute_queues,omitempty"`
-
-	// Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DistributeVnics *bool `json:"distribute_vnics,omitempty"`
-
 	// End of the Local TCP port range used by SE for backend connections in docker environment. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	DockerBackendPortend *int32 `json:"docker_backend_portend,omitempty"`
 
@@ -40,9 +34,6 @@ type SeBootupProperties struct {
 
 	//  Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	SeDpCompression *SeBootupCompressionProperties `json:"se_dp_compression,omitempty"`
-
-	// This field has been moved to se_group properties 18.1.2 onwards. Field deprecated in 18.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeDpdkPmd *int32 `json:"se_dpdk_pmd,omitempty"`
 
 	// Deprecated in 21.1.3. Use config in ServiceEngineGroup instead. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 0), Basic edition(Allowed values- 0), Enterprise with Cloud Services edition.
 	SeEmulatedCores *int32 `json:"se_emulated_cores,omitempty"`
@@ -74,41 +65,8 @@ type SeBootupProperties struct {
 	// Internal events buffer size to use on Service Engine. Can be fine tuned for better performance of data plane in specific environments. Unit is WORD. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeLogBufferEventsSize *int32 `json:"se_log_buffer_events_size,omitempty"`
 
-	// Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeLro *int32 `json:"se_lro,omitempty"`
-
-	// Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SePcapPktCount *int32 `json:"se_pcap_pkt_count,omitempty"`
-
-	// Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SePcapPktSz *int32 `json:"se_pcap_pkt_sz,omitempty"`
-
-	// Deprecated. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeRumSamplingNavInterval *int32 `json:"se_rum_sampling_nav_interval,omitempty"`
-
-	// Deprecated. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeRumSamplingNavPercent *int32 `json:"se_rum_sampling_nav_percent,omitempty"`
-
-	// Deprecated. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeRumSamplingResInterval *int32 `json:"se_rum_sampling_res_interval,omitempty"`
-
-	// Deprecated. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeRumSamplingResPercent *int32 `json:"se_rum_sampling_res_percent,omitempty"`
-
-	// Determines if DSR from secondary SE is active or not      0        Automatically determine based on hypervisor type    1        Disable DSR unconditionally    ~[0,1]   Enable DSR unconditionally. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeTunnelMode *int32 `json:"se_tunnel_mode,omitempty"`
-
-	// Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeTxBatchSize *int32 `json:"se_tx_batch_size,omitempty"`
-
-	// This field has been moved to se_group properties 18.1.2 onwards. Field deprecated in 18.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SeUseDpdk *int32 `json:"se_use_dpdk,omitempty"`
-
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SslSessCachePerVs *int32 `json:"ssl_sess_cache_per_vs,omitempty"`
-
-	// Deprecated in 21.1.1, use session timeout in ssl profile. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SslSessCacheTimeout *int32 `json:"ssl_sess_cache_timeout,omitempty"`
 
 	// Size of the TCP SYN cache hash table. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	TCPSyncacheHashsize *int32 `json:"tcp_syncache_hashsize,omitempty"`

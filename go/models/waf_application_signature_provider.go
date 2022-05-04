@@ -19,18 +19,6 @@ type WafApplicationSignatureProvider struct {
 	// Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
 	ConfigpbAttributes *ConfigPbAttributes `json:"configpb_attributes,omitempty"`
 
-	// The error message indicating why the last update check failed. Field deprecated in 20.1.3. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
-	// Read Only: true
-	LastCheckForUpdatesError *string `json:"last_check_for_updates_error,omitempty"`
-
-	// The last time that we checked for updates but did not get a result because of an error. Field deprecated in 20.1.3. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
-	// Read Only: true
-	LastFailedCheckForUpdates *TimeStamp `json:"last_failed_check_for_updates,omitempty"`
-
-	// The last time that we checked for updates sucessfully. Field deprecated in 20.1.3. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
-	// Read Only: true
-	LastSuccessfulCheckForUpdates *TimeStamp `json:"last_successful_check_for_updates,omitempty"`
-
 	// Name of Application Specific Ruleset Provider. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Name *string `json:"name,omitempty"`
 

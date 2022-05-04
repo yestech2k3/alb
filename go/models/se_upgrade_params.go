@@ -11,9 +11,6 @@ type SeUpgradeParams struct {
 	// This field is used to disable scale-in/scale out operations during upgrade operations. . Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Disruptive *bool `json:"disruptive,omitempty"`
 
-	//  Field deprecated in 18.2.10, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Force *bool `json:"force,omitempty"`
-
 	// Upgrade System with patch upgrade. Field introduced in 17.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Patch *bool `json:"patch,omitempty"`
 
@@ -34,9 +31,6 @@ type SeUpgradeParams struct {
 
 	// When set to true, if there is any failure during the SE upgrade, upgrade will be suspended for this SE group and manual intervention would be needed to resume the upgrade. Field introduced in 17.1.4. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SuspendOnFailure *bool `json:"suspend_on_failure,omitempty"`
-
-	//  Field deprecated in 18.2.10, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Test *bool `json:"test,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	UUID *string `json:"uuid,omitempty"`

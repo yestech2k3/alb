@@ -15,12 +15,6 @@ type SamlServiceProviderNode struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// Service Provider signing certificate for metadata. Field deprecated in 18.2.1. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SigningCert *string `json:"signing_cert,omitempty"`
-
-	// Service Provider signing key for metadata. Field deprecated in 18.2.1. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SigningKey *string `json:"signing_key,omitempty"`
-
 	// Service Engines will use this SSL certificate to sign assertions going to the IdP. It is a reference to an object of type SSLKeyAndCertificate. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SigningSslKeyAndCertificateRef *string `json:"signing_ssl_key_and_certificate_ref,omitempty"`
 

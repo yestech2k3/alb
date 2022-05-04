@@ -25,9 +25,6 @@ type NsxtConfiguration struct {
 	// Required: true
 	ManagementNetworkConfig *ManagementNetworkConfig `json:"management_network_config"`
 
-	// Management network segment to use for Avi Service Engines. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ManagementSegment *Tier1LogicalRouterInfo `json:"management_segment,omitempty"`
-
 	// Credentials to access NSX-T manager. It is a reference to an object of type CloudConnectorUser. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	// Required: true
 	NsxtCredentialsRef *string `json:"nsxt_credentials_ref"`
@@ -38,10 +35,4 @@ type NsxtConfiguration struct {
 
 	// Site where transport zone belongs to. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SiteID *string `json:"site_id,omitempty"`
-
-	// Nsxt tier1 segment configuration for Avi Service Engine data path. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	Tier1SegmentConfig *NsxtTier1SegmentConfig `json:"tier1_segment_config,omitempty"`
-
-	// Network zone where nodes can talk via overlay. Virtual IPs and Service Engines will belong to this zone. Value should be path like /infra/sites/default/enforcement-points/default/transport-zones/xxx-xxx-xxxx. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	TransportZone *string `json:"transport_zone,omitempty"`
 }

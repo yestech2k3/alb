@@ -8,9 +8,6 @@ package models
 // swagger:model VirtualServiceRuntime
 type VirtualServiceRuntime struct {
 
-	//  Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ApicExtension *VsApicExtension `json:"apic_extension,omitempty"`
-
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ControllerIP *string `json:"controller_ip,omitempty"`
 
@@ -19,9 +16,6 @@ type VirtualServiceRuntime struct {
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	EastWest *bool `json:"east_west,omitempty"`
-
-	// Deprecated, handled by SE Datastore. Field deprecated in 18.1.5, 18.2.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	GslbDNSGeoUpdate *GslbDNSGeoUpdate `json:"gslb_dns_geo_update,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	GslbDNSUpdate *GslbDNSUpdate `json:"gslb_dns_update,omitempty"`
@@ -68,23 +62,14 @@ type VirtualServiceRuntime struct {
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RedisDb *int32 `json:"redis_db,omitempty"`
 
-	//  Field deprecated in 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	RedisIP *string `json:"redis_ip,omitempty"`
-
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	RedisPort *int32 `json:"redis_port,omitempty"`
-
-	//  Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	RulesConfigured *bool `json:"rules_configured,omitempty"`
 
 	// Runtime info from security_manager. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SecMgrInfo *SecurityMgrRuntime `json:"sec_mgr_info,omitempty"`
 
 	// Enable Service Engines to elect a primary amongst themselves in the absence of connectivity to controller. Field introduced in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SelfSeElection *bool `json:"self_se_election,omitempty"`
-
-	//  Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ServersConfigured *bool `json:"servers_configured,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	TLSTicketKey []*TLSTicket `json:"tls_ticket_key,omitempty"`

@@ -8,9 +8,6 @@ package models
 // swagger:model DnsRuleMatchTarget
 type DNSRuleMatchTarget struct {
 
-	// IP addresses to match against client IP. From 17.1.6 release onwards, IP addresses needs to be configured in the client_ip_address field of this message. Field deprecated in 17.1.6,17.2.2. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	ClientIP *IPAddrMatch `json:"client_ip,omitempty"`
-
 	// IP addresses to match against client IP or the EDNS client subnet IP. Field introduced in 17.1.6,17.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ClientIPAddress *DNSClientIPMatch `json:"client_ip_address,omitempty"`
 

@@ -18,9 +18,6 @@ type HttpsecurityAction struct {
 	// Secure SSL/TLS port to redirect the HTTP request to. Allowed values are 1-65535. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	HTTPSPort *int32 `json:"https_port,omitempty"`
 
-	// Rate Limit profile to be used to rate-limit the flow.  (deprecated). Field deprecated in 18.2.9. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	RateLimit *RateProfile `json:"rate_limit,omitempty"`
-
 	// Rate limiting configuration for this action. Field introduced in 18.2.9. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	RateProfile *HttpsecurityActionRateProfile `json:"rate_profile,omitempty"`
 

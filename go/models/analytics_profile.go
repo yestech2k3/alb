@@ -78,18 +78,6 @@ type AnalyticsProfile struct {
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Description *string `json:"description,omitempty"`
 
-	// Virtual Service (VS) metrics are processed only when there is live data traffic on the VS. In case, VS is idle for a period of time as specified by ondemand_metrics_idle_timeout then metrics processing is suspended for that VS. Field deprecated in 20.1.3. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DisableOndemandMetrics *bool `json:"disable_ondemand_metrics,omitempty"`
-
-	// Disable node (service engine) level analytics forvs metrics. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DisableSeAnalytics *bool `json:"disable_se_analytics,omitempty"`
-
-	// Disable analytics on backend servers. This may be desired in container environment when there are large number of ephemeral servers. Additionally, no healthscore of servers is computed when server analytics is disabled. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DisableServerAnalytics *bool `json:"disable_server_analytics,omitempty"`
-
-	// Disable VirtualService (frontend) Analytics. This flag disables metrics and healthscore for Virtualservice. Field deprecated in 20.1.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	DisableVsAnalytics *bool `json:"disable_vs_analytics,omitempty"`
-
 	// Enable adaptive configuration for optimizing resource usage. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	EnableAdaptiveConfig *bool `json:"enable_adaptive_config,omitempty"`
 
@@ -252,9 +240,6 @@ type AnalyticsProfile struct {
 
 	// Penalty for allowing weak signature algorithm(s). Allowed values are 0-5. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 1.0), Basic edition(Allowed values- 1.0), Enterprise with Cloud Services edition.
 	HsSecurityWeakSignatureAlgoPenalty *float64 `json:"hs_security_weak_signature_algo_penalty,omitempty"`
-
-	// Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	Labels []*KeyValue `json:"labels,omitempty"`
 
 	// Influence the audit of ingress latency and connection establishement time. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	LatencyAuditProps *LatencyAuditProperties `json:"latency_audit_props,omitempty"`

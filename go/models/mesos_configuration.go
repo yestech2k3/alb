@@ -95,9 +95,6 @@ type MesosConfiguration struct {
 	// Make service ports accessible on all Host interfaces in addition to East-West VIP and/or bridge IP. Usually enabled AWS Mesos clusters to export East-West services on Host interface. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ServicesAccessibleAllInterfaces *bool `json:"services_accessible_all_interfaces,omitempty"`
 
-	// Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	SSHSeDeployment *SSHSeDeployment `json:"ssh_se_deployment,omitempty"`
-
 	// Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SSHUserRef *string `json:"ssh_user_ref,omitempty"`
 

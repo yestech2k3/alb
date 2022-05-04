@@ -8,9 +8,6 @@ package models
 // swagger:model FullClientLogs
 type FullClientLogs struct {
 
-	// [DEPRECATED] Log all headers. Please use the all_headers flag in AnalyticsPolicy. Field deprecated in 18.1.4, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	AllHeaders *bool `json:"all_headers,omitempty"`
-
 	// How long should the system capture all logs, measured in minutes. Set to 0 for infinite. Special values are 0 - infinite. Unit is MIN. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Duration *int32 `json:"duration,omitempty"`
 

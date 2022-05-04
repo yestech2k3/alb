@@ -23,9 +23,6 @@ type GslbPoolMember struct {
 	// The pool member is configured with a fully qualified domain name.  The FQDN is resolved to an IP address by the controller. DNS service shall health monitor the resolved IP address while it will return the fqdn(cname) in the DNS response.If the user has configured an IP address (in addition to the FQDN), then the IP address will get overwritten whenever periodic FQDN refresh is done by the controller. . Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Fqdn *string `json:"fqdn,omitempty"`
 
-	// Internal generated system-field. Field deprecated in 18.2.2. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
-	HmProxies []*GslbHealthMonitorProxy `json:"hm_proxies,omitempty"`
-
 	// Hostname to be used as host header for http health monitors and as TLS server name for https health monitors.(By default, the fqdn of the GSLB pool member or GSLB service is used.) Note  this field is not used as http host header when exact_http_request is set in the health monitor. . Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Hostname *string `json:"hostname,omitempty"`
 

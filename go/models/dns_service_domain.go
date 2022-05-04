@@ -12,9 +12,6 @@ type DNSServiceDomain struct {
 	// Required: true
 	DomainName *string `json:"domain_name"`
 
-	// [DEPRECATED] Useless fieldPlease refer to DnsServiceApplicationProfile's num_dns_ip for default valuePlease refer to VsVip's dns_info num_records_in_response for user config valueSpecifies the number of A recordsreturned by Avi DNS Service. Field deprecated in 20.1.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
-	NumDNSIP *int32 `json:"num_dns_ip,omitempty"`
-
 	// Third-party Authoritative domain requests are delegated toDNS VirtualService's pool of nameservers. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	PassThrough *bool `json:"pass_through,omitempty"`
 
