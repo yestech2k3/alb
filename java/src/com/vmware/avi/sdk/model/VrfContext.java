@@ -45,9 +45,6 @@ public class VrfContext extends AviRestResource  {
     @JsonProperty("internal_gateway_monitor")
     private InternalGatewayMonitor internalGatewayMonitor = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("lldp_enable")
     private Boolean lldpEnable = true;
 
@@ -287,45 +284,6 @@ public class VrfContext extends AviRestResource  {
     public void setInternalGatewayMonitor(InternalGatewayMonitor internalGatewayMonitor) {
         this.internalGatewayMonitor = internalGatewayMonitor;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key/value labels which can be used for object access policy permission scoping.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 18.2.7, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key/value labels which can be used for object access policy permission scoping.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 18.2.7, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key/value labels which can be used for object access policy permission scoping.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 18.2.7, 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return labels
-     */
-    public VrfContext addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -545,7 +503,6 @@ public class VrfContext extends AviRestResource  {
   Objects.equals(this.gatewayMon, objVrfContext.gatewayMon)&&
   Objects.equals(this.internalGatewayMonitor, objVrfContext.internalGatewayMonitor)&&
   Objects.equals(this.debugvrfcontext, objVrfContext.debugvrfcontext)&&
-  Objects.equals(this.labels, objVrfContext.labels)&&
   Objects.equals(this.bfdProfile, objVrfContext.bfdProfile)&&
   Objects.equals(this.lldpEnable, objVrfContext.lldpEnable)&&
   Objects.equals(this.attrs, objVrfContext.attrs)&&
@@ -567,7 +524,6 @@ public class VrfContext extends AviRestResource  {
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
                         sb.append("    gatewayMon: ").append(toIndentedString(gatewayMon)).append("\n");
                         sb.append("    internalGatewayMonitor: ").append(toIndentedString(internalGatewayMonitor)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    lldpEnable: ").append(toIndentedString(lldpEnable)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");

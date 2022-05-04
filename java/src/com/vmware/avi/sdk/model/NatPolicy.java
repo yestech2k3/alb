@@ -27,9 +27,6 @@ public class NatPolicy extends AviRestResource  {
     @JsonProperty("description")
     private String description = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -94,51 +91,6 @@ public class NatPolicy extends AviRestResource  {
      */
     public void setDescription(String  description) {
         this.description = description;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public NatPolicy addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -325,7 +277,6 @@ public class NatPolicy extends AviRestResource  {
   Objects.equals(this.name, objNatPolicy.name)&&
   Objects.equals(this.rules, objNatPolicy.rules)&&
   Objects.equals(this.createdBy, objNatPolicy.createdBy)&&
-  Objects.equals(this.labels, objNatPolicy.labels)&&
   Objects.equals(this.markers, objNatPolicy.markers)&&
   Objects.equals(this.description, objNatPolicy.description)&&
   Objects.equals(this.tenantRef, objNatPolicy.tenantRef);
@@ -337,7 +288,6 @@ public class NatPolicy extends AviRestResource  {
       sb.append("class NatPolicy {\n");
                   sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    rules: ").append(toIndentedString(rules)).append("\n");

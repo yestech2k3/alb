@@ -33,9 +33,6 @@ public class SecureChannelToken extends AviRestResource  {
     @JsonProperty("name")
     private String name = null;
 
-    @JsonProperty("node_uuid")
-    private String nodeUuid;
-
     @JsonProperty("url")
     private String url = "url";
 
@@ -147,28 +144,6 @@ public class SecureChannelToken extends AviRestResource  {
     public void setName(String  name) {
         this.name = name;
     }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated  uuid of se or controller who is using this auth_token.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nodeUuid
-     */
-    public String getNodeUuid() {
-        return nodeUuid;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated  uuid of se or controller who is using this auth_token.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nodeUuid set the nodeUuid.
-     */
-    public void setNodeUuid(String  nodeUuid) {
-        this.nodeUuid = nodeUuid;
-    }
     /**
      * This is the getter method this will return the attribute value.
      * Avi controller URL of the object.
@@ -222,7 +197,6 @@ public class SecureChannelToken extends AviRestResource  {
       return   Objects.equals(this.uuid, objSecureChannelToken.uuid)&&
   Objects.equals(this.name, objSecureChannelToken.name)&&
   Objects.equals(this.expiryTime, objSecureChannelToken.expiryTime)&&
-  Objects.equals(this.nodeUuid, objSecureChannelToken.nodeUuid)&&
   Objects.equals(this.metadata, objSecureChannelToken.metadata)&&
   Objects.equals(this.inUse, objSecureChannelToken.inUse);
     }
@@ -235,7 +209,6 @@ public class SecureChannelToken extends AviRestResource  {
                         sb.append("    inUse: ").append(toIndentedString(inUse)).append("\n");
                         sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
-                        sb.append("    nodeUuid: ").append(toIndentedString(nodeUuid)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
                   sb.append("}");
       return sb.toString();

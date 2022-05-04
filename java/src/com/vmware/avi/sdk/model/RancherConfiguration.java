@@ -90,9 +90,6 @@ public class RancherConfiguration  {
     @JsonProperty("services_accessible_all_interfaces")
     private Boolean servicesAccessibleAllInterfaces = false;
 
-    @JsonProperty("ssh_se_deployment")
-    private SSHSeDeployment sshSeDeployment;
-
     @JsonProperty("ssh_user_ref")
     private String sshUserRef = null;
 
@@ -679,28 +676,6 @@ public class RancherConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Parameters for ssh se deployment.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return sshSeDeployment
-     */
-    public SSHSeDeployment getSshSeDeployment() {
-        return sshSeDeployment;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Parameters for ssh se deployment.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param sshSeDeployment set the sshSeDeployment.
-     */
-    public void setSshSeDeployment(SSHSeDeployment sshSeDeployment) {
-        this.sshSeDeployment = sshSeDeployment;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Cloud connector user uuid for ssh to hosts.
      * It is a reference to an object of type cloudconnectoruser.
      * Field introduced in 17.1.1.
@@ -798,7 +773,6 @@ public class RancherConfiguration  {
   Objects.equals(this.useContainerIpPort, objRancherConfiguration.useContainerIpPort)&&
   Objects.equals(this.seVolume, objRancherConfiguration.seVolume)&&
   Objects.equals(this.coredumpDirectory, objRancherConfiguration.coredumpDirectory)&&
-  Objects.equals(this.sshSeDeployment, objRancherConfiguration.sshSeDeployment)&&
   Objects.equals(this.enableEventSubscription, objRancherConfiguration.enableEventSubscription)&&
   Objects.equals(this.feproxyContainerPortAsService, objRancherConfiguration.feproxyContainerPortAsService)&&
   Objects.equals(this.servicesAccessibleAllInterfaces, objRancherConfiguration.servicesAccessibleAllInterfaces)&&
@@ -837,7 +811,6 @@ public class RancherConfiguration  {
                         sb.append("    seVolume: ").append(toIndentedString(seVolume)).append("\n");
                         sb.append("    secretKey: ").append(toIndentedString(secretKey)).append("\n");
                         sb.append("    servicesAccessibleAllInterfaces: ").append(toIndentedString(servicesAccessibleAllInterfaces)).append("\n");
-                        sb.append("    sshSeDeployment: ").append(toIndentedString(sshSeDeployment)).append("\n");
                         sb.append("    sshUserRef: ").append(toIndentedString(sshUserRef)).append("\n");
                         sb.append("    useContainerIpPort: ").append(toIndentedString(useContainerIpPort)).append("\n");
                         sb.append("    useControllerImage: ").append(toIndentedString(useControllerImage)).append("\n");

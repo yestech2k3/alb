@@ -33,9 +33,6 @@ public class DockerRegistry  {
     @JsonProperty("registry")
     private String registry = "avinetworks/se";
 
-    @JsonProperty("se_repository_push")
-    private Boolean seRepositoryPush;
-
     @JsonProperty("username")
     private String username = null;
 
@@ -139,28 +136,6 @@ public class DockerRegistry  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Avi controller will push serviceengine image to docker repository.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRepositoryPush
-     */
-    public Boolean getSeRepositoryPush() {
-        return seRepositoryPush;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Avi controller will push serviceengine image to docker repository.
-     * Field deprecated in 18.2.6.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRepositoryPush set the seRepositoryPush.
-     */
-    public void setSeRepositoryPush(Boolean  seRepositoryPush) {
-        this.seRepositoryPush = seRepositoryPush;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Username for docker registry.
      * Authorized 'regular user' if registry is openshift integrated registry.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -197,7 +172,6 @@ public class DockerRegistry  {
   Objects.equals(this.privates, objDockerRegistry.privates)&&
   Objects.equals(this.username, objDockerRegistry.username)&&
   Objects.equals(this.password, objDockerRegistry.password)&&
-  Objects.equals(this.seRepositoryPush, objDockerRegistry.seRepositoryPush)&&
   Objects.equals(this.oshiftRegistry, objDockerRegistry.oshiftRegistry);
     }
 
@@ -209,7 +183,6 @@ public class DockerRegistry  {
                         sb.append("    password: ").append(toIndentedString(password)).append("\n");
                         sb.append("    privates: ").append(toIndentedString(privates)).append("\n");
                         sb.append("    registry: ").append(toIndentedString(registry)).append("\n");
-                        sb.append("    seRepositoryPush: ").append(toIndentedString(seRepositoryPush)).append("\n");
                         sb.append("    username: ").append(toIndentedString(username)).append("\n");
                   sb.append("}");
       return sb.toString();

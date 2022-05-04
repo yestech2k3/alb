@@ -45,15 +45,6 @@ public class EventDetails  {
     @JsonProperty("api_version_deprecated")
     private ApiVersionDeprecated apiVersionDeprecated = null;
 
-    @JsonProperty("apic_agent_bd_vrf_details")
-    private ApicAgentBridgeDomainVrfChange apicAgentBdVrfDetails;
-
-    @JsonProperty("apic_agent_generic_details")
-    private ApicAgentGenericEventDetails apicAgentGenericDetails;
-
-    @JsonProperty("apic_agent_vs_network_error")
-    private ApicAgentVsNetworkError apicAgentVsNetworkError;
-
     @JsonProperty("app_signature_event_data")
     private AppSignatureEventData appSignatureEventData = null;
 
@@ -835,66 +826,6 @@ public class EventDetails  {
      */
     public void setApiVersionDeprecated(ApiVersionDeprecated apiVersionDeprecated) {
         this.apiVersionDeprecated = apiVersionDeprecated;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return apicAgentBdVrfDetails
-     */
-    public ApicAgentBridgeDomainVrfChange getApicAgentBdVrfDetails() {
-        return apicAgentBdVrfDetails;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param apicAgentBdVrfDetails set the apicAgentBdVrfDetails.
-     */
-    public void setApicAgentBdVrfDetails(ApicAgentBridgeDomainVrfChange apicAgentBdVrfDetails) {
-        this.apicAgentBdVrfDetails = apicAgentBdVrfDetails;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return apicAgentGenericDetails
-     */
-    public ApicAgentGenericEventDetails getApicAgentGenericDetails() {
-        return apicAgentGenericDetails;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param apicAgentGenericDetails set the apicAgentGenericDetails.
-     */
-    public void setApicAgentGenericDetails(ApicAgentGenericEventDetails apicAgentGenericDetails) {
-        this.apicAgentGenericDetails = apicAgentGenericDetails;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return apicAgentVsNetworkError
-     */
-    public ApicAgentVsNetworkError getApicAgentVsNetworkError() {
-        return apicAgentVsNetworkError;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param apicAgentVsNetworkError set the apicAgentVsNetworkError.
-     */
-    public void setApicAgentVsNetworkError(ApicAgentVsNetworkError apicAgentVsNetworkError) {
-        this.apicAgentVsNetworkError = apicAgentVsNetworkError;
     }
 
     /**
@@ -5280,9 +5211,6 @@ public class EventDetails  {
   Objects.equals(this.nwSummarizedDetails, objEventDetails.nwSummarizedDetails)&&
   Objects.equals(this.networkSubnetDetails, objEventDetails.networkSubnetDetails)&&
   Objects.equals(this.avgUptimeChangeDetails, objEventDetails.avgUptimeChangeDetails)&&
-  Objects.equals(this.apicAgentGenericDetails, objEventDetails.apicAgentGenericDetails)&&
-  Objects.equals(this.apicAgentBdVrfDetails, objEventDetails.apicAgentBdVrfDetails)&&
-  Objects.equals(this.apicAgentVsNetworkError, objEventDetails.apicAgentVsNetworkError)&&
   Objects.equals(this.dosAttackEventDetails, objEventDetails.dosAttackEventDetails)&&
   Objects.equals(this.serverAutoscaleoutInfo, objEventDetails.serverAutoscaleoutInfo)&&
   Objects.equals(this.serverAutoscaleinInfo, objEventDetails.serverAutoscaleinInfo)&&
@@ -5355,9 +5283,6 @@ public class EventDetails  {
                         sb.append("    allSeupgradeEventDetails: ").append(toIndentedString(allSeupgradeEventDetails)).append("\n");
                         sb.append("    anomalyDetails: ").append(toIndentedString(anomalyDetails)).append("\n");
                         sb.append("    apiVersionDeprecated: ").append(toIndentedString(apiVersionDeprecated)).append("\n");
-                        sb.append("    apicAgentBdVrfDetails: ").append(toIndentedString(apicAgentBdVrfDetails)).append("\n");
-                        sb.append("    apicAgentGenericDetails: ").append(toIndentedString(apicAgentGenericDetails)).append("\n");
-                        sb.append("    apicAgentVsNetworkError: ").append(toIndentedString(apicAgentVsNetworkError)).append("\n");
                         sb.append("    appSignatureEventData: ").append(toIndentedString(appSignatureEventData)).append("\n");
                         sb.append("    attachIpStatusDetails: ").append(toIndentedString(attachIpStatusDetails)).append("\n");
                         sb.append("    avgUptimeChangeDetails: ").append(toIndentedString(avgUptimeChangeDetails)).append("\n");

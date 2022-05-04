@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FullClientLogs  {
-    @JsonProperty("all_headers")
-    private Boolean allHeaders;
-
     @JsonProperty("duration")
     private Integer duration = 30;
 
@@ -34,30 +31,6 @@ public class FullClientLogs  {
     private Integer throttle = 10;
 
 
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * [deprecated] log all headers.
-     * Please use the all_headers flag in analyticspolicy.
-     * Field deprecated in 18.1.4, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return allHeaders
-     */
-    public Boolean getAllHeaders() {
-        return allHeaders;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * [deprecated] log all headers.
-     * Please use the all_headers flag in analyticspolicy.
-     * Field deprecated in 18.1.4, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param allHeaders set the allHeaders.
-     */
-    public void setAllHeaders(Boolean  allHeaders) {
-        this.allHeaders = allHeaders;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -155,7 +128,6 @@ public class FullClientLogs  {
       FullClientLogs objFullClientLogs = (FullClientLogs) o;
       return   Objects.equals(this.enabled, objFullClientLogs.enabled)&&
   Objects.equals(this.duration, objFullClientLogs.duration)&&
-  Objects.equals(this.allHeaders, objFullClientLogs.allHeaders)&&
   Objects.equals(this.throttle, objFullClientLogs.throttle);
     }
 
@@ -163,8 +135,7 @@ public class FullClientLogs  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class FullClientLogs {\n");
-                  sb.append("    allHeaders: ").append(toIndentedString(allHeaders)).append("\n");
-                        sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
+                  sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
                         sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
                         sb.append("    throttle: ").append(toIndentedString(throttle)).append("\n");
                   sb.append("}");

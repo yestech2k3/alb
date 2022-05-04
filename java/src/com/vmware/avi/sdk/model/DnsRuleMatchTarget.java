@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DnsRuleMatchTarget  {
-    @JsonProperty("client_ip")
-    private IpAddrMatch clientIp;
-
     @JsonProperty("client_ip_address")
     private DnsClientIpMatch clientIpAddress = null;
 
@@ -43,32 +40,6 @@ public class DnsRuleMatchTarget  {
     private DnsQueryTypeMatch queryType = null;
 
 
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Ip addresses to match against client ip.
-     * From 17.1.6 release onwards, ip addresses needs to be configured in the client_ip_address field of this message.
-     * Field deprecated in 17.1.6,17.2.2.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return clientIp
-     */
-    public IpAddrMatch getClientIp() {
-        return clientIp;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Ip addresses to match against client ip.
-     * From 17.1.6 release onwards, ip addresses needs to be configured in the client_ip_address field of this message.
-     * Field deprecated in 17.1.6,17.2.2.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param clientIp set the clientIp.
-     */
-    public void setClientIp(IpAddrMatch clientIp) {
-        this.clientIp = clientIp;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -224,8 +195,7 @@ public class DnsRuleMatchTarget  {
           return false;
       }
       DnsRuleMatchTarget objDnsRuleMatchTarget = (DnsRuleMatchTarget) o;
-      return   Objects.equals(this.clientIp, objDnsRuleMatchTarget.clientIp)&&
-  Objects.equals(this.protocol, objDnsRuleMatchTarget.protocol)&&
+      return   Objects.equals(this.protocol, objDnsRuleMatchTarget.protocol)&&
   Objects.equals(this.queryName, objDnsRuleMatchTarget.queryName)&&
   Objects.equals(this.queryType, objDnsRuleMatchTarget.queryType)&&
   Objects.equals(this.geoLocation, objDnsRuleMatchTarget.geoLocation)&&
@@ -237,8 +207,7 @@ public class DnsRuleMatchTarget  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class DnsRuleMatchTarget {\n");
-                  sb.append("    clientIp: ").append(toIndentedString(clientIp)).append("\n");
-                        sb.append("    clientIpAddress: ").append(toIndentedString(clientIpAddress)).append("\n");
+                  sb.append("    clientIpAddress: ").append(toIndentedString(clientIpAddress)).append("\n");
                         sb.append("    clientPortNumbers: ").append(toIndentedString(clientPortNumbers)).append("\n");
                         sb.append("    geoLocation: ").append(toIndentedString(geoLocation)).append("\n");
                         sb.append("    protocol: ").append(toIndentedString(protocol)).append("\n");

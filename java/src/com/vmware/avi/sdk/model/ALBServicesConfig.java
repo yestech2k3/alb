@@ -45,9 +45,6 @@ public class ALBServicesConfig extends AviRestResource  {
     @JsonProperty("portal_url")
     private String portalUrl = null;
 
-    @JsonProperty("proactive_support_defaults")
-    private ProactiveSupportDefaults proactiveSupportDefaults;
-
     @JsonProperty("saas_licensing_config")
     private SaasLicensingInfo saasLicensingConfig = null;
 
@@ -276,30 +273,6 @@ public class ALBServicesConfig extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return proactiveSupportDefaults
-     */
-    public ProactiveSupportDefaults getProactiveSupportDefaults() {
-        return proactiveSupportDefaults;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param proactiveSupportDefaults set the proactiveSupportDefaults.
-     */
-    public void setProactiveSupportDefaults(ProactiveSupportDefaults proactiveSupportDefaults) {
-        this.proactiveSupportDefaults = proactiveSupportDefaults;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Saas licensing configuration.
      * Field introduced in 21.1.3.
      * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
@@ -502,7 +475,6 @@ public class ALBServicesConfig extends AviRestResource  {
   Objects.equals(this.pollingInterval, objALBServicesConfig.pollingInterval)&&
   Objects.equals(this.assetContact, objALBServicesConfig.assetContact)&&
   Objects.equals(this.featureOptInStatus, objALBServicesConfig.featureOptInStatus)&&
-  Objects.equals(this.proactiveSupportDefaults, objALBServicesConfig.proactiveSupportDefaults)&&
   Objects.equals(this.useSplitProxy, objALBServicesConfig.useSplitProxy)&&
   Objects.equals(this.splitProxyConfiguration, objALBServicesConfig.splitProxyConfiguration)&&
   Objects.equals(this.ipReputationConfig, objALBServicesConfig.ipReputationConfig)&&
@@ -527,7 +499,6 @@ public class ALBServicesConfig extends AviRestResource  {
                         sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
                         sb.append("    pollingInterval: ").append(toIndentedString(pollingInterval)).append("\n");
                         sb.append("    portalUrl: ").append(toIndentedString(portalUrl)).append("\n");
-                        sb.append("    proactiveSupportDefaults: ").append(toIndentedString(proactiveSupportDefaults)).append("\n");
                         sb.append("    saasLicensingConfig: ").append(toIndentedString(saasLicensingConfig)).append("\n");
                         sb.append("    splitProxyConfiguration: ").append(toIndentedString(splitProxyConfiguration)).append("\n");
                                     sb.append("    useSplitProxy: ").append(toIndentedString(useSplitProxy)).append("\n");

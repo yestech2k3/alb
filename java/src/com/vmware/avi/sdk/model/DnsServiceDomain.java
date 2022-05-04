@@ -24,9 +24,6 @@ public class DnsServiceDomain  {
     @JsonProperty("domain_name")
     private String domainName = null;
 
-    @JsonProperty("num_dns_ip")
-    private Integer numDnsIp;
-
     @JsonProperty("pass_through")
     private Boolean passThrough = true;
 
@@ -55,30 +52,6 @@ public class DnsServiceDomain  {
      */
     public void setDomainName(String  domainName) {
         this.domainName = domainName;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * [deprecated] useless fieldplease refer to dnsserviceapplicationprofile's num_dns_ip for default valueplease refer to vsvip's dns_info
-     * num_records_in_response for user config valuespecifies the number of a recordsreturned by avi dns service.
-     * Field deprecated in 20.1.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return numDnsIp
-     */
-    public Integer getNumDnsIp() {
-        return numDnsIp;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * [deprecated] useless fieldplease refer to dnsserviceapplicationprofile's num_dns_ip for default valueplease refer to vsvip's dns_info
-     * num_records_in_response for user config valuespecifies the number of a recordsreturned by avi dns service.
-     * Field deprecated in 20.1.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param numDnsIp set the numDnsIp.
-     */
-    public void setNumDnsIp(Integer  numDnsIp) {
-        this.numDnsIp = numDnsIp;
     }
 
     /**
@@ -141,7 +114,6 @@ public class DnsServiceDomain  {
       DnsServiceDomain objDnsServiceDomain = (DnsServiceDomain) o;
       return   Objects.equals(this.domainName, objDnsServiceDomain.domainName)&&
   Objects.equals(this.recordTtl, objDnsServiceDomain.recordTtl)&&
-  Objects.equals(this.numDnsIp, objDnsServiceDomain.numDnsIp)&&
   Objects.equals(this.passThrough, objDnsServiceDomain.passThrough);
     }
 
@@ -150,7 +122,6 @@ public class DnsServiceDomain  {
       StringBuilder sb = new StringBuilder();
       sb.append("class DnsServiceDomain {\n");
                   sb.append("    domainName: ").append(toIndentedString(domainName)).append("\n");
-                        sb.append("    numDnsIp: ").append(toIndentedString(numDnsIp)).append("\n");
                         sb.append("    passThrough: ").append(toIndentedString(passThrough)).append("\n");
                         sb.append("    recordTtl: ").append(toIndentedString(recordTtl)).append("\n");
                   sb.append("}");

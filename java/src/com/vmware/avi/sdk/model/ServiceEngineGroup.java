@@ -27,12 +27,6 @@ public class ServiceEngineGroup extends AviRestResource  {
     @JsonProperty("active_standby")
     private Boolean activeStandby = false;
 
-    @JsonProperty("additional_config_memory")
-    private Integer additionalConfigMemory;
-
-    @JsonProperty("advertise_backend_networks")
-    private Boolean advertiseBackendNetworks;
-
     @JsonProperty("aggressive_failure_detection")
     private Boolean aggressiveFailureDetection = false;
 
@@ -213,15 +207,6 @@ public class ServiceEngineGroup extends AviRestResource  {
     @JsonProperty("enable_pcap_tx_ring")
     private Boolean enablePcapTxRing = null;
 
-    @JsonProperty("enable_routing")
-    private Boolean enableRouting;
-
-    @JsonProperty("enable_vip_on_all_interfaces")
-    private Boolean enableVipOnAllInterfaces;
-
-    @JsonProperty("enable_vmac")
-    private Boolean enableVmac;
-
     @JsonProperty("ephemeral_portrange_end")
     private Integer ephemeralPortrangeEnd = null;
 
@@ -233,12 +218,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     @JsonProperty("extra_shared_config_memory")
     private Integer extraSharedConfigMemory = 0;
-
-    @JsonProperty("floating_intf_ip")
-    private List<IpAddr> floatingIntfIp;
-
-    @JsonProperty("floating_intf_ip_se_2")
-    private List<IpAddr> floatingIntfIpSe2;
 
     @JsonProperty("flow_table_new_syn_max_entries")
     private Integer flowTableNewSynMaxEntries = 0;
@@ -447,32 +426,11 @@ public class ServiceEngineGroup extends AviRestResource  {
     @JsonProperty("minimum_connection_memory")
     private Integer minimumConnectionMemory = 20;
 
-    @JsonProperty("minimum_required_config_memory")
-    private Integer minimumRequiredConfigMemory;
-
     @JsonProperty("n_log_streaming_threads")
     private Integer nLogStreamingThreads = 1;
 
     @JsonProperty("name")
     private String name = null;
-
-    @JsonProperty("nat_flow_tcp_closed_timeout")
-    private Integer natFlowTcpClosedTimeout;
-
-    @JsonProperty("nat_flow_tcp_established_timeout")
-    private Integer natFlowTcpEstablishedTimeout;
-
-    @JsonProperty("nat_flow_tcp_half_closed_timeout")
-    private Integer natFlowTcpHalfClosedTimeout;
-
-    @JsonProperty("nat_flow_tcp_handshake_timeout")
-    private Integer natFlowTcpHandshakeTimeout;
-
-    @JsonProperty("nat_flow_udp_noresponse_timeout")
-    private Integer natFlowUdpNoresponseTimeout;
-
-    @JsonProperty("nat_flow_udp_response_timeout")
-    private Integer natFlowUdpResponseTimeout;
 
     @JsonProperty("netlink_poller_threads")
     private Integer netlinkPollerThreads = 2;
@@ -503,9 +461,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     @JsonProperty("objsync_port")
     private Integer objsyncPort = 9001;
-
-    @JsonProperty("openstack_availability_zone")
-    private String openstackAvailabilityZone;
 
     @JsonProperty("openstack_availability_zones")
     private List<String> openstackAvailabilityZones = null;
@@ -539,9 +494,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     @JsonProperty("reboot_on_panic")
     private Boolean rebootOnPanic = true;
-
-    @JsonProperty("reboot_on_stop")
-    private Boolean rebootOnStop;
 
     @JsonProperty("resync_time_interval")
     private Integer resyncTimeInterval = 65536;
@@ -618,9 +570,6 @@ public class ServiceEngineGroup extends AviRestResource  {
     @JsonProperty("se_flow_probe_retry_timer")
     private Integer seFlowProbeRetryTimer = 40;
 
-    @JsonProperty("se_flow_probe_timer")
-    private Integer seFlowProbeTimer;
-
     @JsonProperty("se_group_analytics_policy")
     private SeGroupAnalyticsPolicy seGroupAnalyticsPolicy = null;
 
@@ -629,9 +578,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     @JsonProperty("se_ip_encap_ipc")
     private Integer seIpEncapIpc = 0;
-
-    @JsonProperty("se_ipc_udp_port")
-    private Integer seIpcUdpPort;
 
     @JsonProperty("se_kni_burst_factor")
     private Integer seKniBurstFactor = 0;
@@ -684,14 +630,8 @@ public class ServiceEngineGroup extends AviRestResource  {
     @JsonProperty("se_probe_port")
     private Integer seProbePort = 7;
 
-    @JsonProperty("se_remote_punt_udp_port")
-    private Integer seRemotePuntUdpPort;
-
     @JsonProperty("se_rl_prop")
     private RateLimiterProperties seRlProp = null;
-
-    @JsonProperty("se_routing")
-    private Boolean seRouting;
 
     @JsonProperty("se_rum_sampling_nav_interval")
     private Integer seRumSamplingNavInterval = 1;
@@ -891,12 +831,6 @@ public class ServiceEngineGroup extends AviRestResource  {
     @JsonProperty("vss_placement_enabled")
     private Boolean vssPlacementEnabled = false;
 
-    @JsonProperty("waf_learning_interval")
-    private Integer wafLearningInterval;
-
-    @JsonProperty("waf_learning_memory")
-    private Integer wafLearningMemory;
-
     @JsonProperty("waf_mempool")
     private Boolean wafMempool = true;
 
@@ -953,56 +887,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setActiveStandby(Boolean  activeStandby) {
         this.activeStandby = activeStandby;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Indicates the percent of config memory used for config updates.
-     * Allowed values are 0-90.
-     * Field deprecated in 18.1.2.
-     * Field introduced in 18.1.1.
-     * Unit is percent.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return additionalConfigMemory
-     */
-    public Integer getAdditionalConfigMemory() {
-        return additionalConfigMemory;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Indicates the percent of config memory used for config updates.
-     * Allowed values are 0-90.
-     * Field deprecated in 18.1.2.
-     * Field introduced in 18.1.1.
-     * Unit is percent.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param additionalConfigMemory set the additionalConfigMemory.
-     */
-    public void setAdditionalConfigMemory(Integer  additionalConfigMemory) {
-        this.additionalConfigMemory = additionalConfigMemory;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Advertise reach-ability of backend server networks via adc through bgp for default gateway feature.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return advertiseBackendNetworks
-     */
-    public Boolean getAdvertiseBackendNetworks() {
-        return advertiseBackendNetworks;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Advertise reach-ability of backend server networks via adc through bgp for default gateway feature.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param advertiseBackendNetworks set the advertiseBackendNetworks.
-     */
-    public void setAdvertiseBackendNetworks(Boolean  advertiseBackendNetworks) {
-        this.advertiseBackendNetworks = advertiseBackendNetworks;
     }
 
     /**
@@ -2635,76 +2519,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Enable routing for this serviceenginegroup.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @return enableRouting
-     */
-    public Boolean getEnableRouting() {
-        return enableRouting;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Enable routing for this serviceenginegroup.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @param enableRouting set the enableRouting.
-     */
-    public void setEnableRouting(Boolean  enableRouting) {
-        this.enableRouting = enableRouting;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Enable vip on all interfaces of se.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return enableVipOnAllInterfaces
-     */
-    public Boolean getEnableVipOnAllInterfaces() {
-        return enableVipOnAllInterfaces;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Enable vip on all interfaces of se.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param enableVipOnAllInterfaces set the enableVipOnAllInterfaces.
-     */
-    public void setEnableVipOnAllInterfaces(Boolean  enableVipOnAllInterfaces) {
-        this.enableVipOnAllInterfaces = enableVipOnAllInterfaces;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Use virtual mac address for interfaces on which floating interface ips are placed.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return enableVmac
-     */
-    public Boolean getEnableVmac() {
-        return enableVmac;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Use virtual mac address for interfaces on which floating interface ips are placed.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param enableVmac set the enableVmac.
-     */
-    public void setEnableVmac(Boolean  enableVmac) {
-        this.enableVmac = enableVmac;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * End local ephemeral port number for outbound connections.
      * Field introduced in 17.2.13, 18.1.5, 18.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -2797,96 +2611,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setExtraSharedConfigMemory(Integer  extraSharedConfigMemory) {
         this.extraSharedConfigMemory = extraSharedConfigMemory;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
-     * Virtual services in this group must be disabled/enabled for any changes to the floating ip's to take effect.
-     * Only active se hosting vs tagged with active standby se 1 tag will advertise this floating ip when manual load distribution is enabled.
-     * Field deprecated in 18.2.5.
-     * Maximum of 32 items allowed.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return floatingIntfIp
-     */
-    public List<IpAddr> getFloatingIntfIp() {
-        return floatingIntfIp;
-    }
-
-    /**
-     * This is the setter method. this will set the floatingIntfIp
-     * If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
-     * Virtual services in this group must be disabled/enabled for any changes to the floating ip's to take effect.
-     * Only active se hosting vs tagged with active standby se 1 tag will advertise this floating ip when manual load distribution is enabled.
-     * Field deprecated in 18.2.5.
-     * Maximum of 32 items allowed.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return floatingIntfIp
-     */
-    public void setFloatingIntfIp(List<IpAddr>  floatingIntfIp) {
-        this.floatingIntfIp = floatingIntfIp;
-    }
-
-    /**
-     * This is the setter method this will set the floatingIntfIp
-     * If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
-     * Virtual services in this group must be disabled/enabled for any changes to the floating ip's to take effect.
-     * Only active se hosting vs tagged with active standby se 1 tag will advertise this floating ip when manual load distribution is enabled.
-     * Field deprecated in 18.2.5.
-     * Maximum of 32 items allowed.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return floatingIntfIp
-     */
-    public ServiceEngineGroup addFloatingIntfIpItem(IpAddr floatingIntfIpItem) {
-      if (this.floatingIntfIp == null) {
-        this.floatingIntfIp = new ArrayList<IpAddr>();
-      }
-      this.floatingIntfIp.add(floatingIntfIpItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
-     * Virtual services in this group must be disabled/enabled for any changes to the floating ip's to take effect.
-     * Only active se hosting vs tagged with active standby se 2 tag will advertise this floating ip when manual load distribution is enabled.
-     * Field deprecated in 18.2.5.
-     * Maximum of 32 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return floatingIntfIpSe2
-     */
-    public List<IpAddr> getFloatingIntfIpSe2() {
-        return floatingIntfIpSe2;
-    }
-
-    /**
-     * This is the setter method. this will set the floatingIntfIpSe2
-     * If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
-     * Virtual services in this group must be disabled/enabled for any changes to the floating ip's to take effect.
-     * Only active se hosting vs tagged with active standby se 2 tag will advertise this floating ip when manual load distribution is enabled.
-     * Field deprecated in 18.2.5.
-     * Maximum of 32 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return floatingIntfIpSe2
-     */
-    public void setFloatingIntfIpSe2(List<IpAddr>  floatingIntfIpSe2) {
-        this.floatingIntfIpSe2 = floatingIntfIpSe2;
-    }
-
-    /**
-     * This is the setter method this will set the floatingIntfIpSe2
-     * If serviceenginegroup is configured for legacy 1+1 active standby ha mode, floating ip's will be advertised only by the active se in the pair.
-     * Virtual services in this group must be disabled/enabled for any changes to the floating ip's to take effect.
-     * Only active se hosting vs tagged with active standby se 2 tag will advertise this floating ip when manual load distribution is enabled.
-     * Field deprecated in 18.2.5.
-     * Maximum of 32 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return floatingIntfIpSe2
-     */
-    public ServiceEngineGroup addFloatingIntfIpSe2Item(IpAddr floatingIntfIpSe2Item) {
-      if (this.floatingIntfIpSe2 == null) {
-        this.floatingIntfIpSe2 = new ArrayList<IpAddr>();
-      }
-      this.floatingIntfIpSe2.add(floatingIntfIpSe2Item);
-      return this;
     }
 
     /**
@@ -4715,34 +4439,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Required available config memory to apply any configuration.
-     * Allowed values are 0-90.
-     * Field deprecated in 18.1.2.
-     * Field introduced in 18.1.1.
-     * Unit is percent.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return minimumRequiredConfigMemory
-     */
-    public Integer getMinimumRequiredConfigMemory() {
-        return minimumRequiredConfigMemory;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Required available config memory to apply any configuration.
-     * Allowed values are 0-90.
-     * Field deprecated in 18.1.2.
-     * Field introduced in 18.1.1.
-     * Unit is percent.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param minimumRequiredConfigMemory set the minimumRequiredConfigMemory.
-     */
-    public void setMinimumRequiredConfigMemory(Integer  minimumRequiredConfigMemory) {
-        this.minimumRequiredConfigMemory = minimumRequiredConfigMemory;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Number of threads to use for log streaming.
      * Allowed values are 1-100.
      * Field introduced in 17.2.12, 18.1.2.
@@ -4785,174 +4481,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setName(String  name) {
         this.name = name;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Idle timeout in seconds for nat tcp flows in closed state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return natFlowTcpClosedTimeout
-     */
-    public Integer getNatFlowTcpClosedTimeout() {
-        return natFlowTcpClosedTimeout;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Idle timeout in seconds for nat tcp flows in closed state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param natFlowTcpClosedTimeout set the natFlowTcpClosedTimeout.
-     */
-    public void setNatFlowTcpClosedTimeout(Integer  natFlowTcpClosedTimeout) {
-        this.natFlowTcpClosedTimeout = natFlowTcpClosedTimeout;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Idle timeout in seconds for nat tcp flows in established state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return natFlowTcpEstablishedTimeout
-     */
-    public Integer getNatFlowTcpEstablishedTimeout() {
-        return natFlowTcpEstablishedTimeout;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Idle timeout in seconds for nat tcp flows in established state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param natFlowTcpEstablishedTimeout set the natFlowTcpEstablishedTimeout.
-     */
-    public void setNatFlowTcpEstablishedTimeout(Integer  natFlowTcpEstablishedTimeout) {
-        this.natFlowTcpEstablishedTimeout = natFlowTcpEstablishedTimeout;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Idle timeout in seconds for nat tcp flows in half closed state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return natFlowTcpHalfClosedTimeout
-     */
-    public Integer getNatFlowTcpHalfClosedTimeout() {
-        return natFlowTcpHalfClosedTimeout;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Idle timeout in seconds for nat tcp flows in half closed state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param natFlowTcpHalfClosedTimeout set the natFlowTcpHalfClosedTimeout.
-     */
-    public void setNatFlowTcpHalfClosedTimeout(Integer  natFlowTcpHalfClosedTimeout) {
-        this.natFlowTcpHalfClosedTimeout = natFlowTcpHalfClosedTimeout;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Idle timeout in seconds for nat tcp flows in handshake state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return natFlowTcpHandshakeTimeout
-     */
-    public Integer getNatFlowTcpHandshakeTimeout() {
-        return natFlowTcpHandshakeTimeout;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Idle timeout in seconds for nat tcp flows in handshake state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param natFlowTcpHandshakeTimeout set the natFlowTcpHandshakeTimeout.
-     */
-    public void setNatFlowTcpHandshakeTimeout(Integer  natFlowTcpHandshakeTimeout) {
-        this.natFlowTcpHandshakeTimeout = natFlowTcpHandshakeTimeout;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Idle timeout in seconds for nat udp flows in noresponse state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return natFlowUdpNoresponseTimeout
-     */
-    public Integer getNatFlowUdpNoresponseTimeout() {
-        return natFlowUdpNoresponseTimeout;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Idle timeout in seconds for nat udp flows in noresponse state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param natFlowUdpNoresponseTimeout set the natFlowUdpNoresponseTimeout.
-     */
-    public void setNatFlowUdpNoresponseTimeout(Integer  natFlowUdpNoresponseTimeout) {
-        this.natFlowUdpNoresponseTimeout = natFlowUdpNoresponseTimeout;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Idle timeout in seconds for nat udp flows in response state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return natFlowUdpResponseTimeout
-     */
-    public Integer getNatFlowUdpResponseTimeout() {
-        return natFlowUdpResponseTimeout;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Idle timeout in seconds for nat udp flows in response state.
-     * Allowed values are 1-3600.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.5.
-     * Unit is seconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param natFlowUdpResponseTimeout set the natFlowUdpResponseTimeout.
-     */
-    public void setNatFlowUdpResponseTimeout(Integer  natFlowUdpResponseTimeout) {
-        this.natFlowUdpResponseTimeout = natFlowUdpResponseTimeout;
     }
 
     /**
@@ -5229,26 +4757,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setObjsyncPort(Integer  objsyncPort) {
         this.objsyncPort = objsyncPort;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return openstackAvailabilityZone
-     */
-    public String getOpenstackAvailabilityZone() {
-        return openstackAvailabilityZone;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param openstackAvailabilityZone set the openstackAvailabilityZone.
-     */
-    public void setOpenstackAvailabilityZone(String  openstackAvailabilityZone) {
-        this.openstackAvailabilityZone = openstackAvailabilityZone;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -5540,28 +5048,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setRebootOnPanic(Boolean  rebootOnPanic) {
         this.rebootOnPanic = rebootOnPanic;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Reboot the system if the se is stopped.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rebootOnStop
-     */
-    public Boolean getRebootOnStop() {
-        return rebootOnStop;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Reboot the system if the se is stopped.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param rebootOnStop set the rebootOnStop.
-     */
-    public void setRebootOnStop(Boolean  rebootOnStop) {
-        this.rebootOnStop = rebootOnStop;
     }
 
     /**
@@ -6236,34 +5722,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Timeout in milliseconds for flow probe entries.
-     * Allowed values are 10-200.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.1.4, 18.2.1.
-     * Unit is milliseconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seFlowProbeTimer
-     */
-    public Integer getSeFlowProbeTimer() {
-        return seFlowProbeTimer;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Timeout in milliseconds for flow probe entries.
-     * Allowed values are 10-200.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.1.4, 18.2.1.
-     * Unit is milliseconds.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seFlowProbeTimer set the seFlowProbeTimer.
-     */
-    public void setSeFlowProbeTimer(Integer  seFlowProbeTimer) {
-        this.seFlowProbeTimer = seFlowProbeTimer;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Analytics policy for serviceenginegroup.
      * Field introduced in 20.1.3.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -6342,30 +5800,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setSeIpEncapIpc(Integer  seIpEncapIpc) {
         this.seIpEncapIpc = seIpEncapIpc;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Udp port for se_dp ipc in docker bridge mode.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 17.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seIpcUdpPort
-     */
-    public Integer getSeIpcUdpPort() {
-        return seIpcUdpPort;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Udp port for se_dp ipc in docker bridge mode.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 17.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seIpcUdpPort set the seIpcUdpPort.
-     */
-    public void setSeIpcUdpPort(Integer  seIpcUdpPort) {
-        this.seIpcUdpPort = seIpcUdpPort;
     }
 
     /**
@@ -6828,30 +6262,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Udp port for punted packets in docker bridge mode.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 17.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRemotePuntUdpPort
-     */
-    public Integer getSeRemotePuntUdpPort() {
-        return seRemotePuntUdpPort;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Udp port for punted packets in docker bridge mode.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 17.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRemotePuntUdpPort set the seRemotePuntUdpPort.
-     */
-    public void setSeRemotePuntUdpPort(Integer  seRemotePuntUdpPort) {
-        this.seRemotePuntUdpPort = seRemotePuntUdpPort;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Rate limiter properties.
      * Field introduced in 20.1.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -6872,34 +6282,6 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setSeRlProp(RateLimiterProperties seRlProp) {
         this.seRlProp = seRlProp;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Enable routing via service engine datapath.
-     * When disabled, routing is done by the linux kernel.
-     * Ip routing needs to be enabled in service engine group for se routing to be effective.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRouting
-     */
-    public Boolean getSeRouting() {
-        return seRouting;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Enable routing via service engine datapath.
-     * When disabled, routing is done by the linux kernel.
-     * Ip routing needs to be enabled in service engine group for se routing to be effective.
-     * Field deprecated in 18.2.5.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRouting set the seRouting.
-     */
-    public void setSeRouting(Boolean  seRouting) {
-        this.seRouting = seRouting;
     }
 
     /**
@@ -8663,62 +8045,6 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Frequency with which se publishes waf learning.
-     * Allowed values are 1-43200.
-     * Field deprecated in 18.2.3.
-     * Field introduced in 18.1.2.
-     * Unit is min.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return wafLearningInterval
-     */
-    public Integer getWafLearningInterval() {
-        return wafLearningInterval;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Frequency with which se publishes waf learning.
-     * Allowed values are 1-43200.
-     * Field deprecated in 18.2.3.
-     * Field introduced in 18.1.2.
-     * Unit is min.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param wafLearningInterval set the wafLearningInterval.
-     */
-    public void setWafLearningInterval(Integer  wafLearningInterval) {
-        this.wafLearningInterval = wafLearningInterval;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Amount of memory reserved on se for waf learning.
-     * This can be atmost 5% of se memory.
-     * Field deprecated in 18.2.3.
-     * Field introduced in 18.1.2.
-     * Unit is mb.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return wafLearningMemory
-     */
-    public Integer getWafLearningMemory() {
-        return wafLearningMemory;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Amount of memory reserved on se for waf learning.
-     * This can be atmost 5% of se memory.
-     * Field deprecated in 18.2.3.
-     * Field introduced in 18.1.2.
-     * Unit is mb.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param wafLearningMemory set the wafLearningMemory.
-     */
-    public void setWafLearningMemory(Integer  wafLearningMemory) {
-        this.wafLearningMemory = wafLearningMemory;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Enable memory pool for waf.requires se reboot.
      * Field introduced in 17.2.3.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -8800,7 +8126,6 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.vcenterDatastoreMode, objServiceEngineGroup.vcenterDatastoreMode)&&
   Objects.equals(this.vcenterClusters, objServiceEngineGroup.vcenterClusters)&&
   Objects.equals(this.vcenterHosts, objServiceEngineGroup.vcenterHosts)&&
-  Objects.equals(this.openstackAvailabilityZone, objServiceEngineGroup.openstackAvailabilityZone)&&
   Objects.equals(this.cpuReserve, objServiceEngineGroup.cpuReserve)&&
   Objects.equals(this.memReserve, objServiceEngineGroup.memReserve)&&
   Objects.equals(this.mgmtNetworkRef, objServiceEngineGroup.mgmtNetworkRef)&&
@@ -8828,13 +8153,10 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.hostAttributeValue, objServiceEngineGroup.hostAttributeValue)&&
   Objects.equals(this.logDisksz, objServiceEngineGroup.logDisksz)&&
   Objects.equals(this.osReservedMemory, objServiceEngineGroup.osReservedMemory)&&
-  Objects.equals(this.floatingIntfIp, objServiceEngineGroup.floatingIntfIp)&&
   Objects.equals(this.hmOnStandby, objServiceEngineGroup.hmOnStandby)&&
   Objects.equals(this.perApp, objServiceEngineGroup.perApp)&&
-  Objects.equals(this.enableVmac, objServiceEngineGroup.enableVmac)&&
   Objects.equals(this.distributeLoadActiveStandby, objServiceEngineGroup.distributeLoadActiveStandby)&&
   Objects.equals(this.autoRedistributeActiveStandbyLoad, objServiceEngineGroup.autoRedistributeActiveStandbyLoad)&&
-  Objects.equals(this.floatingIntfIpSe2, objServiceEngineGroup.floatingIntfIpSe2)&&
   Objects.equals(this.customTag, objServiceEngineGroup.customTag)&&
   Objects.equals(this.dedicatedDispatcherCore, objServiceEngineGroup.dedicatedDispatcherCore)&&
   Objects.equals(this.cpuSocketAffinity, objServiceEngineGroup.cpuSocketAffinity)&&
@@ -8849,15 +8171,10 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.autoRebalanceCriteria, objServiceEngineGroup.autoRebalanceCriteria)&&
   Objects.equals(this.cloudRef, objServiceEngineGroup.cloudRef)&&
   Objects.equals(this.iptables, objServiceEngineGroup.iptables)&&
-  Objects.equals(this.enableRouting, objServiceEngineGroup.enableRouting)&&
-  Objects.equals(this.advertiseBackendNetworks, objServiceEngineGroup.advertiseBackendNetworks)&&
-  Objects.equals(this.enableVipOnAllInterfaces, objServiceEngineGroup.enableVipOnAllInterfaces)&&
   Objects.equals(this.seThreadMultiplier, objServiceEngineGroup.seThreadMultiplier)&&
   Objects.equals(this.asyncSsl, objServiceEngineGroup.asyncSsl)&&
   Objects.equals(this.asyncSslThreads, objServiceEngineGroup.asyncSslThreads)&&
   Objects.equals(this.seUdpEncapIpc, objServiceEngineGroup.seUdpEncapIpc)&&
-  Objects.equals(this.seIpcUdpPort, objServiceEngineGroup.seIpcUdpPort)&&
-  Objects.equals(this.seRemotePuntUdpPort, objServiceEngineGroup.seRemotePuntUdpPort)&&
   Objects.equals(this.seTunnelUdpPort, objServiceEngineGroup.seTunnelUdpPort)&&
   Objects.equals(this.customSecuritygroupsMgmt, objServiceEngineGroup.customSecuritygroupsMgmt)&&
   Objects.equals(this.customSecuritygroupsData, objServiceEngineGroup.customSecuritygroupsData)&&
@@ -8881,7 +8198,6 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.hostGatewayMonitor, objServiceEngineGroup.hostGatewayMonitor)&&
   Objects.equals(this.vssPlacement, objServiceEngineGroup.vssPlacement)&&
   Objects.equals(this.flowTableNewSynMaxEntries, objServiceEngineGroup.flowTableNewSynMaxEntries)&&
-  Objects.equals(this.minimumRequiredConfigMemory, objServiceEngineGroup.minimumRequiredConfigMemory)&&
   Objects.equals(this.disableCsumOffloads, objServiceEngineGroup.disableCsumOffloads)&&
   Objects.equals(this.disableGro, objServiceEngineGroup.disableGro)&&
   Objects.equals(this.disableTso, objServiceEngineGroup.disableTso)&&
@@ -8889,15 +8205,12 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.serviceIp6Subnets, objServiceEngineGroup.serviceIp6Subnets)&&
   Objects.equals(this.seTracertPortRange, objServiceEngineGroup.seTracertPortRange)&&
   Objects.equals(this.distributeQueues, objServiceEngineGroup.distributeQueues)&&
-  Objects.equals(this.additionalConfigMemory, objServiceEngineGroup.additionalConfigMemory)&&
   Objects.equals(this.vssPlacementEnabled, objServiceEngineGroup.vssPlacementEnabled)&&
   Objects.equals(this.enableMultiLb, objServiceEngineGroup.enableMultiLb)&&
   Objects.equals(this.nLogStreamingThreads, objServiceEngineGroup.nLogStreamingThreads)&&
   Objects.equals(this.freeListSize, objServiceEngineGroup.freeListSize)&&
   Objects.equals(this.maxRulesPerLb, objServiceEngineGroup.maxRulesPerLb)&&
   Objects.equals(this.maxPublicIpsPerLb, objServiceEngineGroup.maxPublicIpsPerLb)&&
-  Objects.equals(this.wafLearningMemory, objServiceEngineGroup.wafLearningMemory)&&
-  Objects.equals(this.wafLearningInterval, objServiceEngineGroup.wafLearningInterval)&&
   Objects.equals(this.selfSeElection, objServiceEngineGroup.selfSeElection)&&
   Objects.equals(this.vipAsg, objServiceEngineGroup.vipAsg)&&
   Objects.equals(this.minimumConnectionMemory, objServiceEngineGroup.minimumConnectionMemory)&&
@@ -8916,7 +8229,6 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.ephemeralPortrangeEnd, objServiceEngineGroup.ephemeralPortrangeEnd)&&
   Objects.equals(this.disableAviSecuritygroups, objServiceEngineGroup.disableAviSecuritygroups)&&
   Objects.equals(this.seFlowProbeRetries, objServiceEngineGroup.seFlowProbeRetries)&&
-  Objects.equals(this.seFlowProbeTimer, objServiceEngineGroup.seFlowProbeTimer)&&
   Objects.equals(this.vsSwitchoverTimeout, objServiceEngineGroup.vsSwitchoverTimeout)&&
   Objects.equals(this.configDebugsOnAllCores, objServiceEngineGroup.configDebugsOnAllCores)&&
   Objects.equals(this.acceleratedNetworking, objServiceEngineGroup.acceleratedNetworking)&&
@@ -8929,23 +8241,15 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.bgpStateUpdateInterval, objServiceEngineGroup.bgpStateUpdateInterval)&&
   Objects.equals(this.maxMemoryPerMempool, objServiceEngineGroup.maxMemoryPerMempool)&&
   Objects.equals(this.appCachePercent, objServiceEngineGroup.appCachePercent)&&
-  Objects.equals(this.seRouting, objServiceEngineGroup.seRouting)&&
   Objects.equals(this.useStandardAlb, objServiceEngineGroup.useStandardAlb)&&
   Objects.equals(this.appLearningMemoryPercent, objServiceEngineGroup.appLearningMemoryPercent)&&
   Objects.equals(this.datascriptTimeout, objServiceEngineGroup.datascriptTimeout)&&
-  Objects.equals(this.rebootOnStop, objServiceEngineGroup.rebootOnStop)&&
   Objects.equals(this.dataNetworkId, objServiceEngineGroup.dataNetworkId)&&
   Objects.equals(this.sePcapLookahead, objServiceEngineGroup.sePcapLookahead)&&
   Objects.equals(this.enableGratarpPermanent, objServiceEngineGroup.enableGratarpPermanent)&&
   Objects.equals(this.gratarpPermanentPeriodicity, objServiceEngineGroup.gratarpPermanentPeriodicity)&&
   Objects.equals(this.rebootOnPanic, objServiceEngineGroup.rebootOnPanic)&&
   Objects.equals(this.seFlowProbeRetryTimer, objServiceEngineGroup.seFlowProbeRetryTimer)&&
-  Objects.equals(this.natFlowUdpNoresponseTimeout, objServiceEngineGroup.natFlowUdpNoresponseTimeout)&&
-  Objects.equals(this.natFlowUdpResponseTimeout, objServiceEngineGroup.natFlowUdpResponseTimeout)&&
-  Objects.equals(this.natFlowTcpHandshakeTimeout, objServiceEngineGroup.natFlowTcpHandshakeTimeout)&&
-  Objects.equals(this.natFlowTcpEstablishedTimeout, objServiceEngineGroup.natFlowTcpEstablishedTimeout)&&
-  Objects.equals(this.natFlowTcpHalfClosedTimeout, objServiceEngineGroup.natFlowTcpHalfClosedTimeout)&&
-  Objects.equals(this.natFlowTcpClosedTimeout, objServiceEngineGroup.natFlowTcpClosedTimeout)&&
   Objects.equals(this.seLro, objServiceEngineGroup.seLro)&&
   Objects.equals(this.seTxBatchSize, objServiceEngineGroup.seTxBatchSize)&&
   Objects.equals(this.sePcapPktSz, objServiceEngineGroup.sePcapPktSz)&&
@@ -9078,8 +8382,6 @@ public class ServiceEngineGroup extends AviRestResource  {
       sb.append("class ServiceEngineGroup {\n");
                   sb.append("    acceleratedNetworking: ").append(toIndentedString(acceleratedNetworking)).append("\n");
                         sb.append("    activeStandby: ").append(toIndentedString(activeStandby)).append("\n");
-                        sb.append("    additionalConfigMemory: ").append(toIndentedString(additionalConfigMemory)).append("\n");
-                        sb.append("    advertiseBackendNetworks: ").append(toIndentedString(advertiseBackendNetworks)).append("\n");
                         sb.append("    aggressiveFailureDetection: ").append(toIndentedString(aggressiveFailureDetection)).append("\n");
                         sb.append("    algo: ").append(toIndentedString(algo)).append("\n");
                         sb.append("    allowBurst: ").append(toIndentedString(allowBurst)).append("\n");
@@ -9140,15 +8442,10 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    enableHsmPriming: ").append(toIndentedString(enableHsmPriming)).append("\n");
                         sb.append("    enableMultiLb: ").append(toIndentedString(enableMultiLb)).append("\n");
                         sb.append("    enablePcapTxRing: ").append(toIndentedString(enablePcapTxRing)).append("\n");
-                        sb.append("    enableRouting: ").append(toIndentedString(enableRouting)).append("\n");
-                        sb.append("    enableVipOnAllInterfaces: ").append(toIndentedString(enableVipOnAllInterfaces)).append("\n");
-                        sb.append("    enableVmac: ").append(toIndentedString(enableVmac)).append("\n");
                         sb.append("    ephemeralPortrangeEnd: ").append(toIndentedString(ephemeralPortrangeEnd)).append("\n");
                         sb.append("    ephemeralPortrangeStart: ").append(toIndentedString(ephemeralPortrangeStart)).append("\n");
                         sb.append("    extraConfigMultiplier: ").append(toIndentedString(extraConfigMultiplier)).append("\n");
                         sb.append("    extraSharedConfigMemory: ").append(toIndentedString(extraSharedConfigMemory)).append("\n");
-                        sb.append("    floatingIntfIp: ").append(toIndentedString(floatingIntfIp)).append("\n");
-                        sb.append("    floatingIntfIpSe2: ").append(toIndentedString(floatingIntfIpSe2)).append("\n");
                         sb.append("    flowTableNewSynMaxEntries: ").append(toIndentedString(flowTableNewSynMaxEntries)).append("\n");
                         sb.append("    freeListSize: ").append(toIndentedString(freeListSize)).append("\n");
                         sb.append("    gcpConfig: ").append(toIndentedString(gcpConfig)).append("\n");
@@ -9218,15 +8515,8 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    minScaleoutPerVs: ").append(toIndentedString(minScaleoutPerVs)).append("\n");
                         sb.append("    minSe: ").append(toIndentedString(minSe)).append("\n");
                         sb.append("    minimumConnectionMemory: ").append(toIndentedString(minimumConnectionMemory)).append("\n");
-                        sb.append("    minimumRequiredConfigMemory: ").append(toIndentedString(minimumRequiredConfigMemory)).append("\n");
                         sb.append("    nLogStreamingThreads: ").append(toIndentedString(nLogStreamingThreads)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
-                        sb.append("    natFlowTcpClosedTimeout: ").append(toIndentedString(natFlowTcpClosedTimeout)).append("\n");
-                        sb.append("    natFlowTcpEstablishedTimeout: ").append(toIndentedString(natFlowTcpEstablishedTimeout)).append("\n");
-                        sb.append("    natFlowTcpHalfClosedTimeout: ").append(toIndentedString(natFlowTcpHalfClosedTimeout)).append("\n");
-                        sb.append("    natFlowTcpHandshakeTimeout: ").append(toIndentedString(natFlowTcpHandshakeTimeout)).append("\n");
-                        sb.append("    natFlowUdpNoresponseTimeout: ").append(toIndentedString(natFlowUdpNoresponseTimeout)).append("\n");
-                        sb.append("    natFlowUdpResponseTimeout: ").append(toIndentedString(natFlowUdpResponseTimeout)).append("\n");
                         sb.append("    netlinkPollerThreads: ").append(toIndentedString(netlinkPollerThreads)).append("\n");
                         sb.append("    netlinkSockBufSize: ").append(toIndentedString(netlinkSockBufSize)).append("\n");
                         sb.append("    ngxFreeConnectionStack: ").append(toIndentedString(ngxFreeConnectionStack)).append("\n");
@@ -9237,7 +8527,6 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    numFlowCoresSumChangesToIgnore: ").append(toIndentedString(numFlowCoresSumChangesToIgnore)).append("\n");
                         sb.append("    objsyncConfig: ").append(toIndentedString(objsyncConfig)).append("\n");
                         sb.append("    objsyncPort: ").append(toIndentedString(objsyncPort)).append("\n");
-                        sb.append("    openstackAvailabilityZone: ").append(toIndentedString(openstackAvailabilityZone)).append("\n");
                         sb.append("    openstackAvailabilityZones: ").append(toIndentedString(openstackAvailabilityZones)).append("\n");
                         sb.append("    openstackMgmtNetworkName: ").append(toIndentedString(openstackMgmtNetworkName)).append("\n");
                         sb.append("    openstackMgmtNetworkUuid: ").append(toIndentedString(openstackMgmtNetworkUuid)).append("\n");
@@ -9249,7 +8538,6 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    placementMode: ").append(toIndentedString(placementMode)).append("\n");
                         sb.append("    realtimeSeMetrics: ").append(toIndentedString(realtimeSeMetrics)).append("\n");
                         sb.append("    rebootOnPanic: ").append(toIndentedString(rebootOnPanic)).append("\n");
-                        sb.append("    rebootOnStop: ").append(toIndentedString(rebootOnStop)).append("\n");
                         sb.append("    resyncTimeInterval: ").append(toIndentedString(resyncTimeInterval)).append("\n");
                         sb.append("    sdbFlushInterval: ").append(toIndentedString(sdbFlushInterval)).append("\n");
                         sb.append("    sdbPipelineSize: ").append(toIndentedString(sdbPipelineSize)).append("\n");
@@ -9275,11 +8563,9 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    seEmulatedCores: ").append(toIndentedString(seEmulatedCores)).append("\n");
                         sb.append("    seFlowProbeRetries: ").append(toIndentedString(seFlowProbeRetries)).append("\n");
                         sb.append("    seFlowProbeRetryTimer: ").append(toIndentedString(seFlowProbeRetryTimer)).append("\n");
-                        sb.append("    seFlowProbeTimer: ").append(toIndentedString(seFlowProbeTimer)).append("\n");
                         sb.append("    seGroupAnalyticsPolicy: ").append(toIndentedString(seGroupAnalyticsPolicy)).append("\n");
                         sb.append("    seHyperthreadedMode: ").append(toIndentedString(seHyperthreadedMode)).append("\n");
                         sb.append("    seIpEncapIpc: ").append(toIndentedString(seIpEncapIpc)).append("\n");
-                        sb.append("    seIpcUdpPort: ").append(toIndentedString(seIpcUdpPort)).append("\n");
                         sb.append("    seKniBurstFactor: ").append(toIndentedString(seKniBurstFactor)).append("\n");
                         sb.append("    seL3EncapIpc: ").append(toIndentedString(seL3EncapIpc)).append("\n");
                         sb.append("    seLogBufferAppBlockingDequeue: ").append(toIndentedString(seLogBufferAppBlockingDequeue)).append("\n");
@@ -9297,9 +8583,7 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    sePcapReinitFrequency: ").append(toIndentedString(sePcapReinitFrequency)).append("\n");
                         sb.append("    sePcapReinitThreshold: ").append(toIndentedString(sePcapReinitThreshold)).append("\n");
                         sb.append("    seProbePort: ").append(toIndentedString(seProbePort)).append("\n");
-                        sb.append("    seRemotePuntUdpPort: ").append(toIndentedString(seRemotePuntUdpPort)).append("\n");
                         sb.append("    seRlProp: ").append(toIndentedString(seRlProp)).append("\n");
-                        sb.append("    seRouting: ").append(toIndentedString(seRouting)).append("\n");
                         sb.append("    seRumSamplingNavInterval: ").append(toIndentedString(seRumSamplingNavInterval)).append("\n");
                         sb.append("    seRumSamplingNavPercent: ").append(toIndentedString(seRumSamplingNavPercent)).append("\n");
                         sb.append("    seRumSamplingResInterval: ").append(toIndentedString(seRumSamplingResInterval)).append("\n");
@@ -9365,8 +8649,6 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    vsSwitchoverTimeout: ").append(toIndentedString(vsSwitchoverTimeout)).append("\n");
                         sb.append("    vssPlacement: ").append(toIndentedString(vssPlacement)).append("\n");
                         sb.append("    vssPlacementEnabled: ").append(toIndentedString(vssPlacementEnabled)).append("\n");
-                        sb.append("    wafLearningInterval: ").append(toIndentedString(wafLearningInterval)).append("\n");
-                        sb.append("    wafLearningMemory: ").append(toIndentedString(wafLearningMemory)).append("\n");
                         sb.append("    wafMempool: ").append(toIndentedString(wafMempool)).append("\n");
                         sb.append("    wafMempoolSize: ").append(toIndentedString(wafMempoolSize)).append("\n");
                   sb.append("}");

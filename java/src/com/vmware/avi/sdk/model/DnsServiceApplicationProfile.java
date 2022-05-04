@@ -27,9 +27,6 @@ public class DnsServiceApplicationProfile  {
     @JsonProperty("admin_email")
     private String adminEmail = "hostmaster";
 
-    @JsonProperty("authoritative_domain_names")
-    private List<String> authoritativeDomainNames;
-
     @JsonProperty("dns_over_tcp_enabled")
     private Boolean dnsOverTcpEnabled = true;
 
@@ -113,54 +110,6 @@ public class DnsServiceApplicationProfile  {
      */
     public void setAdminEmail(String  adminEmail) {
         this.adminEmail = adminEmail;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Domain names authoritatively serviced by this virtual service.
-     * These are configured as ends-with semantics.
-     * Queries for fqdns that are subdomains of this domain and do not have any dns record in avi are dropped or nxdomain response sent.
-     * Field deprecated in 18.2.6.
-     * Field introduced in 17.1.6,17.2.2.
-     * Maximum of 100 items allowed.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return authoritativeDomainNames
-     */
-    public List<String> getAuthoritativeDomainNames() {
-        return authoritativeDomainNames;
-    }
-
-    /**
-     * This is the setter method. this will set the authoritativeDomainNames
-     * Domain names authoritatively serviced by this virtual service.
-     * These are configured as ends-with semantics.
-     * Queries for fqdns that are subdomains of this domain and do not have any dns record in avi are dropped or nxdomain response sent.
-     * Field deprecated in 18.2.6.
-     * Field introduced in 17.1.6,17.2.2.
-     * Maximum of 100 items allowed.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return authoritativeDomainNames
-     */
-    public void setAuthoritativeDomainNames(List<String>  authoritativeDomainNames) {
-        this.authoritativeDomainNames = authoritativeDomainNames;
-    }
-
-    /**
-     * This is the setter method this will set the authoritativeDomainNames
-     * Domain names authoritatively serviced by this virtual service.
-     * These are configured as ends-with semantics.
-     * Queries for fqdns that are subdomains of this domain and do not have any dns record in avi are dropped or nxdomain response sent.
-     * Field deprecated in 18.2.6.
-     * Field introduced in 17.1.6,17.2.2.
-     * Maximum of 100 items allowed.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return authoritativeDomainNames
-     */
-    public DnsServiceApplicationProfile addAuthoritativeDomainNamesItem(String authoritativeDomainNamesItem) {
-      if (this.authoritativeDomainNames == null) {
-        this.authoritativeDomainNames = new ArrayList<String>();
-      }
-      this.authoritativeDomainNames.add(authoritativeDomainNamesItem);
-      return this;
     }
 
     /**
@@ -520,7 +469,6 @@ public class DnsServiceApplicationProfile  {
   Objects.equals(this.dnsOverTcpEnabled, objDnsServiceApplicationProfile.dnsOverTcpEnabled)&&
   Objects.equals(this.aaaaEmptyResponse, objDnsServiceApplicationProfile.aaaaEmptyResponse)&&
   Objects.equals(this.ecsStrippingEnabled, objDnsServiceApplicationProfile.ecsStrippingEnabled)&&
-  Objects.equals(this.authoritativeDomainNames, objDnsServiceApplicationProfile.authoritativeDomainNames)&&
   Objects.equals(this.negativeCachingTtl, objDnsServiceApplicationProfile.negativeCachingTtl)&&
   Objects.equals(this.nameServer, objDnsServiceApplicationProfile.nameServer)&&
   Objects.equals(this.adminEmail, objDnsServiceApplicationProfile.adminEmail)&&
@@ -533,7 +481,6 @@ public class DnsServiceApplicationProfile  {
       sb.append("class DnsServiceApplicationProfile {\n");
                   sb.append("    aaaaEmptyResponse: ").append(toIndentedString(aaaaEmptyResponse)).append("\n");
                         sb.append("    adminEmail: ").append(toIndentedString(adminEmail)).append("\n");
-                        sb.append("    authoritativeDomainNames: ").append(toIndentedString(authoritativeDomainNames)).append("\n");
                         sb.append("    dnsOverTcpEnabled: ").append(toIndentedString(dnsOverTcpEnabled)).append("\n");
                         sb.append("    dnsZones: ").append(toIndentedString(dnsZones)).append("\n");
                         sb.append("    domainNames: ").append(toIndentedString(domainNames)).append("\n");

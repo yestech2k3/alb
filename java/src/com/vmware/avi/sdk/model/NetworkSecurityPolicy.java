@@ -39,9 +39,6 @@ public class NetworkSecurityPolicy extends AviRestResource  {
     @JsonProperty("ip_reputation_db_ref")
     private String ipReputationDbRef = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -204,51 +201,6 @@ public class NetworkSecurityPolicy extends AviRestResource  {
      */
     public void setIpReputationDbRef(String  ipReputationDbRef) {
         this.ipReputationDbRef = ipReputationDbRef;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public NetworkSecurityPolicy addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -421,7 +373,6 @@ public class NetworkSecurityPolicy extends AviRestResource  {
   Objects.equals(this.createdBy, objNetworkSecurityPolicy.createdBy)&&
   Objects.equals(this.cloudConfigCksum, objNetworkSecurityPolicy.cloudConfigCksum)&&
   Objects.equals(this.ipReputationDbRef, objNetworkSecurityPolicy.ipReputationDbRef)&&
-  Objects.equals(this.labels, objNetworkSecurityPolicy.labels)&&
   Objects.equals(this.geoDbRef, objNetworkSecurityPolicy.geoDbRef)&&
   Objects.equals(this.markers, objNetworkSecurityPolicy.markers)&&
   Objects.equals(this.internal, objNetworkSecurityPolicy.internal)&&
@@ -439,7 +390,6 @@ public class NetworkSecurityPolicy extends AviRestResource  {
                         sb.append("    geoDbRef: ").append(toIndentedString(geoDbRef)).append("\n");
                         sb.append("    internal: ").append(toIndentedString(internal)).append("\n");
                         sb.append("    ipReputationDbRef: ").append(toIndentedString(ipReputationDbRef)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    rules: ").append(toIndentedString(rules)).append("\n");

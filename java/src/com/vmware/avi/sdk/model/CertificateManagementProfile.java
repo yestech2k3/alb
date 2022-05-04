@@ -33,9 +33,6 @@ public class CertificateManagementProfile extends AviRestResource  {
     @JsonProperty("script_params")
     private List<CustomParams> scriptParams = null;
 
-    @JsonProperty("script_path")
-    private String scriptPath;
-
     @JsonProperty("tenant_ref")
     private String tenantRef = null;
 
@@ -172,26 +169,6 @@ public class CertificateManagementProfile extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return scriptPath
-     */
-    public String getScriptPath() {
-        return scriptPath;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param scriptPath set the scriptPath.
-     */
-    public void setScriptPath(String  scriptPath) {
-        this.scriptPath = scriptPath;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -262,7 +239,6 @@ public class CertificateManagementProfile extends AviRestResource  {
       return   Objects.equals(this.uuid, objCertificateManagementProfile.uuid)&&
   Objects.equals(this.name, objCertificateManagementProfile.name)&&
   Objects.equals(this.scriptParams, objCertificateManagementProfile.scriptParams)&&
-  Objects.equals(this.scriptPath, objCertificateManagementProfile.scriptPath)&&
   Objects.equals(this.runScriptRef, objCertificateManagementProfile.runScriptRef)&&
   Objects.equals(this.markers, objCertificateManagementProfile.markers)&&
   Objects.equals(this.tenantRef, objCertificateManagementProfile.tenantRef);
@@ -276,7 +252,6 @@ public class CertificateManagementProfile extends AviRestResource  {
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    runScriptRef: ").append(toIndentedString(runScriptRef)).append("\n");
                         sb.append("    scriptParams: ").append(toIndentedString(scriptParams)).append("\n");
-                        sb.append("    scriptPath: ").append(toIndentedString(scriptPath)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
                   sb.append("}");

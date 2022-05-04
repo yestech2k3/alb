@@ -36,26 +36,8 @@ public class VirtualService extends AviRestResource  {
     @JsonProperty("analytics_profile_ref")
     private String analyticsProfileRef = null;
 
-    @JsonProperty("apic_contract_graph")
-    private String apicContractGraph;
-
     @JsonProperty("application_profile_ref")
     private String applicationProfileRef = null;
-
-    @JsonProperty("auto_allocate_floating_ip")
-    private Boolean autoAllocateFloatingIp;
-
-    @JsonProperty("auto_allocate_ip")
-    private Boolean autoAllocateIp;
-
-    @JsonProperty("availability_zone")
-    private String availabilityZone;
-
-    @JsonProperty("avi_allocated_fip")
-    private Boolean aviAllocatedFip;
-
-    @JsonProperty("avi_allocated_vip")
-    private Boolean aviAllocatedVip;
 
     @JsonProperty("azure_availability_set")
     private String azureAvailabilitySet;
@@ -68,9 +50,6 @@ public class VirtualService extends AviRestResource  {
 
     @JsonProperty("bulk_sync_kvcache")
     private Boolean bulkSyncKvcache = false;
-
-    @JsonProperty("client_auth")
-    private HTTPClientAuthenticationParams clientAuth;
 
     @JsonProperty("close_client_conn_on_config_update")
     private Boolean closeClientConnOnConfigUpdate = false;
@@ -99,15 +78,6 @@ public class VirtualService extends AviRestResource  {
     @JsonProperty("description")
     private String description = null;
 
-    @JsonProperty("discovered_network_ref")
-    private List<String> discoveredNetworkRef;
-
-    @JsonProperty("discovered_networks")
-    private List<DiscoveredNetwork> discoveredNetworks;
-
-    @JsonProperty("discovered_subnet")
-    private List<IpAddrPrefix> discoveredSubnet;
-
     @JsonProperty("dns_info")
     private List<DnsInfo> dnsInfo = null;
 
@@ -132,12 +102,6 @@ public class VirtualService extends AviRestResource  {
     @JsonProperty("error_page_profile_ref")
     private String errorPageProfileRef = null;
 
-    @JsonProperty("floating_ip")
-    private IpAddr floatingIp;
-
-    @JsonProperty("floating_subnet_uuid")
-    private String floatingSubnetUuid;
-
     @JsonProperty("flow_dist")
     private String flowDist = "LOAD_AWARE";
 
@@ -159,20 +123,11 @@ public class VirtualService extends AviRestResource  {
     @JsonProperty("ign_pool_net_reach")
     private Boolean ignPoolNetReach = false;
 
-    @JsonProperty("ip_address")
-    private IpAddr ipAddress;
-
-    @JsonProperty("ipam_network_subnet")
-    private IPNetworkSubnet ipamNetworkSubnet;
-
     @JsonProperty("jwt_config")
     private JWTValidationVsConfig jwtConfig = null;
 
     @JsonProperty("l4_policies")
     private List<L4Policies> l4Policies = null;
-
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
 
     @JsonProperty("ldap_vs_config")
     private LDAPVSConfig ldapVsConfig = null;
@@ -198,9 +153,6 @@ public class VirtualService extends AviRestResource  {
     @JsonProperty("network_profile_ref")
     private String networkProfileRef = null;
 
-    @JsonProperty("network_ref")
-    private String networkRef;
-
     @JsonProperty("network_security_policy_ref")
     private String networkSecurityPolicyRef = null;
 
@@ -218,9 +170,6 @@ public class VirtualService extends AviRestResource  {
 
     @JsonProperty("pool_ref")
     private String poolRef = null;
-
-    @JsonProperty("port_uuid")
-    private String portUuid;
 
     @JsonProperty("remove_listening_port_on_vs_down")
     private Boolean removeListeningPortOnVsDown = false;
@@ -273,20 +222,11 @@ public class VirtualService extends AviRestResource  {
     @JsonProperty("ssl_sess_cache_avg_size")
     private Integer sslSessCacheAvgSize = 1024;
 
-    @JsonProperty("sso_policy")
-    private SSOPolicy ssoPolicy;
-
     @JsonProperty("sso_policy_ref")
     private String ssoPolicyRef = null;
 
     @JsonProperty("static_dns_records")
     private List<DnsRecord> staticDnsRecords = null;
-
-    @JsonProperty("subnet")
-    private IpAddrPrefix subnet;
-
-    @JsonProperty("subnet_uuid")
-    private String subnetUuid;
 
     @JsonProperty("tenant_ref")
     private String tenantRef = null;
@@ -490,34 +430,6 @@ public class VirtualService extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * The name of the contract/graph associated with the virtual service.
-     * Should be in the <contract name> <graph name> format.
-     * This is applicable only for service integration mode with cisco apic controller.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 17.2.12,18.1.2.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return apicContractGraph
-     */
-    public String getApicContractGraph() {
-        return apicContractGraph;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The name of the contract/graph associated with the virtual service.
-     * Should be in the <contract name> <graph name> format.
-     * This is applicable only for service integration mode with cisco apic controller.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 17.2.12,18.1.2.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param apicContractGraph set the apicContractGraph.
-     */
-    public void setApicContractGraph(String  apicContractGraph) {
-        this.apicContractGraph = apicContractGraph;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Enable application layer specific features for the virtual service.
      * It is a reference to an object of type applicationprofile.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -540,116 +452,6 @@ public class VirtualService extends AviRestResource  {
      */
     public void setApplicationProfileRef(String  applicationProfileRef) {
         this.applicationProfileRef = applicationProfileRef;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Auto-allocate floating/elastic ip from the cloud infrastructure.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return autoAllocateFloatingIp
-     */
-    public Boolean getAutoAllocateFloatingIp() {
-        return autoAllocateFloatingIp;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Auto-allocate floating/elastic ip from the cloud infrastructure.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param autoAllocateFloatingIp set the autoAllocateFloatingIp.
-     */
-    public void setAutoAllocateFloatingIp(Boolean  autoAllocateFloatingIp) {
-        this.autoAllocateFloatingIp = autoAllocateFloatingIp;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Auto-allocate vip from the provided subnet.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return autoAllocateIp
-     */
-    public Boolean getAutoAllocateIp() {
-        return autoAllocateIp;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Auto-allocate vip from the provided subnet.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param autoAllocateIp set the autoAllocateIp.
-     */
-    public void setAutoAllocateIp(Boolean  autoAllocateIp) {
-        this.autoAllocateIp = autoAllocateIp;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Availability-zone to place the virtual service.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return availabilityZone
-     */
-    public String getAvailabilityZone() {
-        return availabilityZone;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Availability-zone to place the virtual service.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param availabilityZone set the availabilityZone.
-     */
-    public void setAvailabilityZone(String  availabilityZone) {
-        this.availabilityZone = availabilityZone;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * (internal-use) fip allocated by avi in the cloud infrastructure.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return aviAllocatedFip
-     */
-    public Boolean getAviAllocatedFip() {
-        return aviAllocatedFip;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * (internal-use) fip allocated by avi in the cloud infrastructure.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param aviAllocatedFip set the aviAllocatedFip.
-     */
-    public void setAviAllocatedFip(Boolean  aviAllocatedFip) {
-        this.aviAllocatedFip = aviAllocatedFip;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * (internal-use) vip allocated by avi in the cloud infrastructure.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return aviAllocatedVip
-     */
-    public Boolean getAviAllocatedVip() {
-        return aviAllocatedVip;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * (internal-use) vip allocated by avi in the cloud infrastructure.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param aviAllocatedVip set the aviAllocatedVip.
-     */
-    public void setAviAllocatedVip(Boolean  aviAllocatedVip) {
-        this.aviAllocatedVip = aviAllocatedVip;
     }
 
     /**
@@ -776,28 +578,6 @@ public class VirtualService extends AviRestResource  {
      */
     public void setBulkSyncKvcache(Boolean  bulkSyncKvcache) {
         this.bulkSyncKvcache = bulkSyncKvcache;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Http authentication configuration for protected resources.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return clientAuth
-     */
-    public HTTPClientAuthenticationParams getClientAuth() {
-        return clientAuth;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Http authentication configuration for protected resources.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param clientAuth set the clientAuth.
-     */
-    public void setClientAuth(HTTPClientAuthenticationParams clientAuth) {
-        this.clientAuth = clientAuth;
     }
 
     /**
@@ -1008,126 +788,6 @@ public class VirtualService extends AviRestResource  {
      */
     public void setDescription(String  description) {
         this.description = description;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * (internal-use) discovered networks providing reachability for client facing virtual service ip.
-     * This field is deprecated.
-     * It is a reference to an object of type network.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworkRef
-     */
-    public List<String> getDiscoveredNetworkRef() {
-        return discoveredNetworkRef;
-    }
-
-    /**
-     * This is the setter method. this will set the discoveredNetworkRef
-     * (internal-use) discovered networks providing reachability for client facing virtual service ip.
-     * This field is deprecated.
-     * It is a reference to an object of type network.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworkRef
-     */
-    public void setDiscoveredNetworkRef(List<String>  discoveredNetworkRef) {
-        this.discoveredNetworkRef = discoveredNetworkRef;
-    }
-
-    /**
-     * This is the setter method this will set the discoveredNetworkRef
-     * (internal-use) discovered networks providing reachability for client facing virtual service ip.
-     * This field is deprecated.
-     * It is a reference to an object of type network.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworkRef
-     */
-    public VirtualService addDiscoveredNetworkRefItem(String discoveredNetworkRefItem) {
-      if (this.discoveredNetworkRef == null) {
-        this.discoveredNetworkRef = new ArrayList<String>();
-      }
-      this.discoveredNetworkRef.add(discoveredNetworkRefItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * (internal-use) discovered networks providing reachability for client facing virtual service ip.
-     * This field is used internally by avi, not editable by the user.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworks
-     */
-    public List<DiscoveredNetwork> getDiscoveredNetworks() {
-        return discoveredNetworks;
-    }
-
-    /**
-     * This is the setter method. this will set the discoveredNetworks
-     * (internal-use) discovered networks providing reachability for client facing virtual service ip.
-     * This field is used internally by avi, not editable by the user.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworks
-     */
-    public void setDiscoveredNetworks(List<DiscoveredNetwork>  discoveredNetworks) {
-        this.discoveredNetworks = discoveredNetworks;
-    }
-
-    /**
-     * This is the setter method this will set the discoveredNetworks
-     * (internal-use) discovered networks providing reachability for client facing virtual service ip.
-     * This field is used internally by avi, not editable by the user.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworks
-     */
-    public VirtualService addDiscoveredNetworksItem(DiscoveredNetwork discoveredNetworksItem) {
-      if (this.discoveredNetworks == null) {
-        this.discoveredNetworks = new ArrayList<DiscoveredNetwork>();
-      }
-      this.discoveredNetworks.add(discoveredNetworksItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * (internal-use) discovered subnets providing reachability for client facing virtual service ip.
-     * This field is deprecated.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredSubnet
-     */
-    public List<IpAddrPrefix> getDiscoveredSubnet() {
-        return discoveredSubnet;
-    }
-
-    /**
-     * This is the setter method. this will set the discoveredSubnet
-     * (internal-use) discovered subnets providing reachability for client facing virtual service ip.
-     * This field is deprecated.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredSubnet
-     */
-    public void setDiscoveredSubnet(List<IpAddrPrefix>  discoveredSubnet) {
-        this.discoveredSubnet = discoveredSubnet;
-    }
-
-    /**
-     * This is the setter method this will set the discoveredSubnet
-     * (internal-use) discovered subnets providing reachability for client facing virtual service ip.
-     * This field is deprecated.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredSubnet
-     */
-    public VirtualService addDiscoveredSubnetItem(IpAddrPrefix discoveredSubnetItem) {
-      if (this.discoveredSubnet == null) {
-        this.discoveredSubnet = new ArrayList<IpAddrPrefix>();
-      }
-      this.discoveredSubnet.add(discoveredSubnetItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -1353,54 +1013,6 @@ public class VirtualService extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Floating ip to associate with this virtual service.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return floatingIp
-     */
-    public IpAddr getFloatingIp() {
-        return floatingIp;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Floating ip to associate with this virtual service.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param floatingIp set the floatingIp.
-     */
-    public void setFloatingIp(IpAddr floatingIp) {
-        this.floatingIp = floatingIp;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * If auto_allocate_floating_ip is true and more than one floating-ip subnets exist, then the subnet for the floating ip address allocation.
-     * This field is applicable only if the virtualservice belongs to an openstack or aws cloud.
-     * In openstack or aws cloud it is required when auto_allocate_floating_ip is selected.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return floatingSubnetUuid
-     */
-    public String getFloatingSubnetUuid() {
-        return floatingSubnetUuid;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * If auto_allocate_floating_ip is true and more than one floating-ip subnets exist, then the subnet for the floating ip address allocation.
-     * This field is applicable only if the virtualservice belongs to an openstack or aws cloud.
-     * In openstack or aws cloud it is required when auto_allocate_floating_ip is selected.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param floatingSubnetUuid set the floatingSubnetUuid.
-     */
-    public void setFloatingSubnetUuid(String  floatingSubnetUuid) {
-        this.floatingSubnetUuid = floatingSubnetUuid;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Criteria for flow distribution among ses.
      * Enum options - LOAD_AWARE, CONSISTENT_HASH_SOURCE_IP_ADDRESS, CONSISTENT_HASH_SOURCE_IP_ADDRESS_AND_PORT.
      * Allowed in enterprise edition with any value, essentials edition(allowed values- load_aware), basic edition(allowed values- load_aware),
@@ -1602,50 +1214,6 @@ public class VirtualService extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Ip address of the virtual service.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return ipAddress
-     */
-    public IpAddr getIpAddress() {
-        return ipAddress;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Ip address of the virtual service.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param ipAddress set the ipAddress.
-     */
-    public void setIpAddress(IpAddr ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Subnet and/or network for allocating virtualservice ip by ipam provider module.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return ipamNetworkSubnet
-     */
-    public IPNetworkSubnet getIpamNetworkSubnet() {
-        return ipamNetworkSubnet;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Subnet and/or network for allocating virtualservice ip by ipam provider module.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param ipamNetworkSubnet set the ipamNetworkSubnet.
-     */
-    public void setIpamNetworkSubnet(IPNetworkSubnet ipamNetworkSubnet) {
-        this.ipamNetworkSubnet = ipamNetworkSubnet;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Application-specific config for jwt validation.
      * Field introduced in 20.1.3.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -1704,51 +1272,6 @@ public class VirtualService extends AviRestResource  {
         this.l4Policies = new ArrayList<L4Policies>();
       }
       this.l4Policies.add(l4PoliciesItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public VirtualService addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
       return this;
     }
 
@@ -1964,30 +1487,6 @@ public class VirtualService extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Manually override the network on which the virtual service is placed.
-     * It is a reference to an object of type network.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return networkRef
-     */
-    public String getNetworkRef() {
-        return networkRef;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Manually override the network on which the virtual service is placed.
-     * It is a reference to an object of type network.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param networkRef set the networkRef.
-     */
-    public void setNetworkRef(String  networkRef) {
-        this.networkRef = networkRef;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Network security policies for the virtual service.
      * It is a reference to an object of type networksecuritypolicy.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -2141,28 +1640,6 @@ public class VirtualService extends AviRestResource  {
      */
     public void setPoolRef(String  poolRef) {
         this.poolRef = poolRef;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * (internal-use) network port assigned to the virtual service ip address.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return portUuid
-     */
-    public String getPortUuid() {
-        return portUuid;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * (internal-use) network port assigned to the virtual service ip address.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param portUuid set the portUuid.
-     */
-    public void setPortUuid(String  portUuid) {
-        this.portUuid = portUuid;
     }
 
     /**
@@ -2675,30 +2152,6 @@ public class VirtualService extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Client authentication and authorization policy for the virtualservice.
-     * Field deprecated in 18.2.3.
-     * Field introduced in 18.2.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return ssoPolicy
-     */
-    public SSOPolicy getSsoPolicy() {
-        return ssoPolicy;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Client authentication and authorization policy for the virtualservice.
-     * Field deprecated in 18.2.3.
-     * Field introduced in 18.2.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @param ssoPolicy set the ssoPolicy.
-     */
-    public void setSsoPolicy(SSOPolicy ssoPolicy) {
-        this.ssoPolicy = ssoPolicy;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * The sso policy attached to the virtualservice.
      * It is a reference to an object of type ssopolicy.
      * Field introduced in 18.2.3.
@@ -2763,52 +2216,6 @@ public class VirtualService extends AviRestResource  {
       }
       this.staticDnsRecords.add(staticDnsRecordsItem);
       return this;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Subnet providing reachability for client facing virtual service ip.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return subnet
-     */
-    public IpAddrPrefix getSubnet() {
-        return subnet;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Subnet providing reachability for client facing virtual service ip.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param subnet set the subnet.
-     */
-    public void setSubnet(IpAddrPrefix subnet) {
-        this.subnet = subnet;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * It represents subnet for the virtual service ip address allocation when auto_allocate_ip is true.it is only applicable in openstack or aws cloud.
-     * This field is required if auto_allocate_ip is true.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return subnetUuid
-     */
-    public String getSubnetUuid() {
-        return subnetUuid;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * It represents subnet for the virtual service ip address allocation when auto_allocate_ip is true.it is only applicable in openstack or aws cloud.
-     * This field is required if auto_allocate_ip is true.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param subnetUuid set the subnetUuid.
-     */
-    public void setSubnetUuid(String  subnetUuid) {
-        this.subnetUuid = subnetUuid;
     }
 
     /**
@@ -3392,7 +2799,6 @@ public class VirtualService extends AviRestResource  {
       return   Objects.equals(this.uuid, objVirtualService.uuid)&&
   Objects.equals(this.name, objVirtualService.name)&&
   Objects.equals(this.fqdn, objVirtualService.fqdn)&&
-  Objects.equals(this.ipAddress, objVirtualService.ipAddress)&&
   Objects.equals(this.enabled, objVirtualService.enabled)&&
   Objects.equals(this.services, objVirtualService.services)&&
   Objects.equals(this.applicationProfileRef, objVirtualService.applicationProfileRef)&&
@@ -3408,19 +2814,11 @@ public class VirtualService extends AviRestResource  {
   Objects.equals(this.sslProfileRef, objVirtualService.sslProfileRef)&&
   Objects.equals(this.performanceLimits, objVirtualService.performanceLimits)&&
   Objects.equals(this.analyticsPolicy, objVirtualService.analyticsPolicy)&&
-  Objects.equals(this.networkRef, objVirtualService.networkRef)&&
   Objects.equals(this.vrfContextRef, objVirtualService.vrfContextRef)&&
   Objects.equals(this.enableAutogw, objVirtualService.enableAutogw)&&
-  Objects.equals(this.portUuid, objVirtualService.portUuid)&&
-  Objects.equals(this.subnetUuid, objVirtualService.subnetUuid)&&
   Objects.equals(this.analyticsProfileRef, objVirtualService.analyticsProfileRef)&&
-  Objects.equals(this.discoveredNetworkRef, objVirtualService.discoveredNetworkRef)&&
-  Objects.equals(this.discoveredSubnet, objVirtualService.discoveredSubnet)&&
   Objects.equals(this.hostNameXlate, objVirtualService.hostNameXlate)&&
-  Objects.equals(this.subnet, objVirtualService.subnet)&&
-  Objects.equals(this.discoveredNetworks, objVirtualService.discoveredNetworks)&&
   Objects.equals(this.vsDatascripts, objVirtualService.vsDatascripts)&&
-  Objects.equals(this.clientAuth, objVirtualService.clientAuth)&&
   Objects.equals(this.weight, objVirtualService.weight)&&
   Objects.equals(this.delayFairness, objVirtualService.delayFairness)&&
   Objects.equals(this.maxCpsPerClient, objVirtualService.maxCpsPerClient)&&
@@ -3428,14 +2826,7 @@ public class VirtualService extends AviRestResource  {
   Objects.equals(this.type, objVirtualService.type)&&
   Objects.equals(this.vhParentVsRef, objVirtualService.vhParentVsRef)&&
   Objects.equals(this.vhDomainName, objVirtualService.vhDomainName)&&
-  Objects.equals(this.availabilityZone, objVirtualService.availabilityZone)&&
-  Objects.equals(this.autoAllocateIp, objVirtualService.autoAllocateIp)&&
-  Objects.equals(this.floatingIp, objVirtualService.floatingIp)&&
-  Objects.equals(this.autoAllocateFloatingIp, objVirtualService.autoAllocateFloatingIp)&&
-  Objects.equals(this.floatingSubnetUuid, objVirtualService.floatingSubnetUuid)&&
   Objects.equals(this.cloudType, objVirtualService.cloudType)&&
-  Objects.equals(this.aviAllocatedVip, objVirtualService.aviAllocatedVip)&&
-  Objects.equals(this.aviAllocatedFip, objVirtualService.aviAllocatedFip)&&
   Objects.equals(this.connectionsRateLimit, objVirtualService.connectionsRateLimit)&&
   Objects.equals(this.requestsRateLimit, objVirtualService.requestsRateLimit)&&
   Objects.equals(this.useBridgeIpAsVip, objVirtualService.useBridgeIpAsVip)&&
@@ -3463,7 +2854,6 @@ public class VirtualService extends AviRestResource  {
   Objects.equals(this.flowLabelType, objVirtualService.flowLabelType)&&
   Objects.equals(this.enableRhiSnat, objVirtualService.enableRhiSnat)&&
   Objects.equals(this.staticDnsRecords, objVirtualService.staticDnsRecords)&&
-  Objects.equals(this.ipamNetworkSubnet, objVirtualService.ipamNetworkSubnet)&&
   Objects.equals(this.dnsInfo, objVirtualService.dnsInfo)&&
   Objects.equals(this.serviceMetadata, objVirtualService.serviceMetadata)&&
   Objects.equals(this.trafficCloneProfileRef, objVirtualService.trafficCloneProfileRef)&&
@@ -3478,13 +2868,10 @@ public class VirtualService extends AviRestResource  {
   Objects.equals(this.errorPageProfileRef, objVirtualService.errorPageProfileRef)&&
   Objects.equals(this.l4Policies, objVirtualService.l4Policies)&&
   Objects.equals(this.trafficEnabled, objVirtualService.trafficEnabled)&&
-  Objects.equals(this.apicContractGraph, objVirtualService.apicContractGraph)&&
-  Objects.equals(this.labels, objVirtualService.labels)&&
   Objects.equals(this.bgpPeerLabels, objVirtualService.bgpPeerLabels)&&
   Objects.equals(this.markers, objVirtualService.markers)&&
   Objects.equals(this.azureAvailabilitySet, objVirtualService.azureAvailabilitySet)&&
   Objects.equals(this.minPoolsUp, objVirtualService.minPoolsUp)&&
-  Objects.equals(this.ssoPolicy, objVirtualService.ssoPolicy)&&
   Objects.equals(this.allowInvalidClientCert, objVirtualService.allowInvalidClientCert)&&
   Objects.equals(this.sslProfileSelectors, objVirtualService.sslProfileSelectors)&&
   Objects.equals(this.ssoPolicyRef, objVirtualService.ssoPolicyRef)&&
@@ -3508,18 +2895,11 @@ public class VirtualService extends AviRestResource  {
                         sb.append("    allowInvalidClientCert: ").append(toIndentedString(allowInvalidClientCert)).append("\n");
                         sb.append("    analyticsPolicy: ").append(toIndentedString(analyticsPolicy)).append("\n");
                         sb.append("    analyticsProfileRef: ").append(toIndentedString(analyticsProfileRef)).append("\n");
-                        sb.append("    apicContractGraph: ").append(toIndentedString(apicContractGraph)).append("\n");
                         sb.append("    applicationProfileRef: ").append(toIndentedString(applicationProfileRef)).append("\n");
-                        sb.append("    autoAllocateFloatingIp: ").append(toIndentedString(autoAllocateFloatingIp)).append("\n");
-                        sb.append("    autoAllocateIp: ").append(toIndentedString(autoAllocateIp)).append("\n");
-                        sb.append("    availabilityZone: ").append(toIndentedString(availabilityZone)).append("\n");
-                        sb.append("    aviAllocatedFip: ").append(toIndentedString(aviAllocatedFip)).append("\n");
-                        sb.append("    aviAllocatedVip: ").append(toIndentedString(aviAllocatedVip)).append("\n");
                         sb.append("    azureAvailabilitySet: ").append(toIndentedString(azureAvailabilitySet)).append("\n");
                         sb.append("    bgpPeerLabels: ").append(toIndentedString(bgpPeerLabels)).append("\n");
                         sb.append("    botPolicyRef: ").append(toIndentedString(botPolicyRef)).append("\n");
                         sb.append("    bulkSyncKvcache: ").append(toIndentedString(bulkSyncKvcache)).append("\n");
-                        sb.append("    clientAuth: ").append(toIndentedString(clientAuth)).append("\n");
                         sb.append("    closeClientConnOnConfigUpdate: ").append(toIndentedString(closeClientConnOnConfigUpdate)).append("\n");
                         sb.append("    cloudConfigCksum: ").append(toIndentedString(cloudConfigCksum)).append("\n");
                         sb.append("    cloudRef: ").append(toIndentedString(cloudRef)).append("\n");
@@ -3529,9 +2909,6 @@ public class VirtualService extends AviRestResource  {
                         sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
                         sb.append("    delayFairness: ").append(toIndentedString(delayFairness)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
-                        sb.append("    discoveredNetworkRef: ").append(toIndentedString(discoveredNetworkRef)).append("\n");
-                        sb.append("    discoveredNetworks: ").append(toIndentedString(discoveredNetworks)).append("\n");
-                        sb.append("    discoveredSubnet: ").append(toIndentedString(discoveredSubnet)).append("\n");
                         sb.append("    dnsInfo: ").append(toIndentedString(dnsInfo)).append("\n");
                         sb.append("    dnsPolicies: ").append(toIndentedString(dnsPolicies)).append("\n");
                         sb.append("    eastWestPlacement: ").append(toIndentedString(eastWestPlacement)).append("\n");
@@ -3540,8 +2917,6 @@ public class VirtualService extends AviRestResource  {
                         sb.append("    enableRhiSnat: ").append(toIndentedString(enableRhiSnat)).append("\n");
                         sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
                         sb.append("    errorPageProfileRef: ").append(toIndentedString(errorPageProfileRef)).append("\n");
-                        sb.append("    floatingIp: ").append(toIndentedString(floatingIp)).append("\n");
-                        sb.append("    floatingSubnetUuid: ").append(toIndentedString(floatingSubnetUuid)).append("\n");
                         sb.append("    flowDist: ").append(toIndentedString(flowDist)).append("\n");
                         sb.append("    flowLabelType: ").append(toIndentedString(flowLabelType)).append("\n");
                         sb.append("    fqdn: ").append(toIndentedString(fqdn)).append("\n");
@@ -3549,11 +2924,8 @@ public class VirtualService extends AviRestResource  {
                         sb.append("    httpPolicies: ").append(toIndentedString(httpPolicies)).append("\n");
                         sb.append("    icapRequestProfileRefs: ").append(toIndentedString(icapRequestProfileRefs)).append("\n");
                         sb.append("    ignPoolNetReach: ").append(toIndentedString(ignPoolNetReach)).append("\n");
-                        sb.append("    ipAddress: ").append(toIndentedString(ipAddress)).append("\n");
-                        sb.append("    ipamNetworkSubnet: ").append(toIndentedString(ipamNetworkSubnet)).append("\n");
                         sb.append("    jwtConfig: ").append(toIndentedString(jwtConfig)).append("\n");
                         sb.append("    l4Policies: ").append(toIndentedString(l4Policies)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    ldapVsConfig: ").append(toIndentedString(ldapVsConfig)).append("\n");
                         sb.append("    limitDoser: ").append(toIndentedString(limitDoser)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
@@ -3562,14 +2934,12 @@ public class VirtualService extends AviRestResource  {
                         sb.append("    minPoolsUp: ").append(toIndentedString(minPoolsUp)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    networkProfileRef: ").append(toIndentedString(networkProfileRef)).append("\n");
-                        sb.append("    networkRef: ").append(toIndentedString(networkRef)).append("\n");
                         sb.append("    networkSecurityPolicyRef: ").append(toIndentedString(networkSecurityPolicyRef)).append("\n");
                         sb.append("    nsxSecuritygroup: ").append(toIndentedString(nsxSecuritygroup)).append("\n");
                         sb.append("    oauthVsConfig: ").append(toIndentedString(oauthVsConfig)).append("\n");
                         sb.append("    performanceLimits: ").append(toIndentedString(performanceLimits)).append("\n");
                         sb.append("    poolGroupRef: ").append(toIndentedString(poolGroupRef)).append("\n");
                         sb.append("    poolRef: ").append(toIndentedString(poolRef)).append("\n");
-                        sb.append("    portUuid: ").append(toIndentedString(portUuid)).append("\n");
                         sb.append("    removeListeningPortOnVsDown: ").append(toIndentedString(removeListeningPortOnVsDown)).append("\n");
                         sb.append("    requestsRateLimit: ").append(toIndentedString(requestsRateLimit)).append("\n");
                         sb.append("    samlSpConfig: ").append(toIndentedString(samlSpConfig)).append("\n");
@@ -3587,11 +2957,8 @@ public class VirtualService extends AviRestResource  {
                         sb.append("    sslProfileRef: ").append(toIndentedString(sslProfileRef)).append("\n");
                         sb.append("    sslProfileSelectors: ").append(toIndentedString(sslProfileSelectors)).append("\n");
                         sb.append("    sslSessCacheAvgSize: ").append(toIndentedString(sslSessCacheAvgSize)).append("\n");
-                        sb.append("    ssoPolicy: ").append(toIndentedString(ssoPolicy)).append("\n");
                         sb.append("    ssoPolicyRef: ").append(toIndentedString(ssoPolicyRef)).append("\n");
                         sb.append("    staticDnsRecords: ").append(toIndentedString(staticDnsRecords)).append("\n");
-                        sb.append("    subnet: ").append(toIndentedString(subnet)).append("\n");
-                        sb.append("    subnetUuid: ").append(toIndentedString(subnetUuid)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
                         sb.append("    testSeDatastoreLevel1Ref: ").append(toIndentedString(testSeDatastoreLevel1Ref)).append("\n");
                         sb.append("    topologyPolicies: ").append(toIndentedString(topologyPolicies)).append("\n");

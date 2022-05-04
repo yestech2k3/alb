@@ -21,83 +21,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SubnetRuntime  {
-    @JsonProperty("free_ip_count")
-    private Integer freeIpCount;
-
-    @JsonProperty("ip_alloced")
-    private List<IpAllocInfo> ipAlloced;
-
     @JsonProperty("ip_range_runtimes")
     private List<StaticIpRangeRuntime> ipRangeRuntimes = null;
 
     @JsonProperty("prefix")
     private IpAddrPrefix prefix = null;
 
-    @JsonProperty("total_ip_count")
-    private Integer totalIpCount;
 
-    @JsonProperty("used_ip_count")
-    private Integer usedIpCount;
-
-
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Moved to staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return freeIpCount
-     */
-    public Integer getFreeIpCount() {
-        return freeIpCount;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Moved to staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param freeIpCount set the freeIpCount.
-     */
-    public void setFreeIpCount(Integer  freeIpCount) {
-        this.freeIpCount = freeIpCount;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Use allocated_ips in staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return ipAlloced
-     */
-    public List<IpAllocInfo> getIpAlloced() {
-        return ipAlloced;
-    }
-
-    /**
-     * This is the setter method. this will set the ipAlloced
-     * Use allocated_ips in staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return ipAlloced
-     */
-    public void setIpAlloced(List<IpAllocInfo>  ipAlloced) {
-        this.ipAlloced = ipAlloced;
-    }
-
-    /**
-     * This is the setter method this will set the ipAlloced
-     * Use allocated_ips in staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return ipAlloced
-     */
-    public SubnetRuntime addIpAllocedItem(IpAllocInfo ipAllocedItem) {
-      if (this.ipAlloced == null) {
-        this.ipAlloced = new ArrayList<IpAllocInfo>();
-      }
-      this.ipAlloced.add(ipAllocedItem);
-      return this;
-    }
     /**
      * This is the getter method this will return the attribute value.
      * Static ip range runtime.
@@ -158,50 +88,6 @@ public class SubnetRuntime  {
         this.prefix = prefix;
     }
 
-    /**
-     * This is the getter method this will return the attribute value.
-     * Moved to staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return totalIpCount
-     */
-    public Integer getTotalIpCount() {
-        return totalIpCount;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Moved to staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param totalIpCount set the totalIpCount.
-     */
-    public void setTotalIpCount(Integer  totalIpCount) {
-        this.totalIpCount = totalIpCount;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Can be derived from total - free in staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usedIpCount
-     */
-    public Integer getUsedIpCount() {
-        return usedIpCount;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Can be derived from total - free in staticiprangeruntime.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param usedIpCount set the usedIpCount.
-     */
-    public void setUsedIpCount(Integer  usedIpCount) {
-        this.usedIpCount = usedIpCount;
-    }
-
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -213,10 +99,6 @@ public class SubnetRuntime  {
       }
       SubnetRuntime objSubnetRuntime = (SubnetRuntime) o;
       return   Objects.equals(this.prefix, objSubnetRuntime.prefix)&&
-  Objects.equals(this.ipAlloced, objSubnetRuntime.ipAlloced)&&
-  Objects.equals(this.totalIpCount, objSubnetRuntime.totalIpCount)&&
-  Objects.equals(this.usedIpCount, objSubnetRuntime.usedIpCount)&&
-  Objects.equals(this.freeIpCount, objSubnetRuntime.freeIpCount)&&
   Objects.equals(this.ipRangeRuntimes, objSubnetRuntime.ipRangeRuntimes);
     }
 
@@ -224,12 +106,8 @@ public class SubnetRuntime  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class SubnetRuntime {\n");
-                  sb.append("    freeIpCount: ").append(toIndentedString(freeIpCount)).append("\n");
-                        sb.append("    ipAlloced: ").append(toIndentedString(ipAlloced)).append("\n");
-                        sb.append("    ipRangeRuntimes: ").append(toIndentedString(ipRangeRuntimes)).append("\n");
+                  sb.append("    ipRangeRuntimes: ").append(toIndentedString(ipRangeRuntimes)).append("\n");
                         sb.append("    prefix: ").append(toIndentedString(prefix)).append("\n");
-                        sb.append("    totalIpCount: ").append(toIndentedString(totalIpCount)).append("\n");
-                        sb.append("    usedIpCount: ").append(toIndentedString(usedIpCount)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

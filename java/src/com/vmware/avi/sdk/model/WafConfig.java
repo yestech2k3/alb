@@ -30,26 +30,11 @@ public class WafConfig  {
     @JsonProperty("allowed_request_content_type_charsets")
     private List<String> allowedRequestContentTypeCharsets = null;
 
-    @JsonProperty("allowed_request_content_types")
-    private List<String> allowedRequestContentTypes;
-
     @JsonProperty("argument_separator")
     private String argumentSeparator = "&";
 
-    @JsonProperty("buffer_response_body_for_inspection")
-    private Boolean bufferResponseBodyForInspection;
-
-    @JsonProperty("client_file_upload_max_body_size")
-    private Integer clientFileUploadMaxBodySize;
-
-    @JsonProperty("client_nonfile_upload_max_body_size")
-    private Integer clientNonfileUploadMaxBodySize;
-
     @JsonProperty("client_request_max_body_size")
     private Integer clientRequestMaxBodySize = 32;
-
-    @JsonProperty("confidence_override")
-    private AppLearningConfidenceOverride confidenceOverride;
 
     @JsonProperty("content_type_mappings")
     private List<WafContentTypeMapping> contentTypeMappings = null;
@@ -57,20 +42,11 @@ public class WafConfig  {
     @JsonProperty("cookie_format_version")
     private Integer cookieFormatVersion = 0;
 
-    @JsonProperty("enable_auto_rule_updates")
-    private Boolean enableAutoRuleUpdates;
-
     @JsonProperty("ignore_incomplete_request_body_error")
     private Boolean ignoreIncompleteRequestBodyError = true;
 
-    @JsonProperty("learning_params")
-    private AppLearningParams learningParams;
-
     @JsonProperty("max_execution_time")
     private Integer maxExecutionTime = 50;
-
-    @JsonProperty("min_confidence")
-    private String minConfidence;
 
     @JsonProperty("regex_match_limit")
     private Integer regexMatchLimit = 30000;
@@ -247,45 +223,6 @@ public class WafConfig  {
       this.allowedRequestContentTypeCharsets.add(allowedRequestContentTypeCharsetsItem);
       return this;
     }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Waf allowed content types.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 17.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return allowedRequestContentTypes
-     */
-    public List<String> getAllowedRequestContentTypes() {
-        return allowedRequestContentTypes;
-    }
-
-    /**
-     * This is the setter method. this will set the allowedRequestContentTypes
-     * Waf allowed content types.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 17.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return allowedRequestContentTypes
-     */
-    public void setAllowedRequestContentTypes(List<String>  allowedRequestContentTypes) {
-        this.allowedRequestContentTypes = allowedRequestContentTypes;
-    }
-
-    /**
-     * This is the setter method this will set the allowedRequestContentTypes
-     * Waf allowed content types.
-     * Field deprecated in 21.1.3.
-     * Field introduced in 17.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return allowedRequestContentTypes
-     */
-    public WafConfig addAllowedRequestContentTypesItem(String allowedRequestContentTypesItem) {
-      if (this.allowedRequestContentTypes == null) {
-        this.allowedRequestContentTypes = new ArrayList<String>();
-      }
-      this.allowedRequestContentTypes.add(allowedRequestContentTypesItem);
-      return this;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -309,86 +246,6 @@ public class WafConfig  {
      */
     public void setArgumentSeparator(String  argumentSeparator) {
         this.argumentSeparator = argumentSeparator;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Enable to buffer response body for inspection.
-     * Field deprecated in 18.2.2.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return bufferResponseBodyForInspection
-     */
-    public Boolean getBufferResponseBodyForInspection() {
-        return bufferResponseBodyForInspection;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Enable to buffer response body for inspection.
-     * Field deprecated in 18.2.2.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param bufferResponseBodyForInspection set the bufferResponseBodyForInspection.
-     */
-    public void setBufferResponseBodyForInspection(Boolean  bufferResponseBodyForInspection) {
-        this.bufferResponseBodyForInspection = bufferResponseBodyForInspection;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Maximum size for the client request body for file uploads.
-     * Allowed values are 1-32768.
-     * Field deprecated in 18.1.5.
-     * Field introduced in 17.2.1.
-     * Unit is kb.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return clientFileUploadMaxBodySize
-     */
-    public Integer getClientFileUploadMaxBodySize() {
-        return clientFileUploadMaxBodySize;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Maximum size for the client request body for file uploads.
-     * Allowed values are 1-32768.
-     * Field deprecated in 18.1.5.
-     * Field introduced in 17.2.1.
-     * Unit is kb.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param clientFileUploadMaxBodySize set the clientFileUploadMaxBodySize.
-     */
-    public void setClientFileUploadMaxBodySize(Integer  clientFileUploadMaxBodySize) {
-        this.clientFileUploadMaxBodySize = clientFileUploadMaxBodySize;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Maximum size for the client request body for non-file uploads.
-     * Allowed values are 1-32768.
-     * Field deprecated in 18.1.5.
-     * Field introduced in 17.2.1.
-     * Unit is kb.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return clientNonfileUploadMaxBodySize
-     */
-    public Integer getClientNonfileUploadMaxBodySize() {
-        return clientNonfileUploadMaxBodySize;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Maximum size for the client request body for non-file uploads.
-     * Allowed values are 1-32768.
-     * Field deprecated in 18.1.5.
-     * Field introduced in 17.2.1.
-     * Unit is kb.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param clientNonfileUploadMaxBodySize set the clientNonfileUploadMaxBodySize.
-     */
-    public void setClientNonfileUploadMaxBodySize(Integer  clientNonfileUploadMaxBodySize) {
-        this.clientNonfileUploadMaxBodySize = clientNonfileUploadMaxBodySize;
     }
 
     /**
@@ -417,32 +274,6 @@ public class WafConfig  {
      */
     public void setClientRequestMaxBodySize(Integer  clientRequestMaxBodySize) {
         this.clientRequestMaxBodySize = clientRequestMaxBodySize;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated (moved to wafpolicy).
-     * Configure thresholds for confidence labels.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return confidenceOverride
-     */
-    public AppLearningConfidenceOverride getConfidenceOverride() {
-        return confidenceOverride;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated (moved to wafpolicy).
-     * Configure thresholds for confidence labels.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param confidenceOverride set the confidenceOverride.
-     */
-    public void setConfidenceOverride(AppLearningConfidenceOverride confidenceOverride) {
-        this.confidenceOverride = confidenceOverride;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -529,34 +360,6 @@ public class WafConfig  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Deprecated (moved to wafpolicy).
-     * Enable application learning based rule updates on the waf profile.
-     * Rules will be programmed in dedicated waf learning group.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return enableAutoRuleUpdates
-     */
-    public Boolean getEnableAutoRuleUpdates() {
-        return enableAutoRuleUpdates;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated (moved to wafpolicy).
-     * Enable application learning based rule updates on the waf profile.
-     * Rules will be programmed in dedicated waf learning group.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param enableAutoRuleUpdates set the enableAutoRuleUpdates.
-     */
-    public void setEnableAutoRuleUpdates(Boolean  enableAutoRuleUpdates) {
-        this.enableAutoRuleUpdates = enableAutoRuleUpdates;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Ignore request body parsing errors due to partial scanning.
      * Field introduced in 18.1.5, 18.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -577,32 +380,6 @@ public class WafConfig  {
      */
     public void setIgnoreIncompleteRequestBodyError(Boolean  ignoreIncompleteRequestBodyError) {
         this.ignoreIncompleteRequestBodyError = ignoreIncompleteRequestBodyError;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated (moved to wafpolicy).
-     * Parameters for tuning application learning.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return learningParams
-     */
-    public AppLearningParams getLearningParams() {
-        return learningParams;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated (moved to wafpolicy).
-     * Parameters for tuning application learning.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param learningParams set the learningParams.
-     */
-    public void setLearningParams(AppLearningParams learningParams) {
-        this.learningParams = learningParams;
     }
 
     /**
@@ -645,32 +422,6 @@ public class WafConfig  {
      */
     public void setMaxExecutionTime(Integer  maxExecutionTime) {
         this.maxExecutionTime = maxExecutionTime;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated (moved to wafpolicy) minimum confidence label required for auto rule updates.
-     * Enum options - CONFIDENCE_VERY_HIGH, CONFIDENCE_HIGH, CONFIDENCE_PROBABLE, CONFIDENCE_LOW, CONFIDENCE_NONE.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return minConfidence
-     */
-    public String getMinConfidence() {
-        return minConfidence;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Deprecated (moved to wafpolicy) minimum confidence label required for auto rule updates.
-     * Enum options - CONFIDENCE_VERY_HIGH, CONFIDENCE_HIGH, CONFIDENCE_PROBABLE, CONFIDENCE_LOW, CONFIDENCE_NONE.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 18.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param minConfidence set the minConfidence.
-     */
-    public void setMinConfidence(String  minConfidence) {
-        this.minConfidence = minConfidence;
     }
 
     /**
@@ -1085,25 +836,17 @@ public class WafConfig  {
   Objects.equals(this.responseBodyDefaultAction, objWafConfig.responseBodyDefaultAction)&&
   Objects.equals(this.allowedHttpVersions, objWafConfig.allowedHttpVersions)&&
   Objects.equals(this.allowedMethods, objWafConfig.allowedMethods)&&
-  Objects.equals(this.allowedRequestContentTypes, objWafConfig.allowedRequestContentTypes)&&
   Objects.equals(this.restrictedExtensions, objWafConfig.restrictedExtensions)&&
   Objects.equals(this.restrictedHeaders, objWafConfig.restrictedHeaders)&&
   Objects.equals(this.staticExtensions, objWafConfig.staticExtensions)&&
-  Objects.equals(this.clientNonfileUploadMaxBodySize, objWafConfig.clientNonfileUploadMaxBodySize)&&
-  Objects.equals(this.clientFileUploadMaxBodySize, objWafConfig.clientFileUploadMaxBodySize)&&
   Objects.equals(this.serverResponseMaxBodySize, objWafConfig.serverResponseMaxBodySize)&&
   Objects.equals(this.argumentSeparator, objWafConfig.argumentSeparator)&&
   Objects.equals(this.cookieFormatVersion, objWafConfig.cookieFormatVersion)&&
-  Objects.equals(this.bufferResponseBodyForInspection, objWafConfig.bufferResponseBodyForInspection)&&
   Objects.equals(this.regexMatchLimit, objWafConfig.regexMatchLimit)&&
   Objects.equals(this.maxExecutionTime, objWafConfig.maxExecutionTime)&&
   Objects.equals(this.clientRequestMaxBodySize, objWafConfig.clientRequestMaxBodySize)&&
   Objects.equals(this.ignoreIncompleteRequestBodyError, objWafConfig.ignoreIncompleteRequestBodyError)&&
   Objects.equals(this.statusCodeForRejectedRequests, objWafConfig.statusCodeForRejectedRequests)&&
-  Objects.equals(this.learningParams, objWafConfig.learningParams)&&
-  Objects.equals(this.enableAutoRuleUpdates, objWafConfig.enableAutoRuleUpdates)&&
-  Objects.equals(this.minConfidence, objWafConfig.minConfidence)&&
-  Objects.equals(this.confidenceOverride, objWafConfig.confidenceOverride)&&
   Objects.equals(this.regexRecursionLimit, objWafConfig.regexRecursionLimit)&&
   Objects.equals(this.xmlXxeProtection, objWafConfig.xmlXxeProtection)&&
   Objects.equals(this.statusHeaderName, objWafConfig.statusHeaderName)&&
@@ -1119,20 +862,12 @@ public class WafConfig  {
                   sb.append("    allowedHttpVersions: ").append(toIndentedString(allowedHttpVersions)).append("\n");
                         sb.append("    allowedMethods: ").append(toIndentedString(allowedMethods)).append("\n");
                         sb.append("    allowedRequestContentTypeCharsets: ").append(toIndentedString(allowedRequestContentTypeCharsets)).append("\n");
-                        sb.append("    allowedRequestContentTypes: ").append(toIndentedString(allowedRequestContentTypes)).append("\n");
                         sb.append("    argumentSeparator: ").append(toIndentedString(argumentSeparator)).append("\n");
-                        sb.append("    bufferResponseBodyForInspection: ").append(toIndentedString(bufferResponseBodyForInspection)).append("\n");
-                        sb.append("    clientFileUploadMaxBodySize: ").append(toIndentedString(clientFileUploadMaxBodySize)).append("\n");
-                        sb.append("    clientNonfileUploadMaxBodySize: ").append(toIndentedString(clientNonfileUploadMaxBodySize)).append("\n");
                         sb.append("    clientRequestMaxBodySize: ").append(toIndentedString(clientRequestMaxBodySize)).append("\n");
-                        sb.append("    confidenceOverride: ").append(toIndentedString(confidenceOverride)).append("\n");
                         sb.append("    contentTypeMappings: ").append(toIndentedString(contentTypeMappings)).append("\n");
                         sb.append("    cookieFormatVersion: ").append(toIndentedString(cookieFormatVersion)).append("\n");
-                        sb.append("    enableAutoRuleUpdates: ").append(toIndentedString(enableAutoRuleUpdates)).append("\n");
                         sb.append("    ignoreIncompleteRequestBodyError: ").append(toIndentedString(ignoreIncompleteRequestBodyError)).append("\n");
-                        sb.append("    learningParams: ").append(toIndentedString(learningParams)).append("\n");
                         sb.append("    maxExecutionTime: ").append(toIndentedString(maxExecutionTime)).append("\n");
-                        sb.append("    minConfidence: ").append(toIndentedString(minConfidence)).append("\n");
                         sb.append("    regexMatchLimit: ").append(toIndentedString(regexMatchLimit)).append("\n");
                         sb.append("    regexRecursionLimit: ").append(toIndentedString(regexRecursionLimit)).append("\n");
                         sb.append("    requestBodyDefaultAction: ").append(toIndentedString(requestBodyDefaultAction)).append("\n");

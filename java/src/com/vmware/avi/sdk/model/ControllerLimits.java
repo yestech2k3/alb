@@ -60,9 +60,6 @@ public class ControllerLimits  {
     @JsonProperty("routes_per_vrfcontext")
     private Integer routesPerVrfcontext = null;
 
-    @JsonProperty("rules_per_httppolicy")
-    private Integer rulesPerHttppolicy;
-
     @JsonProperty("rules_per_nat_policy")
     private Integer rulesPerNatPolicy = null;
 
@@ -436,30 +433,6 @@ public class ControllerLimits  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Maximum number of rules per httppolicy.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rulesPerHttppolicy
-     */
-    public Integer getRulesPerHttppolicy() {
-        return rulesPerHttppolicy;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Maximum number of rules per httppolicy.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param rulesPerHttppolicy set the rulesPerHttppolicy.
-     */
-    public void setRulesPerHttppolicy(Integer  rulesPerHttppolicy) {
-        this.rulesPerHttppolicy = rulesPerHttppolicy;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Maximum number of nat rules in nat policy.
      * Field introduced in 21.1.3.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -664,7 +637,6 @@ public class ControllerLimits  {
   Objects.equals(this.poolgroupsPerVirtualservice, objControllerLimits.poolgroupsPerVirtualservice)&&
   Objects.equals(this.certificatesPerVirtualservice, objControllerLimits.certificatesPerVirtualservice)&&
   Objects.equals(this.poolsPerPoolgroup, objControllerLimits.poolsPerPoolgroup)&&
-  Objects.equals(this.rulesPerHttppolicy, objControllerLimits.rulesPerHttppolicy)&&
   Objects.equals(this.rulesPerNetworksecuritypolicy, objControllerLimits.rulesPerNetworksecuritypolicy)&&
   Objects.equals(this.serversPerPool, objControllerLimits.serversPerPool)&&
   Objects.equals(this.routesPerVrfcontext, objControllerLimits.routesPerVrfcontext)&&
@@ -701,7 +673,6 @@ public class ControllerLimits  {
                         sb.append("    poolsPerPoolgroup: ").append(toIndentedString(poolsPerPoolgroup)).append("\n");
                         sb.append("    poolsPerVirtualservice: ").append(toIndentedString(poolsPerVirtualservice)).append("\n");
                         sb.append("    routesPerVrfcontext: ").append(toIndentedString(routesPerVrfcontext)).append("\n");
-                        sb.append("    rulesPerHttppolicy: ").append(toIndentedString(rulesPerHttppolicy)).append("\n");
                         sb.append("    rulesPerNatPolicy: ").append(toIndentedString(rulesPerNatPolicy)).append("\n");
                         sb.append("    rulesPerNetworksecuritypolicy: ").append(toIndentedString(rulesPerNetworksecuritypolicy)).append("\n");
                         sb.append("    serversPerPool: ").append(toIndentedString(serversPerPool)).append("\n");

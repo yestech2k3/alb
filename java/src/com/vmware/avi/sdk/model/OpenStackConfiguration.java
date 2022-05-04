@@ -72,9 +72,6 @@ public class OpenStackConfiguration  {
     @JsonProperty("insecure")
     private Boolean insecure = true;
 
-    @JsonProperty("intf_sec_ips")
-    private Boolean intfSecIps;
-
     @JsonProperty("keystone_host")
     private String keystoneHost = null;
 
@@ -93,29 +90,8 @@ public class OpenStackConfiguration  {
     @JsonProperty("neutron_rbac")
     private Boolean neutronRbac = true;
 
-    @JsonProperty("nuage_organization")
-    private String nuageOrganization;
-
-    @JsonProperty("nuage_password")
-    private String nuagePassword;
-
-    @JsonProperty("nuage_port")
-    private Integer nuagePort;
-
-    @JsonProperty("nuage_username")
-    private String nuageUsername;
-
-    @JsonProperty("nuage_virtualip")
-    private Boolean nuageVirtualip;
-
-    @JsonProperty("nuage_vsd_host")
-    private String nuageVsdHost;
-
     @JsonProperty("password")
     private String password = null;
-
-    @JsonProperty("port_security")
-    private Boolean portSecurity;
 
     @JsonProperty("privilege")
     private String privilege = null;
@@ -132,17 +108,11 @@ public class OpenStackConfiguration  {
     @JsonProperty("role_mapping")
     private List<OpenStackRoleMapping> roleMapping = null;
 
-    @JsonProperty("se_group_ref")
-    private String seGroupRef;
-
     @JsonProperty("security_groups")
     private Boolean securityGroups = true;
 
     @JsonProperty("tenant_se")
     private Boolean tenantSe = true;
-
-    @JsonProperty("usable_network_uuids")
-    private List<String> usableNetworkUuids;
 
     @JsonProperty("use_admin_url")
     private Boolean useAdminUrl = true;
@@ -153,14 +123,8 @@ public class OpenStackConfiguration  {
     @JsonProperty("use_keystone_auth")
     private Boolean useKeystoneAuth = true;
 
-    @JsonProperty("use_nuagevip")
-    private Boolean useNuagevip;
-
     @JsonProperty("username")
     private String username = null;
-
-    @JsonProperty("wildcard_access")
-    private Boolean wildcardAccess;
 
 
 
@@ -598,28 +562,6 @@ public class OpenStackConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * If true, interface-secondary-ips method will be used for vip association.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return intfSecIps
-     */
-    public Boolean getIntfSecIps() {
-        return intfSecIps;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * If true, interface-secondary-ips method will be used for vip association.
-     * Field deprecated in 18.1.2.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param intfSecIps set the intfSecIps.
-     */
-    public void setIntfSecIps(Boolean  intfSecIps) {
-        this.intfSecIps = intfSecIps;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Keystone's hostname or ip address.
      * (deprecated) use auth_url instead.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -756,134 +698,6 @@ public class OpenStackConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nuageOrganization
-     */
-    public String getNuageOrganization() {
-        return nuageOrganization;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nuageOrganization set the nuageOrganization.
-     */
-    public void setNuageOrganization(String  nuageOrganization) {
-        this.nuageOrganization = nuageOrganization;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nuagePassword
-     */
-    public String getNuagePassword() {
-        return nuagePassword;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nuagePassword set the nuagePassword.
-     */
-    public void setNuagePassword(String  nuagePassword) {
-        this.nuagePassword = nuagePassword;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nuagePort
-     */
-    public Integer getNuagePort() {
-        return nuagePort;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nuagePort set the nuagePort.
-     */
-    public void setNuagePort(Integer  nuagePort) {
-        this.nuagePort = nuagePort;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nuageUsername
-     */
-    public String getNuageUsername() {
-        return nuageUsername;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nuageUsername set the nuageUsername.
-     */
-    public void setNuageUsername(String  nuageUsername) {
-        this.nuageUsername = nuageUsername;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Applicable only if allowed-address-pairs is disabled or unusable.
-     * Vip placement uses nuage virtualip if true, else redirectiontarget.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nuageVirtualip
-     */
-    public Boolean getNuageVirtualip() {
-        return nuageVirtualip;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Applicable only if allowed-address-pairs is disabled or unusable.
-     * Vip placement uses nuage virtualip if true, else redirectiontarget.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nuageVirtualip set the nuageVirtualip.
-     */
-    public void setNuageVirtualip(Boolean  nuageVirtualip) {
-        this.nuageVirtualip = nuageVirtualip;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Nuage vsd host name or ip address.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return nuageVsdHost
-     */
-    public String getNuageVsdHost() {
-        return nuageVsdHost;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Nuage vsd host name or ip address.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param nuageVsdHost set the nuageVsdHost.
-     */
-    public void setNuageVsdHost(String  nuageVsdHost) {
-        this.nuageVsdHost = nuageVsdHost;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * The password avi vantage will use when authenticating to keystone.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -902,30 +716,6 @@ public class OpenStackConfiguration  {
      */
     public void setPassword(String  password) {
         this.password = password;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * If true, port-security extension (if detected) will be used instead of security-groups, allowed-address-pairs or interface-secondary-ips.
-     * If false, port-security extension is skipped.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return portSecurity
-     */
-    public Boolean getPortSecurity() {
-        return portSecurity;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * If true, port-security extension (if detected) will be used instead of security-groups, allowed-address-pairs or interface-secondary-ips.
-     * If false, port-security extension is skipped.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param portSecurity set the portSecurity.
-     */
-    public void setPortSecurity(Boolean  portSecurity) {
-        this.portSecurity = portSecurity;
     }
 
     /**
@@ -1099,30 +889,6 @@ public class OpenStackConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * This field has been generalized for all clouds and has been renamed to se_group_template_uuid.
-     * It is a reference to an object of type serviceenginegroup.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seGroupRef
-     */
-    public String getSeGroupRef() {
-        return seGroupRef;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field has been generalized for all clouds and has been renamed to se_group_template_uuid.
-     * It is a reference to an object of type serviceenginegroup.
-     * Field deprecated in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seGroupRef set the seGroupRef.
-     */
-    public void setSeGroupRef(String  seGroupRef) {
-        this.seGroupRef = seGroupRef;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * If false, security-groups extension will not be used.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
@@ -1163,45 +929,6 @@ public class OpenStackConfiguration  {
      */
     public void setTenantSe(Boolean  tenantSe) {
         this.tenantSe = tenantSe;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Deprecated, please use provider_vip_networks.
-     * Field deprecated in 18.2.2.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableNetworkUuids
-     */
-    public List<String> getUsableNetworkUuids() {
-        return usableNetworkUuids;
-    }
-
-    /**
-     * This is the setter method. this will set the usableNetworkUuids
-     * Deprecated, please use provider_vip_networks.
-     * Field deprecated in 18.2.2.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableNetworkUuids
-     */
-    public void setUsableNetworkUuids(List<String>  usableNetworkUuids) {
-        this.usableNetworkUuids = usableNetworkUuids;
-    }
-
-    /**
-     * This is the setter method this will set the usableNetworkUuids
-     * Deprecated, please use provider_vip_networks.
-     * Field deprecated in 18.2.2.
-     * Field introduced in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableNetworkUuids
-     */
-    public OpenStackConfiguration addUsableNetworkUuidsItem(String usableNetworkUuidsItem) {
-      if (this.usableNetworkUuids == null) {
-        this.usableNetworkUuids = new ArrayList<String>();
-      }
-      this.usableNetworkUuids.add(usableNetworkUuidsItem);
-      return this;
     }
 
     /**
@@ -1272,30 +999,6 @@ public class OpenStackConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * If true, use nuage vip as device_owner of vip ports, else use neutron loadbalancer.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 17.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return useNuagevip
-     */
-    public Boolean getUseNuagevip() {
-        return useNuagevip;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * If true, use nuage vip as device_owner of vip ports, else use neutron loadbalancer.
-     * Field deprecated in 20.1.1.
-     * Field introduced in 17.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param useNuagevip set the useNuagevip.
-     */
-    public void setUseNuagevip(Boolean  useNuagevip) {
-        this.useNuagevip = useNuagevip;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * The username avi vantage will use when authenticating to keystone.
      * For keystone v3, provide the user information in user@domain format, unless that user belongs to the default domain.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -1316,30 +1019,6 @@ public class OpenStackConfiguration  {
      */
     public void setUsername(String  username) {
         this.username = username;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * If enabled, program se security group with ingress rule to allow ssh (port 22) access from 0.0.0.0/0.
-     * Field deprecated in 17.1.5.
-     * Field introduced in 17.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return wildcardAccess
-     */
-    public Boolean getWildcardAccess() {
-        return wildcardAccess;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * If enabled, program se security group with ingress rule to allow ssh (port 22) access from 0.0.0.0/0.
-     * Field deprecated in 17.1.5.
-     * Field introduced in 17.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param wildcardAccess set the wildcardAccess.
-     */
-    public void setWildcardAccess(Boolean  wildcardAccess) {
-        this.wildcardAccess = wildcardAccess;
     }
 
 
@@ -1366,7 +1045,6 @@ public class OpenStackConfiguration  {
   Objects.equals(this.tenantSe, objOpenStackConfiguration.tenantSe)&&
   Objects.equals(this.importKeystoneTenants, objOpenStackConfiguration.importKeystoneTenants)&&
   Objects.equals(this.antiAffinity, objOpenStackConfiguration.antiAffinity)&&
-  Objects.equals(this.portSecurity, objOpenStackConfiguration.portSecurity)&&
   Objects.equals(this.securityGroups, objOpenStackConfiguration.securityGroups)&&
   Objects.equals(this.allowedAddressPairs, objOpenStackConfiguration.allowedAddressPairs)&&
   Objects.equals(this.freeFloatingips, objOpenStackConfiguration.freeFloatingips)&&
@@ -1378,21 +1056,10 @@ public class OpenStackConfiguration  {
   Objects.equals(this.configDrive, objOpenStackConfiguration.configDrive)&&
   Objects.equals(this.authUrl, objOpenStackConfiguration.authUrl)&&
   Objects.equals(this.insecure, objOpenStackConfiguration.insecure)&&
-  Objects.equals(this.intfSecIps, objOpenStackConfiguration.intfSecIps)&&
   Objects.equals(this.externalNetworks, objOpenStackConfiguration.externalNetworks)&&
   Objects.equals(this.neutronRbac, objOpenStackConfiguration.neutronRbac)&&
   Objects.equals(this.mapAdminToCloudadmin, objOpenStackConfiguration.mapAdminToCloudadmin)&&
-  Objects.equals(this.usableNetworkUuids, objOpenStackConfiguration.usableNetworkUuids)&&
-  Objects.equals(this.wildcardAccess, objOpenStackConfiguration.wildcardAccess)&&
   Objects.equals(this.hypervisorProperties, objOpenStackConfiguration.hypervisorProperties)&&
-  Objects.equals(this.seGroupRef, objOpenStackConfiguration.seGroupRef)&&
-  Objects.equals(this.nuageVsdHost, objOpenStackConfiguration.nuageVsdHost)&&
-  Objects.equals(this.nuagePort, objOpenStackConfiguration.nuagePort)&&
-  Objects.equals(this.nuageUsername, objOpenStackConfiguration.nuageUsername)&&
-  Objects.equals(this.nuagePassword, objOpenStackConfiguration.nuagePassword)&&
-  Objects.equals(this.nuageOrganization, objOpenStackConfiguration.nuageOrganization)&&
-  Objects.equals(this.useNuagevip, objOpenStackConfiguration.useNuagevip)&&
-  Objects.equals(this.nuageVirtualip, objOpenStackConfiguration.nuageVirtualip)&&
   Objects.equals(this.contrailPlugin, objOpenStackConfiguration.contrailPlugin)&&
   Objects.equals(this.contrailEndpoint, objOpenStackConfiguration.contrailEndpoint)&&
   Objects.equals(this.nameOwner, objOpenStackConfiguration.nameOwner)&&
@@ -1422,36 +1089,24 @@ public class OpenStackConfiguration  {
                         sb.append("    imgFormat: ").append(toIndentedString(imgFormat)).append("\n");
                         sb.append("    importKeystoneTenants: ").append(toIndentedString(importKeystoneTenants)).append("\n");
                         sb.append("    insecure: ").append(toIndentedString(insecure)).append("\n");
-                        sb.append("    intfSecIps: ").append(toIndentedString(intfSecIps)).append("\n");
                         sb.append("    keystoneHost: ").append(toIndentedString(keystoneHost)).append("\n");
                         sb.append("    mapAdminToCloudadmin: ").append(toIndentedString(mapAdminToCloudadmin)).append("\n");
                         sb.append("    mgmtNetworkName: ").append(toIndentedString(mgmtNetworkName)).append("\n");
                         sb.append("    mgmtNetworkUuid: ").append(toIndentedString(mgmtNetworkUuid)).append("\n");
                         sb.append("    nameOwner: ").append(toIndentedString(nameOwner)).append("\n");
                         sb.append("    neutronRbac: ").append(toIndentedString(neutronRbac)).append("\n");
-                        sb.append("    nuageOrganization: ").append(toIndentedString(nuageOrganization)).append("\n");
-                        sb.append("    nuagePassword: ").append(toIndentedString(nuagePassword)).append("\n");
-                        sb.append("    nuagePort: ").append(toIndentedString(nuagePort)).append("\n");
-                        sb.append("    nuageUsername: ").append(toIndentedString(nuageUsername)).append("\n");
-                        sb.append("    nuageVirtualip: ").append(toIndentedString(nuageVirtualip)).append("\n");
-                        sb.append("    nuageVsdHost: ").append(toIndentedString(nuageVsdHost)).append("\n");
                         sb.append("    password: ").append(toIndentedString(password)).append("\n");
-                        sb.append("    portSecurity: ").append(toIndentedString(portSecurity)).append("\n");
                         sb.append("    privilege: ").append(toIndentedString(privilege)).append("\n");
                         sb.append("    provName: ").append(toIndentedString(provName)).append("\n");
                         sb.append("    providerVipNetworks: ").append(toIndentedString(providerVipNetworks)).append("\n");
                         sb.append("    region: ").append(toIndentedString(region)).append("\n");
                         sb.append("    roleMapping: ").append(toIndentedString(roleMapping)).append("\n");
-                        sb.append("    seGroupRef: ").append(toIndentedString(seGroupRef)).append("\n");
                         sb.append("    securityGroups: ").append(toIndentedString(securityGroups)).append("\n");
                         sb.append("    tenantSe: ").append(toIndentedString(tenantSe)).append("\n");
-                        sb.append("    usableNetworkUuids: ").append(toIndentedString(usableNetworkUuids)).append("\n");
                         sb.append("    useAdminUrl: ").append(toIndentedString(useAdminUrl)).append("\n");
                         sb.append("    useInternalEndpoints: ").append(toIndentedString(useInternalEndpoints)).append("\n");
                         sb.append("    useKeystoneAuth: ").append(toIndentedString(useKeystoneAuth)).append("\n");
-                        sb.append("    useNuagevip: ").append(toIndentedString(useNuagevip)).append("\n");
                         sb.append("    username: ").append(toIndentedString(username)).append("\n");
-                        sb.append("    wildcardAccess: ").append(toIndentedString(wildcardAccess)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VirtualServiceResource  {
-    @JsonProperty("is_exclusive")
-    private Boolean isExclusive;
-
     @JsonProperty("memory")
     private Integer memory = null;
 
@@ -36,35 +33,7 @@ public class VirtualServiceResource  {
     @JsonProperty("num_vcpus")
     private Integer numVcpus = null;
 
-    @JsonProperty("scalein_primary")
-    private Boolean scaleinPrimary;
 
-    @JsonProperty("scalein_se_uuid")
-    private String scaleinSeUuid;
-
-
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is not being used.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return isExclusive
-     */
-    public Boolean getIsExclusive() {
-        return isExclusive;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is not being used.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param isExclusive set the isExclusive.
-     */
-    public void setIsExclusive(Boolean  isExclusive) {
-        this.isExclusive = isExclusive;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -146,54 +115,6 @@ public class VirtualServiceResource  {
         this.numVcpus = numVcpus;
     }
 
-    /**
-     * This is the getter method this will return the attribute value.
-     * Indicates if the primary se is being scaled in.
-     * This state is now derived from the virtual service runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return scaleinPrimary
-     */
-    public Boolean getScaleinPrimary() {
-        return scaleinPrimary;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Indicates if the primary se is being scaled in.
-     * This state is now derived from the virtual service runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param scaleinPrimary set the scaleinPrimary.
-     */
-    public void setScaleinPrimary(Boolean  scaleinPrimary) {
-        this.scaleinPrimary = scaleinPrimary;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Indicates which se is being scaled in.
-     * This information is now derived from the virtual service runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return scaleinSeUuid
-     */
-    public String getScaleinSeUuid() {
-        return scaleinSeUuid;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Indicates which se is being scaled in.
-     * This information is now derived from the virtual service runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param scaleinSeUuid set the scaleinSeUuid.
-     */
-    public void setScaleinSeUuid(String  scaleinSeUuid) {
-        this.scaleinSeUuid = scaleinSeUuid;
-    }
-
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -206,10 +127,7 @@ public class VirtualServiceResource  {
       VirtualServiceResource objVirtualServiceResource = (VirtualServiceResource) o;
       return   Objects.equals(this.numVcpus, objVirtualServiceResource.numVcpus)&&
   Objects.equals(this.memory, objVirtualServiceResource.memory)&&
-  Objects.equals(this.isExclusive, objVirtualServiceResource.isExclusive)&&
-  Objects.equals(this.scaleinPrimary, objVirtualServiceResource.scaleinPrimary)&&
   Objects.equals(this.numSe, objVirtualServiceResource.numSe)&&
-  Objects.equals(this.scaleinSeUuid, objVirtualServiceResource.scaleinSeUuid)&&
   Objects.equals(this.numStandbySe, objVirtualServiceResource.numStandbySe);
     }
 
@@ -217,13 +135,10 @@ public class VirtualServiceResource  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class VirtualServiceResource {\n");
-                  sb.append("    isExclusive: ").append(toIndentedString(isExclusive)).append("\n");
-                        sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
+                  sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
                         sb.append("    numSe: ").append(toIndentedString(numSe)).append("\n");
                         sb.append("    numStandbySe: ").append(toIndentedString(numStandbySe)).append("\n");
                         sb.append("    numVcpus: ").append(toIndentedString(numVcpus)).append("\n");
-                        sb.append("    scaleinPrimary: ").append(toIndentedString(scaleinPrimary)).append("\n");
-                        sb.append("    scaleinSeUuid: ").append(toIndentedString(scaleinSeUuid)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

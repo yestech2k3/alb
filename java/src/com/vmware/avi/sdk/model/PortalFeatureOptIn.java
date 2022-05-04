@@ -24,15 +24,6 @@ public class PortalFeatureOptIn  {
     @JsonProperty("enable_appsignature_sync")
     private Boolean enableAppsignatureSync = false;
 
-    @JsonProperty("enable_auto_case_creation_on_se_failure")
-    private Boolean enableAutoCaseCreationOnSeFailure;
-
-    @JsonProperty("enable_auto_case_creation_on_system_failure")
-    private Boolean enableAutoCaseCreationOnSystemFailure;
-
-    @JsonProperty("enable_auto_download_waf_signatures")
-    private Boolean enableAutoDownloadWafSignatures;
-
     @JsonProperty("enable_ip_reputation")
     private Boolean enableIpReputation = false;
 
@@ -44,9 +35,6 @@ public class PortalFeatureOptIn  {
 
     @JsonProperty("enable_user_agent_db_sync")
     private Boolean enableUserAgentDbSync = false;
-
-    @JsonProperty("enable_waf_signatures_notifications")
-    private Boolean enableWafSignaturesNotifications;
 
 
 
@@ -74,84 +62,6 @@ public class PortalFeatureOptIn  {
      */
     public void setEnableAppsignatureSync(Boolean  enableAppsignatureSync) {
         this.enableAppsignatureSync = enableAppsignatureSync;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @return enableAutoCaseCreationOnSeFailure
-     */
-    public Boolean getEnableAutoCaseCreationOnSeFailure() {
-        return enableAutoCaseCreationOnSeFailure;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @param enableAutoCaseCreationOnSeFailure set the enableAutoCaseCreationOnSeFailure.
-     */
-    public void setEnableAutoCaseCreationOnSeFailure(Boolean  enableAutoCaseCreationOnSeFailure) {
-        this.enableAutoCaseCreationOnSeFailure = enableAutoCaseCreationOnSeFailure;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @return enableAutoCaseCreationOnSystemFailure
-     */
-    public Boolean getEnableAutoCaseCreationOnSystemFailure() {
-        return enableAutoCaseCreationOnSystemFailure;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @param enableAutoCaseCreationOnSystemFailure set the enableAutoCaseCreationOnSystemFailure.
-     */
-    public void setEnableAutoCaseCreationOnSystemFailure(Boolean  enableAutoCaseCreationOnSystemFailure) {
-        this.enableAutoCaseCreationOnSystemFailure = enableAutoCaseCreationOnSystemFailure;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @return enableAutoDownloadWafSignatures
-     */
-    public Boolean getEnableAutoDownloadWafSignatures() {
-        return enableAutoDownloadWafSignatures;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
-     * cloud services edition.
-     * @param enableAutoDownloadWafSignatures set the enableAutoDownloadWafSignatures.
-     */
-    public void setEnableAutoDownloadWafSignatures(Boolean  enableAutoDownloadWafSignatures) {
-        this.enableAutoDownloadWafSignatures = enableAutoDownloadWafSignatures;
     }
 
     /**
@@ -258,34 +168,6 @@ public class PortalFeatureOptIn  {
         this.enableUserAgentDbSync = enableUserAgentDbSync;
     }
 
-    /**
-     * This is the getter method this will return the attribute value.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition only with addon license, essentials edition(allowed values- false), basic edition(allowed values- false),
-     * enterprise with cloud services edition.
-     * Special default for enterprise edition is false, essentials edition is false, basic edition is false.
-     * @return enableWafSignaturesNotifications
-     */
-    public Boolean getEnableWafSignaturesNotifications() {
-        return enableWafSignaturesNotifications;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is deprecated.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition only with addon license, essentials edition(allowed values- false), basic edition(allowed values- false),
-     * enterprise with cloud services edition.
-     * Special default for enterprise edition is false, essentials edition is false, basic edition is false.
-     * @param enableWafSignaturesNotifications set the enableWafSignaturesNotifications.
-     */
-    public void setEnableWafSignaturesNotifications(Boolean  enableWafSignaturesNotifications) {
-        this.enableWafSignaturesNotifications = enableWafSignaturesNotifications;
-    }
-
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -296,11 +178,7 @@ public class PortalFeatureOptIn  {
           return false;
       }
       PortalFeatureOptIn objPortalFeatureOptIn = (PortalFeatureOptIn) o;
-      return   Objects.equals(this.enableAutoDownloadWafSignatures, objPortalFeatureOptIn.enableAutoDownloadWafSignatures)&&
-  Objects.equals(this.enableWafSignaturesNotifications, objPortalFeatureOptIn.enableWafSignaturesNotifications)&&
-  Objects.equals(this.enableAutoCaseCreationOnSystemFailure, objPortalFeatureOptIn.enableAutoCaseCreationOnSystemFailure)&&
-  Objects.equals(this.enableAutoCaseCreationOnSeFailure, objPortalFeatureOptIn.enableAutoCaseCreationOnSeFailure)&&
-  Objects.equals(this.enableIpReputation, objPortalFeatureOptIn.enableIpReputation)&&
+      return   Objects.equals(this.enableIpReputation, objPortalFeatureOptIn.enableIpReputation)&&
   Objects.equals(this.enableAppsignatureSync, objPortalFeatureOptIn.enableAppsignatureSync)&&
   Objects.equals(this.enableUserAgentDbSync, objPortalFeatureOptIn.enableUserAgentDbSync)&&
   Objects.equals(this.enablePulseWafManagement, objPortalFeatureOptIn.enablePulseWafManagement)&&
@@ -312,14 +190,10 @@ public class PortalFeatureOptIn  {
       StringBuilder sb = new StringBuilder();
       sb.append("class PortalFeatureOptIn {\n");
                   sb.append("    enableAppsignatureSync: ").append(toIndentedString(enableAppsignatureSync)).append("\n");
-                        sb.append("    enableAutoCaseCreationOnSeFailure: ").append(toIndentedString(enableAutoCaseCreationOnSeFailure)).append("\n");
-                        sb.append("    enableAutoCaseCreationOnSystemFailure: ").append(toIndentedString(enableAutoCaseCreationOnSystemFailure)).append("\n");
-                        sb.append("    enableAutoDownloadWafSignatures: ").append(toIndentedString(enableAutoDownloadWafSignatures)).append("\n");
                         sb.append("    enableIpReputation: ").append(toIndentedString(enableIpReputation)).append("\n");
                         sb.append("    enablePulseCaseManagement: ").append(toIndentedString(enablePulseCaseManagement)).append("\n");
                         sb.append("    enablePulseWafManagement: ").append(toIndentedString(enablePulseWafManagement)).append("\n");
                         sb.append("    enableUserAgentDbSync: ").append(toIndentedString(enableUserAgentDbSync)).append("\n");
-                        sb.append("    enableWafSignaturesNotifications: ").append(toIndentedString(enableWafSignaturesNotifications)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

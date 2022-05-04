@@ -69,9 +69,6 @@ public class AwsConfiguration  {
     @JsonProperty("vpc_id")
     private String vpcId = null;
 
-    @JsonProperty("wildcard_access")
-    private Boolean wildcardAccess;
-
     @JsonProperty("zones")
     private List<AwsZoneConfig> zones = null;
 
@@ -452,30 +449,6 @@ public class AwsConfiguration  {
     public void setVpcId(String  vpcId) {
         this.vpcId = vpcId;
     }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * If enabled, program se security group with ingress rule to allow ssh (port 22) access from 0.0.0.0/0.
-     * Field deprecated in 17.1.5.
-     * Field introduced in 17.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return wildcardAccess
-     */
-    public Boolean getWildcardAccess() {
-        return wildcardAccess;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * If enabled, program se security group with ingress rule to allow ssh (port 22) access from 0.0.0.0/0.
-     * Field deprecated in 17.1.5.
-     * Field introduced in 17.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param wildcardAccess set the wildcardAccess.
-     */
-    public void setWildcardAccess(Boolean  wildcardAccess) {
-        this.wildcardAccess = wildcardAccess;
-    }
     /**
      * This is the getter method this will return the attribute value.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -531,7 +504,6 @@ public class AwsConfiguration  {
   Objects.equals(this.useIamRoles, objAwsConfiguration.useIamRoles)&&
   Objects.equals(this.iamAssumeRole, objAwsConfiguration.iamAssumeRole)&&
   Objects.equals(this.ttl, objAwsConfiguration.ttl)&&
-  Objects.equals(this.wildcardAccess, objAwsConfiguration.wildcardAccess)&&
   Objects.equals(this.useSnsSqs, objAwsConfiguration.useSnsSqs)&&
   Objects.equals(this.asgPollInterval, objAwsConfiguration.asgPollInterval)&&
   Objects.equals(this.ebsEncryption, objAwsConfiguration.ebsEncryption)&&
@@ -560,7 +532,6 @@ public class AwsConfiguration  {
                         sb.append("    useSnsSqs: ").append(toIndentedString(useSnsSqs)).append("\n");
                         sb.append("    vpc: ").append(toIndentedString(vpc)).append("\n");
                         sb.append("    vpcId: ").append(toIndentedString(vpcId)).append("\n");
-                        sb.append("    wildcardAccess: ").append(toIndentedString(wildcardAccess)).append("\n");
                         sb.append("    zones: ").append(toIndentedString(zones)).append("\n");
                   sb.append("}");
       return sb.toString();

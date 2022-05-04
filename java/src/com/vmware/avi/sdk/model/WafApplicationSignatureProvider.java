@@ -24,15 +24,6 @@ public class WafApplicationSignatureProvider extends AviRestResource  {
     @JsonProperty("available_applications")
     private List<WafApplicationSignatureAppVersion> availableApplications;
 
-    @JsonProperty("last_check_for_updates_error")
-    private String lastCheckForUpdatesError;
-
-    @JsonProperty("last_failed_check_for_updates")
-    private TimeStamp lastFailedCheckForUpdates;
-
-    @JsonProperty("last_successful_check_for_updates")
-    private TimeStamp lastSuccessfulCheckForUpdates;
-
     @JsonProperty("name")
     private String name = null;
 
@@ -90,84 +81,6 @@ public class WafApplicationSignatureProvider extends AviRestResource  {
       }
       this.availableApplications.add(availableApplicationsItem);
       return this;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * The error message indicating why the last update check failed.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
-     * edition.
-     * @return lastCheckForUpdatesError
-     */
-    public String getLastCheckForUpdatesError() {
-        return lastCheckForUpdatesError;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The error message indicating why the last update check failed.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
-     * edition.
-     * @param lastCheckForUpdatesError set the lastCheckForUpdatesError.
-     */
-    public void setLastCheckForUpdatesError(String  lastCheckForUpdatesError) {
-        this.lastCheckForUpdatesError = lastCheckForUpdatesError;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * The last time that we checked for updates but did not get a result because of an error.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
-     * edition.
-     * @return lastFailedCheckForUpdates
-     */
-    public TimeStamp getLastFailedCheckForUpdates() {
-        return lastFailedCheckForUpdates;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The last time that we checked for updates but did not get a result because of an error.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
-     * edition.
-     * @param lastFailedCheckForUpdates set the lastFailedCheckForUpdates.
-     */
-    public void setLastFailedCheckForUpdates(TimeStamp lastFailedCheckForUpdates) {
-        this.lastFailedCheckForUpdates = lastFailedCheckForUpdates;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * The last time that we checked for updates sucessfully.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
-     * edition.
-     * @return lastSuccessfulCheckForUpdates
-     */
-    public TimeStamp getLastSuccessfulCheckForUpdates() {
-        return lastSuccessfulCheckForUpdates;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The last time that we checked for updates sucessfully.
-     * Field deprecated in 20.1.3.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
-     * edition.
-     * @param lastSuccessfulCheckForUpdates set the lastSuccessfulCheckForUpdates.
-     */
-    public void setLastSuccessfulCheckForUpdates(TimeStamp lastSuccessfulCheckForUpdates) {
-        this.lastSuccessfulCheckForUpdates = lastSuccessfulCheckForUpdates;
     }
 
     /**
@@ -320,9 +233,6 @@ public class WafApplicationSignatureProvider extends AviRestResource  {
   Objects.equals(this.tenantRef, objWafApplicationSignatureProvider.tenantRef)&&
   Objects.equals(this.rulesetVersion, objWafApplicationSignatureProvider.rulesetVersion)&&
   Objects.equals(this.availableApplications, objWafApplicationSignatureProvider.availableApplications)&&
-  Objects.equals(this.lastSuccessfulCheckForUpdates, objWafApplicationSignatureProvider.lastSuccessfulCheckForUpdates)&&
-  Objects.equals(this.lastFailedCheckForUpdates, objWafApplicationSignatureProvider.lastFailedCheckForUpdates)&&
-  Objects.equals(this.lastCheckForUpdatesError, objWafApplicationSignatureProvider.lastCheckForUpdatesError)&&
   Objects.equals(this.serviceStatus, objWafApplicationSignatureProvider.serviceStatus);
     }
 
@@ -331,9 +241,6 @@ public class WafApplicationSignatureProvider extends AviRestResource  {
       StringBuilder sb = new StringBuilder();
       sb.append("class WafApplicationSignatureProvider {\n");
                   sb.append("    availableApplications: ").append(toIndentedString(availableApplications)).append("\n");
-                        sb.append("    lastCheckForUpdatesError: ").append(toIndentedString(lastCheckForUpdatesError)).append("\n");
-                        sb.append("    lastFailedCheckForUpdates: ").append(toIndentedString(lastFailedCheckForUpdates)).append("\n");
-                        sb.append("    lastSuccessfulCheckForUpdates: ").append(toIndentedString(lastSuccessfulCheckForUpdates)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    rulesetVersion: ").append(toIndentedString(rulesetVersion)).append("\n");
                         sb.append("    serviceStatus: ").append(toIndentedString(serviceStatus)).append("\n");

@@ -48,9 +48,6 @@ public class PoolGroup extends AviRestResource  {
     @JsonProperty("implicit_priority_labels")
     private Boolean implicitPriorityLabels = false;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -290,51 +287,6 @@ public class PoolGroup extends AviRestResource  {
      */
     public void setImplicitPriorityLabels(Boolean  implicitPriorityLabels) {
         this.implicitPriorityLabels = implicitPriorityLabels;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public PoolGroup addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -599,7 +551,6 @@ public class PoolGroup extends AviRestResource  {
   Objects.equals(this.failAction, objPoolGroup.failAction)&&
   Objects.equals(this.implicitPriorityLabels, objPoolGroup.implicitPriorityLabels)&&
   Objects.equals(this.serviceMetadata, objPoolGroup.serviceMetadata)&&
-  Objects.equals(this.labels, objPoolGroup.labels)&&
   Objects.equals(this.markers, objPoolGroup.markers)&&
   Objects.equals(this.createdBy, objPoolGroup.createdBy)&&
   Objects.equals(this.cloudConfigCksum, objPoolGroup.cloudConfigCksum)&&
@@ -623,7 +574,6 @@ public class PoolGroup extends AviRestResource  {
                         sb.append("    enableHttp2: ").append(toIndentedString(enableHttp2)).append("\n");
                         sb.append("    failAction: ").append(toIndentedString(failAction)).append("\n");
                         sb.append("    implicitPriorityLabels: ").append(toIndentedString(implicitPriorityLabels)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    members: ").append(toIndentedString(members)).append("\n");
                         sb.append("    minServers: ").append(toIndentedString(minServers)).append("\n");

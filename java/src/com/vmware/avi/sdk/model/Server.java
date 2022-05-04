@@ -30,14 +30,8 @@ public class Server  {
     @JsonProperty("description")
     private String description = null;
 
-    @JsonProperty("discovered_network_ref")
-    private List<String> discoveredNetworkRef;
-
     @JsonProperty("discovered_networks")
     private List<DiscoveredNetwork> discoveredNetworks = null;
-
-    @JsonProperty("discovered_subnet")
-    private List<IpAddrPrefix> discoveredSubnet;
 
     @JsonProperty("enabled")
     private Boolean enabled = true;
@@ -161,48 +155,6 @@ public class Server  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * (internal-use) discovered network for this server.
-     * This field is deprecated.
-     * It is a reference to an object of type network.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworkRef
-     */
-    public List<String> getDiscoveredNetworkRef() {
-        return discoveredNetworkRef;
-    }
-
-    /**
-     * This is the setter method. this will set the discoveredNetworkRef
-     * (internal-use) discovered network for this server.
-     * This field is deprecated.
-     * It is a reference to an object of type network.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworkRef
-     */
-    public void setDiscoveredNetworkRef(List<String>  discoveredNetworkRef) {
-        this.discoveredNetworkRef = discoveredNetworkRef;
-    }
-
-    /**
-     * This is the setter method this will set the discoveredNetworkRef
-     * (internal-use) discovered network for this server.
-     * This field is deprecated.
-     * It is a reference to an object of type network.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredNetworkRef
-     */
-    public Server addDiscoveredNetworkRefItem(String discoveredNetworkRefItem) {
-      if (this.discoveredNetworkRef == null) {
-        this.discoveredNetworkRef = new ArrayList<String>();
-      }
-      this.discoveredNetworkRef.add(discoveredNetworkRefItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
      * (internal-use) discovered networks providing reachability for server ip.
      * This field is used internally by avi, not editable by the user.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -238,45 +190,6 @@ public class Server  {
         this.discoveredNetworks = new ArrayList<DiscoveredNetwork>();
       }
       this.discoveredNetworks.add(discoveredNetworksItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * (internal-use) discovered subnet for this server.
-     * This field is deprecated.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredSubnet
-     */
-    public List<IpAddrPrefix> getDiscoveredSubnet() {
-        return discoveredSubnet;
-    }
-
-    /**
-     * This is the setter method. this will set the discoveredSubnet
-     * (internal-use) discovered subnet for this server.
-     * This field is deprecated.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredSubnet
-     */
-    public void setDiscoveredSubnet(List<IpAddrPrefix>  discoveredSubnet) {
-        this.discoveredSubnet = discoveredSubnet;
-    }
-
-    /**
-     * This is the setter method this will set the discoveredSubnet
-     * (internal-use) discovered subnet for this server.
-     * This field is deprecated.
-     * Field deprecated in 17.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return discoveredSubnet
-     */
-    public Server addDiscoveredSubnetItem(IpAddrPrefix discoveredSubnetItem) {
-      if (this.discoveredSubnet == null) {
-        this.discoveredSubnet = new ArrayList<IpAddrPrefix>();
-      }
-      this.discoveredSubnet.add(discoveredSubnetItem);
       return this;
     }
 
@@ -693,9 +606,7 @@ public class Server  {
   Objects.equals(this.ratio, objServer.ratio)&&
   Objects.equals(this.vmRef, objServer.vmRef)&&
   Objects.equals(this.nwRef, objServer.nwRef)&&
-  Objects.equals(this.discoveredNetworkRef, objServer.discoveredNetworkRef)&&
   Objects.equals(this.externalUuid, objServer.externalUuid)&&
-  Objects.equals(this.discoveredSubnet, objServer.discoveredSubnet)&&
   Objects.equals(this.verifyNetwork, objServer.verifyNetwork)&&
   Objects.equals(this.discoveredNetworks, objServer.discoveredNetworks)&&
   Objects.equals(this.resolveServerByDns, objServer.resolveServerByDns)&&
@@ -718,9 +629,7 @@ public class Server  {
                   sb.append("    autoscalingGroupName: ").append(toIndentedString(autoscalingGroupName)).append("\n");
                         sb.append("    availabilityZone: ").append(toIndentedString(availabilityZone)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
-                        sb.append("    discoveredNetworkRef: ").append(toIndentedString(discoveredNetworkRef)).append("\n");
                         sb.append("    discoveredNetworks: ").append(toIndentedString(discoveredNetworks)).append("\n");
-                        sb.append("    discoveredSubnet: ").append(toIndentedString(discoveredSubnet)).append("\n");
                         sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
                         sb.append("    externalOrchestrationId: ").append(toIndentedString(externalOrchestrationId)).append("\n");
                         sb.append("    externalUuid: ").append(toIndentedString(externalUuid)).append("\n");

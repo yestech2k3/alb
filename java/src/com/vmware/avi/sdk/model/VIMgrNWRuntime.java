@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VIMgrNWRuntime extends AviRestResource  {
-    @JsonProperty("apic_vrf_context")
-    private String apicVrfContext;
-
     @JsonProperty("auto_expand")
     private Boolean autoExpand = null;
 
@@ -91,26 +88,6 @@ public class VIMgrNWRuntime extends AviRestResource  {
     private String vrfContextRef = null;
 
 
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return apicVrfContext
-     */
-    public String getApicVrfContext() {
-        return apicVrfContext;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param apicVrfContext set the apicVrfContext.
-     */
-    public void setApicVrfContext(String  apicVrfContext) {
-        this.apicVrfContext = apicVrfContext;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -645,7 +622,6 @@ public class VIMgrNWRuntime extends AviRestResource  {
   Objects.equals(this.hostRefs, objVIMgrNWRuntime.hostRefs)&&
   Objects.equals(this.availabilityZone, objVIMgrNWRuntime.availabilityZone)&&
   Objects.equals(this.vrfContextRef, objVIMgrNWRuntime.vrfContextRef)&&
-  Objects.equals(this.apicVrfContext, objVIMgrNWRuntime.apicVrfContext)&&
   Objects.equals(this.tenantName, objVIMgrNWRuntime.tenantName)&&
   Objects.equals(this.tenantRef, objVIMgrNWRuntime.tenantRef)&&
   Objects.equals(this.cloudRef, objVIMgrNWRuntime.cloudRef);
@@ -655,8 +631,7 @@ public class VIMgrNWRuntime extends AviRestResource  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class VIMgrNWRuntime {\n");
-                  sb.append("    apicVrfContext: ").append(toIndentedString(apicVrfContext)).append("\n");
-                        sb.append("    autoExpand: ").append(toIndentedString(autoExpand)).append("\n");
+                  sb.append("    autoExpand: ").append(toIndentedString(autoExpand)).append("\n");
                         sb.append("    availabilityZone: ").append(toIndentedString(availabilityZone)).append("\n");
                         sb.append("    cloudRef: ").append(toIndentedString(cloudRef)).append("\n");
                         sb.append("    datacenterUuid: ").append(toIndentedString(datacenterUuid)).append("\n");

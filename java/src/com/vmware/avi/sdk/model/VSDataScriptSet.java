@@ -39,9 +39,6 @@ public class VSDataScriptSet extends AviRestResource  {
     @JsonProperty("ipgroup_refs")
     private List<String> ipgroupRefs = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -251,51 +248,6 @@ public class VSDataScriptSet extends AviRestResource  {
         this.ipgroupRefs = new ArrayList<String>();
       }
       this.ipgroupRefs.add(ipgroupRefsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public VSDataScriptSet addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
       return this;
     }
     /**
@@ -770,7 +722,6 @@ public class VSDataScriptSet extends AviRestResource  {
   Objects.equals(this.stringGroupRefs, objVSDataScriptSet.stringGroupRefs)&&
   Objects.equals(this.createdBy, objVSDataScriptSet.createdBy)&&
   Objects.equals(this.protocolParserRefs, objVSDataScriptSet.protocolParserRefs)&&
-  Objects.equals(this.labels, objVSDataScriptSet.labels)&&
   Objects.equals(this.ipReputationDbRef, objVSDataScriptSet.ipReputationDbRef)&&
   Objects.equals(this.markers, objVSDataScriptSet.markers)&&
   Objects.equals(this.description, objVSDataScriptSet.description)&&
@@ -792,7 +743,6 @@ public class VSDataScriptSet extends AviRestResource  {
                         sb.append("    geoDbRef: ").append(toIndentedString(geoDbRef)).append("\n");
                         sb.append("    ipReputationDbRef: ").append(toIndentedString(ipReputationDbRef)).append("\n");
                         sb.append("    ipgroupRefs: ").append(toIndentedString(ipgroupRefs)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    pkiProfileRefs: ").append(toIndentedString(pkiProfileRefs)).append("\n");

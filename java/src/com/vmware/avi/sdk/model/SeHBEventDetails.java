@@ -30,12 +30,6 @@ public class SeHBEventDetails  {
     @JsonProperty("reporting_se_ref")
     private String reportingSeRef = null;
 
-    @JsonProperty("se_ref1")
-    private String seRef1;
-
-    @JsonProperty("se_ref2")
-    private String seRef2;
-
     @JsonProperty("vs_uuid")
     private String vsUuid = null;
 
@@ -117,54 +111,6 @@ public class SeHBEventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Uuid of the se responsible for this event.
-     * It is a reference to an object of type serviceengine.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRef1
-     */
-    public String getSeRef1() {
-        return seRef1;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Uuid of the se responsible for this event.
-     * It is a reference to an object of type serviceengine.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRef1 set the seRef1.
-     */
-    public void setSeRef1(String  seRef1) {
-        this.seRef1 = seRef1;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Uuid of a se in the se-group which failed to respond.
-     * It is a reference to an object of type serviceengine.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return seRef2
-     */
-    public String getSeRef2() {
-        return seRef2;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Uuid of a se in the se-group which failed to respond.
-     * It is a reference to an object of type serviceengine.
-     * Field deprecated in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param seRef2 set the seRef2.
-     */
-    public void setSeRef2(String  seRef2) {
-        this.seRef2 = seRef2;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Uuid of the virtual service which is placed on reporting-se and remote-se.
      * Field introduced in 20.1.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -197,9 +143,7 @@ public class SeHBEventDetails  {
           return false;
       }
       SeHBEventDetails objSeHBEventDetails = (SeHBEventDetails) o;
-      return   Objects.equals(this.seRef1, objSeHBEventDetails.seRef1)&&
-  Objects.equals(this.seRef2, objSeHBEventDetails.seRef2)&&
-  Objects.equals(this.hbType, objSeHBEventDetails.hbType)&&
+      return   Objects.equals(this.hbType, objSeHBEventDetails.hbType)&&
   Objects.equals(this.vsUuid, objSeHBEventDetails.vsUuid)&&
   Objects.equals(this.reportingSeRef, objSeHBEventDetails.reportingSeRef)&&
   Objects.equals(this.remoteSeRef, objSeHBEventDetails.remoteSeRef);
@@ -212,8 +156,6 @@ public class SeHBEventDetails  {
                   sb.append("    hbType: ").append(toIndentedString(hbType)).append("\n");
                         sb.append("    remoteSeRef: ").append(toIndentedString(remoteSeRef)).append("\n");
                         sb.append("    reportingSeRef: ").append(toIndentedString(reportingSeRef)).append("\n");
-                        sb.append("    seRef1: ").append(toIndentedString(seRef1)).append("\n");
-                        sb.append("    seRef2: ").append(toIndentedString(seRef2)).append("\n");
                         sb.append("    vsUuid: ").append(toIndentedString(vsUuid)).append("\n");
                   sb.append("}");
       return sb.toString();

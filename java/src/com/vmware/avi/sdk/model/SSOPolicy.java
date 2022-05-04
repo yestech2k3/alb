@@ -27,9 +27,6 @@ public class SSOPolicy extends AviRestResource  {
     @JsonProperty("authorization_policy")
     private AuthorizationPolicy authorizationPolicy = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -96,51 +93,6 @@ public class SSOPolicy extends AviRestResource  {
      */
     public void setAuthorizationPolicy(AuthorizationPolicy authorizationPolicy) {
         this.authorizationPolicy = authorizationPolicy;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public SSOPolicy addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -317,7 +269,6 @@ public class SSOPolicy extends AviRestResource  {
   Objects.equals(this.authenticationPolicy, objSSOPolicy.authenticationPolicy)&&
   Objects.equals(this.authorizationPolicy, objSSOPolicy.authorizationPolicy)&&
   Objects.equals(this.type, objSSOPolicy.type)&&
-  Objects.equals(this.labels, objSSOPolicy.labels)&&
   Objects.equals(this.markers, objSSOPolicy.markers)&&
   Objects.equals(this.tenantRef, objSSOPolicy.tenantRef);
     }
@@ -328,7 +279,6 @@ public class SSOPolicy extends AviRestResource  {
       sb.append("class SSOPolicy {\n");
                   sb.append("    authenticationPolicy: ").append(toIndentedString(authenticationPolicy)).append("\n");
                         sb.append("    authorizationPolicy: ").append(toIndentedString(authorizationPolicy)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");

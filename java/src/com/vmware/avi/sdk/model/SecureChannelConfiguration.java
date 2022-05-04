@@ -21,39 +21,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SecureChannelConfiguration  {
-    @JsonProperty("bypass_secure_channel_must_checks")
-    private Boolean bypassSecureChannelMustChecks;
-
     @JsonProperty("sslkeyandcertificate_refs")
     private List<String> sslkeyandcertificateRefs = null;
 
 
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Boolean which allowed force update of secure channel certificate.
-     * Forced updating has been disallowed.
-     * Field deprecated in 18.2.8.
-     * Field introduced in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return bypassSecureChannelMustChecks
-     */
-    public Boolean getBypassSecureChannelMustChecks() {
-        return bypassSecureChannelMustChecks;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Boolean which allowed force update of secure channel certificate.
-     * Forced updating has been disallowed.
-     * Field deprecated in 18.2.8.
-     * Field introduced in 18.2.5.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param bypassSecureChannelMustChecks set the bypassSecureChannelMustChecks.
-     */
-    public void setBypassSecureChannelMustChecks(Boolean  bypassSecureChannelMustChecks) {
-        this.bypassSecureChannelMustChecks = bypassSecureChannelMustChecks;
-    }
     /**
      * This is the getter method this will return the attribute value.
      * Certificate for secure channel.
@@ -113,16 +84,14 @@ public class SecureChannelConfiguration  {
           return false;
       }
       SecureChannelConfiguration objSecureChannelConfiguration = (SecureChannelConfiguration) o;
-      return   Objects.equals(this.sslkeyandcertificateRefs, objSecureChannelConfiguration.sslkeyandcertificateRefs)&&
-  Objects.equals(this.bypassSecureChannelMustChecks, objSecureChannelConfiguration.bypassSecureChannelMustChecks);
+      return   Objects.equals(this.sslkeyandcertificateRefs, objSecureChannelConfiguration.sslkeyandcertificateRefs);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class SecureChannelConfiguration {\n");
-                  sb.append("    bypassSecureChannelMustChecks: ").append(toIndentedString(bypassSecureChannelMustChecks)).append("\n");
-                        sb.append("    sslkeyandcertificateRefs: ").append(toIndentedString(sslkeyandcertificateRefs)).append("\n");
+                  sb.append("    sslkeyandcertificateRefs: ").append(toIndentedString(sslkeyandcertificateRefs)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

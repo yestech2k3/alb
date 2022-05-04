@@ -27,12 +27,6 @@ public class SamlServiceProviderNode  {
     @JsonProperty("name")
     private String name = null;
 
-    @JsonProperty("signing_cert")
-    private String signingCert;
-
-    @JsonProperty("signing_key")
-    private String signingKey;
-
     @JsonProperty("signing_ssl_key_and_certificate_ref")
     private String signingSslKeyAndCertificateRef = null;
 
@@ -89,54 +83,6 @@ public class SamlServiceProviderNode  {
      */
     public void setName(String  name) {
         this.name = name;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Service provider signing certificate for metadata.
-     * Field deprecated in 18.2.1.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return signingCert
-     */
-    public String getSigningCert() {
-        return signingCert;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Service provider signing certificate for metadata.
-     * Field deprecated in 18.2.1.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param signingCert set the signingCert.
-     */
-    public void setSigningCert(String  signingCert) {
-        this.signingCert = signingCert;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Service provider signing key for metadata.
-     * Field deprecated in 18.2.1.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return signingKey
-     */
-    public String getSigningKey() {
-        return signingKey;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Service provider signing key for metadata.
-     * Field deprecated in 18.2.1.
-     * Field introduced in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param signingKey set the signingKey.
-     */
-    public void setSigningKey(String  signingKey) {
-        this.signingKey = signingKey;
     }
 
     /**
@@ -202,8 +148,6 @@ public class SamlServiceProviderNode  {
       return   Objects.equals(this.name, objSamlServiceProviderNode.name)&&
   Objects.equals(this.entityId, objSamlServiceProviderNode.entityId)&&
   Objects.equals(this.singleSignonUrl, objSamlServiceProviderNode.singleSignonUrl)&&
-  Objects.equals(this.signingCert, objSamlServiceProviderNode.signingCert)&&
-  Objects.equals(this.signingKey, objSamlServiceProviderNode.signingKey)&&
   Objects.equals(this.signingSslKeyAndCertificateRef, objSamlServiceProviderNode.signingSslKeyAndCertificateRef);
     }
 
@@ -213,8 +157,6 @@ public class SamlServiceProviderNode  {
       sb.append("class SamlServiceProviderNode {\n");
                   sb.append("    entityId: ").append(toIndentedString(entityId)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
-                        sb.append("    signingCert: ").append(toIndentedString(signingCert)).append("\n");
-                        sb.append("    signingKey: ").append(toIndentedString(signingKey)).append("\n");
                         sb.append("    signingSslKeyAndCertificateRef: ").append(toIndentedString(signingSslKeyAndCertificateRef)).append("\n");
                         sb.append("    singleSignonUrl: ").append(toIndentedString(singleSignonUrl)).append("\n");
                   sb.append("}");

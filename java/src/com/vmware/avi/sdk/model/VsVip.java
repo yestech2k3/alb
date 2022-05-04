@@ -36,9 +36,6 @@ public class VsVip extends AviRestResource  {
     @JsonProperty("ipam_selector")
     private Selector ipamSelector = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -229,51 +226,6 @@ public class VsVip extends AviRestResource  {
      */
     public void setIpamSelector(Selector ipamSelector) {
         this.ipamSelector = ipamSelector;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public VsVip addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -570,7 +522,6 @@ public class VsVip extends AviRestResource  {
   Objects.equals(this.eastWestPlacement, objVsVip.eastWestPlacement)&&
   Objects.equals(this.useStandardAlb, objVsVip.useStandardAlb)&&
   Objects.equals(this.tier1Lr, objVsVip.tier1Lr)&&
-  Objects.equals(this.labels, objVsVip.labels)&&
   Objects.equals(this.ipamSelector, objVsVip.ipamSelector)&&
   Objects.equals(this.bgpPeerLabels, objVsVip.bgpPeerLabels)&&
   Objects.equals(this.markers, objVsVip.markers)&&
@@ -588,7 +539,6 @@ public class VsVip extends AviRestResource  {
                         sb.append("    dnsInfo: ").append(toIndentedString(dnsInfo)).append("\n");
                         sb.append("    eastWestPlacement: ").append(toIndentedString(eastWestPlacement)).append("\n");
                         sb.append("    ipamSelector: ").append(toIndentedString(ipamSelector)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");

@@ -24,9 +24,6 @@ public class IpAddrGroup extends AviRestResource  {
     @JsonProperty("addrs")
     private List<IpAddr> addrs = null;
 
-    @JsonProperty("apic_epg_name")
-    private String apicEpgName;
-
     @JsonProperty("country_codes")
     private List<String> countryCodes = null;
 
@@ -35,9 +32,6 @@ public class IpAddrGroup extends AviRestResource  {
 
     @JsonProperty("ip_ports")
     private List<IpAddrPort> ipPorts = null;
-
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
 
     @JsonProperty("marathon_app_name")
     private String marathonAppName = null;
@@ -102,28 +96,6 @@ public class IpAddrGroup extends AviRestResource  {
       }
       this.addrs.add(addrsItem);
       return this;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Populate ip addresses from members of this cisco apic epg.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return apicEpgName
-     */
-    public String getApicEpgName() {
-        return apicEpgName;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Populate ip addresses from members of this cisco apic epg.
-     * Field deprecated in 21.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param apicEpgName set the apicEpgName.
-     */
-    public void setApicEpgName(String  apicEpgName) {
-        this.apicEpgName = apicEpgName;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -215,51 +187,6 @@ public class IpAddrGroup extends AviRestResource  {
         this.ipPorts = new ArrayList<IpAddrPort>();
       }
       this.ipPorts.add(ipPortsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public IpAddrGroup addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
       return this;
     }
 
@@ -524,11 +451,9 @@ public class IpAddrGroup extends AviRestResource  {
   Objects.equals(this.ranges, objIpAddrGroup.ranges)&&
   Objects.equals(this.prefixes, objIpAddrGroup.prefixes)&&
   Objects.equals(this.countryCodes, objIpAddrGroup.countryCodes)&&
-  Objects.equals(this.apicEpgName, objIpAddrGroup.apicEpgName)&&
   Objects.equals(this.ipPorts, objIpAddrGroup.ipPorts)&&
   Objects.equals(this.marathonAppName, objIpAddrGroup.marathonAppName)&&
   Objects.equals(this.marathonServicePort, objIpAddrGroup.marathonServicePort)&&
-  Objects.equals(this.labels, objIpAddrGroup.labels)&&
   Objects.equals(this.markers, objIpAddrGroup.markers)&&
   Objects.equals(this.description, objIpAddrGroup.description)&&
   Objects.equals(this.tenantRef, objIpAddrGroup.tenantRef);
@@ -539,11 +464,9 @@ public class IpAddrGroup extends AviRestResource  {
       StringBuilder sb = new StringBuilder();
       sb.append("class IpAddrGroup {\n");
                   sb.append("    addrs: ").append(toIndentedString(addrs)).append("\n");
-                        sb.append("    apicEpgName: ").append(toIndentedString(apicEpgName)).append("\n");
                         sb.append("    countryCodes: ").append(toIndentedString(countryCodes)).append("\n");
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
                         sb.append("    ipPorts: ").append(toIndentedString(ipPorts)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    marathonAppName: ").append(toIndentedString(marathonAppName)).append("\n");
                         sb.append("    marathonServicePort: ").append(toIndentedString(marathonServicePort)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");

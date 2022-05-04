@@ -45,9 +45,6 @@ public class SSLProfile extends AviRestResource  {
     @JsonProperty("enable_ssl_session_reuse")
     private Boolean enableSslSessionReuse = true;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -328,51 +325,6 @@ public class SSLProfile extends AviRestResource  {
      */
     public void setEnableSslSessionReuse(Boolean  enableSslSessionReuse) {
         this.enableSslSessionReuse = enableSslSessionReuse;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public SSLProfile addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -693,7 +645,6 @@ public class SSLProfile extends AviRestResource  {
   Objects.equals(this.type, objSSLProfile.type)&&
   Objects.equals(this.ciphersuites, objSSLProfile.ciphersuites)&&
   Objects.equals(this.enableEarlyData, objSSLProfile.enableEarlyData)&&
-  Objects.equals(this.labels, objSSLProfile.labels)&&
   Objects.equals(this.ecNamedCurve, objSSLProfile.ecNamedCurve)&&
   Objects.equals(this.signatureAlgorithm, objSSLProfile.signatureAlgorithm)&&
   Objects.equals(this.markers, objSSLProfile.markers)&&
@@ -713,7 +664,6 @@ public class SSLProfile extends AviRestResource  {
                         sb.append("    ecNamedCurve: ").append(toIndentedString(ecNamedCurve)).append("\n");
                         sb.append("    enableEarlyData: ").append(toIndentedString(enableEarlyData)).append("\n");
                         sb.append("    enableSslSessionReuse: ").append(toIndentedString(enableSslSessionReuse)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    preferClientCipherOrdering: ").append(toIndentedString(preferClientCipherOrdering)).append("\n");

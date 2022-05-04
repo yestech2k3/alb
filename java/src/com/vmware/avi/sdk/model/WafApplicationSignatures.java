@@ -27,9 +27,6 @@ public class WafApplicationSignatures  {
     @JsonProperty("rule_overrides")
     private List<WafRuleOverrides> ruleOverrides = null;
 
-    @JsonProperty("rules")
-    private List<WafRule> rules;
-
     @JsonProperty("ruleset_version")
     private String rulesetVersion;
 
@@ -100,48 +97,6 @@ public class WafApplicationSignatures  {
         this.ruleOverrides = new ArrayList<WafRuleOverrides>();
       }
       this.ruleOverrides.add(ruleOverridesItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * This entry is deprecated.
-     * If you want to deactivate a certain rule, please use the rule_overrides field instead.
-     * Field deprecated in 20.1.6.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rules
-     */
-    public List<WafRule> getRules() {
-        return rules;
-    }
-
-    /**
-     * This is the setter method. this will set the rules
-     * This entry is deprecated.
-     * If you want to deactivate a certain rule, please use the rule_overrides field instead.
-     * Field deprecated in 20.1.6.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rules
-     */
-    public void setRules(List<WafRule>  rules) {
-        this.rules = rules;
-    }
-
-    /**
-     * This is the setter method this will set the rules
-     * This entry is deprecated.
-     * If you want to deactivate a certain rule, please use the rule_overrides field instead.
-     * Field deprecated in 20.1.6.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return rules
-     */
-    public WafApplicationSignatures addRulesItem(WafRule rulesItem) {
-      if (this.rules == null) {
-        this.rules = new ArrayList<WafRule>();
-      }
-      this.rules.add(rulesItem);
       return this;
     }
 
@@ -221,7 +176,6 @@ public class WafApplicationSignatures  {
       return   Objects.equals(this.providerRef, objWafApplicationSignatures.providerRef)&&
   Objects.equals(this.rulesetVersion, objWafApplicationSignatures.rulesetVersion)&&
   Objects.equals(this.selectedApplications, objWafApplicationSignatures.selectedApplications)&&
-  Objects.equals(this.rules, objWafApplicationSignatures.rules)&&
   Objects.equals(this.ruleOverrides, objWafApplicationSignatures.ruleOverrides);
     }
 
@@ -231,7 +185,6 @@ public class WafApplicationSignatures  {
       sb.append("class WafApplicationSignatures {\n");
                   sb.append("    providerRef: ").append(toIndentedString(providerRef)).append("\n");
                         sb.append("    ruleOverrides: ").append(toIndentedString(ruleOverrides)).append("\n");
-                        sb.append("    rules: ").append(toIndentedString(rules)).append("\n");
                         sb.append("    rulesetVersion: ").append(toIndentedString(rulesetVersion)).append("\n");
                         sb.append("    selectedApplications: ").append(toIndentedString(selectedApplications)).append("\n");
                   sb.append("}");

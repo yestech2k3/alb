@@ -30,9 +30,6 @@ public class IpamDnsInternalProfile  {
     @JsonProperty("ttl")
     private Integer ttl = 30;
 
-    @JsonProperty("usable_network_refs")
-    private List<String> usableNetworkRefs;
-
     @JsonProperty("usable_networks")
     private List<IpamUsableNetwork> usableNetworks = null;
 
@@ -127,45 +124,6 @@ public class IpamDnsInternalProfile  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Use usable_networks.
-     * It is a reference to an object of type network.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableNetworkRefs
-     */
-    public List<String> getUsableNetworkRefs() {
-        return usableNetworkRefs;
-    }
-
-    /**
-     * This is the setter method. this will set the usableNetworkRefs
-     * Use usable_networks.
-     * It is a reference to an object of type network.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableNetworkRefs
-     */
-    public void setUsableNetworkRefs(List<String>  usableNetworkRefs) {
-        this.usableNetworkRefs = usableNetworkRefs;
-    }
-
-    /**
-     * This is the setter method this will set the usableNetworkRefs
-     * Use usable_networks.
-     * It is a reference to an object of type network.
-     * Field deprecated in 20.1.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return usableNetworkRefs
-     */
-    public IpamDnsInternalProfile addUsableNetworkRefsItem(String usableNetworkRefsItem) {
-      if (this.usableNetworkRefs == null) {
-        this.usableNetworkRefs = new ArrayList<String>();
-      }
-      this.usableNetworkRefs.add(usableNetworkRefsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
      * Usable networks for virtual ip.
      * If virtualservice does not specify a network and auto_allocate_ip is set, then the first available network from this list will be chosen for ip
      * allocation.
@@ -226,7 +184,6 @@ public class IpamDnsInternalProfile  {
       return   Objects.equals(this.dnsServiceDomain, objIpamDnsInternalProfile.dnsServiceDomain)&&
   Objects.equals(this.ttl, objIpamDnsInternalProfile.ttl)&&
   Objects.equals(this.dnsVirtualserviceRef, objIpamDnsInternalProfile.dnsVirtualserviceRef)&&
-  Objects.equals(this.usableNetworkRefs, objIpamDnsInternalProfile.usableNetworkRefs)&&
   Objects.equals(this.usableNetworks, objIpamDnsInternalProfile.usableNetworks);
     }
 
@@ -237,7 +194,6 @@ public class IpamDnsInternalProfile  {
                   sb.append("    dnsServiceDomain: ").append(toIndentedString(dnsServiceDomain)).append("\n");
                         sb.append("    dnsVirtualserviceRef: ").append(toIndentedString(dnsVirtualserviceRef)).append("\n");
                         sb.append("    ttl: ").append(toIndentedString(ttl)).append("\n");
-                        sb.append("    usableNetworkRefs: ").append(toIndentedString(usableNetworkRefs)).append("\n");
                         sb.append("    usableNetworks: ").append(toIndentedString(usableNetworks)).append("\n");
                   sb.append("}");
       return sb.toString();

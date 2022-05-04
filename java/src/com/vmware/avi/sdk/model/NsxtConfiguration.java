@@ -36,9 +36,6 @@ public class NsxtConfiguration  {
     @JsonProperty("management_network_config")
     private ManagementNetworkConfig managementNetworkConfig = null;
 
-    @JsonProperty("management_segment")
-    private Tier1LogicalRouterInfo managementSegment;
-
     @JsonProperty("nsxt_credentials_ref")
     private String nsxtCredentialsRef = null;
 
@@ -47,12 +44,6 @@ public class NsxtConfiguration  {
 
     @JsonProperty("site_id")
     private String siteId = "default";
-
-    @JsonProperty("tier1_segment_config")
-    private NsxtTier1SegmentConfig tier1SegmentConfig;
-
-    @JsonProperty("transport_zone")
-    private String transportZone;
 
 
 
@@ -178,30 +169,6 @@ public class NsxtConfiguration  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Management network segment to use for avi service engines.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return managementSegment
-     */
-    public Tier1LogicalRouterInfo getManagementSegment() {
-        return managementSegment;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Management network segment to use for avi service engines.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param managementSegment set the managementSegment.
-     */
-    public void setManagementSegment(Tier1LogicalRouterInfo managementSegment) {
-        this.managementSegment = managementSegment;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Credentials to access nsx-t manager.
      * It is a reference to an object of type cloudconnectoruser.
      * Field introduced in 20.1.1.
@@ -274,58 +241,6 @@ public class NsxtConfiguration  {
         this.siteId = siteId;
     }
 
-    /**
-     * This is the getter method this will return the attribute value.
-     * Nsxt tier1 segment configuration for avi service engine data path.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return tier1SegmentConfig
-     */
-    public NsxtTier1SegmentConfig getTier1SegmentConfig() {
-        return tier1SegmentConfig;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Nsxt tier1 segment configuration for avi service engine data path.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param tier1SegmentConfig set the tier1SegmentConfig.
-     */
-    public void setTier1SegmentConfig(NsxtTier1SegmentConfig tier1SegmentConfig) {
-        this.tier1SegmentConfig = tier1SegmentConfig;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Network zone where nodes can talk via overlay.
-     * Virtual ips and service engines will belong to this zone.
-     * Value should be path like /infra/sites/default/enforcement-points/default/transport-zones/xxx-xxx-xxxx.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return transportZone
-     */
-    public String getTransportZone() {
-        return transportZone;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Network zone where nodes can talk via overlay.
-     * Virtual ips and service engines will belong to this zone.
-     * Value should be path like /infra/sites/default/enforcement-points/default/transport-zones/xxx-xxx-xxxx.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.1.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @param transportZone set the transportZone.
-     */
-    public void setTransportZone(String  transportZone) {
-        this.transportZone = transportZone;
-    }
-
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -338,12 +253,9 @@ public class NsxtConfiguration  {
       NsxtConfiguration objNsxtConfiguration = (NsxtConfiguration) o;
       return   Objects.equals(this.nsxtUrl, objNsxtConfiguration.nsxtUrl)&&
   Objects.equals(this.nsxtCredentialsRef, objNsxtConfiguration.nsxtCredentialsRef)&&
-  Objects.equals(this.transportZone, objNsxtConfiguration.transportZone)&&
   Objects.equals(this.siteId, objNsxtConfiguration.siteId)&&
   Objects.equals(this.enforcementpointId, objNsxtConfiguration.enforcementpointId)&&
   Objects.equals(this.domainId, objNsxtConfiguration.domainId)&&
-  Objects.equals(this.managementSegment, objNsxtConfiguration.managementSegment)&&
-  Objects.equals(this.tier1SegmentConfig, objNsxtConfiguration.tier1SegmentConfig)&&
   Objects.equals(this.automateDfwRules, objNsxtConfiguration.automateDfwRules)&&
   Objects.equals(this.managementNetworkConfig, objNsxtConfiguration.managementNetworkConfig)&&
   Objects.equals(this.dataNetworkConfig, objNsxtConfiguration.dataNetworkConfig);
@@ -358,12 +270,9 @@ public class NsxtConfiguration  {
                         sb.append("    domainId: ").append(toIndentedString(domainId)).append("\n");
                         sb.append("    enforcementpointId: ").append(toIndentedString(enforcementpointId)).append("\n");
                         sb.append("    managementNetworkConfig: ").append(toIndentedString(managementNetworkConfig)).append("\n");
-                        sb.append("    managementSegment: ").append(toIndentedString(managementSegment)).append("\n");
                         sb.append("    nsxtCredentialsRef: ").append(toIndentedString(nsxtCredentialsRef)).append("\n");
                         sb.append("    nsxtUrl: ").append(toIndentedString(nsxtUrl)).append("\n");
                         sb.append("    siteId: ").append(toIndentedString(siteId)).append("\n");
-                        sb.append("    tier1SegmentConfig: ").append(toIndentedString(tier1SegmentConfig)).append("\n");
-                        sb.append("    transportZone: ").append(toIndentedString(transportZone)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

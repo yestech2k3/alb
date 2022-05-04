@@ -33,9 +33,6 @@ public class WafPolicyPSMGroup extends AviRestResource  {
     @JsonProperty("is_learning_group")
     private Boolean isLearningGroup = false;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("locations")
     private List<WafPSMLocation> locations = null;
 
@@ -157,51 +154,6 @@ public class WafPolicyPSMGroup extends AviRestResource  {
      */
     public void setIsLearningGroup(Boolean  isLearningGroup) {
         this.isLearningGroup = isLearningGroup;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * @return labels
-     */
-    public WafPolicyPSMGroup addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -426,7 +378,6 @@ public class WafPolicyPSMGroup extends AviRestResource  {
   Objects.equals(this.missAction, objWafPolicyPSMGroup.missAction)&&
   Objects.equals(this.description, objWafPolicyPSMGroup.description)&&
   Objects.equals(this.isLearningGroup, objWafPolicyPSMGroup.isLearningGroup)&&
-  Objects.equals(this.labels, objWafPolicyPSMGroup.labels)&&
   Objects.equals(this.markers, objWafPolicyPSMGroup.markers);
     }
 
@@ -438,7 +389,6 @@ public class WafPolicyPSMGroup extends AviRestResource  {
                         sb.append("    enable: ").append(toIndentedString(enable)).append("\n");
                         sb.append("    hitAction: ").append(toIndentedString(hitAction)).append("\n");
                         sb.append("    isLearningGroup: ").append(toIndentedString(isLearningGroup)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    missAction: ").append(toIndentedString(missAction)).append("\n");

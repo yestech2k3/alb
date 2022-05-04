@@ -27,9 +27,6 @@ public class GslbSite  {
     @JsonProperty("cluster_uuid")
     private String clusterUuid = null;
 
-    @JsonProperty("dns_vs_uuids")
-    private List<String> dnsVsUuids;
-
     @JsonProperty("dns_vses")
     private List<GslbSiteDnsVs> dnsVses = null;
 
@@ -113,48 +110,6 @@ public class GslbSite  {
      */
     public void setClusterUuid(String  clusterUuid) {
         this.clusterUuid = clusterUuid;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * The dns vses on which the gslbservices shall be placed.
-     * The site has to be an active member.
-     * This field is deprecated in 17.2.3 and replaced by 'dns_vses' field.
-     * Field deprecated in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return dnsVsUuids
-     */
-    public List<String> getDnsVsUuids() {
-        return dnsVsUuids;
-    }
-
-    /**
-     * This is the setter method. this will set the dnsVsUuids
-     * The dns vses on which the gslbservices shall be placed.
-     * The site has to be an active member.
-     * This field is deprecated in 17.2.3 and replaced by 'dns_vses' field.
-     * Field deprecated in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return dnsVsUuids
-     */
-    public void setDnsVsUuids(List<String>  dnsVsUuids) {
-        this.dnsVsUuids = dnsVsUuids;
-    }
-
-    /**
-     * This is the setter method this will set the dnsVsUuids
-     * The dns vses on which the gslbservices shall be placed.
-     * The site has to be an active member.
-     * This field is deprecated in 17.2.3 and replaced by 'dns_vses' field.
-     * Field deprecated in 17.2.3.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * @return dnsVsUuids
-     */
-    public GslbSite addDnsVsUuidsItem(String dnsVsUuidsItem) {
-      if (this.dnsVsUuids == null) {
-        this.dnsVsUuids = new ArrayList<String>();
-      }
-      this.dnsVsUuids.add(dnsVsUuidsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -561,7 +516,6 @@ public class GslbSite  {
   Objects.equals(this.port, objGslbSite.port)&&
   Objects.equals(this.username, objGslbSite.username)&&
   Objects.equals(this.password, objGslbSite.password)&&
-  Objects.equals(this.dnsVsUuids, objGslbSite.dnsVsUuids)&&
   Objects.equals(this.memberType, objGslbSite.memberType)&&
   Objects.equals(this.enabled, objGslbSite.enabled)&&
   Objects.equals(this.location, objGslbSite.location)&&
@@ -578,7 +532,6 @@ public class GslbSite  {
       sb.append("class GslbSite {\n");
                   sb.append("    address: ").append(toIndentedString(address)).append("\n");
                         sb.append("    clusterUuid: ").append(toIndentedString(clusterUuid)).append("\n");
-                        sb.append("    dnsVsUuids: ").append(toIndentedString(dnsVsUuids)).append("\n");
                         sb.append("    dnsVses: ").append(toIndentedString(dnsVses)).append("\n");
                         sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
                         sb.append("    hmProxies: ").append(toIndentedString(hmProxies)).append("\n");
