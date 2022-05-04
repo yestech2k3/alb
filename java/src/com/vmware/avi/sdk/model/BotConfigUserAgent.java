@@ -24,6 +24,9 @@ public class BotConfigUserAgent  {
     @JsonProperty("enabled")
     private Boolean enabled = true;
 
+    @JsonProperty("use_tls_fingerprint")
+    private Boolean useTlsFingerprint = true;
+
 
 
     /**
@@ -50,6 +53,30 @@ public class BotConfigUserAgent  {
         this.enabled = enabled;
     }
 
+    /**
+     * This is the getter method this will return the attribute value.
+     * Whether to match the tls fingerprint observed on the request against tls fingerprints expected for the user agent.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as true.
+     * @return useTlsFingerprint
+     */
+    public Boolean getUseTlsFingerprint() {
+        return useTlsFingerprint;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Whether to match the tls fingerprint observed on the request against tls fingerprints expected for the user agent.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as true.
+     * @param useTlsFingerprint set the useTlsFingerprint.
+     */
+    public void setUseTlsFingerprint(Boolean  useTlsFingerprint) {
+        this.useTlsFingerprint = useTlsFingerprint;
+    }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -60,7 +87,8 @@ public class BotConfigUserAgent  {
           return false;
       }
       BotConfigUserAgent objBotConfigUserAgent = (BotConfigUserAgent) o;
-      return   Objects.equals(this.enabled, objBotConfigUserAgent.enabled);
+      return   Objects.equals(this.enabled, objBotConfigUserAgent.enabled)&&
+  Objects.equals(this.useTlsFingerprint, objBotConfigUserAgent.useTlsFingerprint);
     }
 
     @Override
@@ -68,6 +96,7 @@ public class BotConfigUserAgent  {
       StringBuilder sb = new StringBuilder();
       sb.append("class BotConfigUserAgent {\n");
                   sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
+                        sb.append("    useTlsFingerprint: ").append(toIndentedString(useTlsFingerprint)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

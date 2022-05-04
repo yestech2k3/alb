@@ -376,6 +376,8 @@ public class HTTPApplicationProfile  {
     /**
      * This is the getter method this will return the attribute value.
      * If enabled, the client's tls fingerprint will be collected and included in the application log.
+     * For virtual services with bot detection enabled, tls fingerprints are always computed if 'use_tls_fingerprint' is enabled in the bot detection
+     * policy's user-agent detection component.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
@@ -388,6 +390,8 @@ public class HTTPApplicationProfile  {
     /**
      * This is the setter method to the attribute.
      * If enabled, the client's tls fingerprint will be collected and included in the application log.
+     * For virtual services with bot detection enabled, tls fingerprints are always computed if 'use_tls_fingerprint' is enabled in the bot detection
+     * policy's user-agent detection component.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
