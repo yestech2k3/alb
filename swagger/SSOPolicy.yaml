@@ -383,38 +383,13 @@ definitions:
     AuthenticationPolicy:
         type: object
         properties:
-            auth_profile_ref:
-                description: "Auth Profile to use for validating users. It is a reference to an object of type AuthProfile. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: string
             authn_rules:
                 description: "Add rules to apply auth profile to specific targets. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: array
                 items:
                     $ref: '#/definitions/AuthenticationRule'
-            cookie_name:
-                description: "HTTP cookie name for authenticated session. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: string
-            cookie_timeout:
-                description: "Cookie timeout in minutes. Allowed values are 1-1440. Field deprecated in 18.2.3. Field introduced in 18.2.1. Unit is MIN. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             default_auth_profile_ref:
                 description: "Auth Profile to use for validating users. It is a reference to an object of type AuthProfile. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: string
-            entity_id:
-                description: "Globally unique entityID for this node. Entity ID on the IDP should match this. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: string
-            key:
-                description: "Key to generate the cookie. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    $ref: '#/definitions/HttpCookiePersistenceKey'
-            single_signon_url:
-                description: "Single Signon URL to be programmed on the IDP. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: string
-            sp_metadata:
-                description: "SAML SP metadata. Field deprecated in 18.2.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition."
-                readOnly: True
                 type: string
     AuthenticationRule:
         type: object
@@ -726,11 +701,6 @@ definitions:
             configpb_attributes:
                 description: "Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/ConfigPbAttributes'
-            labels:
-                description: "Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    $ref: '#/definitions/KeyValue'
             markers:
                 description: "List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition."
                 type: array

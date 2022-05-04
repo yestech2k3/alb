@@ -695,67 +695,6 @@
             }
         },
         "/cloud/{uuid}/gc/": {
-            "patch": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "header",
-                        "name": "X-Avi-Tenant",
-                        "type": "string",
-                        "required": false,
-                        "description": "Avi Tenant Header"
-                    },
-                    {
-                        "name": "X-Avi-Tenant-UUID",
-                        "in": "header",
-                        "type": "string",
-                        "required": false,
-                        "description": "Avi Tenant Header UUID"
-                    },
-                    {
-                        "name": "X-CSRFToken",
-                        "in": "header",
-                        "type": "string",
-                        "required": false,
-                        "description": "Avi Controller may send back CSRF token in the response cookies. The caller should update the request headers with this token else controller will reject requests."
-                    },
-                    {
-                        "name": "X-Avi-Version",
-                        "in": "header",
-                        "type": "string",
-                        "required": true,
-                        "description": "The caller is required to set Avi Version Header to the expected version of configuration. The response from the controller will provide and accept data according to the specified version. The controller will reject POST and PUT requests where the data is not compatible with the specified version."
-                    },
-                    {
-                        "in": "path",
-                        "name": "uuid",
-                        "description": "UUID of the object to fetch",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "security": [
-                    {
-                        "basicAuth": []
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "401": {
-                        "description": "log in failed"
-                    }
-                }
-            },
             "put": {
                 "consumes": [
                     "application/json"
@@ -803,6 +742,67 @@
                                 "type": "string"
                             }
                         }
+                    },
+                    {
+                        "in": "path",
+                        "name": "uuid",
+                        "description": "UUID of the object to fetch",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "log in failed"
+                    }
+                }
+            },
+            "patch": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "X-Avi-Tenant",
+                        "type": "string",
+                        "required": false,
+                        "description": "Avi Tenant Header"
+                    },
+                    {
+                        "name": "X-Avi-Tenant-UUID",
+                        "in": "header",
+                        "type": "string",
+                        "required": false,
+                        "description": "Avi Tenant Header UUID"
+                    },
+                    {
+                        "name": "X-CSRFToken",
+                        "in": "header",
+                        "type": "string",
+                        "required": false,
+                        "description": "Avi Controller may send back CSRF token in the response cookies. The caller should update the request headers with this token else controller will reject requests."
+                    },
+                    {
+                        "name": "X-Avi-Version",
+                        "in": "header",
+                        "type": "string",
+                        "required": true,
+                        "description": "The caller is required to set Avi Version Header to the expected version of configuration. The response from the controller will provide and accept data according to the specified version. The controller will reject POST and PUT requests where the data is not compatible with the specified version."
                     },
                     {
                         "in": "path",
@@ -1210,74 +1210,6 @@
         }
     },
     "definitions": {
-        "APICConfiguration": {
-            "type": "object",
-            "properties": {
-                "apic_admin_tenant": {
-                    "description": "Name of the Avi specific tenant created within APIC. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "apic_domain": {
-                    "description": "vCenter's virtual machine manager domain within APIC. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "apic_name": {
-                    "description": "The hostname or IP address of the APIC controller. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "apic_password": {
-                    "description": "The password Avi Vantage will use when authenticating with APIC. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "apic_product": {
-                    "description": " Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "apic_username": {
-                    "description": "The username Avi Vantage will use when authenticating with APIC. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "apic_vendor": {
-                    "description": " Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "avi_controller_password": {
-                    "description": "The password APIC will use when authenticating with Avi Vantage. Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "avi_controller_username": {
-                    "description": "The username APIC will use when authenticating with Avi Vantage. Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "context_aware": {
-                    "description": "Context aware for supporting Service Graphs across VRFs. Enum options - SINGLE_CONTEXT, MULTI_CONTEXT. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "deployment": {
-                    "description": " Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "managed_mode": {
-                    "description": "Use Managed Mode for APIC Service Insertion. Field deprecated in 17.2.10,18.1.2. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
-                "minor": {
-                    "description": "AVI Device Package Minor Version. Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "se_tunnel_mode": {
-                    "description": "Determines if DSR from secondary SE is active or not  False   DSR active. Please ensure that APIC BD's Endpoint Dataplane Learning is disabled True    Disable DSR unconditionally. . Field deprecated in 21.1.1. Field introduced in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
-                "version": {
-                    "description": "AVI Device Package Version. Field deprecated in 17.2.10,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                }
-            }
-        },
         "AwsConfiguration": {
             "type": "object",
             "required": [
@@ -1353,10 +1285,6 @@
                 "vpc_id": {
                     "description": "VPC ID. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
-                },
-                "wildcard_access": {
-                    "description": "If enabled, program SE security group with ingress rule to allow SSH (port 22) access from 0.0.0.0/0. Field deprecated in 17.1.5. Field introduced in 17.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
                 },
                 "zones": {
                     "description": " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -1487,14 +1415,6 @@
                     "readOnly": true,
                     "type": "string"
                 },
-                "apic_configuration": {
-                    "description": " Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/APICConfiguration"
-                },
-                "apic_mode": {
-                    "description": " Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
                 "autoscale_polling_interval": {
                     "description": "CloudConnector polling interval in seconds for external autoscale groups, minimum 60 seconds. Allowed values are 60-3600. Field introduced in 18.2.2. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 60), Basic edition(Allowed values- 60), Enterprise with Cloud Services edition.",
                     "type": "integer",
@@ -1598,10 +1518,6 @@
                         "$ref": "#/definitions/RoleFilterMatchLabel"
                     }
                 },
-                "mesos_configuration": {
-                    "description": " Field deprecated in 18.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/MesosConfiguration"
-                },
                 "metrics_polling_interval": {
                     "description": "Cloud metrics collector polling interval in seconds. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
                     "type": "integer",
@@ -1618,10 +1534,6 @@
                     "description": " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
                 },
-                "nsx_configuration": {
-                    "description": "Configuration parameters for NSX Manager. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/NsxConfiguration"
-                },
                 "nsxt_configuration": {
                     "description": "NSX-T Cloud Platform Configuration. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/NsxtConfiguration"
@@ -1633,10 +1545,6 @@
                 "openstack_configuration": {
                     "description": " Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/OpenStackConfiguration"
-                },
-                "oshiftk8s_configuration": {
-                    "description": " Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/OShiftK8SConfiguration"
                 },
                 "prefer_static_routes": {
                     "description": "Prefer static routes over interface routes during VirtualService placement. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -1962,10 +1870,6 @@
                     "description": "Make service ports accessible on all Host interfaces in addition to East-West VIP and/or bridge IP. Usually enabled AWS clusters to export East-West services on Host interface. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean"
                 },
-                "ssh_se_deployment": {
-                    "description": "Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/SSHSeDeployment"
-                },
                 "ssh_user_ref": {
                     "description": "Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
@@ -2006,10 +1910,6 @@
                     "description": "Avi ServiceEngine repository name. For private registry, it's registry port/repository, for public registry, it's registry/repository, for openshift registry, it's registry port/namespace/repo. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string",
                     "default": "avinetworks/se"
-                },
-                "se_repository_push": {
-                    "description": "Avi Controller will push ServiceEngine image to docker repository. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
                 },
                 "username": {
                     "description": "Username for docker registry. Authorized 'regular user' if registry is Openshift integrated registry. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -2057,10 +1957,6 @@
                     "description": "Credentials to access Google Cloud Platform APIs. It is a reference to an object of type CloudConnectorUser. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
                 },
-                "encryption_key_id": {
-                    "description": "Deprecated, please use encryption_keys field. Field deprecated in 18.2.10, 20.1.2. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
                 "encryption_keys": {
                     "description": "Encryption Keys for Google Cloud Services. Field introduced in 18.2.10, 20.1.2. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/GCPEncryptionKeys"
@@ -2083,10 +1979,6 @@
                 "gcs_project_id": {
                     "description": "Google Cloud Storage Project ID where Service Engine image will be uploaded. This image will be deleted once the image is created in Google compute images. By default, Service Engine Project ID will be used. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
-                },
-                "match_se_group_subnet": {
-                    "description": "Deprecated, please use match_se_group_subnet in routes mode in . vip_allocation_strategy. Field deprecated in 20.1.1. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
                 },
                 "network_config": {
                     "description": "Google Cloud Platform VPC Network configuration for the Service Engines. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -2378,10 +2270,6 @@
         "LinuxServerConfiguration": {
             "type": "object",
             "properties": {
-                "docker_registry_se": {
-                    "description": "Private docker registry for SE image storage. Field deprecated in 17.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/DockerRegistry"
-                },
                 "hosts": {
                     "description": " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "array",
@@ -2412,10 +2300,6 @@
                     "type": "integer",
                     "default": 10,
                     "format": "int32"
-                },
-                "ssh_attr": {
-                    "description": "Parameters for SSH to hosts. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/SSHSeDeployment"
                 },
                 "ssh_user_ref": {
                     "description": "Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -2711,10 +2595,6 @@
                     "description": "Make service ports accessible on all Host interfaces in addition to East-West VIP and/or bridge IP. Usually enabled AWS Mesos clusters to export East-West services on Host interface. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean"
                 },
-                "ssh_se_deployment": {
-                    "description": "Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/SSHSeDeployment"
-                },
                 "ssh_user_ref": {
                     "description": "Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
@@ -2771,39 +2651,6 @@
                 }
             }
         },
-        "NsxConfiguration": {
-            "type": "object",
-            "required": [
-                "avi_nsx_prefix",
-                "nsx_manager_name",
-                "nsx_manager_password",
-                "nsx_manager_username",
-                "nsx_poll_time"
-            ],
-            "properties": {
-                "avi_nsx_prefix": {
-                    "description": "This prefix will be added to the names of all NSX objects created by Avi Controller. It should be unique across all the Avi Controller clusters. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "nsx_manager_name": {
-                    "description": "The hostname or IP address of the NSX MGr. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "nsx_manager_password": {
-                    "description": "The password Avi Vantage will use when authenticating with NSX Mgr. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "nsx_manager_username": {
-                    "description": "The username Avi Vantage will use when authenticating with NSX Mgr. Field deprecated in 21.1.1. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "nsx_poll_time": {
-                    "description": "The interval (in secs) with which Avi Controller polls the NSX Manager for updates. Field deprecated in 21.1.1. Field introduced in 17.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "integer",
-                    "format": "int32"
-                }
-            }
-        },
         "NsxtConfiguration": {
             "type": "object",
             "required": [
@@ -2835,10 +2682,6 @@
                     "description": "Management network configuration for Avi Service Engines. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/ManagementNetworkConfig"
                 },
-                "management_segment": {
-                    "description": "Management network segment to use for Avi Service Engines. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/Tier1LogicalRouterInfo"
-                },
                 "nsxt_credentials_ref": {
                     "description": "Credentials to access NSX-T manager. It is a reference to an object of type CloudConnectorUser. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
@@ -2851,14 +2694,6 @@
                     "description": "Site where transport zone belongs to. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string",
                     "default": "default"
-                },
-                "tier1_segment_config": {
-                    "description": "Nsxt tier1 segment configuration for Avi Service Engine data path. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/NsxtTier1SegmentConfig"
-                },
-                "transport_zone": {
-                    "description": "Network zone where nodes can talk via overlay. Virtual IPs and Service Engines will belong to this zone. Value should be path like /infra/sites/default/enforcement-points/default/transport-zones/xxx-xxx-xxxx. Field deprecated in 20.1.5. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
                 }
             }
         },
@@ -3061,10 +2896,6 @@
                     "type": "boolean",
                     "default": true
                 },
-                "intf_sec_ips": {
-                    "description": "If True, interface-secondary-ips method will be used for VIP association. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
                 "keystone_host": {
                     "description": "Keystone's hostname or IP address. (Deprecated) Use auth_url instead. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
@@ -3091,38 +2922,9 @@
                     "type": "boolean",
                     "default": true
                 },
-                "nuage_organization": {
-                    "description": " Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "nuage_password": {
-                    "description": " Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "nuage_port": {
-                    "description": " Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "nuage_username": {
-                    "description": " Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "nuage_virtualip": {
-                    "description": "Applicable only if allowed-address-pairs is disabled or unusable. VIP placement uses Nuage virtualIp if true, else redirectionTarget. Field deprecated in 20.1.1. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
-                "nuage_vsd_host": {
-                    "description": "Nuage VSD host name or IP address. Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
                 "password": {
                     "description": "The password Avi Vantage will use when authenticating to Keystone. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
-                },
-                "port_security": {
-                    "description": "If true, port-security extension (if detected) will be used instead of security-groups, allowed-address-pairs or interface-secondary-ips. If false, port-security extension is skipped. Field deprecated in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
                 },
                 "privilege": {
                     "description": "Access privilege. Enum options - NO_ACCESS, READ_ACCESS, WRITE_ACCESS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -3153,10 +2955,6 @@
                         "$ref": "#/definitions/OpenStackRoleMapping"
                     }
                 },
-                "se_group_ref": {
-                    "description": "This field has been generalized for all clouds and has been renamed to se_group_template_uuid. It is a reference to an object of type ServiceEngineGroup. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
                 "security_groups": {
                     "description": "If false, security-groups extension will not be used. . Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean",
@@ -3166,13 +2964,6 @@
                     "description": "If true, then SEs will be created in the appropriate tenants, else SEs will be created in the admin_tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean",
                     "default": true
-                },
-                "usable_network_uuids": {
-                    "description": "Deprecated, please use provider_vip_networks. Field deprecated in 18.2.2. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
                 },
                 "use_admin_url": {
                     "description": "If admin URLs are either inaccessible or not to be accessed from Avi Controller, then set this to False. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -3188,17 +2979,9 @@
                     "type": "boolean",
                     "default": true
                 },
-                "use_nuagevip": {
-                    "description": "If True, use nuage vip as device_owner of VIP ports, else use neutron LOADBALANCER. Field deprecated in 20.1.1. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
                 "username": {
                     "description": "The username Avi Vantage will use when authenticating to Keystone. For Keystone v3, provide the user information in user@domain format, unless that user belongs to the Default domain. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
-                },
-                "wildcard_access": {
-                    "description": "If enabled, program SE security group with ingress rule to allow SSH (port 22) access from 0.0.0.0/0. Field deprecated in 17.1.5. Field introduced in 17.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
                 }
             }
         },
@@ -3318,10 +3101,6 @@
                     "type": "boolean",
                     "default": true
                 },
-                "default_shared_virtualservice": {
-                    "description": "Deprecated. Field deprecated in 17.1.9. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/OshiftSharedVirtualService"
-                },
                 "disable_auto_backend_service_sync": {
                     "description": "Disable auto service sync for back end services. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean"
@@ -3365,10 +3144,6 @@
                     "description": "Enable proxy ARP from Host interface for Front End  proxies. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean",
                     "default": true
-                },
-                "fleet_endpoint": {
-                    "description": "Optional fleet remote endpoint if fleet is used for SE deployment. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
                 },
                 "http_container_ports": {
                     "description": "List of container ports that create a HTTP Virtualservice instead of a TCP/UDP VirtualService. Defaults to 80, 8080, 443 and 8443. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -3422,10 +3197,6 @@
                         "$ref": "#/definitions/MesosAttribute"
                     }
                 },
-                "nuage_controller": {
-                    "description": "Nuage Overlay SDN Controller information. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/NuageSDNController"
-                },
                 "num_shards": {
                     "description": "Enables sharding of Routes and Ingresses to this number (if non zero) of virtual services in the admin tenant per SEGroup. Sharding is done by hashing on the namespace of the Ingress/Route object. This knob is valid only if shared_virtualservice_namespace flag is set. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "integer",
@@ -3446,10 +3217,6 @@
                     "items": {
                         "$ref": "#/definitions/RouteInfo"
                     }
-                },
-                "routes_share_virtualservice": {
-                    "description": "Deprecated. Field deprecated in 17.1.9. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
                 },
                 "sdn_overlay": {
                     "description": "Cluster uses overlay based SDN. Enable this flag if cluster uses a overlay based SDN for OpenShift, Flannel, Weave, Nuage. Disable for routed mode. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -3505,11 +3272,6 @@
                     "description": "Restart ServiceEngines forcely if VirtualServices failed to migrate to another SE. Field introduced in 17.2.15, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean"
                 },
-                "se_spawn_rate": {
-                    "description": "New SE spawn rate per minute. Field deprecated in 17.2.13,18.1.5,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "se_volume": {
                     "description": "Host volume to be used as a disk for Avi SE, This is a disruptive change. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string",
@@ -3523,10 +3285,6 @@
                     "description": "Authorization token for service account instead of client certificate. One of client certificate or token is required. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
                 },
-                "service_port_match_http_service": {
-                    "description": "Perform service port matching to create a HTTP Virtualservice instead of a TCP/UDP VirtualService. Field deprecated in 17.2.11,18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
                 "shard_prefix": {
                     "description": "Prefix to be used for Shard VS name when num_shards knob is non zero. Format for Shard VS name will be <shard_prefix>-<idx>-CloudName-SEGroupName. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
@@ -3534,10 +3292,6 @@
                 "shared_virtualservice_namespace": {
                     "description": "Projects/Namespaces use a shared virtualservice for http/https Routes and Ingress objects unless overriden by the avi_virtualservice  dedicated|shared annotation. Field introduced in 17.1.9,17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean"
-                },
-                "ssh_se_deployment": {
-                    "description": "Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/SSHSeDeployment"
                 },
                 "ssh_user_ref": {
                     "description": "Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
@@ -3788,10 +3542,6 @@
                     "description": "Make service ports accessible on all Host interfaces in addition to East-West VIP and/or bridge IP. Usually enabled AWS clusters to export East-West services on Host interface. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean"
                 },
-                "ssh_se_deployment": {
-                    "description": "Parameters for SSH SE deployment. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/SSHSeDeployment"
-                },
                 "ssh_user_ref": {
                     "description": "Cloud connector user uuid for SSH to hosts. It is a reference to an object of type CloudConnectorUser. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
@@ -3847,27 +3597,6 @@
                 "subnet": {
                     "description": "Host subnet address. Field introduced in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/IpAddrPrefix"
-                }
-            }
-        },
-        "SSHSeDeployment": {
-            "type": "object",
-            "properties": {
-                "host_os": {
-                    "description": "Host OS distribution e.g. COREOS, UBUNTU, REDHAT. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "password": {
-                    "description": "Password for ssh and/or sudo. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "ssh_user": {
-                    "description": "Username for SSH access to hosts. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "sudo_user": {
-                    "description": "Username for sudo. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
                 }
             }
         },

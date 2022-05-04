@@ -2757,17 +2757,6 @@
                     "default": 5.0,
                     "format": "double"
                 },
-                "disable_client_renegotiation": {
-                    "description": "Disable client renegotiation. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "disable_client_renegotiation_score": {
-                    "description": "Score  Disable client renegotiation. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "number",
-                    "default": 5.0,
-                    "format": "double"
-                },
                 "earliest_cert_expiry": {
                     "description": "Earliest certificate expiration time. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"

@@ -700,22 +700,6 @@
                     "description": " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
                 },
-                "disable_ondemand_metrics": {
-                    "description": "Virtual Service (VS) metrics are processed only when there is live data traffic on the VS. In case, VS is idle for a period of time as specified by ondemand_metrics_idle_timeout then metrics processing is suspended for that VS. Field deprecated in 20.1.3. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
-                "disable_se_analytics": {
-                    "description": "Disable node (service engine) level analytics forvs metrics. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
-                "disable_server_analytics": {
-                    "description": "Disable analytics on backend servers. This may be desired in container environment when there are large number of ephemeral servers. Additionally, no healthscore of servers is computed when server analytics is disabled. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
-                "disable_vs_analytics": {
-                    "description": "Disable VirtualService (frontend) Analytics. This flag disables metrics and healthscore for Virtualservice. Field deprecated in 20.1.3. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
                 "enable_adaptive_config": {
                     "description": "Enable adaptive configuration for optimizing resource usage. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean",
@@ -1003,13 +987,6 @@
                     "type": "number",
                     "default": 1.0,
                     "format": "double"
-                },
-                "labels": {
-                    "description": "Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/KeyValue"
-                    }
                 },
                 "latency_audit_props": {
                     "description": "Influence the audit of ingress latency and connection establishement time. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",

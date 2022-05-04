@@ -548,10 +548,6 @@
                         "$ref": "#/definitions/IpAddr"
                     }
                 },
-                "apic_epg_name": {
-                    "description": "Populate IP addresses from members of this Cisco APIC EPG. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
                 "configpb_attributes": {
                     "description": "Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/ConfigPbAttributes"
@@ -572,13 +568,6 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/IpAddrPort"
-                    }
-                },
-                "labels": {
-                    "description": "Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/KeyValue"
                     }
                 },
                 "marathon_app_name": {

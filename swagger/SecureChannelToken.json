@@ -546,10 +546,6 @@
                     "description": "Auth_token used for SE/controller authorization. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
                 },
-                "node_uuid": {
-                    "description": "Deprecated  Uuid of SE or controller who is using this auth_token. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
                 "url": {
                     "description": "url",
                     "readOnly": true,

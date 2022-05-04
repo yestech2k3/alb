@@ -452,11 +452,6 @@ definitions:
             internal:
                 description: "The DNS policy is created and modified by internal modules only. This should not be modified by users. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: boolean
-            labels:
-                description: "Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    $ref: '#/definitions/KeyValue'
             markers:
                 description: "List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition."
                 type: array
@@ -538,29 +533,6 @@ definitions:
             rate_limiter_object:
                 description: "Rate limiting object. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/RateLimiter'
-    DnsRateProfile:
-        type: object
-        required:
-            -   action
-        properties:
-            action:
-                description: "Action to perform upon rate limiting. Field deprecated in 20.1.1. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                $ref: '#/definitions/DnsRuleRLAction'
-            burst_size:
-                description: "Maximum number of connections or requests or packets to be rate limited instantaneously. Field deprecated in 20.1.1. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            count:
-                description: "Maximum number of connections or requests or packets per second. It is deprecated because of adoption of new shared rate limiter protobuf. Allowed values are 1-4294967295. Special values are 0- unlimited. Field deprecated in 20.1.1. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            fine_grain:
-                description: "Enable fine granularity. Field deprecated in 20.1.1. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            period:
-                description: "Time value in seconds to enforce rate count. Allowed values are 1-300. Field deprecated in 20.1.1. Field introduced in 18.2.5. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
     DnsRrSet:
         type: object
         required:
@@ -628,9 +600,6 @@ definitions:
             allow:
                 description: "Allow or drop the DNS query. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/DnsRuleActionAllowDrop'
-            dns_rate_limit:
-                description: "Rate limits the DNS requests. Field deprecated in 20.1.1. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                $ref: '#/definitions/DnsRateProfile'
             dns_rate_limiter:
                 description: "Rate limits the DNS requests. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/DnsRateLimiter'
@@ -714,9 +683,6 @@ definitions:
     DnsRuleMatchTarget:
         type: object
         properties:
-            client_ip:
-                description: "IP addresses to match against client IP. From 17.1.6 release onwards, IP addresses needs to be configured in the client_ip_address field of this message. Field deprecated in 17.1.6,17.2.2. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                $ref: '#/definitions/IpAddrMatch'
             client_ip_address:
                 description: "IP addresses to match against client IP or the EDNS client subnet IP. Field introduced in 17.1.6,17.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/DnsClientIpMatch'

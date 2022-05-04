@@ -603,21 +603,9 @@
                 "name"
             ],
             "properties": {
-                "class_matcher": {
-                    "description": "How to match the BotClientClass. Field deprecated in 21.1.3. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/BotClassMatcher"
-                },
                 "classification": {
                     "description": "The assigned classification for this client. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/BotClassification"
-                },
-                "component_matcher": {
-                    "description": "The component for which this mapping is used. Enum options - BOT_DECIDER_CONSOLIDATION, BOT_DECIDER_USER_AGENT, BOT_DECIDER_IP_REPUTATION, BOT_DECIDER_IP_NETWORK_LOCATION. Field deprecated in 21.1.3. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "identifier_matcher": {
-                    "description": "The list of bot identifier names and how they're matched. Field deprecated in 21.1.3. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/StringMatch"
                 },
                 "index": {
                     "description": "Rules are processed in order of this index field. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
@@ -631,10 +619,6 @@
                 "name": {
                     "description": "A name describing the rule in a short form. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
                     "type": "string"
-                },
-                "type_matcher": {
-                    "description": "How to match the BotClientType. Field deprecated in 21.1.3. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/BotTypeMatcher"
                 }
             }
         },
