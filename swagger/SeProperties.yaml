@@ -548,12 +548,6 @@ definitions:
     SeBootupProperties:
         type: object
         properties:
-            distribute_queues:
-                description: "Deprecated. Field deprecated in 17.2.8. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            distribute_vnics:
-                description: "Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
             docker_backend_portend:
                 description: "End of the Local TCP port range used by SE for backend connections in docker environment. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
@@ -592,10 +586,6 @@ definitions:
             se_dp_compression:
                 description: " Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/SeBootupCompressionProperties'
-            se_dpdk_pmd:
-                description: "This field has been moved to se_group properties 18.1.2 onwards. Field deprecated in 18.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             se_emulated_cores:
                 description: "Deprecated in 21.1.3. Use config in ServiceEngineGroup instead. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 0), Basic edition(Allowed values- 0), Enterprise with Cloud Services edition."
                 type: integer
@@ -638,54 +628,10 @@ definitions:
                 type: integer
                 default: 512
                 format: int32
-            se_lro:
-                description: "Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_pcap_pkt_count:
-                description: "Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_pcap_pkt_sz:
-                description: "Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_rum_sampling_nav_interval:
-                description: "Deprecated. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_rum_sampling_nav_percent:
-                description: "Deprecated. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_rum_sampling_res_interval:
-                description: "Deprecated. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_rum_sampling_res_percent:
-                description: "Deprecated. Field deprecated in 18.2.6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_tunnel_mode:
-                description: "Determines if DSR from secondary SE is active or not      0        Automatically determine based on hypervisor type    1        Disable DSR unconditionally    ~[0,1]   Enable DSR unconditionally. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_tx_batch_size:
-                description: "Deprecated. Field deprecated in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_use_dpdk:
-                description: "This field has been moved to se_group properties 18.1.2 onwards. Field deprecated in 18.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             ssl_sess_cache_per_vs:
                 description: " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
                 default: 4096
-                format: int32
-            ssl_sess_cache_timeout:
-                description: "Deprecated in 21.1.1, use session timeout in ssl profile. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
                 format: int32
             tcp_syncache_hashsize:
                 description: "Size of the TCP SYN cache hash table. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
@@ -818,12 +764,6 @@ definitions:
             disable_flow_probes:
                 description: "Disable Flow Probes for Scaled out VS'es. (This field has been moved to se_group properties 20.1.3 onwards.). Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
-            disable_gro:
-                description: "Deprecated. Field deprecated in 17.2.5. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            disable_tso:
-                description: "Deprecated. Field deprecated in 17.2.5. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
             dos_profile:
                 description: " Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/DosThresholdProfile'
@@ -873,14 +813,6 @@ definitions:
                 type: integer
                 default: 5
                 format: int32
-            flow_table_max_entries_deprecated:
-                description: "Deprecated. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            flow_table_new_syn_max_entries:
-                description: "Deprecated. Field deprecated in 17.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             global_mtu:
                 description: "Overrides the MTU value received via DHCP or some other means. Use this when the infrastructure advertises an MTU that is not supported by all devices in the network. For example, in AWS or when an overlay is used. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
@@ -892,14 +824,6 @@ definitions:
                 description: "Minimum response size content length to sample for client insights. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 64), Basic edition(Allowed values- 64), Enterprise with Cloud Services edition."
                 type: integer
                 default: 64
-                format: int32
-            lb_batch_push_frequency:
-                description: "How often to push the LB IPC messages in the main loop. The value is the number of times the loop has to run before pushing the batch. i.e, a value of 1 means the batch is pushed every time the loop runs. Field deprecated in 18.1.3. Field introduced in 17.2.8. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            lb_fail_max_time:
-                description: "Deprecated. Field deprecated in 17.1.1. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
                 format: int32
             lbaction_num_requests_to_dispatch:
                 description: "Number of requests to dispatch from the request queue at a regular interval. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
@@ -915,18 +839,6 @@ definitions:
                 description: "Deprecated in 21.1.1. Flag to indicate if log files are compressed upon full on the Service Engine. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
                 default: True
-            log_agent_conn_send_buffer_size:
-                description: "[DEPRECATED]Log-agent test property used to simulate slow TCP connections. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            log_agent_export_msg_buffer_size:
-                description: "[DEPRECATED]Maximum size of data sent by log-agent to Controller over the TCP connection. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            log_agent_export_wait_time:
-                description: "[DEPRECATED]Time log-agent waits before sending data to the Controller. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             log_agent_file_sz_appl:
                 description: "Deprecated in 21.1.1. Maximum application log file size before rollover. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
@@ -952,18 +864,10 @@ definitions:
                 type: integer
                 default: 1024
                 format: int32
-            log_agent_max_active_adf_files_per_vs:
-                description: "[DEPRECATED] Maximum number of Virtual Service log files maintained for significant logs on the Service Engine. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             log_agent_max_concurrent_rsync:
                 description: "Deprecated in 21.1.1. Maximum concurrent rsync requests initiated from log-agent to the Controller. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
                 default: 1024
-                format: int32
-            log_agent_max_logmessage_proto_sz:
-                description: "[DEPRECATED] Maximum size of serialized log message on the Service Engine. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
                 format: int32
             log_agent_max_storage_excess_percent:
                 description: "Deprecated in 21.1.1. Excess percentage threshold of disk size to trigger cleanup of logs on the Service Engine. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
@@ -980,10 +884,6 @@ definitions:
                 type: integer
                 default: 10
                 format: int32
-            log_agent_pause_interval:
-                description: "[DEPRECATED]Time interval log-agent pauses between logs obtained from the dataplane. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             log_agent_sleep_interval:
                 description: "Deprecated in 21.1.1. Internal timer to stall log-agent and prevent it from hogging CPU cycles on the Service Engine. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
@@ -999,45 +899,9 @@ definitions:
                 type: integer
                 default: 64
                 format: int32
-            max_throughput:
-                description: "Deprecated. Field deprecated in 17.1.1. Unit is MBPS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            mcache_enabled:
-                description: "Deprecated in 21.1.1. Use enabled under caching in application profile. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            mcache_fetch_enabled:
-                description: "enables mcache_fetch. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            mcache_max_cache_size:
-                description: "Use SE Group's app_cache_percent to set cache memory usage limit on SE. Field deprecated in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int64
-            mcache_store_in_enabled:
-                description: "enables mcache_store. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            mcache_store_in_max_size:
-                description: "Deprecated in 21.1.1. Use max_object_size under caching in application profile. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            mcache_store_in_min_size:
-                description: "Deprecated in 21.1.1. Use min_object_size under caching in application profile. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            mcache_store_out_enabled:
-                description: "enables mcache_store_out. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            mcache_store_se_max_size:
-                description: "Use SE Group's app_cache_percent to set cache memory usage limit on SE. Field deprecated in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int64
             ngx_free_connection_stack:
                 description: " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
-            persistence_entries_low_watermark:
-                description: "Deprecated. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             persistence_mem_max:
                 description: "Maximum memory in bytes allocated for persistence entries. Allowed values are 0-33554432. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
@@ -1101,26 +965,6 @@ definitions:
                 type: integer
                 default: 90
                 format: int32
-            se_dp_vnic_queue_stall_event_sleep:
-                description: "Deprecated. Field deprecated in 18.2.5. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_dp_vnic_queue_stall_threshold:
-                description: "Deprecated. Field deprecated in 18.2.5. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_dp_vnic_queue_stall_timeout:
-                description: "Deprecated. Field deprecated in 18.2.5. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_dp_vnic_restart_on_queue_stall_count:
-                description: "Deprecated. Field deprecated in 18.2.5. Field introduced in 17.1.14, 17.2.5, 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            se_dp_vnic_stall_se_restart_window:
-                description: "Deprecated. Field deprecated in 18.2.5. Field introduced in 17.1.14, 17.2.5, 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             se_dump_core_on_assert:
                 description: "Deprecated in 21.1.3. Use config in ServiceEngineGroup instead. Field introduced in 18.1.3, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
@@ -1136,10 +980,6 @@ definitions:
                 description: "Number of packets with wrong mac after which SE attempts to disable promiscious mode. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
                 default: 1000
-                format: int32
-            se_malloc_thresh:
-                description: "Deprecated. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
                 format: int32
             se_memory_poison:
                 description: "Internal use only. Enables poisoning of freed memory blocks. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
@@ -1182,13 +1022,6 @@ definitions:
             services_accessible_all_interfaces:
                 description: "Make service ports accessible on all Host interfaces in addition to East-West VIP and/or bridge IP. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
-            spdy_fwd_proxy_parse_enable:
-                description: " Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            tcp_syn_cache_max:
-                description: "Maximum size of the SYN cache table. After this limit is reached, SYN cookies are used. This is per core of the serviceengine. Field deprecated in 17.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             tcp_syncache_max_retransmit_default:
                 description: "Default value for max number of retransmissions for a SYN packet. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
@@ -1209,18 +1042,6 @@ definitions:
                 type: integer
                 default: -1
                 format: int32
-            upstream_connpool_conn_idle_tmo:
-                description: "Deprecated. Field deprecated in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            upstream_connpool_conn_life_tmo:
-                description: "Deprecated. Field deprecated in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            upstream_connpool_conn_max_reuse:
-                description: "Deprecated. Field deprecated in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             upstream_connpool_core_max_cache:
                 description: "L7 Upstream Connection pool max cache size per core. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
@@ -1230,14 +1051,6 @@ definitions:
                 description: "Enable upstream connection pool. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
                 default: True
-            upstream_connpool_server_max_cache:
-                description: "Deprecated. Field deprecated in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            upstream_connpool_strategy:
-                description: "Deprecated in 21.1.1, set in application profile. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             upstream_keepalive:
                 description: " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean

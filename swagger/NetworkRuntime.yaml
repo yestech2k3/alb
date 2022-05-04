@@ -404,11 +404,6 @@ definitions:
                 type: array
                 items:
                     type: string
-            se_uuid:
-                description: "Use obj_uuids. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    type: string
             subnet_runtime:
                 description: " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: array
@@ -478,15 +473,6 @@ definitions:
         required:
             -   prefix
         properties:
-            free_ip_count:
-                description: "Moved to StaticIpRangeRuntime. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            ip_alloced:
-                description: "Use allocated_ips in StaticIpRangeRuntime. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    $ref: '#/definitions/IpAllocInfo'
             ip_range_runtimes:
                 description: "Static IP range runtime. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: array
@@ -495,11 +481,3 @@ definitions:
             prefix:
                 description: " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/IpAddrPrefix'
-            total_ip_count:
-                description: "Moved to StaticIpRangeRuntime. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            used_ip_count:
-                description: "Can be derived from total - free in StaticIpRangeRuntime. Field deprecated in 20.1.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32

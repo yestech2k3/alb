@@ -1033,13 +1033,6 @@
                     "description": "Configure ping based heartbeat check for all default gateways in service engines of vrf. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/InternalGatewayMonitor"
                 },
-                "labels": {
-                    "description": "Key/value labels which can be used for Object Access Policy permission scoping. Field deprecated in 20.1.5. Field introduced in 18.2.7, 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/KeyValue"
-                    }
-                },
                 "lldp_enable": {
                     "description": "Enable LLDP. Field introduced in 18.2.10, 20.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- true), Basic edition(Allowed values- true), Enterprise with Cloud Services edition.",
                     "type": "boolean",

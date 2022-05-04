@@ -481,11 +481,6 @@ definitions:
                 description: "Index of the dns policy to use for the mitigation rules applied to the dns attacks. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
                 format: int32
-            labels:
-                description: "Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    $ref: '#/definitions/KeyValue'
             markers:
                 description: "List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition."
                 type: array
@@ -502,15 +497,9 @@ definitions:
                 description: "Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks. Enum options - DETECTION, MITIGATION. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: string
                 default: "DETECTION"
-            tcp_attacks:
-                description: "Attacks utilizing the TCP protocol operations. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                $ref: '#/definitions/TcpAttacks'
             tenant_ref:
                 description: "Tenancy of the security policy. It is a reference to an object of type Tenant. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: string
-            udp_attacks:
-                description: "Attacks utilizing the UDP protocol operations. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                $ref: '#/definitions/UdpAttacks'
             url:
                 description: "url"
                 readOnly: True
@@ -533,7 +522,3 @@ definitions:
                     $ref: "#/definitions/SecurityPolicy"
             next:
                 type: string
-    TcpAttacks:
-        type: object
-    UdpAttacks:
-        type: object

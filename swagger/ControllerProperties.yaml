@@ -564,10 +564,6 @@ definitions:
                 type: integer
                 default: 180
                 format: int32
-            vs_apic_scaleout_timeout:
-                description: "Time to wait for the scaled out SE to become ready before marking the scaleout done, applies to APIC configuration only. Field deprecated in 21.1.1. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             vs_awaiting_se_timeout:
                 description: " Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer

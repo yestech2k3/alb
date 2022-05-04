@@ -611,10 +611,6 @@
                     "default": 5,
                     "format": "int32"
                 },
-                "group_member_is_full_dn": {
-                    "description": "Group member entries contain full DNs instead of just user id attribute values. This should now be configured using the LdapDirectorySettings field instead. Field deprecated in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
-                },
                 "request_header": {
                     "description": "Insert an HTTP header.  This field is used to define the header name.  The value of the header is set to the client's HTTP Auth user ID. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
@@ -880,14 +876,6 @@
                 },
                 "name": {
                     "description": "Refers to the Cluster name identifier (Virtual IP or FQDN). Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "signing_cert": {
-                    "description": "Service Provider signing certificate for metadata. Field deprecated in 18.2.1. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "string"
-                },
-                "signing_key": {
-                    "description": "Service Provider signing key for metadata. Field deprecated in 18.2.1. Field introduced in 17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
                 },
                 "signing_ssl_key_and_certificate_ref": {

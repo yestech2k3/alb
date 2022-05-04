@@ -1508,9 +1508,6 @@ definitions:
         required:
             -   type
         properties:
-            backup_pool:
-                description: "Backup Pool when pool experiences a failure. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                $ref: '#/definitions/FailActionBackupPool'
             local_rsp:
                 description: "Local response to HTTP requests when pool experiences a failure. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/FailActionHTTPLocalResponse'
@@ -1820,24 +1817,11 @@ definitions:
                 description: "UNIX time since epoch in microseconds. Units(MICROSECONDS)."
                 readOnly: True
                 type: string
-            a_pool:
-                description: "Name of container cloud application that constitutes A pool in a A-B pool configuration, if different from VS app. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: string
-            ab_pool:
-                description: "A/B pool configuration. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                $ref: '#/definitions/AbPool'
-            ab_priority:
-                description: "Priority of this pool in a A-B pool pair. Internally used. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             analytics_policy:
                 description: "Determines analytics settings for the pool. Field introduced in 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/PoolAnalyticsPolicy'
             analytics_profile_ref:
                 description: "Specifies settings related to analytics. It is a reference to an object of type AnalyticsProfile. Field introduced in 18.1.4,18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: string
-            apic_epg_name:
-                description: "Synchronize Cisco APIC EPG members with pool servers. Field deprecated in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: string
             append_port:
                 description: "Allows the option to append port to hostname in the host header while sending a request to the server. By default, port is appended for non-default ports. This setting will apply for Pool's 'Rewrite Host Header to Server Name', 'Rewrite Host Header to SNI' features and Server's 'Rewrite Host Header' settings as well as HTTP healthmonitors attached to pools. Enum options - NON_DEFAULT_80_443, NEVER, ALWAYS. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- NEVER), Basic edition(Allowed values- NEVER), Enterprise with Cloud Services edition. Special default for Essentials edition is NEVER, Basic edition is NEVER, Enterprise is NON_DEFAULT_80_443."
@@ -1957,11 +1941,6 @@ definitions:
             ipaddrgroup_ref:
                 description: "Use list of servers from Ip Address Group. It is a reference to an object of type IpAddrGroup. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: string
-            labels:
-                description: "Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    $ref: '#/definitions/KeyValue'
             lb_algorithm:
                 description: "The load balancing algorithm will pick a server within the pool's list of available servers. Values LB_ALGORITHM_NEAREST_SERVER and LB_ALGORITHM_TOPOLOGY are only allowed for GSLB pool. Enum options - LB_ALGORITHM_LEAST_CONNECTIONS, LB_ALGORITHM_ROUND_ROBIN, LB_ALGORITHM_FASTEST_RESPONSE, LB_ALGORITHM_CONSISTENT_HASH, LB_ALGORITHM_LEAST_LOAD, LB_ALGORITHM_FEWEST_SERVERS, LB_ALGORITHM_RANDOM, LB_ALGORITHM_FEWEST_TASKS, LB_ALGORITHM_NEAREST_SERVER, LB_ALGORITHM_CORE_AFFINITY, LB_ALGORITHM_TOPOLOGY. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- LB_ALGORITHM_LEAST_CONNECTIONS,LB_ALGORITHM_ROUND_ROBIN,LB_ALGORITHM_CONSISTENT_HASH), Basic edition(Allowed values- LB_ALGORITHM_LEAST_CONNECTIONS,LB_ALGORITHM_ROUND_ROBIN,LB_ALGORITHM_CONSISTENT_HASH), Enterprise with Cloud Services edition."
                 type: string
@@ -2022,9 +2001,6 @@ definitions:
                 type: array
                 items:
                     $ref: '#/definitions/PlacementNetwork'
-            prst_hdr_name:
-                description: "Header name for custom header persistence. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: string
             request_queue_depth:
                 description: "Minimum number of requests to be queued when pool is full. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 128), Basic edition(Allowed values- 128), Enterprise with Cloud Services edition."
                 type: integer
@@ -2045,13 +2021,6 @@ definitions:
             routing_pool:
                 description: "Enable to do routing when this pool is selected to send traffic. No servers present in routing pool. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
-            server_auto_scale:
-                description: "Server AutoScale. Not used anymore. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: boolean
-            server_count:
-                description: " Field deprecated in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             server_disable_type:
                 description: "Server graceful disable timeout behaviour. Enum options - DISALLOW_NEW_CONNECTION, ALLOW_NEW_CONNECTION_IF_PERSISTENCE_PRESENT. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: string
@@ -2175,14 +2144,6 @@ definitions:
             action:
                 description: "Action to perform upon rate limiting. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/RateLimiterAction'
-            burst_sz:
-                description: "Maximum number of connections or requests or packets to be let through instantaneously. Allowed values are 10-2500. Special values are 0- automatic. Field deprecated in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
-            count:
-                description: "Maximum number of connections or requests or packets. Allowed values are 1-1000000000. Special values are 0- unlimited. Field deprecated in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             explicit_tracking:
                 description: "Explicitly tracks an attacker across rate periods. Allowed in Enterprise edition with any value, Basic edition(Allowed values- false), Essentials, Enterprise with Cloud Services edition."
                 type: boolean
@@ -2195,10 +2156,6 @@ definitions:
             http_header:
                 description: "HTTP header name. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Enterprise with Cloud Services edition."
                 type: string
-            period:
-                description: "Time value in seconds to enforce rate count. Allowed values are 1-300. Field deprecated in 18.2.9. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: integer
-                format: int32
             rate_limiter:
                 description: "The rate limiter configuration for this rate profile. Field introduced in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/RateLimiter'
@@ -2229,21 +2186,11 @@ definitions:
             description:
                 description: "A description of the Server. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: string
-            discovered_network_ref:
-                description: "(internal-use) Discovered network for this server. This field is deprecated. It is a reference to an object of type Network. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    type: string
             discovered_networks:
                 description: "(internal-use) Discovered networks providing reachability for server IP. This field is used internally by Avi, not editable by the user. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: array
                 items:
                     $ref: '#/definitions/DiscoveredNetwork'
-            discovered_subnet:
-                description: "(internal-use) Discovered subnet for this server. This field is deprecated. Field deprecated in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
-                type: array
-                items:
-                    $ref: '#/definitions/IpAddrPrefix'
             enabled:
                 description: "Enable, Disable or Graceful Disable determine if new or existing connections to the server are allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean

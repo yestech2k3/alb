@@ -784,13 +784,6 @@
                     "description": " Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "boolean"
                 },
-                "labels": {
-                    "description": "Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/KeyValue"
-                    }
-                },
                 "markers": {
                     "description": "List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.",
                     "type": "array",
@@ -1069,10 +1062,6 @@
                     "description": "Secure SSL/TLS port to redirect the HTTP request to. Allowed values are 1-65535. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
                     "type": "integer",
                     "format": "int32"
-                },
-                "rate_limit": {
-                    "description": "Rate Limit profile to be used to rate-limit the flow.  (deprecated). Field deprecated in 18.2.9. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "$ref": "#/definitions/RateProfile"
                 },
                 "rate_profile": {
                     "description": "Rate limiting configuration for this action. Field introduced in 18.2.9. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
@@ -1675,16 +1664,6 @@
                     "description": "Action to perform upon rate limiting. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/RateLimiterAction"
                 },
-                "burst_sz": {
-                    "description": "Maximum number of connections or requests or packets to be let through instantaneously. Allowed values are 10-2500. Special values are 0- automatic. Field deprecated in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "count": {
-                    "description": "Maximum number of connections or requests or packets. Allowed values are 1-1000000000. Special values are 0- unlimited. Field deprecated in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "explicit_tracking": {
                     "description": "Explicitly tracks an attacker across rate periods. Allowed in Enterprise edition with any value, Basic edition(Allowed values- false), Essentials, Enterprise with Cloud Services edition.",
                     "type": "boolean"
@@ -1700,11 +1679,6 @@
                 "http_header": {
                     "description": "HTTP header name. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Enterprise with Cloud Services edition.",
                     "type": "string"
-                },
-                "period": {
-                    "description": "Time value in seconds to enforce rate count. Allowed values are 1-300. Field deprecated in 18.2.9. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
-                    "type": "integer",
-                    "format": "int32"
                 },
                 "rate_limiter": {
                     "description": "The rate limiter configuration for this rate profile. Field introduced in 18.2.9. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
