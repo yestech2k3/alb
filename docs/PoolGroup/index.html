@@ -330,10 +330,6 @@ font-style: italic;
     "uuid" : "aeiou",
     "url" : "aeiou",
     "_last_modified" : "aeiou",
-    "labels" : [ {
-      "value" : "aeiou",
-      "key" : "aeiou"
-    } ],
     "fail_action" : {
       "redirect" : {
         "path" : "aeiou",
@@ -349,9 +345,6 @@ font-style: italic;
           "file_length" : 123
         },
         "status_code" : "aeiou"
-      },
-      "backup_pool" : {
-        "backup_pool_ref" : "aeiou"
       },
       "type" : "aeiou"
     },
@@ -438,10 +431,6 @@ font-style: italic;
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "fail_action" : {
     "redirect" : {
       "path" : "aeiou",
@@ -457,9 +446,6 @@ font-style: italic;
         "file_length" : 123
       },
       "status_code" : "aeiou"
-    },
-    "backup_pool" : {
-      "backup_pool_ref" : "aeiou"
     },
     "type" : "aeiou"
   },
@@ -675,10 +661,6 @@ font-style: italic;
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "fail_action" : {
     "redirect" : {
       "path" : "aeiou",
@@ -694,9 +676,6 @@ font-style: italic;
         "file_length" : 123
       },
       "status_code" : "aeiou"
-    },
-    "backup_pool" : {
-      "backup_pool_ref" : "aeiou"
     },
     "type" : "aeiou"
   },
@@ -794,10 +773,6 @@ font-style: italic;
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "fail_action" : {
     "redirect" : {
       "path" : "aeiou",
@@ -813,9 +788,6 @@ font-style: italic;
         "file_length" : 123
       },
       "status_code" : "aeiou"
-    },
-    "backup_pool" : {
-      "backup_pool_ref" : "aeiou"
     },
     "type" : "aeiou"
   },
@@ -913,10 +885,6 @@ font-style: italic;
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "fail_action" : {
     "redirect" : {
       "path" : "aeiou",
@@ -932,9 +900,6 @@ font-style: italic;
         "file_length" : 123
       },
       "status_code" : "aeiou"
-    },
-    "backup_pool" : {
-      "backup_pool_ref" : "aeiou"
     },
     "type" : "aeiou"
   },
@@ -1056,8 +1021,7 @@ font-style: italic;
   <div class="model">
     <h3 class="field-label"><a name="FailAction">FailAction</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">backup_pool (optional)</div><div class="param-desc"><span class="param-type"><a href="#FailActionBackupPool">FailActionBackupPool</a></span> Backup Pool when pool experiences a failure. Field deprecated in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">local_rsp (optional)</div><div class="param-desc"><span class="param-type"><a href="#FailActionHTTPLocalResponse">FailActionHTTPLocalResponse</a></span> Local response to HTTP requests when pool experiences a failure. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+      <div class="param">local_rsp (optional)</div><div class="param-desc"><span class="param-type"><a href="#FailActionHTTPLocalResponse">FailActionHTTPLocalResponse</a></span> Local response to HTTP requests when pool experiences a failure. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">redirect (optional)</div><div class="param-desc"><span class="param-type"><a href="#FailActionHTTPRedirect">FailActionHTTPRedirect</a></span> URL to redirect HTTP requests to when pool experiences a failure. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Enables a response to client when pool experiences a failure. By default TCP connection is closed. Enum options - FAIL_ACTION_HTTP_REDIRECT, FAIL_ACTION_HTTP_LOCAL_RSP, FAIL_ACTION_CLOSE_CONN, FAIL_ACTION_BACKUP_POOL. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- FAIL_ACTION_CLOSE_CONN), Basic edition(Allowed values- FAIL_ACTION_CLOSE_CONN,FAIL_ACTION_HTTP_REDIRECT), Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
@@ -1114,7 +1078,6 @@ font-style: italic;
 <div class="param">enable_http2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable HTTP/2 for traffic from VirtualService to all the backend servers in all the pools configured under this PoolGroup. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
 <div class="param">fail_action (optional)</div><div class="param-desc"><span class="param-type"><a href="#FailAction">FailAction</a></span> Enable an action - Close Connection, HTTP Redirect, or Local HTTP Response - when a pool group failure happens. By default, a connection will be closed, in case the pool group experiences a failure. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">implicit_priority_labels (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Whether an implicit set of priority labels is generated. Field introduced in 17.1.9,17.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">labels (optional)</div><div class="param-desc"><span class="param-type"><a href="#KeyValue">array[KeyValue]</a></span> Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">markers (optional)</div><div class="param-desc"><span class="param-type"><a href="#RoleFilterMatchLabel">array[RoleFilterMatchLabel]</a></span> List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">members (optional)</div><div class="param-desc"><span class="param-type"><a href="#PoolGroupMember">array[PoolGroupMember]</a></span> List of pool group members object of type PoolGroupMember. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">min_servers (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The minimum number of servers to distribute traffic to. Allowed values are 1-65535. Special values are 0 - Disable. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 0), Basic edition(Allowed values- 0), Enterprise with Cloud Services edition. format: int32</div>

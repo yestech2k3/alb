@@ -275,21 +275,15 @@ font-style: italic;
     },
     "description" : "aeiou",
     "dns_policy_index" : 123,
-    "tcp_attacks" : { },
     "uuid" : "aeiou",
     "url" : "aeiou",
     "_last_modified" : "aeiou",
-    "labels" : [ {
-      "value" : "aeiou",
-      "key" : "aeiou"
-    } ],
     "oper_mode" : "aeiou",
     "tenant_ref" : "aeiou",
     "name" : "aeiou",
     "configpb_attributes" : {
       "version" : 123
     },
-    "udp_attacks" : { },
     "dns_amplification_denyports" : {
       "match_criteria" : "aeiou",
       "ranges" : [ {
@@ -371,21 +365,15 @@ font-style: italic;
   },
   "description" : "aeiou",
   "dns_policy_index" : 123,
-  "tcp_attacks" : { },
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "oper_mode" : "aeiou",
   "tenant_ref" : "aeiou",
   "name" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
-  "udp_attacks" : { },
   "dns_amplification_denyports" : {
     "match_criteria" : "aeiou",
     "ranges" : [ {
@@ -538,21 +526,15 @@ font-style: italic;
   },
   "description" : "aeiou",
   "dns_policy_index" : 123,
-  "tcp_attacks" : { },
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "oper_mode" : "aeiou",
   "tenant_ref" : "aeiou",
   "name" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
-  "udp_attacks" : { },
   "dns_amplification_denyports" : {
     "match_criteria" : "aeiou",
     "ranges" : [ {
@@ -645,21 +627,15 @@ font-style: italic;
   },
   "description" : "aeiou",
   "dns_policy_index" : 123,
-  "tcp_attacks" : { },
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "oper_mode" : "aeiou",
   "tenant_ref" : "aeiou",
   "name" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
-  "udp_attacks" : { },
   "dns_amplification_denyports" : {
     "match_criteria" : "aeiou",
     "ranges" : [ {
@@ -752,21 +728,15 @@ font-style: italic;
   },
   "description" : "aeiou",
   "dns_policy_index" : 123,
-  "tcp_attacks" : { },
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou",
-  "labels" : [ {
-    "value" : "aeiou",
-    "key" : "aeiou"
-  } ],
   "oper_mode" : "aeiou",
   "tenant_ref" : "aeiou",
   "name" : "aeiou",
   "configpb_attributes" : {
     "version" : 123
   },
-  "udp_attacks" : { },
   "dns_amplification_denyports" : {
     "match_criteria" : "aeiou",
     "ranges" : [ {
@@ -814,8 +784,6 @@ font-style: italic;
     <li><a href="#RoleFilterMatchLabel"><code>RoleFilterMatchLabel</code></a></li>
     <li><a href="#SecurityPolicy"><code>SecurityPolicy</code></a></li>
     <li><a href="#SecurityPolicyApiResponse"><code>SecurityPolicyApiResponse</code></a></li>
-    <li><a href="#TcpAttacks"><code>TcpAttacks</code></a></li>
-    <li><a href="#UdpAttacks"><code>UdpAttacks</code></a></li>
   </ol>
 
   <div class="model">
@@ -885,14 +853,11 @@ font-style: italic;
 <div class="param">dns_amplification_denyports (optional)</div><div class="param-desc"><span class="param-type"><a href="#PortMatchGeneric">PortMatchGeneric</a></span> Source ports and port ranges to deny in DNS Amplification attacks. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">dns_attacks (optional)</div><div class="param-desc"><span class="param-type"><a href="#DnsAttacks">DnsAttacks</a></span> Attacks utilizing the DNS protocol operations. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">dns_policy_index </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Index of the dns policy to use for the mitigation rules applied to the dns attacks. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-<div class="param">labels (optional)</div><div class="param-desc"><span class="param-type"><a href="#KeyValue">array[KeyValue]</a></span> Key value pairs for granular object access control. Also allows for classification and tagging of similar objects. Field deprecated in 20.1.5. Field introduced in 20.1.2. Maximum of 4 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">markers (optional)</div><div class="param-desc"><span class="param-type"><a href="#RoleFilterMatchLabel">array[RoleFilterMatchLabel]</a></span> List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The name of the security policy. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">network_security_policy_index </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Index of the network security policy to use for the mitigation rules applied to the attacks. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">oper_mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mode of dealing with the attacks - perform detection only, or detect and mitigate the attacks. Enum options - DETECTION, MITIGATION. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">tcp_attacks (optional)</div><div class="param-desc"><span class="param-type"><a href="#TcpAttacks">TcpAttacks</a></span> Attacks utilizing the TCP protocol operations. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Tenancy of the security policy. It is a reference to an object of type Tenant. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">udp_attacks (optional)</div><div class="param-desc"><span class="param-type"><a href="#UdpAttacks">UdpAttacks</a></span> Attacks utilizing the UDP protocol operations. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> url </div>
 <div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The UUID of the security policy. Field introduced in 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
@@ -904,16 +869,6 @@ font-style: italic;
 <div class="param">results </div><div class="param-desc"><span class="param-type"><a href="#SecurityPolicy">array[SecurityPolicy]</a></span>  </div>
 <div class="param">next (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3 class="field-label"><a name="TcpAttacks">TcpAttacks</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-          </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3 class="field-label"><a name="UdpAttacks">UdpAttacks</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-          </div>  <!-- field-items -->
   </div>
   </body>
 </html>
