@@ -284,6 +284,10 @@ font-style: italic;
     "tcp_app_profile" : {
       "pki_profile_ref" : "aeiou",
       "proxy_protocol_enabled" : true,
+      "ftp_profile" : {
+        "deactivate_active" : true,
+        "deactivate_passive" : true
+      },
       "proxy_protocol_version" : "aeiou",
       "ssl_client_certificate_mode" : "aeiou"
     },
@@ -581,6 +585,10 @@ font-style: italic;
   "tcp_app_profile" : {
     "pki_profile_ref" : "aeiou",
     "proxy_protocol_enabled" : true,
+    "ftp_profile" : {
+      "deactivate_active" : true,
+      "deactivate_passive" : true
+    },
     "proxy_protocol_version" : "aeiou",
     "ssl_client_certificate_mode" : "aeiou"
   },
@@ -949,6 +957,10 @@ font-style: italic;
   "tcp_app_profile" : {
     "pki_profile_ref" : "aeiou",
     "proxy_protocol_enabled" : true,
+    "ftp_profile" : {
+      "deactivate_active" : true,
+      "deactivate_passive" : true
+    },
     "proxy_protocol_version" : "aeiou",
     "ssl_client_certificate_mode" : "aeiou"
   },
@@ -1257,6 +1269,10 @@ font-style: italic;
   "tcp_app_profile" : {
     "pki_profile_ref" : "aeiou",
     "proxy_protocol_enabled" : true,
+    "ftp_profile" : {
+      "deactivate_active" : true,
+      "deactivate_passive" : true
+    },
     "proxy_protocol_version" : "aeiou",
     "ssl_client_certificate_mode" : "aeiou"
   },
@@ -1565,6 +1581,10 @@ font-style: italic;
   "tcp_app_profile" : {
     "pki_profile_ref" : "aeiou",
     "proxy_protocol_enabled" : true,
+    "ftp_profile" : {
+      "deactivate_active" : true,
+      "deactivate_passive" : true
+    },
     "proxy_protocol_version" : "aeiou",
     "ssl_client_certificate_mode" : "aeiou"
   },
@@ -1872,6 +1892,7 @@ font-style: italic;
     <li><a href="#DosRateLimitProfile"><code>DosRateLimitProfile</code></a></li>
     <li><a href="#DosThreshold"><code>DosThreshold</code></a></li>
     <li><a href="#DosThresholdProfile"><code>DosThresholdProfile</code></a></li>
+    <li><a href="#FTPProfile"><code>FTPProfile</code></a></li>
     <li><a href="#HTTP2ApplicationProfile"><code>HTTP2ApplicationProfile</code></a></li>
     <li><a href="#HTTPApplicationProfile"><code>HTTPApplicationProfile</code></a></li>
     <li><a href="#HTTPLocalFile"><code>HTTPLocalFile</code></a></li>
@@ -1899,7 +1920,7 @@ font-style: italic;
     <h3 class="field-label"><a name="ApplicationProfile">ApplicationProfile</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
-<div class="param">app_service_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Specifies app service type for an application. Enum options - APP_SERVICE_TYPE_L7_HORIZON, APP_SERVICE_TYPE_L4_BLAST, APP_SERVICE_TYPE_L4_PCOIP. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">app_service_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Specifies app service type for an application. Enum options - APP_SERVICE_TYPE_L7_HORIZON, APP_SERVICE_TYPE_L4_BLAST, APP_SERVICE_TYPE_L4_PCOIP, APP_SERVICE_TYPE_L4_FTP. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">cloud_config_cksum (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Checksum of application profiles. Internally set by cloud connector. Field introduced in 17.2.14, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">configpb_attributes (optional)</div><div class="param-desc"><span class="param-type"><a href="#ConfigPbAttributes">ConfigPbAttributes</a></span> Protobuf versioning for config pbs. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">created_by (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the application profile creator. Field introduced in 17.2.14, 18.1.5, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
@@ -2018,6 +2039,13 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
+    <h3 class="field-label"><a name="FTPProfile">FTPProfile</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">deactivate_active (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Deactivate active FTP mode. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">deactivate_passive (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Deactivate passive FTP mode. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
     <h3 class="field-label"><a name="HTTP2ApplicationProfile">HTTP2ApplicationProfile</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">enable_http2_server_push (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enables automatic conversion of preload links specified in the &#39;Link&#39; response header fields into Server push requests. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
@@ -2064,7 +2092,7 @@ font-style: italic;
 <div class="param">max_bad_rps_cip (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum bad requests per second per client IP. Allowed values are 10-1000. Special values are 0- unlimited. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">max_bad_rps_cip_uri (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum bad requests per second per client IP and URI. Allowed values are 10-1000. Special values are 0- unlimited. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">max_bad_rps_uri (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum bad requests per second per URI. Allowed values are 10-1000. Special values are 0- unlimited. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
-<div class="param">max_header_count (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum number of headers allowed in HTTP request and response. Allowed values are 0-4096. Special values are 0- unlimited headers in request and response. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 64), Basic edition(Allowed values- 64), Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">max_header_count (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum number of headers allowed in HTTP request and response. Allowed values are 0-4096. Special values are 0- unlimited headers in request and response. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 0), Basic edition(Allowed values- 0), Enterprise with Cloud Services edition. Special default for Essentials edition is 0, Basic edition is 0, Enterprise is 64. format: int32</div>
 <div class="param">max_keepalive_requests (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The max number of HTTP requests that can be sent over a Keep-Alive connection. &#39;0&#39; means unlimited. Allowed values are 0-1000000. Special values are 0- Unlimited requests on a connection. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 100), Basic edition(Allowed values- 100), Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">max_response_headers_size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum size in Kbytes of all the HTTP response headers. Allowed values are 1-256. Unit is KB. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 48), Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">max_rps_cip (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Maximum requests per second per client IP. Allowed values are 10-1000. Special values are 0- unlimited. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
@@ -2237,7 +2265,8 @@ font-style: italic;
   <div class="model">
     <h3 class="field-label"><a name="TCPApplicationProfile">TCPApplicationProfile</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
-      <div class="param">pki_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Select the PKI profile to be associated with the Virtual Service. This profile defines the Certificate Authority and Revocation List. It is a reference to an object of type PKIProfile. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+      <div class="param">ftp_profile (optional)</div><div class="param-desc"><span class="param-type"><a href="#FTPProfile">FTPProfile</a></span> FTP profile configuration. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">pki_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Select the PKI profile to be associated with the Virtual Service. This profile defines the Certificate Authority and Revocation List. It is a reference to an object of type PKIProfile. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">proxy_protocol_enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable/Disable the usage of proxy protocol to convey client connection information to the back-end servers.  Valid only for L4 application profiles and TCP proxy. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
 <div class="param">proxy_protocol_version (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Version of proxy protocol to be used to convey client connection information to the back-end servers. Enum options - PROXY_PROTOCOL_VERSION_1, PROXY_PROTOCOL_VERSION_2. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- PROXY_PROTOCOL_VERSION_1), Basic edition(Allowed values- PROXY_PROTOCOL_VERSION_1), Enterprise with Cloud Services edition. </div>
 <div class="param">ssl_client_certificate_mode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Specifies whether the client side verification is set to none, request or require. Enum options - SSL_CLIENT_CERTIFICATE_NONE, SSL_CLIENT_CERTIFICATE_REQUEST, SSL_CLIENT_CERTIFICATE_REQUIRE. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- SSL_CLIENT_CERTIFICATE_NONE), Basic edition(Allowed values- SSL_CLIENT_CERTIFICATE_NONE), Enterprise with Cloud Services edition. </div>
