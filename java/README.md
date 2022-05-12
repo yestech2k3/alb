@@ -37,22 +37,65 @@ hmData.put("send_interval","20");
 apiInstance.post("healthmonitor", hmData);
 ```
 
-- **Fetching health monitor info :**
+- **Creating pool with one server and health monitor reference :**
 ```
-Map<String, String> val = new HashMap<String, String>();
-val.put("name", "test_hm1");
-JSONObject healthmonitor = apiInstance.get("healthmonitor", val);
+JSONObject poolData = new JSONObject();
+poolData.put("name", "test-pool");
+poolData.put("enabled", true);
+JSONObject poolServerData = new JSONObject();
+poolServerData.put("enabled", false);
+JSONObject serverIp = new JSONObject();
+serverIp.put("addr", "192.0.0.1");
+serverIp.put("type", "V4");
+poolServerData.put("ip", serverIp);
+poolData.put("servers", Arrays.asList(poolServerData));
+poolData.put("health_monitor_ref", "/api/healthmonitor?name=test_hm1");
+apiInstance.post("pool", poolData);
 ```
 
-- **Deleting health monitor :**
+- **Creating vsvip :**
+```
+JSONObject vsVipData = new JSONObject();
+vsVipData.put("name", "test-vsvip");
+JSONObject vipServerIp = new JSONObject();
+vipServerIp.put("addr", "10.90.20.51");
+vipServerIp.put("type", "V4");
+JSONObject vipData = new JSONObject();
+vipData.put("ip_address", vipServerIp);
+vipData.put("vip_id", "1");
+vsVipData.put("vip", Arrays.asList(vipData));
+apiInstance.post("vsvip", vsVipData);
+```
+
+- **Creating virtual service using pool and vsvip reference :**
+```
+JSONObject vsData = new JSONObject();
+vsData.put("name", "sample_vs");
+JSONObject vsServiceData = new JSONObject();
+vsServiceData.put("port", "90");
+vsServiceData.put("enable_ssl", false);
+vsData.put("services", Arrays.asList(vsServiceData));
+vsData.put("vsvip_ref", "/api/vsvip?name=test-vsvip");
+vsData.put("pool_ref", "/api/pool?name=test-pool");
+api.post("virtualservice", vsData);
+```
+
+- **Fetching object by name :**
 ```
 Map<String, String> val = new HashMap<String, String>();
-val.put("name", "test_hm1");
-JSONObject healthmonitor = serv.get("healthmonitor", val);
-JSONArray resp = (JSONArray) healthmonitor.get("results");
+val.put("name", "sample_vs");
+JSONObject virtualService = apiInstance.get("virtualservice", val);
+```
+
+- **Deleting object by name :**
+```
+Map<String, String> val = new HashMap<String, String>();
+val.put("name", "sample_vs");
+JSONObject virtualService = serv.get("virtualservice", val);
+JSONArray resp = (JSONArray) virtualService.get("results");
 JSONObject result = (JSONObject) resp.get(0);
 String uuid = (String) result.get("uuid");
-apiInstance.delete("healthmonitor",uuid);
+apiInstance.delete("virtualservice",uuid);
 ```
 - **Uploading file :**
 ```

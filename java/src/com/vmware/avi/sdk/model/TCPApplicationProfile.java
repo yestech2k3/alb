@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TCPApplicationProfile  {
+    @JsonProperty("ftp_profile")
+    private FTPProfile ftpProfile = null;
+
     @JsonProperty("pki_profile_ref")
     private String pkiProfileRef = null;
 
@@ -34,6 +37,30 @@ public class TCPApplicationProfile  {
     private String sslClientCertificateMode = "SSL_CLIENT_CERTIFICATE_NONE";
 
 
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Ftp profile configuration.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return ftpProfile
+     */
+    public FTPProfile getFtpProfile() {
+        return ftpProfile;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Ftp profile configuration.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param ftpProfile set the ftpProfile.
+     */
+    public void setFtpProfile(FTPProfile ftpProfile) {
+        this.ftpProfile = ftpProfile;
+    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -156,14 +183,16 @@ public class TCPApplicationProfile  {
       return   Objects.equals(this.proxyProtocolEnabled, objTCPApplicationProfile.proxyProtocolEnabled)&&
   Objects.equals(this.proxyProtocolVersion, objTCPApplicationProfile.proxyProtocolVersion)&&
   Objects.equals(this.sslClientCertificateMode, objTCPApplicationProfile.sslClientCertificateMode)&&
-  Objects.equals(this.pkiProfileRef, objTCPApplicationProfile.pkiProfileRef);
+  Objects.equals(this.pkiProfileRef, objTCPApplicationProfile.pkiProfileRef)&&
+  Objects.equals(this.ftpProfile, objTCPApplicationProfile.ftpProfile);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class TCPApplicationProfile {\n");
-                  sb.append("    pkiProfileRef: ").append(toIndentedString(pkiProfileRef)).append("\n");
+                  sb.append("    ftpProfile: ").append(toIndentedString(ftpProfile)).append("\n");
+                        sb.append("    pkiProfileRef: ").append(toIndentedString(pkiProfileRef)).append("\n");
                         sb.append("    proxyProtocolEnabled: ").append(toIndentedString(proxyProtocolEnabled)).append("\n");
                         sb.append("    proxyProtocolVersion: ").append(toIndentedString(proxyProtocolVersion)).append("\n");
                         sb.append("    sslClientCertificateMode: ").append(toIndentedString(sslClientCertificateMode)).append("\n");

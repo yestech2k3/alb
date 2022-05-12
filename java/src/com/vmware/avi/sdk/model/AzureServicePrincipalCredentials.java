@@ -25,7 +25,10 @@ public class AzureServicePrincipalCredentials  {
     private String applicationId = null;
 
     @JsonProperty("authentication_token")
-    private String authenticationToken = null;
+    private String authenticationToken;
+
+    @JsonProperty("client_secret_value")
+    private String clientSecretValue = null;
 
     @JsonProperty("tenant_id")
     private String tenantId = null;
@@ -62,9 +65,10 @@ public class AzureServicePrincipalCredentials  {
      * This is the getter method this will return the attribute value.
      * Authentication token created for the avi controller application.
      * Required for application id based authentication only.
+     * Deprecated from 22.1.1, instead use client secret value.
+     * Field deprecated in 22.1.1.
      * Field introduced in 17.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return authenticationToken
      */
     public String getAuthenticationToken() {
@@ -75,13 +79,40 @@ public class AzureServicePrincipalCredentials  {
      * This is the setter method to the attribute.
      * Authentication token created for the avi controller application.
      * Required for application id based authentication only.
+     * Deprecated from 22.1.1, instead use client secret value.
+     * Field deprecated in 22.1.1.
      * Field introduced in 17.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param authenticationToken set the authenticationToken.
      */
     public void setAuthenticationToken(String  authenticationToken) {
         this.authenticationToken = authenticationToken;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Client secret value created for the avi controller application.
+     * Required for application id based authentication only.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return clientSecretValue
+     */
+    public String getClientSecretValue() {
+        return clientSecretValue;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Client secret value created for the avi controller application.
+     * Required for application id based authentication only.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param clientSecretValue set the clientSecretValue.
+     */
+    public void setClientSecretValue(String  clientSecretValue) {
+        this.clientSecretValue = clientSecretValue;
     }
 
     /**
@@ -122,7 +153,8 @@ public class AzureServicePrincipalCredentials  {
       AzureServicePrincipalCredentials objAzureServicePrincipalCredentials = (AzureServicePrincipalCredentials) o;
       return   Objects.equals(this.applicationId, objAzureServicePrincipalCredentials.applicationId)&&
   Objects.equals(this.authenticationToken, objAzureServicePrincipalCredentials.authenticationToken)&&
-  Objects.equals(this.tenantId, objAzureServicePrincipalCredentials.tenantId);
+  Objects.equals(this.tenantId, objAzureServicePrincipalCredentials.tenantId)&&
+  Objects.equals(this.clientSecretValue, objAzureServicePrincipalCredentials.clientSecretValue);
     }
 
     @Override
@@ -131,6 +163,7 @@ public class AzureServicePrincipalCredentials  {
       sb.append("class AzureServicePrincipalCredentials {\n");
                   sb.append("    applicationId: ").append(toIndentedString(applicationId)).append("\n");
                         sb.append("    authenticationToken: ").append(toIndentedString(authenticationToken)).append("\n");
+                        sb.append("    clientSecretValue: ").append(toIndentedString(clientSecretValue)).append("\n");
                         sb.append("    tenantId: ").append(toIndentedString(tenantId)).append("\n");
                   sb.append("}");
       return sb.toString();
