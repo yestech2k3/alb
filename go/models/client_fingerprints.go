@@ -4,9 +4,9 @@ package models
 
 // This file is auto-generated.
 
-// ClientFingerPrints client finger prints
-// swagger:model ClientFingerPrints
-type ClientFingerPrints struct {
+// ClientFingerprints client fingerprints
+// swagger:model ClientFingerprints
+type ClientFingerprints struct {
 
 	// Values of selected fields from the ClientHello. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	TLSClientInfo *TLSClientInfo `json:"tls_client_info,omitempty"`

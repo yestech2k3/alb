@@ -17,6 +17,9 @@ type Service struct {
 	// Used for Horizon deployment. If set used for L7 redirect. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	HorizonInternalPorts *bool `json:"horizon_internal_ports,omitempty"`
 
+	// Source port used by VS for active FTP data connections. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	IsActiveFtpDataPort *bool `json:"is_active_ftp_data_port,omitempty"`
+
 	// Enable application layer specific features for the this specific service. It is a reference to an object of type ApplicationProfile. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	OverrideApplicationProfileRef *string `json:"override_application_profile_ref,omitempty"`
 

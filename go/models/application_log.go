@@ -62,7 +62,7 @@ type ApplicationLog struct {
 	ClientDevice *string `json:"client_device,omitempty"`
 
 	// The fingerprints for this client. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	ClientFingerPrints *ClientFingerPrints `json:"client_finger_prints,omitempty"`
+	ClientFingerprints *ClientFingerprints `json:"client_fingerprints,omitempty"`
 
 	//  Enum options - INSIGHTS_DISABLED, NO_INSIGHTS_NOT_SAMPLED_COUNT, NO_INSIGHTS_NOT_SAMPLED_TYPE, NO_INSIGHTS_NOT_SAMPLED_SKIP_URI, NO_INSIGHTS_NOT_SAMPLED_URI_NOT_IN_LIST, NO_INSIGHTS_NOT_SAMPLED_CLIENT_IP_NOT_IN_RANGE, NO_INSIGHTS_NOT_SAMPLED_OTHER, ACTIVE_INSIGHTS_FAILED, ACTIVE_INSIGHTS_ENABLED, PASSIVE_INSIGHTS_ENABLED. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ClientInsights *string `json:"client_insights,omitempty"`

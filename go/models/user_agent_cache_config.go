@@ -14,6 +14,12 @@ type UserAgentCacheConfig struct {
 	// The number of User-Agent entries to cache on the Controller. Allowed values are 500-10000000. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	ControllerCacheSize *int32 `json:"controller_cache_size,omitempty"`
 
+	// Time interval in seconds after which an existing entry is refreshed from upstream if it has been accessed during max_last_hit_time. Allowed values are 60-604800. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	MaxAge *int32 `json:"max_age,omitempty"`
+
+	// Time interval in seconds backwards from now during which an existing entry must have been hit for refresh from upstream. Entries that have last been accessed further in the past than max_last_hit time are not included in upstream refresh requests even if they are older than 'max_age'. Allowed values are 60-604800. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	MaxLastHitTime *int32 `json:"max_last_hit_time,omitempty"`
+
 	// How often at most to query controller for a given User-Agent. Allowed values are 2-100. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	MaxUpstreamQueries *int32 `json:"max_upstream_queries,omitempty"`
 
