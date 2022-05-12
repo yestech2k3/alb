@@ -126,8 +126,6 @@ type AviClient struct {
 	VCenterServer                   *VCenterServerClient
 	VIDCInfo                        *VIDCInfoClient
 	VIMgrClusterRuntime             *VIMgrClusterRuntimeClient
-	VIMgrControllerRuntime          *VIMgrControllerRuntimeClient
-	VIMgrDCRuntime                  *VIMgrDCRuntimeClient
 	VIMgrHostRuntime                *VIMgrHostRuntimeClient
 	VIMgrNWRuntime                  *VIMgrNWRuntimeClient
 	VIMgrSEVMRuntime                *VIMgrSEVMRuntimeClient
@@ -270,8 +268,6 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.VCenterServer = NewVCenterServerClient(aviSession)
 	aviClient.VIDCInfo = NewVIDCInfoClient(aviSession)
 	aviClient.VIMgrClusterRuntime = NewVIMgrClusterRuntimeClient(aviSession)
-	aviClient.VIMgrControllerRuntime = NewVIMgrControllerRuntimeClient(aviSession)
-	aviClient.VIMgrDCRuntime = NewVIMgrDCRuntimeClient(aviSession)
 	aviClient.VIMgrHostRuntime = NewVIMgrHostRuntimeClient(aviSession)
 	aviClient.VIMgrNWRuntime = NewVIMgrNWRuntimeClient(aviSession)
 	aviClient.VIMgrSEVMRuntime = NewVIMgrSEVMRuntimeClient(aviSession)

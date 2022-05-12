@@ -8,6 +8,9 @@ package models
 // swagger:model TCPApplicationProfile
 type TCPApplicationProfile struct {
 
+	// FTP profile configuration. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	FtpProfile *FTPProfile `json:"ftp_profile,omitempty"`
+
 	// Select the PKI profile to be associated with the Virtual Service. This profile defines the Certificate Authority and Revocation List. It is a reference to an object of type PKIProfile. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	PkiProfileRef *string `json:"pki_profile_ref,omitempty"`
 
