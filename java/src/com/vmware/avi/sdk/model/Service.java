@@ -30,6 +30,9 @@ public class Service  {
     @JsonProperty("horizon_internal_ports")
     private Boolean horizonInternalPorts = false;
 
+    @JsonProperty("is_active_ftp_data_port")
+    private Boolean isActiveFtpDataPort = false;
+
     @JsonProperty("override_application_profile_ref")
     private String overrideApplicationProfileRef = null;
 
@@ -116,6 +119,30 @@ public class Service  {
      */
     public void setHorizonInternalPorts(Boolean  horizonInternalPorts) {
         this.horizonInternalPorts = horizonInternalPorts;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Source port used by vs for active ftp data connections.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return isActiveFtpDataPort
+     */
+    public Boolean getIsActiveFtpDataPort() {
+        return isActiveFtpDataPort;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Source port used by vs for active ftp data connections.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param isActiveFtpDataPort set the isActiveFtpDataPort.
+     */
+    public void setIsActiveFtpDataPort(Boolean  isActiveFtpDataPort) {
+        this.isActiveFtpDataPort = isActiveFtpDataPort;
     }
 
     /**
@@ -234,7 +261,8 @@ public class Service  {
   Objects.equals(this.portRangeEnd, objService.portRangeEnd)&&
   Objects.equals(this.overrideApplicationProfileRef, objService.overrideApplicationProfileRef)&&
   Objects.equals(this.enableHttp2, objService.enableHttp2)&&
-  Objects.equals(this.horizonInternalPorts, objService.horizonInternalPorts);
+  Objects.equals(this.horizonInternalPorts, objService.horizonInternalPorts)&&
+  Objects.equals(this.isActiveFtpDataPort, objService.isActiveFtpDataPort);
     }
 
     @Override
@@ -244,6 +272,7 @@ public class Service  {
                   sb.append("    enableHttp2: ").append(toIndentedString(enableHttp2)).append("\n");
                         sb.append("    enableSsl: ").append(toIndentedString(enableSsl)).append("\n");
                         sb.append("    horizonInternalPorts: ").append(toIndentedString(horizonInternalPorts)).append("\n");
+                        sb.append("    isActiveFtpDataPort: ").append(toIndentedString(isActiveFtpDataPort)).append("\n");
                         sb.append("    overrideApplicationProfileRef: ").append(toIndentedString(overrideApplicationProfileRef)).append("\n");
                         sb.append("    overrideNetworkProfileRef: ").append(toIndentedString(overrideNetworkProfileRef)).append("\n");
                         sb.append("    port: ").append(toIndentedString(port)).append("\n");

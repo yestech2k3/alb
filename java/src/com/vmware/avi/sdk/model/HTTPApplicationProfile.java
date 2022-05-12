@@ -112,7 +112,7 @@ public class HTTPApplicationProfile  {
     private Integer maxBadRpsUri = 0;
 
     @JsonProperty("max_header_count")
-    private Integer maxHeaderCount = 64;
+    private Integer maxHeaderCount;
 
     @JsonProperty("max_keepalive_requests")
     private Integer maxKeepaliveRequests = 100;
@@ -989,9 +989,9 @@ public class HTTPApplicationProfile  {
      * Allowed values are 0-4096.
      * Special values are 0- unlimited headers in request and response.
      * Field introduced in 22.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- 64), basic edition(allowed values- 64), enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 0), basic edition(allowed values- 0), enterprise with cloud
      * services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 64.
+     * Special default for essentials edition is 0, basic edition is 0, enterprise is 64.
      * @return maxHeaderCount
      */
     public Integer getMaxHeaderCount() {
@@ -1004,9 +1004,9 @@ public class HTTPApplicationProfile  {
      * Allowed values are 0-4096.
      * Special values are 0- unlimited headers in request and response.
      * Field introduced in 22.1.1.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- 64), basic edition(allowed values- 64), enterprise with cloud
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 0), basic edition(allowed values- 0), enterprise with cloud
      * services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 64.
+     * Special default for essentials edition is 0, basic edition is 0, enterprise is 64.
      * @param maxHeaderCount set the maxHeaderCount.
      */
     public void setMaxHeaderCount(Integer  maxHeaderCount) {

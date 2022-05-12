@@ -27,6 +27,12 @@ public class UserAgentCacheConfig  {
     @JsonProperty("controller_cache_size")
     private Integer controllerCacheSize = 300000;
 
+    @JsonProperty("max_age")
+    private Integer maxAge = 86400;
+
+    @JsonProperty("max_last_hit_time")
+    private Integer maxLastHitTime = 86400;
+
     @JsonProperty("max_upstream_queries")
     private Integer maxUpstreamQueries = 5;
 
@@ -106,6 +112,62 @@ public class UserAgentCacheConfig  {
      */
     public void setControllerCacheSize(Integer  controllerCacheSize) {
         this.controllerCacheSize = controllerCacheSize;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Time interval in seconds after which an existing entry is refreshed from upstream if it has been accessed during max_last_hit_time.
+     * Allowed values are 60-604800.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 86400.
+     * @return maxAge
+     */
+    public Integer getMaxAge() {
+        return maxAge;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Time interval in seconds after which an existing entry is refreshed from upstream if it has been accessed during max_last_hit_time.
+     * Allowed values are 60-604800.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 86400.
+     * @param maxAge set the maxAge.
+     */
+    public void setMaxAge(Integer  maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Time interval in seconds backwards from now during which an existing entry must have been hit for refresh from upstream.
+     * Entries that have last been accessed further in the past than max_last_hit time are not included in upstream refresh requests even if they are
+     * older than 'max_age'.
+     * Allowed values are 60-604800.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 86400.
+     * @return maxLastHitTime
+     */
+    public Integer getMaxLastHitTime() {
+        return maxLastHitTime;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Time interval in seconds backwards from now during which an existing entry must have been hit for refresh from upstream.
+     * Entries that have last been accessed further in the past than max_last_hit time are not included in upstream refresh requests even if they are
+     * older than 'max_age'.
+     * Allowed values are 60-604800.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 86400.
+     * @param maxLastHitTime set the maxLastHitTime.
+     */
+    public void setMaxLastHitTime(Integer  maxLastHitTime) {
+        this.maxLastHitTime = maxLastHitTime;
     }
 
     /**
@@ -356,7 +418,9 @@ public class UserAgentCacheConfig  {
   Objects.equals(this.maxWaitTime, objUserAgentCacheConfig.maxWaitTime)&&
   Objects.equals(this.upstreamUpdateInterval, objUserAgentCacheConfig.upstreamUpdateInterval)&&
   Objects.equals(this.numEntriesUpstreamUpdate, objUserAgentCacheConfig.numEntriesUpstreamUpdate)&&
-  Objects.equals(this.maxUpstreamQueries, objUserAgentCacheConfig.maxUpstreamQueries);
+  Objects.equals(this.maxUpstreamQueries, objUserAgentCacheConfig.maxUpstreamQueries)&&
+  Objects.equals(this.maxAge, objUserAgentCacheConfig.maxAge)&&
+  Objects.equals(this.maxLastHitTime, objUserAgentCacheConfig.maxLastHitTime);
     }
 
     @Override
@@ -365,6 +429,8 @@ public class UserAgentCacheConfig  {
       sb.append("class UserAgentCacheConfig {\n");
                   sb.append("    batchSize: ").append(toIndentedString(batchSize)).append("\n");
                         sb.append("    controllerCacheSize: ").append(toIndentedString(controllerCacheSize)).append("\n");
+                        sb.append("    maxAge: ").append(toIndentedString(maxAge)).append("\n");
+                        sb.append("    maxLastHitTime: ").append(toIndentedString(maxLastHitTime)).append("\n");
                         sb.append("    maxUpstreamQueries: ").append(toIndentedString(maxUpstreamQueries)).append("\n");
                         sb.append("    maxWaitTime: ").append(toIndentedString(maxWaitTime)).append("\n");
                         sb.append("    numEntriesUpstreamUpdate: ").append(toIndentedString(numEntriesUpstreamUpdate)).append("\n");
