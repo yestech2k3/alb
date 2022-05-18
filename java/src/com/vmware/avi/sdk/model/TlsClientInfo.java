@@ -24,6 +24,9 @@ public class TlsClientInfo  {
     @JsonProperty("cipher_suites")
     private List<Integer> cipherSuites = null;
 
+    @JsonProperty("client_hello_tls_version")
+    private Integer clientHelloTlsVersion = null;
+
     @JsonProperty("point_formats")
     private List<Integer> pointFormats = null;
 
@@ -35,9 +38,6 @@ public class TlsClientInfo  {
 
     @JsonProperty("uses_grease")
     private Boolean usesGrease = null;
-
-    @JsonProperty("version")
-    private Integer version = null;
 
 
     /**
@@ -81,6 +81,32 @@ public class TlsClientInfo  {
       }
       this.cipherSuites.add(cipherSuitesItem);
       return this;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * The tls version in the clienthello as integer.
+     * For example, tlsv1.2 (0x0303) will be shown as 771.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return clientHelloTlsVersion
+     */
+    public Integer getClientHelloTlsVersion() {
+        return clientHelloTlsVersion;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * The tls version in the clienthello as integer.
+     * For example, tlsv1.2 (0x0303) will be shown as 771.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param clientHelloTlsVersion set the clientHelloTlsVersion.
+     */
+    public void setClientHelloTlsVersion(Integer  clientHelloTlsVersion) {
+        this.clientHelloTlsVersion = clientHelloTlsVersion;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -233,32 +259,6 @@ public class TlsClientInfo  {
         this.usesGrease = usesGrease;
     }
 
-    /**
-     * This is the getter method this will return the attribute value.
-     * The tls version in the clienthello as integer.
-     * For example, tlsv1.2 (0x0303) will be shown as 771.
-     * Field introduced in 22.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return version
-     */
-    public Integer getVersion() {
-        return version;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * The tls version in the clienthello as integer.
-     * For example, tlsv1.2 (0x0303) will be shown as 771.
-     * Field introduced in 22.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param version set the version.
-     */
-    public void setVersion(Integer  version) {
-        this.version = version;
-    }
-
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -269,7 +269,7 @@ public class TlsClientInfo  {
           return false;
       }
       TlsClientInfo objTlsClientInfo = (TlsClientInfo) o;
-      return   Objects.equals(this.version, objTlsClientInfo.version)&&
+      return   Objects.equals(this.clientHelloTlsVersion, objTlsClientInfo.clientHelloTlsVersion)&&
   Objects.equals(this.cipherSuites, objTlsClientInfo.cipherSuites)&&
   Objects.equals(this.tlsExtensions, objTlsClientInfo.tlsExtensions)&&
   Objects.equals(this.supportedGroups, objTlsClientInfo.supportedGroups)&&
@@ -282,11 +282,11 @@ public class TlsClientInfo  {
       StringBuilder sb = new StringBuilder();
       sb.append("class TlsClientInfo {\n");
                   sb.append("    cipherSuites: ").append(toIndentedString(cipherSuites)).append("\n");
+                        sb.append("    clientHelloTlsVersion: ").append(toIndentedString(clientHelloTlsVersion)).append("\n");
                         sb.append("    pointFormats: ").append(toIndentedString(pointFormats)).append("\n");
                         sb.append("    supportedGroups: ").append(toIndentedString(supportedGroups)).append("\n");
                         sb.append("    tlsExtensions: ").append(toIndentedString(tlsExtensions)).append("\n");
                         sb.append("    usesGrease: ").append(toIndentedString(usesGrease)).append("\n");
-                        sb.append("    version: ").append(toIndentedString(version)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

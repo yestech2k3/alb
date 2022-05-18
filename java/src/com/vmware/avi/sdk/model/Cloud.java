@@ -99,6 +99,9 @@ public class Cloud extends AviRestResource  {
     @JsonProperty("nsxt_configuration")
     private NsxtConfiguration nsxtConfiguration = null;
 
+    @JsonProperty("ntp_configuration")
+    private NTPConfiguration ntpConfiguration = null;
+
     @JsonProperty("obj_name_prefix")
     private String objNamePrefix = null;
 
@@ -729,7 +732,8 @@ public class Cloud extends AviRestResource  {
      * Cloud metrics collector polling interval in seconds.
      * Field introduced in 22.1.1.
      * Unit is seconds.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 300.
      * @return metricsPollingInterval
      */
@@ -742,7 +746,8 @@ public class Cloud extends AviRestResource  {
      * Cloud metrics collector polling interval in seconds.
      * Field introduced in 22.1.1.
      * Unit is seconds.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 300.
      * @param metricsPollingInterval set the metricsPollingInterval.
      */
@@ -816,6 +821,30 @@ public class Cloud extends AviRestResource  {
      */
     public void setNsxtConfiguration(NsxtConfiguration nsxtConfiguration) {
         this.nsxtConfiguration = nsxtConfiguration;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Ntp configuration for the cloud.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return ntpConfiguration
+     */
+    public NTPConfiguration getNtpConfiguration() {
+        return ntpConfiguration;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Ntp configuration for the cloud.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param ntpConfiguration set the ntpConfiguration.
+     */
+    public void setNtpConfiguration(NTPConfiguration ntpConfiguration) {
+        this.ntpConfiguration = ntpConfiguration;
     }
 
     /**
@@ -1175,7 +1204,8 @@ public class Cloud extends AviRestResource  {
   Objects.equals(this.vmcDeployment, objCloud.vmcDeployment)&&
   Objects.equals(this.dnsResolvers, objCloud.dnsResolvers)&&
   Objects.equals(this.markers, objCloud.markers)&&
-  Objects.equals(this.metricsPollingInterval, objCloud.metricsPollingInterval);
+  Objects.equals(this.metricsPollingInterval, objCloud.metricsPollingInterval)&&
+  Objects.equals(this.ntpConfiguration, objCloud.ntpConfiguration);
     }
 
     @Override
@@ -1208,6 +1238,7 @@ public class Cloud extends AviRestResource  {
                         sb.append("    mtu: ").append(toIndentedString(mtu)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    nsxtConfiguration: ").append(toIndentedString(nsxtConfiguration)).append("\n");
+                        sb.append("    ntpConfiguration: ").append(toIndentedString(ntpConfiguration)).append("\n");
                         sb.append("    objNamePrefix: ").append(toIndentedString(objNamePrefix)).append("\n");
                         sb.append("    openstackConfiguration: ").append(toIndentedString(openstackConfiguration)).append("\n");
                         sb.append("    preferStaticRoutes: ").append(toIndentedString(preferStaticRoutes)).append("\n");

@@ -165,6 +165,9 @@ public class Pool extends AviRestResource  {
     @JsonProperty("placement_networks")
     private List<PlacementNetwork> placementNetworks = null;
 
+    @JsonProperty("pool_type")
+    private String poolType = "POOL_TYPE_GENERIC_APP";
+
     @JsonProperty("request_queue_depth")
     private Integer requestQueueDepth = 128;
 
@@ -1583,6 +1586,32 @@ public class Pool extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Type or purpose, the pool is to be used for.
+     * Enum options - POOL_TYPE_GENERIC_APP, POOL_TYPE_OAUTH.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "POOL_TYPE_GENERIC_APP".
+     * @return poolType
+     */
+    public String getPoolType() {
+        return poolType;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Type or purpose, the pool is to be used for.
+     * Enum options - POOL_TYPE_GENERIC_APP, POOL_TYPE_OAUTH.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "POOL_TYPE_GENERIC_APP".
+     * @param poolType set the poolType.
+     */
+    public void setPoolType(String  poolType) {
+        this.poolType = poolType;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Minimum number of requests to be queued when pool is full.
      * Allowed in enterprise edition with any value, essentials edition(allowed values- 128), basic edition(allowed values- 128), enterprise with cloud
      * services edition.
@@ -2191,7 +2220,8 @@ public class Pool extends AviRestResource  {
   Objects.equals(this.http2Properties, objPool.http2Properties)&&
   Objects.equals(this.serverDisableType, objPool.serverDisableType)&&
   Objects.equals(this.useServiceSslMode, objPool.useServiceSslMode)&&
-  Objects.equals(this.horizonProfile, objPool.horizonProfile);
+  Objects.equals(this.horizonProfile, objPool.horizonProfile)&&
+  Objects.equals(this.poolType, objPool.poolType);
     }
 
     @Override
@@ -2246,6 +2276,7 @@ public class Pool extends AviRestResource  {
                         sb.append("    nsxSecuritygroup: ").append(toIndentedString(nsxSecuritygroup)).append("\n");
                         sb.append("    pkiProfileRef: ").append(toIndentedString(pkiProfileRef)).append("\n");
                         sb.append("    placementNetworks: ").append(toIndentedString(placementNetworks)).append("\n");
+                        sb.append("    poolType: ").append(toIndentedString(poolType)).append("\n");
                         sb.append("    requestQueueDepth: ").append(toIndentedString(requestQueueDepth)).append("\n");
                         sb.append("    requestQueueEnabled: ").append(toIndentedString(requestQueueEnabled)).append("\n");
                         sb.append("    rewriteHostHeaderToServerName: ").append(toIndentedString(rewriteHostHeaderToServerName)).append("\n");

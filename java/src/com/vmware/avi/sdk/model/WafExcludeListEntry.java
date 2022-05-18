@@ -92,7 +92,8 @@ public class WafExcludeListEntry  {
     /**
      * This is the getter method this will return the attribute value.
      * The match_element can be 'args xxx', 'args_get xxx', 'args_post xxx', 'args_names xxx', 'files xxx', 'query_string', 'request_basename',
-     * 'request_body', 'request_uri', 'request_uri_raw', 'request_cookies xxx', 'request_headers xxx', 'response_headers xxx' or xml xxx.
+     * 'request_body', 'request_uri', 'request_uri_raw', 'request_cookies xxx', 'request_cookies_names xxx', 'request_headers xxx',
+     * 'request_headers_names xxx', 'response_headers xxx' or xml xxx.
      * These match_elements in the http transaction (if present) will be excluded when executing waf rules.
      * Field introduced in 17.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -106,7 +107,8 @@ public class WafExcludeListEntry  {
     /**
      * This is the setter method to the attribute.
      * The match_element can be 'args xxx', 'args_get xxx', 'args_post xxx', 'args_names xxx', 'files xxx', 'query_string', 'request_basename',
-     * 'request_body', 'request_uri', 'request_uri_raw', 'request_cookies xxx', 'request_headers xxx', 'response_headers xxx' or xml xxx.
+     * 'request_body', 'request_uri', 'request_uri_raw', 'request_cookies xxx', 'request_cookies_names xxx', 'request_headers xxx',
+     * 'request_headers_names xxx', 'response_headers xxx' or xml xxx.
      * These match_elements in the http transaction (if present) will be excluded when executing waf rules.
      * Field introduced in 17.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.

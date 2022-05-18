@@ -54,6 +54,9 @@ public class SSLKeyAndCertificate extends AviRestResource  {
     @JsonProperty("hardwaresecuritymodulegroup_ref")
     private String hardwaresecuritymodulegroupRef = null;
 
+    @JsonProperty("import_key_to_hsm")
+    private Boolean importKeyToHsm = false;
+
     @JsonProperty("key")
     private String key = null;
 
@@ -377,6 +380,30 @@ public class SSLKeyAndCertificate extends AviRestResource  {
      */
     public void setHardwaresecuritymodulegroupRef(String  hardwaresecuritymodulegroupRef) {
         this.hardwaresecuritymodulegroupRef = hardwaresecuritymodulegroupRef;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Flag to enable private key import to hsm while importing the certificate.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return importKeyToHsm
+     */
+    public Boolean getImportKeyToHsm() {
+        return importKeyToHsm;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Flag to enable private key import to hsm while importing the certificate.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param importKeyToHsm set the importKeyToHsm.
+     */
+    public void setImportKeyToHsm(Boolean  importKeyToHsm) {
+        this.importKeyToHsm = importKeyToHsm;
     }
 
     /**
@@ -780,7 +807,8 @@ public class SSLKeyAndCertificate extends AviRestResource  {
   Objects.equals(this.ocspConfig, objSSLKeyAndCertificate.ocspConfig)&&
   Objects.equals(this.ocspResponseInfo, objSSLKeyAndCertificate.ocspResponseInfo)&&
   Objects.equals(this.ocspErrorStatus, objSSLKeyAndCertificate.ocspErrorStatus)&&
-  Objects.equals(this.markers, objSSLKeyAndCertificate.markers);
+  Objects.equals(this.markers, objSSLKeyAndCertificate.markers)&&
+  Objects.equals(this.importKeyToHsm, objSSLKeyAndCertificate.importKeyToHsm);
     }
 
     @Override
@@ -798,6 +826,7 @@ public class SSLKeyAndCertificate extends AviRestResource  {
                         sb.append("    enckeyName: ").append(toIndentedString(enckeyName)).append("\n");
                         sb.append("    format: ").append(toIndentedString(format)).append("\n");
                         sb.append("    hardwaresecuritymodulegroupRef: ").append(toIndentedString(hardwaresecuritymodulegroupRef)).append("\n");
+                        sb.append("    importKeyToHsm: ").append(toIndentedString(importKeyToHsm)).append("\n");
                         sb.append("    key: ").append(toIndentedString(key)).append("\n");
                         sb.append("    keyBase64: ").append(toIndentedString(keyBase64)).append("\n");
                         sb.append("    keyParams: ").append(toIndentedString(keyParams)).append("\n");
