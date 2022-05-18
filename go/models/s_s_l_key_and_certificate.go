@@ -49,6 +49,9 @@ type SSLKeyAndCertificate struct {
 	//  It is a reference to an object of type HardwareSecurityModuleGroup. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	HardwaresecuritymodulegroupRef *string `json:"hardwaresecuritymodulegroup_ref,omitempty"`
 
+	// Flag to enable Private key import to HSM while importing the certificate. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	ImportKeyToHsm *bool `json:"import_key_to_hsm,omitempty"`
+
 	// Private key. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Key *string `json:"key,omitempty"`
 

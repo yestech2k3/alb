@@ -470,6 +470,9 @@ type EventDetails struct {
 	//  Field introduced in 18.2.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeMemoryLimitEventDetails *SeMemoryLimitEventDetails `json:"se_memory_limit_event_details,omitempty"`
 
+	// SE NTP synchronization failed. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	SeNtpSynchronizationFailed *SeNtpSynchronizationFailed `json:"se_ntp_synchronization_failed,omitempty"`
+
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SePersistenceDetails *SePersistenceEventDetails `json:"se_persistence_details,omitempty"`
 

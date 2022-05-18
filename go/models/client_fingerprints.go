@@ -8,9 +8,12 @@ package models
 // swagger:model ClientFingerprints
 type ClientFingerprints struct {
 
+	// Message Digest (md5) of filtered JA3 from ClientHello. This can deviate from 'tls_fingerprint' because not all extensions are considered. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	FilteredTLSFingerprint *string `json:"filtered_tls_fingerprint,omitempty"`
+
+	// Message Digest (md5) of JA3 from ClientHello. Only present if the full TLS fingerprint is different from the filtered fingerprint. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	FullTLSFingerprint *string `json:"full_tls_fingerprint,omitempty"`
+
 	// Values of selected fields from the ClientHello. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	TLSClientInfo *TLSClientInfo `json:"tls_client_info,omitempty"`
-
-	// Message Digest (md5) of JA3 from Client Hello. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
-	TLSFingerprint *string `json:"tls_fingerprint,omitempty"`
 }
