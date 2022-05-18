@@ -511,6 +511,7 @@ font-style: italic;
       "http_cookie" : "aeiou",
       "http_header" : "aeiou"
     },
+    "pool_type" : "aeiou",
     "analytics_profile_ref" : "aeiou",
     "max_concurrent_connections_per_server" : 123,
     "service_metadata" : "aeiou",
@@ -761,6 +762,7 @@ font-style: italic;
     "http_cookie" : "aeiou",
     "http_header" : "aeiou"
   },
+  "pool_type" : "aeiou",
   "analytics_profile_ref" : "aeiou",
   "max_concurrent_connections_per_server" : 123,
   "service_metadata" : "aeiou",
@@ -1244,6 +1246,7 @@ font-style: italic;
     "http_cookie" : "aeiou",
     "http_header" : "aeiou"
   },
+  "pool_type" : "aeiou",
   "analytics_profile_ref" : "aeiou",
   "max_concurrent_connections_per_server" : 123,
   "service_metadata" : "aeiou",
@@ -1765,6 +1768,7 @@ font-style: italic;
     "http_cookie" : "aeiou",
     "http_header" : "aeiou"
   },
+  "pool_type" : "aeiou",
   "analytics_profile_ref" : "aeiou",
   "max_concurrent_connections_per_server" : 123,
   "service_metadata" : "aeiou",
@@ -2078,6 +2082,7 @@ font-style: italic;
     "http_cookie" : "aeiou",
     "http_header" : "aeiou"
   },
+  "pool_type" : "aeiou",
   "analytics_profile_ref" : "aeiou",
   "max_concurrent_connections_per_server" : 123,
   "service_metadata" : "aeiou",
@@ -3221,6 +3226,7 @@ font-style: italic;
 <div class="param">nsx_securitygroup (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> A list of NSX Groups where the Servers for the Pool are created . Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">pki_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Avi will validate the SSL certificate present by a server against the selected PKI Profile. It is a reference to an object of type PKIProfile. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">placement_networks (optional)</div><div class="param-desc"><span class="param-type"><a href="#PlacementNetwork">array[PlacementNetwork]</a></span> Manually select the networks and subnets used to provide reachability to the pool&#39;s servers.  Specify the Subnet using the following syntax  10-1-1-0/24. Use static routes in VRF configuration when pool servers are not directly connected but routable from the service engine. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">pool_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Type or Purpose, the Pool is to be used for. Enum options - POOL_TYPE_GENERIC_APP, POOL_TYPE_OAUTH. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
 <div class="param">request_queue_depth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Minimum number of requests to be queued when pool is full. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 128), Basic edition(Allowed values- 128), Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">request_queue_enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable request queue when pool is full. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
 <div class="param">resolve_pool_by_dns (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> This field is used as a flag to create a job for JobManager. Field introduced in 18.2.10,20.1.2. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
