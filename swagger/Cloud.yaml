@@ -1039,7 +1039,7 @@ definitions:
                 items:
                     $ref: '#/definitions/RoleFilterMatchLabel'
             metrics_polling_interval:
-                description: "Cloud metrics collector polling interval in seconds. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                description: "Cloud metrics collector polling interval in seconds. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition."
                 type: integer
                 default: 300
                 format: int32
@@ -1054,6 +1054,9 @@ definitions:
             nsxt_configuration:
                 description: "NSX-T Cloud Platform Configuration. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/NsxtConfiguration'
+            ntp_configuration:
+                description: "NTP Configuration for the cloud. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                $ref: '#/definitions/NTPConfiguration'
             obj_name_prefix:
                 description: "Default prefix for all automatically created objects in this cloud. This prefix can be overridden by the SE-Group template. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: string
@@ -1950,6 +1953,53 @@ definitions:
                 type: array
                 items:
                     $ref: '#/definitions/Tier1LogicalRouterInfo'
+    NTPAuthenticationKey:
+        type: object
+        required:
+            -   key
+            -   key_number
+        properties:
+            algorithm:
+                description: "Message Digest Algorithm used for NTP authentication. Default is NTP_AUTH_ALGORITHM_MD5. Enum options - NTP_AUTH_ALGORITHM_MD5, NTP_AUTH_ALGORITHM_SHA1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
+                type: string
+                default: "NTP_AUTH_ALGORITHM_MD5"
+            key:
+                description: "NTP Authentication key. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
+                type: string
+            key_number:
+                description: "Key number to be assigned to the authentication-key. Allowed values are 1-65534. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
+                type: integer
+                format: int32
+    NTPConfiguration:
+        type: object
+        properties:
+            ntp_authentication_keys:
+                description: "NTP Authentication keys. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
+                type: array
+                items:
+                    $ref: '#/definitions/NTPAuthenticationKey'
+            ntp_server_list:
+                description: "List of NTP server hostnames or IP addresses. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
+                type: array
+                items:
+                    $ref: '#/definitions/IpAddr'
+            ntp_servers:
+                description: "List of NTP Servers. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
+                type: array
+                items:
+                    $ref: '#/definitions/NTPServer'
+    NTPServer:
+        type: object
+        required:
+            -   server
+        properties:
+            key_number:
+                description: "Key number from the list of trusted keys used to authenticate this server. Allowed values are 1-65534. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
+                type: integer
+                format: int32
+            server:
+                description: "IP Address of the NTP Server. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
+                $ref: '#/definitions/IpAddr'
     NuageSDNController:
         type: object
         properties:

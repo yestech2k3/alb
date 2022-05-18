@@ -2001,6 +2001,10 @@ definitions:
                 type: array
                 items:
                     $ref: '#/definitions/PlacementNetwork'
+            pool_type:
+                description: "Type or Purpose, the Pool is to be used for. Enum options - POOL_TYPE_GENERIC_APP, POOL_TYPE_OAUTH. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: string
+                default: "POOL_TYPE_GENERIC_APP"
             request_queue_depth:
                 description: "Minimum number of requests to be queued when pool is full. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 128), Basic edition(Allowed values- 128), Enterprise with Cloud Services edition."
                 type: integer
