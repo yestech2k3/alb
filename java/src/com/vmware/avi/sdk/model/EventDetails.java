@@ -483,6 +483,9 @@ public class EventDetails  {
     @JsonProperty("se_memory_limit_event_details")
     private SeMemoryLimitEventDetails seMemoryLimitEventDetails = null;
 
+    @JsonProperty("se_ntp_synchronization_failed")
+    private SeNtpSynchronizationFailed seNtpSynchronizationFailed = null;
+
     @JsonProperty("se_persistence_details")
     private SePersistenceEventDetails sePersistenceDetails = null;
 
@@ -3834,6 +3837,30 @@ public class EventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Se ntp synchronization failed.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return seNtpSynchronizationFailed
+     */
+    public SeNtpSynchronizationFailed getSeNtpSynchronizationFailed() {
+        return seNtpSynchronizationFailed;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Se ntp synchronization failed.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param seNtpSynchronizationFailed set the seNtpSynchronizationFailed.
+     */
+    public void setSeNtpSynchronizationFailed(SeNtpSynchronizationFailed seNtpSynchronizationFailed) {
+        this.seNtpSynchronizationFailed = seNtpSynchronizationFailed;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sePersistenceDetails
@@ -5128,6 +5155,7 @@ public class EventDetails  {
   Objects.equals(this.seDiscontinuousTimeChangeEventDetails, objEventDetails.seDiscontinuousTimeChangeEventDetails)&&
   Objects.equals(this.seHighIngressProcLatencyEventDetails, objEventDetails.seHighIngressProcLatencyEventDetails)&&
   Objects.equals(this.seVsDelFlowsDisrupted, objEventDetails.seVsDelFlowsDisrupted)&&
+  Objects.equals(this.seNtpSynchronizationFailed, objEventDetails.seNtpSynchronizationFailed)&&
   Objects.equals(this.seHmPoolDetails, objEventDetails.seHmPoolDetails)&&
   Objects.equals(this.seHmVsDetails, objEventDetails.seHmVsDetails)&&
   Objects.equals(this.sePersistenceDetails, objEventDetails.sePersistenceDetails)&&
@@ -5429,6 +5457,7 @@ public class EventDetails  {
                         sb.append("    seIpfailureEventDetails: ").append(toIndentedString(seIpfailureEventDetails)).append("\n");
                         sb.append("    seLicensedBandwdithExceededEventDetails: ").append(toIndentedString(seLicensedBandwdithExceededEventDetails)).append("\n");
                         sb.append("    seMemoryLimitEventDetails: ").append(toIndentedString(seMemoryLimitEventDetails)).append("\n");
+                        sb.append("    seNtpSynchronizationFailed: ").append(toIndentedString(seNtpSynchronizationFailed)).append("\n");
                         sb.append("    sePersistenceDetails: ").append(toIndentedString(sePersistenceDetails)).append("\n");
                         sb.append("    sePoolLbDetails: ").append(toIndentedString(sePoolLbDetails)).append("\n");
                         sb.append("    seReconcileDetails: ").append(toIndentedString(seReconcileDetails)).append("\n");

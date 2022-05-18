@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * The ClientFingerprints is a POJO class extends AviRestResource that used for creating
- * ClientFingerprints.
+ * The SeNtpSynchronizationFailed is a POJO class extends AviRestResource that used for creating
+ * SeNtpSynchronizationFailed.
  *
  * @version 1.0
  * @since 
@@ -20,92 +20,92 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ClientFingerprints  {
-    @JsonProperty("filtered_tls_fingerprint")
-    private String filteredTlsFingerprint = null;
+public class SeNtpSynchronizationFailed  {
+    @JsonProperty("ntp_servers")
+    private String ntpServers = null;
 
-    @JsonProperty("full_tls_fingerprint")
-    private String fullTlsFingerprint = null;
+    @JsonProperty("se_name")
+    private String seName = null;
 
-    @JsonProperty("tls_client_info")
-    private TlsClientInfo tlsClientInfo = null;
+    @JsonProperty("se_ref")
+    private String seRef = null;
 
 
 
     /**
      * This is the getter method this will return the attribute value.
-     * Message digest (md5) of filtered ja3 from clienthello.
-     * This can deviate from 'tls_fingerprint' because not all extensions are considered.
+     * List of ntp servers.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return filteredTlsFingerprint
+     * @return ntpServers
      */
-    public String getFilteredTlsFingerprint() {
-        return filteredTlsFingerprint;
+    public String getNtpServers() {
+        return ntpServers;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Message digest (md5) of filtered ja3 from clienthello.
-     * This can deviate from 'tls_fingerprint' because not all extensions are considered.
+     * List of ntp servers.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param filteredTlsFingerprint set the filteredTlsFingerprint.
+     * @param ntpServers set the ntpServers.
      */
-    public void setFilteredTlsFingerprint(String  filteredTlsFingerprint) {
-        this.filteredTlsFingerprint = filteredTlsFingerprint;
+    public void setNtpServers(String  ntpServers) {
+        this.ntpServers = ntpServers;
     }
 
     /**
      * This is the getter method this will return the attribute value.
-     * Message digest (md5) of ja3 from clienthello.
-     * Only present if the full tls fingerprint is different from the filtered fingerprint.
+     * Name of the se reporting this event.
+     * It is a reference to an object of type serviceengine.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return fullTlsFingerprint
+     * @return seName
      */
-    public String getFullTlsFingerprint() {
-        return fullTlsFingerprint;
+    public String getSeName() {
+        return seName;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Message digest (md5) of ja3 from clienthello.
-     * Only present if the full tls fingerprint is different from the filtered fingerprint.
+     * Name of the se reporting this event.
+     * It is a reference to an object of type serviceengine.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param fullTlsFingerprint set the fullTlsFingerprint.
+     * @param seName set the seName.
      */
-    public void setFullTlsFingerprint(String  fullTlsFingerprint) {
-        this.fullTlsFingerprint = fullTlsFingerprint;
+    public void setSeName(String  seName) {
+        this.seName = seName;
     }
 
     /**
      * This is the getter method this will return the attribute value.
-     * Values of selected fields from the clienthello.
+     * Uuid of the se responsible for this event.
+     * It is a reference to an object of type serviceengine.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return tlsClientInfo
+     * @return seRef
      */
-    public TlsClientInfo getTlsClientInfo() {
-        return tlsClientInfo;
+    public String getSeRef() {
+        return seRef;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Values of selected fields from the clienthello.
+     * Uuid of the se responsible for this event.
+     * It is a reference to an object of type serviceengine.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param tlsClientInfo set the tlsClientInfo.
+     * @param seRef set the seRef.
      */
-    public void setTlsClientInfo(TlsClientInfo tlsClientInfo) {
-        this.tlsClientInfo = tlsClientInfo;
+    public void setSeRef(String  seRef) {
+        this.seRef = seRef;
     }
 
 
@@ -117,19 +117,19 @@ public class ClientFingerprints  {
       if (o == null || getClass() != o.getClass()) {
           return false;
       }
-      ClientFingerprints objClientFingerprints = (ClientFingerprints) o;
-      return   Objects.equals(this.tlsClientInfo, objClientFingerprints.tlsClientInfo)&&
-  Objects.equals(this.fullTlsFingerprint, objClientFingerprints.fullTlsFingerprint)&&
-  Objects.equals(this.filteredTlsFingerprint, objClientFingerprints.filteredTlsFingerprint);
+      SeNtpSynchronizationFailed objSeNtpSynchronizationFailed = (SeNtpSynchronizationFailed) o;
+      return   Objects.equals(this.seName, objSeNtpSynchronizationFailed.seName)&&
+  Objects.equals(this.seRef, objSeNtpSynchronizationFailed.seRef)&&
+  Objects.equals(this.ntpServers, objSeNtpSynchronizationFailed.ntpServers);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class ClientFingerprints {\n");
-                  sb.append("    filteredTlsFingerprint: ").append(toIndentedString(filteredTlsFingerprint)).append("\n");
-                        sb.append("    fullTlsFingerprint: ").append(toIndentedString(fullTlsFingerprint)).append("\n");
-                        sb.append("    tlsClientInfo: ").append(toIndentedString(tlsClientInfo)).append("\n");
+      sb.append("class SeNtpSynchronizationFailed {\n");
+                  sb.append("    ntpServers: ").append(toIndentedString(ntpServers)).append("\n");
+                        sb.append("    seName: ").append(toIndentedString(seName)).append("\n");
+                        sb.append("    seRef: ").append(toIndentedString(seRef)).append("\n");
                   sb.append("}");
       return sb.toString();
     }
