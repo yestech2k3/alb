@@ -2,6 +2,7 @@ import copy
 import logging
 
 from avi.migrationtools.avi_migration_utils import MigrationUtil
+from avi.migrationtools.nsxt_converter.nsxt_util import is_vlan_configured_with_bgp, is_segment_configured_with_subnet
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.nsxt_util import get_vs_cloud_name, get_pool_segments
@@ -18,6 +19,7 @@ LOG = logging.getLogger(__name__)
 conv_utils = NsxtConvUtil()
 common_avi_util = MigrationUtil()
 vs_list_with_snat_deactivated = []
+vs_data_path_not_work =[]
 
 
 class VsConfigConv(object):
@@ -35,6 +37,7 @@ class VsConfigConv(object):
         self.rules_actions_na = nsxt_profile_attributes["HttpPolicySetRules_Skiped_List_Actions"]
         self.VS_client_ssl_indirect_attr = nsxt_profile_attributes["VS_client_ssl_indirect_attr"]
         self.VS_server_ssl_indirect_attr = nsxt_profile_attributes["VS_server_ssl_indirect_attr"]
+        self.vs_indirect_attr = nsxt_profile_attributes["VS_indirect_aatr"]
         self.supported_attr_httppolicyset = nsxt_profile_attributes["HttpPolicySetRules_Supported_Attributes"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
@@ -43,7 +46,7 @@ class VsConfigConv(object):
         self.pki_count = 0
 
     def convert(self, alb_config, nsx_lb_config, prefix, tenant, vs_state, controller_version,
-                vrf=None, segroup=None):
+                migration_input_config=None, vrf=None, segroup=None):
         '''
         LBVirtualServer to Avi Config vs converter
         '''
@@ -71,9 +74,10 @@ class VsConfigConv(object):
                 LOG.info('[Virtual Service] Migration started for VS {}'.format(lb_vs['display_name']))
                 # vs_name = lb_vs['name']
                 cloud_name = get_vs_cloud_name(lb_vs["display_name"])
-                if cloud_name == 'Cloud Not Found':
+                if cloud_name == 'Cloud Not Found' or not cloud_name:
                     conv_utils.add_status_row('virtualservice', None, lb_vs["display_name"],
                                               conv_const.STATUS_SKIPPED)
+                    LOG.warning("cloud is not configured for %s" % lb_vs["display_name"])
                     continue
                 name = lb_vs.get('display_name')
                 if prefix:
@@ -399,6 +403,14 @@ class VsConfigConv(object):
 
                     alb_vs["pool_group_ref"] = conv_utils.get_object_ref(
                         pg_obj["name"], 'poolgroup', tenant="admin", cloud_name=cloud_name)
+                    indirect = []
+                    u_ignore = []
+                    ignore_for_defaults = {}
+                    conv_status = conv_utils.get_conv_status(
+                        [], indirect, ignore_for_defaults, [],
+                        u_ignore, [])
+                    conv_utils.add_conv_status('poolgroup', None, pg_obj["name"], conv_status,
+                                               {'poolgroup': [pg_obj]})
 
                 if lb_vs.get('rules'):
 
@@ -416,7 +428,29 @@ class VsConfigConv(object):
                         alb_vs['http_policies'].append(http_policies)
                         alb_config['HTTPPolicySet'].append(policy)
 
-                indirect = []
+                # If vlan VS then check if VLAN network is configured as a BGP peer,
+                # if yes, then advertise bgp otherwise don't advertise
+                is_vlan_configured, vlan_segment,network_type, return_mesg = is_segment_configured_with_subnet\
+                    (lb_vs["display_name"], cloud_name)
+                if network_type == "Vlan":
+                    if is_vlan_configured:
+                        LOG.info("%s is configured with subnet" % lb_vs["display_name"])
+                        is_bgp_configured = is_vlan_configured_with_bgp\
+                            (cloud_name=cloud_name, tenant=tenant,vlan_segment=vlan_segment)
+                        if is_bgp_configured:
+                            if migration_input_config and migration_input_config.get('bgp_peer_configured_for_vlan'):
+                                alb_vs['enable_rhi'] = True
+                                LOG.info("ALB Plugin : vlan_configured_with_bgp : {}".format(vlan_segment))
+                        else:
+                            LOG.warning("%s vlan is not configured with bgp" % lb_vs["display_name"])
+                    else:
+                        LOG.warning("%s data path won't work as %s" % (lb_vs["display_name"],return_mesg))
+                        vs_data_path_not_work.append(lb_vs["display_name"])
+                # TODO check if the vs-segment is configured in bgp-profile using
+                # avi_rest_lib -> is_vlan_configured_with_bgp function
+                # TODO Add another condition in below 'if' and if both conditions true then enable rhi
+
+                indirect = self.vs_indirect_attr
                 u_ignore = []
                 ignore_for_defaults = {}
                 conv_status = conv_utils.get_conv_status(
@@ -707,13 +741,13 @@ jhiq
                 bme_priority = "0"
             pg_obj["members"].append(dict(
                 ratio="1",
-                priority_level=bme_priority,
+                priority_label=bme_priority,
                 pool_ref=conv_utils.get_object_ref(
                     new_pool["name"], 'pool', tenant="admin", cloud_name=cloud_name)
             ))
             pg_obj["members"].append(dict(
                     ratio="1",
-                    priority_level=bmd_priority,
+                    priority_label=bmd_priority,
                     pool_ref=conv_utils.get_object_ref(
                         alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
                 )
@@ -727,7 +761,7 @@ jhiq
                 priority = "0"
             pg_obj["members"].append(dict(
                 ratio="1",
-                priority_level=priority,
+                priority_label=priority,
                 pool_ref=conv_utils.get_object_ref(
                     alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
             ))
@@ -740,7 +774,7 @@ jhiq
                     priority = "1"
                 pg_obj["members"].append(dict(
                     ratio="1",
-                    priority_level=priority,
+                    priority_label=priority,
                     pool_ref=conv_utils.get_object_ref(
                         alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
                 ))

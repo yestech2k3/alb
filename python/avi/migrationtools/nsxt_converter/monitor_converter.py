@@ -338,10 +338,10 @@ class MonitorConfigConv(object):
             server_ssl_indirect_list = self.server_ssl_indirect_attr
             indirect = [val for val in server_ssl_skipped if val in server_ssl_indirect_list]
             server_ssl_skipped = [val for val in server_ssl_skipped if val not in server_ssl_indirect_list]
-            skipped = [key for key in skipped if key not in self.https_attr]
             if server_ssl_skipped:
                 skipped.append({"server_ssl": server_ssl_skipped})
 
+        skipped = [key for key in skipped if key not in self.https_attr]
         return skipped, indirect
 
     def convert_icmp(self, lb_hm, alb_hm, skipped):

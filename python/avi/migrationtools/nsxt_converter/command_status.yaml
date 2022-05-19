@@ -179,6 +179,7 @@ NSXT:
     - "admin_state"
     - "weight"
     - "max_concurrent_connections"
+    - 'backup_member'
 
     Pool_supported_attr_convert_member_group:
     - "group_path"
@@ -241,6 +242,7 @@ NSXT:
     - 'client_ssl_profile_binding'
     - 'server_ssl_profile_binding'
     - 'default_pool_member_ports'
+    - 'sorry_pool_path'
 
     VS_client_ssl_supported_attr:
     - 'ssl_profile_path'
@@ -259,6 +261,9 @@ NSXT:
     VS_na_list:
     - "log_significant_event_only"
 
+    VS_indirect_aatr:
+    - "access_log_enabled"
+
     VS_client_ssl_indirect_attr:
     - "certificate_chain_depth"
 
@@ -273,6 +278,7 @@ NSXT:
     - "display_name"
     - "id"
     - "resource_type"
+    - 'prefer_server_ciphers'
 
     SSLProfile_Client_Indirect_Attributes:
      - "is_secure"

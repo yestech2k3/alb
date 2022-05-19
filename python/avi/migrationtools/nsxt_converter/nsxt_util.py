@@ -11,6 +11,58 @@ from avi.sdk.avi_api import ApiSession
 
 pp = pprint.PrettyPrinter(indent=4)
 vs_details = {}
+controller_details = {}
+
+
+def is_segment_configured_with_subnet(vs_name, cloud_name):
+    vs_config = vs_details[vs_name]
+    network_type = vs_config["Network"]
+    if network_type == "Vlan":
+        if vs_config.get("Segments"):
+            vs_segment = vs_config["Segments"]
+            seg_id = vs_segment["name"]
+            session = ApiSession.get_session(controller_details.get("ip"), controller_details.get("username"),
+                                             controller_details.get("password"), tenant="admin",
+                                             api_version=controller_details.get("version"))
+            cloud = session.get("cloud/").json()["results"]
+            cloud_id = [cl.get("uuid") for cl in cloud if cl.get("name") == cloud_name]
+            segment_list = session.get("network/?&cloud_ref.uuid=" + cloud_id[0]).json()["results"]
+            segment = [seg for seg in segment_list if seg.get("name") == seg_id]
+            if segment[0].get("configured_subnets"):
+                if segment[0].get("configured_subnets")[0].get("prefix"):
+                    if segment[0].get("configured_subnets")[0].get("static_ip_ranges"):
+                        return True, segment[0], network_type, "Both are configured"
+                    else:
+                        return False , segment[0], network_type, "static ip pool is not configured"
+                else:
+                    return False, segment[0], network_type, "ip subnet is not configured"
+    return False, None, network_type, "overlay"
+
+
+def is_vlan_configured_with_bgp(cloud_name, tenant, vlan_segment):
+    session = ApiSession.get_session(controller_details.get("ip"), controller_details.get("username"),
+                                     controller_details.get("password"), tenant="admin",
+                                     api_version=controller_details.get("version"))
+    cloud = session.get("cloud/").json()["results"]
+    cloud_id = [cl.get("uuid") for cl in cloud if cl.get("name") == cloud_name]
+    """
+    Check if VLAN network is configured as a BGP peer
+    https://<controller-ip>/api/vrfcontext/?exclude=name.in&name.in=management&cloud_ref.uuid=<uuid>
+    """
+    network_info = session. \
+        get_object_by_name('vrfcontext', 'global',
+                           params={"exclude": "name.in",
+                                   "name.in": "management",
+                                   "cloud_ref.uuid": cloud_id[0]})
+    # LOG.info("ALB Plugin : vlan_configured_with_bgp : {}".format(network_info))
+    if network_info:
+        if network_info.get("bgp_profile"):
+            if network_info["bgp_profile"].get("peers"):
+                bgp_peers = network_info["bgp_profile"].get("peers")
+                is_vlan_bgp_peer = [peer for peer in bgp_peers if peer.get("network_ref") == vlan_segment.get("url")]
+                if is_vlan_bgp_peer:
+                    return True
+    return False
 
 
 def get_name_and_entity(url):
@@ -24,15 +76,21 @@ def get_name_and_entity(url):
 
 
 def get_vs_cloud_name(vs_name):
-    return vs_details[vs_name]["Cloud"]
+    if vs_details.get(vs_name):
+        return vs_details[vs_name]["Cloud"]
+    return None
 
 
 def get_lb_service_name(vs_name):
-    return vs_details[vs_name]["lb_name"]
+    if vs_details.get(vs_name):
+        return vs_details[vs_name]["lb_name"]
+    return None
 
 
 def get_pool_segments(vs_name, pool_ip):
-    vs = vs_details[vs_name]
+    vs = vs_details.get(vs_name, None)
+    if not vs:
+        return None
     segments = []
     if vs.get("Segments"):
         seg = vs["Segments"]
@@ -56,6 +114,12 @@ class NSXUtil():
         self.nsx_api_client = nsx_client_util.create_nsx_policy_api_client(
             nsx_un, nsx_pw, nsx_ip, nsx_port, auth_type=nsx_client_util.BASIC_AUTH)
         self.session = ApiSession.get_session(c_ip, c_un, c_pw, tenant="admin", api_version=c_vr)
+        controller_details["ip"] = c_ip
+        controller_details["password"] = c_pw
+        controller_details["username"] = c_un
+        controller_details["version"] = c_vr
+        controller_details["session"] = self.session
+
         self.cloud = self.session.get("cloud/").json()["results"]
         self.avi_vs_object = []
         self.avi_object_temp = {}
@@ -112,17 +176,30 @@ class NSXUtil():
                 if not monitor["_system_owned"]:
                     self.nsx_api_client.infra.LbMonitorProfiles.delete(monitor["id"])
 
-    def get_cloud_type(self, avi_cloud_list, tz_id):
+    def get_cloud_type(self, avi_cloud_list, tz_id, seg_id):
+        is_seg_present = False
         for cl in avi_cloud_list:
             if cl.get("vtype") == "CLOUD_NSXT":
                 if cl.get("nsxt_configuration"):
                     if cl["nsxt_configuration"].get("transport_zone"):
                         tz = cl["nsxt_configuration"].get("transport_zone")
-                    elif cl["nsxt_configuration"].get("management_network_config"):
-                        tz = cl["nsxt_configuration"]["management_network_config"].get("transport_zone")
+                    elif cl["nsxt_configuration"].get("data_network_config"):
+                        tz = cl["nsxt_configuration"]["data_network_config"].get("transport_zone")
+                        if cl["nsxt_configuration"]["data_network_config"].get("tz_type") == "OVERLAY":
+                            data_netwrk = cl["nsxt_configuration"]["data_network_config"]
+                            if data_netwrk.get("tier1_segment_config"):
+                                if data_netwrk["tier1_segment_config"].get("manual"):
+                                    tier1_lrs = data_netwrk["tier1_segment_config"]["manual"].get("tier1_lrs")
+                                    if tier1_lrs:
+                                        is_seg_present = [True for tier in tier1_lrs if
+                                                          get_name_and_entity(tier.get("segment_id"))[-1] == seg_id]
+                        elif cl["nsxt_configuration"]["data_network_config"].get("tz_type") == "VLAN":
+                            data_netwrk = cl["nsxt_configuration"]["data_network_config"]
+                            vlan_seg = data_netwrk.get("vlan_segments")
+                            is_seg_present = [True for seg in vlan_seg if get_name_and_entity(seg)[-1] == seg_id]
                     if tz.find("/") != -1:
                         tz = tz.split("/")[-1]
-                    if tz == tz_id:
+                    if tz == tz_id and is_seg_present:
                         return cl.get("name")
 
         return "Cloud Not Found"
@@ -130,6 +207,8 @@ class NSXUtil():
     def get_lb_services_details(self):
         lb_services = self.nsx_api_client.infra.LbServices.list().to_dict().get('results', [])
         for lb in lb_services:
+            if not lb.get("connectivity_path"):
+                continue
             tier = get_name_and_entity(lb["connectivity_path"])[-1]
             ls_id = self.nsx_api_client.infra.tier_1s.LocaleServices.list(tier).results[0].id
             interface_list = self.nsx_api_client.infra.tier_1s.locale_services.Interfaces.list(tier, ls_id).results
@@ -142,7 +221,7 @@ class NSXUtil():
                 segment = self.nsx_api_client.infra.Segments.get(segment_id)
                 tz_path = segment.transport_zone_path
                 tz_id = get_name_and_entity(tz_path)[-1]
-                cloud_name = self.get_cloud_type(self.cloud, tz_id)
+                cloud_name = self.get_cloud_type(self.cloud, tz_id, segment_id)
                 if hasattr(segment, "vlan_ids"):
                     network = "Vlan"
                 else:
@@ -167,6 +246,7 @@ class NSXUtil():
                         if gateway_name == tier:
                             tz_path = seg.get("transport_zone_path")
                             tz_id = get_name_and_entity(tz_path)[-1]
+                            cloud_name = self.get_cloud_type(self.cloud, tz_id, seg.get("id"))
                             if seg.get("vlan_ids"):
                                 network = "Vlan"
                             else:
@@ -175,7 +255,7 @@ class NSXUtil():
                                 subnets = []
                                 for subnet in seg["subnets"]:
                                     subnets.append({
-                                        "network_range" : subnet["network"]
+                                        "network_range": subnet["network"]
                                     })
                                 segments = {
                                     "name": seg.get("id"),
@@ -183,9 +263,8 @@ class NSXUtil():
                                 lb_details.append(segments)
                             break
 
-            cloud_name = self.get_cloud_type(self.cloud, tz_id)
             self.lb_services[lb["id"]] = {
-                "lb_name" : lb["id"],
+                "lb_name": lb["id"],
                 "Network": network,
                 "Cloud": cloud_name}
             if lb_details:
@@ -220,11 +299,13 @@ class NSXUtil():
                 'name': vs["display_name"],
                 'id': vs["id"]
             }
-            lb = get_name_and_entity(vs["lb_service_path"])[-1]
-            lb_details = self.lb_services.get(lb)
-            vs_object["Network_type"] = lb_details.get("Network")
-            vs_object["Cloud"] = lb_details.get("Cloud")
-            vs_details[vs["display_name"]] = lb_details
+            if vs.get("lb_service_path"):
+                lb = get_name_and_entity(vs["lb_service_path"])[-1]
+                lb_details = self.lb_services.get(lb)
+                if lb_details:
+                    vs_object["Network_type"] = lb_details.get("Network")
+                    vs_object["Cloud"] = lb_details.get("Cloud")
+                    vs_details[vs["display_name"]] = lb_details
             if vs["enabled"]:
                 vs_object["enabled"] = True
             else:

@@ -51,9 +51,9 @@ class PoolConfigConv(object):
                     'lb_algorithm': lb_type,
                 }
                 vs_list = [vs["display_name"] for vs in nsx_lb_config["LbVirtualServers"] if
-                           (vs.get("pool_path") and vs.get("pool_path").split("/")[-1] == name)]
+                           (vs.get("pool_path") and vs.get("pool_path").split("/")[-1] == lb_pl.get("id"))]
                 vs_list_for_sorry_pool = [vs["display_name"] for vs in nsx_lb_config["LbVirtualServers"] if
-                            (vs.get("sorry_pool_path") and vs.get("sorry_pool_path").split("/")[-1] == name)]
+                            (vs.get("sorry_pool_path") and vs.get("sorry_pool_path").split("/")[-1] == lb_pl.get("id"))]
                 if prefix:
                     name = prefix+"-"+name
                 pool_skip = True
@@ -65,6 +65,8 @@ class PoolConfigConv(object):
                             if vs in vs_pool_segment_list.keys():
                                 continue
                             lb = get_lb_service_name(vs)
+                            if not lb:
+                                continue
                             pool_segment = get_pool_segments(vs,
                                                              member["ip_address"])
                             if pool_segment:

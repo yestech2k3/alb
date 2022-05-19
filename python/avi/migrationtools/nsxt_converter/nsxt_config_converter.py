@@ -40,7 +40,8 @@ merge_object_mapping = {
 
 
 def convert(nsx_lb_config, input_path, output_path, tenant, prefix,
-            migrate_to, object_merge_check, controller_version, vs_state=False, vs_level_status=False, vrf=None,
+            migrate_to, object_merge_check, controller_version, migration_input_config=None,
+            vs_state=False, vs_level_status=False, vrf=None,
             segroup=None, not_in_use=True, custom_mapping=None):
     # load the yaml file attribute in nsxt_attributes.
     nsxt_attributes = conv_const.init()
@@ -75,9 +76,10 @@ def convert(nsx_lb_config, input_path, output_path, tenant, prefix,
         persist_conv = PersistantProfileConfigConv(nsxt_attributes, object_merge_check, merge_object_mapping, sys_dict)
         persist_conv.convert(avi_config_dict, nsx_lb_config, prefix,tenant)
 
-
         vs_converter = VsConfigConv(nsxt_attributes,object_merge_check, merge_object_mapping,sys_dict)
-        vs_converter.convert(avi_config_dict,nsx_lb_config, prefix,tenant,vs_state,controller_version,vrf,segroup)
+        vs_converter.convert(avi_config_dict, nsx_lb_config, prefix,
+                             tenant, vs_state, controller_version, migration_input_config,
+                             vrf, segroup)
 
         # Validating the aviconfig after generation
         conv_utils.validation(avi_config_dict)

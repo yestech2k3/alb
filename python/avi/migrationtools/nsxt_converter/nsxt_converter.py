@@ -14,7 +14,7 @@ from avi.migrationtools.avi_orphan_object import wipe_out_not_in_use
 from avi.migrationtools.nsxt_converter import nsxt_config_converter, vs_converter
 import argparse
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
-from avi.migrationtools.nsxt_converter.vs_converter import vs_list_with_snat_deactivated
+from avi.migrationtools.nsxt_converter.vs_converter import vs_list_with_snat_deactivated, vs_data_path_not_work
 
 ARG_CHOICES = {
     'option': ['cli-upload', 'auto-upload'],
@@ -62,6 +62,7 @@ class NsxtConverter(AviConverter):
         self.custom_config = args.custom_config
         self.traffic_enabled = args.traffic_enabled
         self.config_file = args.config_file
+        self.migration_input_file = args.migration_input_file
 
     def conver_lb_config(self):
 
@@ -103,6 +104,12 @@ class NsxtConverter(AviConverter):
             nsx_lb_config = source_file.read()
             nsx_lb_config = json.loads(nsx_lb_config)
 
+        migration_input_config = None
+        if self.migration_input_file:
+            migration_input_file = open(self.migration_input_file, "r")
+            migration_input_config = migration_input_file.read()
+            migration_input_config = json.loads(migration_input_config)
+
         if not nsx_lb_config:
             print('Not found NSX configuration file')
             return
@@ -114,6 +121,7 @@ class NsxtConverter(AviConverter):
         alb_config = nsxt_config_converter.convert(
             nsx_lb_config, input_path, output_path, self.tenant,
             self.prefix, self.migrate_to, self.object_merge_check, self.controller_version,
+            migration_input_config,
             self.vs_state,
             self.vs_level_status, self.vrf, self.segroup, self.not_in_use, custom_mappings
         )
@@ -132,6 +140,9 @@ class NsxtConverter(AviConverter):
             print('\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " +
                   "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + '\033[0m')
             print(vs_list_with_snat_deactivated)
+        if vs_data_path_not_work:
+            print("For following virtual service/s Data path won't work")
+            print(vs_data_path_not_work)
         print("Total Warning: ", get_count('warning'))
         print("Total Errors: ", get_count('error'))
         LOG.info("Total Warning: {}".format(get_count('warning')))
@@ -246,6 +257,8 @@ if __name__ == "__main__":
                         action="store_true")
     parser.add_argument('-f', '--config_file',
                         help='absolute path for nsx config file')
+    parser.add_argument('-i', '--migration_input_file',
+                        help='absolute path for nsx-t conversion input file')
 
     start = datetime.now()
     args = parser.parse_args()
