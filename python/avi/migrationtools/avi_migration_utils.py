@@ -135,6 +135,7 @@ class MigrationUtil(object):
             name = name.split('/')[1]
         if ' ' in tenant:
             tenant = tenant.split(' ')[-1]
+        tenant.strip()
         return tenant, name
 
     def create_self_signed_cert(self):
@@ -186,11 +187,7 @@ class MigrationUtil(object):
         :param profile_csv_list: List of profile(NsxT type) csv rows
         :return:
         """
-
-        pool_group_objects = [pool_group_object for pool_group_object in
-                              avi_config['PoolGroup'] if
-                              pool_group_object['name']
-                              == pool_group_name]
+        pool_group_objects = list(filter(lambda pg: pg["name"] == pool_group_name, avi_config['PoolGroup']))
         pool_members = pool_group_objects[0]['members']
         skipped_setting = {
             'pools': []
@@ -202,6 +199,7 @@ class MigrationUtil(object):
                 vs_ref, profile_csv_list, skipped_setting)
         if skipped_setting['pools']:
             return skipped_setting
+        return None
 
     def get_skipped_pool(self, avi_config, pool_name, pool_csv_rows,
                          csv_writer_dict_list, vs_ref, profile_csv_list,
@@ -243,19 +241,20 @@ class MigrationUtil(object):
                     pool_skipped_setting['pool_name'] = pool_name
                     pool_skipped_setting['health_monitor'] = \
                         health_monitor_skipped_setting
-            if 'ssl_key_and_certificate_ref' in pool_object[0] and \
-                    pool_object[0]['ssl_key_and_certificate_ref']:
+            if pool_object[0].get('ssl_key_and_certificate_ref', None):
                 ssl_key_cert = self.get_name(
                     pool_object[0]['ssl_key_and_certificate_ref'])
+                LOG.debug('[SslKeyAndCertificate] certificate {}'.format(ssl_key_cert))
                 sslkc_skip = self.get_csv_skipped_list(
                     profile_csv_list, ssl_key_cert, vs_ref,
                     field_key='ssl_cert_key')
                 if sslkc_skip:
+                    LOG.debug('[SslKeyAndCertificate] Skipped Attribute {}'.format(sslkc_skip))
                     pool_skipped_setting['pool_name'] = pool_name
                     pool_skipped_setting['ssl_key_and_certificate'] = sslkc_skip
-
-            if 'ssl_profile_ref' in pool_object[0] and \
-                    pool_object[0]['ssl_profile_ref']:
+            else:
+                LOG.info('Ssl key and certificate ref is not found')
+            if pool_object[0].get('ssl_profile_ref', None):
                 name, skipped = self.get_ssl_profile_skipped(
                     profile_csv_list, pool_object[0]['ssl_profile_ref'], vs_ref)
                 if skipped:
@@ -279,6 +278,8 @@ class MigrationUtil(object):
 
             if pool_skipped_setting:
                 skipped_setting['pools'].append(pool_skipped_setting)
+        else:
+            LOG.debug('[PoolObject] Not Found for pool {}'.format(pool_name))
 
     def get_pool_skipped(self, csv_objects, pool_name, vs_ref):
         """

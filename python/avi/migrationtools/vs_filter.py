@@ -19,7 +19,7 @@ path_key_map = mg_util.get_path_key_map()
 warning_list = []
 
 
-def filter_for_vs(avi_config, vs_names):
+def filter_for_vs(avi_config, vs_names, prefix=None):
     """
     Filters vs and its references from full configuration
     :param avi_config: full configuration
@@ -35,6 +35,9 @@ def filter_for_vs(avi_config, vs_names):
         virtual_services = vs_names
 
     for vs_name in virtual_services:
+        if prefix:
+            if not vs_name.startswith(prefix):
+                vs_name = prefix+"-"+vs_name
         vs = [vs for vs in avi_config['VirtualService']
               if vs['name'] == vs_name]
         if not vs:

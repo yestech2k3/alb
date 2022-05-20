@@ -14,8 +14,8 @@ vs_details = {}
 controller_details = {}
 
 
-def is_segment_configured_with_subnet(vs_name, cloud_name):
-    vs_config = vs_details[vs_name]
+def is_segment_configured_with_subnet(vs_id, cloud_name):
+    vs_config = vs_details[vs_id]
     network_type = vs_config["Network"]
     if network_type == "Vlan":
         if vs_config.get("Segments"):
@@ -75,20 +75,20 @@ def get_name_and_entity(url):
     return parsed[-2], parsed[-1]
 
 
-def get_vs_cloud_name(vs_name):
-    if vs_details.get(vs_name):
-        return vs_details[vs_name]["Cloud"]
+def get_vs_cloud_name(vs_id):
+    if vs_details.get(vs_id):
+        return vs_details[vs_id]["Cloud"]
     return None
 
 
-def get_lb_service_name(vs_name):
-    if vs_details.get(vs_name):
-        return vs_details[vs_name]["lb_name"]
+def get_lb_service_name(vs_id):
+    if vs_details.get(vs_id):
+        return vs_details[vs_id]["lb_name"]
     return None
 
 
-def get_pool_segments(vs_name, pool_ip):
-    vs = vs_details.get(vs_name, None)
+def get_pool_segments(vs_id, pool_ip):
+    vs = vs_details.get(vs_id, None)
     if not vs:
         return None
     segments = []
@@ -305,7 +305,8 @@ class NSXUtil():
                 if lb_details:
                     vs_object["Network_type"] = lb_details.get("Network")
                     vs_object["Cloud"] = lb_details.get("Cloud")
-                    vs_details[vs["display_name"]] = lb_details
+                    lb_details["vs_name"] = vs["display_name"]
+                    vs_details[vs["id"]] = lb_details
             if vs["enabled"]:
                 vs_object["enabled"] = True
             else:
@@ -365,13 +366,12 @@ class NSXUtil():
                 enab_vs += 1
             else:
                 disab_vs += 1
-            self.avi_object_temp[vs_object['name']] = vs_object
+            self.avi_object_temp[vs_object['id']] = vs_object
         self.avi_vs_object.append(self.avi_object_temp)
         vs_stats["complex_vs"] = vs_with_rules
         vs_stats["normal_vs"] = normal_vs
         vs_stats["enabled_vs"] = enab_vs
         vs_stats["disabled_vs"] = disab_vs
-        print(vs_stats)
 
     def get_pool_details(self):
         temp_pool_list = {}
@@ -425,9 +425,9 @@ class NSXUtil():
         pool_list = []
         vs_list = []
 
-        for vs in obj_data.keys():
+        for vs_id in obj_data.keys():
             total_vs = total_vs + 1
-            vsval = obj_data[vs]
+            vsval = obj_data[vs_id]
             if vsval.get("rules"):
                 total_complex_vs += 1
             if vsval.get("vs_type") == "L4":
@@ -492,9 +492,9 @@ class NSXUtil():
         worksheet.write("F1", "Network", bold)
         worksheet.write("G1", "Cloud", bold)
         init = 0
-        for vs in obj_data.keys():
+        for vs_id in obj_data.keys():
             row += 1
-            vsval = obj_data[vs]
+            vsval = obj_data[vs_id]
             vs_id = vsval["id"]
             vs_name = vsval["name"]
             worksheet.write(row, 0, vs_name, bold)

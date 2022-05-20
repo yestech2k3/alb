@@ -216,6 +216,8 @@ NSXT:
     - "resource_type"
     - "id"
     - "idle_timeout"
+    - 'ha_flow_mirroring_enabled'
+    - 'flow_mirroring_enabled'
 
     VS_supported_attr:
     - 'application_profile_path'
@@ -316,6 +318,9 @@ NSXT:
 
     Persistence_indirect_cookie:
     - "cookie_garble"
+
+    Persistence_na_attr:
+    - "persistence_shared"
 
     HttpPolicySetRules_Supported_Attributes:
     - "match_conditions"

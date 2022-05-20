@@ -23,6 +23,7 @@ class PersistantProfileConfigConv(object):
         self.common_na_attr = nsxt_profile_attributes['Common_Na_List']
         self.na_attr_source = nsxt_profile_attributes["SourcePersistenceProfile_NA_Attributes"]
         self.indirect_attr_cookie = nsxt_profile_attributes["Persistence_indirect_cookie"]
+        self.persistence_na_attr = nsxt_profile_attributes["Persistence_na_attr"]
         self.object_merge_check = object_merge_check
         self.merge_object_mapping = merge_object_mapping
         self.sys_dict = sys_dict
@@ -63,12 +64,13 @@ class PersistantProfileConfigConv(object):
                 cookie_skipped_list, source_skipped_list = [], []
                 if pp_type == "LBCookiePersistenceProfile":
                     na_attrs = [val for val in lb_pp.keys()
-                                if val in self.common_na_attr]
+                                if val in self.common_na_attr or val in self.persistence_na_attr]
                     na_list.append(na_attrs)
                     skipped, cookie_skipped_list = self.convert_cookie(lb_pp, alb_pp, skipped, "admin")
                 elif pp_type == "LBSourceIpPersistenceProfile":
                     na_attrs = [val for val in lb_pp.keys()
-                                if val in self.common_na_attr or val in self.na_attr_source]
+                                if val in self.common_na_attr or val in self.na_attr_source
+                                or val in self.persistence_na_attr]
                     na_list.append(na_attrs)
                     skipped = self.convert_source(lb_pp, alb_pp, skipped, "admin")
                     indirect = self.indirect_attr_cookie

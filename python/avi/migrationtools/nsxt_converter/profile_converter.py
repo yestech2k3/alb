@@ -48,8 +48,10 @@ class ProfileConfigConv(object):
                 name = lb_pr.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
+                tenant, t_name = conv_utils.get_tenant_ref(tenant)
                 alb_pr = dict(
                     name=name,
+                    tenant_ref=conv_utils.get_object_ref(tenant, 'tenant')
                 )
 
                 if lb_pr['resource_type'] == 'LBHttpProfile':
@@ -174,8 +176,6 @@ class ProfileConfigConv(object):
                                                                                      conv_status['skipped']))
 
     def convert_http(self, alb_pr, lb_pr):
-        tenant, name = conv_utils.get_tenant_ref("admin")
-        alb_pr['tenant_ref'] = conv_utils.get_object_ref(tenant, 'tenant')
         alb_pr['type'] = 'APPLICATION_PROFILE_TYPE_HTTP'
         alb_pr['http_profile'] = dict(
             xff_enabled=lb_pr.get('xForwardedFor', False),
@@ -198,16 +198,17 @@ class ProfileConfigConv(object):
             type='PROTOCOL_TYPE_UDP_FAST_PATH',
             udp_fast_path_profile=self.fast_profile_path(lb_pr)
         )
+        alb_pr["connection_mirror"] = lb_pr.get("flow_mirroring_enabled")
 
     def convert_tcp(self, alb_pr, lb_pr):
         alb_pr['profile'] = dict(
             type='PROTOCOL_TYPE_TCP_FAST_PATH',
             tcp_fast_path_profile=self.fast_profile_path(lb_pr)
         )
+        alb_pr["connection_mirror"] = lb_pr.get("ha_flow_mirroring_enabled")
 
     def fast_profile_path(self, lb_pr):
         path = dict(
-            session_idle_timeout=lb_pr.get('idle_timeout'),
-            connection_mirror=lb_pr.get("ha_flow_mirroring_enabled")
+            session_idle_timeout=lb_pr.get('idle_timeout')
         )
         return path

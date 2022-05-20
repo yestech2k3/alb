@@ -50,9 +50,9 @@ class PoolConfigConv(object):
                 alb_pl = {
                     'lb_algorithm': lb_type,
                 }
-                vs_list = [vs["display_name"] for vs in nsx_lb_config["LbVirtualServers"] if
+                vs_list = [vs["id"] for vs in nsx_lb_config["LbVirtualServers"] if
                            (vs.get("pool_path") and vs.get("pool_path").split("/")[-1] == lb_pl.get("id"))]
-                vs_list_for_sorry_pool = [vs["display_name"] for vs in nsx_lb_config["LbVirtualServers"] if
+                vs_list_for_sorry_pool = [vs["id"] for vs in nsx_lb_config["LbVirtualServers"] if
                             (vs.get("sorry_pool_path") and vs.get("sorry_pool_path").split("/")[-1] == lb_pl.get("id"))]
                 if prefix:
                     name = prefix+"-"+name
@@ -61,59 +61,59 @@ class PoolConfigConv(object):
                 if lb_pl.get("members") and vs_list:
                     for member in lb_pl.get("members"):
                         lb_list = {}
-                        for vs in vs_list:
-                            if vs in vs_pool_segment_list.keys():
+                        for vs_id in vs_list:
+                            if vs_id in vs_pool_segment_list.keys():
                                 continue
-                            lb = get_lb_service_name(vs)
+                            lb = get_lb_service_name(vs_id)
                             if not lb:
                                 continue
-                            pool_segment = get_pool_segments(vs,
+                            pool_segment = get_pool_segments(vs_id,
                                                              member["ip_address"])
                             if pool_segment:
                                 if lb in lb_list.keys():
-                                    vs_pool_segment_list[vs] = lb_list[lb]
+                                    vs_pool_segment_list[vs_id] = lb_list[lb]
                                     continue
 
                                 pool_skip = False
                                 if pool_count == 0:
-                                    vs_pool_segment_list[vs] = {
+                                    vs_pool_segment_list[vs_id] = {
                                         "pool_name": name,
                                         "pool_segment": pool_segment
                                     }
-                                    lb_list[lb] = vs_pool_segment_list[vs]
+                                    lb_list[lb] = vs_pool_segment_list[vs_id]
 
                                 else:
-                                    vs_pool_segment_list[vs] = {
+                                    vs_pool_segment_list[vs_id] = {
                                         "pool_name": '%s-%s' % (name, pool_segment[0]["subnets"]["network_range"]),
                                         "pool_segment": pool_segment
                                     }
-                                    lb_list[lb] = vs_pool_segment_list[vs]
+                                    lb_list[lb] = vs_pool_segment_list[vs_id]
                                 pool_count += 1
-                        for vs in vs_list_for_sorry_pool:
-                            if vs in vs_sorry_pool_segment_list.keys():
+                        for vs_id in vs_list_for_sorry_pool:
+                            if vs_id in vs_sorry_pool_segment_list.keys():
                                 continue
-                            lb = get_lb_service_name(vs)
-                            pool_segment = get_pool_segments(vs,
+                            lb = get_lb_service_name(vs_id)
+                            pool_segment = get_pool_segments(vs_id,
                                                              member["ip_address"])
                             if pool_segment:
                                 if lb in lb_list.keys():
-                                    vs_sorry_pool_segment_list[vs] = lb_list[lb]
+                                    vs_sorry_pool_segment_list[vs_id] = lb_list[lb]
                                     continue
 
                                 pool_skip = False
                                 if pool_count == 0:
-                                    vs_sorry_pool_segment_list[vs] = {
+                                    vs_sorry_pool_segment_list[vs_id] = {
                                         "pool_name": name,
                                         "pool_segment": pool_segment
                                     }
-                                    lb_list[lb] = vs_sorry_pool_segment_list[vs]
+                                    lb_list[lb] = vs_sorry_pool_segment_list[vs_id]
 
                                 else:
-                                    vs_sorry_pool_segment_list[vs] = {
+                                    vs_sorry_pool_segment_list[vs_id] = {
                                         "pool_name": '%s-%s' % (name, pool_segment[0]["subnets"]["network_range"]),
                                         "pool_segment": pool_segment
                                     }
-                                    lb_list[lb] = vs_sorry_pool_segment_list[vs]
+                                    lb_list[lb] = vs_sorry_pool_segment_list[vs_id]
                                 pool_count += 1
 
                     if pool_skip:
