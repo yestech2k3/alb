@@ -241,7 +241,7 @@ type AnalyticsProfile struct {
 	// Penalty for allowing weak signature algorithm(s). Allowed values are 0-5. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 1.0), Basic edition(Allowed values- 1.0), Enterprise with Cloud Services edition.
 	HsSecurityWeakSignatureAlgoPenalty *float64 `json:"hs_security_weak_signature_algo_penalty,omitempty"`
 
-	// Influence the audit of ingress latency and connection establishement time. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	// Deprecated in 22.1.1. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	LatencyAuditProps *LatencyAuditProperties `json:"latency_audit_props,omitempty"`
 
 	// List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
@@ -268,6 +268,9 @@ type AnalyticsProfile struct {
 
 	//  It is a reference to an object of type Tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	TenantRef *string `json:"tenant_ref,omitempty"`
+
+	// Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	TimeTrackerProps *TimeTrackerProperties `json:"time_tracker_props,omitempty"`
 
 	// url
 	// Read Only: true

@@ -437,6 +437,9 @@ type EventDetails struct {
 	// Inter-SE datapath heartbeat recovered. One event is generated when heartbeat recovers. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeHbRecoveredEventDetails *SeHbRecoveredEventDetails `json:"se_hb_recovered_event_details,omitempty"`
 
+	// Egress queueing latency from proxy to dispatcher. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	SeHighEgressProcLatencyEventDetails *SeHighEgressProcLatencyEventDetails `json:"se_high_egress_proc_latency_event_details,omitempty"`
+
 	//  Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	SeHighIngressProcLatencyEventDetails *SeHighIngressProcLatencyEventDetails `json:"se_high_ingress_proc_latency_event_details,omitempty"`
 

@@ -37,6 +37,7 @@ type AviClient struct {
 	CertificateManagementProfile    *CertificateManagementProfileClient
 	Cloud                           *CloudClient
 	CloudConnectorUser              *CloudConnectorUserClient
+	CloudInventory                  *CloudInventoryClient
 	CloudProperties                 *CloudPropertiesClient
 	CloudRuntime                    *CloudRuntimeClient
 	ClusterCloudDetails             *ClusterCloudDetailsClient
@@ -52,11 +53,14 @@ type AviClient struct {
 	ErrorPageBody                   *ErrorPageBodyClient
 	ErrorPageProfile                *ErrorPageProfileClient
 	FederationCheckpoint            *FederationCheckpointClient
+	FederationCheckpointInventory   *FederationCheckpointInventoryClient
 	FileObject                      *FileObjectClient
 	GeoDB                           *GeoDBClient
 	Gslb                            *GslbClient
 	GslbGeoDbProfile                *GslbGeoDbProfileClient
+	GslbInventory                   *GslbInventoryClient
 	GslbService                     *GslbServiceClient
+	GslbServiceInventory            *GslbServiceInventoryClient
 	HTTPPolicySet                   *HTTPPolicySetClient
 	HardwareSecurityModuleGroup     *HardwareSecurityModuleGroupClient
 	HealthMonitor                   *HealthMonitorClient
@@ -78,6 +82,7 @@ type AviClient struct {
 	MicroServiceGroup               *MicroServiceGroupClient
 	NatPolicy                       *NatPolicyClient
 	Network                         *NetworkClient
+	NetworkInventory                *NetworkInventoryClient
 	NetworkProfile                  *NetworkProfileClient
 	NetworkRuntime                  *NetworkRuntimeClient
 	NetworkSecurityPolicy           *NetworkSecurityPolicyClient
@@ -88,6 +93,8 @@ type AviClient struct {
 	Pool                            *PoolClient
 	PoolGroup                       *PoolGroupClient
 	PoolGroupDeploymentPolicy       *PoolGroupDeploymentPolicyClient
+	PoolGroupInventory              *PoolGroupInventoryClient
+	PoolInventory                   *PoolInventoryClient
 	PriorityLabels                  *PriorityLabelsClient
 	ProtocolParser                  *ProtocolParserClient
 	Role                            *RoleClient
@@ -106,6 +113,8 @@ type AviClient struct {
 	ServerAutoScalePolicy           *ServerAutoScalePolicyClient
 	ServiceEngine                   *ServiceEngineClient
 	ServiceEngineGroup              *ServiceEngineGroupClient
+	ServiceEngineGroupInventory     *ServiceEngineGroupInventoryClient
+	ServiceEngineInventory          *ServiceEngineInventoryClient
 	SiteVersion                     *SiteVersionClient
 	SnmpTrapProfile                 *SnmpTrapProfileClient
 	StatediffOperation              *StatediffOperationClient
@@ -135,11 +144,14 @@ type AviClient struct {
 	VirtualService                  *VirtualServiceClient
 	VrfContext                      *VrfContextClient
 	VsGs                            *VsGsClient
+	VsInventory                     *VsInventoryClient
 	VsVip                           *VsVipClient
+	VsvipInventory                  *VsvipInventoryClient
 	WafApplicationSignatureProvider *WafApplicationSignatureProviderClient
 	WafCRS                          *WafCRSClient
 	WafPolicy                       *WafPolicyClient
 	WafPolicyPSMGroup               *WafPolicyPSMGroupClient
+	WafPolicyPSMGroupInventory      *WafPolicyPSMGroupInventoryClient
 	WafProfile                      *WafProfileClient
 	Webhook                         *WebhookClient
 }
@@ -179,6 +191,7 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.CertificateManagementProfile = NewCertificateManagementProfileClient(aviSession)
 	aviClient.Cloud = NewCloudClient(aviSession)
 	aviClient.CloudConnectorUser = NewCloudConnectorUserClient(aviSession)
+	aviClient.CloudInventory = NewCloudInventoryClient(aviSession)
 	aviClient.CloudProperties = NewCloudPropertiesClient(aviSession)
 	aviClient.CloudRuntime = NewCloudRuntimeClient(aviSession)
 	aviClient.ClusterCloudDetails = NewClusterCloudDetailsClient(aviSession)
@@ -194,11 +207,14 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.ErrorPageBody = NewErrorPageBodyClient(aviSession)
 	aviClient.ErrorPageProfile = NewErrorPageProfileClient(aviSession)
 	aviClient.FederationCheckpoint = NewFederationCheckpointClient(aviSession)
+	aviClient.FederationCheckpointInventory = NewFederationCheckpointInventoryClient(aviSession)
 	aviClient.FileObject = NewFileObjectClient(aviSession)
 	aviClient.GeoDB = NewGeoDBClient(aviSession)
 	aviClient.Gslb = NewGslbClient(aviSession)
 	aviClient.GslbGeoDbProfile = NewGslbGeoDbProfileClient(aviSession)
+	aviClient.GslbInventory = NewGslbInventoryClient(aviSession)
 	aviClient.GslbService = NewGslbServiceClient(aviSession)
+	aviClient.GslbServiceInventory = NewGslbServiceInventoryClient(aviSession)
 	aviClient.HTTPPolicySet = NewHTTPPolicySetClient(aviSession)
 	aviClient.HardwareSecurityModuleGroup = NewHardwareSecurityModuleGroupClient(aviSession)
 	aviClient.HealthMonitor = NewHealthMonitorClient(aviSession)
@@ -220,6 +236,7 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.MicroServiceGroup = NewMicroServiceGroupClient(aviSession)
 	aviClient.NatPolicy = NewNatPolicyClient(aviSession)
 	aviClient.Network = NewNetworkClient(aviSession)
+	aviClient.NetworkInventory = NewNetworkInventoryClient(aviSession)
 	aviClient.NetworkProfile = NewNetworkProfileClient(aviSession)
 	aviClient.NetworkRuntime = NewNetworkRuntimeClient(aviSession)
 	aviClient.NetworkSecurityPolicy = NewNetworkSecurityPolicyClient(aviSession)
@@ -230,6 +247,8 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.Pool = NewPoolClient(aviSession)
 	aviClient.PoolGroup = NewPoolGroupClient(aviSession)
 	aviClient.PoolGroupDeploymentPolicy = NewPoolGroupDeploymentPolicyClient(aviSession)
+	aviClient.PoolGroupInventory = NewPoolGroupInventoryClient(aviSession)
+	aviClient.PoolInventory = NewPoolInventoryClient(aviSession)
 	aviClient.PriorityLabels = NewPriorityLabelsClient(aviSession)
 	aviClient.ProtocolParser = NewProtocolParserClient(aviSession)
 	aviClient.Role = NewRoleClient(aviSession)
@@ -248,6 +267,8 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.ServerAutoScalePolicy = NewServerAutoScalePolicyClient(aviSession)
 	aviClient.ServiceEngine = NewServiceEngineClient(aviSession)
 	aviClient.ServiceEngineGroup = NewServiceEngineGroupClient(aviSession)
+	aviClient.ServiceEngineGroupInventory = NewServiceEngineGroupInventoryClient(aviSession)
+	aviClient.ServiceEngineInventory = NewServiceEngineInventoryClient(aviSession)
 	aviClient.SiteVersion = NewSiteVersionClient(aviSession)
 	aviClient.SnmpTrapProfile = NewSnmpTrapProfileClient(aviSession)
 	aviClient.StatediffOperation = NewStatediffOperationClient(aviSession)
@@ -277,11 +298,14 @@ func NewAviClient(host string, username string, options ...func(*session.AviSess
 	aviClient.VirtualService = NewVirtualServiceClient(aviSession)
 	aviClient.VrfContext = NewVrfContextClient(aviSession)
 	aviClient.VsGs = NewVsGsClient(aviSession)
+	aviClient.VsInventory = NewVsInventoryClient(aviSession)
 	aviClient.VsVip = NewVsVipClient(aviSession)
+	aviClient.VsvipInventory = NewVsvipInventoryClient(aviSession)
 	aviClient.WafApplicationSignatureProvider = NewWafApplicationSignatureProviderClient(aviSession)
 	aviClient.WafCRS = NewWafCRSClient(aviSession)
 	aviClient.WafPolicy = NewWafPolicyClient(aviSession)
 	aviClient.WafPolicyPSMGroup = NewWafPolicyPSMGroupClient(aviSession)
+	aviClient.WafPolicyPSMGroupInventory = NewWafPolicyPSMGroupInventoryClient(aviSession)
 	aviClient.WafProfile = NewWafProfileClient(aviSession)
 	aviClient.Webhook = NewWebhookClient(aviSession)
 	return &aviClient, nil
