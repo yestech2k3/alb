@@ -37,7 +37,7 @@ public class LatencyAuditProperties  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Audit tcp connection establishment time.
+     * Deprecated in 22.1.1.
      * Enum options - LATENCY_AUDIT_OFF, LATENCY_AUDIT_ON, LATENCY_AUDIT_ON_WITH_SIG.
      * Field introduced in 21.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -50,7 +50,7 @@ public class LatencyAuditProperties  {
 
     /**
      * This is the setter method to the attribute.
-     * Audit tcp connection establishment time.
+     * Deprecated in 22.1.1.
      * Enum options - LATENCY_AUDIT_OFF, LATENCY_AUDIT_ON, LATENCY_AUDIT_ON_WITH_SIG.
      * Field introduced in 21.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -63,7 +63,7 @@ public class LatencyAuditProperties  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Maximum threshold for connection establishment time.
+     * Deprecated in 22.1.1.
      * Field introduced in 21.1.1.
      * Unit is milliseconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -76,7 +76,7 @@ public class LatencyAuditProperties  {
 
     /**
      * This is the setter method to the attribute.
-     * Maximum threshold for connection establishment time.
+     * Deprecated in 22.1.1.
      * Field introduced in 21.1.1.
      * Unit is milliseconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -89,7 +89,7 @@ public class LatencyAuditProperties  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Audit dispatcher to proxy latency.
+     * Deprecated in 22.1.1.
      * Enum options - LATENCY_AUDIT_OFF, LATENCY_AUDIT_ON, LATENCY_AUDIT_ON_WITH_SIG.
      * Field introduced in 21.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -102,7 +102,7 @@ public class LatencyAuditProperties  {
 
     /**
      * This is the setter method to the attribute.
-     * Audit dispatcher to proxy latency.
+     * Deprecated in 22.1.1.
      * Enum options - LATENCY_AUDIT_OFF, LATENCY_AUDIT_ON, LATENCY_AUDIT_ON_WITH_SIG.
      * Field introduced in 21.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -115,7 +115,7 @@ public class LatencyAuditProperties  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Maximum latency threshold between dispatcher and proxy.
+     * Deprecated in 22.1.1.
      * Field introduced in 21.1.1.
      * Unit is milliseconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -128,7 +128,7 @@ public class LatencyAuditProperties  {
 
     /**
      * This is the setter method to the attribute.
-     * Maximum latency threshold between dispatcher and proxy.
+     * Deprecated in 22.1.1.
      * Field introduced in 21.1.1.
      * Unit is milliseconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.

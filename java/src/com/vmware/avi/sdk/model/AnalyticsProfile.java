@@ -273,6 +273,9 @@ public class AnalyticsProfile extends AviRestResource  {
     @JsonProperty("tenant_ref")
     private String tenantRef = null;
 
+    @JsonProperty("time_tracker_props")
+    private TimeTrackerProperties timeTrackerProps = null;
+
     @JsonProperty("url")
     private String url = "url";
 
@@ -2275,7 +2278,7 @@ public class AnalyticsProfile extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Influence the audit of ingress latency and connection establishement time.
+     * Deprecated in 22.1.1.
      * Field introduced in 21.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -2287,7 +2290,7 @@ public class AnalyticsProfile extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Influence the audit of ingress latency and connection establishement time.
+     * Deprecated in 22.1.1.
      * Field introduced in 21.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -2539,6 +2542,30 @@ public class AnalyticsProfile extends AviRestResource  {
     public void setTenantRef(String  tenantRef) {
         this.tenantRef = tenantRef;
     }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Protobuf versioning for config pbs.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return timeTrackerProps
+     */
+    public TimeTrackerProperties getTimeTrackerProps() {
+        return timeTrackerProps;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Protobuf versioning for config pbs.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param timeTrackerProps set the timeTrackerProps.
+     */
+    public void setTimeTrackerProps(TimeTrackerProperties timeTrackerProps) {
+        this.timeTrackerProps = timeTrackerProps;
+    }
     /**
      * This is the getter method this will return the attribute value.
      * Avi controller URL of the object.
@@ -2673,7 +2700,8 @@ public class AnalyticsProfile extends AviRestResource  {
   Objects.equals(this.enableSeAnalytics, objAnalyticsProfile.enableSeAnalytics)&&
   Objects.equals(this.enableOndemandMetrics, objAnalyticsProfile.enableOndemandMetrics)&&
   Objects.equals(this.markers, objAnalyticsProfile.markers)&&
-  Objects.equals(this.latencyAuditProps, objAnalyticsProfile.latencyAuditProps);
+  Objects.equals(this.latencyAuditProps, objAnalyticsProfile.latencyAuditProps)&&
+  Objects.equals(this.timeTrackerProps, objAnalyticsProfile.timeTrackerProps);
     }
 
     @Override
@@ -2764,6 +2792,7 @@ public class AnalyticsProfile extends AviRestResource  {
                         sb.append("    sensitiveLogProfile: ").append(toIndentedString(sensitiveLogProfile)).append("\n");
                         sb.append("    sipLogDepth: ").append(toIndentedString(sipLogDepth)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
+                        sb.append("    timeTrackerProps: ").append(toIndentedString(timeTrackerProps)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
                   sb.append("}");
       return sb.toString();

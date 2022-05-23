@@ -192,6 +192,9 @@ public class ServiceEngineGroup extends AviRestResource  {
     @JsonProperty("dp_hb_timeout_count")
     private Integer dpHbTimeoutCount = 10;
 
+    @JsonProperty("dpdk_gro_timeout_interval")
+    private Integer dpdkGroTimeoutInterval = 50;
+
     @JsonProperty("enable_gratarp_permanent")
     private Boolean enableGratarpPermanent = false;
 
@@ -653,6 +656,9 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     @JsonProperty("se_thread_multiplier")
     private Integer seThreadMultiplier = 1;
+
+    @JsonProperty("se_time_tracker_props")
+    private SETimeTrackerProperties seTimeTrackerProps = null;
 
     @JsonProperty("se_tracert_port_range")
     private PortRange seTracertPortRange = null;
@@ -2383,6 +2389,36 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setDpHbTimeoutCount(Integer  dpHbTimeoutCount) {
         this.dpHbTimeoutCount = dpHbTimeoutCount;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * The timeout for gro coalescing interval.
+     * 0 indicates non-timer based gro.
+     * Allowed values are 0-900.
+     * Field introduced in 22.1.1.
+     * Unit is microseconds.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 50.
+     * @return dpdkGroTimeoutInterval
+     */
+    public Integer getDpdkGroTimeoutInterval() {
+        return dpdkGroTimeoutInterval;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * The timeout for gro coalescing interval.
+     * 0 indicates non-timer based gro.
+     * Allowed values are 0-900.
+     * Field introduced in 22.1.1.
+     * Unit is microseconds.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 50.
+     * @param dpdkGroTimeoutInterval set the dpdkGroTimeoutInterval.
+     */
+    public void setDpdkGroTimeoutInterval(Integer  dpdkGroTimeoutInterval) {
+        this.dpdkGroTimeoutInterval = dpdkGroTimeoutInterval;
     }
 
     /**
@@ -6462,6 +6498,30 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Protobuf versioning for config pbs.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return seTimeTrackerProps
+     */
+    public SETimeTrackerProperties getSeTimeTrackerProps() {
+        return seTimeTrackerProps;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Protobuf versioning for config pbs.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param seTimeTrackerProps set the seTimeTrackerProps.
+     */
+    public void setSeTimeTrackerProps(SETimeTrackerProperties seTimeTrackerProps) {
+        this.seTimeTrackerProps = seTimeTrackerProps;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Traceroute port range.
      * Field introduced in 17.2.8.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -8373,7 +8433,9 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.numDispatcherQueues, objServiceEngineGroup.numDispatcherQueues)&&
   Objects.equals(this.kniAllowedServerPorts, objServiceEngineGroup.kniAllowedServerPorts)&&
   Objects.equals(this.deactivateKniFilteringAtDispatcher, objServiceEngineGroup.deactivateKniFilteringAtDispatcher)&&
-  Objects.equals(this.vcenterParkingVnicPg, objServiceEngineGroup.vcenterParkingVnicPg);
+  Objects.equals(this.vcenterParkingVnicPg, objServiceEngineGroup.vcenterParkingVnicPg)&&
+  Objects.equals(this.dpdkGroTimeoutInterval, objServiceEngineGroup.dpdkGroTimeoutInterval)&&
+  Objects.equals(this.seTimeTrackerProps, objServiceEngineGroup.seTimeTrackerProps);
     }
 
     @Override
@@ -8437,6 +8499,7 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    dpEnqIntervalMsec: ").append(toIndentedString(dpEnqIntervalMsec)).append("\n");
                         sb.append("    dpHbFrequency: ").append(toIndentedString(dpHbFrequency)).append("\n");
                         sb.append("    dpHbTimeoutCount: ").append(toIndentedString(dpHbTimeoutCount)).append("\n");
+                        sb.append("    dpdkGroTimeoutInterval: ").append(toIndentedString(dpdkGroTimeoutInterval)).append("\n");
                         sb.append("    enableGratarpPermanent: ").append(toIndentedString(enableGratarpPermanent)).append("\n");
                         sb.append("    enableHsmLog: ").append(toIndentedString(enableHsmLog)).append("\n");
                         sb.append("    enableHsmPriming: ").append(toIndentedString(enableHsmPriming)).append("\n");
@@ -8591,6 +8654,7 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    seSbDedicatedCore: ").append(toIndentedString(seSbDedicatedCore)).append("\n");
                         sb.append("    seSbThreads: ").append(toIndentedString(seSbThreads)).append("\n");
                         sb.append("    seThreadMultiplier: ").append(toIndentedString(seThreadMultiplier)).append("\n");
+                        sb.append("    seTimeTrackerProps: ").append(toIndentedString(seTimeTrackerProps)).append("\n");
                         sb.append("    seTracertPortRange: ").append(toIndentedString(seTracertPortRange)).append("\n");
                         sb.append("    seTunnelMode: ").append(toIndentedString(seTunnelMode)).append("\n");
                         sb.append("    seTunnelUdpPort: ").append(toIndentedString(seTunnelUdpPort)).append("\n");
