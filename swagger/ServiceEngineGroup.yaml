@@ -1260,6 +1260,11 @@ definitions:
                 type: integer
                 default: 10
                 format: int32
+            dpdk_gro_timeout_interval:
+                description: "The timeout for GRO coalescing interval. 0 indicates non-timer based GRO. Allowed values are 0-900. Field introduced in 22.1.1. Unit is MICROSECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                default: 50
+                format: int32
             enable_gratarp_permanent:
                 description: "Enable GratArp for VIP_IP. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
@@ -1917,6 +1922,9 @@ definitions:
                 type: integer
                 default: 1
                 format: int32
+            se_time_tracker_props:
+                description: "Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                $ref: '#/definitions/SETimeTrackerProperties'
             se_tracert_port_range:
                 description: "Traceroute port range. Field introduced in 17.2.8. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/PortRange'
@@ -2195,6 +2203,27 @@ definitions:
                     $ref: "#/definitions/ServiceEngineGroup"
             next:
                 type: string
+    SETimeTrackerProperties:
+        type: object
+        properties:
+            egress_audit_mode:
+                description: "Audit queueing latency from proxy to dispatcher. Enum options - SE_TT_AUDIT_OFF, SE_TT_AUDIT_ON, SE_TT_AUDIT_ON_WITH_EVENT. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: string
+            egress_threshold:
+                description: "Maximum egress latency threshold between dispatcher and proxy. Field introduced in 22.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                format: int32
+            event_gen_window:
+                description: "Window for cumulative event generation. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                format: int64
+            ingress_audit_mode:
+                description: "Audit queueing latency from dispatcher to proxy. Enum options - SE_TT_AUDIT_OFF, SE_TT_AUDIT_ON, SE_TT_AUDIT_ON_WITH_EVENT. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: string
+            ingress_threshold:
+                description: "Maximum ingress latency threshold between dispatcher and proxy. Field introduced in 22.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                format: int32
     UserAgentCacheConfig:
         type: object
         properties:

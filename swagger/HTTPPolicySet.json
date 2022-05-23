@@ -682,6 +682,11 @@
                 "hdr": {
                     "description": "HTTP header information. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "$ref": "#/definitions/HTTPHdrData"
+                },
+                "index": {
+                    "description": "Index to identify the header actions. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
@@ -701,6 +706,10 @@
         "HTTPHdrValue": {
             "type": "object",
             "properties": {
+                "is_sensitive": {
+                    "description": "The Custom Value field is sensitive and will not be displayed. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
+                    "type": "boolean"
+                },
                 "val": {
                     "description": "HTTP header value or variable representing an HTTP header. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
                     "type": "string"
