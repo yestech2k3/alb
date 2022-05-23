@@ -732,7 +732,7 @@ definitions:
                 default: 1.0
                 format: double
             latency_audit_props:
-                description: "Influence the audit of ingress latency and connection establishement time. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                description: "Deprecated in 22.1.1. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/LatencyAuditProperties'
             markers:
                 description: "List of labels to be used for granular RBAC. Field introduced in 20.1.5. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition."
@@ -768,6 +768,9 @@ definitions:
             tenant_ref:
                 description: " It is a reference to an object of type Tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: string
+            time_tracker_props:
+                description: "Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                $ref: '#/definitions/TimeTrackerProperties'
             url:
                 description: "url"
                 readOnly: True
@@ -891,17 +894,17 @@ definitions:
         type: object
         properties:
             conn_est_audit_mode:
-                description: "Audit TCP connection establishment time. Enum options - LATENCY_AUDIT_OFF, LATENCY_AUDIT_ON, LATENCY_AUDIT_ON_WITH_SIG. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                description: "Deprecated in 22.1.1. Enum options - LATENCY_AUDIT_OFF, LATENCY_AUDIT_ON, LATENCY_AUDIT_ON_WITH_SIG. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: string
             conn_est_threshold:
-                description: "Maximum threshold for connection establishment time. Field introduced in 21.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                description: "Deprecated in 22.1.1. Field introduced in 21.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: integer
                 format: int32
             latency_audit_mode:
-                description: "Audit dispatcher to proxy latency. Enum options - LATENCY_AUDIT_OFF, LATENCY_AUDIT_ON, LATENCY_AUDIT_ON_WITH_SIG. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                description: "Deprecated in 22.1.1. Enum options - LATENCY_AUDIT_OFF, LATENCY_AUDIT_ON, LATENCY_AUDIT_ON_WITH_SIG. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: string
             latency_threshold:
-                description: "Maximum latency threshold between dispatcher and proxy. Field introduced in 21.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                description: "Deprecated in 22.1.1. Field introduced in 21.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: integer
                 format: int32
     RoleFilterMatchLabel:
@@ -1000,3 +1003,23 @@ definitions:
                 type: array
                 items:
                     type: string
+    TimeTrackerProperties:
+        type: object
+        properties:
+            be_conn_est_audit_mode:
+                description: "Audit TCP connection establishment time on server-side. Enum options - TT_AUDIT_OFF, TT_AUDIT_ON, TT_AUDIT_ON_WITH_SIG. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: string
+            be_conn_est_threshold:
+                description: "Maximum threshold for TCP connection establishment time on server-side. Field introduced in 22.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                format: int32
+            fe_conn_est_audit_mode:
+                description: "Audit TCP connection establishment time on client-side. Enum options - TT_AUDIT_OFF, TT_AUDIT_ON, TT_AUDIT_ON_WITH_SIG. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: string
+            fe_conn_est_threshold:
+                description: "Maximum threshold for TCP connection establishment time on client-side. Field introduced in 22.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                format: int32
+            ingress_sig_log:
+                description: "Add significance if ingress latency from dispatcher to proxy is breached on any flow. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: boolean
