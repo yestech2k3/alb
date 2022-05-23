@@ -450,6 +450,9 @@ public class EventDetails  {
     @JsonProperty("se_hb_recovered_event_details")
     private SeHbRecoveredEventDetails seHbRecoveredEventDetails = null;
 
+    @JsonProperty("se_high_egress_proc_latency_event_details")
+    private SeHighEgressProcLatencyEventDetails seHighEgressProcLatencyEventDetails = null;
+
     @JsonProperty("se_high_ingress_proc_latency_event_details")
     private SeHighIngressProcLatencyEventDetails seHighIngressProcLatencyEventDetails = null;
 
@@ -3613,6 +3616,30 @@ public class EventDetails  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Egress queueing latency from proxy to dispatcher.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return seHighEgressProcLatencyEventDetails
+     */
+    public SeHighEgressProcLatencyEventDetails getSeHighEgressProcLatencyEventDetails() {
+        return seHighEgressProcLatencyEventDetails;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Egress queueing latency from proxy to dispatcher.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param seHighEgressProcLatencyEventDetails set the seHighEgressProcLatencyEventDetails.
+     */
+    public void setSeHighEgressProcLatencyEventDetails(SeHighEgressProcLatencyEventDetails seHighEgressProcLatencyEventDetails) {
+        this.seHighEgressProcLatencyEventDetails = seHighEgressProcLatencyEventDetails;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Field introduced in 21.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -5156,6 +5183,7 @@ public class EventDetails  {
   Objects.equals(this.seHighIngressProcLatencyEventDetails, objEventDetails.seHighIngressProcLatencyEventDetails)&&
   Objects.equals(this.seVsDelFlowsDisrupted, objEventDetails.seVsDelFlowsDisrupted)&&
   Objects.equals(this.seNtpSynchronizationFailed, objEventDetails.seNtpSynchronizationFailed)&&
+  Objects.equals(this.seHighEgressProcLatencyEventDetails, objEventDetails.seHighEgressProcLatencyEventDetails)&&
   Objects.equals(this.seHmPoolDetails, objEventDetails.seHmPoolDetails)&&
   Objects.equals(this.seHmVsDetails, objEventDetails.seHmVsDetails)&&
   Objects.equals(this.sePersistenceDetails, objEventDetails.sePersistenceDetails)&&
@@ -5446,6 +5474,7 @@ public class EventDetails  {
                         sb.append("    seGeoDbDetails: ").append(toIndentedString(seGeoDbDetails)).append("\n");
                         sb.append("    seHbEventDetails: ").append(toIndentedString(seHbEventDetails)).append("\n");
                         sb.append("    seHbRecoveredEventDetails: ").append(toIndentedString(seHbRecoveredEventDetails)).append("\n");
+                        sb.append("    seHighEgressProcLatencyEventDetails: ").append(toIndentedString(seHighEgressProcLatencyEventDetails)).append("\n");
                         sb.append("    seHighIngressProcLatencyEventDetails: ").append(toIndentedString(seHighIngressProcLatencyEventDetails)).append("\n");
                         sb.append("    seHmGsDetails: ").append(toIndentedString(seHmGsDetails)).append("\n");
                         sb.append("    seHmGsgroupDetails: ").append(toIndentedString(seHmGsgroupDetails)).append("\n");

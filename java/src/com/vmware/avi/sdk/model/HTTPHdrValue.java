@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HTTPHdrValue  {
+    @JsonProperty("is_sensitive")
+    private Boolean isSensitive = false;
+
     @JsonProperty("val")
     private String val = null;
 
@@ -28,6 +31,30 @@ public class HTTPHdrValue  {
     private String var = null;
 
 
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * The custom value field is sensitive and will not be displayed.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return isSensitive
+     */
+    public Boolean getIsSensitive() {
+        return isSensitive;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * The custom value field is sensitive and will not be displayed.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param isSensitive set the isSensitive.
+     */
+    public void setIsSensitive(Boolean  isSensitive) {
+        this.isSensitive = isSensitive;
+    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -96,14 +123,16 @@ public class HTTPHdrValue  {
       }
       HTTPHdrValue objHTTPHdrValue = (HTTPHdrValue) o;
       return   Objects.equals(this.var, objHTTPHdrValue.var)&&
-  Objects.equals(this.val, objHTTPHdrValue.val);
+  Objects.equals(this.val, objHTTPHdrValue.val)&&
+  Objects.equals(this.isSensitive, objHTTPHdrValue.isSensitive);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class HTTPHdrValue {\n");
-                  sb.append("    val: ").append(toIndentedString(val)).append("\n");
+                  sb.append("    isSensitive: ").append(toIndentedString(isSensitive)).append("\n");
+                        sb.append("    val: ").append(toIndentedString(val)).append("\n");
                         sb.append("    var: ").append(toIndentedString(var)).append("\n");
                   sb.append("}");
       return sb.toString();

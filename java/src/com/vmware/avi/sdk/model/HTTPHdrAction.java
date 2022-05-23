@@ -30,6 +30,9 @@ public class HTTPHdrAction  {
     @JsonProperty("hdr")
     private HTTPHdrData hdr = null;
 
+    @JsonProperty("index")
+    private Integer index = null;
+
 
 
     /**
@@ -108,6 +111,32 @@ public class HTTPHdrAction  {
         this.hdr = hdr;
     }
 
+    /**
+     * This is the getter method this will return the attribute value.
+     * Index to identify the header actions.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return index
+     */
+    public Integer getIndex() {
+        return index;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Index to identify the header actions.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param index set the index.
+     */
+    public void setIndex(Integer  index) {
+        this.index = index;
+    }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -120,7 +149,8 @@ public class HTTPHdrAction  {
       HTTPHdrAction objHTTPHdrAction = (HTTPHdrAction) o;
       return   Objects.equals(this.action, objHTTPHdrAction.action)&&
   Objects.equals(this.hdr, objHTTPHdrAction.hdr)&&
-  Objects.equals(this.cookie, objHTTPHdrAction.cookie);
+  Objects.equals(this.cookie, objHTTPHdrAction.cookie)&&
+  Objects.equals(this.index, objHTTPHdrAction.index);
     }
 
     @Override
@@ -130,6 +160,7 @@ public class HTTPHdrAction  {
                   sb.append("    action: ").append(toIndentedString(action)).append("\n");
                         sb.append("    cookie: ").append(toIndentedString(cookie)).append("\n");
                         sb.append("    hdr: ").append(toIndentedString(hdr)).append("\n");
+                        sb.append("    index: ").append(toIndentedString(index)).append("\n");
                   sb.append("}");
       return sb.toString();
     }
