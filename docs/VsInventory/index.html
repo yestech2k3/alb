@@ -1,0 +1,2170 @@
+<!-- 
+	Copyright 2021 VMware, Inc.
+	SPDX-License-Identifier: Apache License 2.0
+-->
+<!doctype html>
+<html>
+  <head>
+    <title>Avi VsInventory Object API</title>
+    <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  </head>
+  <body>
+  <h1>Avi VsInventory Object API</h1>
+    <div class="app-desc">CLI ``` - show vsinventory <key> ``` </div>
+    <div class="app-desc">More information: <a href="https://avinetworks.com/contact-us">https://avinetworks.com/contact-us</a></div>
+    <div class="app-desc">Contact Info: <a href="support@avinetworks.com">support@avinetworks.com</a></div>
+    <div class="app-desc">Version: 22.1.1</div>
+    <div class="app-desc">BasePath:/api</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li>HTTP Basic Authentication</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h2>Table of Contents </h2>
+  <div class="method-summary"></div>
+  <ol>
+  <li><a href="#vsinventoryGet"><code><span class="http-method">get</span> /vsinventory</code></a></li>
+  <li><a href="#vsinventoryPost"><code><span class="http-method">post</span> /vsinventory</code></a></li>
+  <li><a href="#vsinventoryUuidDelete"><code><span class="http-method">delete</span> /vsinventory/{uuid}</code></a></li>
+  <li><a href="#vsinventoryUuidGet"><code><span class="http-method">get</span> /vsinventory/{uuid}</code></a></li>
+  <li><a href="#vsinventoryUuidPatch"><code><span class="http-method">patch</span> /vsinventory/{uuid}</code></a></li>
+  <li><a href="#vsinventoryUuidPut"><code><span class="http-method">put</span> /vsinventory/{uuid}</code></a></li>
+  </ol>
+
+  <div class="method"><a name="vsinventoryGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /vsinventory</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">vsinventoryGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; object name </div><div class="param">refers_to (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter to request all objects that refers to another Avi resource. Its syntax is refers_to&#x3D;&lt;obj_type&gt;:&lt;obj_uuid&gt;. Eg. get all virtual services referring to pool p1 will be refers_to&#x3D;pool:pool_p1_uuid </div><div class="param">referred_by (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter to request all objects that are referred by another Avi resource. Its syntax is referred_by&#x3D;&lt;obj_type&gt;:&lt;obj_uuid&gt;. Eg. get all pools referred_by virtual service vs1 - referred_by&#x3D;virtualservice:vs_vs1_uuid </div><div class="param">fields (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; List of fields to be returned for the resource. Some fields like name, URL, uuid etc. are always returned. </div><div class="param">include_name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; All the Avi REST reference URIs have a name suffix as URI#name. It is useful to get the referenced resource name without performing get on that object. </div><div class="param">skip_default (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Default values are not set. </div><div class="param">join_subresources (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; It automatically returns additional dependent resources like runtime. Eg. join_subresources&#x3D;runtime. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#VsInventoryApiResponse">VsInventoryApiResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "next" : "aeiou",
+  "count" : 123,
+  "results" : [ {
+    "app_profile_type" : "aeiou",
+    "alert" : {
+      "level" : "aeiou"
+    },
+    "health_score" : {
+      "anomaly_penalty" : 123,
+      "performance_score" : {
+        "reason" : "aeiou",
+        "application_performance" : {
+          "virtualservice_performance_scores" : [ {
+            "reason" : "aeiou",
+            "hs_entity" : {
+              "pool_ref" : "aeiou",
+              "server" : "aeiou",
+              "entity_uuid" : "aeiou",
+              "metrics_entity" : "aeiou"
+            },
+            "score_data" : {
+              "reason" : "aeiou",
+              "ref" : "aeiou",
+              "vs_uptime" : 1.3579000000000001069366817318950779736042022705078125,
+              "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+              "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+              "rum_apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+              "avg_pool_performance_score" : 1.3579000000000001069366817318950779736042022705078125,
+              "pool_performance_scores" : [ {
+                "reason" : "aeiou",
+                "hs_entity" : "",
+                "score_data" : {
+                  "pool_ref" : "aeiou",
+                  "reason" : "aeiou",
+                  "ref" : "aeiou",
+                  "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+                  "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+                  "reason_attr" : "aeiou",
+                  "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+                  "oper_state" : "aeiou"
+                },
+                "value" : 1.3579000000000001069366817318950779736042022705078125
+              } ],
+              "reason_attr" : "aeiou",
+              "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+              "oper_state" : "aeiou"
+            },
+            "value" : 1.3579000000000001069366817318950779736042022705078125
+          } ],
+          "reason" : "aeiou",
+          "ref" : "aeiou",
+          "reason_attr" : "aeiou"
+        },
+        "serviceengine_performance" : {
+          "reason" : "aeiou",
+          "ref" : "aeiou",
+          "reason_attr" : "aeiou",
+          "oper_state" : "aeiou"
+        },
+        "virtualservice_performance" : "",
+        "pool_performance" : "",
+        "server_performance" : {
+          "reason" : "aeiou",
+          "server" : "aeiou",
+          "ref" : "aeiou",
+          "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+          "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+          "reason_attr" : "aeiou",
+          "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+          "oper_state" : "aeiou",
+          "pool_uuid" : "aeiou"
+        },
+        "reason_attr" : "aeiou",
+        "value" : 1.3579000000000001069366817318950779736042022705078125
+      },
+      "health_score" : 1.3579000000000001069366817318950779736042022705078125,
+      "security_penalty" : 123,
+      "resources_penalty" : 123
+    },
+    "has_pool_with_realtime_metrics" : true,
+    "pools" : [ {
+      "ref" : "aeiou"
+    } ],
+    "runtime" : {
+      "percent_ses_up" : 123,
+      "vip_summary" : {
+        "service_engine" : [ {
+          "mgmt_ip6" : "",
+          "standby" : true,
+          "mgmt_ip" : "",
+          "scalein_in_progress" : true,
+          "se_ready_in_progress" : true,
+          "admin_down_requested" : true,
+          "oper_status" : "",
+          "connected" : true,
+          "active_on_cloud" : true,
+          "ref" : "aeiou",
+          "snat_ip" : "",
+          "attach_ip_in_progress" : true,
+          "name" : "aeiou",
+          "scaleout_in_progress" : true,
+          "detach_ip_in_progress" : true,
+          "active_on_se" : true,
+          "primary" : true
+        } ],
+        "num_se_assigned" : 123,
+        "placement_networks" : [ "" ],
+        "avi_allocated_vip" : true,
+        "vip_id" : "aeiou",
+        "ip_address" : "",
+        "auto_allocate_floating_ip" : true,
+        "oper_status" : "",
+        "enabled" : true,
+        "auto_allocate_ip_type" : "aeiou",
+        "percent_ses_up" : 123,
+        "num_se_requested" : 123,
+        "auto_allocate_ip" : true,
+        "avi_allocated_fip" : true,
+        "prefix_length" : 123,
+        "discovered_networks" : [ "" ]
+      },
+      "oper_status" : {
+        "reason_code" : 123456789,
+        "reason" : [ "aeiou" ],
+        "last_changed_time" : {
+          "usecs" : 123456789,
+          "secs" : 123456789
+        },
+        "state" : "aeiou",
+        "reason_code_string" : "aeiou"
+      }
+    },
+    "metrics" : {
+      "headers" : {
+        "statistics" : {
+          "min" : 1.3579000000000001069366817318950779736042022705078125,
+          "max" : 1.3579000000000001069366817318950779736042022705078125,
+          "mean" : 1.3579000000000001069366817318950779736042022705078125,
+          "num_samples" : 123
+        }
+      },
+      "data" : {
+        "value" : 1.3579000000000001069366817318950779736042022705078125
+      }
+    },
+    "config" : {
+      "vsvip_ref" : "aeiou",
+      "fqdn" : "aeiou",
+      "vrf_context_ref" : "aeiou",
+      "dns_info" : [ {
+        "metadata" : "aeiou",
+        "fqdn" : "aeiou",
+        "num_records_in_response" : 123,
+        "cname" : {
+          "cname" : "aeiou"
+        },
+        "type" : "aeiou",
+        "ttl" : 123,
+        "algorithm" : "aeiou"
+      } ],
+      "services" : [ {
+        "override_network_profile_ref" : "aeiou",
+        "port" : 123,
+        "port_range_end" : 123,
+        "is_active_ftp_data_port" : true,
+        "enable_http2" : true,
+        "horizon_internal_ports" : true,
+        "enable_ssl" : true,
+        "override_application_profile_ref" : "aeiou"
+      } ],
+      "type" : "aeiou",
+      "uuid" : "aeiou",
+      "enabled" : true,
+      "url" : "aeiou",
+      "se_group_ref" : "aeiou",
+      "vh_domain_name" : [ "aeiou" ],
+      "pool_ref" : "aeiou",
+      "cloud_ref" : "aeiou",
+      "tenant_ref" : "aeiou",
+      "name" : "aeiou",
+      "vip" : [ {
+        "availability_zone" : "aeiou",
+        "ip6_address" : "",
+        "subnet" : "",
+        "port_uuid" : "aeiou",
+        "subnet_uuid" : "aeiou",
+        "placement_networks" : [ {
+          "subnet" : "",
+          "subnet6" : "",
+          "network_ref" : "aeiou"
+        } ],
+        "avi_allocated_vip" : true,
+        "vip_id" : "aeiou",
+        "ip_address" : "",
+        "auto_allocate_floating_ip" : true,
+        "enabled" : true,
+        "auto_allocate_ip_type" : "aeiou",
+        "floating_subnet6_uuid" : "aeiou",
+        "auto_allocate_ip" : true,
+        "subnet6" : "",
+        "floating_ip" : "",
+        "floating_subnet_uuid" : "aeiou",
+        "avi_allocated_fip" : true,
+        "subnet6_uuid" : "aeiou",
+        "floating_ip6" : "",
+        "ipam_network_subnet" : {
+          "subnet" : "",
+          "subnet_uuid" : "aeiou",
+          "subnet6" : "",
+          "subnet6_uuid" : "aeiou",
+          "network_ref" : "aeiou"
+        },
+        "network_ref" : "aeiou",
+        "prefix_length" : 123,
+        "discovered_networks" : [ {
+          "subnet" : [ {
+            "ip_addr" : {
+              "addr" : "aeiou",
+              "type" : "aeiou"
+            },
+            "mask" : 123
+          } ],
+          "subnet6" : [ "" ],
+          "network_ref" : "aeiou"
+        } ]
+      } ],
+      "east_west_placement" : true
+    },
+    "uuid" : "aeiou",
+    "poolgroups" : [ {
+      "ref" : "aeiou"
+    } ],
+    "url" : "aeiou",
+    "_last_modified" : "aeiou"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#VsInventoryApiResponse">VsInventoryApiResponse</a>
+    <h4 class="field-label">401</h4>
+    log in failed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="vsinventoryPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /vsinventory</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">vsinventoryPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; VsInventory object creation </div>
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#VsInventory">VsInventory</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "app_profile_type" : "aeiou",
+  "alert" : {
+    "level" : "aeiou"
+  },
+  "health_score" : {
+    "anomaly_penalty" : 123,
+    "performance_score" : {
+      "reason" : "aeiou",
+      "application_performance" : {
+        "virtualservice_performance_scores" : [ {
+          "reason" : "aeiou",
+          "hs_entity" : {
+            "pool_ref" : "aeiou",
+            "server" : "aeiou",
+            "entity_uuid" : "aeiou",
+            "metrics_entity" : "aeiou"
+          },
+          "score_data" : {
+            "reason" : "aeiou",
+            "ref" : "aeiou",
+            "vs_uptime" : 1.3579000000000001069366817318950779736042022705078125,
+            "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+            "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+            "rum_apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+            "avg_pool_performance_score" : 1.3579000000000001069366817318950779736042022705078125,
+            "pool_performance_scores" : [ {
+              "reason" : "aeiou",
+              "hs_entity" : "",
+              "score_data" : {
+                "pool_ref" : "aeiou",
+                "reason" : "aeiou",
+                "ref" : "aeiou",
+                "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+                "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+                "reason_attr" : "aeiou",
+                "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+                "oper_state" : "aeiou"
+              },
+              "value" : 1.3579000000000001069366817318950779736042022705078125
+            } ],
+            "reason_attr" : "aeiou",
+            "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+            "oper_state" : "aeiou"
+          },
+          "value" : 1.3579000000000001069366817318950779736042022705078125
+        } ],
+        "reason" : "aeiou",
+        "ref" : "aeiou",
+        "reason_attr" : "aeiou"
+      },
+      "serviceengine_performance" : {
+        "reason" : "aeiou",
+        "ref" : "aeiou",
+        "reason_attr" : "aeiou",
+        "oper_state" : "aeiou"
+      },
+      "virtualservice_performance" : "",
+      "pool_performance" : "",
+      "server_performance" : {
+        "reason" : "aeiou",
+        "server" : "aeiou",
+        "ref" : "aeiou",
+        "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+        "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+        "reason_attr" : "aeiou",
+        "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+        "oper_state" : "aeiou",
+        "pool_uuid" : "aeiou"
+      },
+      "reason_attr" : "aeiou",
+      "value" : 1.3579000000000001069366817318950779736042022705078125
+    },
+    "health_score" : 1.3579000000000001069366817318950779736042022705078125,
+    "security_penalty" : 123,
+    "resources_penalty" : 123
+  },
+  "has_pool_with_realtime_metrics" : true,
+  "pools" : [ {
+    "ref" : "aeiou"
+  } ],
+  "runtime" : {
+    "percent_ses_up" : 123,
+    "vip_summary" : {
+      "service_engine" : [ {
+        "mgmt_ip6" : "",
+        "standby" : true,
+        "mgmt_ip" : "",
+        "scalein_in_progress" : true,
+        "se_ready_in_progress" : true,
+        "admin_down_requested" : true,
+        "oper_status" : "",
+        "connected" : true,
+        "active_on_cloud" : true,
+        "ref" : "aeiou",
+        "snat_ip" : "",
+        "attach_ip_in_progress" : true,
+        "name" : "aeiou",
+        "scaleout_in_progress" : true,
+        "detach_ip_in_progress" : true,
+        "active_on_se" : true,
+        "primary" : true
+      } ],
+      "num_se_assigned" : 123,
+      "placement_networks" : [ "" ],
+      "avi_allocated_vip" : true,
+      "vip_id" : "aeiou",
+      "ip_address" : "",
+      "auto_allocate_floating_ip" : true,
+      "oper_status" : "",
+      "enabled" : true,
+      "auto_allocate_ip_type" : "aeiou",
+      "percent_ses_up" : 123,
+      "num_se_requested" : 123,
+      "auto_allocate_ip" : true,
+      "avi_allocated_fip" : true,
+      "prefix_length" : 123,
+      "discovered_networks" : [ "" ]
+    },
+    "oper_status" : {
+      "reason_code" : 123456789,
+      "reason" : [ "aeiou" ],
+      "last_changed_time" : {
+        "usecs" : 123456789,
+        "secs" : 123456789
+      },
+      "state" : "aeiou",
+      "reason_code_string" : "aeiou"
+    }
+  },
+  "metrics" : {
+    "headers" : {
+      "statistics" : {
+        "min" : 1.3579000000000001069366817318950779736042022705078125,
+        "max" : 1.3579000000000001069366817318950779736042022705078125,
+        "mean" : 1.3579000000000001069366817318950779736042022705078125,
+        "num_samples" : 123
+      }
+    },
+    "data" : {
+      "value" : 1.3579000000000001069366817318950779736042022705078125
+    }
+  },
+  "config" : {
+    "vsvip_ref" : "aeiou",
+    "fqdn" : "aeiou",
+    "vrf_context_ref" : "aeiou",
+    "dns_info" : [ {
+      "metadata" : "aeiou",
+      "fqdn" : "aeiou",
+      "num_records_in_response" : 123,
+      "cname" : {
+        "cname" : "aeiou"
+      },
+      "type" : "aeiou",
+      "ttl" : 123,
+      "algorithm" : "aeiou"
+    } ],
+    "services" : [ {
+      "override_network_profile_ref" : "aeiou",
+      "port" : 123,
+      "port_range_end" : 123,
+      "is_active_ftp_data_port" : true,
+      "enable_http2" : true,
+      "horizon_internal_ports" : true,
+      "enable_ssl" : true,
+      "override_application_profile_ref" : "aeiou"
+    } ],
+    "type" : "aeiou",
+    "uuid" : "aeiou",
+    "enabled" : true,
+    "url" : "aeiou",
+    "se_group_ref" : "aeiou",
+    "vh_domain_name" : [ "aeiou" ],
+    "pool_ref" : "aeiou",
+    "cloud_ref" : "aeiou",
+    "tenant_ref" : "aeiou",
+    "name" : "aeiou",
+    "vip" : [ {
+      "availability_zone" : "aeiou",
+      "ip6_address" : "",
+      "subnet" : "",
+      "port_uuid" : "aeiou",
+      "subnet_uuid" : "aeiou",
+      "placement_networks" : [ {
+        "subnet" : "",
+        "subnet6" : "",
+        "network_ref" : "aeiou"
+      } ],
+      "avi_allocated_vip" : true,
+      "vip_id" : "aeiou",
+      "ip_address" : "",
+      "auto_allocate_floating_ip" : true,
+      "enabled" : true,
+      "auto_allocate_ip_type" : "aeiou",
+      "floating_subnet6_uuid" : "aeiou",
+      "auto_allocate_ip" : true,
+      "subnet6" : "",
+      "floating_ip" : "",
+      "floating_subnet_uuid" : "aeiou",
+      "avi_allocated_fip" : true,
+      "subnet6_uuid" : "aeiou",
+      "floating_ip6" : "",
+      "ipam_network_subnet" : {
+        "subnet" : "",
+        "subnet_uuid" : "aeiou",
+        "subnet6" : "",
+        "subnet6_uuid" : "aeiou",
+        "network_ref" : "aeiou"
+      },
+      "network_ref" : "aeiou",
+      "prefix_length" : 123,
+      "discovered_networks" : [ {
+        "subnet" : [ {
+          "ip_addr" : {
+            "addr" : "aeiou",
+            "type" : "aeiou"
+          },
+          "mask" : 123
+        } ],
+        "subnet6" : [ "" ],
+        "network_ref" : "aeiou"
+      } ]
+    } ],
+    "east_west_placement" : true
+  },
+  "uuid" : "aeiou",
+  "poolgroups" : [ {
+    "ref" : "aeiou"
+  } ],
+  "url" : "aeiou",
+  "_last_modified" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#VsInventory">VsInventory</a>
+    <h4 class="field-label">401</h4>
+    log in failed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="vsinventoryUuidDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /vsinventory/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">vsinventoryUuidDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uuid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; UUID of the object to fetch </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; object name </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"aeiou"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    object deleted
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="vsinventoryUuidGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /vsinventory/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">vsinventoryUuidGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uuid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; UUID of the object to fetch </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; object name </div><div class="param">fields (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; List of fields to be returned for the resource. Some fields like name, URL, uuid etc. are always returned. </div><div class="param">include_name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; All the Avi REST reference URIs have a name suffix as URI#name. It is useful to get the referenced resource name without performing get on that object. </div><div class="param">skip_default (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Default values are not set. </div><div class="param">join_subresources (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; It automatically returns additional dependent resources like runtime. Eg. join_subresources&#x3D;runtime. </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#VsInventory">VsInventory</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "app_profile_type" : "aeiou",
+  "alert" : {
+    "level" : "aeiou"
+  },
+  "health_score" : {
+    "anomaly_penalty" : 123,
+    "performance_score" : {
+      "reason" : "aeiou",
+      "application_performance" : {
+        "virtualservice_performance_scores" : [ {
+          "reason" : "aeiou",
+          "hs_entity" : {
+            "pool_ref" : "aeiou",
+            "server" : "aeiou",
+            "entity_uuid" : "aeiou",
+            "metrics_entity" : "aeiou"
+          },
+          "score_data" : {
+            "reason" : "aeiou",
+            "ref" : "aeiou",
+            "vs_uptime" : 1.3579000000000001069366817318950779736042022705078125,
+            "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+            "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+            "rum_apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+            "avg_pool_performance_score" : 1.3579000000000001069366817318950779736042022705078125,
+            "pool_performance_scores" : [ {
+              "reason" : "aeiou",
+              "hs_entity" : "",
+              "score_data" : {
+                "pool_ref" : "aeiou",
+                "reason" : "aeiou",
+                "ref" : "aeiou",
+                "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+                "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+                "reason_attr" : "aeiou",
+                "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+                "oper_state" : "aeiou"
+              },
+              "value" : 1.3579000000000001069366817318950779736042022705078125
+            } ],
+            "reason_attr" : "aeiou",
+            "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+            "oper_state" : "aeiou"
+          },
+          "value" : 1.3579000000000001069366817318950779736042022705078125
+        } ],
+        "reason" : "aeiou",
+        "ref" : "aeiou",
+        "reason_attr" : "aeiou"
+      },
+      "serviceengine_performance" : {
+        "reason" : "aeiou",
+        "ref" : "aeiou",
+        "reason_attr" : "aeiou",
+        "oper_state" : "aeiou"
+      },
+      "virtualservice_performance" : "",
+      "pool_performance" : "",
+      "server_performance" : {
+        "reason" : "aeiou",
+        "server" : "aeiou",
+        "ref" : "aeiou",
+        "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+        "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+        "reason_attr" : "aeiou",
+        "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+        "oper_state" : "aeiou",
+        "pool_uuid" : "aeiou"
+      },
+      "reason_attr" : "aeiou",
+      "value" : 1.3579000000000001069366817318950779736042022705078125
+    },
+    "health_score" : 1.3579000000000001069366817318950779736042022705078125,
+    "security_penalty" : 123,
+    "resources_penalty" : 123
+  },
+  "has_pool_with_realtime_metrics" : true,
+  "pools" : [ {
+    "ref" : "aeiou"
+  } ],
+  "runtime" : {
+    "percent_ses_up" : 123,
+    "vip_summary" : {
+      "service_engine" : [ {
+        "mgmt_ip6" : "",
+        "standby" : true,
+        "mgmt_ip" : "",
+        "scalein_in_progress" : true,
+        "se_ready_in_progress" : true,
+        "admin_down_requested" : true,
+        "oper_status" : "",
+        "connected" : true,
+        "active_on_cloud" : true,
+        "ref" : "aeiou",
+        "snat_ip" : "",
+        "attach_ip_in_progress" : true,
+        "name" : "aeiou",
+        "scaleout_in_progress" : true,
+        "detach_ip_in_progress" : true,
+        "active_on_se" : true,
+        "primary" : true
+      } ],
+      "num_se_assigned" : 123,
+      "placement_networks" : [ "" ],
+      "avi_allocated_vip" : true,
+      "vip_id" : "aeiou",
+      "ip_address" : "",
+      "auto_allocate_floating_ip" : true,
+      "oper_status" : "",
+      "enabled" : true,
+      "auto_allocate_ip_type" : "aeiou",
+      "percent_ses_up" : 123,
+      "num_se_requested" : 123,
+      "auto_allocate_ip" : true,
+      "avi_allocated_fip" : true,
+      "prefix_length" : 123,
+      "discovered_networks" : [ "" ]
+    },
+    "oper_status" : {
+      "reason_code" : 123456789,
+      "reason" : [ "aeiou" ],
+      "last_changed_time" : {
+        "usecs" : 123456789,
+        "secs" : 123456789
+      },
+      "state" : "aeiou",
+      "reason_code_string" : "aeiou"
+    }
+  },
+  "metrics" : {
+    "headers" : {
+      "statistics" : {
+        "min" : 1.3579000000000001069366817318950779736042022705078125,
+        "max" : 1.3579000000000001069366817318950779736042022705078125,
+        "mean" : 1.3579000000000001069366817318950779736042022705078125,
+        "num_samples" : 123
+      }
+    },
+    "data" : {
+      "value" : 1.3579000000000001069366817318950779736042022705078125
+    }
+  },
+  "config" : {
+    "vsvip_ref" : "aeiou",
+    "fqdn" : "aeiou",
+    "vrf_context_ref" : "aeiou",
+    "dns_info" : [ {
+      "metadata" : "aeiou",
+      "fqdn" : "aeiou",
+      "num_records_in_response" : 123,
+      "cname" : {
+        "cname" : "aeiou"
+      },
+      "type" : "aeiou",
+      "ttl" : 123,
+      "algorithm" : "aeiou"
+    } ],
+    "services" : [ {
+      "override_network_profile_ref" : "aeiou",
+      "port" : 123,
+      "port_range_end" : 123,
+      "is_active_ftp_data_port" : true,
+      "enable_http2" : true,
+      "horizon_internal_ports" : true,
+      "enable_ssl" : true,
+      "override_application_profile_ref" : "aeiou"
+    } ],
+    "type" : "aeiou",
+    "uuid" : "aeiou",
+    "enabled" : true,
+    "url" : "aeiou",
+    "se_group_ref" : "aeiou",
+    "vh_domain_name" : [ "aeiou" ],
+    "pool_ref" : "aeiou",
+    "cloud_ref" : "aeiou",
+    "tenant_ref" : "aeiou",
+    "name" : "aeiou",
+    "vip" : [ {
+      "availability_zone" : "aeiou",
+      "ip6_address" : "",
+      "subnet" : "",
+      "port_uuid" : "aeiou",
+      "subnet_uuid" : "aeiou",
+      "placement_networks" : [ {
+        "subnet" : "",
+        "subnet6" : "",
+        "network_ref" : "aeiou"
+      } ],
+      "avi_allocated_vip" : true,
+      "vip_id" : "aeiou",
+      "ip_address" : "",
+      "auto_allocate_floating_ip" : true,
+      "enabled" : true,
+      "auto_allocate_ip_type" : "aeiou",
+      "floating_subnet6_uuid" : "aeiou",
+      "auto_allocate_ip" : true,
+      "subnet6" : "",
+      "floating_ip" : "",
+      "floating_subnet_uuid" : "aeiou",
+      "avi_allocated_fip" : true,
+      "subnet6_uuid" : "aeiou",
+      "floating_ip6" : "",
+      "ipam_network_subnet" : {
+        "subnet" : "",
+        "subnet_uuid" : "aeiou",
+        "subnet6" : "",
+        "subnet6_uuid" : "aeiou",
+        "network_ref" : "aeiou"
+      },
+      "network_ref" : "aeiou",
+      "prefix_length" : 123,
+      "discovered_networks" : [ {
+        "subnet" : [ {
+          "ip_addr" : {
+            "addr" : "aeiou",
+            "type" : "aeiou"
+          },
+          "mask" : 123
+        } ],
+        "subnet6" : [ "" ],
+        "network_ref" : "aeiou"
+      } ]
+    } ],
+    "east_west_placement" : true
+  },
+  "uuid" : "aeiou",
+  "poolgroups" : [ {
+    "ref" : "aeiou"
+  } ],
+  "url" : "aeiou",
+  "_last_modified" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#VsInventory">VsInventory</a>
+    <h4 class="field-label">401</h4>
+    log in failed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="vsinventoryUuidPatch"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /vsinventory/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">vsinventoryUuidPatch</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uuid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; UUID of the object to fetch </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; VsInventory object creation </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; object name </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#VsInventory">VsInventory</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "app_profile_type" : "aeiou",
+  "alert" : {
+    "level" : "aeiou"
+  },
+  "health_score" : {
+    "anomaly_penalty" : 123,
+    "performance_score" : {
+      "reason" : "aeiou",
+      "application_performance" : {
+        "virtualservice_performance_scores" : [ {
+          "reason" : "aeiou",
+          "hs_entity" : {
+            "pool_ref" : "aeiou",
+            "server" : "aeiou",
+            "entity_uuid" : "aeiou",
+            "metrics_entity" : "aeiou"
+          },
+          "score_data" : {
+            "reason" : "aeiou",
+            "ref" : "aeiou",
+            "vs_uptime" : 1.3579000000000001069366817318950779736042022705078125,
+            "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+            "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+            "rum_apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+            "avg_pool_performance_score" : 1.3579000000000001069366817318950779736042022705078125,
+            "pool_performance_scores" : [ {
+              "reason" : "aeiou",
+              "hs_entity" : "",
+              "score_data" : {
+                "pool_ref" : "aeiou",
+                "reason" : "aeiou",
+                "ref" : "aeiou",
+                "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+                "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+                "reason_attr" : "aeiou",
+                "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+                "oper_state" : "aeiou"
+              },
+              "value" : 1.3579000000000001069366817318950779736042022705078125
+            } ],
+            "reason_attr" : "aeiou",
+            "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+            "oper_state" : "aeiou"
+          },
+          "value" : 1.3579000000000001069366817318950779736042022705078125
+        } ],
+        "reason" : "aeiou",
+        "ref" : "aeiou",
+        "reason_attr" : "aeiou"
+      },
+      "serviceengine_performance" : {
+        "reason" : "aeiou",
+        "ref" : "aeiou",
+        "reason_attr" : "aeiou",
+        "oper_state" : "aeiou"
+      },
+      "virtualservice_performance" : "",
+      "pool_performance" : "",
+      "server_performance" : {
+        "reason" : "aeiou",
+        "server" : "aeiou",
+        "ref" : "aeiou",
+        "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+        "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+        "reason_attr" : "aeiou",
+        "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+        "oper_state" : "aeiou",
+        "pool_uuid" : "aeiou"
+      },
+      "reason_attr" : "aeiou",
+      "value" : 1.3579000000000001069366817318950779736042022705078125
+    },
+    "health_score" : 1.3579000000000001069366817318950779736042022705078125,
+    "security_penalty" : 123,
+    "resources_penalty" : 123
+  },
+  "has_pool_with_realtime_metrics" : true,
+  "pools" : [ {
+    "ref" : "aeiou"
+  } ],
+  "runtime" : {
+    "percent_ses_up" : 123,
+    "vip_summary" : {
+      "service_engine" : [ {
+        "mgmt_ip6" : "",
+        "standby" : true,
+        "mgmt_ip" : "",
+        "scalein_in_progress" : true,
+        "se_ready_in_progress" : true,
+        "admin_down_requested" : true,
+        "oper_status" : "",
+        "connected" : true,
+        "active_on_cloud" : true,
+        "ref" : "aeiou",
+        "snat_ip" : "",
+        "attach_ip_in_progress" : true,
+        "name" : "aeiou",
+        "scaleout_in_progress" : true,
+        "detach_ip_in_progress" : true,
+        "active_on_se" : true,
+        "primary" : true
+      } ],
+      "num_se_assigned" : 123,
+      "placement_networks" : [ "" ],
+      "avi_allocated_vip" : true,
+      "vip_id" : "aeiou",
+      "ip_address" : "",
+      "auto_allocate_floating_ip" : true,
+      "oper_status" : "",
+      "enabled" : true,
+      "auto_allocate_ip_type" : "aeiou",
+      "percent_ses_up" : 123,
+      "num_se_requested" : 123,
+      "auto_allocate_ip" : true,
+      "avi_allocated_fip" : true,
+      "prefix_length" : 123,
+      "discovered_networks" : [ "" ]
+    },
+    "oper_status" : {
+      "reason_code" : 123456789,
+      "reason" : [ "aeiou" ],
+      "last_changed_time" : {
+        "usecs" : 123456789,
+        "secs" : 123456789
+      },
+      "state" : "aeiou",
+      "reason_code_string" : "aeiou"
+    }
+  },
+  "metrics" : {
+    "headers" : {
+      "statistics" : {
+        "min" : 1.3579000000000001069366817318950779736042022705078125,
+        "max" : 1.3579000000000001069366817318950779736042022705078125,
+        "mean" : 1.3579000000000001069366817318950779736042022705078125,
+        "num_samples" : 123
+      }
+    },
+    "data" : {
+      "value" : 1.3579000000000001069366817318950779736042022705078125
+    }
+  },
+  "config" : {
+    "vsvip_ref" : "aeiou",
+    "fqdn" : "aeiou",
+    "vrf_context_ref" : "aeiou",
+    "dns_info" : [ {
+      "metadata" : "aeiou",
+      "fqdn" : "aeiou",
+      "num_records_in_response" : 123,
+      "cname" : {
+        "cname" : "aeiou"
+      },
+      "type" : "aeiou",
+      "ttl" : 123,
+      "algorithm" : "aeiou"
+    } ],
+    "services" : [ {
+      "override_network_profile_ref" : "aeiou",
+      "port" : 123,
+      "port_range_end" : 123,
+      "is_active_ftp_data_port" : true,
+      "enable_http2" : true,
+      "horizon_internal_ports" : true,
+      "enable_ssl" : true,
+      "override_application_profile_ref" : "aeiou"
+    } ],
+    "type" : "aeiou",
+    "uuid" : "aeiou",
+    "enabled" : true,
+    "url" : "aeiou",
+    "se_group_ref" : "aeiou",
+    "vh_domain_name" : [ "aeiou" ],
+    "pool_ref" : "aeiou",
+    "cloud_ref" : "aeiou",
+    "tenant_ref" : "aeiou",
+    "name" : "aeiou",
+    "vip" : [ {
+      "availability_zone" : "aeiou",
+      "ip6_address" : "",
+      "subnet" : "",
+      "port_uuid" : "aeiou",
+      "subnet_uuid" : "aeiou",
+      "placement_networks" : [ {
+        "subnet" : "",
+        "subnet6" : "",
+        "network_ref" : "aeiou"
+      } ],
+      "avi_allocated_vip" : true,
+      "vip_id" : "aeiou",
+      "ip_address" : "",
+      "auto_allocate_floating_ip" : true,
+      "enabled" : true,
+      "auto_allocate_ip_type" : "aeiou",
+      "floating_subnet6_uuid" : "aeiou",
+      "auto_allocate_ip" : true,
+      "subnet6" : "",
+      "floating_ip" : "",
+      "floating_subnet_uuid" : "aeiou",
+      "avi_allocated_fip" : true,
+      "subnet6_uuid" : "aeiou",
+      "floating_ip6" : "",
+      "ipam_network_subnet" : {
+        "subnet" : "",
+        "subnet_uuid" : "aeiou",
+        "subnet6" : "",
+        "subnet6_uuid" : "aeiou",
+        "network_ref" : "aeiou"
+      },
+      "network_ref" : "aeiou",
+      "prefix_length" : 123,
+      "discovered_networks" : [ {
+        "subnet" : [ {
+          "ip_addr" : {
+            "addr" : "aeiou",
+            "type" : "aeiou"
+          },
+          "mask" : 123
+        } ],
+        "subnet6" : [ "" ],
+        "network_ref" : "aeiou"
+      } ]
+    } ],
+    "east_west_placement" : true
+  },
+  "uuid" : "aeiou",
+  "poolgroups" : [ {
+    "ref" : "aeiou"
+  } ],
+  "url" : "aeiou",
+  "_last_modified" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#VsInventory">VsInventory</a>
+    <h4 class="field-label">401</h4>
+    log in failed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="vsinventoryUuidPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /vsinventory/{uuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">vsinventoryUuidPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">uuid (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; UUID of the object to fetch </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; VsInventory object creation </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">name (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; object name </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#VsInventory">VsInventory</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "app_profile_type" : "aeiou",
+  "alert" : {
+    "level" : "aeiou"
+  },
+  "health_score" : {
+    "anomaly_penalty" : 123,
+    "performance_score" : {
+      "reason" : "aeiou",
+      "application_performance" : {
+        "virtualservice_performance_scores" : [ {
+          "reason" : "aeiou",
+          "hs_entity" : {
+            "pool_ref" : "aeiou",
+            "server" : "aeiou",
+            "entity_uuid" : "aeiou",
+            "metrics_entity" : "aeiou"
+          },
+          "score_data" : {
+            "reason" : "aeiou",
+            "ref" : "aeiou",
+            "vs_uptime" : 1.3579000000000001069366817318950779736042022705078125,
+            "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+            "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+            "rum_apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+            "avg_pool_performance_score" : 1.3579000000000001069366817318950779736042022705078125,
+            "pool_performance_scores" : [ {
+              "reason" : "aeiou",
+              "hs_entity" : "",
+              "score_data" : {
+                "pool_ref" : "aeiou",
+                "reason" : "aeiou",
+                "ref" : "aeiou",
+                "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+                "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+                "reason_attr" : "aeiou",
+                "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+                "oper_state" : "aeiou"
+              },
+              "value" : 1.3579000000000001069366817318950779736042022705078125
+            } ],
+            "reason_attr" : "aeiou",
+            "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+            "oper_state" : "aeiou"
+          },
+          "value" : 1.3579000000000001069366817318950779736042022705078125
+        } ],
+        "reason" : "aeiou",
+        "ref" : "aeiou",
+        "reason_attr" : "aeiou"
+      },
+      "serviceengine_performance" : {
+        "reason" : "aeiou",
+        "ref" : "aeiou",
+        "reason_attr" : "aeiou",
+        "oper_state" : "aeiou"
+      },
+      "virtualservice_performance" : "",
+      "pool_performance" : "",
+      "server_performance" : {
+        "reason" : "aeiou",
+        "server" : "aeiou",
+        "ref" : "aeiou",
+        "apdexc" : 1.3579000000000001069366817318950779736042022705078125,
+        "apdexr" : 1.3579000000000001069366817318950779736042022705078125,
+        "reason_attr" : "aeiou",
+        "sum_finished_conns" : 1.3579000000000001069366817318950779736042022705078125,
+        "oper_state" : "aeiou",
+        "pool_uuid" : "aeiou"
+      },
+      "reason_attr" : "aeiou",
+      "value" : 1.3579000000000001069366817318950779736042022705078125
+    },
+    "health_score" : 1.3579000000000001069366817318950779736042022705078125,
+    "security_penalty" : 123,
+    "resources_penalty" : 123
+  },
+  "has_pool_with_realtime_metrics" : true,
+  "pools" : [ {
+    "ref" : "aeiou"
+  } ],
+  "runtime" : {
+    "percent_ses_up" : 123,
+    "vip_summary" : {
+      "service_engine" : [ {
+        "mgmt_ip6" : "",
+        "standby" : true,
+        "mgmt_ip" : "",
+        "scalein_in_progress" : true,
+        "se_ready_in_progress" : true,
+        "admin_down_requested" : true,
+        "oper_status" : "",
+        "connected" : true,
+        "active_on_cloud" : true,
+        "ref" : "aeiou",
+        "snat_ip" : "",
+        "attach_ip_in_progress" : true,
+        "name" : "aeiou",
+        "scaleout_in_progress" : true,
+        "detach_ip_in_progress" : true,
+        "active_on_se" : true,
+        "primary" : true
+      } ],
+      "num_se_assigned" : 123,
+      "placement_networks" : [ "" ],
+      "avi_allocated_vip" : true,
+      "vip_id" : "aeiou",
+      "ip_address" : "",
+      "auto_allocate_floating_ip" : true,
+      "oper_status" : "",
+      "enabled" : true,
+      "auto_allocate_ip_type" : "aeiou",
+      "percent_ses_up" : 123,
+      "num_se_requested" : 123,
+      "auto_allocate_ip" : true,
+      "avi_allocated_fip" : true,
+      "prefix_length" : 123,
+      "discovered_networks" : [ "" ]
+    },
+    "oper_status" : {
+      "reason_code" : 123456789,
+      "reason" : [ "aeiou" ],
+      "last_changed_time" : {
+        "usecs" : 123456789,
+        "secs" : 123456789
+      },
+      "state" : "aeiou",
+      "reason_code_string" : "aeiou"
+    }
+  },
+  "metrics" : {
+    "headers" : {
+      "statistics" : {
+        "min" : 1.3579000000000001069366817318950779736042022705078125,
+        "max" : 1.3579000000000001069366817318950779736042022705078125,
+        "mean" : 1.3579000000000001069366817318950779736042022705078125,
+        "num_samples" : 123
+      }
+    },
+    "data" : {
+      "value" : 1.3579000000000001069366817318950779736042022705078125
+    }
+  },
+  "config" : {
+    "vsvip_ref" : "aeiou",
+    "fqdn" : "aeiou",
+    "vrf_context_ref" : "aeiou",
+    "dns_info" : [ {
+      "metadata" : "aeiou",
+      "fqdn" : "aeiou",
+      "num_records_in_response" : 123,
+      "cname" : {
+        "cname" : "aeiou"
+      },
+      "type" : "aeiou",
+      "ttl" : 123,
+      "algorithm" : "aeiou"
+    } ],
+    "services" : [ {
+      "override_network_profile_ref" : "aeiou",
+      "port" : 123,
+      "port_range_end" : 123,
+      "is_active_ftp_data_port" : true,
+      "enable_http2" : true,
+      "horizon_internal_ports" : true,
+      "enable_ssl" : true,
+      "override_application_profile_ref" : "aeiou"
+    } ],
+    "type" : "aeiou",
+    "uuid" : "aeiou",
+    "enabled" : true,
+    "url" : "aeiou",
+    "se_group_ref" : "aeiou",
+    "vh_domain_name" : [ "aeiou" ],
+    "pool_ref" : "aeiou",
+    "cloud_ref" : "aeiou",
+    "tenant_ref" : "aeiou",
+    "name" : "aeiou",
+    "vip" : [ {
+      "availability_zone" : "aeiou",
+      "ip6_address" : "",
+      "subnet" : "",
+      "port_uuid" : "aeiou",
+      "subnet_uuid" : "aeiou",
+      "placement_networks" : [ {
+        "subnet" : "",
+        "subnet6" : "",
+        "network_ref" : "aeiou"
+      } ],
+      "avi_allocated_vip" : true,
+      "vip_id" : "aeiou",
+      "ip_address" : "",
+      "auto_allocate_floating_ip" : true,
+      "enabled" : true,
+      "auto_allocate_ip_type" : "aeiou",
+      "floating_subnet6_uuid" : "aeiou",
+      "auto_allocate_ip" : true,
+      "subnet6" : "",
+      "floating_ip" : "",
+      "floating_subnet_uuid" : "aeiou",
+      "avi_allocated_fip" : true,
+      "subnet6_uuid" : "aeiou",
+      "floating_ip6" : "",
+      "ipam_network_subnet" : {
+        "subnet" : "",
+        "subnet_uuid" : "aeiou",
+        "subnet6" : "",
+        "subnet6_uuid" : "aeiou",
+        "network_ref" : "aeiou"
+      },
+      "network_ref" : "aeiou",
+      "prefix_length" : 123,
+      "discovered_networks" : [ {
+        "subnet" : [ {
+          "ip_addr" : {
+            "addr" : "aeiou",
+            "type" : "aeiou"
+          },
+          "mask" : 123
+        } ],
+        "subnet6" : [ "" ],
+        "network_ref" : "aeiou"
+      } ]
+    } ],
+    "east_west_placement" : true
+  },
+  "uuid" : "aeiou",
+  "poolgroups" : [ {
+    "ref" : "aeiou"
+  } ],
+  "url" : "aeiou",
+  "_last_modified" : "aeiou"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#VsInventory">VsInventory</a>
+    <h4 class="field-label">401</h4>
+    log in failed
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <div class="up"><a href="#__Models">Up</a></div>
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#AlertSummary"><code>AlertSummary</code></a></li>
+    <li><a href="#ApplicationPerformanceScoreData"><code>ApplicationPerformanceScoreData</code></a></li>
+    <li><a href="#DiscoveredNetwork"><code>DiscoveredNetwork</code></a></li>
+    <li><a href="#DnsCnameRdata"><code>DnsCnameRdata</code></a></li>
+    <li><a href="#DnsInfo"><code>DnsInfo</code></a></li>
+    <li><a href="#HealthScoreEntity"><code>HealthScoreEntity</code></a></li>
+    <li><a href="#HealthScorePerformanceData"><code>HealthScorePerformanceData</code></a></li>
+    <li><a href="#HealthScoreSummary"><code>HealthScoreSummary</code></a></li>
+    <li><a href="#IPNetworkSubnet"><code>IPNetworkSubnet</code></a></li>
+    <li><a href="#InventoryMetricStatistics"><code>InventoryMetricStatistics</code></a></li>
+    <li><a href="#InventoryMetrics"><code>InventoryMetrics</code></a></li>
+    <li><a href="#InventoryMetricsData"><code>InventoryMetricsData</code></a></li>
+    <li><a href="#InventoryMetricsHeaders"><code>InventoryMetricsHeaders</code></a></li>
+    <li><a href="#IpAddr"><code>IpAddr</code></a></li>
+    <li><a href="#IpAddrPrefix"><code>IpAddrPrefix</code></a></li>
+    <li><a href="#OperationalStatus"><code>OperationalStatus</code></a></li>
+    <li><a href="#PoolGroupRefs"><code>PoolGroupRefs</code></a></li>
+    <li><a href="#PoolPerformanceScore"><code>PoolPerformanceScore</code></a></li>
+    <li><a href="#PoolPerformanceScoreData"><code>PoolPerformanceScoreData</code></a></li>
+    <li><a href="#PoolRefs"><code>PoolRefs</code></a></li>
+    <li><a href="#ServerPerformanceScoreData"><code>ServerPerformanceScoreData</code></a></li>
+    <li><a href="#Service"><code>Service</code></a></li>
+    <li><a href="#ServiceEnginePerformanceScoreData"><code>ServiceEnginePerformanceScoreData</code></a></li>
+    <li><a href="#TimeStamp"><code>TimeStamp</code></a></li>
+    <li><a href="#Vip"><code>Vip</code></a></li>
+    <li><a href="#VipPlacementNetwork"><code>VipPlacementNetwork</code></a></li>
+    <li><a href="#VipSeAssigned"><code>VipSeAssigned</code></a></li>
+    <li><a href="#VipSummary"><code>VipSummary</code></a></li>
+    <li><a href="#VirtualServicePerformanceScore"><code>VirtualServicePerformanceScore</code></a></li>
+    <li><a href="#VirtualServicePerformanceScoreData"><code>VirtualServicePerformanceScoreData</code></a></li>
+    <li><a href="#VsInventory"><code>VsInventory</code></a></li>
+    <li><a href="#VsInventoryApiResponse"><code>VsInventoryApiResponse</code></a></li>
+    <li><a href="#VsInventoryConfig"><code>VsInventoryConfig</code></a></li>
+    <li><a href="#VsInventoryConfigApiResponse"><code>VsInventoryConfigApiResponse</code></a></li>
+    <li><a href="#VsRuntimeSummary"><code>VsRuntimeSummary</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3 class="field-label"><a name="AlertSummary">AlertSummary</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">level (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Resolved Alert Type. Enum options - ALERT_LOW, ALERT_MEDIUM, ALERT_HIGH. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ApplicationPerformanceScoreData">ApplicationPerformanceScoreData</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Reason for the Health Score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason_attr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Attribute that is dominating the health score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type Application. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">virtualservice_performance_scores (optional)</div><div class="param-desc"><span class="param-type"><a href="#VirtualServicePerformanceScore">array[VirtualServicePerformanceScore]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="DiscoveredNetwork">DiscoveredNetwork</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">network_ref </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Discovered network for this IP. It is a reference to an object of type Network. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">array[IpAddrPrefix]</a></span> Discovered subnet for this IP. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet6 (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">array[IpAddrPrefix]</a></span> Discovered IPv6 subnet for this IP. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="DnsCnameRdata">DnsCnameRdata</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">cname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Canonical name. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="DnsInfo">DnsInfo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">algorithm (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Specifies the algorithm to pick the IP address(es) to be returned, when multiple entries are configured. This does not apply if num_records_in_response is 0. Default is consistent hash. Enum options - DNS_RECORD_RESPONSE_ROUND_ROBIN, DNS_RECORD_RESPONSE_CONSISTENT_HASH. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">cname (optional)</div><div class="param-desc"><span class="param-type"><a href="#DnsCnameRdata">DnsCnameRdata</a></span> Canonical name in CNAME record. Field introduced in 17.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">fqdn (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Fully qualified domain name. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">metadata (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Any metadata associated with this record. Field introduced in 17.2.2. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">num_records_in_response (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Specifies the number of records returned for this FQDN. Enter 0 to return all records. Default is 0. Allowed values are 0-20. Special values are 0- Return all records. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">ttl (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Time to live for fqdn record. Default value is chosen from DNS profile for this cloud if no value provided. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> DNS record type. Enum options - DNS_RECORD_OTHER, DNS_RECORD_A, DNS_RECORD_NS, DNS_RECORD_CNAME, DNS_RECORD_SOA, DNS_RECORD_PTR, DNS_RECORD_HINFO, DNS_RECORD_MX, DNS_RECORD_TXT, DNS_RECORD_RP, DNS_RECORD_DNSKEY, DNS_RECORD_AAAA, DNS_RECORD_SRV, DNS_RECORD_OPT, DNS_RECORD_RRSIG, DNS_RECORD_AXFR, DNS_RECORD_ANY. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="HealthScoreEntity">HealthScoreEntity</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">entity_uuid </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">metrics_entity </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - VSERVER_METRICS_ENTITY, VM_METRICS_ENTITY, SE_METRICS_ENTITY, CONTROLLER_METRICS_ENTITY, APPLICATION_METRICS_ENTITY, TENANT_METRICS_ENTITY, POOL_METRICS_ENTITY. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">pool_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type Pool. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">server (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="HealthScorePerformanceData">HealthScorePerformanceData</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">application_performance (optional)</div><div class="param-desc"><span class="param-type"><a href="#ApplicationPerformanceScoreData">ApplicationPerformanceScoreData</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">pool_performance (optional)</div><div class="param-desc"><span class="param-type"><a href="#PoolPerformanceScoreData">PoolPerformanceScoreData</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Reason for Performance Score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason_attr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">server_performance (optional)</div><div class="param-desc"><span class="param-type"><a href="#ServerPerformanceScoreData">ServerPerformanceScoreData</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">serviceengine_performance (optional)</div><div class="param-desc"><span class="param-type"><a href="#ServiceEnginePerformanceScoreData">ServiceEnginePerformanceScoreData</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">value </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">virtualservice_performance (optional)</div><div class="param-desc"><span class="param-type"><a href="#VirtualServicePerformanceScoreData">VirtualServicePerformanceScoreData</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="HealthScoreSummary">HealthScoreSummary</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">anomaly_penalty (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">health_score (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">performance_score (optional)</div><div class="param-desc"><span class="param-type"><a href="#HealthScorePerformanceData">HealthScorePerformanceData</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">resources_penalty (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">security_penalty (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="IPNetworkSubnet">IPNetworkSubnet</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">network_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Network for VirtualService IP allocation with Vantage as the IPAM provider. Network should be created before this is configured. It is a reference to an object of type Network. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> Subnet for VirtualService IP allocation with Vantage or Infoblox as the IPAM provider. Only one of subnet or subnet_uuid configuration is allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet6 (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> Subnet for VirtualService IPv6 allocation with Vantage or Infoblox as the IPAM provider. Only one of subnet or subnet_uuid configuration is allowed. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet6_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Subnet UUID or Name or Prefix for VirtualService IPv6 allocation with AWS or OpenStack as the IPAM provider. Only one of subnet or subnet_uuid configuration is allowed. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Subnet UUID or Name or Prefix for VirtualService IP allocation with AWS or OpenStack as the IPAM provider. Only one of subnet or subnet_uuid configuration is allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="InventoryMetricStatistics">InventoryMetricStatistics</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">max (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Maximum value in time series requested. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">mean (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Arithmetic mean. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">min (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Minimum value in time series requested. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">num_samples (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of actual data samples. It excludes fake data. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="InventoryMetrics">InventoryMetrics</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#InventoryMetricsData">InventoryMetricsData</a></span> Metric data. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">headers (optional)</div><div class="param-desc"><span class="param-type"><a href="#InventoryMetricsHeaders">InventoryMetricsHeaders</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="InventoryMetricsData">InventoryMetricsData</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">value </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="InventoryMetricsHeaders">InventoryMetricsHeaders</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">statistics (optional)</div><div class="param-desc"><span class="param-type"><a href="#InventoryMetricStatistics">InventoryMetricStatistics</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="IpAddr">IpAddr</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">addr </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> IP address. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - V4, DNS, V6. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="IpAddrPrefix">IpAddrPrefix</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">ip_addr </div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">mask </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="OperationalStatus">OperationalStatus</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">last_changed_time (optional)</div><div class="param-desc"><span class="param-type"><a href="#TimeStamp">TimeStamp</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason_code (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int64</div>
+<div class="param">reason_code_string (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - OPER_UP, OPER_DOWN, OPER_CREATING, OPER_RESOURCES, OPER_INACTIVE, OPER_DISABLED, OPER_UNUSED, OPER_UNKNOWN, OPER_PROCESSING, OPER_INITIALIZING, OPER_ERROR_DISABLED, OPER_AWAIT_MANUAL_PLACEMENT, OPER_UPGRADING, OPER_SE_PROCESSING, OPER_PARTITIONED, OPER_DISABLING, OPER_FAILED, OPER_UNAVAIL. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="PoolGroupRefs">PoolGroupRefs</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID of the pool group. It is a reference to an object of type PoolGroup. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="PoolPerformanceScore">PoolPerformanceScore</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">hs_entity </div><div class="param-desc"><span class="param-type"><a href="#HealthScoreEntity">HealthScoreEntity</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">score_data (optional)</div><div class="param-desc"><span class="param-type"><a href="#PoolPerformanceScoreData">PoolPerformanceScoreData</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">value </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="PoolPerformanceScoreData">PoolPerformanceScoreData</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">apdexc (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">apdexr (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">oper_state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - OPER_UP, OPER_DOWN, OPER_CREATING, OPER_RESOURCES, OPER_INACTIVE, OPER_DISABLED, OPER_UNUSED, OPER_UNKNOWN, OPER_PROCESSING, OPER_INITIALIZING, OPER_ERROR_DISABLED, OPER_AWAIT_MANUAL_PLACEMENT, OPER_UPGRADING, OPER_SE_PROCESSING, OPER_PARTITIONED, OPER_DISABLING, OPER_FAILED, OPER_UNAVAIL. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">pool_ref </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type Pool. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Reason for the Health Score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason_attr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Attribute that is dominating the health score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type VirtualService. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">sum_finished_conns (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="PoolRefs">PoolRefs</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID of the pool. It is a reference to an object of type Pool. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ServerPerformanceScoreData">ServerPerformanceScoreData</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">apdexc (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">apdexr (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">oper_state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - OPER_UP, OPER_DOWN, OPER_CREATING, OPER_RESOURCES, OPER_INACTIVE, OPER_DISABLED, OPER_UNUSED, OPER_UNKNOWN, OPER_PROCESSING, OPER_INITIALIZING, OPER_ERROR_DISABLED, OPER_AWAIT_MANUAL_PLACEMENT, OPER_UPGRADING, OPER_SE_PROCESSING, OPER_PARTITIONED, OPER_DISABLING, OPER_FAILED, OPER_UNAVAIL. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">pool_uuid </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Reason for the Health Score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason_attr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Attribute that is dominating the health score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type VirtualService. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">server </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">sum_finished_conns (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Service">Service</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">enable_http2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable HTTP2 on this port. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
+<div class="param">enable_ssl (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable SSL termination and offload for traffic from clients. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">horizon_internal_ports (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Used for Horizon deployment. If set used for L7 redirect. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">is_active_ftp_data_port (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Source port used by VS for active FTP data connections. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">override_application_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Enable application layer specific features for the this specific service. It is a reference to an object of type ApplicationProfile. Field introduced in 17.2.4. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">override_network_profile_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Override the network profile for this specific service port. It is a reference to an object of type NetworkProfile. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">port </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The Virtual Service&#39;s port number. Allowed values are 0-65535. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">port_range_end (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The end of the Virtual Service&#39;s port number range. Allowed values are 1-65535. Special values are 0- single port. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="ServiceEnginePerformanceScoreData">ServiceEnginePerformanceScoreData</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">oper_state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - OPER_UP, OPER_DOWN, OPER_CREATING, OPER_RESOURCES, OPER_INACTIVE, OPER_DISABLED, OPER_UNUSED, OPER_UNKNOWN, OPER_PROCESSING, OPER_INITIALIZING, OPER_ERROR_DISABLED, OPER_AWAIT_MANUAL_PLACEMENT, OPER_UPGRADING, OPER_SE_PROCESSING, OPER_PARTITIONED, OPER_DISABLING, OPER_FAILED, OPER_UNAVAIL. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Reason for the Health Performance Score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason_attr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Attribute that is dominating the performance score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type ServiceEngine. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="TimeStamp">TimeStamp</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">secs </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int64</div>
+<div class="param">usecs </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="Vip">Vip</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">auto_allocate_floating_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Auto-allocate floating/elastic IP from the Cloud infrastructure. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
+<div class="param">auto_allocate_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Auto-allocate VIP from the provided subnet. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">auto_allocate_ip_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Specifies whether to auto-allocate only a V4 address, only a V6 address, or one of each type. Enum options - V4_ONLY, V6_ONLY, V4_V6. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- V4_ONLY), Basic edition(Allowed values- V4_ONLY), Enterprise with Cloud Services edition. </div>
+<div class="param">availability_zone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Availability-zone to place the Virtual Service. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">avi_allocated_fip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> (internal-use) FIP allocated by Avi in the Cloud infrastructure. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
+<div class="param">avi_allocated_vip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> (internal-use) VIP allocated by Avi in the Cloud infrastructure. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- false), Basic edition(Allowed values- false), Enterprise with Cloud Services edition. </div>
+<div class="param">discovered_networks (optional)</div><div class="param-desc"><span class="param-type"><a href="#DiscoveredNetwork">array[DiscoveredNetwork]</a></span> Discovered networks providing reachability for client facing Vip IP. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable or disable the Vip. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">floating_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> Floating IPv4 to associate with this Vip. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">floating_ip6 (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> Floating IPv6 address to associate with this Vip. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">floating_subnet6_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> If auto_allocate_floating_ip is True and more than one floating-ip subnets exist, then the subnet for the floating IPv6 address allocation. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">floating_subnet_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> If auto_allocate_floating_ip is True and more than one floating-ip subnets exist, then the subnet for the floating IP address allocation. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">ip6_address (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> IPv6 Address of the Vip. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">ip_address (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> IPv4 Address of the VIP. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">ipam_network_subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPNetworkSubnet">IPNetworkSubnet</a></span> Subnet and/or Network for allocating VirtualService IP by IPAM Provider module. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">network_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Manually override the network on which the Vip is placed. It is a reference to an object of type Network. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">placement_networks (optional)</div><div class="param-desc"><span class="param-type"><a href="#VipPlacementNetwork">array[VipPlacementNetwork]</a></span> Placement networks/subnets to use for vip placement. Field introduced in 18.2.5. Maximum of 10 items allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">port_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> (internal-use) Network port assigned to the Vip IP address. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">prefix_length (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Mask applied for the Vip, non-default mask supported only for wildcard Vip. Allowed values are 0-32. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 32), Basic edition(Allowed values- 32), Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> Subnet providing reachability for client facing Vip IP. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet6 (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> Subnet providing reachability for client facing Vip IPv6. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet6_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> If auto_allocate_ip is True, then the subnet for the Vip IPv6 address allocation. This field is applicable only if the VirtualService belongs to an Openstack or AWS cloud, in which case it is mandatory, if auto_allocate is selected. Field introduced in 18.1.1. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet_uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> If auto_allocate_ip is True, then the subnet for the Vip IP address allocation. This field is applicable only if the VirtualService belongs to an Openstack or AWS cloud, in which case it is mandatory, if auto_allocate is selected. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">vip_id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Unique ID associated with the vip. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VipPlacementNetwork">VipPlacementNetwork</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">network_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Network to use for vip placement. It is a reference to an object of type Network. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> IPv4 Subnet to use for vip placement. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">subnet6 (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddrPrefix">IpAddrPrefix</a></span> IPv6 subnet to use for vip placement. Field introduced in 18.2.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VipSeAssigned">VipSeAssigned</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">active_on_cloud (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Vip is Active on Cloud. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">active_on_se (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Vip is Active on this ServiceEngine. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">admin_down_requested (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">attach_ip_in_progress (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Attach IP is in progress. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">connected (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">detach_ip_in_progress (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Detach IP is in progress. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">mgmt_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> Management IPv4 address of SE. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">mgmt_ip6 (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> Management IPv6 address of SE. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">oper_status (optional)</div><div class="param-desc"><span class="param-type"><a href="#OperationalStatus">OperationalStatus</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">primary (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type ServiceEngine. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">scalein_in_progress (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">scaleout_in_progress (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Vip is awaiting scaleout response from this ServiceEngine. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">se_ready_in_progress (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Vip is awaiting response from this ServiceEngine. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">snat_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">standby (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VipSummary">VipSummary</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">auto_allocate_floating_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Auto-allocate floating/elastic IP from the Cloud infrastructure. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">auto_allocate_ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Auto-allocate VIP from the provided subnet. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">auto_allocate_ip_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Specifies whether to auto-allocate only a V4 address, only a V6 address, or one of each type. Enum options - V4_ONLY, V6_ONLY, V4_V6. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">avi_allocated_fip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> (internal-use) FIP allocated by Avi in the Cloud infrastructure. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">avi_allocated_vip (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> (internal-use) VIP allocated by Avi in the Cloud infrastructure. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">discovered_networks (optional)</div><div class="param-desc"><span class="param-type"><a href="#DiscoveredNetwork">array[DiscoveredNetwork]</a></span> Discovered networks providing reachability for client facing Vip IP. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable or disable the Vip. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">ip_address (optional)</div><div class="param-desc"><span class="param-type"><a href="#IpAddr">IpAddr</a></span> IPv4 Address of the VIP. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">num_se_assigned (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">num_se_requested (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">oper_status (optional)</div><div class="param-desc"><span class="param-type"><a href="#OperationalStatus">OperationalStatus</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">percent_ses_up (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">placement_networks (optional)</div><div class="param-desc"><span class="param-type"><a href="#VipPlacementNetwork">array[VipPlacementNetwork]</a></span> Placement networks/subnets to use for vip placement. Field introduced in 22.1.1. Maximum of 10 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">prefix_length (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Mask applied for the Vip, non-default mask supported only for wildcard Vip. Allowed values are 0-32. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">service_engine (optional)</div><div class="param-desc"><span class="param-type"><a href="#VipSeAssigned">array[VipSeAssigned]</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">vip_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Unique ID associated with the vip. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VirtualServicePerformanceScore">VirtualServicePerformanceScore</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">hs_entity </div><div class="param-desc"><span class="param-type"><a href="#HealthScoreEntity">HealthScoreEntity</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">score_data (optional)</div><div class="param-desc"><span class="param-type"><a href="#VirtualServicePerformanceScoreData">VirtualServicePerformanceScoreData</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">value </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VirtualServicePerformanceScoreData">VirtualServicePerformanceScoreData</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">apdexc (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">apdexr (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">avg_pool_performance_score (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Average of all pool performance scores. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">oper_state </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Enum options - OPER_UP, OPER_DOWN, OPER_CREATING, OPER_RESOURCES, OPER_INACTIVE, OPER_DISABLED, OPER_UNUSED, OPER_UNKNOWN, OPER_PROCESSING, OPER_INITIALIZING, OPER_ERROR_DISABLED, OPER_AWAIT_MANUAL_PLACEMENT, OPER_UPGRADING, OPER_SE_PROCESSING, OPER_PARTITIONED, OPER_DISABLING, OPER_FAILED, OPER_UNAVAIL. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">pool_performance_scores (optional)</div><div class="param-desc"><span class="param-type"><a href="#PoolPerformanceScore">array[PoolPerformanceScore]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Reason for the Health Score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">reason_attr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Attribute that is dominating the health score. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type VirtualService. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">rum_apdexr (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Rum Apdexr when client insights is active. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">sum_finished_conns (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+<div class="param">vs_uptime (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Percentage time of last 5mins that the VirtualService has been up. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VsInventory">VsInventory</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
+<div class="param">alert (optional)</div><div class="param-desc"><span class="param-type"><a href="#AlertSummary">AlertSummary</a></span> Alert summary of the virtual service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">app_profile_type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Application type of the virtual service. Enum options - APPLICATION_PROFILE_TYPE_L4, APPLICATION_PROFILE_TYPE_HTTP, APPLICATION_PROFILE_TYPE_SYSLOG, APPLICATION_PROFILE_TYPE_DNS, APPLICATION_PROFILE_TYPE_SSL, APPLICATION_PROFILE_TYPE_SIP. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">config (optional)</div><div class="param-desc"><span class="param-type"><a href="#VsInventoryConfig">VsInventoryConfig</a></span> Configuration summary of the virtual service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">has_pool_with_realtime_metrics (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">health_score (optional)</div><div class="param-desc"><span class="param-type"><a href="#HealthScoreSummary">HealthScoreSummary</a></span> Health score summary of the virtual service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">metrics (optional)</div><div class="param-desc"><span class="param-type"><a href="#InventoryMetrics">InventoryMetrics</a></span> Metrics summary of the virtual service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">poolgroups (optional)</div><div class="param-desc"><span class="param-type"><a href="#PoolGroupRefs">array[PoolGroupRefs]</a></span> List of pool-groups virtual service is assigned to. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">pools (optional)</div><div class="param-desc"><span class="param-type"><a href="#PoolRefs">array[PoolRefs]</a></span> List of pools virtual service is assigned to. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">runtime (optional)</div><div class="param-desc"><span class="param-type"><a href="#VsRuntimeSummary">VsRuntimeSummary</a></span> Runtime summary of the virtual service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> url </div>
+<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID of the virtual service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VsInventoryApiResponse">VsInventoryApiResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">count </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">results </div><div class="param-desc"><span class="param-type"><a href="#VsInventory">array[VsInventory]</a></span>  </div>
+<div class="param">next (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VsInventoryConfig">VsInventoryConfig</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">cloud_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type Cloud. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">dns_info (optional)</div><div class="param-desc"><span class="param-type"><a href="#DnsInfo">array[DnsInfo]</a></span> Service discovery specific data including fully qualified domain name, type and Time-To-Live of the DNS record. Note that only one of fqdn and dns_info setting is allowed. Maximum of 1000 items allowed. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">east_west_placement (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Force placement on all SE&#39;s in service group (Mesos mode only). Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span> Enable or disable the Virtual Service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">fqdn (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> DNS resolvable, fully qualified domain name of the virtualservice. Only one of &#39;fqdn&#39; and &#39;dns_info&#39; configuration is allowed. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name for the Virtual Service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">pool_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The pool is an object that contains destination servers and related attributes such as load-balancing and persistence. It is a reference to an object of type Pool. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">se_group_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The Service Engine Group to use for this Virtual Service. Moving to a new SE Group is disruptive to existing connections for this VS. It is a reference to an object of type ServiceEngineGroup. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">services (optional)</div><div class="param-desc"><span class="param-type"><a href="#Service">array[Service]</a></span> List of Services defined for this Virtual Service. Field introduced in 22.1.1. Maximum of 2048 items allowed. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">tenant_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  It is a reference to an object of type Tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Specify if this is a normal Virtual Service, or if it is the parent or child of an SNI-enabled virtual hosted Virtual Service. Enum options - VS_TYPE_NORMAL, VS_TYPE_VH_PARENT, VS_TYPE_VH_CHILD. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> URL of the Virtual Service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UUID of the Virtual Service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">vh_domain_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> The exact name requested from the client&#39;s SNI-enabled TLS hello domain name field. If this is a match, the parent VS will forward the connection to this child VS. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">vip (optional)</div><div class="param-desc"><span class="param-type"><a href="#Vip">array[Vip]</a></span> List of Virtual Service IPs. While creating a &#39;Shared VS&#39;,please use vsvip_ref to point to the shared entities. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">vrf_context_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Virtual Routing Context that the Virtual Service is bound to. This is used to provide the isolation of the set of networks the application is attached to. It is a reference to an object of type VrfContext. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">vsvip_ref (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mostly used during the creation of Shared VS, this field refers to entities that can be shared across Virtual Services. It is a reference to an object of type VsVip. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VsInventoryConfigApiResponse">VsInventoryConfigApiResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">count </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">results </div><div class="param-desc"><span class="param-type"><a href="#VsInventoryConfig">array[VsInventoryConfig]</a></span>  </div>
+<div class="param">next (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3 class="field-label"><a name="VsRuntimeSummary">VsRuntimeSummary</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">oper_status (optional)</div><div class="param-desc"><span class="param-type"><a href="#OperationalStatus">OperationalStatus</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+<div class="param">percent_ses_up (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">vip_summary (optional)</div><div class="param-desc"><span class="param-type"><a href="#VipSummary">VipSummary</a></span> Vip summary of the virtual service. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition. </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
