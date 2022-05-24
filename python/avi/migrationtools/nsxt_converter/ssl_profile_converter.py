@@ -52,6 +52,13 @@ class SslProfileConfigConv(object):
                     name = lb_ssl.get('display_name')
                     if prefix:
                         name = prefix + '-' + name
+                    if self.object_merge_check:
+                        if name in self.merge_object_mapping['ssl_profile'].keys():
+                            name = name + "-" + lb_ssl["id"]
+                    else:
+                        c_ssl_temp = list(filter(lambda c_ssl: c_ssl["name"] == name, alb_config['SSLProfile']))
+                        if c_ssl_temp:
+                            name = name + "-" + lb_ssl["id"]
                     alb_ssl = dict(
                         name=name,
                     )
@@ -74,7 +81,8 @@ class SslProfileConfigConv(object):
                         common_avi_util.update_skip_duplicates(alb_ssl,
                                                                alb_config['SSLProfile'],
                                                                'ssl_profile',
-                                                               converted_objs, name, None, self.merge_object_mapping,
+                                                               converted_objs, name, None,
+                                                               self.merge_object_mapping,
                                                                lb_ssl['resource_type'], prefix,
                                                                self.sys_dict['SSLProfile'])
                         self.ssl_profile_count += 1
@@ -82,6 +90,7 @@ class SslProfileConfigConv(object):
                         alb_config['SSLProfile'].append(alb_ssl)
 
                     val = dict(
+                        id=lb_ssl["id"],
                         name=name,
                         resource_type=lb_ssl['resource_type'],
                         alb_ssl=alb_ssl
@@ -111,6 +120,7 @@ class SslProfileConfigConv(object):
                 ssl_na = [val for val in na_list[index] if val not in self.common_na_attr]
                 conv_status["na_list"] = ssl_na
                 name = converted_alb_ssl[index]['name']
+                ssl_id = converted_alb_ssl[index]['id']
                 alb_mig_ssl = converted_alb_ssl[index]['alb_ssl']
                 resource_type = converted_alb_ssl[index]['resource_type']
                 if self.object_merge_check:
@@ -148,6 +158,13 @@ class SslProfileConfigConv(object):
                     name = lb_ssl.get('display_name')
                     if prefix:
                         name = prefix + '-' + name
+                    if self.object_merge_check:
+                        if name in self.merge_object_mapping['ssl_profile'].keys():
+                            name = name + "-" + lb_ssl["id"]
+                    else:
+                        s_ssl_temp = list(filter(lambda ssl: ssl["name"] == name, alb_config['SSLProfile']))
+                        if s_ssl_temp:
+                            name = name + "-" + lb_ssl["id"]
                     alb_ssl = dict(
                         name=name,
                     )
@@ -162,7 +179,8 @@ class SslProfileConfigConv(object):
                         common_avi_util.update_skip_duplicates(alb_ssl,
                                                                alb_config['SSLProfile'],
                                                                'ssl_profile',
-                                                               converted_objs, name, None, self.merge_object_mapping,
+                                                               converted_objs, name, None,
+                                                               self.merge_object_mapping,
                                                                lb_ssl['resource_type'], prefix,
                                                                self.sys_dict['SSLProfile'])
                         self.ssl_profile_count += 1
@@ -170,6 +188,7 @@ class SslProfileConfigConv(object):
                         alb_config['SSLProfile'].append(alb_ssl)
 
                     val = dict(
+                        id=lb_ssl["id"],
                         name=name,
                         resource_type=lb_ssl['resource_type'],
                         alb_ssl=alb_ssl
@@ -199,6 +218,7 @@ class SslProfileConfigConv(object):
                 ssl_na = [val for val in na_list[index] if val not in self.common_na_attr]
                 conv_status["na_list"] = ssl_na
                 name = converted_alb_ssl[index]['name']
+                ssl_id = converted_alb_ssl[index]['id']
                 alb_mig_ssl = converted_alb_ssl[index]['alb_ssl']
                 resource_type = converted_alb_ssl[index]['resource_type']
                 if self.object_merge_check:

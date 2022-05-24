@@ -82,6 +82,9 @@ class VsConfigConv(object):
                 name = lb_vs.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
+                vs_temp = list(filter(lambda vs: vs["name"] == name, alb_config['VirtualService']))
+                if vs_temp:
+                    name = name + "-" + lb_vs["id"]
                 alb_vs = dict(
                     name=name,
                     enabled=lb_vs.get('enabled'),
@@ -210,7 +213,9 @@ class VsConfigConv(object):
 
                 if lb_vs.get('application_profile_path'):
                     profile_path = lb_vs.get('application_profile_path')
-                    profile_name = profile_path.split('/')[-1]
+                    profile_id = profile_path.split('/')[-1]
+                    profile_config = list(filter(lambda pr: pr["id"] == profile_id, nsx_lb_config["LbAppProfiles"]))
+                    profile_name = profile_config[0]["display_name"]
                     if prefix:
                         profile_name = prefix + "-" + profile_name
                     profile_type = "network"
@@ -246,10 +251,16 @@ class VsConfigConv(object):
                     client_ssl = lb_vs.get('client_ssl_profile_binding')
                     ssl_key_cert_refs = []
                     if client_ssl.get('ssl_profile_path'):
-                        ssl_ref = client_ssl['ssl_profile_path'].split('/')[-1]
-                        if prefix:
-                            ssl_ref = prefix + '-' + ssl_ref
-                        alb_vs['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_ref
+                        ssl_ref_id = client_ssl['ssl_profile_path'].split('/')[-1]
+                        client_ssl_config = list(
+                            filter(lambda c_ssl: c_ssl["id"] == ssl_ref_id, nsx_lb_config["LbClientSslProfiles"]))
+                        if client_ssl_config:
+                            ssl_name = client_ssl_config[0]["display_name"]
+                            if prefix:
+                                ssl_name = prefix + '-' + ssl_name
+                            if self.object_merge_check:
+                                ssl_name = self.merge_object_mapping['ssl_profile'].get(ssl_name)
+                            alb_vs['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_name
                     if client_ssl.get('default_certificate_path', None):
                         alb_vs['services'][0]["enable_ssl"] = True
                         cert_name = name + "-" + str(random.randint(0, 20))
@@ -339,7 +350,7 @@ class VsConfigConv(object):
                         if lb_vs.get('server_ssl_profile_binding'):
                             # if lb_vs["server_ssl_profile_binding"]
                             server_ssl = lb_vs.get('server_ssl_profile_binding')
-                            self.update_pool_with_ssl(alb_config, lb_vs, pool_name, self.object_merge_check,
+                            self.update_pool_with_ssl(alb_config, nsx_lb_config, lb_vs, pool_name, self.object_merge_check,
                                                       self.merge_object_mapping, prefix, converted_alb_ssl_certs)
                             skipped_server_ssl = [val for val in server_ssl.keys()
                                                   if val not in self.server_ssl_attr]
@@ -355,7 +366,7 @@ class VsConfigConv(object):
                             pki_server_profile_name = pki_server_profile["name"]
                             self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile_name)
                         if lb_vs.get('lb_persistence_profile_path'):
-                            self.update_pool_with_persistence(alb_config['Pool'], lb_vs,
+                            self.update_pool_with_persistence(alb_config['Pool'], nsx_lb_config, lb_vs,
                                                               pool_name, self.object_merge_check,
                                                               self.merge_object_mapping,
                                                               prefix)
@@ -491,20 +502,23 @@ class VsConfigConv(object):
             conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
                                        [{"ssl_cert_key": cert}])
 
-    def update_pool_with_ssl(self, alb_config, lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix,
+    def update_pool_with_ssl(self, alb_config, nsx_lb_config,lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix,
                              converted_alb_ssl_certs):
         for pool in alb_config['Pool']:
             if pool.get('name') == pool_name:
                 server_ssl = lb_vs['server_ssl_profile_binding']
                 if server_ssl.get('ssl_profile_path'):
-                    ssl_ref = server_ssl['ssl_profile_path'].split('/')[-1]
+                    ssl_ref_id = server_ssl['ssl_profile_path'].split('/')[-1]
+                    ssl_config = list(
+                        filter(lambda ssl: ssl["id"] == ssl_ref_id, nsx_lb_config["LbServerSslProfiles"]))
+                    ssl_name = ssl_config[0]["display_name"]
                     if prefix:
-                        ssl_ref = prefix + '-' + ssl_ref
+                        ssl_name = prefix + '-' + ssl_name
                     if object_merge_check:
-                        ssl_name = merge_object_mapping['ssl_profile'].get(ssl_ref)
-                        if ssl_name:
-                            ssl_ref = ssl_name
-                    pool['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_ref
+                        ssl_merge_name = merge_object_mapping['ssl_profile'].get(ssl_name)
+                        if ssl_merge_name:
+                            ssl_name = ssl_merge_name
+                    pool['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_name
                 if server_ssl.get('client_certificate_path', None):
                     ca_cert_obj = self.update_ca_cert_obj(pool_name, alb_config, [], "admin", prefix)
                     pool[
@@ -512,16 +526,21 @@ class VsConfigConv(object):
                         "name")
                     converted_alb_ssl_certs.append(ca_cert_obj)
 
-    def update_pool_with_persistence(self, alb_pool_config, lb_vs, pool_name, object_merge_check, merge_object_mapping,
-                                     prefix):
-        for pool in alb_pool_config:
-            if pool.get('name') == pool_name and lb_vs.get('lb_persistence_profile_path', None):
-                if prefix:
-                    persistence_name = prefix + '-' + lb_vs.get('lb_persistence_profile_path').split('/')[-1]
-                else:
-                    persistence_name = lb_vs.get('lb_persistence_profile_path').split('/')[-1]
-                pool[
-                    'persistence_profile_ref'] = '/api/applicationpersistenceprofile/?tenant=admin&name=' + persistence_name
+    def update_pool_with_persistence(self, alb_pool_config, nsx_lb_config, lb_vs, pool_name, object_merge_check,
+                                     merge_object_mapping, prefix):
+        persis_id = lb_vs.get('lb_persistence_profile_path').split('/')[-1]
+        persis_config = list(
+            filter(lambda pp: pp["id"] == persis_id, nsx_lb_config["LbPersistenceProfiles"]))
+        if persis_config:
+            persis_name = persis_config[0]["display_name"]
+            if prefix:
+                persis_name = prefix+"-"+persis_name
+            if self.object_merge_check:
+                persis_name = self.merge_object_mapping['app_per_profile'].get(persis_name)
+            for pool in alb_pool_config:
+                if pool.get('name') == pool_name:
+                    pool['persistence_profile_ref'] = \
+                        '/api/applicationpersistenceprofile/?tenant=admin&name=' + persis_name
 
     def get_vs_app_profile_ref(self, alb_profile_config, profile_name, object_merge_check,
                                merge_object_mapping, profile_type):

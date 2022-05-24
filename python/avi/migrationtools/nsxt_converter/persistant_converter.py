@@ -54,7 +54,13 @@ class PersistantProfileConfigConv(object):
 
                 if prefix:
                     name = prefix + '-' + name
-
+                if self.object_merge_check:
+                    if name in self.merge_object_mapping['app_per_profile'].keys():
+                        name = name+"-"+lb_pp["id"]
+                else:
+                    pp_temp = list(filter(lambda pp: pp["name"] == name, alb_config['ApplicationPersistenceProfile']))
+                    if pp_temp:
+                        name = name + "-" + lb_pp["id"]
                 alb_pp = dict(
                     name=name
                 )
@@ -94,6 +100,7 @@ class PersistantProfileConfigConv(object):
                     alb_config['ApplicationPersistenceProfile'].append(alb_pp)
 
                 val = dict(
+                    id = lb_pp["id"],
                     name=name,
                     resource_type=lb_pp['resource_type'],
                     alb_pp=alb_pp
@@ -127,6 +134,7 @@ class PersistantProfileConfigConv(object):
             app_per_na_list = [val for val in na_list[index] if val not in self.common_na_attr]
             conv_status["na_list"] = app_per_na_list
             name = converted_alb_pp[index]['name']
+            pp_id = converted_alb_pp[index]['id']
             alb_mig_pp = converted_alb_pp[index]['alb_pp']
             resource_type = converted_alb_pp[index]['resource_type']
             if self.object_merge_check:

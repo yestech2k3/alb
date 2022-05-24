@@ -133,9 +133,9 @@ class NsxtConverter(AviConverter):
         # "output")
         self.write_output(avi_config, output_path, 'avi_config.json')
         if self.ansible:
-            self.convert(alb_config, output_path)
+            self.convert(avi_config, output_path)
         if self.option == 'auto-upload':
-            self.upload_config_to_controller(alb_config)
+            self.upload_config_to_controller(avi_config)
         if vs_list_with_snat_deactivated:
             print('\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " +
                   "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + '\033[0m')

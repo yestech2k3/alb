@@ -56,6 +56,9 @@ class PoolConfigConv(object):
                             (vs.get("sorry_pool_path") and vs.get("sorry_pool_path").split("/")[-1] == lb_pl.get("id"))]
                 if prefix:
                     name = prefix+"-"+name
+                pool_temp = list(filter(lambda pl: pl["name"] == name, alb_config['Pool']))
+                if pool_temp:
+                    name = name + "-" + lb_pl["id"]
                 pool_skip = True
                 pool_count = 0
                 if lb_pl.get("members") and vs_list:
@@ -175,17 +178,20 @@ class PoolConfigConv(object):
                     monitor_refs = []
                     for lb_hm_path in active_monitor_paths:
                         ref = lb_hm_path.split("/lb-monitor-profiles/")[1]
+                        hm_config = list(
+                            filter(lambda pr: pr["id"] == ref, nsx_lb_config["LbMonitorProfiles"]))
+                        hm_name = hm_config[0]["display_name"]
                         if prefix:
-                            ref = prefix + "-" + ref
-                        if ref in [monitor_obj.get('name') for monitor_obj in alb_config['HealthMonitor']]:
-                            ref = ref
+                            hm_name = prefix + "-" + hm_name
+                        if hm_name in [monitor_obj.get('name') for monitor_obj in alb_config['HealthMonitor']]:
+                            hm_name = hm_name
                         elif self.object_merge_check:
-                            if ref in self.merge_object_mapping['health_monitor'].keys():
-                                ref = self.merge_object_mapping['health_monitor'].get(ref)
+                            if hm_name in self.merge_object_mapping['health_monitor'].keys():
+                                hm_name = self.merge_object_mapping['health_monitor'].get(hm_name)
                         else:
                             continue
                         monitor_refs.append(
-                            "/api/healthmonitor/?tenant=admin&name=" + ref)
+                            "/api/healthmonitor/?tenant=admin&name=" + hm_name)
 
                     alb_pl["health_monitor_refs"] = list(set(monitor_refs))
                 skipped = [val for val in lb_pl.keys()
