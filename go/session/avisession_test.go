@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"reflect"
 	"strconv"
+	"sync"
 	"testing"
 	"time"
 
@@ -683,5 +684,56 @@ func TestApiLazyAuthentication(t *testing.T) {
 	if err := avisess.Get("api/pool", &res); err != nil {
 		glog.Infof("Error: %v", err)
 		t.Fail()
+	}
+}
+
+func testCreateDeleteAviTenant(t *testing.T, avisess *AviSession, tenantName string, invalidateSession bool) {
+	glog.Infof("DEBUG: Passing CSRF token as: %+v", avisess.csrfToken)
+
+	if invalidateSession {
+		avisess.csrfToken = "jhkfjqfgq"
+		glog.Infof("DEBUG: Passing Invalid CSRF token as: %+v", avisess.csrfToken)
+	}
+
+	// Post
+	tenant := models.Tenant{}
+	tenant.Name = &tenantName
+	var tres models.Tenant
+
+	// tenant := make(map[string]string)
+	// tenant["name"] = tenantName
+	// var tres interface{}
+
+	glog.Infof("Creating tenant with name: %s", tenantName)
+	err := avisess.Post("api/tenant", &tenant, &tres)
+	glog.Infof("res: %v, err: %v", tres, err)
+	if err != nil {
+		t.Errorf("Tenant creation failed for tenant: %s Error %s", tenantName, err)
+	} else {
+		//tenantUuid := tres.(map[string]interface{})["uuid"].(string)
+		glog.Infof("Deleting tenant with name: %s", tenantName)
+		// err = avisess.Delete("api/tenant/" + tenantUuid)
+		err = avisess.Delete("api/tenant/" + *tres.UUID)
+		if err != nil {
+			t.Errorf("Tenant deletion failed: %s", err)
+		}
+	}
+}
+
+func TestAviSessionGoRoutine(t *testing.T) {
+	var wg sync.WaitGroup
+	//session := getSessions(t)
+	for _, session := range getSessions(t) {
+		for i := 0; i < 100; i++ {
+			tenantName := fmt.Sprintf("testtenant-%d", i)
+			wg.Add(1)
+			go func(tenantName string, wg *sync.WaitGroup) {
+				defer wg.Done()
+				glog.Infof("Tenant Name: %s", tenantName)
+				testCreateDeleteAviTenant(t, session, tenantName, false)
+				time.Sleep(time.Second * 1)
+			}(tenantName, &wg)
+		}
+		wg.Wait()
 	}
 }
