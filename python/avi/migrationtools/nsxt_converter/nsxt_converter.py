@@ -13,6 +13,8 @@ from avi.migrationtools.avi_migration_utils import get_count
 from avi.migrationtools.avi_orphan_object import wipe_out_not_in_use
 from avi.migrationtools.nsxt_converter import nsxt_config_converter, vs_converter
 import argparse
+
+from avi.migrationtools.nsxt_converter.nsx_cleanup import NSXCleanup
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
 from avi.migrationtools.nsxt_converter.vs_converter import vs_list_with_snat_deactivated, vs_data_path_not_work
 
@@ -63,6 +65,7 @@ class NsxtConverter(AviConverter):
         self.traffic_enabled = args.traffic_enabled
         self.config_file = args.config_file
         self.migration_input_file = args.migration_input_file
+        self.cleanup_vs_names = args.cleanup
 
     def conver_lb_config(self):
 
@@ -147,6 +150,10 @@ class NsxtConverter(AviConverter):
         print("Total Errors: ", get_count('error'))
         LOG.info("Total Warning: {}".format(get_count('warning')))
         LOG.info("Total Errors: {}".format(get_count('error')))
+        if self.cleanup_vs_names:
+            nsx_c = NSXCleanup(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port \
+                               , self.controller_ip, self.user, self.password, self.controller_version)
+            nsx_c.nsx_cleanup(self.cleanup_vs_names)
 
     def upload_config_to_controller(self, alb_config):
         avi_rest_lib.upload_config_to_controller(
@@ -259,6 +266,8 @@ if __name__ == "__main__":
                         help='absolute path for nsx config file')
     parser.add_argument('-i', '--migration_input_file',
                         help='absolute path for nsx-t conversion input file')
+    parser.add_argument('--cleanup',
+                        help='comma separated vs names that we want to clear from nsx-t side')
 
     start = datetime.now()
     args = parser.parse_args()
