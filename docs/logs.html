@@ -845,13 +845,13 @@ and it supports several query options described in detail below.
 <td> cipher_bytes </td>
 <td> String </td>
 <td> eq,sw,ne,co,nc </td>
-<td> Byte stream of client cipher list sent on SSL_R_NO_SHARED_CIPHER error. </td>
+<td> Byte stream of client cipher list sent on SSL_R_NO_SHARED_CIPHER error.This byte stream is used to generate client_cipher_list. </td>
 </tr>
 <tr>
 <td> client_cipher_list </td>
 <td> Message </td>
 <td> eq,lt,le,gt,ge,ne </td>
-<td> List of ciphers sent by client in TLS/SSL Client Hello. Only sent when TLS handshake fails due to no shared cipher. </td>
+<td> List of ciphers sent by client in TLS Client Hello. This field is only generated when TLS handshake fails due to no shared cipher. </td>
 </tr>
 <tr>
 <td> client_log_filter_name </td>
