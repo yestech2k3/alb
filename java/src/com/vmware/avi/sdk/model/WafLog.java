@@ -54,6 +54,12 @@ public class WafLog  {
     @JsonProperty("memory_allocated")
     private Integer memoryAllocated = null;
 
+    @JsonProperty("omitted_app_rule_stats")
+    private OmittedWafLogStats omittedAppRuleStats = null;
+
+    @JsonProperty("omitted_signature_stats")
+    private OmittedWafLogStats omittedSignatureStats = null;
+
     @JsonProperty("psm_configured")
     private Boolean psmConfigured = false;
 
@@ -375,6 +381,54 @@ public class WafLog  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Omitted application rule log stats.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return omittedAppRuleStats
+     */
+    public OmittedWafLogStats getOmittedAppRuleStats() {
+        return omittedAppRuleStats;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Omitted application rule log stats.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param omittedAppRuleStats set the omittedAppRuleStats.
+     */
+    public void setOmittedAppRuleStats(OmittedWafLogStats omittedAppRuleStats) {
+        this.omittedAppRuleStats = omittedAppRuleStats;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Omitted waf rule log stats.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return omittedSignatureStats
+     */
+    public OmittedWafLogStats getOmittedSignatureStats() {
+        return omittedSignatureStats;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Omitted waf rule log stats.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param omittedSignatureStats set the omittedSignatureStats.
+     */
+    public void setOmittedSignatureStats(OmittedWafLogStats omittedSignatureStats) {
+        this.omittedSignatureStats = omittedSignatureStats;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Set to true if there are positive security model rules in the policy.
      * Field introduced in 18.2.3.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
@@ -599,7 +653,9 @@ public class WafLog  {
   Objects.equals(this.rulesProcessed, objWafLog.rulesProcessed)&&
   Objects.equals(this.psmProcessed, objWafLog.psmProcessed)&&
   Objects.equals(this.applicationRulesProcessed, objWafLog.applicationRulesProcessed)&&
-  Objects.equals(this.memoryAllocated, objWafLog.memoryAllocated);
+  Objects.equals(this.memoryAllocated, objWafLog.memoryAllocated)&&
+  Objects.equals(this.omittedSignatureStats, objWafLog.omittedSignatureStats)&&
+  Objects.equals(this.omittedAppRuleStats, objWafLog.omittedAppRuleStats);
     }
 
     @Override
@@ -617,6 +673,8 @@ public class WafLog  {
                         sb.append("    latencyResponseBodyPhase: ").append(toIndentedString(latencyResponseBodyPhase)).append("\n");
                         sb.append("    latencyResponseHeaderPhase: ").append(toIndentedString(latencyResponseHeaderPhase)).append("\n");
                         sb.append("    memoryAllocated: ").append(toIndentedString(memoryAllocated)).append("\n");
+                        sb.append("    omittedAppRuleStats: ").append(toIndentedString(omittedAppRuleStats)).append("\n");
+                        sb.append("    omittedSignatureStats: ").append(toIndentedString(omittedSignatureStats)).append("\n");
                         sb.append("    psmConfigured: ").append(toIndentedString(psmConfigured)).append("\n");
                         sb.append("    psmLogs: ").append(toIndentedString(psmLogs)).append("\n");
                         sb.append("    psmProcessed: ").append(toIndentedString(psmProcessed)).append("\n");

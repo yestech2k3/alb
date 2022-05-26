@@ -27,6 +27,9 @@ public class WafRuleLog  {
     @JsonProperty("msg")
     private String msg = null;
 
+    @JsonProperty("omitted_match_elements")
+    private Integer omittedMatchElements = 0;
+
     @JsonProperty("phase")
     private String phase = null;
 
@@ -105,6 +108,30 @@ public class WafRuleLog  {
      */
     public void setMsg(String  msg) {
         this.msg = msg;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * The count of omitted match element logs in the current rule.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+     * @return omittedMatchElements
+     */
+    public Integer getOmittedMatchElements() {
+        return omittedMatchElements;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * The count of omitted match element logs in the current rule.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+     * @param omittedMatchElements set the omittedMatchElements.
+     */
+    public void setOmittedMatchElements(Integer  omittedMatchElements) {
+        this.omittedMatchElements = omittedMatchElements;
     }
 
     /**
@@ -258,7 +285,8 @@ public class WafRuleLog  {
   Objects.equals(this.msg, objWafRuleLog.msg)&&
   Objects.equals(this.matches, objWafRuleLog.matches)&&
   Objects.equals(this.tags, objWafRuleLog.tags)&&
-  Objects.equals(this.ruleName, objWafRuleLog.ruleName);
+  Objects.equals(this.ruleName, objWafRuleLog.ruleName)&&
+  Objects.equals(this.omittedMatchElements, objWafRuleLog.omittedMatchElements);
     }
 
     @Override
@@ -267,6 +295,7 @@ public class WafRuleLog  {
       sb.append("class WafRuleLog {\n");
                   sb.append("    matches: ").append(toIndentedString(matches)).append("\n");
                         sb.append("    msg: ").append(toIndentedString(msg)).append("\n");
+                        sb.append("    omittedMatchElements: ").append(toIndentedString(omittedMatchElements)).append("\n");
                         sb.append("    phase: ").append(toIndentedString(phase)).append("\n");
                         sb.append("    ruleGroup: ").append(toIndentedString(ruleGroup)).append("\n");
                         sb.append("    ruleId: ").append(toIndentedString(ruleId)).append("\n");
