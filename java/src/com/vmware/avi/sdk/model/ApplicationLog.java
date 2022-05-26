@@ -708,8 +708,8 @@ public class ApplicationLog  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * List of ciphers sent by client in tls/ssl client hello.
-     * Only sent when tls handshake fails due to no shared cipher.
+     * List of ciphers sent by client in tls client hello.
+     * This field is only generated when tls handshake fails due to no shared cipher.
      * Field introduced in 18.1.4, 18.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -721,8 +721,8 @@ public class ApplicationLog  {
 
     /**
      * This is the setter method to the attribute.
-     * List of ciphers sent by client in tls/ssl client hello.
-     * Only sent when tls handshake fails due to no shared cipher.
+     * List of ciphers sent by client in tls client hello.
+     * This field is only generated when tls handshake fails due to no shared cipher.
      * Field introduced in 18.1.4, 18.2.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
