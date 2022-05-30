@@ -3,6 +3,8 @@ import json
 import logging
 import os
 from datetime import datetime
+
+import copy
 import yaml
 
 from avi.migrationtools import avi_rest_lib
@@ -67,7 +69,7 @@ class NsxtConverter(AviConverter):
         self.migration_input_file = args.migration_input_file
         self.cleanup_vs_names = args.cleanup
 
-    def conver_lb_config(self):
+    def conver_lb_config(self, args):
 
         if not os.path.exists(self.output_file_path):
             os.mkdir(self.output_file_path)
@@ -75,6 +77,10 @@ class NsxtConverter(AviConverter):
         output_dir = os.path.normpath(self.output_file_path)
 
         is_download_from_host = False
+        args_copy = copy.deepcopy(args)
+        vars(args_copy).pop('nsxt_passord')
+        vars(args_copy).pop('password')
+        output_path = None
         if self.nsxt_ip:
             output_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "output"
             if not os.path.exists(output_path):
@@ -90,6 +96,8 @@ class NsxtConverter(AviConverter):
             input_path = output_dir + os.path.sep + "config-output" + os.path.sep + "input"
             if not os.path.exists(input_path):
                 os.makedirs(input_path)
+        with open(output_path + os.path.sep + "state.json", 'w') as f:
+            f.write("%s" % json.dumps(vars(args_copy)))
         nsx_lb_config = None
         if is_download_from_host:
             LOG.debug("Copying files from host")
@@ -272,7 +280,7 @@ if __name__ == "__main__":
     start = datetime.now()
     args = parser.parse_args()
     nsxt_converter = NsxtConverter(args)
-    nsxt_converter.conver_lb_config()
+    nsxt_converter.conver_lb_config(args)
     end = datetime.now()
     print("The time of execution of above program is :",
           str(end - start))

@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 import random
 
+import copy
 import xlsxwriter
 
 from avi.migrationtools.nsxt_converter import nsxt_client as nsx_client_util
@@ -175,6 +176,67 @@ class NSXUtil():
             for monitor in nsx_lb_config["LbMonitorProfiles"]:
                 if not monitor["_system_owned"]:
                     self.nsx_api_client.infra.LbMonitorProfiles.delete(monitor["id"])
+
+    def cutover_vs(self, vs_list):
+        virtual_service = self.get_all_virtual_service()
+        print("VS List " + str(vs_list))
+
+        # Get list of all ALB VS's
+        self.alb_vs_list = dict()
+        self.alb_all_vs_list = self.session.get("virtualservice/").json()["results"]
+        for vs in self.alb_all_vs_list:
+            self.alb_vs_list[vs["name"]] = vs
+
+        for nsxt_vs in virtual_service:
+            vs_body = self.nsx_api_client.infra.LbVirtualServers.get(nsxt_vs["id"])
+            if (vs_list and nsxt_vs['display_name'] in vs_list) or (not vs_list) and not nsxt_vs["system_owned"]:
+                vs_body.lb_service_path = None
+                vs_body.enabled = False
+                self.nsx_api_client.infra.LbVirtualServers.update(nsxt_vs["id"], vs_body)
+
+                for alb_vs in self.alb_vs_list:
+                    print("ALL VS {} {}".format(alb_vs, nsxt_vs['display_name']))
+                    if alb_vs == nsxt_vs["display_name"]:
+                        print("Found Match for {}".format(alb_vs))
+                        vs_obj = self.alb_vs_list[alb_vs]
+                        vs_obj["traffic_enabled"] = True
+                        response_obj = self.session.put("virtualservice/{}".format(vs_obj.get("uuid")), vs_obj)
+                        print("response object {}".format(str(response_obj)))
+                        break
+
+    def rollback_vs(self, vs_list, input_data):
+        virtual_service = self.get_all_virtual_service()
+        print("VS List " + str(vs_list))
+
+        # Get list of all ALB VS's
+        self.alb_vs_list = dict()
+        self.alb_all_vs_list = self.session.get("virtualservice/").json()["results"]
+        for vs in self.alb_all_vs_list:
+            self.alb_vs_list[vs["name"]] = vs
+
+        vs_lb_mapping_list = dict()
+        nsxt_vs_list = input_data['LbVirtualServers']
+        for vs in nsxt_vs_list:
+            vs_lb_mapping_list['{}_{}'.format(vs["id"], vs["display_name"])] \
+                = vs['lb_service_path']
+
+        for nsxt_vs in virtual_service:
+            vs_body = self.nsx_api_client.infra.LbVirtualServers.get(nsxt_vs["id"])
+            if (vs_list and nsxt_vs["display_name"] in vs_list) or (not vs_list) and not nsxt_vs["system_owned"]:
+                lb_service_path = vs_lb_mapping_list.get("{}_{}".format(nsxt_vs["id"],
+                                                                        nsxt_vs["display_name"]))
+                vs_body.lb_service_path = lb_service_path
+                vs_body.enabled = True
+                self.nsx_api_client.infra.LbVirtualServers.update(nsxt_vs["id"], vs_body)
+
+                for alb_vs in self.alb_vs_list:
+                    if alb_vs == nsxt_vs["display_name"]:
+                        print("Found Match for {}".format(alb_vs))
+                        vs_obj = self.alb_vs_list[alb_vs]
+                        vs_obj["traffic_enabled"] = True
+                        response_obj = self.session.put("virtualservice/{}".format(vs_obj.get("uuid")), vs_obj)
+                        print("response object {}".format(str(response_obj)))
+                        break
 
     def get_cloud_type(self, avi_cloud_list, tz_id, seg_id):
         is_seg_present = False
