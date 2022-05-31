@@ -465,6 +465,10 @@ class VsConfigConv(object):
                 # avi_rest_lib -> is_vlan_configured_with_bgp function
                 # TODO Add another condition in below 'if' and if both conditions true then enable rhi
 
+                # By default VS is enabled and traffic is disabled
+                alb_vs['enabled'] = True
+                alb_vs['traffic_enabled'] = False
+
                 indirect = self.vs_indirect_attr
                 u_ignore = []
                 ignore_for_defaults = {}
