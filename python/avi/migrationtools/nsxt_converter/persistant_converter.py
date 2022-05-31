@@ -49,7 +49,9 @@ class PersistantProfileConfigConv(object):
                     conv_utils.add_status_row('persistence', lb_pp['resource_type'], lb_pp['display_name'],
                                               conv_const.STATUS_SKIPPED)
                     continue
-
+                tenant_name, name = conv_utils.get_tenant_ref(tenant)
+                if not tenant:
+                    tenant = tenant_name
                 pp_type, name = self.get_name_type(lb_pp)
 
                 if prefix:
@@ -72,13 +74,13 @@ class PersistantProfileConfigConv(object):
                     na_attrs = [val for val in lb_pp.keys()
                                 if val in self.common_na_attr or val in self.persistence_na_attr]
                     na_list.append(na_attrs)
-                    skipped, cookie_skipped_list = self.convert_cookie(lb_pp, alb_pp, skipped, "admin")
+                    skipped, cookie_skipped_list = self.convert_cookie(lb_pp, alb_pp, skipped, tenant)
                 elif pp_type == "LBSourceIpPersistenceProfile":
                     na_attrs = [val for val in lb_pp.keys()
                                 if val in self.common_na_attr or val in self.na_attr_source
                                 or val in self.persistence_na_attr]
                     na_list.append(na_attrs)
-                    skipped = self.convert_source(lb_pp, alb_pp, skipped, "admin")
+                    skipped = self.convert_source(lb_pp, alb_pp, skipped, tenant)
                     indirect = self.indirect_attr_cookie
 
                 if cookie_skipped_list:

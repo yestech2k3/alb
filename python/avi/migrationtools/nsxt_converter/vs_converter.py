@@ -11,7 +11,7 @@ import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 import avi.migrationtools.nsxt_converter.converter_constants as final
 import random
 
-from avi.migrationtools.nsxt_converter.pools_converter import skipped_pools_list, vs_pool_segment_list,\
+from avi.migrationtools.nsxt_converter.pools_converter import skipped_pools_list, vs_pool_segment_list, \
     vs_sorry_pool_segment_list
 
 LOG = logging.getLogger(__name__)
@@ -19,7 +19,7 @@ LOG = logging.getLogger(__name__)
 conv_utils = NsxtConvUtil()
 common_avi_util = MigrationUtil()
 vs_list_with_snat_deactivated = []
-vs_data_path_not_work =[]
+vs_data_path_not_work = []
 
 
 class VsConfigConv(object):
@@ -46,7 +46,7 @@ class VsConfigConv(object):
         self.pki_count = 0
 
     def convert(self, alb_config, nsx_lb_config, prefix, tenant, vs_state, controller_version, traffic_enabled,
-                migration_input_config=None, vrf=None, segroup=None):
+                cloud_tenant, migration_input_config=None, vrf=None, segroup=None):
         '''
         LBVirtualServer to Avi Config vs converter
         '''
@@ -79,6 +79,9 @@ class VsConfigConv(object):
                                               conv_const.STATUS_SKIPPED)
                     LOG.warning("cloud is not configured for %s" % lb_vs["display_name"])
                     continue
+                tenant_name, name = conv_utils.get_tenant_ref(tenant)
+                if not tenant:
+                    tenant = tenant_name
                 name = lb_vs.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
@@ -90,9 +93,9 @@ class VsConfigConv(object):
                     enabled = (vs_state == 'enable')
                 alb_vs = dict(
                     name=name,
-                    traffic_enabled = traffic_enabled,
+                    traffic_enabled=traffic_enabled,
                     enabled=enabled,
-                    cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
+                    cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud', cloud_tenant=cloud_tenant),
                     tenant_ref=conv_utils.get_object_ref(tenant, 'tenant')
                 )
                 tier1_lr = ''
@@ -104,7 +107,7 @@ class VsConfigConv(object):
                     vip = dict(
                         name=name + '-vsvip',
                         tier1_lr=tier1_lr,
-                        cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
+                        cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud', cloud_tenant=cloud_tenant),
                         vip=[
                             dict(
                                 vip_id="1",
@@ -130,7 +133,7 @@ class VsConfigConv(object):
                            if val in self.common_na_attr or val in self.VS_na_attr]
                 if segroup:
                     segroup_ref = conv_utils.get_object_ref(
-                        segroup, 'serviceenginegroup', "admin",
+                        segroup, 'serviceenginegroup', tenant,
                         cloud_name=cloud_name)
                     alb_vs['se_group_ref'] = segroup_ref
                 client_pki = False
@@ -232,7 +235,7 @@ class VsConfigConv(object):
 
                     app_profile_ref = self.get_vs_app_profile_ref(alb_config['ApplicationProfile'],
                                                                   profile_name, self.object_merge_check,
-                                                                  self.merge_object_mapping, profile_type)
+                                                                  self.merge_object_mapping, profile_type, tenant)
                     if app_profile_ref.__contains__("networkprofile"):
                         alb_vs['network_profile_ref'] = app_profile_ref
                         alb_vs['application_profile_ref'] = conv_utils.get_object_ref("System-L4-Application",
@@ -246,7 +249,7 @@ class VsConfigConv(object):
                 if client_pki:
                     pki_client_profile_name = pki_client_profile["name"]
                     self.update_app_with_pki(merge_profile_name, alb_config["ApplicationProfile"],
-                                             pki_client_profile_name)
+                                             pki_client_profile_name, tenant)
                 if lb_vs.get('max_concurrent_connections'):
                     alb_vs['performance_limits'] = dict(
                         max_concurrent_connections=lb_vs.get('max_concurrent_connections')
@@ -264,13 +267,13 @@ class VsConfigConv(object):
                                 ssl_name = prefix + '-' + ssl_name
                             if self.object_merge_check:
                                 ssl_name = self.merge_object_mapping['ssl_profile'].get(ssl_name)
-                            alb_vs['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_name
+                            alb_vs['ssl_profile_ref'] = conv_utils.get_object_ref(ssl_name, 'sslprofile', tenant=tenant)
                     if client_ssl.get('default_certificate_path', None):
                         alb_vs['services'][0]["enable_ssl"] = True
                         cert_name = name + "-" + str(random.randint(0, 20))
-                        ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], "admin", prefix)
+                        ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], tenant, prefix)
                         ssl_key_cert_refs.append(
-                            "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name"))
+                            "/api/sslkeyandcertificate/?tenant=%s&name=%s" % (tenant, ca_cert_obj.get("name")))
                         converted_alb_ssl_certs.append(ca_cert_obj)
                     if client_ssl.get('sni_certificate_paths', None):
                         # TODO need to revisit to fix some issues
@@ -278,16 +281,17 @@ class VsConfigConv(object):
                         sni_cert_list = client_ssl.get('sni_certificate_paths', None)
                         for cert in sni_cert_list:
                             cert_name = name + "-" + str(random.randint(0, 20))
-                            ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], "admin", prefix)
+                            ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], tenant, prefix)
                             ssl_key_cert_refs.append(
-                                "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get("name"))
+                                "/api/sslkeyandcertificate/?tenant=%s&name=%s" % (tenant, ca_cert_obj.get("name")))
                             converted_alb_ssl_certs.append(ca_cert_obj)
                         alb_vs["vh_type"] = "VS_TYPE_VH_SNI"
                         alb_vs["type"] = "VS_TYPE_VH_PARENT"
                     if client_ssl.get("client_auth"):
                         for profile in alb_config["ApplicationProfile"]:
                             if merge_profile_name == profile["name"]:
-                                profile["ssl_client_certificate_mode"] = client_ssl["client_auth"]
+                                if client_ssl["client_auth"] == 'IGNORE':
+                                    profile["ssl_client_certificate_mode"] = 'SSL_CLIENT_CERTIFICATE_NONE'
                     if ssl_key_cert_refs:
                         alb_vs["ssl_key_and_certificate_refs"] = list(set(ssl_key_cert_refs))
                     skipped_client_ssl = [val for val in client_ssl.keys()
@@ -301,11 +305,11 @@ class VsConfigConv(object):
                         skipped.append({"client_ssl ": skipped_client_ssl})
 
                 pg_obj = dict(
-                    cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
+                    cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud', cloud_tenant=cloud_tenant),
                     tenant_ref=conv_utils.get_object_ref(tenant, 'tenant')
                 )
-                pg_obj["members"] =[]
-                pg_name =''
+                pg_obj["members"] = []
+                pg_name = ''
                 lb_pl_config = nsx_lb_config['LbPools']
                 sry_pool_present = False
                 if lb_vs.get("sorry_pool_path"):
@@ -318,19 +322,20 @@ class VsConfigConv(object):
                         if prefix:
                             pl_name = prefix + '-' + sry_pl
                         self.update_pool_with_subnets(pool_name, pool_segment, alb_config["Pool"], pl_name,
-                                                          cloud_name)
+                                                      cloud_name, tenant)
                         for pool in alb_config['Pool']:
                             if pool.get('name') == pool_name:
                                 if lb_vs.get('default_pool_member_ports'):
                                     pool['default_port'] = int(lb_vs['default_pool_member_ports'][0])
                                 pool['tier1_lr'] = tier1_lr
-                                pool['cloud_ref'] = conv_utils.get_object_ref(cloud_name, 'cloud')
-                        pg_name = sry_pl+"-"
+                                pool['cloud_ref'] = conv_utils.get_object_ref(cloud_name, 'cloud',
+                                                                              cloud_tenant=cloud_tenant)
+                        pg_name = sry_pl + "-"
                         lb_pool = [lb_pl for lb_pl in lb_pl_config if lb_pl["display_name"] == sry_pl]
                         if prefix:
-                            sry_pl = prefix + "-"+sry_pl
+                            sry_pl = prefix + "-" + sry_pl
                         self.create_pool_group(cloud_name, pg_obj, alb_config, lb_pool[0], sorry_pool=pool_name,
-                                               sry_pool_present=True)
+                                               sry_pool_present=True, tenant=tenant)
 
                 if lb_vs.get('pool_path'):
                     pool_ref = lb_vs.get('pool_path')
@@ -340,22 +345,26 @@ class VsConfigConv(object):
                         pool_segment = vs_pool_segment_list[lb_vs["id"]].get("pool_segment")
                         if prefix:
                             pl_name = prefix + '-' + pl_name
-                        self.update_pool_with_subnets(pool_name, pool_segment, alb_config["Pool"], pl_name, cloud_name)
+                        self.update_pool_with_subnets \
+                            (pool_name, pool_segment, alb_config["Pool"], pl_name, cloud_name, tenant)
                         for pool in alb_config['Pool']:
                             if pool.get('name') == pool_name:
                                 if lb_vs.get('default_pool_member_ports'):
                                     pool['default_port'] = int(lb_vs['default_pool_member_ports'][0])
                                 pool['tier1_lr'] = tier1_lr
-                                pool['cloud_ref'] = conv_utils.get_object_ref(cloud_name, 'cloud')
+                                pool['cloud_ref'] = conv_utils.get_object_ref(cloud_name, 'cloud',
+                                                                              cloud_tenant=cloud_tenant)
 
                         alb_vs['pool_ref'] = conv_utils.get_object_ref(
-                            pool_name, 'pool', tenant="admin", cloud_name=cloud_name)
+                            pool_name, 'pool', tenant=tenant, cloud_name=cloud_name)
                         # alb_vs['pool_ref'] = '/api/pool/?tenant=admin&name=' + pool_name
                         if lb_vs.get('server_ssl_profile_binding'):
                             # if lb_vs["server_ssl_profile_binding"]
                             server_ssl = lb_vs.get('server_ssl_profile_binding')
-                            self.update_pool_with_ssl(alb_config, nsx_lb_config, lb_vs, pool_name, self.object_merge_check,
-                                                      self.merge_object_mapping, prefix, converted_alb_ssl_certs)
+                            self.update_pool_with_ssl(alb_config, nsx_lb_config, lb_vs, pool_name,
+                                                      self.object_merge_check,
+                                                      self.merge_object_mapping, prefix, tenant,
+                                                      converted_alb_ssl_certs)
                             skipped_server_ssl = [val for val in server_ssl.keys()
                                                   if val not in self.server_ssl_attr]
                             indirect_server_attr = self.VS_server_ssl_indirect_attr
@@ -368,12 +377,12 @@ class VsConfigConv(object):
                                 skipped.append({"server_ssl ": skipped_server_ssl})
                         if server_pki:
                             pki_server_profile_name = pki_server_profile["name"]
-                            self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile_name)
+                            self.update_pool_with_pki(alb_config["Pool"], pool_name, pki_server_profile_name, tenant)
                         if lb_vs.get('lb_persistence_profile_path'):
                             self.update_pool_with_persistence(alb_config['Pool'], nsx_lb_config, lb_vs,
                                                               pool_name, self.object_merge_check,
                                                               self.merge_object_mapping,
-                                                              prefix)
+                                                              prefix, tenant)
 
                         for nsx_pool in nsx_lb_config["LbPools"]:
                             nsx_pool_name = nsx_pool["display_name"]
@@ -387,8 +396,9 @@ class VsConfigConv(object):
                                                                                 self.object_merge_check,
                                                                                 self.merge_object_mapping)
                                         if vs_app_name != profile_name:
-                                            alb_vs['application_profile_ref'] = '/api/applicationprofile/?tenant=admin&' \
-                                                                                'name=' + vs_app_name
+                                            alb_vs['application_profile_ref'] = conv_utils.get_object_ref \
+                                                (vs_app_name, 'applicationprofile', tenant=tenant)
+
                                         vs_list_with_snat_deactivated.append(alb_vs["name"])
 
                                     if nsx_pool["snat_translation"].get("type") == "LBSnatIpPool":
@@ -402,22 +412,23 @@ class VsConfigConv(object):
                                             alb_vs["snat_ip"].append(snat_ip)
                                 pg_flag = [member for member in nsx_pool.get("members") if member.get("backup_member")]
                                 if pg_flag:
-                                    self.create_pool_group(cloud_name, pg_obj, alb_config, nsx_pool, backup_pool=pool_name,
-                                                           sry_pool_present=sry_pool_present)
+                                    self.create_pool_group(cloud_name, pg_obj, alb_config, nsx_pool,
+                                                           backup_pool=pool_name,
+                                                           sry_pool_present=sry_pool_present, tenant=tenant)
                                     pg_name = pool_name + pg_name
                         self.update_pool_with_app_attr(merge_profile_name, pool_name, alb_config)
 
                 if pg_obj.get("members"):
                     if prefix:
-                        if not pg_name.__contains__(prefix+"-"):
-                            pg_name = prefix+"-"+pg_name
-                    pg_obj["name"] = pg_name+"-poolgroup"
+                        if not pg_name.__contains__(prefix + "-"):
+                            pg_name = prefix + "-" + pg_name
+                    pg_obj["name"] = pg_name + "-poolgroup"
                     alb_config["PoolGroup"].append(pg_obj)
                     if alb_vs.get("pool_ref"):
                         del alb_vs["pool_ref"]
 
                     alb_vs["pool_group_ref"] = conv_utils.get_object_ref(
-                        pg_obj["name"], 'poolgroup', tenant="admin", cloud_name=cloud_name)
+                        pg_obj["name"], 'poolgroup', tenant=tenant, cloud_name=cloud_name)
                     indirect = []
                     u_ignore = []
                     ignore_for_defaults = {}
@@ -445,13 +456,13 @@ class VsConfigConv(object):
 
                 # If vlan VS then check if VLAN network is configured as a BGP peer,
                 # if yes, then advertise bgp otherwise don't advertise
-                is_vlan_configured, vlan_segment,network_type, return_mesg = is_segment_configured_with_subnet\
+                is_vlan_configured, vlan_segment, network_type, return_mesg = is_segment_configured_with_subnet \
                     (lb_vs["id"], cloud_name)
                 if network_type == "Vlan":
                     if is_vlan_configured:
                         LOG.info("%s is configured with subnet" % lb_vs["display_name"])
-                        is_bgp_configured = is_vlan_configured_with_bgp\
-                            (cloud_name=cloud_name, tenant=tenant,vlan_segment=vlan_segment)
+                        is_bgp_configured = is_vlan_configured_with_bgp \
+                            (cloud_name=cloud_name, tenant=tenant, vlan_segment=vlan_segment)
                         if is_bgp_configured:
                             if migration_input_config and migration_input_config.get('bgp_peer_configured_for_vlan'):
                                 alb_vs['enable_rhi'] = True
@@ -459,8 +470,8 @@ class VsConfigConv(object):
                         else:
                             LOG.warning("%s vlan is not configured with bgp" % lb_vs["display_name"])
                     else:
-                        LOG.warning("%s data path won't work as %s" % (lb_vs["display_name"],return_mesg))
-                        vs_data_path_not_work.append(lb_vs["display_name"])
+                        LOG.warning("%s data path won't work as %s" % (lb_vs["display_name"], return_mesg))
+                        vs_data_path_not_work.append(name)
                 # TODO check if the vs-segment is configured in bgp-profile using
                 # avi_rest_lib -> is_vlan_configured_with_bgp function
                 # TODO Add another condition in below 'if' and if both conditions true then enable rhi
@@ -506,7 +517,9 @@ class VsConfigConv(object):
             conv_utils.add_conv_status('ssl_key_and_certificate', None, cert['name'], conv_status,
                                        [{"ssl_cert_key": cert}])
 
-    def update_pool_with_ssl(self, alb_config, nsx_lb_config,lb_vs, pool_name, object_merge_check, merge_object_mapping, prefix,
+    def update_pool_with_ssl(self, alb_config, nsx_lb_config, lb_vs, pool_name, object_merge_check,
+                             merge_object_mapping,
+                             prefix, tenant,
                              converted_alb_ssl_certs):
         for pool in alb_config['Pool']:
             if pool.get('name') == pool_name:
@@ -522,44 +535,45 @@ class VsConfigConv(object):
                         ssl_merge_name = merge_object_mapping['ssl_profile'].get(ssl_name)
                         if ssl_merge_name:
                             ssl_name = ssl_merge_name
-                    pool['ssl_profile_ref'] = '/api/sslprofile/?tenant=admin&name=' + ssl_name
+                    pool['ssl_profile_ref'] = conv_utils.get_object_ref(ssl_name, "sslprofile", tenant=tenant)
                 if server_ssl.get('client_certificate_path', None):
-                    ca_cert_obj = self.update_ca_cert_obj(pool_name, alb_config, [], "admin", prefix)
+                    ca_cert_obj = self.update_ca_cert_obj(pool_name, alb_config, [], tenant, prefix)
                     pool[
-                        "ssl_key_and_certificate_ref"] = "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get(
-                        "name")
+                        "ssl_key_and_certificate_ref"] = conv_utils.get_object_ref \
+                        (ca_cert_obj.get("name"), "sslkeyandcertificate", tenant=tenant)
+
                     converted_alb_ssl_certs.append(ca_cert_obj)
 
     def update_pool_with_persistence(self, alb_pool_config, nsx_lb_config, lb_vs, pool_name, object_merge_check,
-                                     merge_object_mapping, prefix):
+                                     merge_object_mapping, prefix, tenant):
         persis_id = lb_vs.get('lb_persistence_profile_path').split('/')[-1]
         persis_config = list(
             filter(lambda pp: pp["id"] == persis_id, nsx_lb_config["LbPersistenceProfiles"]))
         if persis_config:
             persis_name = persis_config[0]["display_name"]
             if prefix:
-                persis_name = prefix+"-"+persis_name
+                persis_name = prefix + "-" + persis_name
             if self.object_merge_check:
                 persis_name = self.merge_object_mapping['app_per_profile'].get(persis_name)
             for pool in alb_pool_config:
                 if pool.get('name') == pool_name:
-                    pool['persistence_profile_ref'] = \
-                        '/api/applicationpersistenceprofile/?tenant=admin&name=' + persis_name
+                    pool['application_persistence_profile_ref'] = conv_utils.get_object_ref \
+                        (persis_name, 'applicationpersistenceprofile', tenant=tenant)
 
     def get_vs_app_profile_ref(self, alb_profile_config, profile_name, object_merge_check,
-                               merge_object_mapping, profile_type):
+                               merge_object_mapping, profile_type, tenant):
         if object_merge_check:
             app_profile_merge_name = merge_object_mapping['app_profile'].get(profile_name)
             if app_profile_merge_name:
                 profile_name = app_profile_merge_name
-                return '/api/applicationprofile/?tenant=admin&name=' + profile_name
+                return '/api/applicationprofile/?tenant=%s&name=%s' % (tenant, profile_name)
             np_prodile_merge_name = merge_object_mapping['network_profile'].get(profile_name)
             if np_prodile_merge_name:
                 profile_name = np_prodile_merge_name
-                return '/api/networkprofile/?tenant=admin&name=' + profile_name
+                return '/api/networkprofile/?tenant=%s&name=%s' % (tenant, profile_name)
         if profile_type == "network":
-            return '/api/networkprofile/?tenant=admin&name=' + profile_name
-        return '/api/applicationprofile/?tenant=admin&name=' + profile_name
+            return '/api/networkprofile/?tenant=%s&name=%s' % (tenant, profile_name)
+        return '/api/applicationprofile/?tenant=%s&name=%s' % (tenant, profile_name)
 
     def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant, prefix, cert_type='SSL_CERTIFICATE_TYPE_CA',
                            ca_cert=None):
@@ -681,15 +695,15 @@ jhiq
         crl_id = crl_url[0].split("/")[-1] + "-CRL-Certificates"
         return crl_id
 
-    def update_app_with_pki(self, profile_name, app_config, pki_name):
+    def update_app_with_pki(self, profile_name, app_config, pki_name, tenant):
         for profile in app_config:
             if profile_name == profile["name"]:
-                profile["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_name
+                profile["pki_profile_ref"] = '/api/pkiprofile/?tenant=%s&name=%s' % (tenant, pki_name)
 
-    def update_pool_with_pki(self, pool_config, pool_name, pki_name):
+    def update_pool_with_pki(self, pool_config, pool_name, pki_name, tenant):
         for pool in pool_config:
             if pool_name == pool["name"]:
-                pool["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_name
+                pool["pki_profile_ref"] = '/api/pkiprofile/?tenant==%s&name=%s' % (tenant, pki_name)
 
     def update_pool_with_app_attr(self, profile_name, pool_name, alb_config):
         profile = [profile for profile in alb_config["ApplicationProfile"]
@@ -706,7 +720,7 @@ jhiq
                             )
                         )
 
-    def update_pool_with_subnets(self, pool_name, pool_segment, alb_pl, old_pool_name, cloud_name):
+    def update_pool_with_subnets(self, pool_name, pool_segment, alb_pl, old_pool_name, cloud_name, tenant):
 
         pool_present = False
         for pool in alb_pl:
@@ -731,7 +745,7 @@ jhiq
                         "mask": sub["subnets"]["network_range"].split("/")[-1]
                     },
                     network_ref=conv_utils.get_object_ref(
-                        sub["seg_name"], 'network', tenant="admin", cloud_name=cloud_name)
+                        sub["seg_name"], 'network', tenant=tenant, cloud_name=cloud_name)
                 )
                 pool_obj["placement_networks"].append(subnets)
             if not pool_present:
@@ -743,7 +757,7 @@ jhiq
             break
 
     def create_pool_group(self, cloud_name, pg_obj, alb_config, lb_pool, backup_pool=None, sorry_pool=None,
-                          sry_pool_present=False):
+                          sry_pool_present=False, tenant="admin"):
 
         if backup_pool:
             alb_pool_config = [pl for pl in alb_config["Pool"] if pl["name"] == backup_pool]
@@ -760,7 +774,7 @@ jhiq
                 pool_bmd.append(member)
         if pool_bme and pool_bmd:
             new_pool = copy.deepcopy(alb_pool_config[0])
-            new_pool["name"] = new_pool["name"] +"-"+ suffix
+            new_pool["name"] = new_pool["name"] + "-" + suffix
             new_pool["servers"] = pool_bme
             conv_status = conv_utils.get_conv_status_by_obj_name(alb_pool_config["name"])
             conv_utils.add_conv_status(
@@ -778,14 +792,14 @@ jhiq
                 ratio="1",
                 priority_label=bme_priority,
                 pool_ref=conv_utils.get_object_ref(
-                    new_pool["name"], 'pool', tenant="admin", cloud_name=cloud_name)
+                    new_pool["name"], 'pool', tenant=tenant, cloud_name=cloud_name)
             ))
             pg_obj["members"].append(dict(
-                    ratio="1",
-                    priority_label=bmd_priority,
-                    pool_ref=conv_utils.get_object_ref(
-                        alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
-                )
+                ratio="1",
+                priority_label=bmd_priority,
+                pool_ref=conv_utils.get_object_ref(
+                    alb_pool_config[0]["name"], 'pool', tenant=tenant, cloud_name=cloud_name)
+            )
             )
 
         elif pool_bme:
@@ -798,7 +812,7 @@ jhiq
                 ratio="1",
                 priority_label=priority,
                 pool_ref=conv_utils.get_object_ref(
-                    alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
+                    alb_pool_config[0]["name"], 'pool', tenant=tenant, cloud_name=cloud_name)
             ))
         else:
             alb_pool_config[0]["servers"] = pool_bmd
@@ -811,5 +825,5 @@ jhiq
                     ratio="1",
                     priority_label=priority,
                     pool_ref=conv_utils.get_object_ref(
-                        alb_pool_config[0]["name"], 'pool', tenant="admin", cloud_name=cloud_name)
+                        alb_pool_config[0]["name"], 'pool', tenant=tenant, cloud_name=cloud_name)
                 ))

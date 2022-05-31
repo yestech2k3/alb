@@ -45,7 +45,10 @@ class PoolConfigConv(object):
             try:
                 LOG.info('[POOL] Migration started for Pool {}'.format(lb_pl['display_name']))
                 progressbar_count += 1
-                tenant, name = conv_utils.get_tenant_ref("admin")
+                tenant_name, name = conv_utils.get_tenant_ref(tenant)
+                if not tenant:
+                    tenant = tenant_name
+
                 lb_type, name = self.get_name_type(lb_pl)
                 alb_pl = {
                     'lb_algorithm': lb_type,
@@ -191,7 +194,7 @@ class PoolConfigConv(object):
                         else:
                             continue
                         monitor_refs.append(
-                            "/api/healthmonitor/?tenant=admin&name=" + hm_name)
+                            "/api/healthmonitor/?tenant=%s&name=%s" % (tenant, hm_name))
 
                     alb_pl["health_monitor_refs"] = list(set(monitor_refs))
                 skipped = [val for val in lb_pl.keys()

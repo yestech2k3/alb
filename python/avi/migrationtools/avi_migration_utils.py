@@ -529,7 +529,7 @@ class MigrationUtil(object):
         return url.split('/api/')[1].split('/')[0].split('?')[0]
 
     def get_object_ref(self, object_name, object_type, tenant='admin',
-                       cloud_name='Default-Cloud', prefix=None):
+                       cloud_name='Default-Cloud', prefix=None, cloud_tenant ="admin"):
         """
         This function defines that to genarte object ref in the format of
         /api/object_type/?tenant=tenant_name&name=object_name&cloud=cloud_name
@@ -554,7 +554,7 @@ class MigrationUtil(object):
             if object_name not in tenants:
                 tenants.append(object_name)
         elif object_type == 'cloud':
-            ref = '/api/%s/?tenant=admin&name=%s' % (object_type, object_name)
+            ref = '/api/%s/?tenant=%s&name=%s' % (object_type ,cloud_tenant, object_name)
         elif object_type == 'vrfcontext':
             ref = '/api/%s/?tenant=admin&name=%s&cloud=%s' % (
                 object_type, object_name, cloud_name)

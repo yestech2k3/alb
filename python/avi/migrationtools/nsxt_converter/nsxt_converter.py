@@ -68,6 +68,7 @@ class NsxtConverter(AviConverter):
         self.config_file = args.config_file
         self.migration_input_file = args.migration_input_file
         self.cleanup_vs_names = args.cleanup
+        self.cloud_tenant = args.cloud_tenant
 
     def conver_lb_config(self, args):
 
@@ -135,7 +136,7 @@ class NsxtConverter(AviConverter):
             migration_input_config,
             self.vs_state,
             self.vs_level_status, self.vrf, self.segroup, self.not_in_use, custom_mappings,
-            self.traffic_enabled
+            self.traffic_enabled, self.cloud_tenant
         )
         avi_config = self.process_for_utils(alb_config)
         # Check if flag true then skip not in use object
@@ -148,13 +149,38 @@ class NsxtConverter(AviConverter):
             self.convert(avi_config, output_path)
         if self.option == 'auto-upload':
             self.upload_config_to_controller(avi_config)
+        if self.vs_filter:
+            filtered_vs_list=[]
+            virtual_services=[]
+            if self.vs_filter and type(self.vs_filter) == str:
+                virtual_services = self.vs_filter.split(',')
+            elif self.vs_filter and type(self.vs_filter) == list:
+                virtual_services = self.vs_filter
+            for vs_name in virtual_services:
+                if self.prefix:
+                    if not vs_name.startswith(self.prefix):
+                        vs_name = self.prefix + "-" + vs_name
+                        filtered_vs_list.append(vs_name)
+                else:
+                    filtered_vs_list = virtual_services
         if vs_list_with_snat_deactivated:
-            print('\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " +
-                  "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + '\033[0m')
-            print(vs_list_with_snat_deactivated)
+            if self.vs_filter:
+                if list(set(vs_list_with_snat_deactivated).intersection(set(filtered_vs_list))):
+                    print('\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " +
+                          "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + '\033[0m')
+                    print(list(set(vs_list_with_snat_deactivated).intersection(set(filtered_vs_list))))
+            else:
+                print('\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " +
+                      "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + '\033[0m')
+                print(vs_list_with_snat_deactivated)
         if vs_data_path_not_work:
-            print("For following virtual service/s Data path won't work")
-            print(vs_data_path_not_work)
+            if self.vs_filter:
+                if list(set(vs_data_path_not_work).intersection(set(filtered_vs_list))):
+                    print("\033[93m"+"For following virtual service/s Data path won't work"+'\033[0m')
+                    print(list(set(vs_data_path_not_work).intersection(set(filtered_vs_list))))
+            else:
+                print("\033[93m"+"For following virtual service/s Data path won't work"+'\033[0m')
+                print(vs_data_path_not_work)
         print("Total Warning: ", get_count('warning'))
         print("Total Errors: ", get_count('error'))
         LOG.info("Total Warning: {}".format(get_count('warning')))
@@ -277,6 +303,7 @@ if __name__ == "__main__":
                         help='absolute path for nsx-t conversion input file')
     parser.add_argument('--cleanup',
                         help='comma separated vs names that we want to clear from nsx-t side')
+    parser.add_argument('--cloud_tenant', help="tenant for cloud ref")
 
     start = datetime.now()
     args = parser.parse_args()

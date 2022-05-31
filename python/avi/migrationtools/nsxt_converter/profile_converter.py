@@ -48,7 +48,10 @@ class ProfileConfigConv(object):
                 name = lb_pr.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
-                tenant, t_name = conv_utils.get_tenant_ref(tenant)
+                tenant_name, t_name = conv_utils.get_tenant_ref(tenant)
+                if not tenant:
+                    tenant = tenant_name
+
                 alb_pr = dict(
                     name=name,
                     tenant_ref=conv_utils.get_object_ref(tenant, 'tenant')

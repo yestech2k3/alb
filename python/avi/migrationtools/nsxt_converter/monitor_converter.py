@@ -112,7 +112,9 @@ class MonitorConfigConv(object):
         skipped_list = []
         server_ssl_indirect_list = []
         converted_alb_monitor = []
-        tenant = "admin"
+        tenant_name, name = conv_utils.get_tenant_ref(tenant)
+        if not tenant:
+            tenant = tenant_name
         total_size = len(nsx_lb_config['LbMonitorProfiles'])
         print("Converting Monitors...")
         LOG.info('[MONITOR] Converting Monitors...')
@@ -180,7 +182,7 @@ class MonitorConfigConv(object):
                 if lb_hm.get('monitor_port', None):
                     alb_hm['monitor_port'] = lb_hm.get('monitor_port', None)
 
-                alb_hm['tenant_ref'] = "/api/tenant/?name=admin"
+                alb_hm['tenant_ref'] = conv_utils.get_object_ref(tenant,'tenant')
                 server_ssl_indirect = []
                 if monitor_type == "LBHttpMonitorProfile":
                     skipped = self.convert_http(lb_hm, alb_hm, skipped)
@@ -313,15 +315,15 @@ class MonitorConfigConv(object):
                 ssl_profile_name = prefix + '-' + ssl_profile_name
             ssl_attributes = {
                 "ssl_profile_ref": conv_utils.get_object_ref(
-                    ssl_profile_name, 'sslprofile', tenant="admin")
+                    ssl_profile_name, 'sslprofile', tenant=tenant)
             }
 
             if server_ssl_profile_binding.get("client_certificate_path", None):
-                ca_cert_obj = self.update_ca_cert_obj(lb_hm['display_name'], alb_config, [], "admin", prefix,
+                ca_cert_obj = self.update_ca_cert_obj(lb_hm['display_name'], alb_config, [], tenant, prefix,
                                                       cert_type='SSL_CERTIFICATE_TYPE_VIRTUALSERVICE')
                 ssl_attributes[
-                    "ssl_key_and_certificate_ref"] = "/api/sslkeyandcertificate/?tenant=admin&name=" + ca_cert_obj.get(
-                    "name")
+                    "ssl_key_and_certificate_ref"] = "/api/sslkeyandcertificate/?tenant=%s&name=%s" % (tenant, ca_cert_obj.get(
+                    "name"))
                 converted_alb_ssl_certs.append(ca_cert_obj)
 
             alb_hm["https_monitor"]['ssl_attributes'] = ssl_attributes
@@ -340,7 +342,7 @@ class MonitorConfigConv(object):
                 else:
                     converted_objs.append({'pki_profile': pki_profile})
                     alb_config['PKIProfile'].append(pki_profile)
-                alb_hm["pki_profile_ref"] = '/api/pkiprofile/?tenant=admin&name=' + pki_profile_name
+                alb_hm["pki_profile_ref"] = '/api/pkiprofile/?tenant=%s&name=%s' % (tenant, pki_profile_name)
             server_ssl_skipped = [key for key in server_ssl_profile_binding.keys()
                                   if key not in self.server_ssl_supported_attr]
             server_ssl_indirect_list = self.server_ssl_indirect_attr
