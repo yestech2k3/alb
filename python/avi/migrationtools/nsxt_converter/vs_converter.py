@@ -45,7 +45,7 @@ class VsConfigConv(object):
         self.certkey_count = 0
         self.pki_count = 0
 
-    def convert(self, alb_config, nsx_lb_config, prefix, tenant, vs_state, controller_version,
+    def convert(self, alb_config, nsx_lb_config, prefix, tenant, vs_state, controller_version, traffic_enabled,
                 migration_input_config=None, vrf=None, segroup=None):
         '''
         LBVirtualServer to Avi Config vs converter
@@ -85,9 +85,13 @@ class VsConfigConv(object):
                 vs_temp = list(filter(lambda vs: vs["name"] == name, alb_config['VirtualService']))
                 if vs_temp:
                     name = name + "-" + lb_vs["id"]
+                enabled = lb_vs.get('enabled')
+                if enabled and vs_state:
+                    enabled = (vs_state == 'enable')
                 alb_vs = dict(
                     name=name,
-                    enabled=lb_vs.get('enabled'),
+                    traffic_enabled = traffic_enabled,
+                    enabled=enabled,
                     cloud_ref=conv_utils.get_object_ref(cloud_name, 'cloud'),
                     tenant_ref=conv_utils.get_object_ref(tenant, 'tenant')
                 )

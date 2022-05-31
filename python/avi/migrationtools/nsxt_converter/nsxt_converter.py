@@ -126,7 +126,8 @@ class NsxtConverter(AviConverter):
             self.prefix, self.migrate_to, self.object_merge_check, self.controller_version,
             migration_input_config,
             self.vs_state,
-            self.vs_level_status, self.vrf, self.segroup, self.not_in_use, custom_mappings
+            self.vs_level_status, self.vrf, self.segroup, self.not_in_use, custom_mappings,
+            self.traffic_enabled
         )
         avi_config = self.process_for_utils(alb_config)
         # Check if flag true then skip not in use object
@@ -252,7 +253,7 @@ if __name__ == "__main__":
                              'the new name given in it'
                         )
     parser.add_argument('--segroup',
-                        help='Update the available segroup ref with the'
+                        help='Update the available segroup ref with the '
                              'custom ref')
     # json file location and patch location
     parser.add_argument('--patch', help='Run config_patch please provide '

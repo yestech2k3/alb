@@ -570,7 +570,7 @@ class MigrationUtil(object):
 
     # Print iterations progress
     def print_progress_bar(self, iteration, total, msg, prefix='', suffix='',
-                           decimals=1, length=50, fill='#', printEnd="\\r"):
+                           decimals=1, length=50, fill='#', printEnd="\\"):
         """
         Call in a loop to create terminal progress bar
         @params:
