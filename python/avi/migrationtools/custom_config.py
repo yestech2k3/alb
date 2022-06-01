@@ -196,7 +196,10 @@ def login_api():
     Logs into controller via CLI argparse inputs and completes api GET
     :return:
     """
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawTextHelpFormatter,
+        description=(HELP_STR))
+
     parser.add_argument(
         "-c", "--controller",
         help="Provide the controller IP Address",
@@ -238,6 +241,37 @@ def login_api():
 
 
 if __name__ == '__main__':
+    HELP_STR = '''
+    For all iRules in migration scope, configure them on the Avi Controller as appropriate object
+        Network Security policy
+        HTTP Security policy
+        HTTP Request policy
+        HTTP Response policy
+        DataScript
+    
+    Script converts all Network Security, HTTP Security, HTTP Request, HTTP Response polices and Datascripts on controller into YAML file to run with the F5 Migration tool
+
+    Script will complete a GET API call to controller for policies and datascripts, convert the RAW JSON to YAML, and write it to a file called converted_irules.yml.
+
+    For policies that require multiple indexes
+        You must save each policy with a unique name while configuring it in the UI
+ 
+        The script parses the longest match for the policy name. The longest match should be exactly what the irule name is on the F5. 
+            Example
+                mobile-https.redirect.irule (Actual iRule name)
+                mobile-https.redirect.irule-mobilesecure.com 
+            The longest match between the two policies is "mobile-https.redirect.irule”
+
+        Suffix
+            Must have two dashes "--" followed by a unique word (--foo --bar,--one, --two, etc)
+
+        Policies that belong to the same HTTP policy set need to have a suffix tying them together
+            Example
+                mobile-https.redirect.irule--foo
+                mobile-https.redirect.irule-mobilesecure.com--foo
+
+    Running the script: python3 custom_config.py –c controller.local –u admin -p VMware1!
+    '''
     login_api()
     custom_config = build_custom_config()
     custom_config_yaml = yaml.dump(custom_config)
