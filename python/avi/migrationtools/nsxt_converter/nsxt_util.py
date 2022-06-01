@@ -323,6 +323,8 @@ class NSXUtil():
                                     "name": seg.get("id"),
                                     "subnet": subnets}
                                 lb_details.append(segments)
+                            if cloud_name == "Cloud Not Found":
+                                continue
                             break
 
             self.lb_services[lb["id"]] = {
