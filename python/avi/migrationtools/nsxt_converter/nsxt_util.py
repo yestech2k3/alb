@@ -298,7 +298,7 @@ class NSXUtil():
                     segments = {
                         "name": segment_id,
                         "subnet": subnets}
-                    lb_details.append(segments)
+                    lb_details=segments
 
             else:
                 segment_list = self.nsx_api_client.infra.Segments.list().to_dict().get('results', [])
@@ -322,7 +322,7 @@ class NSXUtil():
                                 segments = {
                                     "name": seg.get("id"),
                                     "subnet": subnets}
-                                lb_details.append(segments)
+                                lb_details = segments
                             if cloud_name == "Cloud Not Found":
                                 continue
                             break
@@ -332,7 +332,7 @@ class NSXUtil():
                 "Network": network,
                 "Cloud": cloud_name}
             if lb_details:
-                self.lb_services[lb["id"]]["Segments"] = lb_details[0]
+                self.lb_services[lb["id"]]["Segments"] = lb_details
 
     def get_all_virtual_service(self):
         """
@@ -367,10 +367,12 @@ class NSXUtil():
                 lb = get_name_and_entity(vs["lb_service_path"])[-1]
                 lb_details = self.lb_services.get(lb)
                 if lb_details:
-                    vs_object["Network_type"] = lb_details.get("Network")
+                    vs_object["Network"] = lb_details.get("Network")
                     vs_object["Cloud"] = lb_details.get("Cloud")
-                    lb_details["vs_name"] = vs["display_name"]
-                    vs_details[vs["id"]] = lb_details
+                    vs_object['Segments'] = lb_details.get('Segments')
+                    vs_object['lb_name'] = lb
+                 #   lb_details["vs_name"] = vs["display_name"]
+                    vs_details[vs["id"]] = vs_object
             if vs["enabled"]:
                 vs_object["enabled"] = True
             else:
@@ -586,7 +588,7 @@ class NSXUtil():
                 total_enabled_vs += 1
             else:
                 total_disabled_vs += 1
-            network = vsval.get("Network_type")
+            network = vsval.get("Network")
             worksheet.write(row, 5, network)
             if network == "Vlan":
                 total_vs_in_vlan += 1
