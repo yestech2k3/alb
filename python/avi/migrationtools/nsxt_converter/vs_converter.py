@@ -322,6 +322,7 @@ class VsConfigConv(object):
                     if lb_vs["id"] in vs_sorry_pool_segment_list.keys():
                         pool_name = vs_sorry_pool_segment_list[lb_vs["id"]].get("pool_name")
                         pool_segment = vs_sorry_pool_segment_list[lb_vs["id"]].get("pool_segment")
+                        pl_name = sry_pl
                         if prefix:
                             pl_name = prefix + '-' + sry_pl
                         self.update_pool_with_subnets(pool_name, pool_segment, alb_config["Pool"], pl_name,
@@ -769,6 +770,8 @@ jhiq
         elif sorry_pool:
             alb_pool_config = [pl for pl in alb_config["Pool"] if pl["name"] == sorry_pool]
             suffix = "sorry_pool"
+      #  if alb_pool_config[0]["name"] in pool_attached_with_vs_poolref:
+         #   new_pool = copy.deepcopy(alb_pool_config[0])
         pool_bmd = []
         pool_bme = []
         for member in alb_pool_config[0].get("servers"):
@@ -780,7 +783,7 @@ jhiq
             new_pool = copy.deepcopy(alb_pool_config[0])
             new_pool["name"] = new_pool["name"] + "-" + suffix
             new_pool["servers"] = pool_bme
-            conv_status = conv_utils.get_conv_status_by_obj_name(alb_pool_config["name"])
+            conv_status = conv_utils.get_conv_status_by_obj_name(alb_pool_config[0]["name"])
             conv_utils.add_conv_status(
                 'pool', None, new_pool['name'], conv_status,
                 {'pools': [new_pool]})
