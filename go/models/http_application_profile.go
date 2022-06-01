@@ -14,7 +14,7 @@ type HTTPApplicationProfile struct {
 	// HTTP Caching config to use with this HTTP Profile. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	CacheConfig *HTTPCacheConfig `json:"cache_config,omitempty"`
 
-	// The maximum length of time allowed between consecutive read operations for a client request body. The value '0' specifies no timeout. This setting generally impacts the length of time allowed for a client to send a POST. Allowed values are 0-100000000. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 30000), Basic edition(Allowed values- 30000), Enterprise with Cloud Services edition.
+	// The maximum length of time allowed between consecutive read operations for a client request body. The value '0' specifies no timeout. This setting generally impacts the length of time allowed for a client to send a POST. Allowed values are 0-100000000. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 30000), Basic edition with any value, Enterprise with Cloud Services edition.
 	ClientBodyTimeout *int32 `json:"client_body_timeout,omitempty"`
 
 	// The maximum length of time allowed for a client to transmit an entire request header. This helps mitigate various forms of SlowLoris attacks. Allowed values are 10-100000000. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 10000), Basic edition(Allowed values- 10000), Enterprise with Cloud Services edition.
