@@ -20,7 +20,8 @@ conv_utils = NsxtConvUtil()
 common_avi_util = MigrationUtil()
 vs_list_with_snat_deactivated = []
 vs_data_path_not_work = []
-
+pool_attached_with_poolgroup = []
+pool_attached_with_vs_poolref =[]
 
 class VsConfigConv(object):
     def __init__(self, nsxt_profile_attributes, object_merge_check, merge_object_mapping, sys_dict):
@@ -82,6 +83,8 @@ class VsConfigConv(object):
                 tenant_name, name = conv_utils.get_tenant_ref(tenant)
                 if not tenant:
                     tenant = tenant_name
+                if not cloud_tenant:
+                    cloud_tenant = "admin"
                 name = lb_vs.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
@@ -437,7 +440,8 @@ class VsConfigConv(object):
                         u_ignore, [])
                     conv_utils.add_conv_status('poolgroup', None, pg_obj["name"], conv_status,
                                                {'poolgroup': [pg_obj]})
-
+                if lb_vs.get("pool_ref"):
+                    pool_attached_with_vs_poolref.append(lb_vs['pool_ref'].split('/')[-1])
                 if lb_vs.get('rules'):
 
                     policy, skipped_rules = policy_converter.convert(lb_vs, alb_config, cloud_name, prefix, tenant)
@@ -781,7 +785,9 @@ jhiq
                 'pool', None, new_pool['name'], conv_status,
                 {'pools': [new_pool]})
             alb_config["Pool"].append(new_pool)
+            pool_attached_with_poolgroup.append(new_pool['name'])
             alb_pool_config[0]["servers"] = pool_bmd
+            pool_attached_with_poolgroup.append(alb_pool_config[0]["name"])
             if suffix == "backup_pool":
                 bmd_priority = "3"
                 bme_priority = "2"
@@ -814,6 +820,7 @@ jhiq
                 pool_ref=conv_utils.get_object_ref(
                     alb_pool_config[0]["name"], 'pool', tenant=tenant, cloud_name=cloud_name)
             ))
+            pool_attached_with_poolgroup.append(alb_pool_config[0]["name"])
         else:
             alb_pool_config[0]["servers"] = pool_bmd
             if sry_pool_present:
@@ -827,3 +834,4 @@ jhiq
                     pool_ref=conv_utils.get_object_ref(
                         alb_pool_config[0]["name"], 'pool', tenant=tenant, cloud_name=cloud_name)
                 ))
+                pool_attached_with_poolgroup.append(alb_pool_config[0]["name"])
