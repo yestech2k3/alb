@@ -290,7 +290,7 @@ class NSXUtil():
                 tz_path = segment.transport_zone_path
                 tz_id = get_name_and_entity(tz_path)[-1]
                 cloud_name = self.get_cloud_type(self.cloud, tz_id, segment_id)
-                if hasattr(segment, "vlan_ids"):
+                if hasattr(segment, "vlan_ids") and segment.vlan_ids:
                     network = "Vlan"
                 else:
                     network = "Overlay"

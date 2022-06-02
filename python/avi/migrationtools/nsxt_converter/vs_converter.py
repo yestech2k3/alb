@@ -729,7 +729,7 @@ jhiq
     def update_pool_with_pki(self, pool_config, pool_name, pki_name, tenant):
         for pool in pool_config:
             if pool_name == pool["name"]:
-                pool["pki_profile_ref"] = '/api/pkiprofile/?tenant==%s&name=%s' % (tenant, pki_name)
+                pool["pki_profile_ref"] = '/api/pkiprofile/?tenant=%s&name=%s' % (tenant, pki_name)
 
     def update_pool_with_app_attr(self, profile_name, pool_name, alb_config):
         profile = [profile for profile in alb_config["ApplicationProfile"]
