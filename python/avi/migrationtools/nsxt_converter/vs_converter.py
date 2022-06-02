@@ -23,6 +23,7 @@ vs_list_with_snat_deactivated = []
 vs_data_path_not_work = []
 pool_attached_with_poolgroup = []
 pool_attached_with_vs_poolref = []
+vs_with_no_cloud_configured=[]
 
 
 class VsConfigConv(object):
@@ -82,7 +83,7 @@ class VsConfigConv(object):
                     conv_utils.add_status_row('virtualservice', None, lb_vs["display_name"],
                                               conv_const.STATUS_SKIPPED)
                     LOG.warning("cloud is not configured for %s" % lb_vs["display_name"])
-                    print("cloud is not configured for %s" % lb_vs["display_name"])
+                    vs_with_no_cloud_configured.append(lb_vs["display_name"])
                     continue
                 tenant_name, name = conv_utils.get_tenant_ref(tenant)
                 if not tenant:

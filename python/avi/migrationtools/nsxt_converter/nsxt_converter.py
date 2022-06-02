@@ -18,7 +18,8 @@ import argparse
 
 from avi.migrationtools.nsxt_converter.nsx_cleanup import NSXCleanup
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
-from avi.migrationtools.nsxt_converter.vs_converter import vs_list_with_snat_deactivated, vs_data_path_not_work
+from avi.migrationtools.nsxt_converter.vs_converter import vs_list_with_snat_deactivated, vs_data_path_not_work, \
+    vs_with_no_cloud_configured
 
 ARG_CHOICES = {
     'option': ['cli-upload', 'auto-upload'],
@@ -163,6 +164,14 @@ class NsxtConverter(AviConverter):
                         filtered_vs_list.append(vs_name)
                 else:
                     filtered_vs_list = virtual_services
+        if vs_with_no_cloud_configured:
+            if self.vs_filter:
+                if list(set(vs_with_no_cloud_configured).intersection(set(filtered_vs_list))):
+                    print("\033[93m"+"For following virtual service/s cloud is not configured"+'\033[0m')
+                    print(list(set(vs_with_no_cloud_configured).intersection(set(filtered_vs_list))))
+            else:
+                print("\033[93m"+"For following virtual service/s cloud is not configured"+'\033[0m')
+                print(vs_with_no_cloud_configured)
         if vs_list_with_snat_deactivated:
             if self.vs_filter:
                 if list(set(vs_list_with_snat_deactivated).intersection(set(filtered_vs_list))):
