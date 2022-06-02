@@ -282,6 +282,7 @@ class NSXUtil():
             interface_list = self.nsx_api_client.infra.tier_1s.locale_services.Interfaces.list(tier, ls_id).results
             network = None
             tz_id = None
+            cloud_name = None
             lb_details = []
             if len(interface_list):
                 interface = interface_list[0].id
