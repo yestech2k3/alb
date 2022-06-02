@@ -77,6 +77,8 @@ class PoolConfigConv(object):
                                                              member["ip_address"])
                             if pool_segment:
                                 if lb in lb_list.keys():
+                                    pool_list = lb_list[lb]
+ #                                   pool_list["name"] = pool_list["name"]+"-"+vs_id
                                     vs_pool_segment_list[vs_id] = lb_list[lb]
                                     continue
 
@@ -89,8 +91,10 @@ class PoolConfigConv(object):
                                     lb_list[lb] = vs_pool_segment_list[vs_id]
 
                                 else:
+                                    new_pool_name = '%s-%s' % (name, pool_segment[0]["subnets"]["network_range"])
+                                    new_pool_name = new_pool_name.replace('/', '-')
                                     vs_pool_segment_list[vs_id] = {
-                                        "pool_name": '%s-%s' % (name, pool_segment[0]["subnets"]["network_range"]),
+                                        "pool_name": new_pool_name,
                                         "pool_segment": pool_segment
                                     }
                                     lb_list[lb] = vs_pool_segment_list[vs_id]

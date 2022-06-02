@@ -29,7 +29,7 @@ def is_segment_configured_with_subnet(vs_id, cloud_name):
             cloud_id = [cl.get("uuid") for cl in cloud if cl.get("name") == cloud_name]
             segment_list = session.get("network/?&cloud_ref.uuid=" + cloud_id[0]).json()["results"]
             segment = [seg for seg in segment_list if seg.get("name") == seg_id]
-            if segment[0].get("configured_subnets"):
+            if segment and segment[0].get("configured_subnets"):
                 if segment[0].get("configured_subnets")[0].get("prefix"):
                     if segment[0].get("configured_subnets")[0].get("static_ip_ranges"):
                         return True, segment[0], network_type, "Both are configured"
@@ -81,6 +81,10 @@ def get_vs_cloud_name(vs_id):
         return vs_details[vs_id]["Cloud"]
     return None
 
+def get_vs_cloud_type(vs_id):
+    if vs_details.get(vs_id):
+        return vs_details[vs_id]["Network"]
+    return None
 
 def get_lb_service_name(vs_id):
     if vs_details.get(vs_id):
@@ -248,6 +252,7 @@ class NSXUtil():
                     elif cl["nsxt_configuration"].get("data_network_config"):
                         tz = cl["nsxt_configuration"]["data_network_config"].get("transport_zone")
                         if cl["nsxt_configuration"]["data_network_config"].get("tz_type") == "OVERLAY":
+                            tz_type = "OVERLAY"
                             data_netwrk = cl["nsxt_configuration"]["data_network_config"]
                             if data_netwrk.get("tier1_segment_config"):
                                 if data_netwrk["tier1_segment_config"].get("manual"):
@@ -256,6 +261,7 @@ class NSXUtil():
                                         is_seg_present = [True for tier in tier1_lrs if
                                                           get_name_and_entity(tier.get("segment_id"))[-1] == seg_id]
                         elif cl["nsxt_configuration"]["data_network_config"].get("tz_type") == "VLAN":
+                            tz_type = "VLAN"
                             data_netwrk = cl["nsxt_configuration"]["data_network_config"]
                             vlan_seg = data_netwrk.get("vlan_segments")
                             is_seg_present = [True for seg in vlan_seg if get_name_and_entity(seg)[-1] == seg_id]
@@ -330,7 +336,8 @@ class NSXUtil():
             self.lb_services[lb["id"]] = {
                 "lb_name": lb["id"],
                 "Network": network,
-                "Cloud": cloud_name}
+                "Cloud": cloud_name,
+                }
             if lb_details:
                 self.lb_services[lb["id"]]["Segments"] = lb_details
 
@@ -370,6 +377,7 @@ class NSXUtil():
                     vs_object["Network"] = lb_details.get("Network")
                     vs_object["Cloud"] = lb_details.get("Cloud")
                     vs_object['Segments'] = lb_details.get('Segments')
+                    vs_object["Cloud_type"] = lb_details.get("Cloud_type")
                     vs_object['lb_name'] = lb
                  #   lb_details["vs_name"] = vs["display_name"]
                     vs_details[vs["id"]] = vs_object
