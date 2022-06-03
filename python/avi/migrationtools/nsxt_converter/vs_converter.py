@@ -6,7 +6,7 @@ from avi.migrationtools.nsxt_converter.nsxt_util import is_vlan_configured_with_
     is_segment_configured_with_subnet, get_vs_cloud_type
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.avi_migration_utils import update_count
-from avi.migrationtools.nsxt_converter.nsxt_util import get_vs_cloud_name, get_pool_segments, get_certificate_data
+from avi.migrationtools.nsxt_converter.nsxt_util import get_vs_cloud_name, get_object_segments, get_certificate_data
 from avi.migrationtools.nsxt_converter.policy_converter import PolicyConfigConverter
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 import avi.migrationtools.nsxt_converter.converter_constants as final
@@ -130,6 +130,10 @@ class VsConfigConv(object):
                         ]
                     )
 
+                    if cloud_type == "Vlan":
+                        vip_segment = get_object_segments(lb_vs["id"], lb_vs['ip_address'])
+                        if vip_segment:
+                            self.add_placement_network_to_vip(vip['vip'],vip_segment,tenant,cloud_name)
                     alb_config['VsVip'].append(vip)
                     vsvip_ref = '/api/vsvip/?name=%s&cloud=%s' % (name + '-vsvip', cloud_name)
                     alb_vs['vsvip_ref'] = vsvip_ref
@@ -510,9 +514,7 @@ class VsConfigConv(object):
                     else:
                         LOG.warning("%s data path won't work as %s" % (lb_vs["display_name"], return_mesg))
                         vs_data_path_not_work.append(name)
-                # TODO check if the vs-segment is configured in bgp-profile using
-                # avi_rest_lib -> is_vlan_configured_with_bgp function
-                # TODO Add another condition in below 'if' and if both conditions true then enable rhi
+
 
                 indirect = self.vs_indirect_attr
                 u_ignore = []
@@ -543,7 +545,7 @@ class VsConfigConv(object):
                 update_count('error')
                 LOG.error("[VirtualServer] Failed to convert Monitor: %s" % lb_vs['display_name'],
                           exc_info=True)
-                conv_utils.add_status_row('virtual', None, lb_vs['display_name'],
+                conv_utils.add_status_row('virtualservice', None, lb_vs['display_name'],
                                           conv_const.STATUS_ERROR)
         for cert in converted_alb_ssl_certs:
             indirect = []
@@ -922,3 +924,20 @@ class VsConfigConv(object):
                             alb_pool_config[0]["name"], 'pool', tenant=tenant, cloud_name=cloud_name)
                     ))
                     pool_attached_with_poolgroup.append(alb_pool_config[0]["name"])
+
+    def add_placement_network_to_vip(self , vip_config, vip_segments, tenant, cloud_name):
+        vip_config[0]['placement_networks'] = list()
+        for sub in vip_segments:
+            ip_addreses = dict(
+                addr=sub["subnets"]["network_range"].split("/")[0],
+                type="V4"
+            )
+            subnets = dict(
+                subnet={
+                    "ip_addr": ip_addreses,
+                    "mask": sub["subnets"]["network_range"].split("/")[-1]
+                },
+                network_ref=conv_utils.get_object_ref(
+                    sub["seg_name"], 'network', tenant=tenant, cloud_name=cloud_name)
+            )
+            vip_config[0]['placement_networks'].append(subnets)

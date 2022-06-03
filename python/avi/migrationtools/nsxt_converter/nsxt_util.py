@@ -94,7 +94,7 @@ def get_lb_service_name(vs_id):
     return None
 
 
-def get_pool_segments(vs_id, pool_ip):
+def get_object_segments(vs_id, obj_ip):
     vs = vs_details.get(vs_id, None)
     if not vs:
         return None
@@ -106,7 +106,7 @@ def get_pool_segments(vs_id, pool_ip):
             if subnet.get("network_range"):
                 network_range = subnet["network_range"]
             a_network = ipaddress.ip_network(network_range, False)
-            address_in_network = ipaddress.ip_address(pool_ip) in a_network
+            address_in_network = ipaddress.ip_address(obj_ip) in a_network
             if address_in_network:
                 return [dict(
                     seg_name=seg_name,

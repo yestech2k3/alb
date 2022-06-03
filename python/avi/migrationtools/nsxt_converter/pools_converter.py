@@ -6,7 +6,7 @@ from random import randint
 from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
-from avi.migrationtools.nsxt_converter.nsxt_util import get_pool_segments, get_lb_service_name
+from avi.migrationtools.nsxt_converter.nsxt_util import get_object_segments, get_lb_service_name
 
 LOG = logging.getLogger(__name__)
 
@@ -73,7 +73,7 @@ class PoolConfigConv(object):
                             lb = get_lb_service_name(vs_id)
                             if not lb:
                                 continue
-                            pool_segment = get_pool_segments(vs_id,
+                            pool_segment = get_object_segments(vs_id,
                                                              member["ip_address"])
                             if pool_segment:
                                 if lb in lb_list.keys():
@@ -103,7 +103,7 @@ class PoolConfigConv(object):
                             if vs_id in vs_sorry_pool_segment_list.keys():
                                 continue
                             lb = get_lb_service_name(vs_id)
-                            pool_segment = get_pool_segments(vs_id,
+                            pool_segment = get_object_segments(vs_id,
                                                              member["ip_address"])
                             if pool_segment:
                                 if lb in lb_list.keys():
