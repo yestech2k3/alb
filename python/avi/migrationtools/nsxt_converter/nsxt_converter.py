@@ -38,17 +38,17 @@ class NsxtConverter(AviConverter):
         '''
         self.nsxt_ip = args.nsxt_ip
         self.nsxt_user = args.nsxt_user
-        self.nsxt_passord = args.nsxt_passord
+        self.nsxt_passord = args.nsxt_password
         self.nsxt_port = args.nsxt_port
         self.prefix = args.prefix
         self.prefix = args.prefix
-        self.controller_ip = args.controller_ip
-        self.user = args.user
-        self.password = args.password
+        self.controller_ip = args.alb_controller_ip
+        self.user = args.alb_user
+        self.password = args.alb_password
         self.tenant = args.tenant
         self.not_in_use = args.not_in_use
         self.ansible_skip_types = args.ansible_skip_types
-        self.controller_version = args.controller_version
+        self.controller_version = args.alb_controller_version
         self.ansible_filter_types = args.ansible_filter_types
         self.vs_level_status = args.vs_level_status
         self.run_on_local = args.run_on_local
@@ -80,8 +80,8 @@ class NsxtConverter(AviConverter):
 
         is_download_from_host = False
         args_copy = copy.deepcopy(args)
-        vars(args_copy).pop('nsxt_passord')
-        vars(args_copy).pop('password')
+        vars(args_copy).pop('nsxt_password')
+        vars(args_copy).pop('alb_password')
         output_path = None
         if self.nsxt_ip:
             output_path = output_dir + os.path.sep + self.nsxt_ip + os.path.sep + "output"
@@ -131,14 +131,17 @@ class NsxtConverter(AviConverter):
         if self.custom_config:
             with open(self.custom_config) as stream:
                 custom_mappings = yaml.safe_load(stream)
+        if not self.cloud_tenant:
+            self.cloud_tenant = "admin"
         alb_config = nsxt_config_converter.convert(
             nsx_lb_config, input_path, output_path, self.tenant,
             self.prefix, self.migrate_to, self.object_merge_check, self.controller_version,
             migration_input_config,
             self.vs_state,
             self.vs_level_status, self.vrf, self.segroup, self.not_in_use, custom_mappings,
-            self.traffic_enabled, self.cloud_tenant
-        )
+            self.traffic_enabled, self.cloud_tenant,
+            self.nsxt_ip, self.nsxt_passord)
+
         avi_config = self.process_for_utils(alb_config)
         # Check if flag true then skip not in use object
         # if self.not_in_use:
@@ -234,7 +237,7 @@ if __name__ == "__main__":
                         help='Ip of NSXT')
     parser.add_argument('-u', '--nsxt_user',
                         help='NSX-T User name')
-    parser.add_argument('-p', '--nsxt_passord',
+    parser.add_argument('-p', '--nsxt_password',
                         help='NSX-T Password')
     parser.add_argument('-port', '--nsxt_port', default=443,
                         help='NSX-T Port')
@@ -242,15 +245,15 @@ if __name__ == "__main__":
                         help='Folder path for output files to be created in',
                         )
     parser.add_argument('--prefix', help='Prefix for objects')
-    parser.add_argument('--password',
+    parser.add_argument('-c', '--alb_controller_ip',
+                        help='controller ip for auto upload')
+    parser.add_argument('--alb_controller_version',
+                        help='Target Avi controller version')
+    parser.add_argument('--alb_user',
+                        help='controller username for auto upload')
+    parser.add_argument('--alb_password',
                         help='controller password for auto upload. Input '
                              'prompt will appear if no value provided')
-    parser.add_argument('-c', '--controller_ip',
-                        help='controller ip for auto upload')
-    parser.add_argument('--controller_version',
-                        help='Target Avi controller version')
-    parser.add_argument('--user',
-                        help='controller username for auto upload')
     parser.add_argument('-t', '--tenant', help='tenant name for auto upload', default="admin")
     parser.add_argument('-O', '--option', choices=ARG_CHOICES['option'],
                         help='Upload option cli-upload genarates Avi config ' +

@@ -19,13 +19,13 @@ class TrafficCutover(AviConverter):
         '''
         self.nsxt_ip = args.nsxt_ip
         self.nsxt_user = args.nsxt_user
-        self.nsxt_passord = args.nsxt_passord
+        self.nsxt_passord = args.nsxt_password
         self.nsxt_port = args.nsxt_port
 
-        self.controller_ip = args.controller_ip
-        self.controller_version = args.controller_version
-        self.user = args.user
-        self.password = args.password
+        self.controller_ip = args.alb_controller_ip
+        self.controller_version = args.alb_controller_version
+        self.user = args.alb_user
+        self.password = args.alb_password
         self.cutover_vs = None
         if args.cutover:
             self.cutover_vs = \
@@ -47,13 +47,13 @@ class TrafficCutover(AviConverter):
         if not self.nsxt_port:
             self.nsxt_port = data.get('nsxt_port')
         if not self.controller_ip:
-            self.controller_ip = data.get('controller_ip')
+            self.controller_ip = data.get('alb_controller_ip')
         if not self.controller_version:
-            self.controller_version = data.get('controller_version')
+            self.controller_version = data.get('alb_controller_version')
         if not self.user:
-            self.user = data.get('user')
+            self.user = data.get('alb_user')
         if not self.password:
-            self.password = data.get('password')
+            self.password = data.get('alb_password')
 
     def initiate_cutover_vs(self):
 
@@ -84,31 +84,31 @@ if __name__ == "__main__":
         formatter_class=argparse.RawTextHelpFormatter, description=HELP_STR)
 
     parser.add_argument('-n', '--nsxt_ip',
-                        help='Ip of NSXT')
+                        help='Ip of NSXT', required=True)
     parser.add_argument('-u', '--nsxt_user',
                         help='NSX-T User name')
-    parser.add_argument('-p', '--nsxt_passord',
-                        help='NSX-T Password')
+    parser.add_argument('-p', '--nsxt_password',
+                        help='NSX-T Password', required=True)
     parser.add_argument('-port', '--nsxt_port', default=443,
                         help='NSX-T Port')
     parser.add_argument('-o', '--output_file_path',
                         help='Folder path for output files to be created in',
                         )
 
-    parser.add_argument('-c', '--controller_ip',
+    parser.add_argument('-c', '--alb_controller_ip',
                         help='controller ip for auto upload')
-    parser.add_argument('--controller_version',
+    parser.add_argument('--alb_controller_version',
                         help='Target Avi controller version')
-    parser.add_argument('--user',
+    parser.add_argument('--alb_user',
                         help='controller username for auto upload')
-    parser.add_argument('--password',
+    parser.add_argument('--alb_password',
                         help='controller password for auto upload. Input '
-                             'prompt will appear if no value provided')
+                             'prompt will appear if no value provided', required=True)
 
     # Added command line args to take skip type for ansible playbook
     parser.add_argument('--cutover',
-                        help='comma separated names of virtualservices for cutover.\n'
-                        )
+                        help='comma separated names of virtualservices for cutover.\n',
+                        required=True)
 
     start = datetime.now()
     args = parser.parse_args()

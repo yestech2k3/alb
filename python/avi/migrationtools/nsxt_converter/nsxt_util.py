@@ -5,6 +5,7 @@ import random
 
 import copy
 import xlsxwriter
+import logging
 
 from avi.migrationtools.nsxt_converter import nsxt_client as nsx_client_util
 import pprint
@@ -14,6 +15,7 @@ pp = pprint.PrettyPrinter(indent=4)
 vs_details = {}
 controller_details = {}
 
+LOG = logging.getLogger(__name__)
 
 def is_segment_configured_with_subnet(vs_id, cloud_name):
     vs_config = vs_details[vs_id]
@@ -112,8 +114,55 @@ def get_pool_segments(vs_id, pool_ip):
     return None
 
 
+def get_certificate_data(certificate_ref, nsxt_ip, nsxt_pw):
+    import paramiko
+    import json
+
+    ssh = paramiko.SSHClient()
+    ssh.load_system_host_keys()
+    # ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(nsxt_ip, username='root', password=nsxt_pw)
+
+    data = None
+    cmd = "curl --header 'Content-Type: application/json' --header 'x-nsx-username: admin' " \
+          "http://'admin':'{}'@127.0.0.1:7440/nsxapi/api/v1/trust-management/certificates".\
+        format(nsxt_pw)
+    stdin, stdout, stderr = ssh.exec_command(cmd)
+
+    output_dict = ''
+    for line in stdout.read().splitlines():
+        output_dict += line.decode()
+
+    output_dict = json.loads(output_dict)
+
+    LOG.info("output_dict for certificate_ref {}".format(certificate_ref))
+    for cert_data in output_dict['results']:
+        if 'tags' in cert_data.keys():
+            cert_id = cert_data['tags'][0]['tag'].split('/')[-1]
+        else:
+            cert_id = cert_data['id']
+
+        if cert_id == certificate_ref:
+            cert_command = cmd + "/" + cert_data['id'] + '/' + "?action=get_private"
+            cert_stdin, cert_stdout, cert_stderr = ssh.exec_command(cert_command)
+            cert_dict = ''
+            for line in cert_stdout.read().splitlines():
+                cert_dict += line.decode()
+
+            cert_dict = json.loads(cert_dict)
+            LOG.debug("cert_dict for certificate_ref {}".format(certificate_ref))
+            if 'private_key' in cert_dict:
+                return cert_dict['private_key'], cert_dict['pem_encoded']
+
+    ssh.close()
+    stdin.close()
+    return data
+
+
 class NSXUtil():
     nsx_api_client = None
+    nsxt_ip = None
+    nsxt_pw = None
 
     def __init__(self, nsx_un, nsx_pw, nsx_ip, nsx_port, c_ip, c_un, c_pw, c_vr):
         self.nsx_api_client = nsx_client_util.create_nsx_policy_api_client(
@@ -124,6 +173,9 @@ class NSXUtil():
         controller_details["username"] = c_un
         controller_details["version"] = c_vr
         controller_details["session"] = self.session
+
+        self.nsxt_ip = nsx_ip
+        self.nsxt_pw = nsx_pw
 
         self.cloud = self.session.get("cloud/").json()["results"]
         self.avi_vs_object = []
@@ -183,7 +235,6 @@ class NSXUtil():
 
     def cutover_vs(self, vs_list):
         virtual_service = self.get_all_virtual_service()
-        print("VS List " + str(vs_list))
 
         # Get list of all ALB VS's
         self.alb_vs_list = dict()
@@ -199,18 +250,14 @@ class NSXUtil():
                 self.nsx_api_client.infra.LbVirtualServers.update(nsxt_vs["id"], vs_body)
 
                 for alb_vs in self.alb_vs_list:
-                    print("ALL VS {} {}".format(alb_vs, nsxt_vs['display_name']))
                     if alb_vs == nsxt_vs["display_name"]:
-                        print("Found Match for {}".format(alb_vs))
                         vs_obj = self.alb_vs_list[alb_vs]
                         vs_obj["traffic_enabled"] = True
-                        response_obj = self.session.put("virtualservice/{}".format(vs_obj.get("uuid")), vs_obj)
-                        print("response object {}".format(str(response_obj)))
+                        self.session.put("virtualservice/{}".format(vs_obj.get("uuid")), vs_obj)
                         break
 
     def rollback_vs(self, vs_list, input_data):
         virtual_service = self.get_all_virtual_service()
-        print("VS List " + str(vs_list))
 
         # Get list of all ALB VS's
         self.alb_vs_list = dict()
@@ -235,11 +282,9 @@ class NSXUtil():
 
                 for alb_vs in self.alb_vs_list:
                     if alb_vs == nsxt_vs["display_name"]:
-                        print("Found Match for {}".format(alb_vs))
                         vs_obj = self.alb_vs_list[alb_vs]
-                        vs_obj["traffic_enabled"] = True
-                        response_obj = self.session.put("virtualservice/{}".format(vs_obj.get("uuid")), vs_obj)
-                        print("response object {}".format(str(response_obj)))
+                        vs_obj["traffic_enabled"] = False
+                        self.session.put("virtualservice/{}".format(vs_obj.get("uuid")), vs_obj)
                         break
 
     def get_cloud_type(self, avi_cloud_list, tz_id, seg_id):

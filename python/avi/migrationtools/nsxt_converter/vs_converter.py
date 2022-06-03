@@ -2,11 +2,11 @@ import copy
 import logging
 
 from avi.migrationtools.avi_migration_utils import MigrationUtil
-from avi.migrationtools.nsxt_converter.nsxt_util import is_vlan_configured_with_bgp, is_segment_configured_with_subnet, \
-    get_vs_cloud_type
+from avi.migrationtools.nsxt_converter.nsxt_util import is_vlan_configured_with_bgp, \
+    is_segment_configured_with_subnet, get_vs_cloud_type
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.avi_migration_utils import update_count
-from avi.migrationtools.nsxt_converter.nsxt_util import get_vs_cloud_name, get_pool_segments
+from avi.migrationtools.nsxt_converter.nsxt_util import get_vs_cloud_name, get_pool_segments, get_certificate_data
 from avi.migrationtools.nsxt_converter.policy_converter import PolicyConfigConverter
 import avi.migrationtools.nsxt_converter.converter_constants as conv_const
 import avi.migrationtools.nsxt_converter.converter_constants as final
@@ -27,7 +27,8 @@ vs_with_no_cloud_configured=[]
 
 
 class VsConfigConv(object):
-    def __init__(self, nsxt_profile_attributes, object_merge_check, merge_object_mapping, sys_dict):
+    def __init__(self, nsxt_profile_attributes, object_merge_check, merge_object_mapping, sys_dict,
+                 nsxt_ip, nsxt_password):
         """
 
         """
@@ -48,6 +49,8 @@ class VsConfigConv(object):
         self.sys_dict = sys_dict
         self.certkey_count = 0
         self.pki_count = 0
+        self.nsxt_ip = nsxt_ip
+        self.nsxt_password = nsxt_password
 
     def convert(self, alb_config, nsx_lb_config, prefix, tenant, vs_state, controller_version, traffic_enabled,
                 cloud_tenant, migration_input_config=None, vrf=None, segroup=None):
@@ -125,8 +128,8 @@ class VsConfigConv(object):
                                 )
                             )
                         ]
-
                     )
+
                     alb_config['VsVip'].append(vip)
                     vsvip_ref = '/api/vsvip/?name=%s&cloud=%s' % (name + '-vsvip', cloud_name)
                     alb_vs['vsvip_ref'] = vsvip_ref
@@ -151,7 +154,8 @@ class VsConfigConv(object):
                     if lb_vs["client_ssl_profile_binding"].get("client_auth_ca_paths"):
                         pki_client_profile = dict()
                         error = False
-                        ca = self.get_ca_cert(lb_vs["client_ssl_profile_binding"].get("client_auth_ca_paths"))
+                        ca = self.get_ca_cert(lb_vs["client_ssl_profile_binding"].get("client_auth_ca_paths"),
+                                              self.nsxt_ip, self.nsxt_password)
                         if ca:
                             pki_client_profile["ca_certs"] = [{'certificate': ca}]
                         else:
@@ -190,7 +194,8 @@ class VsConfigConv(object):
                     if lb_vs["server_ssl_profile_binding"].get("server_auth_ca_paths"):
                         pki_server_profile = dict()
                         error = False
-                        ca = self.get_ca_cert(lb_vs["server_ssl_profile_binding"].get("server_auth_ca_paths"))
+                        ca = self.get_ca_cert(lb_vs["server_ssl_profile_binding"].get("server_auth_ca_paths"),
+                                              self.nsxt_ip, self.nsxt_password)
                         if ca:
                             pki_server_profile["ca_certs"] = [{'certificate': ca}]
                         else:
@@ -279,7 +284,10 @@ class VsConfigConv(object):
                     if client_ssl.get('default_certificate_path', None):
                         alb_vs['services'][0]["enable_ssl"] = True
                         cert_name = name + "-" + str(random.randint(0, 20))
-                        ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], tenant, prefix)
+                        ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], tenant, prefix,
+                                                              ssl_type='client_ssl', ssl_data=client_ssl,
+                                                              nsxt_ip=self.nsxt_ip, nsxt_password=self.nsxt_password)
+
                         ssl_key_cert_refs.append(
                             "/api/sslkeyandcertificate/?tenant=%s&name=%s" % (tenant, ca_cert_obj.get("name")))
                         converted_alb_ssl_certs.append(ca_cert_obj)
@@ -289,7 +297,10 @@ class VsConfigConv(object):
                         sni_cert_list = client_ssl.get('sni_certificate_paths', None)
                         for cert in sni_cert_list:
                             cert_name = name + "-" + str(random.randint(0, 20))
-                            ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], tenant, prefix)
+                            ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], tenant, prefix,
+                                                                  ssl_type='client_ssl', ssl_data=client_ssl,
+                                                                  nsxt_ip=self.nsxt_ip, nsxt_password=self.nsxt_password)
+
                             ssl_key_cert_refs.append(
                                 "/api/sslkeyandcertificate/?tenant=%s&name=%s" % (tenant, ca_cert_obj.get("name")))
                             converted_alb_ssl_certs.append(ca_cert_obj)
@@ -564,7 +575,10 @@ class VsConfigConv(object):
                             ssl_name = ssl_merge_name
                     pool['ssl_profile_ref'] = conv_utils.get_object_ref(ssl_name, "sslprofile", tenant=tenant)
                 if server_ssl.get('client_certificate_path', None):
-                    ca_cert_obj = self.update_ca_cert_obj(pool_name, alb_config, [], tenant, prefix)
+                    ca_cert_obj = self.update_ca_cert_obj(pool_name, alb_config, [], tenant, prefix,
+                                                          ssl_type='server_ssl', ssl_data=server_ssl,
+                                                          nsxt_ip=self.nsxt_ip,  nsxt_password=self.nsxt_password)
+
                     pool[
                         "ssl_key_and_certificate_ref"] = conv_utils.get_object_ref \
                         (ca_cert_obj.get("name"), "sslkeyandcertificate", tenant=tenant)
@@ -602,8 +616,9 @@ class VsConfigConv(object):
             return '/api/networkprofile/?tenant=%s&name=%s' % (tenant, profile_name)
         return '/api/applicationprofile/?tenant=%s&name=%s' % (tenant, profile_name)
 
-    def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant, prefix, cert_type='SSL_CERTIFICATE_TYPE_CA',
-                           ca_cert=None):
+    def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant, prefix,
+                           cert_type='SSL_CERTIFICATE_TYPE_CA', ca_cert=None,
+                           ssl_type=None, ssl_data=None, nsxt_ip=None, nsxt_password=None):
         """
         This method create the certs if certificate not present at location
         it create placeholder certificate.
@@ -623,9 +638,20 @@ class VsConfigConv(object):
             return None
 
         if not ca_cert:
-            key, ca_cert = conv_utils.create_self_signed_cert()
-            name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
-            LOG.warning('Create self cerificate and key for : %s' % name)
+            if ssl_type == 'client_ssl':
+                certificate_ref = ssl_data.get("default_certificate_path", None)
+            elif ssl_type == 'server_ssl':
+                certificate_ref = ssl_data.get("client_certificate_path", None)
+            if certificate_ref:
+                certificate_ref = certificate_ref.split('/')[-1]
+
+            key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, nsxt_password)
+            LOG.debug("Fetched data for certificate {} key {} data {}".format(name, key, ca_cert))
+
+            if not ca_cert:
+                key, ca_cert = conv_utils.create_self_signed_cert()
+                name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
+                LOG.warning('Create self certificate and key for : %s' % name)
 
         ssl_kc_obj = None
 
@@ -693,30 +719,17 @@ class VsConfigConv(object):
                                            [{'application_http_profile': app_prof_cmd}])
         return app_name
 
-    def get_ca_cert(self, ca_url):
-        ca_id = """-----BEGIN CERTIFICATE-----
-MIIDXzCCAkegAwIBAgIQILuJ/vBaBpdK5/W07NmI5DANBgkqhkiG9w0BAQsFADBC
-MRMwEQYKCZImiZPyLGQBGRYDbGFiMRUwEwYKCZImiZPyLGQBGRYFcmVwcm8xFDAS
-BgNVBAMTC3JlcHJvLUFELUNBMB4XDTIwMDQyOTEzMTgwMVoXDTI1MDQyOTEzMjgw
-MVowQjETMBEGCgmSJomT8ixkARkWA2xhYjEVMBMGCgmSJomT8ixkARkWBXJlcHJv
-MRQwEgYDVQQDEwtyZXByby1BRC1DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
-AQoCggEBALj3ChNORETzK1qOIgcF6QMx2KUv/pXx7NQYin0mJgEaPcVD/lH4RR5z
-ToswIetCbz3NeajJShfoNV17H/ovvH5iUnvrdajVl7kXM0QmAaLmosKU4BLHgrDd
-LKKBDMKGw2MQWjjfBHJaH92Yg8+tdtoYCzouQn6ZDHp+7sXqtpngoRIQVHFYQNH2
-8gmkdDQQwp4fveeM7at6NktAB7uMTec6i63yigWrbvhqS0b/d6Y4aTVWH8qWwyCV
-nd+7CsEwQk2Y1iopb0Cli5M1bppoJ6a17eONqCaYMb8qShZQZWKygDkfAYD9B9c4
-x0UpRsSUDiVv7Bdc6MrlEPu9dI01BmkCAwEAAaNRME8wCwYDVR0PBAQDAgGGMA8G
-A1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGrxPxqDTdksMOqnt19O1VH0jpznMBAG
-CSsGAQQBgjcVAQQDAgEAMA0GCSqGSIb3DQEBCwUAA4IBAQBU6HnUmwCShJtNEiL5
-IJFgMh55tp4Vi9E1+q3XI5RwOB700UwmfWUXmOKeeD3871gg4lhqfjDKSxNrRJ3m
-CKuE4nwCSgK74BSCgWu3pTpSPjUgRED2IK/03jQCK2TuZgsTe20BUROnr+uRpORI
-pVbIDevBvuggxDHfn7JYQE/SXrUaCplaZUjZz6WVHTkLEDfoPeTp5gUPA7x/V4MI
-tHTkjIH8nND2pAJRCzLExl5Bf5PKqWjPOqaqyg+hDg2BXm70QOWIMqvxRt9TJAq4
-n6DBZ2ZDOhyFCejCDCSIbku76WGNeT8+0xXjCPaTNBL0AawR77uqa2KZpaCU7e84
-jhiq
------END CERTIFICATE----- """
+    def get_ca_cert(self, ca_url, nsxt_ip, nsxt_password):
+        if ca_url:
+            certificate_ref = ca_url[0].split('/')[-1]
 
-        return ca_id
+            key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, nsxt_password)
+            LOG.debug("Fetched ca cert data for certificate {} key {} data".format(certificate_ref, key, ca_cert))
+
+            if not ca_cert:
+                key, ca_cert = conv_utils.create_self_signed_cert()
+
+        return ca_cert
 
     def get_crl_cert(self, crl_url):
         crl_id = crl_url[0].split("/")[-1] + "-CRL-Certificates"
