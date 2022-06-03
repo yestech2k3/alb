@@ -646,7 +646,7 @@ class VsConfigConv(object):
                 certificate_ref = certificate_ref.split('/')[-1]
 
             key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, nsxt_password)
-            LOG.debug("Fetched data for certificate {} key {} data {}".format(name, key, ca_cert))
+            LOG.debug("Fetched data for certificate_ref {}".format(certificate_ref))
 
             if not ca_cert:
                 key, ca_cert = conv_utils.create_self_signed_cert()
@@ -724,7 +724,7 @@ class VsConfigConv(object):
             certificate_ref = ca_url[0].split('/')[-1]
 
             key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, nsxt_password)
-            LOG.debug("Fetched ca cert data for certificate {} key {} data".format(certificate_ref, key, ca_cert))
+            LOG.debug("Fetched ca cert data for certificate_ref".format(certificate_ref))
 
             if not ca_cert:
                 key, ca_cert = conv_utils.create_self_signed_cert()

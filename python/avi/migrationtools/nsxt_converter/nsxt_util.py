@@ -120,7 +120,7 @@ def get_certificate_data(certificate_ref, nsxt_ip, nsxt_pw):
 
     ssh = paramiko.SSHClient()
     ssh.load_system_host_keys()
-    # ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(nsxt_ip, username='root', password=nsxt_pw)
 
     data = None
