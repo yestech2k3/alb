@@ -19,7 +19,7 @@ from avi.migrationtools.nsxt_converter.ssl_profile_converter import SslProfileCo
 from avi.migrationtools.nsxt_converter.vs_converter import VsConfigConv
 from avi.migrationtools.avi_migration_utils import get_count, set_update_count
 from avi.migrationtools.nsxt_converter.test.excel_reader import ExcelReader
-
+from avi.migrationtools.nsxt_converter.vs_converter import vs_data_path_not_work
 gSAMPLE_CONFIG = None
 LOG = logging.getLogger(__name__)
 
@@ -101,7 +101,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -122,7 +121,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="prefix",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -155,7 +153,6 @@ class Test(unittest.TestCase, ExcelReader):
                                         sys_dict=sys_dict)
         pool_converter.convert(alb_config=avi_config,
                                nsx_lb_config=nsx_config,
-                               cloud_name='',
                                prefix='',
                                tenant="admin")
 
@@ -176,7 +173,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="prefix",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -198,7 +194,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="prefix",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -220,7 +215,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="prefix",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -241,7 +235,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="prefix",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -262,7 +255,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -307,7 +299,6 @@ class Test(unittest.TestCase, ExcelReader):
                                         sys_dict=sys_dict)
         pool_converter.convert(alb_config=avi_config,
                                nsx_lb_config=nsx_config,
-                               cloud_name='',
                                prefix=prefix,
                                tenant="admin")
         avi_pool_config = avi_config['Pool']
@@ -350,22 +341,22 @@ class Test(unittest.TestCase, ExcelReader):
 
         prefix = "AVI"
         vs_state = True
-        vs_converter = VsConfigConv(nsxt_profile_attributes=nsxt_attributes,
-                                    object_merge_check=no_object_merge,
-                                    merge_object_mapping=merge_object_mapping,
-                                    sys_dict=sys_dict)
-        vs_converter.convert(alb_config=avi_config,
-                             nsx_lb_config=nsx_config,
-                             cloud_name='',
-                             prefix=prefix,
-                             tenant="admin",
-                             vs_state=vs_state,
-                             controller_version="")
-        avi_vs_config = avi_config.get('VirtualService', None)
-        assert avi_vs_config
+        nsxt_config_converter.convert(nsx_lb_config=nsx_config,
+                                      input_path=input_path,
+                                      output_path=output_path,
+                                      tenant="admin",
+                                      prefix="",
+                                      migrate_to='',
+                                      object_merge_check=no_object_merge,
+                                      controller_version="")
+        o_file = "%s/%s" % (output_path, "avi_config.json")
+        with open(o_file) as json_file:
+            data = json.load(json_file)
+            avi_vs_config = data.get('VirtualService', None)
+            assert avi_vs_config
 
-        for hm in avi_vs_config:
-            assert hm['name'].startswith(prefix)
+            for hm in avi_vs_config:
+                assert hm['name'].startswith(prefix)
 
     def test_migrate_to(self):
         """
@@ -376,7 +367,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to=migrate_to,
                                       object_merge_check=no_object_merge,
@@ -401,7 +391,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to="",
                                       object_merge_check=object_merge,
@@ -419,7 +408,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to=migrate_to,
                                       object_merge_check=no_object_merge,
@@ -445,7 +433,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to=migrate_to,
                                       object_merge_check=no_object_merge,
@@ -460,7 +447,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -537,7 +523,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -552,7 +537,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -582,7 +566,6 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
@@ -635,9 +618,26 @@ class Test(unittest.TestCase, ExcelReader):
                                       input_path=input_path,
                                       output_path=output_path,
                                       tenant="admin",
-                                      cloud_name='cloud',
                                       prefix="",
                                       migrate_to="",
                                       object_merge_check=no_object_merge,
                                       controller_version="",
                                       not_in_use=False)
+
+    def test_is_bgp_configured_for_vlan_vs(self):
+        nsxt_config_converter.convert(nsx_lb_config=nsx_config,
+                                      input_path=input_path,
+                                      output_path=output_path,
+                                      tenant="admin",
+                                      prefix="",
+                                      migrate_to="",
+                                      object_merge_check=no_object_merge,
+                                      controller_version="",
+                                      not_in_use=False)
+        o_file = "%s/%s" % (output_path, "avi_config.json")
+        with open(o_file) as json_file:
+            data = json.load(json_file)
+            avi_vs_config = data.get('VirtualService', None)
+            for vs in avi_vs_config:
+                if vs in vs_data_path_not_work:
+                    assert not vs.get("enable_rhi", None)

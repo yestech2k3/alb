@@ -143,6 +143,11 @@ class VsConfigConv(object):
                         vip_segment = get_object_segments(lb_vs["id"], lb_vs['ip_address'])
                         if vip_segment:
                             self.add_placement_network_to_vip(vip['vip'],vip_segment,tenant,cloud_name)
+                        else:
+                            conv_utils.add_status_row('virtualservice', None, lb_vs["display_name"],
+                                                      conv_const.STATUS_SKIPPED)
+                            LOG.warning("vip segment is not found for %s" % lb_vs["display_name"])
+                            continue
                     alb_config['VsVip'].append(vip)
                     vsvip_ref = '/api/vsvip/?name=%s&cloud=%s' % (name + '-vsvip', cloud_name)
                     alb_vs['vsvip_ref'] = vsvip_ref
@@ -658,7 +663,6 @@ class VsConfigConv(object):
 
             key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, nsxt_password)
             LOG.debug("Fetched data for certificate_ref {}".format(certificate_ref))
-
             if not ca_cert:
                 key, ca_cert = conv_utils.create_self_signed_cert()
                 name = '%s-%s' % (name, final.PLACE_HOLDER_STR)
@@ -736,7 +740,6 @@ class VsConfigConv(object):
 
             key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, nsxt_password)
             LOG.debug("Fetched ca cert data for certificate_ref".format(certificate_ref))
-
             if not ca_cert:
                 key, ca_cert = conv_utils.create_self_signed_cert()
 
