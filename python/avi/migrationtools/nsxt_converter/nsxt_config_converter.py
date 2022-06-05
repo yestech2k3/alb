@@ -196,5 +196,4 @@ def convert(nsx_lb_config, input_path, output_path, tenant, prefix,
         alb_converter = ALBConverter(output_config, output_path)
         alb_converter.convert()
 
-
     return avi_config_dict

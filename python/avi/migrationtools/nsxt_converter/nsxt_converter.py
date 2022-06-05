@@ -16,10 +16,9 @@ from avi.migrationtools.avi_orphan_object import wipe_out_not_in_use
 from avi.migrationtools.nsxt_converter import nsxt_config_converter, vs_converter
 import argparse
 
-from avi.migrationtools.nsxt_converter.nsx_cleanup import NSXCleanup
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
 from avi.migrationtools.nsxt_converter.vs_converter import vs_list_with_snat_deactivated, vs_data_path_not_work, \
-    vs_with_no_cloud_configured
+    vs_with_no_cloud_configured, vs_with_lb_skipped
 
 ARG_CHOICES = {
     'option': ['cli-upload', 'auto-upload'],
@@ -51,10 +50,8 @@ class NsxtConverter(AviConverter):
         self.controller_version = args.alb_controller_version
         self.ansible_filter_types = args.ansible_filter_types
         self.vs_level_status = args.vs_level_status
-        self.run_on_local = args.run_on_local
         self.output_file_path = args.output_file_path if args.output_file_path \
             else 'output'
-        self.migrate_to = args.migrate_to
         self.option = args.option
         self.ansible = args.ansible
         self.object_merge_check = args.no_object_merge
@@ -66,9 +63,7 @@ class NsxtConverter(AviConverter):
         # rule config for irule conversion
         self.custom_config = args.custom_config
         self.traffic_enabled = args.traffic_enabled
-        self.config_file = args.config_file
-        self.migration_input_file = args.migration_input_file
-        self.cleanup_vs_names = args.cleanup
+        self.default_params_file = args.default_params_file
         self.cloud_tenant = args.cloud_tenant
 
     def conver_lb_config(self, args):
@@ -112,15 +107,11 @@ class NsxtConverter(AviConverter):
                 output_path, args.nsxt_ip)
             nsx_lb_config = nsx_util.get_nsx_config()
             LOG.debug("Copied input files")
-        elif self.config_file:
-            source_file = open(self.config_file, "r")
-            nsx_lb_config = source_file.read()
-            nsx_lb_config = json.loads(nsx_lb_config)
 
         migration_input_config = None
-        if self.migration_input_file:
-            migration_input_file = open(self.migration_input_file, "r")
-            migration_input_config = migration_input_file.read()
+        if self.default_params_file:
+            default_params_file = open(self.default_params_file, "r")
+            migration_input_config = default_params_file.read()
             migration_input_config = json.loads(migration_input_config)
 
         if not nsx_lb_config:
@@ -135,7 +126,7 @@ class NsxtConverter(AviConverter):
             self.cloud_tenant = "admin"
         alb_config = nsxt_config_converter.convert(
             nsx_lb_config, input_path, output_path, self.tenant,
-            self.prefix, self.migrate_to, self.object_merge_check, self.controller_version,
+            self.prefix, None, self.object_merge_check, self.controller_version,
             migration_input_config,
             self.vs_state,
             self.vs_level_status, self.vrf, self.segroup, self.not_in_use, custom_mappings,
@@ -167,40 +158,50 @@ class NsxtConverter(AviConverter):
                         filtered_vs_list.append(vs_name)
                 else:
                     filtered_vs_list = virtual_services
+        if vs_with_lb_skipped:
+            print_msg = "\033[93m"+"Warning: For following virtual service/s load balancer are skipped due to " \
+                                   "unsupported topology"+'\033[0m'
+            if self.vs_filter:
+                if list(set(vs_with_lb_skipped).intersection(set(filtered_vs_list))):
+                    print(print_msg)
+                    print(list(set(vs_with_lb_skipped).intersection(set(filtered_vs_list))))
+            else:
+                print(print_msg)
+                print(vs_with_lb_skipped)
         if vs_with_no_cloud_configured:
+            print_msg = "\033[93m"+"Warning: Following virtual service/s cloud is not configured"+'\033[0m'
             if self.vs_filter:
                 if list(set(vs_with_no_cloud_configured).intersection(set(filtered_vs_list))):
-                    print("\033[93m"+"For following virtual service/s cloud is not configured"+'\033[0m')
+                    print(print_msg)
                     print(list(set(vs_with_no_cloud_configured).intersection(set(filtered_vs_list))))
             else:
-                print("\033[93m"+"For following virtual service/s cloud is not configured"+'\033[0m')
+                print(print_msg)
                 print(vs_with_no_cloud_configured)
         if vs_list_with_snat_deactivated:
+            print_msg = '\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " \
+                                     "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + \
+                        '\033[0m'
             if self.vs_filter:
                 if list(set(vs_list_with_snat_deactivated).intersection(set(filtered_vs_list))):
-                    print('\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " +
-                          "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + '\033[0m')
+                    print(print_msg)
                     print(list(set(vs_list_with_snat_deactivated).intersection(set(filtered_vs_list))))
             else:
-                print('\033[93m' + "Warning: for following virtual service/s please follow steps giving in KB: " +
-                      "https://avinetworks.com/docs/21.1/migrating-nsx-transparent-lb-to-nsx-alb/" + '\033[0m')
+                print(print_msg)
                 print(vs_list_with_snat_deactivated)
         if vs_data_path_not_work:
+            print_msg = "\033[93m"+"For following virtual service/s Data path won't work"+'\033[0m'
             if self.vs_filter:
                 if list(set(vs_data_path_not_work).intersection(set(filtered_vs_list))):
-                    print("\033[93m"+"For following virtual service/s Data path won't work"+'\033[0m')
+                    print(print_msg)
                     print(list(set(vs_data_path_not_work).intersection(set(filtered_vs_list))))
             else:
-                print("\033[93m"+"For following virtual service/s Data path won't work"+'\033[0m')
+                print(print_msg)
                 print(vs_data_path_not_work)
         print("Total Warning: ", get_count('warning'))
         print("Total Errors: ", get_count('error'))
         LOG.info("Total Warning: {}".format(get_count('warning')))
         LOG.info("Total Errors: {}".format(get_count('error')))
-        if self.cleanup_vs_names:
-            nsx_c = NSXCleanup(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port \
-                               , self.controller_ip, self.user, self.password, self.controller_version)
-            nsx_c.nsx_cleanup(self.cleanup_vs_names)
+
 
     def upload_config_to_controller(self, alb_config):
         avi_rest_lib.upload_config_to_controller(
@@ -222,7 +223,73 @@ class NsxtConverter(AviConverter):
 if __name__ == "__main__":
     HELP_STR = """
     Usage:
-    python nsxt_converter.py -n 192.168.100.101 -u admin -p password 
+
+    Example to use -O or --option to auto upload config to controller after conversion:
+        nsxt_converter.py --option auto-upload
+
+    Example to use -s or --vs_state option:
+        nsxt_converter.py -s enable
+    Usecase: Traffic enabled state of a VS after conversion to AVI (default value is disable).
+
+    Example to use --alb_controller_version option:
+        nsxt_converter.py --controller_version 21.1.4
+    Usecase: To provide the version of controller for getting output in respective controller format.
+
+    Example to use no object merge option:
+        nsxt_converter.py --no_object_merge
+    Usecase: When we don't need to merge two same object (based on their attribute values except name)
+
+    Example to patch the config after conversion:
+       nsxt_converter.py --patch test/patch.yaml where patch.yaml file contains
+       <avi_object example Pool>:
+        - match_name: <existing name example p1>
+       patch:
+        name: <changed name example coolpool>
+
+    Example to export a single VS:
+         nsxt_converter.py --vs_filter test_vs
+
+    Example to skip avi object during playbook creation
+         nsxt_converter.py --ansible --ansible_skip_types DebugController
+    Usecase:
+         Comma separated list of Avi Object types to skip during conversion.
+         Eg. DebugController, ServiceEngineGroup will skip debugcontroller and
+         serviceengine objects
+
+    Example to filter ansible object
+         nsxt_converter.py --ansible --ansible_filter_types virtualservice, pool
+    Usecase:
+        Comma separated list of Avi Objects types to include during conversion.
+        Eg. VirtualService , Pool will do ansible conversion only for
+        Virtualservice and Pool objects
+
+    Example to use ansible option:
+        nsxt_converter.py --ansible
+    Usecase: To generate the ansible playbook for the avi configuration
+    which can be used for upload to controller
+
+    Example to add the prefix to avi object name:
+        nsxt_converter.py --prefix abc
+    Usecase: When two configuration is to be uploaded to same controller then
+     in order to differentiate between the objects that will be uploaded in
+     second time.
+
+    Example to use not_in_use option:
+        nsxt_converter.py --not_in_use
+    Usecase: Dangling object which are not referenced by any avi object will be removed
+
+    Example to use vs level status option:
+        nsxt_converter.py --vs_level_status
+    Usecase: To get the vs level status for the avi objects in excel sheet
+
+    Example to use segroup flag
+        nsxt_converter.py --segroup segroup_name
+    UseCase: To add / change segroup reference of vs
+
+    Example to use vrf flag
+        nsxt_converter.py -f ns.conf --vrf vrf_name
+    UseCase: Change all the vrf reference in the configuration while conversion
+
     """
 
     parser = argparse.ArgumentParser(
@@ -234,11 +301,11 @@ if __name__ == "__main__":
                         action='store_true')
 
     parser.add_argument('-n', '--nsxt_ip',
-                        help='Ip of NSXT')
+                        help='Ip of NSXT', required=True)
     parser.add_argument('-u', '--nsxt_user',
-                        help='NSX-T User name')
+                        help='NSX-T User name', required=True)
     parser.add_argument('-p', '--nsxt_password',
-                        help='NSX-T Password')
+                        help='NSX-T Password', required=True)
     parser.add_argument('-port', '--nsxt_port', default=443,
                         help='NSX-T Port')
     parser.add_argument('-o', '--output_file_path',
@@ -246,22 +313,19 @@ if __name__ == "__main__":
                         )
     parser.add_argument('--prefix', help='Prefix for objects')
     parser.add_argument('-c', '--alb_controller_ip',
-                        help='controller ip for auto upload')
+                        help='controller ip for auto upload', required=True)
     parser.add_argument('--alb_controller_version',
                         help='Target Avi controller version')
     parser.add_argument('--alb_user',
-                        help='controller username for auto upload')
+                        help='controller username for auto upload', required=True)
     parser.add_argument('--alb_password',
                         help='controller password for auto upload. Input '
-                             'prompt will appear if no value provided')
+                             'prompt will appear if no value provided', required=True)
     parser.add_argument('-t', '--tenant', help='tenant name for auto upload', default="admin")
     parser.add_argument('-O', '--option', choices=ARG_CHOICES['option'],
-                        help='Upload option cli-upload genarates Avi config ' +
+                        help='Upload option cli-upload generates Avi config ' +
                              'file auto upload will upload config to ' +
                              'controller')
-    parser.add_argument('--migrate_to', choices=ARG_CHOICES['migrate_option'],
-                        help='Select migration to NSX-T ALB or ALB Controller',
-                        default='Avi')
     # Added command line args to take skip type for ansible playbook
     parser.add_argument('--ansible_skip_types',
                         help='Comma separated list of Avi Object types to skip '
@@ -289,9 +353,6 @@ if __name__ == "__main__":
     parser.add_argument('--vrf',
                         help='Update the available vrf ref with the custom vrf'
                              'reference')
-    parser.add_argument('--run_on_local',
-                        help='Flag for running script in nsx manager',
-                        action="store_true")
     # Added command line args to execute vs_filter.py with vs_name.
     parser.add_argument('--vs_filter',
                         help='comma seperated names of virtualservices.\n'
@@ -309,12 +370,8 @@ if __name__ == "__main__":
     parser.add_argument('--traffic_enabled',
                         help='Traffic Enabled on all migrated VS VIPs',
                         action="store_true")
-    parser.add_argument('-f', '--config_file',
-                        help='absolute path for nsx config file')
-    parser.add_argument('-i', '--migration_input_file',
-                        help='absolute path for nsx-t conversion input file')
-    parser.add_argument('--cleanup',
-                        help='comma separated vs names that we want to clear from nsx-t side')
+    parser.add_argument('-i', '--default_params_file',
+                        help='absolute path for nsx-t default params file')
     parser.add_argument('--cloud_tenant', help="tenant for cloud ref")
 
     start = datetime.now()

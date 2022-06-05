@@ -68,7 +68,8 @@ class SslProfileConfigConv(object):
                         alb_ssl['ssl_session_timeout'] = lb_ssl['session_cache_timeout']
 
                     if lb_ssl.get("ciphers"):
-                        alb_ssl['accepted_ciphers'] = ":".join(lb_ssl['ciphers'])
+                        converted_ciphers = self.convert_ciphers_to_valid_format(":".join(lb_ssl['ciphers']))
+                        alb_ssl['accepted_ciphers'] = converted_ciphers
 
                     if lb_ssl.get("protocols"):
                         self.convert_protocols(lb_ssl['protocols'], alb_ssl)
@@ -169,7 +170,9 @@ class SslProfileConfigConv(object):
                         name=name,
                     )
                     if lb_ssl.get("ciphers"):
-                        alb_ssl['accepted_ciphers'] = ":".join(lb_ssl['ciphers'])
+                        converted_ciphers = self.convert_ciphers_to_valid_format(":".join(lb_ssl['ciphers']))
+                        alb_ssl['accepted_ciphers'] = converted_ciphers
+
                     if lb_ssl.get("protocols"):
                         self.convert_protocols(lb_ssl['protocols'], alb_ssl)
 
@@ -250,3 +253,10 @@ class SslProfileConfigConv(object):
                 type=accepted_version[acc_ver]
             )
             alb_ssl['accepted_versions'].append(acc_version)
+
+    def convert_ciphers_to_valid_format(self, cipher_str):
+        cipher_str = cipher_str.replace('TLS_', '')
+        cipher_str = cipher_str.replace('_', '-')
+        cipher_str = cipher_str.replace('WITH-AES-128', 'AES128')
+        cipher_str = cipher_str.replace('WITH-AES-256', 'AES256')
+        return cipher_str

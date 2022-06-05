@@ -3,7 +3,7 @@ import logging
 
 from avi.migrationtools.avi_migration_utils import MigrationUtil
 from avi.migrationtools.nsxt_converter.nsxt_util import is_vlan_configured_with_bgp, \
-    is_segment_configured_with_subnet, get_vs_cloud_type
+    is_segment_configured_with_subnet, get_vs_cloud_type, get_lb_skip_reason
 from avi.migrationtools.nsxt_converter.conversion_util import NsxtConvUtil
 from avi.migrationtools.avi_migration_utils import update_count
 from avi.migrationtools.nsxt_converter.nsxt_util import get_vs_cloud_name, get_object_segments, get_certificate_data
@@ -24,6 +24,7 @@ vs_data_path_not_work = []
 pool_attached_with_poolgroup = []
 pool_attached_with_vs_poolref = []
 vs_with_no_cloud_configured=[]
+vs_with_lb_skipped=[]
 
 
 class VsConfigConv(object):
@@ -82,9 +83,17 @@ class VsConfigConv(object):
                 # vs_name = lb_vs['name']
                 cloud_name = get_vs_cloud_name(lb_vs["id"])
                 cloud_type = get_vs_cloud_type(lb_vs["id"])
-                if cloud_name == 'Cloud Not Found' or not cloud_name:
+                if get_lb_skip_reason(lb_vs["id"]):
+                    skip_reason = get_lb_skip_reason(lb_vs["id"])
                     conv_utils.add_status_row('virtualservice', None, lb_vs["display_name"],
-                                              conv_const.STATUS_SKIPPED)
+                                              conv_const.STATUS_SKIPPED, skip_reason)
+                    LOG.warning("VS {} not migrated. Reason: {}".format(lb_vs["display_name"],
+                                                                        skip_reason))
+                    vs_with_lb_skipped.append(lb_vs["display_name"])
+                    continue
+                elif cloud_name == 'Cloud Not Found' or not cloud_name:
+                    conv_utils.add_status_row('virtualservice', None, lb_vs["display_name"],
+                                              conv_const.STATUS_SKIPPED, cloud_name)
                     LOG.warning("cloud is not configured for %s" % lb_vs["display_name"])
                     vs_with_no_cloud_configured.append(lb_vs["display_name"])
                     continue

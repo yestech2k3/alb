@@ -17,28 +17,30 @@ controller_details = {}
 
 LOG = logging.getLogger(__name__)
 
+
 def is_segment_configured_with_subnet(vs_id, cloud_name):
     vs_config = vs_details[vs_id]
     network_type = vs_config["Network"]
     if network_type == "Vlan":
-        if vs_config.get("Segments"):
-            vs_segment = vs_config["Segments"]
-            seg_id = vs_segment["name"]
-            session = ApiSession.get_session(controller_details.get("ip"), controller_details.get("username"),
-                                             controller_details.get("password"), tenant="admin",
-                                             api_version=controller_details.get("version"))
-            cloud = session.get("cloud/").json()["results"]
-            cloud_id = [cl.get("uuid") for cl in cloud if cl.get("name") == cloud_name]
-            segment_list = session.get("network/?&cloud_ref.uuid=" + cloud_id[0]).json()["results"]
-            segment = [seg for seg in segment_list if seg.get("name") == seg_id]
-            if segment and segment[0].get("configured_subnets"):
-                if segment[0].get("configured_subnets")[0].get("prefix"):
-                    if segment[0].get("configured_subnets")[0].get("static_ip_ranges"):
-                        return True, segment[0], network_type, "Both are configured"
+        segment_list = vs_config.get("Segments")
+        if segment_list:
+            for vs_segment in segment_list:
+                seg_id = vs_segment["name"]
+                session = ApiSession.get_session(controller_details.get("ip"), controller_details.get("username"),
+                                                 controller_details.get("password"), tenant="admin",
+                                                 api_version=controller_details.get("version"))
+                cloud = session.get("cloud/").json()["results"]
+                cloud_id = [cl.get("uuid") for cl in cloud if cl.get("name") == cloud_name]
+                segment_list = session.get("network/?&cloud_ref.uuid=" + cloud_id[0]).json()["results"]
+                segment = [seg for seg in segment_list if seg.get("name") == seg_id]
+                if segment and segment[0].get("configured_subnets"):
+                    if segment[0].get("configured_subnets")[0].get("prefix"):
+                        if segment[0].get("configured_subnets")[0].get("static_ip_ranges"):
+                            return True, segment[0], network_type, "Both are configured"
+                        else:
+                            return False, segment[0], network_type, "static ip pool is not configured"
                     else:
-                        return False , segment[0], network_type, "static ip pool is not configured"
-                else:
-                    return False, segment[0], network_type, "ip subnet is not configured"
+                        return False, segment[0], network_type, "ip subnet is not configured"
     return False, None, network_type, "overlay"
 
 
@@ -74,8 +76,11 @@ def get_name_and_entity(url):
     :param url: reference url to be parsed
     :return: entity and object name
     """
-    parsed = url.split('/')
-    return parsed[-2], parsed[-1]
+    if url:
+        parsed = url.split('/')
+        return parsed[-2], parsed[-1]
+
+    return '', ''
 
 
 def get_vs_cloud_name(vs_id):
@@ -94,23 +99,29 @@ def get_lb_service_name(vs_id):
     return None
 
 
+def get_lb_skip_reason(vs_id):
+    if vs_details.get(vs_id):
+        return vs_details.get(vs_id).get("lb_skip_reason")
+    return None
+
 def get_object_segments(vs_id, obj_ip):
     vs = vs_details.get(vs_id, None)
     if not vs:
         return None
     segments = []
     if vs.get("Segments"):
-        seg = vs["Segments"]
-        seg_name = seg["name"]
-        for subnet in seg["subnet"]:
-            if subnet.get("network_range"):
-                network_range = subnet["network_range"]
-            a_network = ipaddress.ip_network(network_range, False)
-            address_in_network = ipaddress.ip_address(obj_ip) in a_network
-            if address_in_network:
-                return [dict(
-                    seg_name=seg_name,
-                    subnets=subnet)]
+        seg_list = vs.get("Segments")
+        for seg in seg_list:
+            seg_name = seg["name"]
+            for subnet in seg["subnet"]:
+                if subnet.get("network_range"):
+                    network_range = subnet["network_range"]
+                a_network = ipaddress.ip_network(network_range, False)
+                address_in_network = ipaddress.ip_address(obj_ip) in a_network
+                if address_in_network:
+                    return [dict(
+                        seg_name=seg_name,
+                        subnets=subnet)]
     return None
 
 
@@ -340,6 +351,14 @@ class NSXUtil():
                     network = "Vlan"
                 else:
                     network = "Overlay"
+
+                if network == "Overlay" and len(interface_list) > 0:
+                    self.lb_services[lb["id"]] = {
+                        "lb_name": lb["id"],
+                        "lb_skip_reason": "Overlay Network having Service Interfaces is not supported"
+                    }
+                    continue
+
                 for intrf in interface_list:
                     segment_id = get_name_and_entity(intrf.segment_path)[-1]
                     subnets = []
@@ -350,7 +369,7 @@ class NSXUtil():
                     segments = {
                         "name": segment_id,
                         "subnet": subnets}
-                    lb_details=segments
+                    lb_details.append(segments)
 
             else:
                 segment_list = self.nsx_api_client.infra.Segments.list().to_dict().get('results', [])
@@ -374,10 +393,17 @@ class NSXUtil():
                                 segments = {
                                     "name": seg.get("id"),
                                     "subnet": subnets}
-                                lb_details = segments
+                                lb_details.append(segments)
                             if cloud_name == "Cloud Not Found":
                                 continue
                             break
+
+                if not (network and cloud_name):
+                    self.lb_services[lb["id"]] = {
+                        "lb_name": lb["id"],
+                        "lb_skip_reason": "No segments or service interfaces configured"
+                    }
+                    continue
 
             self.lb_services[lb["id"]] = {
                 "lb_name": lb["id"],
@@ -425,7 +451,8 @@ class NSXUtil():
                     vs_object['Segments'] = lb_details.get('Segments')
                     vs_object["Cloud_type"] = lb_details.get("Cloud_type")
                     vs_object['lb_name'] = lb
-                 #   lb_details["vs_name"] = vs["display_name"]
+                    vs_object['lb_skip_reason'] = lb_details.get("lb_skip_reason")
+                    # lb_details["vs_name"] = vs["display_name"]
                     vs_details[vs["id"]] = vs_object
             if vs["enabled"]:
                 vs_object["enabled"] = True

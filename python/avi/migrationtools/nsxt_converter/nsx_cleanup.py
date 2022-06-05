@@ -7,6 +7,7 @@ from avi.sdk.avi_api import ApiSession
 
 class NSXCleanup():
     nsx_api_client = None
+    vs_not_found = list()
 
     def __init__(self, nsx_un, nsx_pw, nsx_ip, nsx_port, c_ip, c_un, c_pw, c_vr):
         self.nsx_api_client = nsx_client_util.create_nsx_policy_api_client(
@@ -52,6 +53,9 @@ class NSXCleanup():
                                         vs['server_ssl_profile_binding']['ssl_profile_path'].split('/')[-1])
 
                             self.nsx_api_client.infra.LbVirtualServers.delete(vs["id"])
+                else:
+                    self.vs_not_found.append(vs_name)
+
             nsx_lb_config = self.nsx_util.get_nsx_config()
 
             for persis_id in vs_attached_persis:
