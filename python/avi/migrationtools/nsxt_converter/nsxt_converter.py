@@ -232,7 +232,7 @@ if __name__ == "__main__":
     Usecase: Traffic enabled state of a VS after conversion to AVI (default value is disable).
 
     Example to use --alb_controller_version option:
-        nsxt_converter.py --controller_version 21.1.4
+        nsxt_converter.py --alb_controller_version 21.1.4
     Usecase: To provide the version of controller for getting output in respective controller format.
 
     Example to use no object merge option:
