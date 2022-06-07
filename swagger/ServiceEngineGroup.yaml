@@ -1923,7 +1923,7 @@ definitions:
                 default: 1
                 format: int32
             se_time_tracker_props:
-                description: "Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                description: "Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/SETimeTrackerProperties'
             se_tracert_port_range:
                 description: "Traceroute port range. Field introduced in 17.2.8. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
@@ -2209,20 +2209,25 @@ definitions:
             egress_audit_mode:
                 description: "Audit queueing latency from proxy to dispatcher. Enum options - SE_TT_AUDIT_OFF, SE_TT_AUDIT_ON, SE_TT_AUDIT_ON_WITH_EVENT. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: string
+                default: "SE_TT_AUDIT_OFF"
             egress_threshold:
                 description: "Maximum egress latency threshold between dispatcher and proxy. Field introduced in 22.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: integer
+                default: 20
                 format: int32
             event_gen_window:
                 description: "Window for cumulative event generation. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: integer
+                default: 300
                 format: int64
             ingress_audit_mode:
                 description: "Audit queueing latency from dispatcher to proxy. Enum options - SE_TT_AUDIT_OFF, SE_TT_AUDIT_ON, SE_TT_AUDIT_ON_WITH_EVENT. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: string
+                default: "SE_TT_AUDIT_OFF"
             ingress_threshold:
                 description: "Maximum ingress latency threshold between dispatcher and proxy. Field introduced in 22.1.1. Unit is MILLISECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: integer
+                default: 20
                 format: int32
     UserAgentCacheConfig:
         type: object

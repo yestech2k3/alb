@@ -3225,6 +3225,11 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "preference_order": {
+                    "description": "Preference order of this member in the group. The DNS Service chooses the member with the lowest preference that is operationally up. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.",
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "prst_hdr_val": {
                     "description": "Header value for custom header persistence. . Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
                     "type": "string"
