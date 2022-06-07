@@ -30,8 +30,17 @@ public class ALBServicesJob extends AviRestResource  {
     @JsonProperty("name")
     private String name = null;
 
+    @JsonProperty("params")
+    private List<ALBServicesJobParam> params = null;
+
     @JsonProperty("pulse_job_id")
     private String pulseJobId = null;
+
+    @JsonProperty("pulse_sync_status")
+    private Boolean pulseSyncStatus = null;
+
+    @JsonProperty("result")
+    private String result = null;
 
     @JsonProperty("start_time")
     private TimeStamp startTime = null;
@@ -121,6 +130,45 @@ public class ALBServicesJob extends AviRestResource  {
     public void setName(String  name) {
         this.name = name;
     }
+    /**
+     * This is the getter method this will return the attribute value.
+     * Job params.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return params
+     */
+    public List<ALBServicesJobParam> getParams() {
+        return params;
+    }
+
+    /**
+     * This is the setter method. this will set the params
+     * Job params.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return params
+     */
+    public void setParams(List<ALBServicesJobParam>  params) {
+        this.params = params;
+    }
+
+    /**
+     * This is the setter method this will set the params
+     * Job params.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return params
+     */
+    public ALBServicesJob addParamsItem(ALBServicesJobParam paramsItem) {
+      if (this.params == null) {
+        this.params = new ArrayList<ALBServicesJobParam>();
+      }
+      this.params.add(paramsItem);
+      return this;
+    }
 
     /**
      * This is the getter method this will return the attribute value.
@@ -144,6 +192,54 @@ public class ALBServicesJob extends AviRestResource  {
      */
     public void setPulseJobId(String  pulseJobId) {
         this.pulseJobId = pulseJobId;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Status of sync to pulse(result uploads/state updates).
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return pulseSyncStatus
+     */
+    public Boolean getPulseSyncStatus() {
+        return pulseSyncStatus;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Status of sync to pulse(result uploads/state updates).
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param pulseSyncStatus set the pulseSyncStatus.
+     */
+    public void setPulseSyncStatus(Boolean  pulseSyncStatus) {
+        this.pulseSyncStatus = pulseSyncStatus;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Job result.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return result
+     */
+    public String getResult() {
+        return result;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Job result.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param result set the result.
+     */
+    public void setResult(String  result) {
+        this.result = result;
     }
 
     /**
@@ -280,7 +376,10 @@ public class ALBServicesJob extends AviRestResource  {
   Objects.equals(this.pulseJobId, objALBServicesJob.pulseJobId)&&
   Objects.equals(this.command, objALBServicesJob.command)&&
   Objects.equals(this.startTime, objALBServicesJob.startTime)&&
-  Objects.equals(this.endTime, objALBServicesJob.endTime);
+  Objects.equals(this.endTime, objALBServicesJob.endTime)&&
+  Objects.equals(this.pulseSyncStatus, objALBServicesJob.pulseSyncStatus)&&
+  Objects.equals(this.result, objALBServicesJob.result)&&
+  Objects.equals(this.params, objALBServicesJob.params);
     }
 
     @Override
@@ -290,7 +389,10 @@ public class ALBServicesJob extends AviRestResource  {
                   sb.append("    command: ").append(toIndentedString(command)).append("\n");
                         sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
+                        sb.append("    params: ").append(toIndentedString(params)).append("\n");
                         sb.append("    pulseJobId: ").append(toIndentedString(pulseJobId)).append("\n");
+                        sb.append("    pulseSyncStatus: ").append(toIndentedString(pulseSyncStatus)).append("\n");
+                        sb.append("    result: ").append(toIndentedString(result)).append("\n");
                         sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
                         sb.append("    status: ").append(toIndentedString(status)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");

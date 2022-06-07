@@ -32,7 +32,7 @@ public class BotTypeMatcher  {
      * This is the getter method this will return the attribute value.
      * The list of client types.
      * Enum options - UNDETERMINED_CLIENT_TYPE, WEB_BROWSER, IN_APP_BROWSER, SEARCH_ENGINE, IMPERSONATOR, SPAM_SOURCE, WEB_ATTACKS, BOTNET, SCANNER,
-     * DENIAL_OF_SERVICE, CLOUD_SOURCE, SECURITY_SCANNER, SITE_MONITOR, GENERIC_APPLICATION.
+     * DENIAL_OF_SERVICE, CLOUD_SOURCE, SECURITY_SCANNER, SITE_MONITOR, GENERIC_APPLICATION, SUSPICIOUS_APPLICATION.
      * Field introduced in 21.1.1.
      * Minimum of 1 items required.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -47,7 +47,7 @@ public class BotTypeMatcher  {
      * This is the setter method. this will set the clientTypes
      * The list of client types.
      * Enum options - UNDETERMINED_CLIENT_TYPE, WEB_BROWSER, IN_APP_BROWSER, SEARCH_ENGINE, IMPERSONATOR, SPAM_SOURCE, WEB_ATTACKS, BOTNET, SCANNER,
-     * DENIAL_OF_SERVICE, CLOUD_SOURCE, SECURITY_SCANNER, SITE_MONITOR, GENERIC_APPLICATION.
+     * DENIAL_OF_SERVICE, CLOUD_SOURCE, SECURITY_SCANNER, SITE_MONITOR, GENERIC_APPLICATION, SUSPICIOUS_APPLICATION.
      * Field introduced in 21.1.1.
      * Minimum of 1 items required.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
@@ -62,7 +62,7 @@ public class BotTypeMatcher  {
      * This is the setter method this will set the clientTypes
      * The list of client types.
      * Enum options - UNDETERMINED_CLIENT_TYPE, WEB_BROWSER, IN_APP_BROWSER, SEARCH_ENGINE, IMPERSONATOR, SPAM_SOURCE, WEB_ATTACKS, BOTNET, SCANNER,
-     * DENIAL_OF_SERVICE, CLOUD_SOURCE, SECURITY_SCANNER, SITE_MONITOR, GENERIC_APPLICATION.
+     * DENIAL_OF_SERVICE, CLOUD_SOURCE, SECURITY_SCANNER, SITE_MONITOR, GENERIC_APPLICATION, SUSPICIOUS_APPLICATION.
      * Field introduced in 21.1.1.
      * Minimum of 1 items required.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.

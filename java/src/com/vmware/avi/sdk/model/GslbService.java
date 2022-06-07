@@ -78,6 +78,9 @@ public class GslbService extends AviRestResource  {
     @JsonProperty("tenant_ref")
     private String tenantRef = null;
 
+    @JsonProperty("topology_policy_enabled")
+    private Boolean topologyPolicyEnabled = null;
+
     @JsonProperty("ttl")
     private Integer ttl = null;
 
@@ -632,6 +635,32 @@ public class GslbService extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * When enabled, topology policy rules are used for member selection first.
+     * If no valid member is found using the topology policy rules, configured gslb algorithms for pool selection and member selection are used.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return topologyPolicyEnabled
+     */
+    public Boolean getTopologyPolicyEnabled() {
+        return topologyPolicyEnabled;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * When enabled, topology policy rules are used for member selection first.
+     * If no valid member is found using the topology policy rules, configured gslb algorithms for pool selection and member selection are used.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param topologyPolicyEnabled set the topologyPolicyEnabled.
+     */
+    public void setTopologyPolicyEnabled(Boolean  topologyPolicyEnabled) {
+        this.topologyPolicyEnabled = topologyPolicyEnabled;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Ttl value (in seconds) for records served for this gslb service by the dns service.
      * Allowed values are 0-86400.
      * Unit is sec.
@@ -781,7 +810,8 @@ public class GslbService extends AviRestResource  {
   Objects.equals(this.isFederated, objGslbService.isFederated)&&
   Objects.equals(this.createdBy, objGslbService.createdBy)&&
   Objects.equals(this.description, objGslbService.description)&&
-  Objects.equals(this.tenantRef, objGslbService.tenantRef);
+  Objects.equals(this.tenantRef, objGslbService.tenantRef)&&
+  Objects.equals(this.topologyPolicyEnabled, objGslbService.topologyPolicyEnabled);
     }
 
     @Override
@@ -807,6 +837,7 @@ public class GslbService extends AviRestResource  {
                         sb.append("    resolveCname: ").append(toIndentedString(resolveCname)).append("\n");
                         sb.append("    sitePersistenceEnabled: ").append(toIndentedString(sitePersistenceEnabled)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
+                        sb.append("    topologyPolicyEnabled: ").append(toIndentedString(topologyPolicyEnabled)).append("\n");
                         sb.append("    ttl: ").append(toIndentedString(ttl)).append("\n");
                                     sb.append("    useEdnsClientSubnet: ").append(toIndentedString(useEdnsClientSubnet)).append("\n");
                         sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");

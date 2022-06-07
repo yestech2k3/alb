@@ -45,6 +45,9 @@ public class GslbPoolMember  {
     @JsonProperty("location")
     private GslbGeoLocation location = null;
 
+    @JsonProperty("preference_order")
+    private Integer preferenceOrder = 1;
+
     @JsonProperty("public_ip")
     private GslbIpAddr publicIp = null;
 
@@ -265,6 +268,34 @@ public class GslbPoolMember  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Preference order of this member in the group.
+     * The dns service chooses the member with the lowest preference that is operationally up.
+     * Allowed values are 1-100.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 1.
+     * @return preferenceOrder
+     */
+    public Integer getPreferenceOrder() {
+        return preferenceOrder;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Preference order of this member in the group.
+     * The dns service chooses the member with the lowest preference that is operationally up.
+     * Allowed values are 1-100.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 1.
+     * @param preferenceOrder set the preferenceOrder.
+     */
+    public void setPreferenceOrder(Integer  preferenceOrder) {
+        this.preferenceOrder = preferenceOrder;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Alternate ip addresses of the pool member.
      * In usual deployments, the vip in the virtual service is a private ip address.
      * This gets configured in the 'ip' field of the gslb service.
@@ -396,7 +427,8 @@ public class GslbPoolMember  {
   Objects.equals(this.publicIp, objGslbPoolMember.publicIp)&&
   Objects.equals(this.hostname, objGslbPoolMember.hostname)&&
   Objects.equals(this.resolveFqdnToV6, objGslbPoolMember.resolveFqdnToV6)&&
-  Objects.equals(this.description, objGslbPoolMember.description);
+  Objects.equals(this.description, objGslbPoolMember.description)&&
+  Objects.equals(this.preferenceOrder, objGslbPoolMember.preferenceOrder);
     }
 
     @Override
@@ -411,6 +443,7 @@ public class GslbPoolMember  {
                         sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
                         sb.append("    ip: ").append(toIndentedString(ip)).append("\n");
                         sb.append("    location: ").append(toIndentedString(location)).append("\n");
+                        sb.append("    preferenceOrder: ").append(toIndentedString(preferenceOrder)).append("\n");
                         sb.append("    publicIp: ").append(toIndentedString(publicIp)).append("\n");
                         sb.append("    ratio: ").append(toIndentedString(ratio)).append("\n");
                         sb.append("    resolveFqdnToV6: ").append(toIndentedString(resolveFqdnToV6)).append("\n");

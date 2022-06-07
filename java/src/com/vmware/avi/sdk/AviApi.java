@@ -12,9 +12,11 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
@@ -267,6 +269,31 @@ public class AviApi {
 	}
 
 	/**
+	 * This method returns true if and only if any element matches with the supplied predicate.
+	 * @param str A String containing path
+	 * @param substrings The List which has objects names which UUID can be ignore for PUT request
+	 * @return
+	 * @throws AviApiException
+	 */
+	private boolean hasMatchingSubstring(String path) throws AviApiException {
+		try {
+			InputStream inputStream = new FileInputStream("resources/config.properties");
+			Properties properties = new Properties();
+			properties.load(inputStream);
+			String putObjectsNotAllowed = properties.getProperty("api.put.not.allowed");
+			List<String> apiPutNotAllowedList = Arrays.asList(putObjectsNotAllowed.split(","));
+
+			return apiPutNotAllowedList.stream().anyMatch(path::contains);
+		}catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+			LOGGER.severe("Exception to read properties file : " + e.getMessage() + sw.toString());
+			throw new AviApiException(e);
+		}
+	}
+
+	/**
 	 * This method calls the PUT REST API.
 	 * 
 	 * @param path A String containing object type which want to PUT on the
@@ -284,9 +311,14 @@ public class AviApi {
 			throws AviApiException {
 		try {
 			LOGGER.info("__INIT__ Inside executing PUT..");
+			String putUrl = path;
+			if (this.hasMatchingSubstring(path)) {
+				putUrl = path.toLowerCase();
+			}else {
+				String objectUuid = body.get("uuid").toString();
+				putUrl = path.toLowerCase().concat("/" + objectUuid);
+			}
 
-			String objectUuid = body.get("uuid").toString();
-			String putUrl = path.toLowerCase().concat("/" + objectUuid);
 			HttpEntity<String> requestEntity;
 			if (userHeaders != null) {
 				HttpHeaders headers = setHeaders(userHeaders);
