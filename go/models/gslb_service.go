@@ -76,6 +76,9 @@ type GslbService struct {
 	//  It is a reference to an object of type Tenant. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	TenantRef *string `json:"tenant_ref,omitempty"`
 
+	// When enabled, topology policy rules are used for member selection first. If no valid member is found using the topology policy rules, configured GSLB algorithms for pool selection and member selection are used. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	TopologyPolicyEnabled *bool `json:"topology_policy_enabled,omitempty"`
+
 	// TTL value (in seconds) for records served for this GSLB service by the DNS Service. Allowed values are 0-86400. Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	TTL *int32 `json:"ttl,omitempty"`
 
