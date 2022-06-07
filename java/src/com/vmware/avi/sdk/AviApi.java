@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
@@ -315,7 +316,7 @@ public class AviApi {
 				putUrl = path.toLowerCase();
 			}else {
 				String objectUuid = body.get("uuid").toString();
-				String putUrl = path.toLowerCase().concat("/" + objectUuid);
+				putUrl = path.toLowerCase().concat("/" + objectUuid);
 			}
 
 			HttpEntity<String> requestEntity;
