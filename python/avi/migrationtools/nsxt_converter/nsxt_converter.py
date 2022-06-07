@@ -41,7 +41,6 @@ class NsxtConverter(AviConverter):
         self.nsxt_passord = args.nsxt_password
         self.nsxt_port = args.nsxt_port
         self.prefix = args.prefix
-        self.prefix = args.prefix
         self.controller_ip = args.alb_controller_ip
         self.user = args.alb_controller_user
         self.password = args.alb_controller_password
