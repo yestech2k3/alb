@@ -27,6 +27,9 @@ public class DnsRuleAction  {
     @JsonProperty("dns_rate_limiter")
     private DnsRateLimiter dnsRateLimiter = null;
 
+    @JsonProperty("gs_group_selection")
+    private DnsRuleActionGsGroupSelection gsGroupSelection = null;
+
     @JsonProperty("gslb_site_selection")
     private DnsRuleActionGslbSiteSelection gslbSiteSelection = null;
 
@@ -84,6 +87,30 @@ public class DnsRuleAction  {
      */
     public void setDnsRateLimiter(DnsRateLimiter dnsRateLimiter) {
         this.dnsRateLimiter = dnsRateLimiter;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Gslb service group to be selected.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return gsGroupSelection
+     */
+    public DnsRuleActionGsGroupSelection getGsGroupSelection() {
+        return gsGroupSelection;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Gslb service group to be selected.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param gsGroupSelection set the gsGroupSelection.
+     */
+    public void setGsGroupSelection(DnsRuleActionGsGroupSelection gsGroupSelection) {
+        this.gsGroupSelection = gsGroupSelection;
     }
 
     /**
@@ -174,7 +201,8 @@ public class DnsRuleAction  {
   Objects.equals(this.response, objDnsRuleAction.response)&&
   Objects.equals(this.gslbSiteSelection, objDnsRuleAction.gslbSiteSelection)&&
   Objects.equals(this.poolSwitching, objDnsRuleAction.poolSwitching)&&
-  Objects.equals(this.dnsRateLimiter, objDnsRuleAction.dnsRateLimiter);
+  Objects.equals(this.dnsRateLimiter, objDnsRuleAction.dnsRateLimiter)&&
+  Objects.equals(this.gsGroupSelection, objDnsRuleAction.gsGroupSelection);
     }
 
     @Override
@@ -183,6 +211,7 @@ public class DnsRuleAction  {
       sb.append("class DnsRuleAction {\n");
                   sb.append("    allow: ").append(toIndentedString(allow)).append("\n");
                         sb.append("    dnsRateLimiter: ").append(toIndentedString(dnsRateLimiter)).append("\n");
+                        sb.append("    gsGroupSelection: ").append(toIndentedString(gsGroupSelection)).append("\n");
                         sb.append("    gslbSiteSelection: ").append(toIndentedString(gslbSiteSelection)).append("\n");
                         sb.append("    poolSwitching: ").append(toIndentedString(poolSwitching)).append("\n");
                         sb.append("    response: ").append(toIndentedString(response)).append("\n");

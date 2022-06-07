@@ -22,19 +22,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SETimeTrackerProperties  {
     @JsonProperty("egress_audit_mode")
-    private String egressAuditMode = null;
+    private String egressAuditMode = "SE_TT_AUDIT_OFF";
 
     @JsonProperty("egress_threshold")
-    private Integer egressThreshold = null;
+    private Integer egressThreshold = 20;
 
     @JsonProperty("event_gen_window")
-    private Integer eventGenWindow = null;
+    private Integer eventGenWindow = 300;
 
     @JsonProperty("ingress_audit_mode")
-    private String ingressAuditMode = null;
+    private String ingressAuditMode = "SE_TT_AUDIT_OFF";
 
     @JsonProperty("ingress_threshold")
-    private Integer ingressThreshold = null;
+    private Integer ingressThreshold = 20;
 
 
 
@@ -44,7 +44,7 @@ public class SETimeTrackerProperties  {
      * Enum options - SE_TT_AUDIT_OFF, SE_TT_AUDIT_ON, SE_TT_AUDIT_ON_WITH_EVENT.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "SE_TT_AUDIT_OFF".
      * @return egressAuditMode
      */
     public String getEgressAuditMode() {
@@ -57,7 +57,7 @@ public class SETimeTrackerProperties  {
      * Enum options - SE_TT_AUDIT_OFF, SE_TT_AUDIT_ON, SE_TT_AUDIT_ON_WITH_EVENT.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "SE_TT_AUDIT_OFF".
      * @param egressAuditMode set the egressAuditMode.
      */
     public void setEgressAuditMode(String  egressAuditMode) {
@@ -70,7 +70,7 @@ public class SETimeTrackerProperties  {
      * Field introduced in 22.1.1.
      * Unit is milliseconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 20.
      * @return egressThreshold
      */
     public Integer getEgressThreshold() {
@@ -83,7 +83,7 @@ public class SETimeTrackerProperties  {
      * Field introduced in 22.1.1.
      * Unit is milliseconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 20.
      * @param egressThreshold set the egressThreshold.
      */
     public void setEgressThreshold(Integer  egressThreshold) {
@@ -96,7 +96,7 @@ public class SETimeTrackerProperties  {
      * Field introduced in 22.1.1.
      * Unit is seconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 300.
      * @return eventGenWindow
      */
     public Integer getEventGenWindow() {
@@ -109,7 +109,7 @@ public class SETimeTrackerProperties  {
      * Field introduced in 22.1.1.
      * Unit is seconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 300.
      * @param eventGenWindow set the eventGenWindow.
      */
     public void setEventGenWindow(Integer  eventGenWindow) {
@@ -122,7 +122,7 @@ public class SETimeTrackerProperties  {
      * Enum options - SE_TT_AUDIT_OFF, SE_TT_AUDIT_ON, SE_TT_AUDIT_ON_WITH_EVENT.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "SE_TT_AUDIT_OFF".
      * @return ingressAuditMode
      */
     public String getIngressAuditMode() {
@@ -135,7 +135,7 @@ public class SETimeTrackerProperties  {
      * Enum options - SE_TT_AUDIT_OFF, SE_TT_AUDIT_ON, SE_TT_AUDIT_ON_WITH_EVENT.
      * Field introduced in 22.1.1.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "SE_TT_AUDIT_OFF".
      * @param ingressAuditMode set the ingressAuditMode.
      */
     public void setIngressAuditMode(String  ingressAuditMode) {
@@ -148,7 +148,7 @@ public class SETimeTrackerProperties  {
      * Field introduced in 22.1.1.
      * Unit is milliseconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 20.
      * @return ingressThreshold
      */
     public Integer getIngressThreshold() {
@@ -161,7 +161,7 @@ public class SETimeTrackerProperties  {
      * Field introduced in 22.1.1.
      * Unit is milliseconds.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 20.
      * @param ingressThreshold set the ingressThreshold.
      */
     public void setIngressThreshold(Integer  ingressThreshold) {

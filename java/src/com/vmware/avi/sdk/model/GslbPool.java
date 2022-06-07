@@ -56,7 +56,8 @@ public class GslbPool  {
     /**
      * This is the getter method this will return the attribute value.
      * The load balancing algorithm will pick a local member within the gslb service list of available members.
-     * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY.
+     * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY,
+     * GSLB_ALGORITHM_PREFERENCE_ORDER.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "GSLB_ALGORITHM_ROUND_ROBIN".
      * @return algorithm
@@ -68,7 +69,8 @@ public class GslbPool  {
     /**
      * This is the setter method to the attribute.
      * The load balancing algorithm will pick a local member within the gslb service list of available members.
-     * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY.
+     * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY,
+     * GSLB_ALGORITHM_PREFERENCE_ORDER.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "GSLB_ALGORITHM_ROUND_ROBIN".
      * @param algorithm set the algorithm.
@@ -179,7 +181,8 @@ public class GslbPool  {
      * This is the getter method this will return the attribute value.
      * The fallback load balancing algorithm used to pick a member when the pool algorithm fails to find a valid member.
      * For instance when algorithm is geo and client/server do not have valid geo location.
-     * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY.
+     * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY,
+     * GSLB_ALGORITHM_PREFERENCE_ORDER.
      * Field introduced in 18.2.3.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
@@ -193,7 +196,8 @@ public class GslbPool  {
      * This is the setter method to the attribute.
      * The fallback load balancing algorithm used to pick a member when the pool algorithm fails to find a valid member.
      * For instance when algorithm is geo and client/server do not have valid geo location.
-     * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY.
+     * Enum options - GSLB_ALGORITHM_ROUND_ROBIN, GSLB_ALGORITHM_CONSISTENT_HASH, GSLB_ALGORITHM_GEO, GSLB_ALGORITHM_TOPOLOGY,
+     * GSLB_ALGORITHM_PREFERENCE_ORDER.
      * Field introduced in 18.2.3.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
