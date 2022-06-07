@@ -256,8 +256,8 @@ public class HTTPApplicationProfile  {
      * This setting generally impacts the length of time allowed for a client to send a post.
      * Allowed values are 0-100000000.
      * Unit is milliseconds.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- 30000), basic edition(allowed values- 30000), enterprise with
-     * cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 30000), basic edition with any value, enterprise with cloud
+     * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30000.
      * @return clientBodyTimeout
      */
@@ -272,8 +272,8 @@ public class HTTPApplicationProfile  {
      * This setting generally impacts the length of time allowed for a client to send a post.
      * Allowed values are 0-100000000.
      * Unit is milliseconds.
-     * Allowed in enterprise edition with any value, essentials edition(allowed values- 30000), basic edition(allowed values- 30000), enterprise with
-     * cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- 30000), basic edition with any value, enterprise with cloud
+     * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30000.
      * @param clientBodyTimeout set the clientBodyTimeout.
      */
