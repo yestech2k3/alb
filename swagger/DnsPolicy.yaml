@@ -603,6 +603,9 @@ definitions:
             dns_rate_limiter:
                 description: "Rate limits the DNS requests. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/DnsRateLimiter'
+            gs_group_selection:
+                description: "GSLB Service group to be selected. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                $ref: '#/definitions/DnsRuleActionGsGroupSelection'
             gslb_site_selection:
                 description: "Select a specific GSLB site for the DNS query. This action should be used only when GSLB services have been configured for the DNS virtual service. Field introduced in 17.1.5. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 $ref: '#/definitions/DnsRuleActionGslbSiteSelection'
@@ -623,6 +626,14 @@ definitions:
                 description: "Reset the TCP connection of the DNS query, if allow is set to false to drop the query. Field introduced in 17.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
                 default: True
+    DnsRuleActionGsGroupSelection:
+        type: object
+        required:
+            -   group_name
+        properties:
+            group_name:
+                description: "GSLB Service group name. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: string
     DnsRuleActionGslbSiteSelection:
         type: object
         required:
