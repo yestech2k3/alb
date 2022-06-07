@@ -17,4 +17,7 @@ type HTTPHdrAction struct {
 
 	// HTTP header information. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Hdr *HTTPHdrData `json:"hdr,omitempty"`
+
+	// Index to identify the header actions. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
+	Index *int32 `json:"index,omitempty"`
 }

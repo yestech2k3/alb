@@ -18,6 +18,7 @@ import (
 	"os"
 	"reflect"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/golang/glog"
@@ -274,6 +275,12 @@ type AviSession struct {
 
 	// this flag disables the checkcontrollerstatus method, instead client do their own retries
 	disableControllerStatusCheck bool
+
+	// Lock to synchronise the cookies collection from API response
+	cookiesCollectLock sync.Mutex
+
+	// Lock to synchronise the session initiation
+	sessionReInitLock sync.Mutex
 }
 
 const DEFAULT_AVI_VERSION = "18.2.6"
@@ -636,18 +643,22 @@ func (avisess *AviSession) newAviRequest(verb string, url string, payload io.Rea
 
 func (avisess *AviSession) collectCookiesFromResp(resp *http.Response) {
 	// collect cookies from the resp
+	avisess.cookiesCollectLock.Lock()
+	defer avisess.cookiesCollectLock.Unlock()
+
+	var csrfToken string
+	var sessionID string
 	for _, cookie := range resp.Cookies() {
-		glog.Infof("cookie: %v", cookie)
 		if cookie.Name == "csrftoken" {
-			avisess.csrfToken = cookie.Value
-			glog.Infof("Set the csrf token to %v", avisess.csrfToken)
+			csrfToken = cookie.Value
 		}
-		if cookie.Name == "sessionid" {
-			avisess.sessionid = cookie.Value
+		if cookie.Name == "sessionid" || cookie.Name == "avi-sessionid" {
+			sessionID = cookie.Value
 		}
-		if cookie.Name == "avi-sessionid" {
-			avisess.sessionid = cookie.Value
-		}
+	}
+	if csrfToken != "" && sessionID != "" {
+		avisess.csrfToken = csrfToken
+		avisess.sessionid = sessionID
 	}
 }
 
@@ -687,11 +698,15 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 		payloadIO = bytes.NewBuffer(jsonStr)
 	}
 
+	// Will keep other go routines on hold while re-initiating the session in case of API failure
+	if uri != "login" {
+		avisess.sessionReInitLock.Lock()
+		avisess.sessionReInitLock.Unlock()
+	}
 	req, errorResult := avisess.newAviRequest(verb, url, payloadIO, tenant)
 	if errorResult.err != nil {
 		return nil, errorResult
 	}
-
 	retryReq := false
 	resp, err := avisess.client.Do(req)
 	if err != nil {
@@ -704,19 +719,15 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 		debug(dump, dumpErr)
 		retryReq = true
 	}
-
 	if !retryReq {
 		glog.Infof("Req for %s uri %v tenant %s RespCode %v", verb, url, tenant, resp.StatusCode)
 		errorResult.HttpStatusCode = resp.StatusCode
 		avisess.collectCookiesFromResp(resp)
-
-		if resp.StatusCode == 401 && len(avisess.sessionid) != 0 && uri != "login" {
+		// Removed session id lenghth check because in concurrent enviornment most of the time we gets 401 due to the empty token
+		// set by another go routine. We should retry if session id is empty and status code is 401
+		if resp.StatusCode == 401 && uri != "login" {
 			resp.Body.Close()
-			glog.Infof("Retrying url %s; retry %d due to Status Code %d", url, retry, resp.StatusCode)
-			err := avisess.initiateSession()
-			if err != nil {
-				return nil, err
-			}
+			glog.Infof("Retrying url %s; retry %d due to Status Code %d.", url, retry, resp.StatusCode)
 			retryReq = true
 		} else if resp.StatusCode == 419 || (resp.StatusCode >= 500 && resp.StatusCode < 599) {
 			resp.Body.Close()
@@ -735,12 +746,35 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 				glog.Errorf("restRequest Error during checking controller state. Error: %s", err)
 				return httpResp, err
 			}
-			if err := avisess.initiateSession(); err != nil {
-				if resp != nil && resp.Body != nil {
-					glog.Infof("Body is not nil, close it.")
-					resp.Body.Close()
+			// skipSessionRefresh will help to restrict the session reinitiation for single go routine
+			skipSessionRefresh := false
+			state := reflect.ValueOf(avisess.sessionReInitLock).FieldByName("state")
+			lockState := state.Int()&1 == 1
+			if lockState {
+				glog.Infof("[DEBUG] Lock is already acquired by another go routine. Current URL: %v", url)
+				skipSessionRefresh = true
+			} else {
+				glog.Infof("[DEBUG] Lock is available. Need to refresh the session for URL: %v", url)
+			}
+			glog.Infof("Acquiring lock for URL: %v", url)
+			avisess.sessionReInitLock.Lock()
+
+			glog.Infof("Acquired lock for URL: %v", url)
+			if skipSessionRefresh == false {
+				glog.Infof("[DEBUG] Reinitialising sessios for URL: %v", url)
+				err := avisess.initiateSession()
+				avisess.sessionReInitLock.Unlock()
+				glog.Infof("[DEBUG] Released lock. URL: %v", url)
+				if err != nil {
+					if resp != nil && resp.Body != nil {
+						glog.Infof("Body is not nil, close it.")
+						resp.Body.Close()
+					}
+					return nil, err
 				}
-				return nil, err
+			} else {
+				avisess.sessionReInitLock.Unlock()
+				glog.Infof("[DEBUG] Skipped session refresh for URL: %v", url)
 			}
 			return avisess.restRequest(verb, uri, payload, tenant, errorResult, retry+1)
 		} else {

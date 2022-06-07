@@ -41,6 +41,12 @@ type WafLog struct {
 	// The total memory (in bytes) consumed by WAF to process this request. Field introduced in 22.1.1. Unit is BYTES. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	MemoryAllocated *int64 `json:"memory_allocated,omitempty"`
 
+	// Omitted Application rule log stats. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	OmittedAppRuleStats *OmittedWafLogStats `json:"omitted_app_rule_stats,omitempty"`
+
+	// Omitted WAF rule log stats. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	OmittedSignatureStats *OmittedWafLogStats `json:"omitted_signature_stats,omitempty"`
+
 	// Set to true if there are Positive Security Model rules in the policy. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	PsmConfigured *bool `json:"psm_configured,omitempty"`
 

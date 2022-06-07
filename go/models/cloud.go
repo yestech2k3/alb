@@ -81,7 +81,7 @@ type Cloud struct {
 	// List of labels to be used for granular RBAC. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
 	Markers []*RoleFilterMatchLabel `json:"markers,omitempty"`
 
-	// Cloud metrics collector polling interval in seconds. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	// Cloud metrics collector polling interval in seconds. Field introduced in 22.1.1. Unit is SECONDS. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
 	MetricsPollingInterval *int32 `json:"metrics_polling_interval,omitempty"`
 
 	// MTU setting for the cloud. Unit is BYTES. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
@@ -93,6 +93,9 @@ type Cloud struct {
 
 	// NSX-T Cloud Platform Configuration. Field introduced in 20.1.1. Allowed in Enterprise edition with any value, Basic, Enterprise with Cloud Services edition.
 	NsxtConfiguration *NsxtConfiguration `json:"nsxt_configuration,omitempty"`
+
+	// NTP Configuration for the cloud. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	NtpConfiguration *NTPConfiguration `json:"ntp_configuration,omitempty"`
 
 	// Default prefix for all automatically created objects in this cloud. This prefix can be overridden by the SE-Group template. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ObjNamePrefix *string `json:"obj_name_prefix,omitempty"`

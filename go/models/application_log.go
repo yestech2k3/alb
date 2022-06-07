@@ -45,13 +45,13 @@ type ApplicationLog struct {
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Cacheable *bool `json:"cacheable,omitempty"`
 
-	// Byte stream of client cipher list sent on SSL_R_NO_SHARED_CIPHER error. Field introduced in 18.1.4, 18.2.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
+	// Byte stream of client cipher list sent on SSL_R_NO_SHARED_CIPHER error.This byte stream is used to generate client_cipher_list. Field introduced in 18.1.4, 18.2.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition.
 	CipherBytes *string `json:"cipher_bytes,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ClientBrowser *string `json:"client_browser,omitempty"`
 
-	// List of ciphers sent by client in TLS/SSL Client Hello. Only sent when TLS handshake fails due to no shared cipher. Field introduced in 18.1.4, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
+	// List of ciphers sent by client in TLS Client Hello. This field is only generated when TLS handshake fails due to no shared cipher. Field introduced in 18.1.4, 18.2.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	ClientCipherList *SSLCipherList `json:"client_cipher_list,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.

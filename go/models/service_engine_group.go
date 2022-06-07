@@ -186,6 +186,9 @@ type ServiceEngineGroup struct {
 	// Consecutive HB failures after which failure is reported to controller, when aggressive failure mode detection is not enabled. Field introduced in 20.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	DpHbTimeoutCount *int32 `json:"dp_hb_timeout_count,omitempty"`
 
+	// The timeout for GRO coalescing interval. 0 indicates non-timer based GRO. Allowed values are 0-900. Field introduced in 22.1.1. Unit is MICROSECONDS. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	DpdkGroTimeoutInterval *int32 `json:"dpdk_gro_timeout_interval,omitempty"`
+
 	// Enable GratArp for VIP_IP. Field introduced in 18.2.3. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	EnableGratarpPermanent *bool `json:"enable_gratarp_permanent,omitempty"`
 
@@ -651,6 +654,9 @@ type ServiceEngineGroup struct {
 
 	// Multiplier for SE threads based on vCPU. Allowed values are 1-10. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 1), Basic edition(Allowed values- 1), Enterprise with Cloud Services edition.
 	SeThreadMultiplier *int32 `json:"se_thread_multiplier,omitempty"`
+
+	// Protobuf versioning for config pbs. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	SeTimeTrackerProps *SETimeTrackerProperties `json:"se_time_tracker_props,omitempty"`
 
 	// Traceroute port range. Field introduced in 17.2.8. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	SeTracertPortRange *PortRange `json:"se_tracert_port_range,omitempty"`

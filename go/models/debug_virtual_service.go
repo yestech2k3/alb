@@ -36,7 +36,7 @@ type DebugVirtualService struct {
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	Flags []*DebugVsDataplane `json:"flags,omitempty"`
 
-	// Filters for latency audit. Supported only for ingress. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	// Deprecated in 22.1.1. Field introduced in 21.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	LatencyAuditFilters *CaptureFilters `json:"latency_audit_filters,omitempty"`
 
 	//  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
