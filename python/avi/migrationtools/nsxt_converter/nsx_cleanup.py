@@ -2,20 +2,17 @@ import json
 
 from avi.migrationtools.nsxt_converter import nsxt_client as nsx_client_util
 from avi.migrationtools.nsxt_converter.nsxt_util import NSXUtil
-from avi.sdk.avi_api import ApiSession
 
 
-class NSXCleanup():
+class NSXCleanup:
     nsx_api_client = None
     vs_not_found = list()
 
-    def __init__(self, nsx_un, nsx_pw, nsx_ip, nsx_port, c_ip, c_un, c_pw, c_vr):
+    def __init__(self, nsx_un, nsx_pw, nsx_ip, nsx_port):
         self.nsx_api_client = nsx_client_util.create_nsx_policy_api_client(
             nsx_un, nsx_pw, nsx_ip, nsx_port, auth_type=nsx_client_util.BASIC_AUTH)
-        self.session = ApiSession.get_session(c_ip, c_un, c_pw, tenant="admin", api_version=c_vr)
-        self.nsx_util = NSXUtil(nsx_un, nsx_pw, nsx_ip, nsx_port \
-                           , c_ip, c_un, c_pw, c_vr)
-        self.nsx_lb_config=self.nsx_util.get_nsx_config()
+        self.nsx_util = NSXUtil(nsx_un, nsx_pw, nsx_ip, nsx_port)
+        self.nsx_lb_config = self.nsx_util.get_nsx_config()
 
     def nsx_cleanup(self, vs_names):
         nsx_lb_config = self.nsx_lb_config

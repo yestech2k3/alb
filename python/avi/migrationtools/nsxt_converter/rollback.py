@@ -24,8 +24,8 @@ class NsxtAlbRollback(AviConverter):
 
         self.controller_ip = args.alb_controller_ip
         self.controller_version = args.alb_controller_version
-        self.user = args.alb_user
-        self.password = args.alb_password
+        self.user = args.alb_controller_user
+        self.password = args.alb_controller_password
         self.rollback_vs = None
         if args.rollback:
             self.rollback_vs = \
@@ -50,9 +50,9 @@ class NsxtAlbRollback(AviConverter):
         if not self.controller_version:
             self.controller_version = data.get('alb_controller_version')
         if not self.user:
-            self.user = data.get('alb_user')
+            self.user = data.get('alb_controller_user')
         if not self.password:
-            self.password = data.get('alb_password')
+            self.password = data.get('alb_controller_password')
         if not self.output_file_path:
             self.output_file_path = data.get('output_file_path')
 
@@ -93,6 +93,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawTextHelpFormatter, description=HELP_STR)
 
+    parser.add_argument('-c', '--alb_controller_ip',
+                        help='controller ip for auto upload')
+    parser.add_argument('--alb_controller_version',
+                        help='Target Avi controller version')
+    parser.add_argument('--alb_controller_user',
+                        help='controller username')
+    parser.add_argument('--alb_controller_password',
+                        help='controller password. Input '
+                             'prompt will appear if no value provided', required=True)
     parser.add_argument('-n', '--nsxt_ip',
                         help='Ip of NSXT', required=True)
     parser.add_argument('-u', '--nsxt_user',
@@ -104,17 +113,6 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--output_file_path',
                         help='Folder path for output files to be created in',
                         )
-
-    parser.add_argument('-c', '--alb_controller_ip',
-                        help='controller ip for auto upload')
-    parser.add_argument('--alb_controller_version',
-                        help='Target Avi controller version')
-    parser.add_argument('--alb_user',
-                        help='controller username for auto upload')
-    parser.add_argument('--alb_password',
-                        help='controller password for auto upload. Input '
-                             'prompt will appear if no value provided', required=True)
-
     # Added command line args to take skip type for ansible playbook
     parser.add_argument('--rollback',
                         help='comma separated names of virtualservices for cutover.\n',

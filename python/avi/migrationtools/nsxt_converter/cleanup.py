@@ -21,15 +21,9 @@ class NsxtAlbCleanup(AviConverter):
         self.nsxt_user = args.nsxt_user
         self.nsxt_passord = args.nsxt_password
         self.nsxt_port = args.nsxt_port
-
-        self.controller_ip = args.alb_controller_ip
-        self.controller_version = args.alb_controller_version
-        self.user = args.alb_user
-        self.password = args.alb_password
         self.cleanup_vs_names = args.cleanup
         self.output_file_path = args.output_file_path if args.output_file_path \
             else 'output'
-
 
         output_dir = os.path.normpath(self.output_file_path)
 
@@ -42,14 +36,6 @@ class NsxtAlbCleanup(AviConverter):
             self.nsxt_user = data.get('nsxt_user')
         if not self.nsxt_port:
             self.nsxt_port = data.get('nsxt_port')
-        if not self.controller_ip:
-            self.controller_ip = data.get('alb_controller_ip')
-        if not self.controller_version:
-            self.controller_version = data.get('alb_controller_version')
-        if not self.user:
-            self.user = data.get('alb_user')
-        if not self.password:
-            self.password = data.get('alb_password')
         if not self.output_file_path:
             self.output_file_path = data.get('output_file_path')
 
@@ -73,8 +59,7 @@ class NsxtAlbCleanup(AviConverter):
         print(cleanup_msg)
 
         if self.cleanup_vs_names:
-            nsx_c = NSXCleanup(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port,
-                               self.controller_ip, self.user, self.password, self.controller_version)
+            nsx_c = NSXCleanup(self.nsxt_user, self.nsxt_passord, self.nsxt_ip, self.nsxt_port)
             nsx_c.nsx_cleanup(self.cleanup_vs_names)
 
         if nsx_c.vs_not_found:
@@ -97,6 +82,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawTextHelpFormatter, description=HELP_STR)
 
+    # Added command line args to take skip type for ansible playbook
+    parser.add_argument('--cleanup',
+                        help='comma separated vs names that we want to clear from nsx-t side',
+                        required=True)
     parser.add_argument('-n', '--nsxt_ip',
                         help='Ip of NSXT', required=True)
     parser.add_argument('-u', '--nsxt_user',
@@ -108,21 +97,6 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--output_file_path',
                         help='Folder path for output files to be created in',
                         )
-
-    parser.add_argument('-c', '--alb_controller_ip',
-                        help='controller ip for auto upload')
-    parser.add_argument('--alb_controller_version',
-                        help='Target Avi controller version')
-    parser.add_argument('--alb_user',
-                        help='controller username for auto upload')
-    parser.add_argument('--alb_password',
-                        help='controller password for auto upload. Input '
-                             'prompt will appear if no value provided', required=True)
-
-    # Added command line args to take skip type for ansible playbook
-    parser.add_argument('--cleanup',
-                        help='comma separated vs names that we want to clear from nsx-t side',
-                        required=True)
 
     start = datetime.now()
     args = parser.parse_args()

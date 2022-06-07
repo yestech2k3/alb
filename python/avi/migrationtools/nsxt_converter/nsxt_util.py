@@ -175,25 +175,26 @@ class NSXUtil():
     nsxt_ip = None
     nsxt_pw = None
 
-    def __init__(self, nsx_un, nsx_pw, nsx_ip, nsx_port, c_ip, c_un, c_pw, c_vr):
+    def __init__(self, nsx_un, nsx_pw, nsx_ip, nsx_port, c_ip=None, c_un=None, c_pw=None, c_vr=None):
         self.nsx_api_client = nsx_client_util.create_nsx_policy_api_client(
             nsx_un, nsx_pw, nsx_ip, nsx_port, auth_type=nsx_client_util.BASIC_AUTH)
-        self.session = ApiSession.get_session(c_ip, c_un, c_pw, tenant="admin", api_version=c_vr)
-        controller_details["ip"] = c_ip
-        controller_details["password"] = c_pw
-        controller_details["username"] = c_un
-        controller_details["version"] = c_vr
-        controller_details["session"] = self.session
+        if c_ip and c_un and c_pw and c_vr:
+            self.session = ApiSession.get_session(c_ip, c_un, c_pw, tenant="admin", api_version=c_vr)
+            controller_details["ip"] = c_ip
+            controller_details["password"] = c_pw
+            controller_details["username"] = c_un
+            controller_details["version"] = c_vr
+            controller_details["session"] = self.session
 
-        self.nsxt_ip = nsx_ip
-        self.nsxt_pw = nsx_pw
+            self.nsxt_ip = nsx_ip
+            self.nsxt_pw = nsx_pw
 
-        self.cloud = self.session.get("cloud/").json()["results"]
-        self.avi_vs_object = []
-        self.avi_object_temp = {}
-        self.avi_pool_object = []
-        self.enabled_pool_list = []
-        self.lb_services = {}
+            self.cloud = self.session.get("cloud/").json()["results"]
+            self.avi_vs_object = []
+            self.avi_object_temp = {}
+            self.avi_pool_object = []
+            self.enabled_pool_list = []
+            self.lb_services = {}
 
     def get_nsx_config(self):
         nsx_lb_config = dict()

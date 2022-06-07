@@ -90,12 +90,16 @@ class VsConfigConv(object):
                     LOG.warning("VS {} not migrated. Reason: {}".format(lb_vs["display_name"],
                                                                         skip_reason))
                     vs_with_lb_skipped.append(lb_vs["display_name"])
+                    conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+                                                  prefix='Progress', suffix='')
                     continue
                 elif cloud_name == 'Cloud Not Found' or not cloud_name:
                     conv_utils.add_status_row('virtualservice', None, lb_vs["display_name"],
                                               conv_const.STATUS_SKIPPED, cloud_name)
                     LOG.warning("cloud is not configured for %s" % lb_vs["display_name"])
                     vs_with_no_cloud_configured.append(lb_vs["display_name"])
+                    conv_utils.print_progress_bar(progressbar_count, total_size, msg,
+                                                  prefix='Progress', suffix='')
                     continue
                 tenant_name, name = conv_utils.get_tenant_ref(tenant)
                 if not tenant:
