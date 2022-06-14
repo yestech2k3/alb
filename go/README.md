@@ -36,13 +36,10 @@ $ export GOPATH=~/src
 ```
 
 ### Usage Examples
-To create session, pool and a basic virtualservice named my-test-vs you need to execute create_vs.go file.
-Before executing this script you need to specify AVI controller IP, username, 
-password and tenant in create_vs.go file.
-
-- Import AVI session, models and clients:
-
-```go
+Please follow following steps to create session, pool and virtualservice.
+1. Create create_vs.go file and write following code in the file.
+2. Import AVI session, models and clients
+```
 package main
 
 import (
@@ -50,29 +47,45 @@ import (
 	"github.com/vmware/alb-sdk/go/models"
 	"github.com/vmware/alb-sdk/go/session"
 	)
-``` 
-- Create AVI API session:
-
-```go
+```
+3. Create AVI API session. Specify AVI controller IP, username, password, tenant and API version
+for your NSX ALB controller
+```
 aviClient, err := clients.NewAviClient("10.10.25.25", "admin",
 		session.SetPassword("something"),
 		session.SetTenant("admin"),
-		session.SetInsecure)
+		session.SetInsecure,
+		session.SetControllerStatusCheckLimits(5, 10)
+		session.SetVersion("22.1.1"))
 ```
+- We can use following options while creating session.
+    - **SetPassword(password string)** : Use this for NewAviSession option argument for setting password
+    - **SetTenant(tenant string)** : Use this for NewAviSession option argument for setting tenant
+    - **SetInsecure** : Use this for NewAviSession option argument for allowing insecure connection to AviController
+    - **SetControllerStatusCheckLimits(numRetries, retryInterval int)** : 
+        SetControllerStatusCheckLimits allows client to limit the number of tries the SDK should 
+        attempt to reach the controller at the time gap of specified time intervals.
+    - **SetTransport(transport \*http.Transport)** : Use this for NewAviSession option argument for
+        configuring http transport to enable connection
+    - **SetClient(client HttpClient)** : SetClient allows callers to inject their own HTTP client.
+    - **SetVersion(version string)** : Use this for NewAviSession option argument for setting version
+    - **SetAuthToken(authToken string)** : Use this for NewAviSession option argument for setting authToken
+    - **SetRefreshAuthTokenCallback(f func() string)** : Use this for NewAviSession option argument 
+        for setting authToken
+    - **SetRefreshAuthTokenCallbackV2(f func() (string, error))** : Use this for NewAviSession 
+        option argument for setting authToken with option to return error found
+    - **DisableControllerStatusCheckOnFailure(controllerStatusCheck bool)** : Use this for 
+        NewAviSession option argument to disable controller status check.
+    - **SetTimeout(timeout time.Duration)** : Use this for NewAviSession option argument to set 
+        API timeout
+    - **SetLazyAuthentication(lazyAuthentication bool)** : Use this for NewAviSession option 
+        argument to enable the lazy authentication.
+    - **SetMaxApiRetries(max_api_retries int)** : Use this for NewAviSession option argument to 
+        sel maximum allowed API retries
+    - **SetApiRetryInterval(api_retry_interval int)** : Use this for NewAviSession option argument 
+        to set API retry interval.
 
-For custom retry count and interval (in seconds) between retries to poll for 
-controller status, below example can be used to initialise the client.
-
-```go
-aviClient, err := clients.NewAviClient("10.10.25.25", "admin",
-		session.SetPassword("something"),
-		session.SetTenant("admin"),
-		session.SetControllerStatusCheckLimits(5, 10), // retryCount, timeInterval (in seconds).
-		session.SetInsecure)
-```
-
-- Create pool 'my-test-pool' with one server:
-
+4. Create pool 'my-test-pool' with one server. Here we can use the models defined in go/models.
 ```go
 pobj := models.Pool{}
 pname := "my-test-pool"
@@ -92,7 +105,7 @@ if err != nil {
 }
 ```
 
-- Create vsvip 'test-vip' :
+5. Create vsvip 'test-vip' :
 
 ```go
 vsVip := models.VsVip{}
@@ -112,7 +125,7 @@ if err != nil {
 }
 ```
 
-- Create virtualservice 'my-test-vs' using pool 'my-test-pool':
+6. Create virtualservice 'my-test-vs' using pool 'my-test-pool':
 
 ```go
 vsobj := models.VirtualService{}
@@ -131,7 +144,7 @@ if err != nil {
 fmt.Printf("VS obj: %+v", *nvsobj)
 ```
 
-- Fetching object by name:
+7. Fetching object by name:
 
 ```go
 var obj interface{}
@@ -144,26 +157,17 @@ err = aviClient.AviSession.GetObject(
 fmt.Printf("VS with CLOUD_UUID obj: %v", obj)
 ```
 
-- Delete virtualservice
+8. Delete virtualservice
 
 ```go
 aviClient.VirtualService.Delete(nvsobj.UUID)
 ```
-- Delete pool
+9. Delete pool
 
 ```go
 aviClient.Pool.Delete(npobj.UUID)
 ```
-
-- Creating a session with Lazy Authentication:
-
-```go
-avisess, err := NewAviSession(AVI_CONTROLLER, "admin",
-		SetPassword(AVI_PASSWORD), SetLazyAuthentication(true))
-```
-
-- create_vs.go Usage - Create a basic virtualservice named my-test-vs: 
-
+10. Now we can run create_vs.go to create/delete VS, pool.
 ```sh
 $ go run create_vs.go
 ```
