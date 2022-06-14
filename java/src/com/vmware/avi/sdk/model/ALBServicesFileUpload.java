@@ -25,7 +25,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
     private String caseId = null;
 
     @JsonProperty("error")
-    private String error = null;
+    private String error;
 
     @JsonProperty("file_path")
     private String filePath = null;
@@ -37,7 +37,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
     private String s3Directory = null;
 
     @JsonProperty("status")
-    private String status = null;
+    private String status;
 
     @JsonProperty("tenant_ref")
     private String tenantRef = null;
@@ -54,6 +54,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Salesforce alphanumeric caseid to attach uploaded file to.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return caseId
      */
@@ -65,6 +66,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the setter method to the attribute.
      * Salesforce alphanumeric caseid to attach uploaded file to.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param caseId set the caseId.
      */
@@ -76,7 +78,8 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Error reported during file upload.
      * Field introduced in 18.2.6.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return error
      */
     public String getError() {
@@ -87,7 +90,8 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the setter method to the attribute.
      * Error reported during file upload.
      * Field introduced in 18.2.6.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param error set the error.
      */
     public void setError(String  error) {
@@ -98,6 +102,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Stores output file path, for upload to aws s3.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return filePath
      */
@@ -109,6 +114,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the setter method to the attribute.
      * Stores output file path, for upload to aws s3.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param filePath set the filePath.
      */
@@ -119,6 +125,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -129,6 +136,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -140,6 +148,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Custom aws s3 directory path to upload file.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return s3Directory
      */
@@ -151,6 +160,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the setter method to the attribute.
      * Custom aws s3 directory path to upload file.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param s3Directory set the s3Directory.
      */
@@ -165,7 +175,8 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * SYSERR_TIMEOUT, SYSERR_NOT_SUPPORTED, SYSERR_NOT_READY, SYSERR_UPGRADE_IN_PROGRESS, SYSERR_WARM_START_IN_PROGRESS, SYSERR_TRY_AGAIN,
      * SYSERR_NOT_UPGRADING, SYSERR_PENDING, SYSERR_EVENT_GEN_FAILURE, SYSERR_CONFIG_PARAM_MISSING, SYSERR_RANGE, SYSERR_BAD_REQUEST...
      * Field introduced in 18.2.6.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return status
      */
     public String getStatus() {
@@ -179,7 +190,8 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * SYSERR_TIMEOUT, SYSERR_NOT_SUPPORTED, SYSERR_NOT_READY, SYSERR_UPGRADE_IN_PROGRESS, SYSERR_WARM_START_IN_PROGRESS, SYSERR_TRY_AGAIN,
      * SYSERR_NOT_UPGRADING, SYSERR_PENDING, SYSERR_EVENT_GEN_FAILURE, SYSERR_CONFIG_PARAM_MISSING, SYSERR_RANGE, SYSERR_BAD_REQUEST...
      * Field introduced in 18.2.6.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param status set the status.
      */
     public void setStatus(String  status) {
@@ -190,6 +202,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -201,6 +214,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -227,7 +241,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -237,7 +251,7 @@ public class ALBServicesFileUpload extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */

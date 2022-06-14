@@ -5,6 +5,7 @@ import json
 import os
 import time
 from avi.sdk.avi_api import ApiSession
+import requests
 
 def verify_controller_is_up(controller_ip, username, password):
     """""
@@ -32,10 +33,11 @@ def clean_reboot(controller_ip, username, password, version, licensefile_path):
                         data=json.dumps ({'mode': 'REBOOT_CLEAN'}),
                         auth=(username, password))
     if res.status_code < 300:
-        wait_until_node_ready (session)
+        ApiSession.clear_cached_sessions()
+        wait_until_node_ready(controller_ip)
         if version > "16.5.4" :
-            session.clear_cached_sessions()
-            set_default_password(controller_ip, username)
+            ApiSession.clear_cached_sessions()
+            set_default_password(controller_ip, username, password)
     else:
         raise Exception("Failed with error %s" % res.content)
     with open(licensefile_path, 'r') as license:
@@ -44,11 +46,13 @@ def clean_reboot(controller_ip, username, password, version, licensefile_path):
     upload_license(session, licensefile)
 
 
-def set_default_password(controller_ip, username):
-    api = ApiSession.get_session(controller_ip, username, password=os.environ['default_password'], api_version='17.2.8')
+def set_default_password(controller_ip, username, password=None):
+    if not password:
+        password = 'Admin!23'
+    api = ApiSession.get_session(controller_ip, username, password=os.environ['default_password'])
     passData = {
         "username": "admin",
-        "password": "admin",
+        "password": password,
         "old_password": os.environ['default_password'],
         'full_name': 'System Administrator',
     }
@@ -79,19 +83,15 @@ def upload_license(session, licensefile):
     print("Successfully uploaded license AviInternal")
 
 
-def wait_until_node_ready(session, interval=10, timeout=6000):
+def wait_until_node_ready(controller_ip, interval=120, timeout=3000):
     """""
-    Polls the controller at every 10 seconds status till we get success state
+    Polls the controller at every minute status till we get success state
     and verify cluster state.
     """
     cluster_up_states = ["CLUSTER_UP_HA_ACTIVE", "CLUSTER_UP_NO_HA"]
     iters = int(timeout / interval)
     for count in range(0, iters):
-        try:
-            data = session.get('cluster/runtime')
-        except Exception as e:
-            print("cluster api runtime exception %s" % e)
-            pass
+        data = requests.get('https://{ip}/api/cluster/runtime'.format(ip=controller_ip), verify=False)
         if type(data) != dict and data.status_code == 200:
             response_content = data.content.decode() if type(data.content) == bytes else data.content
             data = json.loads (response_content)

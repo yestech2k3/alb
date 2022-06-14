@@ -24,9 +24,6 @@ public class ProtocolParser extends AviRestResource  {
     @JsonProperty("description")
     private String description = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -51,6 +48,7 @@ public class ProtocolParser extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Description of the protocol parser.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -62,6 +60,7 @@ public class ProtocolParser extends AviRestResource  {
      * This is the setter method to the attribute.
      * Description of the protocol parser.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -70,51 +69,10 @@ public class ProtocolParser extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public ProtocolParser addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -126,7 +84,8 @@ public class ProtocolParser extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -138,7 +97,8 @@ public class ProtocolParser extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -154,6 +114,7 @@ public class ProtocolParser extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Name of the protocol parser.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -165,6 +126,7 @@ public class ProtocolParser extends AviRestResource  {
      * This is the setter method to the attribute.
      * Name of the protocol parser.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -176,6 +138,7 @@ public class ProtocolParser extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Command script provided inline.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return parserCode
      */
@@ -187,6 +150,7 @@ public class ProtocolParser extends AviRestResource  {
      * This is the setter method to the attribute.
      * Command script provided inline.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param parserCode set the parserCode.
      */
@@ -199,6 +163,7 @@ public class ProtocolParser extends AviRestResource  {
      * Tenant uuid of the protocol parser.
      * It is a reference to an object of type tenant.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -211,6 +176,7 @@ public class ProtocolParser extends AviRestResource  {
      * Tenant uuid of the protocol parser.
      * It is a reference to an object of type tenant.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -239,6 +205,7 @@ public class ProtocolParser extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Uuid of the protocol parser.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -250,6 +217,7 @@ public class ProtocolParser extends AviRestResource  {
      * This is the setter method to the attribute.
      * Uuid of the protocol parser.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -270,7 +238,6 @@ public class ProtocolParser extends AviRestResource  {
       return   Objects.equals(this.uuid, objProtocolParser.uuid)&&
   Objects.equals(this.name, objProtocolParser.name)&&
   Objects.equals(this.parserCode, objProtocolParser.parserCode)&&
-  Objects.equals(this.labels, objProtocolParser.labels)&&
   Objects.equals(this.markers, objProtocolParser.markers)&&
   Objects.equals(this.description, objProtocolParser.description)&&
   Objects.equals(this.tenantRef, objProtocolParser.tenantRef);
@@ -281,7 +248,6 @@ public class ProtocolParser extends AviRestResource  {
       StringBuilder sb = new StringBuilder();
       sb.append("class ProtocolParser {\n");
                   sb.append("    description: ").append(toIndentedString(description)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    parserCode: ").append(toIndentedString(parserCode)).append("\n");

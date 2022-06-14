@@ -43,6 +43,7 @@ public class DnsRateProfile  {
      * Action to perform upon rate limiting.
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return action
      */
     public DnsRuleRLAction getAction() {
@@ -54,6 +55,7 @@ public class DnsRateProfile  {
      * Action to perform upon rate limiting.
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param action set the action.
      */
     public void setAction(DnsRuleRLAction action) {
@@ -65,6 +67,7 @@ public class DnsRateProfile  {
      * Maximum number of connections or requests or packets to be rate limited instantaneously.
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return burstSize
      */
     public Integer getBurstSize() {
@@ -76,6 +79,7 @@ public class DnsRateProfile  {
      * Maximum number of connections or requests or packets to be rate limited instantaneously.
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param burstSize set the burstSize.
      */
     public void setBurstSize(Integer  burstSize) {
@@ -87,9 +91,10 @@ public class DnsRateProfile  {
      * Maximum number of connections or requests or packets per second.
      * It is deprecated because of adoption of new shared rate limiter protobuf.
      * Allowed values are 1-4294967295.
-     * Special values are 0- 'unlimited'.
+     * Special values are 0- unlimited.
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return count
      */
     public Integer getCount() {
@@ -101,9 +106,10 @@ public class DnsRateProfile  {
      * Maximum number of connections or requests or packets per second.
      * It is deprecated because of adoption of new shared rate limiter protobuf.
      * Allowed values are 1-4294967295.
-     * Special values are 0- 'unlimited'.
+     * Special values are 0- unlimited.
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param count set the count.
      */
     public void setCount(Integer  count) {
@@ -115,6 +121,7 @@ public class DnsRateProfile  {
      * Enable fine granularity.
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return fineGrain
      */
     public Boolean getFineGrain() {
@@ -126,6 +133,7 @@ public class DnsRateProfile  {
      * Enable fine granularity.
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param fineGrain set the fineGrain.
      */
     public void setFineGrain(Boolean  fineGrain) {
@@ -139,6 +147,7 @@ public class DnsRateProfile  {
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
      * Unit is sec.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return period
      */
     public Integer getPeriod() {
@@ -152,6 +161,7 @@ public class DnsRateProfile  {
      * Field deprecated in 20.1.1.
      * Field introduced in 18.2.5.
      * Unit is sec.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param period set the period.
      */
     public void setPeriod(Integer  period) {

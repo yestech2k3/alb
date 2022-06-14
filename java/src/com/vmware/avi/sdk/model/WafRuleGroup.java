@@ -27,9 +27,6 @@ public class WafRuleGroup  {
     @JsonProperty("exclude_list")
     private List<WafExcludeListEntry> excludeList = null;
 
-    @JsonProperty("force_detection")
-    private Boolean forceDetection;
-
     @JsonProperty("index")
     private Integer index = null;
 
@@ -45,6 +42,7 @@ public class WafRuleGroup  {
      * This is the getter method this will return the attribute value.
      * Enable or disable waf rule group.
      * Field introduced in 17.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return enable
      */
@@ -56,6 +54,7 @@ public class WafRuleGroup  {
      * This is the setter method to the attribute.
      * Enable or disable waf rule group.
      * Field introduced in 17.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param enable set the enable.
      */
@@ -69,6 +68,7 @@ public class WafRuleGroup  {
      * If there are multiple excludelist entries, it will be 'logical or' of them.
      * Field introduced in 17.2.1.
      * Maximum of 64 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return excludeList
      */
@@ -83,6 +83,7 @@ public class WafRuleGroup  {
      * If there are multiple excludelist entries, it will be 'logical or' of them.
      * Field introduced in 17.2.1.
      * Maximum of 64 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return excludeList
      */
@@ -97,6 +98,7 @@ public class WafRuleGroup  {
      * If there are multiple excludelist entries, it will be 'logical or' of them.
      * Field introduced in 17.2.1.
      * Maximum of 64 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return excludeList
      */
@@ -110,31 +112,8 @@ public class WafRuleGroup  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * When set to 'true', any rule in this group will not cause 'deny' or 'redirect' actions to run, even if waf policy is set to enforcement mode.
-     * The behavior would be as if this rule operated in detection mode regardless of waf policy setting.
-     * Field deprecated in 18.1.5.
-     * Field introduced in 18.1.4.
-     * @return forceDetection
-     */
-    public Boolean getForceDetection() {
-        return forceDetection;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * When set to 'true', any rule in this group will not cause 'deny' or 'redirect' actions to run, even if waf policy is set to enforcement mode.
-     * The behavior would be as if this rule operated in detection mode regardless of waf policy setting.
-     * Field deprecated in 18.1.5.
-     * Field introduced in 18.1.4.
-     * @param forceDetection set the forceDetection.
-     */
-    public void setForceDetection(Boolean  forceDetection) {
-        this.forceDetection = forceDetection;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Field introduced in 17.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return index
      */
@@ -145,6 +124,7 @@ public class WafRuleGroup  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 17.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param index set the index.
      */
@@ -155,6 +135,7 @@ public class WafRuleGroup  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 17.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -165,6 +146,7 @@ public class WafRuleGroup  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 17.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -175,7 +157,7 @@ public class WafRuleGroup  {
      * This is the getter method this will return the attribute value.
      * Rules as per modsec language.
      * Field introduced in 17.2.1.
-     * Maximum of 1024 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return rules
      */
@@ -187,7 +169,7 @@ public class WafRuleGroup  {
      * This is the setter method. this will set the rules
      * Rules as per modsec language.
      * Field introduced in 17.2.1.
-     * Maximum of 1024 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return rules
      */
@@ -199,7 +181,7 @@ public class WafRuleGroup  {
      * This is the setter method this will set the rules
      * Rules as per modsec language.
      * Field introduced in 17.2.1.
-     * Maximum of 1024 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return rules
      */
@@ -225,8 +207,7 @@ public class WafRuleGroup  {
   Objects.equals(this.name, objWafRuleGroup.name)&&
   Objects.equals(this.enable, objWafRuleGroup.enable)&&
   Objects.equals(this.rules, objWafRuleGroup.rules)&&
-  Objects.equals(this.excludeList, objWafRuleGroup.excludeList)&&
-  Objects.equals(this.forceDetection, objWafRuleGroup.forceDetection);
+  Objects.equals(this.excludeList, objWafRuleGroup.excludeList);
     }
 
     @Override
@@ -235,7 +216,6 @@ public class WafRuleGroup  {
       sb.append("class WafRuleGroup {\n");
                   sb.append("    enable: ").append(toIndentedString(enable)).append("\n");
                         sb.append("    excludeList: ").append(toIndentedString(excludeList)).append("\n");
-                        sb.append("    forceDetection: ").append(toIndentedString(forceDetection)).append("\n");
                         sb.append("    index: ").append(toIndentedString(index)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    rules: ").append(toIndentedString(rules)).append("\n");

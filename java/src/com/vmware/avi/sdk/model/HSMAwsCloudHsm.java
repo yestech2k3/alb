@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HSMAwsCloudHsm  {
     @JsonProperty("client_config")
-    private String clientConfig = null;
+    private String clientConfig;
 
     @JsonProperty("cluster_cert")
     private String clusterCert = null;
@@ -37,14 +37,15 @@ public class HSMAwsCloudHsm  {
     private List<String> hsmIp = null;
 
     @JsonProperty("mgmt_config")
-    private String mgmtConfig = null;
+    private String mgmtConfig;
 
 
 
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 17.2.7.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return clientConfig
      */
     public String getClientConfig() {
@@ -54,7 +55,8 @@ public class HSMAwsCloudHsm  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 17.2.7.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param clientConfig set the clientConfig.
      */
     public void setClientConfig(String  clientConfig) {
@@ -65,6 +67,7 @@ public class HSMAwsCloudHsm  {
      * This is the getter method this will return the attribute value.
      * Aws cloudhsm cluster certificate.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return clusterCert
      */
@@ -76,6 +79,7 @@ public class HSMAwsCloudHsm  {
      * This is the setter method to the attribute.
      * Aws cloudhsm cluster certificate.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param clusterCert set the clusterCert.
      */
@@ -88,6 +92,7 @@ public class HSMAwsCloudHsm  {
      * Username of the crypto user.
      * This will be used to access the keys on the hsm.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cryptoUserName
      */
@@ -100,6 +105,7 @@ public class HSMAwsCloudHsm  {
      * Username of the crypto user.
      * This will be used to access the keys on the hsm.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cryptoUserName set the cryptoUserName.
      */
@@ -112,6 +118,7 @@ public class HSMAwsCloudHsm  {
      * Password of the crypto user.
      * This will be used to access the keys on the hsm.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cryptoUserPassword
      */
@@ -124,6 +131,7 @@ public class HSMAwsCloudHsm  {
      * Password of the crypto user.
      * This will be used to access the keys on the hsm.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cryptoUserPassword set the cryptoUserPassword.
      */
@@ -135,6 +143,7 @@ public class HSMAwsCloudHsm  {
      * Ip address of the hsm in the cluster.
      * If there are more than one hsms, only one is sufficient.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return hsmIp
      */
@@ -147,6 +156,7 @@ public class HSMAwsCloudHsm  {
      * Ip address of the hsm in the cluster.
      * If there are more than one hsms, only one is sufficient.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return hsmIp
      */
@@ -159,6 +169,7 @@ public class HSMAwsCloudHsm  {
      * Ip address of the hsm in the cluster.
      * If there are more than one hsms, only one is sufficient.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return hsmIp
      */
@@ -173,7 +184,8 @@ public class HSMAwsCloudHsm  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 17.2.7.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return mgmtConfig
      */
     public String getMgmtConfig() {
@@ -183,7 +195,8 @@ public class HSMAwsCloudHsm  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 17.2.7.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param mgmtConfig set the mgmtConfig.
      */
     public void setMgmtConfig(String  mgmtConfig) {

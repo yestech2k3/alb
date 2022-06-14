@@ -24,11 +24,8 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
     @JsonProperty("end")
     private Integer end = null;
 
-    @JsonProperty("free_controller_ips")
-    private List<String> freeControllerIps = null;
-
     @JsonProperty("free_ips")
-    private List<String> freeIps = null;
+    private List<Integer> freeIps = null;
 
     @JsonProperty("name")
     private String name = null;
@@ -46,7 +43,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property end of obj type securechannelavailablelocalips field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return end
      */
@@ -56,7 +53,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property end of obj type securechannelavailablelocalips field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param end set the end.
      */
@@ -65,66 +62,33 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property free_controller_ips of obj type securechannelavailablelocalips field type str  type array.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return freeControllerIps
-     */
-    public List<String> getFreeControllerIps() {
-        return freeControllerIps;
-    }
-
-    /**
-     * This is the setter method. this will set the freeControllerIps
-     * Placeholder for description of property free_controller_ips of obj type securechannelavailablelocalips field type str  type array.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return freeControllerIps
-     */
-    public void setFreeControllerIps(List<String>  freeControllerIps) {
-        this.freeControllerIps = freeControllerIps;
-    }
-
-    /**
-     * This is the setter method this will set the freeControllerIps
-     * Placeholder for description of property free_controller_ips of obj type securechannelavailablelocalips field type str  type array.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return freeControllerIps
-     */
-    public SecureChannelAvailableLocalIPs addFreeControllerIpsItem(String freeControllerIpsItem) {
-      if (this.freeControllerIps == null) {
-        this.freeControllerIps = new ArrayList<String>();
-      }
-      this.freeControllerIps.add(freeControllerIpsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Placeholder for description of property free_ips of obj type securechannelavailablelocalips field type str  type array.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return freeIps
      */
-    public List<String> getFreeIps() {
+    public List<Integer> getFreeIps() {
         return freeIps;
     }
 
     /**
      * This is the setter method. this will set the freeIps
-     * Placeholder for description of property free_ips of obj type securechannelavailablelocalips field type str  type array.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return freeIps
      */
-    public void setFreeIps(List<String>  freeIps) {
+    public void setFreeIps(List<Integer>  freeIps) {
         this.freeIps = freeIps;
     }
 
     /**
      * This is the setter method this will set the freeIps
-     * Placeholder for description of property free_ips of obj type securechannelavailablelocalips field type str  type array.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return freeIps
      */
-    public SecureChannelAvailableLocalIPs addFreeIpsItem(String freeIpsItem) {
+    public SecureChannelAvailableLocalIPs addFreeIpsItem(Integer freeIpsItem) {
       if (this.freeIps == null) {
-        this.freeIps = new ArrayList<String>();
+        this.freeIps = new ArrayList<Integer>();
       }
       this.freeIps.add(freeIpsItem);
       return this;
@@ -132,7 +96,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Name of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -142,7 +106,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Name of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -152,7 +116,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property start of obj type securechannelavailablelocalips field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return start
      */
@@ -162,7 +126,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property start of obj type securechannelavailablelocalips field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param start set the start.
      */
@@ -189,7 +153,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -199,7 +163,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -221,8 +185,7 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
   Objects.equals(this.name, objSecureChannelAvailableLocalIPs.name)&&
   Objects.equals(this.freeIps, objSecureChannelAvailableLocalIPs.freeIps)&&
   Objects.equals(this.start, objSecureChannelAvailableLocalIPs.start)&&
-  Objects.equals(this.end, objSecureChannelAvailableLocalIPs.end)&&
-  Objects.equals(this.freeControllerIps, objSecureChannelAvailableLocalIPs.freeControllerIps);
+  Objects.equals(this.end, objSecureChannelAvailableLocalIPs.end);
     }
 
     @Override
@@ -230,7 +193,6 @@ public class SecureChannelAvailableLocalIPs extends AviRestResource  {
       StringBuilder sb = new StringBuilder();
       sb.append("class SecureChannelAvailableLocalIPs {\n");
                   sb.append("    end: ").append(toIndentedString(end)).append("\n");
-                        sb.append("    freeControllerIps: ").append(toIndentedString(freeControllerIps)).append("\n");
                         sb.append("    freeIps: ").append(toIndentedString(freeIps)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    start: ").append(toIndentedString(start)).append("\n");

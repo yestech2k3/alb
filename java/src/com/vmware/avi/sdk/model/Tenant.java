@@ -42,9 +42,6 @@ public class Tenant extends AviRestResource  {
     @JsonProperty("name")
     private String name = null;
 
-    @JsonProperty("suggested_object_labels")
-    private List<TenantLabel> suggestedObjectLabels;
-
     @JsonProperty("url")
     private String url = "url";
 
@@ -55,7 +52,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property config_settings of obj type tenant field type str  type ref.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return configSettings
      */
@@ -65,7 +62,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property config_settings of obj type tenant field type str  type ref.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param configSettings set the configSettings.
      */
@@ -76,6 +73,7 @@ public class Tenant extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Creator of this tenant.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return createdBy
      */
@@ -86,6 +84,7 @@ public class Tenant extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Creator of this tenant.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param createdBy set the createdBy.
      */
@@ -95,7 +94,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * User defined description for the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -105,7 +104,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * User defined description for the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -118,6 +117,7 @@ public class Tenant extends AviRestResource  {
      * The referred label groups are enforced on the tenant if this is set to true.if this is set to false, the label groups are suggested for the
      * tenant.
      * Field introduced in 20.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return enforceLabelGroup
      */
@@ -130,6 +130,7 @@ public class Tenant extends AviRestResource  {
      * The referred label groups are enforced on the tenant if this is set to true.if this is set to false, the label groups are suggested for the
      * tenant.
      * Field introduced in 20.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param enforceLabelGroup set the enforceLabelGroup.
      */
@@ -142,6 +143,7 @@ public class Tenant extends AviRestResource  {
      * This is strictly enforced only if enforce_label_group is set to true.
      * It is a reference to an object of type labelgroup.
      * Field introduced in 20.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return labelGroupRefs
      */
@@ -155,6 +157,7 @@ public class Tenant extends AviRestResource  {
      * This is strictly enforced only if enforce_label_group is set to true.
      * It is a reference to an object of type labelgroup.
      * Field introduced in 20.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return labelGroupRefs
      */
@@ -168,6 +171,7 @@ public class Tenant extends AviRestResource  {
      * This is strictly enforced only if enforce_label_group is set to true.
      * It is a reference to an object of type labelgroup.
      * Field introduced in 20.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return labelGroupRefs
      */
@@ -181,7 +185,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property local of obj type tenant field type str  type boolean.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return local
      */
@@ -191,7 +195,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property local of obj type tenant field type str  type boolean.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param local set the local.
      */
@@ -201,7 +205,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Name of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -211,54 +215,12 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Name of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
     public void setName(String  name) {
         this.name = name;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface.
-     * Every entry is unique in both key and value.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 256 items allowed.
-     * @return suggestedObjectLabels
-     */
-    public List<TenantLabel> getSuggestedObjectLabels() {
-        return suggestedObjectLabels;
-    }
-
-    /**
-     * This is the setter method. this will set the suggestedObjectLabels
-     * Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface.
-     * Every entry is unique in both key and value.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 256 items allowed.
-     * @return suggestedObjectLabels
-     */
-    public void setSuggestedObjectLabels(List<TenantLabel>  suggestedObjectLabels) {
-        this.suggestedObjectLabels = suggestedObjectLabels;
-    }
-
-    /**
-     * This is the setter method this will set the suggestedObjectLabels
-     * Suggestive pool of key value pairs for recommending assignment of labels to objects in the user interface.
-     * Every entry is unique in both key and value.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 256 items allowed.
-     * @return suggestedObjectLabels
-     */
-    public Tenant addSuggestedObjectLabelsItem(TenantLabel suggestedObjectLabelsItem) {
-      if (this.suggestedObjectLabels == null) {
-        this.suggestedObjectLabels = new ArrayList<TenantLabel>();
-      }
-      this.suggestedObjectLabels.add(suggestedObjectLabelsItem);
-      return this;
     }
     /**
      * This is the getter method this will return the attribute value.
@@ -280,7 +242,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -290,7 +252,7 @@ public class Tenant extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -314,7 +276,6 @@ public class Tenant extends AviRestResource  {
   Objects.equals(this.description, objTenant.description)&&
   Objects.equals(this.configSettings, objTenant.configSettings)&&
   Objects.equals(this.createdBy, objTenant.createdBy)&&
-  Objects.equals(this.suggestedObjectLabels, objTenant.suggestedObjectLabels)&&
   Objects.equals(this.enforceLabelGroup, objTenant.enforceLabelGroup)&&
   Objects.equals(this.labelGroupRefs, objTenant.labelGroupRefs);
     }
@@ -330,7 +291,6 @@ public class Tenant extends AviRestResource  {
                         sb.append("    labelGroupRefs: ").append(toIndentedString(labelGroupRefs)).append("\n");
                         sb.append("    local: ").append(toIndentedString(local)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
-                        sb.append("    suggestedObjectLabels: ").append(toIndentedString(suggestedObjectLabels)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
                   sb.append("}");
       return sb.toString();

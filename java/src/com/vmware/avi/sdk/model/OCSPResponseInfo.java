@@ -22,25 +22,25 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OCSPResponseInfo  {
     @JsonProperty("cert_status")
-    private String certStatus = null;
+    private String certStatus;
 
     @JsonProperty("next_update")
-    private String nextUpdate = null;
+    private String nextUpdate;
 
     @JsonProperty("ocsp_resp_from_responder_url")
-    private String ocspRespFromResponderUrl = null;
+    private String ocspRespFromResponderUrl;
 
     @JsonProperty("ocsp_response")
-    private String ocspResponse = null;
+    private String ocspResponse;
 
     @JsonProperty("revocation_reason")
-    private String revocationReason = null;
+    private String revocationReason;
 
     @JsonProperty("revocation_time")
-    private String revocationTime = null;
+    private String revocationTime;
 
     @JsonProperty("this_update")
-    private String thisUpdate = null;
+    private String thisUpdate;
 
 
 
@@ -49,7 +49,8 @@ public class OCSPResponseInfo  {
      * Revocation status of the certificate.
      * Enum options - OCSP_CERTSTATUS_GOOD, OCSP_CERTSTATUS_REVOKED, OCSP_CERTSTATUS_UNKNOWN.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return certStatus
      */
     public String getCertStatus() {
@@ -61,7 +62,8 @@ public class OCSPResponseInfo  {
      * Revocation status of the certificate.
      * Enum options - OCSP_CERTSTATUS_GOOD, OCSP_CERTSTATUS_REVOKED, OCSP_CERTSTATUS_UNKNOWN.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param certStatus set the certStatus.
      */
     public void setCertStatus(String  certStatus) {
@@ -72,7 +74,8 @@ public class OCSPResponseInfo  {
      * This is the getter method this will return the attribute value.
      * The time at or before which newer information will be available about the status of the certificate.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return nextUpdate
      */
     public String getNextUpdate() {
@@ -83,7 +86,8 @@ public class OCSPResponseInfo  {
      * This is the setter method to the attribute.
      * The time at or before which newer information will be available about the status of the certificate.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param nextUpdate set the nextUpdate.
      */
     public void setNextUpdate(String  nextUpdate) {
@@ -94,7 +98,8 @@ public class OCSPResponseInfo  {
      * This is the getter method this will return the attribute value.
      * The ocsp responder url from which the response is received.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return ocspRespFromResponderUrl
      */
     public String getOcspRespFromResponderUrl() {
@@ -105,7 +110,8 @@ public class OCSPResponseInfo  {
      * This is the setter method to the attribute.
      * The ocsp responder url from which the response is received.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param ocspRespFromResponderUrl set the ocspRespFromResponderUrl.
      */
     public void setOcspRespFromResponderUrl(String  ocspRespFromResponderUrl) {
@@ -116,7 +122,8 @@ public class OCSPResponseInfo  {
      * This is the getter method this will return the attribute value.
      * Signed ocsp response received from the ca's ocsp responder.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return ocspResponse
      */
     public String getOcspResponse() {
@@ -127,7 +134,8 @@ public class OCSPResponseInfo  {
      * This is the setter method to the attribute.
      * Signed ocsp response received from the ca's ocsp responder.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param ocspResponse set the ocspResponse.
      */
     public void setOcspResponse(String  ocspResponse) {
@@ -142,7 +150,8 @@ public class OCSPResponseInfo  {
      * OCSP_REVOCATION_REASON_CERTIFICATE_HOLD, OCSP_REVOCATION_REASON_REMOVE_FROM_CRL, OCSP_REVOCATION_REASON_PRIVILEGE_WITHDRAWN,
      * OCSP_REVOCATION_REASON_AA_COMPROMISE.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return revocationReason
      */
     public String getRevocationReason() {
@@ -157,7 +166,8 @@ public class OCSPResponseInfo  {
      * OCSP_REVOCATION_REASON_CERTIFICATE_HOLD, OCSP_REVOCATION_REASON_REMOVE_FROM_CRL, OCSP_REVOCATION_REASON_PRIVILEGE_WITHDRAWN,
      * OCSP_REVOCATION_REASON_AA_COMPROMISE.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param revocationReason set the revocationReason.
      */
     public void setRevocationReason(String  revocationReason) {
@@ -168,7 +178,8 @@ public class OCSPResponseInfo  {
      * This is the getter method this will return the attribute value.
      * Iso 8601 compatible timestamp at which the certificate was revoked or placed on hold.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return revocationTime
      */
     public String getRevocationTime() {
@@ -179,7 +190,8 @@ public class OCSPResponseInfo  {
      * This is the setter method to the attribute.
      * Iso 8601 compatible timestamp at which the certificate was revoked or placed on hold.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param revocationTime set the revocationTime.
      */
     public void setRevocationTime(String  revocationTime) {
@@ -190,7 +202,8 @@ public class OCSPResponseInfo  {
      * This is the getter method this will return the attribute value.
      * The most recent time at which the status being indicated is known by the ocsp responder to have been correct.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return thisUpdate
      */
     public String getThisUpdate() {
@@ -201,7 +214,8 @@ public class OCSPResponseInfo  {
      * This is the setter method to the attribute.
      * The most recent time at which the status being indicated is known by the ocsp responder to have been correct.
      * Field introduced in 20.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param thisUpdate set the thisUpdate.
      */
     public void setThisUpdate(String  thisUpdate) {

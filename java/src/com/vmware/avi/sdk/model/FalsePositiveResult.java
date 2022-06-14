@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FalsePositiveResult  {
-    @JsonProperty("always_fail")
-    private Boolean alwaysFail = null;
-
     @JsonProperty("attack")
     private Boolean attack = null;
 
@@ -33,14 +30,14 @@ public class FalsePositiveResult  {
     @JsonProperty("false_positive")
     private Boolean falsePositive = null;
 
-    @JsonProperty("header_info")
-    private HeaderInfoInURI headerInfo = null;
+    @JsonProperty("fp_result_header")
+    private FalsePositiveResultHeader fpResultHeader = null;
 
     @JsonProperty("http_method")
     private String httpMethod = null;
 
-    @JsonProperty("not_sure")
-    private Boolean notSure = null;
+    @JsonProperty("http_request_header_info")
+    private HeaderInfoInURI httpRequestHeaderInfo = null;
 
     @JsonProperty("params_info")
     private ParamsInURI paramsInfo = null;
@@ -48,40 +45,19 @@ public class FalsePositiveResult  {
     @JsonProperty("rule_info")
     private RuleInfo ruleInfo = null;
 
-    @JsonProperty("sometimes_fail")
-    private Boolean sometimesFail = null;
-
     @JsonProperty("uri")
     private String uri = null;
 
+    @JsonProperty("uri_result_mode")
+    private String uriResultMode = null;
 
 
-    /**
-     * This is the getter method this will return the attribute value.
-     * Whether this uri is always fail.
-     * Field introduced in 21.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return alwaysFail
-     */
-    public Boolean getAlwaysFail() {
-        return alwaysFail;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Whether this uri is always fail.
-     * Field introduced in 21.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param alwaysFail set the alwaysFail.
-     */
-    public void setAlwaysFail(Boolean  alwaysFail) {
-        this.alwaysFail = alwaysFail;
-    }
 
     /**
      * This is the getter method this will return the attribute value.
      * This flag indicates whether this result is identifying an attack.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return attack
      */
@@ -93,6 +69,7 @@ public class FalsePositiveResult  {
      * This is the setter method to the attribute.
      * This flag indicates whether this result is identifying an attack.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param attack set the attack.
      */
@@ -106,6 +83,7 @@ public class FalsePositiveResult  {
      * Allowed values are 0-100.
      * Field introduced in 21.1.1.
      * Unit is percent.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return confidence
      */
@@ -119,6 +97,7 @@ public class FalsePositiveResult  {
      * Allowed values are 0-100.
      * Field introduced in 21.1.1.
      * Unit is percent.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param confidence set the confidence.
      */
@@ -130,6 +109,7 @@ public class FalsePositiveResult  {
      * This is the getter method this will return the attribute value.
      * This flag indicates whether this result is identifying a false positive.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return falsePositive
      */
@@ -141,6 +121,7 @@ public class FalsePositiveResult  {
      * This is the setter method to the attribute.
      * This flag indicates whether this result is identifying a false positive.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param falsePositive set the falsePositive.
      */
@@ -150,30 +131,33 @@ public class FalsePositiveResult  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Header info if uri hit signature rule and match element is request_headers.
-     * Field introduced in 21.1.1.
+     * Meta data for this false positive result.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return headerInfo
+     * @return fpResultHeader
      */
-    public HeaderInfoInURI getHeaderInfo() {
-        return headerInfo;
+    public FalsePositiveResultHeader getFpResultHeader() {
+        return fpResultHeader;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Header info if uri hit signature rule and match element is request_headers.
-     * Field introduced in 21.1.1.
+     * Meta data for this false positive result.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param headerInfo set the headerInfo.
+     * @param fpResultHeader set the fpResultHeader.
      */
-    public void setHeaderInfo(HeaderInfoInURI headerInfo) {
-        this.headerInfo = headerInfo;
+    public void setFpResultHeader(FalsePositiveResultHeader fpResultHeader) {
+        this.fpResultHeader = fpResultHeader;
     }
 
     /**
      * This is the getter method this will return the attribute value.
      * Http method for uris did false positive detection.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpMethod
      */
@@ -185,6 +169,7 @@ public class FalsePositiveResult  {
      * This is the setter method to the attribute.
      * Http method for uris did false positive detection.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param httpMethod set the httpMethod.
      */
@@ -194,30 +179,33 @@ public class FalsePositiveResult  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * This flag indicates that system is not confident about this result.
+     * Http request header info if uri hit signature rule and match element is request_headers.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return notSure
+     * @return httpRequestHeaderInfo
      */
-    public Boolean getNotSure() {
-        return notSure;
+    public HeaderInfoInURI getHttpRequestHeaderInfo() {
+        return httpRequestHeaderInfo;
     }
 
     /**
      * This is the setter method to the attribute.
-     * This flag indicates that system is not confident about this result.
+     * Http request header info if uri hit signature rule and match element is request_headers.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param notSure set the notSure.
+     * @param httpRequestHeaderInfo set the httpRequestHeaderInfo.
      */
-    public void setNotSure(Boolean  notSure) {
-        this.notSure = notSure;
+    public void setHttpRequestHeaderInfo(HeaderInfoInURI httpRequestHeaderInfo) {
+        this.httpRequestHeaderInfo = httpRequestHeaderInfo;
     }
 
     /**
      * This is the getter method this will return the attribute value.
      * Params info if uri hit signature rule and match element is args.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return paramsInfo
      */
@@ -229,6 +217,7 @@ public class FalsePositiveResult  {
      * This is the setter method to the attribute.
      * Params info if uri hit signature rule and match element is args.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param paramsInfo set the paramsInfo.
      */
@@ -240,6 +229,7 @@ public class FalsePositiveResult  {
      * This is the getter method this will return the attribute value.
      * Signature rule info hitted by uri.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ruleInfo
      */
@@ -251,6 +241,7 @@ public class FalsePositiveResult  {
      * This is the setter method to the attribute.
      * Signature rule info hitted by uri.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ruleInfo set the ruleInfo.
      */
@@ -260,30 +251,9 @@ public class FalsePositiveResult  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Whether this uri is sometimes fail.
-     * Field introduced in 21.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return sometimesFail
-     */
-    public Boolean getSometimesFail() {
-        return sometimesFail;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Whether this uri is sometimes fail.
-     * Field introduced in 21.1.1.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param sometimesFail set the sometimesFail.
-     */
-    public void setSometimesFail(Boolean  sometimesFail) {
-        this.sometimesFail = sometimesFail;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Uris did false positive detection.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uri
      */
@@ -295,11 +265,38 @@ public class FalsePositiveResult  {
      * This is the setter method to the attribute.
      * Uris did false positive detection.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uri set the uri.
      */
     public void setUri(String  uri) {
         this.uri = uri;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * What failing mode that false positive detected as for current uri.
+     * Enum options - ALWAYS_FAIL, SOMETIMES_FAIL, NOT_SURE.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return uriResultMode
+     */
+    public String getUriResultMode() {
+        return uriResultMode;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * What failing mode that false positive detected as for current uri.
+     * Enum options - ALWAYS_FAIL, SOMETIMES_FAIL, NOT_SURE.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param uriResultMode set the uriResultMode.
+     */
+    public void setUriResultMode(String  uriResultMode) {
+        this.uriResultMode = uriResultMode;
     }
 
 
@@ -312,34 +309,32 @@ public class FalsePositiveResult  {
           return false;
       }
       FalsePositiveResult objFalsePositiveResult = (FalsePositiveResult) o;
-      return   Objects.equals(this.falsePositive, objFalsePositiveResult.falsePositive)&&
+      return   Objects.equals(this.fpResultHeader, objFalsePositiveResult.fpResultHeader)&&
+  Objects.equals(this.falsePositive, objFalsePositiveResult.falsePositive)&&
   Objects.equals(this.attack, objFalsePositiveResult.attack)&&
-  Objects.equals(this.notSure, objFalsePositiveResult.notSure)&&
   Objects.equals(this.uri, objFalsePositiveResult.uri)&&
   Objects.equals(this.paramsInfo, objFalsePositiveResult.paramsInfo)&&
   Objects.equals(this.ruleInfo, objFalsePositiveResult.ruleInfo)&&
   Objects.equals(this.confidence, objFalsePositiveResult.confidence)&&
-  Objects.equals(this.headerInfo, objFalsePositiveResult.headerInfo)&&
+  Objects.equals(this.httpRequestHeaderInfo, objFalsePositiveResult.httpRequestHeaderInfo)&&
   Objects.equals(this.httpMethod, objFalsePositiveResult.httpMethod)&&
-  Objects.equals(this.alwaysFail, objFalsePositiveResult.alwaysFail)&&
-  Objects.equals(this.sometimesFail, objFalsePositiveResult.sometimesFail);
+  Objects.equals(this.uriResultMode, objFalsePositiveResult.uriResultMode);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class FalsePositiveResult {\n");
-                  sb.append("    alwaysFail: ").append(toIndentedString(alwaysFail)).append("\n");
-                        sb.append("    attack: ").append(toIndentedString(attack)).append("\n");
+                  sb.append("    attack: ").append(toIndentedString(attack)).append("\n");
                         sb.append("    confidence: ").append(toIndentedString(confidence)).append("\n");
                         sb.append("    falsePositive: ").append(toIndentedString(falsePositive)).append("\n");
-                        sb.append("    headerInfo: ").append(toIndentedString(headerInfo)).append("\n");
+                        sb.append("    fpResultHeader: ").append(toIndentedString(fpResultHeader)).append("\n");
                         sb.append("    httpMethod: ").append(toIndentedString(httpMethod)).append("\n");
-                        sb.append("    notSure: ").append(toIndentedString(notSure)).append("\n");
+                        sb.append("    httpRequestHeaderInfo: ").append(toIndentedString(httpRequestHeaderInfo)).append("\n");
                         sb.append("    paramsInfo: ").append(toIndentedString(paramsInfo)).append("\n");
                         sb.append("    ruleInfo: ").append(toIndentedString(ruleInfo)).append("\n");
-                        sb.append("    sometimesFail: ").append(toIndentedString(sometimesFail)).append("\n");
                         sb.append("    uri: ").append(toIndentedString(uri)).append("\n");
+                        sb.append("    uriResultMode: ").append(toIndentedString(uriResultMode)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

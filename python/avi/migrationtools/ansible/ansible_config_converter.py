@@ -1,7 +1,13 @@
+#!/usr/bin/env python3
+
+############################################################################
+# ========================================================================
+# Copyright 2021 VMware, Inc.  All rights reserved. VMware Confidential
+# ========================================================================
+###
+
 # Copyright 2021 VMware, Inc.
 # SPDX-License-Identifier: Apache License 2.0
-
-#!/usr/bin/env python3
 '''
 Created on September 15, 2016
 
@@ -606,7 +612,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--controller_version',
         help='Target Avi controller version',
-        default='17.2.1')
+        default='18.2.6')
     args = parser.parse_args()
 
     with open(args.config_file, "r+") as f:

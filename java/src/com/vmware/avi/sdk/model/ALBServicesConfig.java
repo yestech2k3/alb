@@ -27,6 +27,9 @@ public class ALBServicesConfig extends AviRestResource  {
     @JsonProperty("asset_contact")
     private ALBServicesUser assetContact = null;
 
+    @JsonProperty("case_config")
+    private CaseConfig caseConfig = null;
+
     @JsonProperty("feature_opt_in_status")
     private PortalFeatureOptIn featureOptInStatus = null;
 
@@ -42,8 +45,8 @@ public class ALBServicesConfig extends AviRestResource  {
     @JsonProperty("portal_url")
     private String portalUrl = null;
 
-    @JsonProperty("proactive_support_defaults")
-    private ProactiveSupportDefaults proactiveSupportDefaults = null;
+    @JsonProperty("saas_licensing_config")
+    private SaasLicensingInfo saasLicensingConfig = null;
 
     @JsonProperty("split_proxy_configuration")
     private ProxyConfiguration splitProxyConfiguration = null;
@@ -57,8 +60,14 @@ public class ALBServicesConfig extends AviRestResource  {
     @JsonProperty("use_tls")
     private Boolean useTls = true;
 
+    @JsonProperty("user_agent_db_config")
+    private UserAgentDBConfig userAgentDbConfig = null;
+
     @JsonProperty("uuid")
     private String uuid = null;
+
+    @JsonProperty("waf_config")
+    private WafCrsConfig wafConfig = null;
 
 
 
@@ -66,7 +75,8 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Default values to be used for application signature sync.
      * Field introduced in 20.1.4.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return appSignatureConfig
      */
@@ -78,7 +88,8 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the setter method to the attribute.
      * Default values to be used for application signature sync.
      * Field introduced in 20.1.4.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param appSignatureConfig set the appSignatureConfig.
      */
@@ -90,6 +101,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Information about the default contact for this controller cluster.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return assetContact
      */
@@ -101,11 +113,38 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the setter method to the attribute.
      * Information about the default contact for this controller cluster.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param assetContact set the assetContact.
      */
     public void setAssetContact(ALBServicesUser assetContact) {
         this.assetContact = assetContact;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Default values to be used for pulse case management.
+     * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return caseConfig
+     */
+    public CaseConfig getCaseConfig() {
+        return caseConfig;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Default values to be used for pulse case management.
+     * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param caseConfig set the caseConfig.
+     */
+    public void setCaseConfig(CaseConfig caseConfig) {
+        this.caseConfig = caseConfig;
     }
 
     /**
@@ -134,6 +173,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Default values to be used for ip reputation sync.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ipReputationConfig
      */
@@ -145,6 +185,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the setter method to the attribute.
      * Default values to be used for ip reputation sync.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ipReputationConfig set the ipReputationConfig.
      */
@@ -155,10 +196,10 @@ public class ALBServicesConfig extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Mode helps log collection and upload.
-     * Enum options - SALESFORCE, SYSTEST, MYVMWARE.
+     * Enum options - MODE_UNKNOWN, SALESFORCE, SYSTEST, MYVMWARE.
      * Field introduced in 20.1.2.
-     * Allowed in basic(allowed values- salesforce,myvmware,systest) edition, essentials(allowed values- salesforce,myvmware,systest) edition,
-     * enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- salesforce,myvmware,systest), basic edition(allowed values-
+     * salesforce,myvmware,systest), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "MYVMWARE".
      * @return mode
      */
@@ -169,10 +210,10 @@ public class ALBServicesConfig extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Mode helps log collection and upload.
-     * Enum options - SALESFORCE, SYSTEST, MYVMWARE.
+     * Enum options - MODE_UNKNOWN, SALESFORCE, SYSTEST, MYVMWARE.
      * Field introduced in 20.1.2.
-     * Allowed in basic(allowed values- salesforce,myvmware,systest) edition, essentials(allowed values- salesforce,myvmware,systest) edition,
-     * enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- salesforce,myvmware,systest), basic edition(allowed values-
+     * salesforce,myvmware,systest), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "MYVMWARE".
      * @param mode set the mode.
      */
@@ -185,6 +226,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * Time interval in minutes.
      * Allowed values are 5-60.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @return pollingInterval
      */
@@ -197,6 +239,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * Time interval in minutes.
      * Allowed values are 5-60.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @param pollingInterval set the pollingInterval.
      */
@@ -208,6 +251,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * The fqdn or ip address of the customer portal.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return portalUrl
      */
@@ -219,6 +263,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the setter method to the attribute.
      * The fqdn or ip address of the customer portal.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param portalUrl set the portalUrl.
      */
@@ -228,30 +273,35 @@ public class ALBServicesConfig extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Default values to be used during proactive case creation and techsupport attachment.
-     * Field introduced in 20.1.1.
+     * Saas licensing configuration.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return proactiveSupportDefaults
+     * @return saasLicensingConfig
      */
-    public ProactiveSupportDefaults getProactiveSupportDefaults() {
-        return proactiveSupportDefaults;
+    public SaasLicensingInfo getSaasLicensingConfig() {
+        return saasLicensingConfig;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Default values to be used during proactive case creation and techsupport attachment.
-     * Field introduced in 20.1.1.
+     * Saas licensing configuration.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param proactiveSupportDefaults set the proactiveSupportDefaults.
+     * @param saasLicensingConfig set the saasLicensingConfig.
      */
-    public void setProactiveSupportDefaults(ProactiveSupportDefaults proactiveSupportDefaults) {
-        this.proactiveSupportDefaults = proactiveSupportDefaults;
+    public void setSaasLicensingConfig(SaasLicensingInfo saasLicensingConfig) {
+        this.saasLicensingConfig = saasLicensingConfig;
     }
 
     /**
      * This is the getter method this will return the attribute value.
      * Split proxy configuration to connect external pulse services.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return splitProxyConfiguration
      */
@@ -263,6 +313,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the setter method to the attribute.
      * Split proxy configuration to connect external pulse services.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param splitProxyConfiguration set the splitProxyConfiguration.
      */
@@ -289,8 +340,10 @@ public class ALBServicesConfig extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * By default, use system proxy configuration.if true, use split proxy configuration.
+     * By default, pulse uses proxy added in system configuration.
+     * If pulse needs to use a seperate proxy, set this flag to true and configure split proxy configuration.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return useSplitProxy
      */
@@ -300,8 +353,10 @@ public class ALBServicesConfig extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * By default, use system proxy configuration.if true, use split proxy configuration.
+     * By default, pulse uses proxy added in system configuration.
+     * If pulse needs to use a seperate proxy, set this flag to true and configure split proxy configuration.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param useSplitProxy set the useSplitProxy.
      */
@@ -313,7 +368,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Secure the controller to pulse communication over tls.
      * Field introduced in 20.1.3.
-     * Allowed in basic edition, enterprise edition.
+     * Allowed in enterprise edition with any value, basic edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return useTls
      */
@@ -325,7 +380,7 @@ public class ALBServicesConfig extends AviRestResource  {
      * This is the setter method to the attribute.
      * Secure the controller to pulse communication over tls.
      * Field introduced in 20.1.3.
-     * Allowed in basic edition, enterprise edition.
+     * Allowed in enterprise edition with any value, basic edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param useTls set the useTls.
      */
@@ -335,7 +390,34 @@ public class ALBServicesConfig extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Default values to be used for user agent db service.
+     * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return userAgentDbConfig
+     */
+    public UserAgentDBConfig getUserAgentDbConfig() {
+        return userAgentDbConfig;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Default values to be used for user agent db service.
+     * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param userAgentDbConfig set the userAgentDbConfig.
+     */
+    public void setUserAgentDbConfig(UserAgentDBConfig userAgentDbConfig) {
+        this.userAgentDbConfig = userAgentDbConfig;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -346,11 +428,36 @@ public class ALBServicesConfig extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
     public void setUuid(String  uuid) {
         this.uuid = uuid;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Default values to be used for pulse waf management.
+     * Field introduced in 21.1.1.
+     * Allowed in essentials edition with any value, basic edition with any value, enterprise, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return wafConfig
+     */
+    public WafCrsConfig getWafConfig() {
+        return wafConfig;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Default values to be used for pulse waf management.
+     * Field introduced in 21.1.1.
+     * Allowed in essentials edition with any value, basic edition with any value, enterprise, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param wafConfig set the wafConfig.
+     */
+    public void setWafConfig(WafCrsConfig wafConfig) {
+        this.wafConfig = wafConfig;
     }
 
 
@@ -368,13 +475,16 @@ public class ALBServicesConfig extends AviRestResource  {
   Objects.equals(this.pollingInterval, objALBServicesConfig.pollingInterval)&&
   Objects.equals(this.assetContact, objALBServicesConfig.assetContact)&&
   Objects.equals(this.featureOptInStatus, objALBServicesConfig.featureOptInStatus)&&
-  Objects.equals(this.proactiveSupportDefaults, objALBServicesConfig.proactiveSupportDefaults)&&
   Objects.equals(this.useSplitProxy, objALBServicesConfig.useSplitProxy)&&
   Objects.equals(this.splitProxyConfiguration, objALBServicesConfig.splitProxyConfiguration)&&
   Objects.equals(this.ipReputationConfig, objALBServicesConfig.ipReputationConfig)&&
   Objects.equals(this.useTls, objALBServicesConfig.useTls)&&
   Objects.equals(this.mode, objALBServicesConfig.mode)&&
-  Objects.equals(this.appSignatureConfig, objALBServicesConfig.appSignatureConfig);
+  Objects.equals(this.appSignatureConfig, objALBServicesConfig.appSignatureConfig)&&
+  Objects.equals(this.userAgentDbConfig, objALBServicesConfig.userAgentDbConfig)&&
+  Objects.equals(this.wafConfig, objALBServicesConfig.wafConfig)&&
+  Objects.equals(this.caseConfig, objALBServicesConfig.caseConfig)&&
+  Objects.equals(this.saasLicensingConfig, objALBServicesConfig.saasLicensingConfig);
     }
 
     @Override
@@ -383,16 +493,19 @@ public class ALBServicesConfig extends AviRestResource  {
       sb.append("class ALBServicesConfig {\n");
                   sb.append("    appSignatureConfig: ").append(toIndentedString(appSignatureConfig)).append("\n");
                         sb.append("    assetContact: ").append(toIndentedString(assetContact)).append("\n");
+                        sb.append("    caseConfig: ").append(toIndentedString(caseConfig)).append("\n");
                         sb.append("    featureOptInStatus: ").append(toIndentedString(featureOptInStatus)).append("\n");
                         sb.append("    ipReputationConfig: ").append(toIndentedString(ipReputationConfig)).append("\n");
                         sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
                         sb.append("    pollingInterval: ").append(toIndentedString(pollingInterval)).append("\n");
                         sb.append("    portalUrl: ").append(toIndentedString(portalUrl)).append("\n");
-                        sb.append("    proactiveSupportDefaults: ").append(toIndentedString(proactiveSupportDefaults)).append("\n");
+                        sb.append("    saasLicensingConfig: ").append(toIndentedString(saasLicensingConfig)).append("\n");
                         sb.append("    splitProxyConfiguration: ").append(toIndentedString(splitProxyConfiguration)).append("\n");
                                     sb.append("    useSplitProxy: ").append(toIndentedString(useSplitProxy)).append("\n");
                         sb.append("    useTls: ").append(toIndentedString(useTls)).append("\n");
+                        sb.append("    userAgentDbConfig: ").append(toIndentedString(userAgentDbConfig)).append("\n");
                         sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+                        sb.append("    wafConfig: ").append(toIndentedString(wafConfig)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

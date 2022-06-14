@@ -48,9 +48,6 @@ public class HTTPPolicySet extends AviRestResource  {
     @JsonProperty("is_internal_policy")
     private Boolean isInternalPolicy = false;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -72,6 +69,7 @@ public class HTTPPolicySet extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Checksum of cloud configuration for pool.
      * Internally set by cloud connector.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudConfigCksum
      */
@@ -83,6 +81,7 @@ public class HTTPPolicySet extends AviRestResource  {
      * This is the setter method to the attribute.
      * Checksum of cloud configuration for pool.
      * Internally set by cloud connector.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudConfigCksum set the cloudConfigCksum.
      */
@@ -93,6 +92,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Creator name.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return createdBy
      */
@@ -103,6 +103,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Creator name.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param createdBy set the createdBy.
      */
@@ -112,7 +113,7 @@ public class HTTPPolicySet extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * User defined description for the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -122,7 +123,7 @@ public class HTTPPolicySet extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * User defined description for the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -135,6 +136,7 @@ public class HTTPPolicySet extends AviRestResource  {
      * Geo database.
      * It is a reference to an object of type geodb.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return geoDbRef
      */
@@ -147,6 +149,7 @@ public class HTTPPolicySet extends AviRestResource  {
      * Geo database.
      * It is a reference to an object of type geodb.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param geoDbRef set the geoDbRef.
      */
@@ -157,6 +160,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Http request policy for the virtual service.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpRequestPolicy
      */
@@ -167,6 +171,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Http request policy for the virtual service.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param httpRequestPolicy set the httpRequestPolicy.
      */
@@ -177,6 +182,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Http response policy for the virtual service.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpResponsePolicy
      */
@@ -187,6 +193,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Http response policy for the virtual service.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param httpResponsePolicy set the httpResponsePolicy.
      */
@@ -197,6 +204,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Http security policy for the virtual service.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return httpSecurityPolicy
      */
@@ -207,6 +215,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Http security policy for the virtual service.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param httpSecurityPolicy set the httpSecurityPolicy.
      */
@@ -219,6 +228,7 @@ public class HTTPPolicySet extends AviRestResource  {
      * Ip reputation database.
      * It is a reference to an object of type ipreputationdb.
      * Field introduced in 20.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ipReputationDbRef
      */
@@ -231,6 +241,7 @@ public class HTTPPolicySet extends AviRestResource  {
      * Ip reputation database.
      * It is a reference to an object of type ipreputationdb.
      * Field introduced in 20.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ipReputationDbRef set the ipReputationDbRef.
      */
@@ -240,7 +251,7 @@ public class HTTPPolicySet extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property is_internal_policy of obj type httppolicyset field type str  type boolean.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return isInternalPolicy
      */
@@ -250,7 +261,7 @@ public class HTTPPolicySet extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property is_internal_policy of obj type httppolicyset field type str  type boolean.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param isInternalPolicy set the isInternalPolicy.
      */
@@ -259,51 +270,10 @@ public class HTTPPolicySet extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public HTTPPolicySet addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -315,7 +285,8 @@ public class HTTPPolicySet extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -327,7 +298,8 @@ public class HTTPPolicySet extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -342,6 +314,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Name of the http policy set.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -352,6 +325,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Name of the http policy set.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -362,6 +336,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -372,6 +347,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -399,6 +375,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Uuid of the http policy set.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -409,6 +386,7 @@ public class HTTPPolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Uuid of the http policy set.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -433,7 +411,6 @@ public class HTTPPolicySet extends AviRestResource  {
   Objects.equals(this.httpResponsePolicy, objHTTPPolicySet.httpResponsePolicy)&&
   Objects.equals(this.createdBy, objHTTPPolicySet.createdBy)&&
   Objects.equals(this.cloudConfigCksum, objHTTPPolicySet.cloudConfigCksum)&&
-  Objects.equals(this.labels, objHTTPPolicySet.labels)&&
   Objects.equals(this.ipReputationDbRef, objHTTPPolicySet.ipReputationDbRef)&&
   Objects.equals(this.geoDbRef, objHTTPPolicySet.geoDbRef)&&
   Objects.equals(this.markers, objHTTPPolicySet.markers)&&
@@ -455,7 +432,6 @@ public class HTTPPolicySet extends AviRestResource  {
                         sb.append("    httpSecurityPolicy: ").append(toIndentedString(httpSecurityPolicy)).append("\n");
                         sb.append("    ipReputationDbRef: ").append(toIndentedString(ipReputationDbRef)).append("\n");
                         sb.append("    isInternalPolicy: ").append(toIndentedString(isInternalPolicy)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");

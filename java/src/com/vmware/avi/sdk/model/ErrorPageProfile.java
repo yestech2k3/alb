@@ -21,20 +21,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorPageProfile extends AviRestResource  {
-    @JsonProperty("app_name")
-    private String appName;
-
-    @JsonProperty("company_name")
-    private String companyName;
-
     @JsonProperty("error_pages")
     private List<ErrorPage> errorPages = null;
-
-    @JsonProperty("host_name")
-    private String hostName;
-
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
 
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
@@ -52,54 +40,11 @@ public class ErrorPageProfile extends AviRestResource  {
     private String uuid = null;
 
 
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Name of the virtual service which generated the error page.
-     * Field deprecated in 18.1.1.
-     * Field introduced in 17.2.4.
-     * @return appName
-     */
-    public String getAppName() {
-        return appName;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Name of the virtual service which generated the error page.
-     * Field deprecated in 18.1.1.
-     * Field introduced in 17.2.4.
-     * @param appName set the appName.
-     */
-    public void setAppName(String  appName) {
-        this.appName = appName;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Name of the company to show in error page.
-     * Field deprecated in 18.1.1.
-     * Field introduced in 17.2.4.
-     * @return companyName
-     */
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Name of the company to show in error page.
-     * Field deprecated in 18.1.1.
-     * Field introduced in 17.2.4.
-     * @param companyName set the companyName.
-     */
-    public void setCompanyName(String  companyName) {
-        this.companyName = companyName;
-    }
     /**
      * This is the getter method this will return the attribute value.
      * Defined error pages for http status codes.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return errorPages
      */
@@ -111,6 +56,7 @@ public class ErrorPageProfile extends AviRestResource  {
      * This is the setter method. this will set the errorPages
      * Defined error pages for http status codes.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return errorPages
      */
@@ -122,6 +68,7 @@ public class ErrorPageProfile extends AviRestResource  {
      * This is the setter method this will set the errorPages
      * Defined error pages for http status codes.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return errorPages
      */
@@ -132,75 +79,12 @@ public class ErrorPageProfile extends AviRestResource  {
       this.errorPages.add(errorPagesItem);
       return this;
     }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Fully qualified domain name for which the error page is generated.
-     * Field deprecated in 18.1.1.
-     * Field introduced in 17.2.4.
-     * @return hostName
-     */
-    public String getHostName() {
-        return hostName;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Fully qualified domain name for which the error page is generated.
-     * Field deprecated in 18.1.1.
-     * Field introduced in 17.2.4.
-     * @param hostName set the hostName.
-     */
-    public void setHostName(String  hostName) {
-        this.hostName = hostName;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.3.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.3.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.3.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public ErrorPageProfile addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
     /**
      * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -212,7 +96,8 @@ public class ErrorPageProfile extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -224,7 +109,8 @@ public class ErrorPageProfile extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -239,6 +125,7 @@ public class ErrorPageProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -249,6 +136,7 @@ public class ErrorPageProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -260,6 +148,7 @@ public class ErrorPageProfile extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -271,6 +160,7 @@ public class ErrorPageProfile extends AviRestResource  {
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -298,6 +188,7 @@ public class ErrorPageProfile extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -308,6 +199,7 @@ public class ErrorPageProfile extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 17.2.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -328,11 +220,7 @@ public class ErrorPageProfile extends AviRestResource  {
       return   Objects.equals(this.uuid, objErrorPageProfile.uuid)&&
   Objects.equals(this.name, objErrorPageProfile.name)&&
   Objects.equals(this.tenantRef, objErrorPageProfile.tenantRef)&&
-  Objects.equals(this.companyName, objErrorPageProfile.companyName)&&
-  Objects.equals(this.appName, objErrorPageProfile.appName)&&
-  Objects.equals(this.hostName, objErrorPageProfile.hostName)&&
   Objects.equals(this.errorPages, objErrorPageProfile.errorPages)&&
-  Objects.equals(this.labels, objErrorPageProfile.labels)&&
   Objects.equals(this.markers, objErrorPageProfile.markers);
     }
 
@@ -340,11 +228,7 @@ public class ErrorPageProfile extends AviRestResource  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class ErrorPageProfile {\n");
-                  sb.append("    appName: ").append(toIndentedString(appName)).append("\n");
-                        sb.append("    companyName: ").append(toIndentedString(companyName)).append("\n");
-                        sb.append("    errorPages: ").append(toIndentedString(errorPages)).append("\n");
-                        sb.append("    hostName: ").append(toIndentedString(hostName)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+                  sb.append("    errorPages: ").append(toIndentedString(errorPages)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");

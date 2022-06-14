@@ -22,17 +22,18 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MatchReplacePair  {
     @JsonProperty("match_string")
-    private String matchString = null;
+    private String matchString;
 
     @JsonProperty("replacement_string")
-    private ReplaceStringVar replacementString = null;
+    private ReplaceStringVar replacementString;
 
 
 
     /**
      * This is the getter method this will return the attribute value.
      * String to be matched.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return matchString
      */
     public String getMatchString() {
@@ -42,7 +43,8 @@ public class MatchReplacePair  {
     /**
      * This is the setter method to the attribute.
      * String to be matched.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param matchString set the matchString.
      */
     public void setMatchString(String  matchString) {
@@ -52,7 +54,8 @@ public class MatchReplacePair  {
     /**
      * This is the getter method this will return the attribute value.
      * Replacement string.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @return replacementString
      */
     public ReplaceStringVar getReplacementString() {
@@ -62,7 +65,8 @@ public class MatchReplacePair  {
     /**
      * This is the setter method to the attribute.
      * Replacement string.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Field deprecated in 21.1.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * @param replacementString set the replacementString.
      */
     public void setReplacementString(ReplaceStringVar replacementString) {

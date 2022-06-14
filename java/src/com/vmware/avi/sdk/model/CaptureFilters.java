@@ -42,6 +42,9 @@ public class CaptureFilters  {
     @JsonProperty("src_port")
     private Integer srcPort = null;
 
+    @JsonProperty("src_port_range_end")
+    private Integer srcPortRangeEnd = null;
+
     @JsonProperty("tcp_ack")
     private Boolean tcpAck = null;
 
@@ -62,6 +65,7 @@ public class CaptureFilters  {
      * Matches with source and destination address.
      * Curently not applicable for debugserviceengine.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return captureIp
      */
@@ -75,6 +79,7 @@ public class CaptureFilters  {
      * Matches with source and destination address.
      * Curently not applicable for debugserviceengine.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param captureIp set the captureIp.
      */
@@ -87,6 +92,7 @@ public class CaptureFilters  {
      * Capture filter for se ipc.
      * Not applicable for debug virtual service.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return captureIpc
      */
@@ -99,6 +105,7 @@ public class CaptureFilters  {
      * Capture filter for se ipc.
      * Not applicable for debug virtual service.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param captureIpc set the captureIpc.
      */
@@ -110,6 +117,7 @@ public class CaptureFilters  {
      * This is the getter method this will return the attribute value.
      * Destination port range filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dstPortEnd
      */
@@ -121,6 +129,7 @@ public class CaptureFilters  {
      * This is the setter method to the attribute.
      * Destination port range filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param dstPortEnd set the dstPortEnd.
      */
@@ -132,6 +141,7 @@ public class CaptureFilters  {
      * This is the getter method this will return the attribute value.
      * Destination port range filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return dstPortStart
      */
@@ -143,6 +153,7 @@ public class CaptureFilters  {
      * This is the setter method to the attribute.
      * Destination port range filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param dstPortStart set the dstPortStart.
      */
@@ -155,6 +166,7 @@ public class CaptureFilters  {
      * Ethernet proto filter.
      * Enum options - ETH_TYPE_IPV4.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ethProto
      */
@@ -167,6 +179,7 @@ public class CaptureFilters  {
      * Ethernet proto filter.
      * Enum options - ETH_TYPE_IPV4.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ethProto set the ethProto.
      */
@@ -180,6 +193,7 @@ public class CaptureFilters  {
      * Support for tcp only for now.
      * Enum options - IP_TYPE_TCP.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ipProto
      */
@@ -193,6 +207,7 @@ public class CaptureFilters  {
      * Support for tcp only for now.
      * Enum options - IP_TYPE_TCP.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ipProto set the ipProto.
      */
@@ -204,6 +219,7 @@ public class CaptureFilters  {
      * This is the getter method this will return the attribute value.
      * Source port filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return srcPort
      */
@@ -215,6 +231,7 @@ public class CaptureFilters  {
      * This is the setter method to the attribute.
      * Source port filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param srcPort set the srcPort.
      */
@@ -224,8 +241,37 @@ public class CaptureFilters  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Source port range end filter.
+     * If specified, the source port filter will be a range.
+     * The filter range will be between src_port and src_port_range_end.
+     * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return srcPortRangeEnd
+     */
+    public Integer getSrcPortRangeEnd() {
+        return srcPortRangeEnd;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Source port range end filter.
+     * If specified, the source port filter will be a range.
+     * The filter range will be between src_port and src_port_range_end.
+     * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param srcPortRangeEnd set the srcPortRangeEnd.
+     */
+    public void setSrcPortRangeEnd(Integer  srcPortRangeEnd) {
+        this.srcPortRangeEnd = srcPortRangeEnd;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Tcp ack flag filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tcpAck
      */
@@ -237,6 +283,7 @@ public class CaptureFilters  {
      * This is the setter method to the attribute.
      * Tcp ack flag filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tcpAck set the tcpAck.
      */
@@ -248,6 +295,7 @@ public class CaptureFilters  {
      * This is the getter method this will return the attribute value.
      * Tcp fin flag filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tcpFin
      */
@@ -259,6 +307,7 @@ public class CaptureFilters  {
      * This is the setter method to the attribute.
      * Tcp fin flag filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tcpFin set the tcpFin.
      */
@@ -270,6 +319,7 @@ public class CaptureFilters  {
      * This is the getter method this will return the attribute value.
      * Tcp push flag filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tcpPush
      */
@@ -281,6 +331,7 @@ public class CaptureFilters  {
      * This is the setter method to the attribute.
      * Tcp push flag filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tcpPush set the tcpPush.
      */
@@ -292,6 +343,7 @@ public class CaptureFilters  {
      * This is the getter method this will return the attribute value.
      * Tcp syn flag filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tcpSyn
      */
@@ -303,6 +355,7 @@ public class CaptureFilters  {
      * This is the setter method to the attribute.
      * Tcp syn flag filter.
      * Field introduced in 18.2.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tcpSyn set the tcpSyn.
      */
@@ -330,7 +383,8 @@ public class CaptureFilters  {
   Objects.equals(this.tcpAck, objCaptureFilters.tcpAck)&&
   Objects.equals(this.tcpFin, objCaptureFilters.tcpFin)&&
   Objects.equals(this.tcpPush, objCaptureFilters.tcpPush)&&
-  Objects.equals(this.captureIpc, objCaptureFilters.captureIpc);
+  Objects.equals(this.captureIpc, objCaptureFilters.captureIpc)&&
+  Objects.equals(this.srcPortRangeEnd, objCaptureFilters.srcPortRangeEnd);
     }
 
     @Override
@@ -344,6 +398,7 @@ public class CaptureFilters  {
                         sb.append("    ethProto: ").append(toIndentedString(ethProto)).append("\n");
                         sb.append("    ipProto: ").append(toIndentedString(ipProto)).append("\n");
                         sb.append("    srcPort: ").append(toIndentedString(srcPort)).append("\n");
+                        sb.append("    srcPortRangeEnd: ").append(toIndentedString(srcPortRangeEnd)).append("\n");
                         sb.append("    tcpAck: ").append(toIndentedString(tcpAck)).append("\n");
                         sb.append("    tcpFin: ").append(toIndentedString(tcpFin)).append("\n");
                         sb.append("    tcpPush: ").append(toIndentedString(tcpPush)).append("\n");

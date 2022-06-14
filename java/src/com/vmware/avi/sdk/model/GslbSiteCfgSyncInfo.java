@@ -27,13 +27,23 @@ public class GslbSiteCfgSyncInfo  {
     @JsonProperty("last_changed_time")
     private TimeStamp lastChangedTime = null;
 
+    @JsonProperty("last_fail_obj")
+    private ConfigVersionStatus lastFailObj = null;
+
+    @JsonProperty("reason")
+    private String reason = null;
+
+    @JsonProperty("recommendation")
+    private String recommendation = null;
+
     @JsonProperty("sync_state")
     private String syncState = null;
 
 
     /**
      * This is the getter method this will return the attribute value.
-     * Objects that could not be synced to the site .
+     * Objects that could not be synced to the site.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return erroredObjects
      */
@@ -43,7 +53,8 @@ public class GslbSiteCfgSyncInfo  {
 
     /**
      * This is the setter method. this will set the erroredObjects
-     * Objects that could not be synced to the site .
+     * Objects that could not be synced to the site.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return erroredObjects
      */
@@ -53,7 +64,8 @@ public class GslbSiteCfgSyncInfo  {
 
     /**
      * This is the setter method this will set the erroredObjects
-     * Objects that could not be synced to the site .
+     * Objects that could not be synced to the site.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return erroredObjects
      */
@@ -67,7 +79,7 @@ public class GslbSiteCfgSyncInfo  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property last_changed_time of obj type gslbsitecfgsyncinfo field type str  type ref.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return lastChangedTime
      */
@@ -77,7 +89,7 @@ public class GslbSiteCfgSyncInfo  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property last_changed_time of obj type gslbsitecfgsyncinfo field type str  type ref.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param lastChangedTime set the lastChangedTime.
      */
@@ -87,9 +99,82 @@ public class GslbSiteCfgSyncInfo  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Last object having replication issue.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return lastFailObj
+     */
+    public ConfigVersionStatus getLastFailObj() {
+        return lastFailObj;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Last object having replication issue.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param lastFailObj set the lastFailObj.
+     */
+    public void setLastFailObj(ConfigVersionStatus lastFailObj) {
+        this.lastFailObj = lastFailObj;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Reason for the replication issues.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return reason
+     */
+    public String getReason() {
+        return reason;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Reason for the replication issues.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param reason set the reason.
+     */
+    public void setReason(String  reason) {
+        this.reason = reason;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Recommended way to resolve replication issue.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return recommendation
+     */
+    public String getRecommendation() {
+        return recommendation;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Recommended way to resolve replication issue.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param recommendation set the recommendation.
+     */
+    public void setRecommendation(String  recommendation) {
+        this.recommendation = recommendation;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Configuration sync-state of the site.
      * Enum options - GSLB_SITE_CFG_IN_SYNC, GSLB_SITE_CFG_OUT_OF_SYNC, GSLB_SITE_CFG_SYNC_DISABLED, GSLB_SITE_CFG_SYNC_IN_PROGRESS,
-     * GSLB_SITE_CFG_SYNC_NOT_APPLICABLE, GSLB_SITE_CFG_SYNCED_TILL_CHECKPOINT, GSLB_SITE_CFG_SYNC_SUSPENDED.
+     * GSLB_SITE_CFG_SYNC_NOT_APPLICABLE, GSLB_SITE_CFG_SYNCED_TILL_CHECKPOINT, GSLB_SITE_CFG_SYNC_SUSPENDED, GSLB_SITE_CFG_SYNC_STALLED.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return syncState
      */
@@ -101,7 +186,8 @@ public class GslbSiteCfgSyncInfo  {
      * This is the setter method to the attribute.
      * Configuration sync-state of the site.
      * Enum options - GSLB_SITE_CFG_IN_SYNC, GSLB_SITE_CFG_OUT_OF_SYNC, GSLB_SITE_CFG_SYNC_DISABLED, GSLB_SITE_CFG_SYNC_IN_PROGRESS,
-     * GSLB_SITE_CFG_SYNC_NOT_APPLICABLE, GSLB_SITE_CFG_SYNCED_TILL_CHECKPOINT, GSLB_SITE_CFG_SYNC_SUSPENDED.
+     * GSLB_SITE_CFG_SYNC_NOT_APPLICABLE, GSLB_SITE_CFG_SYNCED_TILL_CHECKPOINT, GSLB_SITE_CFG_SYNC_SUSPENDED, GSLB_SITE_CFG_SYNC_STALLED.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param syncState set the syncState.
      */
@@ -121,7 +207,10 @@ public class GslbSiteCfgSyncInfo  {
       GslbSiteCfgSyncInfo objGslbSiteCfgSyncInfo = (GslbSiteCfgSyncInfo) o;
       return   Objects.equals(this.syncState, objGslbSiteCfgSyncInfo.syncState)&&
   Objects.equals(this.lastChangedTime, objGslbSiteCfgSyncInfo.lastChangedTime)&&
-  Objects.equals(this.erroredObjects, objGslbSiteCfgSyncInfo.erroredObjects);
+  Objects.equals(this.erroredObjects, objGslbSiteCfgSyncInfo.erroredObjects)&&
+  Objects.equals(this.reason, objGslbSiteCfgSyncInfo.reason)&&
+  Objects.equals(this.recommendation, objGslbSiteCfgSyncInfo.recommendation)&&
+  Objects.equals(this.lastFailObj, objGslbSiteCfgSyncInfo.lastFailObj);
     }
 
     @Override
@@ -130,6 +219,9 @@ public class GslbSiteCfgSyncInfo  {
       sb.append("class GslbSiteCfgSyncInfo {\n");
                   sb.append("    erroredObjects: ").append(toIndentedString(erroredObjects)).append("\n");
                         sb.append("    lastChangedTime: ").append(toIndentedString(lastChangedTime)).append("\n");
+                        sb.append("    lastFailObj: ").append(toIndentedString(lastFailObj)).append("\n");
+                        sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+                        sb.append("    recommendation: ").append(toIndentedString(recommendation)).append("\n");
                         sb.append("    syncState: ").append(toIndentedString(syncState)).append("\n");
                   sb.append("}");
       return sb.toString();

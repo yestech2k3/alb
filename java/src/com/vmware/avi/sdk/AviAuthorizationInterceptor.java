@@ -28,6 +28,10 @@ public class AviAuthorizationInterceptor implements ClientHttpRequestInterceptor
 
 	public Boolean addIfAbsent(String key, HttpHeaders headers) {
 		Boolean flag = false;
+		if ((headers.getContentType() != null)
+				&& ((headers.getContentType().toString().contains(MediaType.MULTIPART_FORM_DATA_VALUE.toString())))) {
+			return flag;
+		}        
 		if (headers.containsKey(key)) {
 			flag = true;
 		}
@@ -38,15 +42,18 @@ public class AviAuthorizationInterceptor implements ClientHttpRequestInterceptor
 	public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException{
 		LOGGER.info("__INIT__ Inside Interceptor..");
 		int numApiExecCount = 0;
-		if (null == this.aviCredentials.getSessionID() || this.aviCredentials.getSessionID().isEmpty()) {
+		if (!aviCredentials.getLazyAuthentication() &&
+				(null == this.aviCredentials.getSessionID() ||
+						this.aviCredentials.getSessionID().isEmpty())) {
 			AviRestUtils.authenticateSession(this.aviCredentials);
 		}
 		ClientHttpResponse response = null;
 		try {
 			numApiExecCount = 0;
 			HttpHeaders headers = request.getHeaders();
-			headers.add("Content-Type", "application/json");
-			headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+			if (addIfAbsent("Content-Type", headers)) {
+				headers.setContentType(MediaType.APPLICATION_JSON);
+			}            
 			if (!addIfAbsent("X-Avi-Version", headers)) {
 				headers.add("X-Avi-Version", this.aviCredentials.getVersion());
 			}
@@ -61,6 +68,12 @@ public class AviAuthorizationInterceptor implements ClientHttpRequestInterceptor
 			response = execution.execute(request, body);
 
 			int responseCode = response.getRawStatusCode();
+			String requestUri = request.getURI().getPath();
+			if(responseCode == 200 && requestUri.contains("useraccount")){
+				LOGGER.info("Inside clearing the user session...");
+				AviRestUtils.clearSession(this.aviCredentials);
+				LOGGER.info("Clear session execution completed");
+			}
 
 			if (Arrays.asList(419, 401).contains(responseCode)) {
 				numApiExecCount++;

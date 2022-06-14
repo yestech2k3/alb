@@ -39,9 +39,6 @@ public class Network extends AviRestResource  {
     @JsonProperty("ip6_autocfg_enabled")
     private Boolean ip6AutocfgEnabled = true;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -64,7 +61,7 @@ public class Network extends AviRestResource  {
     private Boolean vcenterDvs = true;
 
     @JsonProperty("vimgrnw_ref")
-    private String vimgrnwRef = null;
+    private String vimgrnwRef;
 
     @JsonProperty("vrf_context_ref")
     private String vrfContextRef = null;
@@ -74,6 +71,7 @@ public class Network extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Key/value network attributes.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return attrs
      */
@@ -85,6 +83,7 @@ public class Network extends AviRestResource  {
      * This is the setter method. this will set the attrs
      * Key/value network attributes.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return attrs
      */
@@ -96,6 +95,7 @@ public class Network extends AviRestResource  {
      * This is the setter method this will set the attrs
      * Key/value network attributes.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return attrs
      */
@@ -110,6 +110,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type cloud.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudRef
      */
@@ -120,6 +121,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type cloud.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param cloudRef set the cloudRef.
      */
@@ -128,7 +130,7 @@ public class Network extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property configured_subnets of obj type network field type str  type array.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return configuredSubnets
      */
@@ -138,7 +140,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the setter method. this will set the configuredSubnets
-     * Placeholder for description of property configured_subnets of obj type network field type str  type array.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return configuredSubnets
      */
@@ -148,7 +150,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the setter method this will set the configuredSubnets
-     * Placeholder for description of property configured_subnets of obj type network field type str  type array.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return configuredSubnets
      */
@@ -163,6 +165,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Select the ip address management scheme for this network.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return dhcpEnabled
      */
@@ -173,6 +176,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Select the ip address management scheme for this network.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param dhcpEnabled set the dhcpEnabled.
      */
@@ -183,6 +187,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * When selected, excludes all discovered subnets in this network from consideration for virtual service placement.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return excludeDiscoveredSubnets
      */
@@ -193,6 +198,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * When selected, excludes all discovered subnets in this network from consideration for virtual service placement.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param excludeDiscoveredSubnets set the excludeDiscoveredSubnets.
      */
@@ -204,6 +210,7 @@ public class Network extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Enable ipv6 auto configuration.
      * Field introduced in 18.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return ip6AutocfgEnabled
      */
@@ -215,6 +222,7 @@ public class Network extends AviRestResource  {
      * This is the setter method to the attribute.
      * Enable ipv6 auto configuration.
      * Field introduced in 18.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param ip6AutocfgEnabled set the ip6AutocfgEnabled.
      */
@@ -223,45 +231,10 @@ public class Network extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Key/value labels which can be used for object access policy permission scoping.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 18.2.7, 20.1.1.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key/value labels which can be used for object access policy permission scoping.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 18.2.7, 20.1.1.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key/value labels which can be used for object access policy permission scoping.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 18.2.7, 20.1.1.
-     * @return labels
-     */
-    public Network addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -273,7 +246,8 @@ public class Network extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -285,7 +259,8 @@ public class Network extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -299,7 +274,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Name of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -309,7 +284,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Name of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -319,7 +294,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property synced_from_se of obj type network field type str  type boolean.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return syncedFromSe
      */
@@ -329,7 +304,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property synced_from_se of obj type network field type str  type boolean.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param syncedFromSe set the syncedFromSe.
      */
@@ -340,6 +315,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -350,6 +326,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -376,7 +353,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -386,7 +363,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -396,7 +373,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property vcenter_dvs of obj type network field type str  type boolean.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return vcenterDvs
      */
@@ -406,7 +383,7 @@ public class Network extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property vcenter_dvs of obj type network field type str  type boolean.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param vcenterDvs set the vcenterDvs.
      */
@@ -417,7 +394,8 @@ public class Network extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type vimgrnwruntime.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @return vimgrnwRef
      */
     public String getVimgrnwRef() {
@@ -427,7 +405,8 @@ public class Network extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type vimgrnwruntime.
-     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * @param vimgrnwRef set the vimgrnwRef.
      */
     public void setVimgrnwRef(String  vimgrnwRef) {
@@ -437,6 +416,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type vrfcontext.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vrfContextRef
      */
@@ -447,6 +427,7 @@ public class Network extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is a reference to an object of type vrfcontext.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vrfContextRef set the vrfContextRef.
      */
@@ -476,7 +457,6 @@ public class Network extends AviRestResource  {
   Objects.equals(this.tenantRef, objNetwork.tenantRef)&&
   Objects.equals(this.cloudRef, objNetwork.cloudRef)&&
   Objects.equals(this.ip6AutocfgEnabled, objNetwork.ip6AutocfgEnabled)&&
-  Objects.equals(this.labels, objNetwork.labels)&&
   Objects.equals(this.attrs, objNetwork.attrs)&&
   Objects.equals(this.markers, objNetwork.markers);
     }
@@ -491,7 +471,6 @@ public class Network extends AviRestResource  {
                         sb.append("    dhcpEnabled: ").append(toIndentedString(dhcpEnabled)).append("\n");
                         sb.append("    excludeDiscoveredSubnets: ").append(toIndentedString(excludeDiscoveredSubnets)).append("\n");
                         sb.append("    ip6AutocfgEnabled: ").append(toIndentedString(ip6AutocfgEnabled)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    syncedFromSe: ").append(toIndentedString(syncedFromSe)).append("\n");

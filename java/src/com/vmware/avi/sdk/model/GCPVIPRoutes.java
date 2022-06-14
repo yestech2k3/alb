@@ -24,6 +24,9 @@ public class GCPVIPRoutes  {
     @JsonProperty("match_se_group_subnet")
     private Boolean matchSeGroupSubnet = false;
 
+    @JsonProperty("route_priority")
+    private Integer routePriority = 2000;
+
 
 
     /**
@@ -31,6 +34,7 @@ public class GCPVIPRoutes  {
      * Match se group subnets for vip placement.
      * Default is to not match se group subnets.
      * Field introduced in 18.2.9, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return matchSeGroupSubnet
      */
@@ -43,11 +47,36 @@ public class GCPVIPRoutes  {
      * Match se group subnets for vip placement.
      * Default is to not match se group subnets.
      * Field introduced in 18.2.9, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param matchSeGroupSubnet set the matchSeGroupSubnet.
      */
     public void setMatchSeGroupSubnet(Boolean  matchSeGroupSubnet) {
         this.matchSeGroupSubnet = matchSeGroupSubnet;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Priority of the routes created in gcp.
+     * Field introduced in 20.1.7, 21.1.2.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 2000.
+     * @return routePriority
+     */
+    public Integer getRoutePriority() {
+        return routePriority;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Priority of the routes created in gcp.
+     * Field introduced in 20.1.7, 21.1.2.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 2000.
+     * @param routePriority set the routePriority.
+     */
+    public void setRoutePriority(Integer  routePriority) {
+        this.routePriority = routePriority;
     }
 
 
@@ -60,7 +89,8 @@ public class GCPVIPRoutes  {
           return false;
       }
       GCPVIPRoutes objGCPVIPRoutes = (GCPVIPRoutes) o;
-      return   Objects.equals(this.matchSeGroupSubnet, objGCPVIPRoutes.matchSeGroupSubnet);
+      return   Objects.equals(this.matchSeGroupSubnet, objGCPVIPRoutes.matchSeGroupSubnet)&&
+  Objects.equals(this.routePriority, objGCPVIPRoutes.routePriority);
     }
 
     @Override
@@ -68,6 +98,7 @@ public class GCPVIPRoutes  {
       StringBuilder sb = new StringBuilder();
       sb.append("class GCPVIPRoutes {\n");
                   sb.append("    matchSeGroupSubnet: ").append(toIndentedString(matchSeGroupSubnet)).append("\n");
+                        sb.append("    routePriority: ").append(toIndentedString(routePriority)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

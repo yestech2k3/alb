@@ -34,9 +34,10 @@ public class CaptureFileSize  {
      * Maximum size in mb.
      * Set 0 for avi default size.
      * Allowed values are 100-512000.
-     * Special values are 0 - 'avi_default'.
+     * Special values are 0 - avi_default.
      * Field introduced in 18.2.8.
      * Unit is mb.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return absoluteSize
      */
@@ -49,9 +50,10 @@ public class CaptureFileSize  {
      * Maximum size in mb.
      * Set 0 for avi default size.
      * Allowed values are 100-512000.
-     * Special values are 0 - 'avi_default'.
+     * Special values are 0 - avi_default.
      * Field introduced in 18.2.8.
      * Unit is mb.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param absoluteSize set the absoluteSize.
      */
@@ -65,6 +67,7 @@ public class CaptureFileSize  {
      * Set 0 for avi default size.
      * Allowed values are 0-75.
      * Field introduced in 18.2.8.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return percentageSize
      */
@@ -78,6 +81,7 @@ public class CaptureFileSize  {
      * Set 0 for avi default size.
      * Allowed values are 0-75.
      * Field introduced in 18.2.8.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param percentageSize set the percentageSize.
      */

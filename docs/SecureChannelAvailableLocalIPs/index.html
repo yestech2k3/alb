@@ -187,7 +187,7 @@ font-style: italic;
     <div class="app-desc">CLI ``` - show securechannelavailablelocalips <key> ``` </div>
     <div class="app-desc">More information: <a href="https://avinetworks.com/contact-us">https://avinetworks.com/contact-us</a></div>
     <div class="app-desc">Contact Info: <a href="support@avinetworks.com">support@avinetworks.com</a></div>
-    <div class="app-desc">Version: 21.1.1</div>
+    <div class="app-desc">Version: 22.1.1</div>
     <div class="app-desc">BasePath:/api</div>
     <div class="license-info">All rights reserved</div>
     <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
@@ -260,11 +260,10 @@ font-style: italic;
   "next" : "aeiou",
   "count" : 123,
   "results" : [ {
-    "free_controller_ips" : [ "aeiou" ],
     "name" : "aeiou",
     "start" : 123,
     "end" : 123,
-    "free_ips" : [ "aeiou" ],
+    "free_ips" : [ "" ],
     "uuid" : "aeiou",
     "url" : "aeiou",
     "_last_modified" : "aeiou"
@@ -322,11 +321,10 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "free_controller_ips" : [ "aeiou" ],
   "name" : "aeiou",
   "start" : 123,
   "end" : 123,
-  "free_ips" : [ "aeiou" ],
+  "free_ips" : [ "" ],
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
@@ -455,11 +453,10 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "free_controller_ips" : [ "aeiou" ],
   "name" : "aeiou",
   "start" : 123,
   "end" : 123,
-  "free_ips" : [ "aeiou" ],
+  "free_ips" : [ "" ],
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
@@ -528,11 +525,10 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "free_controller_ips" : [ "aeiou" ],
   "name" : "aeiou",
   "start" : 123,
   "end" : 123,
-  "free_ips" : [ "aeiou" ],
+  "free_ips" : [ "" ],
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
@@ -601,11 +597,10 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "free_controller_ips" : [ "aeiou" ],
   "name" : "aeiou",
   "start" : 123,
   "end" : 123,
-  "free_ips" : [ "aeiou" ],
+  "free_ips" : [ "" ],
   "uuid" : "aeiou",
   "url" : "aeiou",
   "_last_modified" : "aeiou"
@@ -642,13 +637,12 @@ font-style: italic;
     <h3 class="field-label"><a name="SecureChannelAvailableLocalIPs">SecureChannelAvailableLocalIPs</a> <a class="up" href="#__Models">Up</a></h3>
     <div class="field-items">
       <div class="param">_last_modified (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> UNIX time since epoch in microseconds. Units(MICROSECONDS). </div>
-<div class="param">end (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of end. format: int32</div>
-<div class="param">free_controller_ips (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> free_controller_ips of SecureChannelAvailableLocalIPs. </div>
-<div class="param">free_ips (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> free_ips of SecureChannelAvailableLocalIPs. </div>
-<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the object. </div>
-<div class="param">start (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Number of start. format: int32</div>
+<div class="param">end (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">free_ips (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
+<div class="param">start (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. format: int32</div>
 <div class="param">url (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> url </div>
-<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Unique object identifier of the object. </div>
+<div class="param">uuid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">

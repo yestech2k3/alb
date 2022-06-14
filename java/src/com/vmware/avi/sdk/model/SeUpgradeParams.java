@@ -24,9 +24,6 @@ public class SeUpgradeParams extends AviRestResource  {
     @JsonProperty("disruptive")
     private Boolean disruptive = false;
 
-    @JsonProperty("force")
-    private Boolean force;
-
     @JsonProperty("patch")
     private Boolean patch = false;
 
@@ -42,9 +39,6 @@ public class SeUpgradeParams extends AviRestResource  {
     @JsonProperty("suspend_on_failure")
     private Boolean suspendOnFailure = false;
 
-    @JsonProperty("test")
-    private Boolean test;
-
     @JsonProperty("uuid")
     private String uuid = null;
 
@@ -53,6 +47,7 @@ public class SeUpgradeParams extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * This field is used to disable scale-in/scale out operations during upgrade operations.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return disruptive
      */
@@ -63,6 +58,7 @@ public class SeUpgradeParams extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * This field is used to disable scale-in/scale out operations during upgrade operations.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param disruptive set the disruptive.
      */
@@ -72,26 +68,9 @@ public class SeUpgradeParams extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * @return force
-     */
-    public Boolean getForce() {
-        return force;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * @param force set the force.
-     */
-    public void setForce(Boolean  force) {
-        this.force = force;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Upgrade system with patch upgrade.
      * Field introduced in 17.2.2.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return patch
      */
@@ -103,6 +82,7 @@ public class SeUpgradeParams extends AviRestResource  {
      * This is the setter method to the attribute.
      * Upgrade system with patch upgrade.
      * Field introduced in 17.2.2.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param patch set the patch.
      */
@@ -113,6 +93,7 @@ public class SeUpgradeParams extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Rollback system with patch upgrade.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return patchRollback
      */
@@ -123,6 +104,7 @@ public class SeUpgradeParams extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Rollback system with patch upgrade.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param patchRollback set the patchRollback.
      */
@@ -133,6 +115,7 @@ public class SeUpgradeParams extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It is used in rollback operations.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return rollback
      */
@@ -143,6 +126,7 @@ public class SeUpgradeParams extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * It is used in rollback operations.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param rollback set the rollback.
      */
@@ -153,6 +137,7 @@ public class SeUpgradeParams extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 17.2.2.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -164,6 +149,7 @@ public class SeUpgradeParams extends AviRestResource  {
      * This is the setter method. this will set the seGroupRefs
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 17.2.2.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -175,6 +161,7 @@ public class SeUpgradeParams extends AviRestResource  {
      * This is the setter method this will set the seGroupRefs
      * It is a reference to an object of type serviceenginegroup.
      * Field introduced in 17.2.2.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seGroupRefs
      */
@@ -191,6 +178,7 @@ public class SeUpgradeParams extends AviRestResource  {
      * When set to true, if there is any failure during the se upgrade, upgrade will be suspended for this se group and manual intervention would be
      * needed to resume the upgrade.
      * Field introduced in 17.1.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return suspendOnFailure
      */
@@ -203,6 +191,7 @@ public class SeUpgradeParams extends AviRestResource  {
      * When set to true, if there is any failure during the se upgrade, upgrade will be suspended for this se group and manual intervention would be
      * needed to resume the upgrade.
      * Field introduced in 17.1.4.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param suspendOnFailure set the suspendOnFailure.
      */
@@ -212,25 +201,7 @@ public class SeUpgradeParams extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * @return test
-     */
-    public Boolean getTest() {
-        return test;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Field deprecated in 18.2.10, 20.1.1.
-     * @param test set the test.
-     */
-    public void setTest(Boolean  test) {
-        this.test = test;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -240,7 +211,7 @@ public class SeUpgradeParams extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -259,9 +230,7 @@ public class SeUpgradeParams extends AviRestResource  {
       }
       SeUpgradeParams objSeUpgradeParams = (SeUpgradeParams) o;
       return   Objects.equals(this.uuid, objSeUpgradeParams.uuid)&&
-  Objects.equals(this.force, objSeUpgradeParams.force)&&
   Objects.equals(this.disruptive, objSeUpgradeParams.disruptive)&&
-  Objects.equals(this.test, objSeUpgradeParams.test)&&
   Objects.equals(this.rollback, objSeUpgradeParams.rollback)&&
   Objects.equals(this.suspendOnFailure, objSeUpgradeParams.suspendOnFailure)&&
   Objects.equals(this.patch, objSeUpgradeParams.patch)&&
@@ -274,13 +243,11 @@ public class SeUpgradeParams extends AviRestResource  {
       StringBuilder sb = new StringBuilder();
       sb.append("class SeUpgradeParams {\n");
                   sb.append("    disruptive: ").append(toIndentedString(disruptive)).append("\n");
-                        sb.append("    force: ").append(toIndentedString(force)).append("\n");
                         sb.append("    patch: ").append(toIndentedString(patch)).append("\n");
                         sb.append("    patchRollback: ").append(toIndentedString(patchRollback)).append("\n");
                         sb.append("    rollback: ").append(toIndentedString(rollback)).append("\n");
                         sb.append("    seGroupRefs: ").append(toIndentedString(seGroupRefs)).append("\n");
                         sb.append("    suspendOnFailure: ").append(toIndentedString(suspendOnFailure)).append("\n");
-                        sb.append("    test: ").append(toIndentedString(test)).append("\n");
                         sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
                   sb.append("}");
       return sb.toString();

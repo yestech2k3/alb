@@ -75,6 +75,9 @@ public class ALBServicesCase  {
     @JsonProperty("last_modified_date")
     private String lastModifiedDate = null;
 
+    @JsonProperty("mode")
+    private String mode = null;
+
     @JsonProperty("patch_version")
     private String patchVersion = null;
 
@@ -101,6 +104,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return assetId
      */
@@ -111,6 +115,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param assetId set the assetId.
      */
@@ -120,6 +125,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return caseAttachments
      */
@@ -130,6 +136,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method. this will set the caseAttachments
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return caseAttachments
      */
@@ -140,6 +147,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method this will set the caseAttachments
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return caseAttachments
      */
@@ -154,6 +162,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return caseCreatedBy
      */
@@ -164,6 +173,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param caseCreatedBy set the caseCreatedBy.
      */
@@ -174,6 +184,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return caseNumber
      */
@@ -184,6 +195,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param caseNumber set the caseNumber.
      */
@@ -194,6 +206,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return caseStatus
      */
@@ -204,6 +217,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param caseStatus set the caseStatus.
      */
@@ -215,6 +229,7 @@ public class ALBServicesCase  {
      * This is the getter method this will return the attribute value.
      * Contact information associated to particular case.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return contactInfo
      */
@@ -226,6 +241,7 @@ public class ALBServicesCase  {
      * This is the setter method to the attribute.
      * Contact information associated to particular case.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param contactInfo set the contactInfo.
      */
@@ -236,6 +252,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return createdDate
      */
@@ -246,6 +263,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param createdDate set the createdDate.
      */
@@ -256,6 +274,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return customTag
      */
@@ -266,6 +285,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param customTag set the customTag.
      */
@@ -276,6 +296,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return deploymentEnvironment
      */
@@ -286,6 +307,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param deploymentEnvironment set the deploymentEnvironment.
      */
@@ -296,6 +318,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -306,6 +329,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -317,6 +341,7 @@ public class ALBServicesCase  {
      * This is the getter method this will return the attribute value.
      * Email of the point of contact for a particular support case.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return email
      */
@@ -328,6 +353,7 @@ public class ALBServicesCase  {
      * This is the setter method to the attribute.
      * Email of the point of contact for a particular support case.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param email set the email.
      */
@@ -338,6 +364,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return environment
      */
@@ -348,6 +375,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param environment set the environment.
      */
@@ -359,6 +387,7 @@ public class ALBServicesCase  {
      * This is the getter method this will return the attribute value.
      * Business justification for a feature request.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return frBusinessJustification
      */
@@ -370,6 +399,7 @@ public class ALBServicesCase  {
      * This is the setter method to the attribute.
      * Business justification for a feature request.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param frBusinessJustification set the frBusinessJustification.
      */
@@ -381,6 +411,7 @@ public class ALBServicesCase  {
      * This is the getter method this will return the attribute value.
      * Current solution/workaround for a feature request.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return frCurrentSolution
      */
@@ -392,6 +423,7 @@ public class ALBServicesCase  {
      * This is the setter method to the attribute.
      * Current solution/workaround for a feature request.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param frCurrentSolution set the frCurrentSolution.
      */
@@ -403,6 +435,7 @@ public class ALBServicesCase  {
      * This is the getter method this will return the attribute value.
      * Expected date of delivery for a feature request in yyyy-mm-dd format.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return frTiming
      */
@@ -414,6 +447,7 @@ public class ALBServicesCase  {
      * This is the setter method to the attribute.
      * Expected date of delivery for a feature request in yyyy-mm-dd format.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param frTiming set the frTiming.
      */
@@ -425,6 +459,7 @@ public class ALBServicesCase  {
      * This is the getter method this will return the attribute value.
      * Possible use cases for a feature request.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return frUseCases
      */
@@ -436,6 +471,7 @@ public class ALBServicesCase  {
      * This is the setter method to the attribute.
      * Possible use cases for a feature request.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param frUseCases set the frUseCases.
      */
@@ -446,6 +482,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return id
      */
@@ -456,6 +493,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param id set the id.
      */
@@ -466,6 +504,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return lastModifiedDate
      */
@@ -476,6 +515,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param lastModifiedDate set the lastModifiedDate.
      */
@@ -485,7 +525,34 @@ public class ALBServicesCase  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Stores the alb services configuration mode.
+     * Enum options - MODE_UNKNOWN, SALESFORCE, SYSTEST, MYVMWARE.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return mode
+     */
+    public String getMode() {
+        return mode;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Stores the alb services configuration mode.
+     * Enum options - MODE_UNKNOWN, SALESFORCE, SYSTEST, MYVMWARE.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param mode set the mode.
+     */
+    public void setMode(String  mode) {
+        this.mode = mode;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return patchVersion
      */
@@ -496,6 +563,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param patchVersion set the patchVersion.
      */
@@ -506,6 +574,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return severity
      */
@@ -516,6 +585,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param severity set the severity.
      */
@@ -526,6 +596,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return status
      */
@@ -536,6 +607,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param status set the status.
      */
@@ -546,6 +618,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return subject
      */
@@ -556,6 +629,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param subject set the subject.
      */
@@ -566,6 +640,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return time
      */
@@ -576,6 +651,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param time set the time.
      */
@@ -586,6 +662,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return type
      */
@@ -596,6 +673,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param type set the type.
      */
@@ -606,6 +684,7 @@ public class ALBServicesCase  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return version
      */
@@ -616,6 +695,7 @@ public class ALBServicesCase  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param version set the version.
      */
@@ -657,7 +737,8 @@ public class ALBServicesCase  {
   Objects.equals(this.frUseCases, objALBServicesCase.frUseCases)&&
   Objects.equals(this.frCurrentSolution, objALBServicesCase.frCurrentSolution)&&
   Objects.equals(this.frBusinessJustification, objALBServicesCase.frBusinessJustification)&&
-  Objects.equals(this.frTiming, objALBServicesCase.frTiming);
+  Objects.equals(this.frTiming, objALBServicesCase.frTiming)&&
+  Objects.equals(this.mode, objALBServicesCase.mode);
     }
 
     @Override
@@ -682,6 +763,7 @@ public class ALBServicesCase  {
                         sb.append("    frUseCases: ").append(toIndentedString(frUseCases)).append("\n");
                         sb.append("    id: ").append(toIndentedString(id)).append("\n");
                         sb.append("    lastModifiedDate: ").append(toIndentedString(lastModifiedDate)).append("\n");
+                        sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
                         sb.append("    patchVersion: ").append(toIndentedString(patchVersion)).append("\n");
                         sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
                         sb.append("    status: ").append(toIndentedString(status)).append("\n");

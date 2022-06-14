@@ -1,7 +1,15 @@
+#!/usr/bin/env python3
+
+############################################################################
+# ========================================================================
+# Copyright 2021 VMware, Inc.  All rights reserved. VMware Confidential
+# ========================================================================
+###
+
 # Copyright 2021 VMware, Inc.
 # SPDX-License-Identifier: Apache License 2.0
 
-#!/usr/bin/env python3
+
 import argparse
 import json
 import logging
@@ -223,7 +231,7 @@ Optional:
     parser.add_argument('--cloud_name', help='cloud name for auto upload',
                         default='Default-Cloud')
 
-    parser.add_argument('--controller_version', default='17.1.1',
+    parser.add_argument('--controller_version', default='18.2.6',
                         help='Specify the particular version')
 
     parser.add_argument('-f', '--input_file',

@@ -27,6 +27,9 @@ public class MemoryBalancerRequest extends AviRestResource  {
     @JsonProperty("name")
     private String name = null;
 
+    @JsonProperty("node_uuid")
+    private String nodeUuid = null;
+
     @JsonProperty("process_info")
     private ProcessInfo processInfo = null;
 
@@ -51,6 +54,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Current details regarding controller.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerInfo
      */
@@ -62,6 +66,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the setter method to the attribute.
      * Current details regarding controller.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param controllerInfo set the controllerInfo.
      */
@@ -73,6 +78,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Name of controller process.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -84,6 +90,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the setter method to the attribute.
      * Name of controller process.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -93,8 +100,33 @@ public class MemoryBalancerRequest extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Uuid of node.
+     * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return nodeUuid
+     */
+    public String getNodeUuid() {
+        return nodeUuid;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Uuid of node.
+     * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param nodeUuid set the nodeUuid.
+     */
+    public void setNodeUuid(String  nodeUuid) {
+        this.nodeUuid = nodeUuid;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Current process information of the controller process.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return processInfo
      */
@@ -106,6 +138,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the setter method to the attribute.
      * Current process information of the controller process.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param processInfo set the processInfo.
      */
@@ -117,6 +150,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Instance of the controller process.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return processInstance
      */
@@ -128,6 +162,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the setter method to the attribute.
      * Instance of the controller process.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param processInstance set the processInstance.
      */
@@ -140,6 +175,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * Uuid of tenant object.
      * It is a reference to an object of type tenant.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -152,6 +188,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * Uuid of tenant object.
      * It is a reference to an object of type tenant.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -163,6 +200,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Time at which memory balancer request was created/updated.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return timestamp
      */
@@ -174,6 +212,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the setter method to the attribute.
      * Time at which memory balancer request was created/updated.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param timestamp set the timestamp.
      */
@@ -202,6 +241,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Uuid of memory balancer request object.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -213,6 +253,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
      * This is the setter method to the attribute.
      * Uuid of memory balancer request object.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -236,6 +277,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
   Objects.equals(this.processInfo, objMemoryBalancerRequest.processInfo)&&
   Objects.equals(this.processInstance, objMemoryBalancerRequest.processInstance)&&
   Objects.equals(this.controllerInfo, objMemoryBalancerRequest.controllerInfo)&&
+  Objects.equals(this.nodeUuid, objMemoryBalancerRequest.nodeUuid)&&
   Objects.equals(this.tenantRef, objMemoryBalancerRequest.tenantRef);
     }
 
@@ -245,6 +287,7 @@ public class MemoryBalancerRequest extends AviRestResource  {
       sb.append("class MemoryBalancerRequest {\n");
                   sb.append("    controllerInfo: ").append(toIndentedString(controllerInfo)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
+                        sb.append("    nodeUuid: ").append(toIndentedString(nodeUuid)).append("\n");
                         sb.append("    processInfo: ").append(toIndentedString(processInfo)).append("\n");
                         sb.append("    processInstance: ").append(toIndentedString(processInstance)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");

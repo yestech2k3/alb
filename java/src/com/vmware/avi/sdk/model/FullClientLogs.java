@@ -21,14 +21,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FullClientLogs  {
-    @JsonProperty("all_headers")
-    private Boolean allHeaders;
-
     @JsonProperty("duration")
     private Integer duration = 30;
 
     @JsonProperty("enabled")
-    private Boolean enabled = false;
+    private Boolean enabled;
 
     @JsonProperty("throttle")
     private Integer throttle = 10;
@@ -37,32 +34,11 @@ public class FullClientLogs  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * [deprecated] log all headers.
-     * Please use the all_headers flag in analyticspolicy.
-     * Field deprecated in 18.1.4, 18.2.1.
-     * @return allHeaders
-     */
-    public Boolean getAllHeaders() {
-        return allHeaders;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * [deprecated] log all headers.
-     * Please use the all_headers flag in analyticspolicy.
-     * Field deprecated in 18.1.4, 18.2.1.
-     * @param allHeaders set the allHeaders.
-     */
-    public void setAllHeaders(Boolean  allHeaders) {
-        this.allHeaders = allHeaders;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * How long should the system capture all logs, measured in minutes.
      * Set to 0 for infinite.
-     * Special values are 0 - 'infinite'.
+     * Special values are 0 - infinite.
      * Unit is min.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30.
      * @return duration
      */
@@ -74,8 +50,9 @@ public class FullClientLogs  {
      * This is the setter method to the attribute.
      * How long should the system capture all logs, measured in minutes.
      * Set to 0 for infinite.
-     * Special values are 0 - 'infinite'.
+     * Special values are 0 - infinite.
      * Unit is min.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 30.
      * @param duration set the duration.
      */
@@ -87,9 +64,9 @@ public class FullClientLogs  {
      * This is the getter method this will return the attribute value.
      * Capture all client logs including connections and requests.
      * When deactivated, only errors will be logged.
-     * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
-     * Special default for basic edition is false, essentials edition is false, enterprise is false.
-     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
+     * cloud services edition.
+     * Special default for essentials edition is false, basic edition is false, enterprise is false.
      * @return enabled
      */
     public Boolean getEnabled() {
@@ -100,9 +77,9 @@ public class FullClientLogs  {
      * This is the setter method to the attribute.
      * Capture all client logs including connections and requests.
      * When deactivated, only errors will be logged.
-     * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
-     * Special default for basic edition is false, essentials edition is false, enterprise is false.
-     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
+     * cloud services edition.
+     * Special default for essentials edition is false, basic edition is false, enterprise is false.
      * @param enabled set the enabled.
      */
     public void setEnabled(Boolean  enabled) {
@@ -116,6 +93,7 @@ public class FullClientLogs  {
      * Set it to zero (0) to deactivate throttling.
      * Field introduced in 17.1.3.
      * Unit is per_second.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @return throttle
      */
@@ -130,6 +108,7 @@ public class FullClientLogs  {
      * Set it to zero (0) to deactivate throttling.
      * Field introduced in 17.1.3.
      * Unit is per_second.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 10.
      * @param throttle set the throttle.
      */
@@ -149,7 +128,6 @@ public class FullClientLogs  {
       FullClientLogs objFullClientLogs = (FullClientLogs) o;
       return   Objects.equals(this.enabled, objFullClientLogs.enabled)&&
   Objects.equals(this.duration, objFullClientLogs.duration)&&
-  Objects.equals(this.allHeaders, objFullClientLogs.allHeaders)&&
   Objects.equals(this.throttle, objFullClientLogs.throttle);
     }
 
@@ -157,8 +135,7 @@ public class FullClientLogs  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class FullClientLogs {\n");
-                  sb.append("    allHeaders: ").append(toIndentedString(allHeaders)).append("\n");
-                        sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
+                  sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
                         sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
                         sb.append("    throttle: ").append(toIndentedString(throttle)).append("\n");
                   sb.append("}");

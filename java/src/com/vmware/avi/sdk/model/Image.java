@@ -30,8 +30,20 @@ public class Image extends AviRestResource  {
     @JsonProperty("controller_patch_name")
     private String controllerPatchName = null;
 
-    @JsonProperty("controller_patch_uuid")
-    private String controllerPatchUuid = null;
+    @JsonProperty("controller_patch_ref")
+    private String controllerPatchRef = null;
+
+    @JsonProperty("duration")
+    private Integer duration = null;
+
+    @JsonProperty("end_time")
+    private String endTime = null;
+
+    @JsonProperty("events")
+    private List<ImageEventMap> events = null;
+
+    @JsonProperty("img_state")
+    private ImageUploadOpsStatus imgState = null;
 
     @JsonProperty("migrations")
     private SupportedMigrations migrations = null;
@@ -39,20 +51,29 @@ public class Image extends AviRestResource  {
     @JsonProperty("name")
     private String name = null;
 
+    @JsonProperty("progress")
+    private Integer progress = 0;
+
     @JsonProperty("se_info")
     private PackageDetails seInfo = null;
 
     @JsonProperty("se_patch_name")
     private String sePatchName = null;
 
-    @JsonProperty("se_patch_uuid")
-    private String sePatchUuid = null;
+    @JsonProperty("se_patch_ref")
+    private String sePatchRef = null;
 
-    @JsonProperty("status")
-    private String status = null;
+    @JsonProperty("start_time")
+    private String startTime = null;
+
+    @JsonProperty("tasks_completed")
+    private Integer tasksCompleted = 0;
 
     @JsonProperty("tenant_ref")
     private String tenantRef = null;
+
+    @JsonProperty("total_tasks")
+    private Integer totalTasks = 0;
 
     @JsonProperty("type")
     private String type = null;
@@ -71,6 +92,7 @@ public class Image extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * This field describes the cloud info specific to the base image.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudInfoValues
      */
@@ -82,6 +104,7 @@ public class Image extends AviRestResource  {
      * This is the setter method. this will set the cloudInfoValues
      * This field describes the cloud info specific to the base image.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudInfoValues
      */
@@ -93,6 +116,7 @@ public class Image extends AviRestResource  {
      * This is the setter method this will set the cloudInfoValues
      * This field describes the cloud info specific to the base image.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return cloudInfoValues
      */
@@ -108,6 +132,7 @@ public class Image extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Controller package details.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerInfo
      */
@@ -119,6 +144,7 @@ public class Image extends AviRestResource  {
      * This is the setter method to the attribute.
      * Controller package details.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param controllerInfo set the controllerInfo.
      */
@@ -130,6 +156,7 @@ public class Image extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Mandatory controller patch name that is applied along with this base image.
      * Field introduced in 18.2.10, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerPatchName
      */
@@ -141,6 +168,7 @@ public class Image extends AviRestResource  {
      * This is the setter method to the attribute.
      * Mandatory controller patch name that is applied along with this base image.
      * Field introduced in 18.2.10, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param controllerPatchName set the controllerPatchName.
      */
@@ -151,29 +179,147 @@ public class Image extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It references the controller-patch associated with the uber image.
+     * It is a reference to an object of type image.
      * Field introduced in 18.2.8, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return controllerPatchUuid
+     * @return controllerPatchRef
      */
-    public String getControllerPatchUuid() {
-        return controllerPatchUuid;
+    public String getControllerPatchRef() {
+        return controllerPatchRef;
     }
 
     /**
      * This is the setter method to the attribute.
      * It references the controller-patch associated with the uber image.
+     * It is a reference to an object of type image.
      * Field introduced in 18.2.8, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param controllerPatchUuid set the controllerPatchUuid.
+     * @param controllerPatchRef set the controllerPatchRef.
      */
-    public void setControllerPatchUuid(String  controllerPatchUuid) {
-        this.controllerPatchUuid = controllerPatchUuid;
+    public void setControllerPatchRef(String  controllerPatchRef) {
+        this.controllerPatchRef = controllerPatchRef;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Time taken to upload the image in seconds.
+     * Field introduced in 21.1.3.
+     * Unit is sec.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return duration
+     */
+    public Integer getDuration() {
+        return duration;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Time taken to upload the image in seconds.
+     * Field introduced in 21.1.3.
+     * Unit is sec.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param duration set the duration.
+     */
+    public void setDuration(Integer  duration) {
+        this.duration = duration;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Image upload end time.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return endTime
+     */
+    public String getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Image upload end time.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param endTime set the endTime.
+     */
+    public void setEndTime(String  endTime) {
+        this.endTime = endTime;
+    }
+    /**
+     * This is the getter method this will return the attribute value.
+     * Image events for image upload operation.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return events
+     */
+    public List<ImageEventMap> getEvents() {
+        return events;
+    }
+
+    /**
+     * This is the setter method. this will set the events
+     * Image events for image upload operation.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return events
+     */
+    public void setEvents(List<ImageEventMap>  events) {
+        this.events = events;
+    }
+
+    /**
+     * This is the setter method this will set the events
+     * Image events for image upload operation.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return events
+     */
+    public Image addEventsItem(ImageEventMap eventsItem) {
+      if (this.events == null) {
+        this.events = new ArrayList<ImageEventMap>();
+      }
+      this.events.add(eventsItem);
+      return this;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Status of the image.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return imgState
+     */
+    public ImageUploadOpsStatus getImgState() {
+        return imgState;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Status of the image.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param imgState set the imgState.
+     */
+    public void setImgState(ImageUploadOpsStatus imgState) {
+        this.imgState = imgState;
     }
 
     /**
      * This is the getter method this will return the attribute value.
      * This field describes the api migration related information.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return migrations
      */
@@ -185,6 +331,7 @@ public class Image extends AviRestResource  {
      * This is the setter method to the attribute.
      * This field describes the api migration related information.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param migrations set the migrations.
      */
@@ -196,6 +343,7 @@ public class Image extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Name of the image.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -207,6 +355,7 @@ public class Image extends AviRestResource  {
      * This is the setter method to the attribute.
      * Name of the image.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -216,8 +365,37 @@ public class Image extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Image upload progress which holds value between 0-100.
+     * Allowed values are 0-100.
+     * Field introduced in 21.1.3.
+     * Unit is percent.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+     * @return progress
+     */
+    public Integer getProgress() {
+        return progress;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Image upload progress which holds value between 0-100.
+     * Allowed values are 0-100.
+     * Field introduced in 21.1.3.
+     * Unit is percent.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+     * @param progress set the progress.
+     */
+    public void setProgress(Integer  progress) {
+        this.progress = progress;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Se package details.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return seInfo
      */
@@ -229,6 +407,7 @@ public class Image extends AviRestResource  {
      * This is the setter method to the attribute.
      * Se package details.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param seInfo set the seInfo.
      */
@@ -240,6 +419,7 @@ public class Image extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Mandatory serviceengine patch name that is applied along with this base image.
      * Field introduced in 18.2.10, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sePatchName
      */
@@ -251,6 +431,7 @@ public class Image extends AviRestResource  {
      * This is the setter method to the attribute.
      * Mandatory serviceengine patch name that is applied along with this base image.
      * Field introduced in 18.2.10, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sePatchName set the sePatchName.
      */
@@ -261,51 +442,75 @@ public class Image extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * It references the service engine patch associated with the uber image.
+     * It is a reference to an object of type image.
      * Field introduced in 18.2.8, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return sePatchUuid
+     * @return sePatchRef
      */
-    public String getSePatchUuid() {
-        return sePatchUuid;
+    public String getSePatchRef() {
+        return sePatchRef;
     }
 
     /**
      * This is the setter method to the attribute.
      * It references the service engine patch associated with the uber image.
+     * It is a reference to an object of type image.
      * Field introduced in 18.2.8, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param sePatchUuid set the sePatchUuid.
+     * @param sePatchRef set the sePatchRef.
      */
-    public void setSePatchUuid(String  sePatchUuid) {
-        this.sePatchUuid = sePatchUuid;
+    public void setSePatchRef(String  sePatchRef) {
+        this.sePatchRef = sePatchRef;
     }
 
     /**
      * This is the getter method this will return the attribute value.
-     * Status to check if the image is present.
-     * Enum options - SYSERR_SUCCESS, SYSERR_FAILURE, SYSERR_OUT_OF_MEMORY, SYSERR_NO_ENT, SYSERR_INVAL, SYSERR_ACCESS, SYSERR_FAULT, SYSERR_IO,
-     * SYSERR_TIMEOUT, SYSERR_NOT_SUPPORTED, SYSERR_NOT_READY, SYSERR_UPGRADE_IN_PROGRESS, SYSERR_WARM_START_IN_PROGRESS, SYSERR_TRY_AGAIN,
-     * SYSERR_NOT_UPGRADING, SYSERR_PENDING, SYSERR_EVENT_GEN_FAILURE, SYSERR_CONFIG_PARAM_MISSING, SYSERR_RANGE, SYSERR_BAD_REQUEST...
-     * Field introduced in 18.2.6.
+     * Image upload start time.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return status
+     * @return startTime
      */
-    public String getStatus() {
-        return status;
+    public String getStartTime() {
+        return startTime;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Status to check if the image is present.
-     * Enum options - SYSERR_SUCCESS, SYSERR_FAILURE, SYSERR_OUT_OF_MEMORY, SYSERR_NO_ENT, SYSERR_INVAL, SYSERR_ACCESS, SYSERR_FAULT, SYSERR_IO,
-     * SYSERR_TIMEOUT, SYSERR_NOT_SUPPORTED, SYSERR_NOT_READY, SYSERR_UPGRADE_IN_PROGRESS, SYSERR_WARM_START_IN_PROGRESS, SYSERR_TRY_AGAIN,
-     * SYSERR_NOT_UPGRADING, SYSERR_PENDING, SYSERR_EVENT_GEN_FAILURE, SYSERR_CONFIG_PARAM_MISSING, SYSERR_RANGE, SYSERR_BAD_REQUEST...
-     * Field introduced in 18.2.6.
+     * Image upload start time.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param status set the status.
+     * @param startTime set the startTime.
      */
-    public void setStatus(String  status) {
-        this.status = status;
+    public void setStartTime(String  startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Completed set of tasks for image upload.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+     * @return tasksCompleted
+     */
+    public Integer getTasksCompleted() {
+        return tasksCompleted;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Completed set of tasks for image upload.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+     * @param tasksCompleted set the tasksCompleted.
+     */
+    public void setTasksCompleted(Integer  tasksCompleted) {
+        this.tasksCompleted = tasksCompleted;
     }
 
     /**
@@ -313,6 +518,7 @@ public class Image extends AviRestResource  {
      * Tenant that this object belongs to.
      * It is a reference to an object of type tenant.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -325,6 +531,7 @@ public class Image extends AviRestResource  {
      * Tenant that this object belongs to.
      * It is a reference to an object of type tenant.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -334,9 +541,34 @@ public class Image extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Total number of tasks for image upload.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+     * @return totalTasks
+     */
+    public Integer getTotalTasks() {
+        return totalTasks;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Total number of tasks for image upload.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 0.
+     * @param totalTasks set the totalTasks.
+     */
+    public void setTotalTasks(Integer  totalTasks) {
+        this.totalTasks = totalTasks;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Type of the image patch/system.
      * Enum options - IMAGE_TYPE_PATCH, IMAGE_TYPE_SYSTEM, IMAGE_TYPE_MUST_CHECK.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return type
      */
@@ -349,6 +581,7 @@ public class Image extends AviRestResource  {
      * Type of the image patch/system.
      * Enum options - IMAGE_TYPE_PATCH, IMAGE_TYPE_SYSTEM, IMAGE_TYPE_MUST_CHECK.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param type set the type.
      */
@@ -360,6 +593,7 @@ public class Image extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Status to check if the image is an uber bundle.
      * Field introduced in 18.2.8, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return uberBundle
      */
@@ -371,6 +605,7 @@ public class Image extends AviRestResource  {
      * This is the setter method to the attribute.
      * Status to check if the image is an uber bundle.
      * Field introduced in 18.2.8, 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param uberBundle set the uberBundle.
      */
@@ -399,6 +634,7 @@ public class Image extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Uuid of the image.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -410,6 +646,7 @@ public class Image extends AviRestResource  {
      * This is the setter method to the attribute.
      * Uuid of the image.
      * Field introduced in 18.2.6.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -433,13 +670,20 @@ public class Image extends AviRestResource  {
   Objects.equals(this.seInfo, objImage.seInfo)&&
   Objects.equals(this.migrations, objImage.migrations)&&
   Objects.equals(this.type, objImage.type)&&
-  Objects.equals(this.status, objImage.status)&&
   Objects.equals(this.uberBundle, objImage.uberBundle)&&
-  Objects.equals(this.controllerPatchUuid, objImage.controllerPatchUuid)&&
-  Objects.equals(this.sePatchUuid, objImage.sePatchUuid)&&
+  Objects.equals(this.controllerPatchRef, objImage.controllerPatchRef)&&
+  Objects.equals(this.sePatchRef, objImage.sePatchRef)&&
   Objects.equals(this.cloudInfoValues, objImage.cloudInfoValues)&&
   Objects.equals(this.controllerPatchName, objImage.controllerPatchName)&&
   Objects.equals(this.sePatchName, objImage.sePatchName)&&
+  Objects.equals(this.imgState, objImage.imgState)&&
+  Objects.equals(this.events, objImage.events)&&
+  Objects.equals(this.tasksCompleted, objImage.tasksCompleted)&&
+  Objects.equals(this.totalTasks, objImage.totalTasks)&&
+  Objects.equals(this.progress, objImage.progress)&&
+  Objects.equals(this.startTime, objImage.startTime)&&
+  Objects.equals(this.endTime, objImage.endTime)&&
+  Objects.equals(this.duration, objImage.duration)&&
   Objects.equals(this.tenantRef, objImage.tenantRef);
     }
 
@@ -450,14 +694,21 @@ public class Image extends AviRestResource  {
                   sb.append("    cloudInfoValues: ").append(toIndentedString(cloudInfoValues)).append("\n");
                         sb.append("    controllerInfo: ").append(toIndentedString(controllerInfo)).append("\n");
                         sb.append("    controllerPatchName: ").append(toIndentedString(controllerPatchName)).append("\n");
-                        sb.append("    controllerPatchUuid: ").append(toIndentedString(controllerPatchUuid)).append("\n");
+                        sb.append("    controllerPatchRef: ").append(toIndentedString(controllerPatchRef)).append("\n");
+                        sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
+                        sb.append("    endTime: ").append(toIndentedString(endTime)).append("\n");
+                        sb.append("    events: ").append(toIndentedString(events)).append("\n");
+                        sb.append("    imgState: ").append(toIndentedString(imgState)).append("\n");
                         sb.append("    migrations: ").append(toIndentedString(migrations)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
+                        sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
                         sb.append("    seInfo: ").append(toIndentedString(seInfo)).append("\n");
                         sb.append("    sePatchName: ").append(toIndentedString(sePatchName)).append("\n");
-                        sb.append("    sePatchUuid: ").append(toIndentedString(sePatchUuid)).append("\n");
-                        sb.append("    status: ").append(toIndentedString(status)).append("\n");
+                        sb.append("    sePatchRef: ").append(toIndentedString(sePatchRef)).append("\n");
+                        sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
+                        sb.append("    tasksCompleted: ").append(toIndentedString(tasksCompleted)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");
+                        sb.append("    totalTasks: ").append(toIndentedString(totalTasks)).append("\n");
                         sb.append("    type: ").append(toIndentedString(type)).append("\n");
                         sb.append("    uberBundle: ").append(toIndentedString(uberBundle)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");

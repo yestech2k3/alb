@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VirtualServiceResource  {
-    @JsonProperty("is_exclusive")
-    private Boolean isExclusive;
-
     @JsonProperty("memory")
     private Integer memory = null;
 
@@ -36,37 +33,11 @@ public class VirtualServiceResource  {
     @JsonProperty("num_vcpus")
     private Integer numVcpus = null;
 
-    @JsonProperty("scalein_primary")
-    private Boolean scaleinPrimary;
-
-    @JsonProperty("scalein_se_uuid")
-    private String scaleinSeUuid;
-
 
 
     /**
      * This is the getter method this will return the attribute value.
-     * This field is not being used.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * @return isExclusive
-     */
-    public Boolean getIsExclusive() {
-        return isExclusive;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * This field is not being used.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * @param isExclusive set the isExclusive.
-     */
-    public void setIsExclusive(Boolean  isExclusive) {
-        this.isExclusive = isExclusive;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Placeholder for description of property memory of obj type virtualserviceresource field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return memory
      */
@@ -76,7 +47,7 @@ public class VirtualServiceResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property memory of obj type virtualserviceresource field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param memory set the memory.
      */
@@ -86,7 +57,7 @@ public class VirtualServiceResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property num_se of obj type virtualserviceresource field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numSe
      */
@@ -96,7 +67,7 @@ public class VirtualServiceResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property num_se of obj type virtualserviceresource field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numSe set the numSe.
      */
@@ -106,7 +77,7 @@ public class VirtualServiceResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property num_standby_se of obj type virtualserviceresource field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numStandbySe
      */
@@ -116,7 +87,7 @@ public class VirtualServiceResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property num_standby_se of obj type virtualserviceresource field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numStandbySe set the numStandbySe.
      */
@@ -126,7 +97,7 @@ public class VirtualServiceResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Placeholder for description of property num_vcpus of obj type virtualserviceresource field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return numVcpus
      */
@@ -136,56 +107,12 @@ public class VirtualServiceResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Placeholder for description of property num_vcpus of obj type virtualserviceresource field type str  type integer.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param numVcpus set the numVcpus.
      */
     public void setNumVcpus(Integer  numVcpus) {
         this.numVcpus = numVcpus;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Indicates if the primary se is being scaled in.
-     * This state is now derived from the virtual service runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * @return scaleinPrimary
-     */
-    public Boolean getScaleinPrimary() {
-        return scaleinPrimary;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Indicates if the primary se is being scaled in.
-     * This state is now derived from the virtual service runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * @param scaleinPrimary set the scaleinPrimary.
-     */
-    public void setScaleinPrimary(Boolean  scaleinPrimary) {
-        this.scaleinPrimary = scaleinPrimary;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
-     * Indicates which se is being scaled in.
-     * This information is now derived from the virtual service runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * @return scaleinSeUuid
-     */
-    public String getScaleinSeUuid() {
-        return scaleinSeUuid;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Indicates which se is being scaled in.
-     * This information is now derived from the virtual service runtime.
-     * Field deprecated in 18.1.5, 18.2.1.
-     * @param scaleinSeUuid set the scaleinSeUuid.
-     */
-    public void setScaleinSeUuid(String  scaleinSeUuid) {
-        this.scaleinSeUuid = scaleinSeUuid;
     }
 
 
@@ -200,10 +127,7 @@ public class VirtualServiceResource  {
       VirtualServiceResource objVirtualServiceResource = (VirtualServiceResource) o;
       return   Objects.equals(this.numVcpus, objVirtualServiceResource.numVcpus)&&
   Objects.equals(this.memory, objVirtualServiceResource.memory)&&
-  Objects.equals(this.isExclusive, objVirtualServiceResource.isExclusive)&&
-  Objects.equals(this.scaleinPrimary, objVirtualServiceResource.scaleinPrimary)&&
   Objects.equals(this.numSe, objVirtualServiceResource.numSe)&&
-  Objects.equals(this.scaleinSeUuid, objVirtualServiceResource.scaleinSeUuid)&&
   Objects.equals(this.numStandbySe, objVirtualServiceResource.numStandbySe);
     }
 
@@ -211,13 +135,10 @@ public class VirtualServiceResource  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class VirtualServiceResource {\n");
-                  sb.append("    isExclusive: ").append(toIndentedString(isExclusive)).append("\n");
-                        sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
+                  sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
                         sb.append("    numSe: ").append(toIndentedString(numSe)).append("\n");
                         sb.append("    numStandbySe: ").append(toIndentedString(numStandbySe)).append("\n");
                         sb.append("    numVcpus: ").append(toIndentedString(numVcpus)).append("\n");
-                        sb.append("    scaleinPrimary: ").append(toIndentedString(scaleinPrimary)).append("\n");
-                        sb.append("    scaleinSeUuid: ").append(toIndentedString(scaleinSeUuid)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

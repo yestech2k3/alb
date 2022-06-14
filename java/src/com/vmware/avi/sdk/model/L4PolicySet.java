@@ -33,9 +33,6 @@ public class L4PolicySet extends AviRestResource  {
     @JsonProperty("l4_connection_policy")
     private L4ConnectionPolicy l4ConnectionPolicy = null;
 
-    @JsonProperty("labels")
-    private List<KeyValue> labels;
-
     @JsonProperty("markers")
     private List<RoleFilterMatchLabel> markers = null;
 
@@ -57,6 +54,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Creator name.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return createdBy
      */
@@ -68,6 +66,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the setter method to the attribute.
      * Creator name.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param createdBy set the createdBy.
      */
@@ -78,6 +77,7 @@ public class L4PolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return description
      */
@@ -88,6 +88,7 @@ public class L4PolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param description set the description.
      */
@@ -98,6 +99,7 @@ public class L4PolicySet extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return isInternalPolicy
      */
@@ -108,6 +110,7 @@ public class L4PolicySet extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param isInternalPolicy set the isInternalPolicy.
      */
@@ -119,6 +122,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Policy to apply when a new transport connection is setup.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return l4ConnectionPolicy
      */
@@ -130,6 +134,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the setter method to the attribute.
      * Policy to apply when a new transport connection is setup.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param l4ConnectionPolicy set the l4ConnectionPolicy.
      */
@@ -138,51 +143,10 @@ public class L4PolicySet extends AviRestResource  {
     }
     /**
      * This is the getter method this will return the attribute value.
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public List<KeyValue> getLabels() {
-        return labels;
-    }
-
-    /**
-     * This is the setter method. this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public void setLabels(List<KeyValue>  labels) {
-        this.labels = labels;
-    }
-
-    /**
-     * This is the setter method this will set the labels
-     * Key value pairs for granular object access control.
-     * Also allows for classification and tagging of similar objects.
-     * Field deprecated in 20.1.5.
-     * Field introduced in 20.1.2.
-     * Maximum of 4 items allowed.
-     * @return labels
-     */
-    public L4PolicySet addLabelsItem(KeyValue labelsItem) {
-      if (this.labels == null) {
-        this.labels = new ArrayList<KeyValue>();
-      }
-      this.labels.add(labelsItem);
-      return this;
-    }
-    /**
-     * This is the getter method this will return the attribute value.
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -194,7 +158,8 @@ public class L4PolicySet extends AviRestResource  {
      * This is the setter method. this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -206,7 +171,8 @@ public class L4PolicySet extends AviRestResource  {
      * This is the setter method this will set the markers
      * List of labels to be used for granular rbac.
      * Field introduced in 20.1.5.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, basic edition with any value, enterprise with cloud services
+     * edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return markers
      */
@@ -222,6 +188,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Name of the l4 policy set.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -233,6 +200,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the setter method to the attribute.
      * Name of the l4 policy set.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -244,6 +212,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * It is a reference to an object of type tenant.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return tenantRef
      */
@@ -255,6 +224,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the setter method to the attribute.
      * It is a reference to an object of type tenant.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param tenantRef set the tenantRef.
      */
@@ -283,6 +253,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the getter method this will return the attribute value.
      * Id of the l4 policy set.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -294,6 +265,7 @@ public class L4PolicySet extends AviRestResource  {
      * This is the setter method to the attribute.
      * Id of the l4 policy set.
      * Field introduced in 17.2.7.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -315,7 +287,6 @@ public class L4PolicySet extends AviRestResource  {
   Objects.equals(this.name, objL4PolicySet.name)&&
   Objects.equals(this.l4ConnectionPolicy, objL4PolicySet.l4ConnectionPolicy)&&
   Objects.equals(this.createdBy, objL4PolicySet.createdBy)&&
-  Objects.equals(this.labels, objL4PolicySet.labels)&&
   Objects.equals(this.markers, objL4PolicySet.markers)&&
   Objects.equals(this.isInternalPolicy, objL4PolicySet.isInternalPolicy)&&
   Objects.equals(this.description, objL4PolicySet.description)&&
@@ -330,7 +301,6 @@ public class L4PolicySet extends AviRestResource  {
                         sb.append("    description: ").append(toIndentedString(description)).append("\n");
                         sb.append("    isInternalPolicy: ").append(toIndentedString(isInternalPolicy)).append("\n");
                         sb.append("    l4ConnectionPolicy: ").append(toIndentedString(l4ConnectionPolicy)).append("\n");
-                        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
                         sb.append("    markers: ").append(toIndentedString(markers)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    tenantRef: ").append(toIndentedString(tenantRef)).append("\n");

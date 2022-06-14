@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ControllerLimits  {
+    @JsonProperty("bot_limits")
+    private BOTLimits botLimits = null;
+
     @JsonProperty("certificates_per_virtualservice")
     private Integer certificatesPerVirtualservice = null;
 
@@ -35,6 +38,9 @@ public class ControllerLimits  {
 
     @JsonProperty("gateway_mon_per_vrf")
     private Integer gatewayMonPerVrf = null;
+
+    @JsonProperty("ipaddress_limits")
+    private IPAddrLimits ipaddressLimits = null;
 
     @JsonProperty("ips_per_ipgroup")
     private Integer ipsPerIpgroup = null;
@@ -54,8 +60,8 @@ public class ControllerLimits  {
     @JsonProperty("routes_per_vrfcontext")
     private Integer routesPerVrfcontext = null;
 
-    @JsonProperty("rules_per_httppolicy")
-    private Integer rulesPerHttppolicy;
+    @JsonProperty("rules_per_nat_policy")
+    private Integer rulesPerNatPolicy = null;
 
     @JsonProperty("rules_per_networksecuritypolicy")
     private Integer rulesPerNetworksecuritypolicy = null;
@@ -75,12 +81,40 @@ public class ControllerLimits  {
     @JsonProperty("vs_l2_scaleout")
     private Integer vsL2Scaleout = null;
 
+    @JsonProperty("waf_limits")
+    private WAFLimits wafLimits = null;
 
+
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Bot system limits.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return botLimits
+     */
+    public BOTLimits getBotLimits() {
+        return botLimits;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Bot system limits.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param botLimits set the botLimits.
+     */
+    public void setBotLimits(BOTLimits botLimits) {
+        this.botLimits = botLimits;
+    }
 
     /**
      * This is the getter method this will return the attribute value.
      * Maximum number of certificates per virtualservice.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return certificatesPerVirtualservice
      */
@@ -92,6 +126,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of certificates per virtualservice.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param certificatesPerVirtualservice set the certificatesPerVirtualservice.
      */
@@ -102,6 +137,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Controller system limits specific to cloud type for all controller sizes.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerCloudLimits
      */
@@ -113,6 +149,7 @@ public class ControllerLimits  {
      * This is the setter method. this will set the controllerCloudLimits
      * Controller system limits specific to cloud type for all controller sizes.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerCloudLimits
      */
@@ -124,6 +161,7 @@ public class ControllerLimits  {
      * This is the setter method this will set the controllerCloudLimits
      * Controller system limits specific to cloud type for all controller sizes.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerCloudLimits
      */
@@ -139,6 +177,7 @@ public class ControllerLimits  {
      * Controller system limits specific to controller sizing.
      * Field introduced in 20.1.1.
      * Maximum of 4 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerSizingLimits
      */
@@ -151,6 +190,7 @@ public class ControllerLimits  {
      * Controller system limits specific to controller sizing.
      * Field introduced in 20.1.1.
      * Maximum of 4 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerSizingLimits
      */
@@ -163,6 +203,7 @@ public class ControllerLimits  {
      * Controller system limits specific to controller sizing.
      * Field introduced in 20.1.1.
      * Maximum of 4 items allowed.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return controllerSizingLimits
      */
@@ -178,6 +219,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of default routes per vrfcontext.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return defaultRoutesPerVrfcontext
      */
@@ -189,6 +231,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of default routes per vrfcontext.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param defaultRoutesPerVrfcontext set the defaultRoutesPerVrfcontext.
      */
@@ -200,6 +243,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of gateway monitors per vrfcontext.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return gatewayMonPerVrf
      */
@@ -211,6 +255,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of gateway monitors per vrfcontext.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param gatewayMonPerVrf set the gatewayMonPerVrf.
      */
@@ -220,8 +265,33 @@ public class ControllerLimits  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Ip address limits.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return ipaddressLimits
+     */
+    public IPAddrLimits getIpaddressLimits() {
+        return ipaddressLimits;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Ip address limits.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param ipaddressLimits set the ipaddressLimits.
+     */
+    public void setIpaddressLimits(IPAddrLimits ipaddressLimits) {
+        this.ipaddressLimits = ipaddressLimits;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Maximum number of ip's per ipaddrgroup.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return ipsPerIpgroup
      */
@@ -233,6 +303,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of ip's per ipaddrgroup.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param ipsPerIpgroup set the ipsPerIpgroup.
      */
@@ -244,6 +315,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * System limits that apply to layer 7 configuration objects.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return l7Limits
      */
@@ -255,6 +327,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * System limits that apply to layer 7 configuration objects.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param l7Limits set the l7Limits.
      */
@@ -266,6 +339,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of poolgroups per virtualservice.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return poolgroupsPerVirtualservice
      */
@@ -277,6 +351,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of poolgroups per virtualservice.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param poolgroupsPerVirtualservice set the poolgroupsPerVirtualservice.
      */
@@ -288,6 +363,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of pools per poolgroup.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return poolsPerPoolgroup
      */
@@ -299,6 +375,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of pools per poolgroup.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param poolsPerPoolgroup set the poolsPerPoolgroup.
      */
@@ -310,6 +387,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of pools per virtualservice.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return poolsPerVirtualservice
      */
@@ -321,6 +399,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of pools per virtualservice.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param poolsPerVirtualservice set the poolsPerVirtualservice.
      */
@@ -332,6 +411,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of routes per vrfcontext.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return routesPerVrfcontext
      */
@@ -343,6 +423,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of routes per vrfcontext.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param routesPerVrfcontext set the routesPerVrfcontext.
      */
@@ -352,30 +433,33 @@ public class ControllerLimits  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Maximum number of rules per httppolicy.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * @return rulesPerHttppolicy
+     * Maximum number of nat rules in nat policy.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return rulesPerNatPolicy
      */
-    public Integer getRulesPerHttppolicy() {
-        return rulesPerHttppolicy;
+    public Integer getRulesPerNatPolicy() {
+        return rulesPerNatPolicy;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Maximum number of rules per httppolicy.
-     * Field deprecated in 21.1.1.
-     * Field introduced in 20.1.1.
-     * @param rulesPerHttppolicy set the rulesPerHttppolicy.
+     * Maximum number of nat rules in nat policy.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param rulesPerNatPolicy set the rulesPerNatPolicy.
      */
-    public void setRulesPerHttppolicy(Integer  rulesPerHttppolicy) {
-        this.rulesPerHttppolicy = rulesPerHttppolicy;
+    public void setRulesPerNatPolicy(Integer  rulesPerNatPolicy) {
+        this.rulesPerNatPolicy = rulesPerNatPolicy;
     }
 
     /**
      * This is the getter method this will return the attribute value.
      * Maximum number of rules per networksecuritypolicy.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return rulesPerNetworksecuritypolicy
      */
@@ -387,6 +471,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of rules per networksecuritypolicy.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param rulesPerNetworksecuritypolicy set the rulesPerNetworksecuritypolicy.
      */
@@ -398,6 +483,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of servers per pool.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return serversPerPool
      */
@@ -409,6 +495,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of servers per pool.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param serversPerPool set the serversPerPool.
      */
@@ -420,6 +507,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of sni children virtualservices per sni parent virtualservice.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return sniChildrenPerParent
      */
@@ -431,6 +519,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of sni children virtualservices per sni parent virtualservice.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param sniChildrenPerParent set the sniChildrenPerParent.
      */
@@ -442,6 +531,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of strings per stringgroup.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return stringsPerStringgroup
      */
@@ -453,6 +543,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of strings per stringgroup.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param stringsPerStringgroup set the stringsPerStringgroup.
      */
@@ -464,6 +555,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of serviceengine per virtualservice in bgp scaleout mode.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vsBgpScaleout
      */
@@ -475,6 +567,7 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of serviceengine per virtualservice in bgp scaleout mode.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vsBgpScaleout set the vsBgpScaleout.
      */
@@ -486,6 +579,7 @@ public class ControllerLimits  {
      * This is the getter method this will return the attribute value.
      * Maximum number of serviceengine per virtualservice in layer 2 scaleout mode.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return vsL2Scaleout
      */
@@ -497,11 +591,36 @@ public class ControllerLimits  {
      * This is the setter method to the attribute.
      * Maximum number of serviceengine per virtualservice in layer 2 scaleout mode.
      * Field introduced in 20.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param vsL2Scaleout set the vsL2Scaleout.
      */
     public void setVsL2Scaleout(Integer  vsL2Scaleout) {
         this.vsL2Scaleout = vsL2Scaleout;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Waf system limits.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return wafLimits
+     */
+    public WAFLimits getWafLimits() {
+        return wafLimits;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Waf system limits.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param wafLimits set the wafLimits.
+     */
+    public void setWafLimits(WAFLimits wafLimits) {
+        this.wafLimits = wafLimits;
     }
 
 
@@ -518,7 +637,6 @@ public class ControllerLimits  {
   Objects.equals(this.poolgroupsPerVirtualservice, objControllerLimits.poolgroupsPerVirtualservice)&&
   Objects.equals(this.certificatesPerVirtualservice, objControllerLimits.certificatesPerVirtualservice)&&
   Objects.equals(this.poolsPerPoolgroup, objControllerLimits.poolsPerPoolgroup)&&
-  Objects.equals(this.rulesPerHttppolicy, objControllerLimits.rulesPerHttppolicy)&&
   Objects.equals(this.rulesPerNetworksecuritypolicy, objControllerLimits.rulesPerNetworksecuritypolicy)&&
   Objects.equals(this.serversPerPool, objControllerLimits.serversPerPool)&&
   Objects.equals(this.routesPerVrfcontext, objControllerLimits.routesPerVrfcontext)&&
@@ -529,6 +647,10 @@ public class ControllerLimits  {
   Objects.equals(this.vsL2Scaleout, objControllerLimits.vsL2Scaleout)&&
   Objects.equals(this.vsBgpScaleout, objControllerLimits.vsBgpScaleout)&&
   Objects.equals(this.gatewayMonPerVrf, objControllerLimits.gatewayMonPerVrf)&&
+  Objects.equals(this.wafLimits, objControllerLimits.wafLimits)&&
+  Objects.equals(this.rulesPerNatPolicy, objControllerLimits.rulesPerNatPolicy)&&
+  Objects.equals(this.ipaddressLimits, objControllerLimits.ipaddressLimits)&&
+  Objects.equals(this.botLimits, objControllerLimits.botLimits)&&
   Objects.equals(this.l7Limits, objControllerLimits.l7Limits)&&
   Objects.equals(this.controllerSizingLimits, objControllerLimits.controllerSizingLimits)&&
   Objects.equals(this.controllerCloudLimits, objControllerLimits.controllerCloudLimits);
@@ -538,24 +660,27 @@ public class ControllerLimits  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class ControllerLimits {\n");
-                  sb.append("    certificatesPerVirtualservice: ").append(toIndentedString(certificatesPerVirtualservice)).append("\n");
+                  sb.append("    botLimits: ").append(toIndentedString(botLimits)).append("\n");
+                        sb.append("    certificatesPerVirtualservice: ").append(toIndentedString(certificatesPerVirtualservice)).append("\n");
                         sb.append("    controllerCloudLimits: ").append(toIndentedString(controllerCloudLimits)).append("\n");
                         sb.append("    controllerSizingLimits: ").append(toIndentedString(controllerSizingLimits)).append("\n");
                         sb.append("    defaultRoutesPerVrfcontext: ").append(toIndentedString(defaultRoutesPerVrfcontext)).append("\n");
                         sb.append("    gatewayMonPerVrf: ").append(toIndentedString(gatewayMonPerVrf)).append("\n");
+                        sb.append("    ipaddressLimits: ").append(toIndentedString(ipaddressLimits)).append("\n");
                         sb.append("    ipsPerIpgroup: ").append(toIndentedString(ipsPerIpgroup)).append("\n");
                         sb.append("    l7Limits: ").append(toIndentedString(l7Limits)).append("\n");
                         sb.append("    poolgroupsPerVirtualservice: ").append(toIndentedString(poolgroupsPerVirtualservice)).append("\n");
                         sb.append("    poolsPerPoolgroup: ").append(toIndentedString(poolsPerPoolgroup)).append("\n");
                         sb.append("    poolsPerVirtualservice: ").append(toIndentedString(poolsPerVirtualservice)).append("\n");
                         sb.append("    routesPerVrfcontext: ").append(toIndentedString(routesPerVrfcontext)).append("\n");
-                        sb.append("    rulesPerHttppolicy: ").append(toIndentedString(rulesPerHttppolicy)).append("\n");
+                        sb.append("    rulesPerNatPolicy: ").append(toIndentedString(rulesPerNatPolicy)).append("\n");
                         sb.append("    rulesPerNetworksecuritypolicy: ").append(toIndentedString(rulesPerNetworksecuritypolicy)).append("\n");
                         sb.append("    serversPerPool: ").append(toIndentedString(serversPerPool)).append("\n");
                         sb.append("    sniChildrenPerParent: ").append(toIndentedString(sniChildrenPerParent)).append("\n");
                         sb.append("    stringsPerStringgroup: ").append(toIndentedString(stringsPerStringgroup)).append("\n");
                         sb.append("    vsBgpScaleout: ").append(toIndentedString(vsBgpScaleout)).append("\n");
                         sb.append("    vsL2Scaleout: ").append(toIndentedString(vsL2Scaleout)).append("\n");
+                        sb.append("    wafLimits: ").append(toIndentedString(wafLimits)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

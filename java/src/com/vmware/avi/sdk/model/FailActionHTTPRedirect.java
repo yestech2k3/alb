@@ -28,7 +28,7 @@ public class FailActionHTTPRedirect  {
     private String path = null;
 
     @JsonProperty("protocol")
-    private String protocol = "HTTPS";
+    private String protocol;
 
     @JsonProperty("query")
     private String query = null;
@@ -41,6 +41,7 @@ public class FailActionHTTPRedirect  {
     /**
      * This is the getter method this will return the attribute value.
      * The host to which the redirect request is sent.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return host
      */
@@ -51,6 +52,7 @@ public class FailActionHTTPRedirect  {
     /**
      * This is the setter method to the attribute.
      * The host to which the redirect request is sent.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param host set the host.
      */
@@ -62,6 +64,7 @@ public class FailActionHTTPRedirect  {
      * This is the getter method this will return the attribute value.
      * Path configuration for the redirect request.
      * If not set the path from the original request's uri is preserved in the redirect on pool failure.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return path
      */
@@ -73,6 +76,7 @@ public class FailActionHTTPRedirect  {
      * This is the setter method to the attribute.
      * Path configuration for the redirect request.
      * If not set the path from the original request's uri is preserved in the redirect on pool failure.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param path set the path.
      */
@@ -83,9 +87,8 @@ public class FailActionHTTPRedirect  {
     /**
      * This is the getter method this will return the attribute value.
      * Enum options - HTTP, HTTPS.
-     * Allowed in basic(allowed values- http) edition, enterprise edition.
+     * Allowed in enterprise edition with any value, basic edition(allowed values- http), essentials, enterprise with cloud services edition.
      * Special default for basic edition is http, enterprise is https.
-     * Default value when not specified in API or module is interpreted by Avi Controller as "HTTPS".
      * @return protocol
      */
     public String getProtocol() {
@@ -95,9 +98,8 @@ public class FailActionHTTPRedirect  {
     /**
      * This is the setter method to the attribute.
      * Enum options - HTTP, HTTPS.
-     * Allowed in basic(allowed values- http) edition, enterprise edition.
+     * Allowed in enterprise edition with any value, basic edition(allowed values- http), essentials, enterprise with cloud services edition.
      * Special default for basic edition is http, enterprise is https.
-     * Default value when not specified in API or module is interpreted by Avi Controller as "HTTPS".
      * @param protocol set the protocol.
      */
     public void setProtocol(String  protocol) {
@@ -108,6 +110,7 @@ public class FailActionHTTPRedirect  {
      * This is the getter method this will return the attribute value.
      * Query configuration for the redirect request uri.
      * If not set, the query from the original request's uri is preserved in the redirect on pool failure.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return query
      */
@@ -119,6 +122,7 @@ public class FailActionHTTPRedirect  {
      * This is the setter method to the attribute.
      * Query configuration for the redirect request uri.
      * If not set, the query from the original request's uri is preserved in the redirect on pool failure.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param query set the query.
      */
@@ -129,7 +133,8 @@ public class FailActionHTTPRedirect  {
     /**
      * This is the getter method this will return the attribute value.
      * Enum options - HTTP_REDIRECT_STATUS_CODE_301, HTTP_REDIRECT_STATUS_CODE_302, HTTP_REDIRECT_STATUS_CODE_307.
-     * Allowed in basic(allowed values- http_redirect_status_code_302) edition, enterprise edition.
+     * Allowed in enterprise edition with any value, basic edition(allowed values- http_redirect_status_code_302), essentials, enterprise with cloud
+     * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "HTTP_REDIRECT_STATUS_CODE_302".
      * @return statusCode
      */
@@ -140,7 +145,8 @@ public class FailActionHTTPRedirect  {
     /**
      * This is the setter method to the attribute.
      * Enum options - HTTP_REDIRECT_STATUS_CODE_301, HTTP_REDIRECT_STATUS_CODE_302, HTTP_REDIRECT_STATUS_CODE_307.
-     * Allowed in basic(allowed values- http_redirect_status_code_302) edition, enterprise edition.
+     * Allowed in enterprise edition with any value, basic edition(allowed values- http_redirect_status_code_302), essentials, enterprise with cloud
+     * services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "HTTP_REDIRECT_STATUS_CODE_302".
      * @param statusCode set the statusCode.
      */

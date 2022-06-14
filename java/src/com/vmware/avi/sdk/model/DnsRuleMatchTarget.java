@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DnsRuleMatchTarget  {
-    @JsonProperty("client_ip")
-    private IpAddrMatch clientIp;
-
     @JsonProperty("client_ip_address")
     private DnsClientIpMatch clientIpAddress = null;
 
@@ -46,32 +43,9 @@ public class DnsRuleMatchTarget  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Ip addresses to match against client ip.
-     * From 17.1.6 release onwards, ip addresses needs to be configured in the client_ip_address field of this message.
-     * Field deprecated in 17.1.6,17.2.2.
-     * Field introduced in 17.1.1.
-     * @return clientIp
-     */
-    public IpAddrMatch getClientIp() {
-        return clientIp;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Ip addresses to match against client ip.
-     * From 17.1.6 release onwards, ip addresses needs to be configured in the client_ip_address field of this message.
-     * Field deprecated in 17.1.6,17.2.2.
-     * Field introduced in 17.1.1.
-     * @param clientIp set the clientIp.
-     */
-    public void setClientIp(IpAddrMatch clientIp) {
-        this.clientIp = clientIp;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Ip addresses to match against client ip or the edns client subnet ip.
      * Field introduced in 17.1.6,17.2.2.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return clientIpAddress
      */
@@ -83,6 +57,7 @@ public class DnsRuleMatchTarget  {
      * This is the setter method to the attribute.
      * Ip addresses to match against client ip or the edns client subnet ip.
      * Field introduced in 17.1.6,17.2.2.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param clientIpAddress set the clientIpAddress.
      */
@@ -94,6 +69,7 @@ public class DnsRuleMatchTarget  {
      * This is the getter method this will return the attribute value.
      * Port number to match against client port number.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return clientPortNumbers
      */
@@ -105,6 +81,7 @@ public class DnsRuleMatchTarget  {
      * This is the setter method to the attribute.
      * Port number to match against client port number.
      * Field introduced in 21.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param clientPortNumbers set the clientPortNumbers.
      */
@@ -116,6 +93,7 @@ public class DnsRuleMatchTarget  {
      * This is the getter method this will return the attribute value.
      * Geographical location attribute to match against that of the client ip.
      * Field introduced in 17.1.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return geoLocation
      */
@@ -127,6 +105,7 @@ public class DnsRuleMatchTarget  {
      * This is the setter method to the attribute.
      * Geographical location attribute to match against that of the client ip.
      * Field introduced in 17.1.5.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param geoLocation set the geoLocation.
      */
@@ -138,6 +117,7 @@ public class DnsRuleMatchTarget  {
      * This is the getter method this will return the attribute value.
      * Dns transport protocol match.
      * Field introduced in 17.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return protocol
      */
@@ -149,6 +129,7 @@ public class DnsRuleMatchTarget  {
      * This is the setter method to the attribute.
      * Dns transport protocol match.
      * Field introduced in 17.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param protocol set the protocol.
      */
@@ -160,6 +141,7 @@ public class DnsRuleMatchTarget  {
      * This is the getter method this will return the attribute value.
      * Domain names to match against query name.
      * Field introduced in 17.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return queryName
      */
@@ -171,6 +153,7 @@ public class DnsRuleMatchTarget  {
      * This is the setter method to the attribute.
      * Domain names to match against query name.
      * Field introduced in 17.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param queryName set the queryName.
      */
@@ -182,6 +165,7 @@ public class DnsRuleMatchTarget  {
      * This is the getter method this will return the attribute value.
      * Dns query types to match against request query type.
      * Field introduced in 17.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return queryType
      */
@@ -193,6 +177,7 @@ public class DnsRuleMatchTarget  {
      * This is the setter method to the attribute.
      * Dns query types to match against request query type.
      * Field introduced in 17.1.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param queryType set the queryType.
      */
@@ -210,8 +195,7 @@ public class DnsRuleMatchTarget  {
           return false;
       }
       DnsRuleMatchTarget objDnsRuleMatchTarget = (DnsRuleMatchTarget) o;
-      return   Objects.equals(this.clientIp, objDnsRuleMatchTarget.clientIp)&&
-  Objects.equals(this.protocol, objDnsRuleMatchTarget.protocol)&&
+      return   Objects.equals(this.protocol, objDnsRuleMatchTarget.protocol)&&
   Objects.equals(this.queryName, objDnsRuleMatchTarget.queryName)&&
   Objects.equals(this.queryType, objDnsRuleMatchTarget.queryType)&&
   Objects.equals(this.geoLocation, objDnsRuleMatchTarget.geoLocation)&&
@@ -223,8 +207,7 @@ public class DnsRuleMatchTarget  {
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class DnsRuleMatchTarget {\n");
-                  sb.append("    clientIp: ").append(toIndentedString(clientIp)).append("\n");
-                        sb.append("    clientIpAddress: ").append(toIndentedString(clientIpAddress)).append("\n");
+                  sb.append("    clientIpAddress: ").append(toIndentedString(clientIpAddress)).append("\n");
                         sb.append("    clientPortNumbers: ").append(toIndentedString(clientPortNumbers)).append("\n");
                         sb.append("    geoLocation: ").append(toIndentedString(geoLocation)).append("\n");
                         sb.append("    protocol: ").append(toIndentedString(protocol)).append("\n");

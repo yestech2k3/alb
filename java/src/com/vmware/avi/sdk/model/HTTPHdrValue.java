@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HTTPHdrValue  {
+    @JsonProperty("is_sensitive")
+    private Boolean isSensitive = false;
+
     @JsonProperty("val")
     private String val = null;
 
@@ -31,7 +34,32 @@ public class HTTPHdrValue  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * The custom value field is sensitive and will not be displayed.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @return isSensitive
+     */
+    public Boolean getIsSensitive() {
+        return isSensitive;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * The custom value field is sensitive and will not be displayed.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as false.
+     * @param isSensitive set the isSensitive.
+     */
+    public void setIsSensitive(Boolean  isSensitive) {
+        this.isSensitive = isSensitive;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Http header value or variable representing an http header.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return val
      */
@@ -42,6 +70,7 @@ public class HTTPHdrValue  {
     /**
      * This is the setter method to the attribute.
      * Http header value or variable representing an http header.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param val set the val.
      */
@@ -56,7 +85,9 @@ public class HTTPHdrValue  {
      * HTTP_POLICY_VAR_SSL_CLIENT_FINGERPRINT, HTTP_POLICY_VAR_SSL_CLIENT_SERIAL, HTTP_POLICY_VAR_SSL_CLIENT_ISSUER, HTTP_POLICY_VAR_SSL_CLIENT_SUBJECT,
      * HTTP_POLICY_VAR_SSL_CLIENT_RAW, HTTP_POLICY_VAR_SSL_PROTOCOL, HTTP_POLICY_VAR_SSL_SERVER_NAME, HTTP_POLICY_VAR_USER_NAME,
      * HTTP_POLICY_VAR_SSL_CIPHER, HTTP_POLICY_VAR_REQUEST_ID, HTTP_POLICY_VAR_SSL_CLIENT_VERSION, HTTP_POLICY_VAR_SSL_CLIENT_SIGALG,
-     * HTTP_POLICY_VAR_SSL_CLIENT_NOTVALIDBEFORE, HTTP_POLICY_VAR_SSL_CLIENT_NOTVALIDAFTER.
+     * HTTP_POLICY_VAR_SSL_CLIENT_NOTVALIDBEFORE, HTTP_POLICY_VAR_SSL_CLIENT_NOTVALIDAFTER, HTTP_POLICY_VAR_SSL_CLIENT_ESCAPED,
+     * HTTP_POLICY_VAR_SOURCE_IP.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return var
      */
@@ -71,7 +102,9 @@ public class HTTPHdrValue  {
      * HTTP_POLICY_VAR_SSL_CLIENT_FINGERPRINT, HTTP_POLICY_VAR_SSL_CLIENT_SERIAL, HTTP_POLICY_VAR_SSL_CLIENT_ISSUER, HTTP_POLICY_VAR_SSL_CLIENT_SUBJECT,
      * HTTP_POLICY_VAR_SSL_CLIENT_RAW, HTTP_POLICY_VAR_SSL_PROTOCOL, HTTP_POLICY_VAR_SSL_SERVER_NAME, HTTP_POLICY_VAR_USER_NAME,
      * HTTP_POLICY_VAR_SSL_CIPHER, HTTP_POLICY_VAR_REQUEST_ID, HTTP_POLICY_VAR_SSL_CLIENT_VERSION, HTTP_POLICY_VAR_SSL_CLIENT_SIGALG,
-     * HTTP_POLICY_VAR_SSL_CLIENT_NOTVALIDBEFORE, HTTP_POLICY_VAR_SSL_CLIENT_NOTVALIDAFTER.
+     * HTTP_POLICY_VAR_SSL_CLIENT_NOTVALIDBEFORE, HTTP_POLICY_VAR_SSL_CLIENT_NOTVALIDAFTER, HTTP_POLICY_VAR_SSL_CLIENT_ESCAPED,
+     * HTTP_POLICY_VAR_SOURCE_IP.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param var set the var.
      */
@@ -90,14 +123,16 @@ public class HTTPHdrValue  {
       }
       HTTPHdrValue objHTTPHdrValue = (HTTPHdrValue) o;
       return   Objects.equals(this.var, objHTTPHdrValue.var)&&
-  Objects.equals(this.val, objHTTPHdrValue.val);
+  Objects.equals(this.val, objHTTPHdrValue.val)&&
+  Objects.equals(this.isSensitive, objHTTPHdrValue.isSensitive);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class HTTPHdrValue {\n");
-                  sb.append("    val: ").append(toIndentedString(val)).append("\n");
+                  sb.append("    isSensitive: ").append(toIndentedString(isSensitive)).append("\n");
+                        sb.append("    val: ").append(toIndentedString(val)).append("\n");
                         sb.append("    var: ").append(toIndentedString(var)).append("\n");
                   sb.append("}");
       return sb.toString();

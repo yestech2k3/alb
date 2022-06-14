@@ -38,6 +38,10 @@ and it supports several query options described in detail below.
 <td> OPTIONAL; Type of Logs Requested; 0: Connection Logs, 1: Application Logs, 2: Event Logs; DEFAULT=Automatically detected based on the VS's app profile </td>
 </tr>
 <tr>
+<td> query_id </td>
+<td> REQUIRED; Unique ID for each query; DEFAULT=0 </td>
+</tr>
+<tr>
 <td> virtualservice </td>
 <td> REQUIRED; Specify VS ID for scoping the results </td>
 </tr>
@@ -325,7 +329,7 @@ and it supports several query options described in detail below.
 <td> client_ip </td>
 <td> IP Address </td>
 <td> eq,sw,ne </td>
-<td>  </td>
+<td> IPv4 address of the client. When true client IP feature is enabled, this will be derived from the header configured in the true client IP feature, if present in the request </td>
 </tr>
 <tr>
 <td> client_location </td>
@@ -841,13 +845,13 @@ and it supports several query options described in detail below.
 <td> cipher_bytes </td>
 <td> String </td>
 <td> eq,sw,ne,co,nc </td>
-<td> Byte stream of client cipher list sent on SSL_R_NO_SHARED_CIPHER error. </td>
+<td> Byte stream of client cipher list sent on SSL_R_NO_SHARED_CIPHER error.This byte stream is used to generate client_cipher_list. </td>
 </tr>
 <tr>
 <td> client_cipher_list </td>
 <td> Message </td>
 <td> eq,lt,le,gt,ge,ne </td>
-<td> List of ciphers sent by client in TLS/SSL Client Hello. Only sent when TLS handshake fails due to no shared cipher. </td>
+<td> List of ciphers sent by client in TLS Client Hello. This field is only generated when TLS handshake fails due to no shared cipher. </td>
 </tr>
 <tr>
 <td> client_log_filter_name </td>
@@ -980,6 +984,84 @@ and it supports several query options described in detail below.
 <td> Message </td>
 <td> eq,lt,le,gt,ge,ne </td>
 <td> Logs related to Bot detection. </td>
+</tr>
+<tr>
+<td> max_ingress_latency_fe </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Maximum packet processing latency for the frontend flow. </td>
+</tr>
+<tr>
+<td> avg_ingress_latency_fe </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Average packet processing latency for the frontend flow. </td>
+</tr>
+<tr>
+<td> conn_est_time_fe </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> TCP connection establishment time for the frontend flow. </td>
+</tr>
+<tr>
+<td> max_ingress_latency_be </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Maximum packet processing latency for the backend flow. </td>
+</tr>
+<tr>
+<td> avg_ingress_latency_be </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Average packet processing latency for the backend flow. </td>
+</tr>
+<tr>
+<td> conn_est_time_be </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> TCP connection establishment time for the backend flow. </td>
+</tr>
+<tr>
+<td> source_ip </td>
+<td> IP Address </td>
+<td> eq,sw,ne </td>
+<td> Source IP of the client connection to the VS. This can be different from client IP when true client IP feature is enabled. </td>
+</tr>
+<tr>
+<td> source_ip6 </td>
+<td> String </td>
+<td> eq,sw,ne,co,nc </td>
+<td> IPv6 address of the source of the client connection to the VS. This can be different from client IPv6 address when true client IP feature is enabled. </td>
+</tr>
+<tr>
+<td> oauth_log </td>
+<td> Message </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Logs related to OAuth requests. </td>
+</tr>
+<tr>
+<td> auth_status </td>
+<td> Enumeration String </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Set the Session Authentication Status. </td>
+</tr>
+<tr>
+<td> client_fingerprints </td>
+<td> Message </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> The fingerprints for this client. </td>
+</tr>
+<tr>
+<td> server_push_initiated </td>
+<td> Boolean </td>
+<td> eq,ne </td>
+<td> Request which initiates Server Push </td>
+</tr>
+<tr>
+<td> server_pushed_request </td>
+<td> Boolean </td>
+<td> eq,ne </td>
+<td> Requests served via Server Push </td>
 </tr>
 </table>
 </div>
@@ -1471,6 +1553,42 @@ and it supports several query options described in detail below.
 <td> Boolean </td>
 <td> eq,ne </td>
 <td> OCSP Response sent in the SSL/TLS connection Handshake. </td>
+</tr>
+<tr>
+<td> max_ingress_latency_fe </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Maximum packet processing latency for the frontend flow. </td>
+</tr>
+<tr>
+<td> avg_ingress_latency_fe </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Average packet processing latency for the frontend flow. </td>
+</tr>
+<tr>
+<td> conn_est_time_fe </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> TCP connection establishment time for the frontend flow. </td>
+</tr>
+<tr>
+<td> max_ingress_latency_be </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Maximum packet processing latency for the backend flow. </td>
+</tr>
+<tr>
+<td> avg_ingress_latency_be </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> Average packet processing latency for the backend flow. </td>
+</tr>
+<tr>
+<td> conn_est_time_be </td>
+<td> Integer </td>
+<td> eq,lt,le,gt,ge,ne </td>
+<td> TCP connection establishment time for the backend flow. </td>
 </tr>
 </table>
 </div>

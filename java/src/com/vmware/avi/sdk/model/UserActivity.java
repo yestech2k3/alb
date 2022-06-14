@@ -39,6 +39,9 @@ public class UserActivity extends AviRestResource  {
     @JsonProperty("logged_in")
     private Boolean loggedIn = null;
 
+    @JsonProperty("login_failure_timestamps")
+    private List<String> loginFailureTimestamps = null;
+
     @JsonProperty("name")
     private String name = null;
 
@@ -56,6 +59,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Number of concurrent user sessions open.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return concurrentSessions
      */
@@ -66,6 +70,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Number of concurrent user sessions open.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param concurrentSessions set the concurrentSessions.
      */
@@ -76,6 +81,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Number of failed login attempts before a successful login.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @return failedLoginAttempts
      */
@@ -86,6 +92,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Number of failed login attempts before a successful login.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 0.
      * @param failedLoginAttempts set the failedLoginAttempts.
      */
@@ -96,6 +103,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Ip of the machine the user was last logged in from.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return lastLoginIp
      */
@@ -106,6 +114,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Ip of the machine the user was last logged in from.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param lastLoginIp set the lastLoginIp.
      */
@@ -116,6 +125,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Timestamp of last login.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return lastLoginTimestamp
      */
@@ -126,6 +136,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Timestamp of last login.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param lastLoginTimestamp set the lastLoginTimestamp.
      */
@@ -136,6 +147,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Timestamp of last password update.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return lastPasswordUpdate
      */
@@ -146,6 +158,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Timestamp of last password update.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param lastPasswordUpdate set the lastPasswordUpdate.
      */
@@ -156,6 +169,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Indicates whether the user is logged in or not.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return loggedIn
      */
@@ -166,16 +180,57 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Indicates whether the user is logged in or not.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param loggedIn set the loggedIn.
      */
     public void setLoggedIn(Boolean  loggedIn) {
         this.loggedIn = loggedIn;
     }
+    /**
+     * This is the getter method this will return the attribute value.
+     * Its a queue that store the timestamps for past login_failures.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return loginFailureTimestamps
+     */
+    public List<String> getLoginFailureTimestamps() {
+        return loginFailureTimestamps;
+    }
+
+    /**
+     * This is the setter method. this will set the loginFailureTimestamps
+     * Its a queue that store the timestamps for past login_failures.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return loginFailureTimestamps
+     */
+    public void setLoginFailureTimestamps(List<String>  loginFailureTimestamps) {
+        this.loginFailureTimestamps = loginFailureTimestamps;
+    }
+
+    /**
+     * This is the setter method this will set the loginFailureTimestamps
+     * Its a queue that store the timestamps for past login_failures.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return loginFailureTimestamps
+     */
+    public UserActivity addLoginFailureTimestampsItem(String loginFailureTimestampsItem) {
+      if (this.loginFailureTimestamps == null) {
+        this.loginFailureTimestamps = new ArrayList<String>();
+      }
+      this.loginFailureTimestamps.add(loginFailureTimestampsItem);
+      return this;
+    }
 
     /**
      * This is the getter method this will return the attribute value.
      * Name of the user this object refers to.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -186,6 +241,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Name of the user this object refers to.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -195,6 +251,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Stores the previous n passwords  where n is controllerproperties.max_password_history_count.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return previousPassword
      */
@@ -205,6 +262,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method. this will set the previousPassword
      * Stores the previous n passwords  where n is controllerproperties.max_password_history_count.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return previousPassword
      */
@@ -215,6 +273,7 @@ public class UserActivity extends AviRestResource  {
     /**
      * This is the setter method this will set the previousPassword
      * Stores the previous n passwords  where n is controllerproperties.max_password_history_count.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return previousPassword
      */
@@ -245,7 +304,7 @@ public class UserActivity extends AviRestResource  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return uuid
      */
@@ -255,7 +314,7 @@ public class UserActivity extends AviRestResource  {
 
     /**
      * This is the setter method to the attribute.
-     * Unique object identifier of the object.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param uuid set the uuid.
      */
@@ -281,7 +340,8 @@ public class UserActivity extends AviRestResource  {
   Objects.equals(this.lastLoginTimestamp, objUserActivity.lastLoginTimestamp)&&
   Objects.equals(this.loggedIn, objUserActivity.loggedIn)&&
   Objects.equals(this.concurrentSessions, objUserActivity.concurrentSessions)&&
-  Objects.equals(this.lastPasswordUpdate, objUserActivity.lastPasswordUpdate);
+  Objects.equals(this.lastPasswordUpdate, objUserActivity.lastPasswordUpdate)&&
+  Objects.equals(this.loginFailureTimestamps, objUserActivity.loginFailureTimestamps);
     }
 
     @Override
@@ -294,6 +354,7 @@ public class UserActivity extends AviRestResource  {
                         sb.append("    lastLoginTimestamp: ").append(toIndentedString(lastLoginTimestamp)).append("\n");
                         sb.append("    lastPasswordUpdate: ").append(toIndentedString(lastPasswordUpdate)).append("\n");
                         sb.append("    loggedIn: ").append(toIndentedString(loggedIn)).append("\n");
+                        sb.append("    loginFailureTimestamps: ").append(toIndentedString(loginFailureTimestamps)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    previousPassword: ").append(toIndentedString(previousPassword)).append("\n");
                                     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");

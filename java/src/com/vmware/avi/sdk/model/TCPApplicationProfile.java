@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TCPApplicationProfile  {
+    @JsonProperty("ftp_profile")
+    private FTPProfile ftpProfile = null;
+
     @JsonProperty("pki_profile_ref")
     private String pkiProfileRef = null;
 
@@ -37,11 +40,35 @@ public class TCPApplicationProfile  {
 
     /**
      * This is the getter method this will return the attribute value.
+     * Ftp profile configuration.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return ftpProfile
+     */
+    public FTPProfile getFtpProfile() {
+        return ftpProfile;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Ftp profile configuration.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param ftpProfile set the ftpProfile.
+     */
+    public void setFtpProfile(FTPProfile ftpProfile) {
+        this.ftpProfile = ftpProfile;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
      * Select the pki profile to be associated with the virtual service.
      * This profile defines the certificate authority and revocation list.
      * It is a reference to an object of type pkiprofile.
      * Field introduced in 18.2.3.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return pkiProfileRef
      */
@@ -55,7 +82,7 @@ public class TCPApplicationProfile  {
      * This profile defines the certificate authority and revocation list.
      * It is a reference to an object of type pkiprofile.
      * Field introduced in 18.2.3.
-     * Allowed in basic edition, essentials edition, enterprise edition.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param pkiProfileRef set the pkiProfileRef.
      */
@@ -67,7 +94,8 @@ public class TCPApplicationProfile  {
      * This is the getter method this will return the attribute value.
      * Enable/disable the usage of proxy protocol to convey client connection information to the back-end servers.
      * Valid only for l4 application profiles and tcp proxy.
-     * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
+     * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return proxyProtocolEnabled
      */
@@ -79,7 +107,8 @@ public class TCPApplicationProfile  {
      * This is the setter method to the attribute.
      * Enable/disable the usage of proxy protocol to convey client connection information to the back-end servers.
      * Valid only for l4 application profiles and tcp proxy.
-     * Allowed in basic(allowed values- false) edition, essentials(allowed values- false) edition, enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- false), basic edition(allowed values- false), enterprise with
+     * cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param proxyProtocolEnabled set the proxyProtocolEnabled.
      */
@@ -91,8 +120,8 @@ public class TCPApplicationProfile  {
      * This is the getter method this will return the attribute value.
      * Version of proxy protocol to be used to convey client connection information to the back-end servers.
      * Enum options - PROXY_PROTOCOL_VERSION_1, PROXY_PROTOCOL_VERSION_2.
-     * Allowed in basic(allowed values- proxy_protocol_version_1) edition, essentials(allowed values- proxy_protocol_version_1) edition, enterprise
-     * edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- proxy_protocol_version_1), basic edition(allowed values-
+     * proxy_protocol_version_1), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "PROXY_PROTOCOL_VERSION_1".
      * @return proxyProtocolVersion
      */
@@ -104,8 +133,8 @@ public class TCPApplicationProfile  {
      * This is the setter method to the attribute.
      * Version of proxy protocol to be used to convey client connection information to the back-end servers.
      * Enum options - PROXY_PROTOCOL_VERSION_1, PROXY_PROTOCOL_VERSION_2.
-     * Allowed in basic(allowed values- proxy_protocol_version_1) edition, essentials(allowed values- proxy_protocol_version_1) edition, enterprise
-     * edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- proxy_protocol_version_1), basic edition(allowed values-
+     * proxy_protocol_version_1), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "PROXY_PROTOCOL_VERSION_1".
      * @param proxyProtocolVersion set the proxyProtocolVersion.
      */
@@ -118,8 +147,8 @@ public class TCPApplicationProfile  {
      * Specifies whether the client side verification is set to none, request or require.
      * Enum options - SSL_CLIENT_CERTIFICATE_NONE, SSL_CLIENT_CERTIFICATE_REQUEST, SSL_CLIENT_CERTIFICATE_REQUIRE.
      * Field introduced in 18.2.3.
-     * Allowed in basic(allowed values- ssl_client_certificate_none) edition, essentials(allowed values- ssl_client_certificate_none) edition,
-     * enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- ssl_client_certificate_none), basic edition(allowed values-
+     * ssl_client_certificate_none), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SSL_CLIENT_CERTIFICATE_NONE".
      * @return sslClientCertificateMode
      */
@@ -132,8 +161,8 @@ public class TCPApplicationProfile  {
      * Specifies whether the client side verification is set to none, request or require.
      * Enum options - SSL_CLIENT_CERTIFICATE_NONE, SSL_CLIENT_CERTIFICATE_REQUEST, SSL_CLIENT_CERTIFICATE_REQUIRE.
      * Field introduced in 18.2.3.
-     * Allowed in basic(allowed values- ssl_client_certificate_none) edition, essentials(allowed values- ssl_client_certificate_none) edition,
-     * enterprise edition.
+     * Allowed in enterprise edition with any value, essentials edition(allowed values- ssl_client_certificate_none), basic edition(allowed values-
+     * ssl_client_certificate_none), enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SSL_CLIENT_CERTIFICATE_NONE".
      * @param sslClientCertificateMode set the sslClientCertificateMode.
      */
@@ -154,14 +183,16 @@ public class TCPApplicationProfile  {
       return   Objects.equals(this.proxyProtocolEnabled, objTCPApplicationProfile.proxyProtocolEnabled)&&
   Objects.equals(this.proxyProtocolVersion, objTCPApplicationProfile.proxyProtocolVersion)&&
   Objects.equals(this.sslClientCertificateMode, objTCPApplicationProfile.sslClientCertificateMode)&&
-  Objects.equals(this.pkiProfileRef, objTCPApplicationProfile.pkiProfileRef);
+  Objects.equals(this.pkiProfileRef, objTCPApplicationProfile.pkiProfileRef)&&
+  Objects.equals(this.ftpProfile, objTCPApplicationProfile.ftpProfile);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
       sb.append("class TCPApplicationProfile {\n");
-                  sb.append("    pkiProfileRef: ").append(toIndentedString(pkiProfileRef)).append("\n");
+                  sb.append("    ftpProfile: ").append(toIndentedString(ftpProfile)).append("\n");
+                        sb.append("    pkiProfileRef: ").append(toIndentedString(pkiProfileRef)).append("\n");
                         sb.append("    proxyProtocolEnabled: ").append(toIndentedString(proxyProtocolEnabled)).append("\n");
                         sb.append("    proxyProtocolVersion: ").append(toIndentedString(proxyProtocolVersion)).append("\n");
                         sb.append("    sslClientCertificateMode: ").append(toIndentedString(sslClientCertificateMode)).append("\n");

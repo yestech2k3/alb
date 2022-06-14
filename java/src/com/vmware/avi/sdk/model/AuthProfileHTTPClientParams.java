@@ -24,9 +24,6 @@ public class AuthProfileHTTPClientParams  {
     @JsonProperty("cache_expiration_time")
     private Integer cacheExpirationTime = 5;
 
-    @JsonProperty("group_member_is_full_dn")
-    private Boolean groupMemberIsFullDn;
-
     @JsonProperty("request_header")
     private String requestHeader = null;
 
@@ -40,6 +37,7 @@ public class AuthProfileHTTPClientParams  {
      * The max allowed length of time a clients authentication is cached.
      * Allowed values are 1-30.
      * Unit is sec.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 5.
      * @return cacheExpirationTime
      */
@@ -52,6 +50,7 @@ public class AuthProfileHTTPClientParams  {
      * The max allowed length of time a clients authentication is cached.
      * Allowed values are 1-30.
      * Unit is sec.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 5.
      * @param cacheExpirationTime set the cacheExpirationTime.
      */
@@ -61,31 +60,10 @@ public class AuthProfileHTTPClientParams  {
 
     /**
      * This is the getter method this will return the attribute value.
-     * Group member entries contain full dns instead of just user id attribute values.
-     * This should now be configured using the ldapdirectorysettings field instead.
-     * Field deprecated in 18.2.1.
-     * @return groupMemberIsFullDn
-     */
-    public Boolean getGroupMemberIsFullDn() {
-        return groupMemberIsFullDn;
-    }
-
-    /**
-     * This is the setter method to the attribute.
-     * Group member entries contain full dns instead of just user id attribute values.
-     * This should now be configured using the ldapdirectorysettings field instead.
-     * Field deprecated in 18.2.1.
-     * @param groupMemberIsFullDn set the groupMemberIsFullDn.
-     */
-    public void setGroupMemberIsFullDn(Boolean  groupMemberIsFullDn) {
-        this.groupMemberIsFullDn = groupMemberIsFullDn;
-    }
-
-    /**
-     * This is the getter method this will return the attribute value.
      * Insert an http header.
      * This field is used to define the header name.
      * The value of the header is set to the client's http auth user id.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requestHeader
      */
@@ -98,6 +76,7 @@ public class AuthProfileHTTPClientParams  {
      * Insert an http header.
      * This field is used to define the header name.
      * The value of the header is set to the client's http auth user id.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param requestHeader set the requestHeader.
      */
@@ -109,6 +88,7 @@ public class AuthProfileHTTPClientParams  {
      * A user should be a member of these groups.
      * Each group is defined by the dn.
      * For example, cn=testgroup,ou=groups,dc=example,dc=avinetworks,dc=com.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requireUserGroups
      */
@@ -121,6 +101,7 @@ public class AuthProfileHTTPClientParams  {
      * A user should be a member of these groups.
      * Each group is defined by the dn.
      * For example, cn=testgroup,ou=groups,dc=example,dc=avinetworks,dc=com.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requireUserGroups
      */
@@ -133,6 +114,7 @@ public class AuthProfileHTTPClientParams  {
      * A user should be a member of these groups.
      * Each group is defined by the dn.
      * For example, cn=testgroup,ou=groups,dc=example,dc=avinetworks,dc=com.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return requireUserGroups
      */
@@ -156,8 +138,7 @@ public class AuthProfileHTTPClientParams  {
       AuthProfileHTTPClientParams objAuthProfileHTTPClientParams = (AuthProfileHTTPClientParams) o;
       return   Objects.equals(this.requestHeader, objAuthProfileHTTPClientParams.requestHeader)&&
   Objects.equals(this.cacheExpirationTime, objAuthProfileHTTPClientParams.cacheExpirationTime)&&
-  Objects.equals(this.requireUserGroups, objAuthProfileHTTPClientParams.requireUserGroups)&&
-  Objects.equals(this.groupMemberIsFullDn, objAuthProfileHTTPClientParams.groupMemberIsFullDn);
+  Objects.equals(this.requireUserGroups, objAuthProfileHTTPClientParams.requireUserGroups);
     }
 
     @Override
@@ -165,7 +146,6 @@ public class AuthProfileHTTPClientParams  {
       StringBuilder sb = new StringBuilder();
       sb.append("class AuthProfileHTTPClientParams {\n");
                   sb.append("    cacheExpirationTime: ").append(toIndentedString(cacheExpirationTime)).append("\n");
-                        sb.append("    groupMemberIsFullDn: ").append(toIndentedString(groupMemberIsFullDn)).append("\n");
                         sb.append("    requestHeader: ").append(toIndentedString(requestHeader)).append("\n");
                         sb.append("    requireUserGroups: ").append(toIndentedString(requireUserGroups)).append("\n");
                   sb.append("}");

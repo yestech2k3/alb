@@ -18,6 +18,7 @@ import (
 	"os"
 	"reflect"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/golang/glog"
@@ -51,6 +52,11 @@ type AviError struct {
 	// err contains a descriptive error object for error cases other than HTTP
 	// errors (i.e., non-2xx responses), such as socket errors or malformed JSON.
 	err error
+}
+
+// HttpClient allows callers to inject their own implementations for the SDK to use.
+type HttpClient interface {
+	Do(req *http.Request) (*http.Response, error)
 }
 
 // PostMultipartRequest performs a POST API call and uploads multipart data to API fileobject/upload
@@ -250,7 +256,7 @@ type AviSession struct {
 	transport *http.Transport
 
 	// internal: reusable client
-	client *http.Client
+	client HttpClient
 
 	// optional lazy authentication flag. This will trigger login when the first API call is made.
 	// The authentication is not performed when the Session object is created.
@@ -269,9 +275,15 @@ type AviSession struct {
 
 	// this flag disables the checkcontrollerstatus method, instead client do their own retries
 	disableControllerStatusCheck bool
+
+	// Lock to synchronise the cookies collection from API response
+	cookiesCollectLock sync.Mutex
+
+	// Lock to synchronise the session initiation
+	sessionReInitLock sync.Mutex
 }
 
-const DEFAULT_AVI_VERSION = "17.1.2"
+const DEFAULT_AVI_VERSION = "18.2.6"
 const DEFAULT_API_TIMEOUT = time.Duration(60 * time.Second)
 const DEFAULT_API_TENANT = "admin"
 const DEFAULT_MAX_API_RETRIES = 3
@@ -316,22 +328,24 @@ func NewAviSession(host string, username string, options ...func(*AviSession) er
 		avisess.api_retry_interval = DEFAULT_API_RETRY_INTERVAL
 	}
 
-	// create default transport object
-	if avisess.transport == nil {
-		avisess.transport = &http.Transport{
-			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-		}
-	}
-
 	// set default timeout
 	if avisess.timeout == 0 {
 		avisess.timeout = DEFAULT_API_TIMEOUT
 	}
 
-	// attach transport object to client
-	avisess.client = &http.Client{
-		Transport: avisess.transport,
-		Timeout:   avisess.timeout,
+	if avisess.client == nil {
+		// create default transport object
+		if avisess.transport == nil {
+			avisess.transport = &http.Transport{
+				TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+			}
+		}
+
+		// attach transport object to client
+		avisess.client = &http.Client{
+			Transport: avisess.transport,
+			Timeout:   avisess.timeout,
+		}
 	}
 
 	if !avisess.lazyAuthentication {
@@ -503,7 +517,25 @@ func SetTransport(transport *http.Transport) func(*AviSession) error {
 }
 
 func (avisess *AviSession) setTransport(transport *http.Transport) error {
+	if avisess.client != nil {
+		return errors.New("Cannot set custom Transport for external clients")
+	}
 	avisess.transport = transport
+	return nil
+}
+
+// SetClient allows callers to inject their own HTTP client.
+func SetClient(client HttpClient) func(*AviSession) error {
+	return func(sess *AviSession) error {
+		return sess.setClient(client)
+	}
+}
+
+func (avisess *AviSession) setClient(client HttpClient) error {
+	if avisess.transport != nil {
+		return errors.New("Cannot set custom client when transport is already set to http.Transport")
+	}
+	avisess.client = client
 	return nil
 }
 
@@ -611,18 +643,22 @@ func (avisess *AviSession) newAviRequest(verb string, url string, payload io.Rea
 
 func (avisess *AviSession) collectCookiesFromResp(resp *http.Response) {
 	// collect cookies from the resp
+	avisess.cookiesCollectLock.Lock()
+	defer avisess.cookiesCollectLock.Unlock()
+
+	var csrfToken string
+	var sessionID string
 	for _, cookie := range resp.Cookies() {
-		glog.Infof("cookie: %v", cookie)
 		if cookie.Name == "csrftoken" {
-			avisess.csrfToken = cookie.Value
-			glog.Infof("Set the csrf token to %v", avisess.csrfToken)
+			csrfToken = cookie.Value
 		}
-		if cookie.Name == "sessionid" {
-			avisess.sessionid = cookie.Value
+		if cookie.Name == "sessionid" || cookie.Name == "avi-sessionid" {
+			sessionID = cookie.Value
 		}
-		if cookie.Name == "avi-sessionid" {
-			avisess.sessionid = cookie.Value
-		}
+	}
+	if csrfToken != "" && sessionID != "" {
+		avisess.csrfToken = csrfToken
+		avisess.sessionid = sessionID
 	}
 }
 
@@ -662,11 +698,15 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 		payloadIO = bytes.NewBuffer(jsonStr)
 	}
 
+	// Will keep other go routines on hold while re-initiating the session in case of API failure
+	if uri != "login" {
+		avisess.sessionReInitLock.Lock()
+		avisess.sessionReInitLock.Unlock()
+	}
 	req, errorResult := avisess.newAviRequest(verb, url, payloadIO, tenant)
 	if errorResult.err != nil {
 		return nil, errorResult
 	}
-
 	retryReq := false
 	resp, err := avisess.client.Do(req)
 	if err != nil {
@@ -679,19 +719,15 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 		debug(dump, dumpErr)
 		retryReq = true
 	}
-
 	if !retryReq {
-		glog.Infof("Req for uri %v RespCode %v", url, resp.StatusCode)
+		glog.Infof("Req for %s uri %v tenant %s RespCode %v", verb, url, tenant, resp.StatusCode)
 		errorResult.HttpStatusCode = resp.StatusCode
 		avisess.collectCookiesFromResp(resp)
-
-		if resp.StatusCode == 401 && len(avisess.sessionid) != 0 && uri != "login" {
+		// Removed session id lenghth check because in concurrent enviornment most of the time we gets 401 due to the empty token
+		// set by another go routine. We should retry if session id is empty and status code is 401
+		if resp.StatusCode == 401 && uri != "login" {
 			resp.Body.Close()
-			glog.Infof("Retrying url %s; retry %d due to Status Code %d", url, retry, resp.StatusCode)
-			err := avisess.initiateSession()
-			if err != nil {
-				return nil, err
-			}
+			glog.Infof("Retrying url %s; retry %d due to Status Code %d.", url, retry, resp.StatusCode)
 			retryReq = true
 		} else if resp.StatusCode == 419 || (resp.StatusCode >= 500 && resp.StatusCode < 599) {
 			resp.Body.Close()
@@ -710,12 +746,35 @@ func (avisess *AviSession) restRequest(verb string, uri string, payload interfac
 				glog.Errorf("restRequest Error during checking controller state. Error: %s", err)
 				return httpResp, err
 			}
-			if err := avisess.initiateSession(); err != nil {
-				if resp != nil && resp.Body != nil {
-					glog.Infof("Body is not nil, close it.")
-					resp.Body.Close()
+			// skipSessionRefresh will help to restrict the session reinitiation for single go routine
+			skipSessionRefresh := false
+			state := reflect.ValueOf(avisess.sessionReInitLock).FieldByName("state")
+			lockState := state.Int()&1 == 1
+			if lockState {
+				glog.Infof("[DEBUG] Lock is already acquired by another go routine. Current URL: %v", url)
+				skipSessionRefresh = true
+			} else {
+				glog.Infof("[DEBUG] Lock is available. Need to refresh the session for URL: %v", url)
+			}
+			glog.Infof("Acquiring lock for URL: %v", url)
+			avisess.sessionReInitLock.Lock()
+
+			glog.Infof("Acquired lock for URL: %v", url)
+			if skipSessionRefresh == false {
+				glog.Infof("[DEBUG] Reinitialising sessios for URL: %v", url)
+				err := avisess.initiateSession()
+				avisess.sessionReInitLock.Unlock()
+				glog.Infof("[DEBUG] Released lock. URL: %v", url)
+				if err != nil {
+					if resp != nil && resp.Body != nil {
+						glog.Infof("Body is not nil, close it.")
+						resp.Body.Close()
+					}
+					return nil, err
 				}
-				return nil, err
+			} else {
+				avisess.sessionReInitLock.Unlock()
+				glog.Infof("[DEBUG] Skipped session refresh for URL: %v", url)
 			}
 			return avisess.restRequest(verb, uri, payload, tenant, errorResult, retry+1)
 		} else {
@@ -1148,8 +1207,15 @@ func (avisess *AviSession) GetCollection(uri string, objList interface{}, option
 }
 
 // GetRaw performs a GET API call and returns raw data
-func (avisess *AviSession) GetRaw(uri string) ([]byte, error) {
-	resp, rerror := avisess.restRequest("GET", uri, nil, "", nil)
+func (avisess *AviSession) GetRaw(uri string, options ...ApiOptionsParams) ([]byte, error) {
+	opts, err := getOptions(options)
+	if err != nil {
+		return nil, err
+	}
+	if len(opts.params) != 0 {
+		uri = updateUri(uri, opts)
+	}
+	resp, rerror := avisess.restRequest("GET", uri, nil, opts.tenant, nil)
 	if rerror != nil || resp == nil {
 		return nil, rerror
 	}
@@ -1158,8 +1224,15 @@ func (avisess *AviSession) GetRaw(uri string) ([]byte, error) {
 }
 
 // PostRaw performs a POST API call and returns raw data
-func (avisess *AviSession) PostRaw(uri string, payload interface{}) ([]byte, error) {
-	resp, rerror := avisess.restRequest("POST", uri, payload, "", nil)
+func (avisess *AviSession) PostRaw(uri string, payload interface{}, options ...ApiOptionsParams) ([]byte, error) {
+	opts, err := getOptions(options)
+	if err != nil {
+		return nil, err
+	}
+	if len(opts.params) != 0 {
+		uri = updateUri(uri, opts)
+	}
+	resp, rerror := avisess.restRequest("POST", uri, payload, opts.tenant, nil)
 	if rerror != nil || resp == nil {
 		return nil, rerror
 	}
@@ -1167,8 +1240,15 @@ func (avisess *AviSession) PostRaw(uri string, payload interface{}) ([]byte, err
 }
 
 // PutRaw performs a POST API call and returns raw data
-func (avisess *AviSession) PutRaw(uri string, payload interface{}) ([]byte, error) {
-	resp, rerror := avisess.restRequest("PUT", uri, payload, "", nil)
+func (avisess *AviSession) PutRaw(uri string, payload interface{}, options ...ApiOptionsParams) ([]byte, error) {
+	opts, err := getOptions(options)
+	if err != nil {
+		return nil, err
+	}
+	if len(opts.params) != 0 {
+		uri = updateUri(uri, opts)
+	}
+	resp, rerror := avisess.restRequest("PUT", uri, payload, opts.tenant, nil)
 	if rerror != nil || resp == nil {
 		return nil, rerror
 	}
@@ -1361,9 +1441,9 @@ func (avisess *AviSession) GetObject(obj string, options ...ApiOptionsParams) er
 		return json.Unmarshal(res.Results, &opts.result)
 	}
 	if res.Count == 0 {
-		return errors.New("No object of type " + obj + " with name " + opts.name + "is found")
+		return errors.New("No object of type " + obj + " with name " + opts.name + " is found")
 	} else if res.Count > 1 {
-		return errors.New("More than one object of type " + obj + " with name " + opts.name + "is found")
+		return errors.New("More than one object of type " + obj + " with name " + opts.name + " is found")
 	}
 	elems := make([]json.RawMessage, 1)
 	err = json.Unmarshal(res.Results, &elems)

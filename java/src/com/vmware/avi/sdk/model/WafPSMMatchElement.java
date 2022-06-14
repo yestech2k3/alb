@@ -27,6 +27,12 @@ public class WafPSMMatchElement  {
     @JsonProperty("index")
     private Integer index = null;
 
+    @JsonProperty("match_case")
+    private String matchCase = "INSENSITIVE";
+
+    @JsonProperty("match_op")
+    private String matchOp = "EQUALS";
+
     @JsonProperty("name")
     private String name = null;
 
@@ -39,6 +45,7 @@ public class WafPSMMatchElement  {
      * This is the getter method this will return the attribute value.
      * Mark this element excluded, like in '!args password'.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return excluded
      */
@@ -50,6 +57,7 @@ public class WafPSMMatchElement  {
      * This is the setter method to the attribute.
      * Mark this element excluded, like in '!args password'.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param excluded set the excluded.
      */
@@ -61,6 +69,7 @@ public class WafPSMMatchElement  {
      * This is the getter method this will return the attribute value.
      * Match_element index.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return index
      */
@@ -72,11 +81,68 @@ public class WafPSMMatchElement  {
      * This is the setter method to the attribute.
      * Match_element index.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param index set the index.
      */
     public void setIndex(Integer  index) {
         this.index = index;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Case sensitivity of match_op operation.
+     * Enum options - SENSITIVE, INSENSITIVE.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "INSENSITIVE".
+     * @return matchCase
+     */
+    public String getMatchCase() {
+        return matchCase;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Case sensitivity of match_op operation.
+     * Enum options - SENSITIVE, INSENSITIVE.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "INSENSITIVE".
+     * @param matchCase set the matchCase.
+     */
+    public void setMatchCase(String  matchCase) {
+        this.matchCase = matchCase;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * String operation to use for matching the sub_element.
+     * Default is equals.
+     * Enum options - BEGINS_WITH, DOES_NOT_BEGIN_WITH, CONTAINS, DOES_NOT_CONTAIN, ENDS_WITH, DOES_NOT_END_WITH, EQUALS, DOES_NOT_EQUAL, REGEX_MATCH,
+     * REGEX_DOES_NOT_MATCH.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "EQUALS".
+     * @return matchOp
+     */
+    public String getMatchOp() {
+        return matchOp;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * String operation to use for matching the sub_element.
+     * Default is equals.
+     * Enum options - BEGINS_WITH, DOES_NOT_BEGIN_WITH, CONTAINS, DOES_NOT_CONTAIN, ENDS_WITH, DOES_NOT_END_WITH, EQUALS, DOES_NOT_EQUAL, REGEX_MATCH,
+     * REGEX_DOES_NOT_MATCH.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as "EQUALS".
+     * @param matchOp set the matchOp.
+     */
+    public void setMatchOp(String  matchOp) {
+        this.matchOp = matchOp;
     }
 
     /**
@@ -87,6 +153,7 @@ public class WafPSMMatchElement  {
      * Enum options - WAF_VARIABLE_ARGS, WAF_VARIABLE_ARGS_GET, WAF_VARIABLE_ARGS_POST, WAF_VARIABLE_ARGS_NAMES, WAF_VARIABLE_REQUEST_COOKIES,
      * WAF_VARIABLE_QUERY_STRING, WAF_VARIABLE_REQUEST_BASENAME, WAF_VARIABLE_REQUEST_URI, WAF_VARIABLE_PATH_INFO.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return name
      */
@@ -102,6 +169,7 @@ public class WafPSMMatchElement  {
      * Enum options - WAF_VARIABLE_ARGS, WAF_VARIABLE_ARGS_GET, WAF_VARIABLE_ARGS_POST, WAF_VARIABLE_ARGS_NAMES, WAF_VARIABLE_REQUEST_COOKIES,
      * WAF_VARIABLE_QUERY_STRING, WAF_VARIABLE_REQUEST_BASENAME, WAF_VARIABLE_REQUEST_URI, WAF_VARIABLE_PATH_INFO.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param name set the name.
      */
@@ -114,6 +182,7 @@ public class WafPSMMatchElement  {
      * The name of the request collection element.
      * This can be empty, if we address the whole collection or a scalar element.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return subElement
      */
@@ -126,6 +195,7 @@ public class WafPSMMatchElement  {
      * The name of the request collection element.
      * This can be empty, if we address the whole collection or a scalar element.
      * Field introduced in 18.2.3.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param subElement set the subElement.
      */
@@ -146,7 +216,9 @@ public class WafPSMMatchElement  {
       return   Objects.equals(this.index, objWafPSMMatchElement.index)&&
   Objects.equals(this.name, objWafPSMMatchElement.name)&&
   Objects.equals(this.subElement, objWafPSMMatchElement.subElement)&&
-  Objects.equals(this.excluded, objWafPSMMatchElement.excluded);
+  Objects.equals(this.excluded, objWafPSMMatchElement.excluded)&&
+  Objects.equals(this.matchOp, objWafPSMMatchElement.matchOp)&&
+  Objects.equals(this.matchCase, objWafPSMMatchElement.matchCase);
     }
 
     @Override
@@ -155,6 +227,8 @@ public class WafPSMMatchElement  {
       sb.append("class WafPSMMatchElement {\n");
                   sb.append("    excluded: ").append(toIndentedString(excluded)).append("\n");
                         sb.append("    index: ").append(toIndentedString(index)).append("\n");
+                        sb.append("    matchCase: ").append(toIndentedString(matchCase)).append("\n");
+                        sb.append("    matchOp: ").append(toIndentedString(matchOp)).append("\n");
                         sb.append("    name: ").append(toIndentedString(name)).append("\n");
                         sb.append("    subElement: ").append(toIndentedString(subElement)).append("\n");
                   sb.append("}");

@@ -1,7 +1,15 @@
+#!/usr/bin/env python3
+
+############################################################################
+# ========================================================================
+# Copyright 2021 VMware, Inc.  All rights reserved. VMware Confidential
+# ========================================================================
+###
+
 # Copyright 2021 VMware, Inc.
 # SPDX-License-Identifier: Apache License 2.0
 
-#!/usr/bin/env python3
+
 import argparse
 import json
 import os
@@ -61,7 +69,7 @@ def search_obj(entity, name, new_config, avi_config, depth):
     """
 
     avi_conf_key = path_key_map[entity]
-    found_obj_list = avi_config[avi_conf_key]
+    found_obj_list = avi_config.get(avi_conf_key, [])
     found_obj = [obj for obj in found_obj_list if obj['name'] == name]
     if found_obj:
         found_obj = found_obj[0]

@@ -24,6 +24,9 @@ public class SEFaultInjectSeParam  {
     @JsonProperty("core")
     private Integer core = 1000;
 
+    @JsonProperty("obj_names")
+    private List<String> objNames = null;
+
     @JsonProperty("random_core")
     private Boolean randomCore = false;
 
@@ -39,6 +42,7 @@ public class SEFaultInjectSeParam  {
      * This is the getter method this will return the attribute value.
      * Inject fault in specific core.
      * Field introduced in 18.1.5,18.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1000.
      * @return core
      */
@@ -50,17 +54,58 @@ public class SEFaultInjectSeParam  {
      * This is the setter method to the attribute.
      * Inject fault in specific core.
      * Field introduced in 18.1.5,18.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1000.
      * @param core set the core.
      */
     public void setCore(Integer  core) {
         this.core = core;
     }
+    /**
+     * This is the getter method this will return the attribute value.
+     * Inject fault on objects.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return objNames
+     */
+    public List<String> getObjNames() {
+        return objNames;
+    }
+
+    /**
+     * This is the setter method. this will set the objNames
+     * Inject fault on objects.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return objNames
+     */
+    public void setObjNames(List<String>  objNames) {
+        this.objNames = objNames;
+    }
+
+    /**
+     * This is the setter method this will set the objNames
+     * Inject fault on objects.
+     * Field introduced in 21.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return objNames
+     */
+    public SEFaultInjectSeParam addObjNamesItem(String objNamesItem) {
+      if (this.objNames == null) {
+        this.objNames = new ArrayList<String>();
+      }
+      this.objNames.add(objNamesItem);
+      return this;
+    }
 
     /**
      * This is the getter method this will return the attribute value.
      * Inject fault in random no of cores.
      * Field introduced in 18.1.5,18.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @return randomCore
      */
@@ -72,6 +117,7 @@ public class SEFaultInjectSeParam  {
      * This is the setter method to the attribute.
      * Inject fault in random no of cores.
      * Field introduced in 18.1.5,18.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as false.
      * @param randomCore set the randomCore.
      */
@@ -85,6 +131,7 @@ public class SEFaultInjectSeParam  {
      * Enum options - SE_AGENT_FAULT_DISABLED, SE_AGENT_PRE_PROCESS_FAULT, SE_AGENT_POST_PROCESS_FAULT, SE_AGENT_DP_RESPONSE_FAULT,
      * SE_AGENT_RANDOM_PROCESS_FAULT.
      * Field introduced in 18.1.5,18.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_AGENT_FAULT_DISABLED".
      * @return seAgentFault
      */
@@ -98,6 +145,7 @@ public class SEFaultInjectSeParam  {
      * Enum options - SE_AGENT_FAULT_DISABLED, SE_AGENT_PRE_PROCESS_FAULT, SE_AGENT_POST_PROCESS_FAULT, SE_AGENT_DP_RESPONSE_FAULT,
      * SE_AGENT_RANDOM_PROCESS_FAULT.
      * Field introduced in 18.1.5,18.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_AGENT_FAULT_DISABLED".
      * @param seAgentFault set the seAgentFault.
      */
@@ -110,6 +158,7 @@ public class SEFaultInjectSeParam  {
      * Set se-dp fault type.
      * Enum options - SE_DP_FAULT_DISABLED.
      * Field introduced in 18.1.5,18.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_DP_FAULT_DISABLED".
      * @return seDpFault
      */
@@ -122,6 +171,7 @@ public class SEFaultInjectSeParam  {
      * Set se-dp fault type.
      * Enum options - SE_DP_FAULT_DISABLED.
      * Field introduced in 18.1.5,18.2.1.
+     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as "SE_DP_FAULT_DISABLED".
      * @param seDpFault set the seDpFault.
      */
@@ -142,7 +192,8 @@ public class SEFaultInjectSeParam  {
       return   Objects.equals(this.seAgentFault, objSEFaultInjectSeParam.seAgentFault)&&
   Objects.equals(this.seDpFault, objSEFaultInjectSeParam.seDpFault)&&
   Objects.equals(this.randomCore, objSEFaultInjectSeParam.randomCore)&&
-  Objects.equals(this.core, objSEFaultInjectSeParam.core);
+  Objects.equals(this.core, objSEFaultInjectSeParam.core)&&
+  Objects.equals(this.objNames, objSEFaultInjectSeParam.objNames);
     }
 
     @Override
@@ -150,6 +201,7 @@ public class SEFaultInjectSeParam  {
       StringBuilder sb = new StringBuilder();
       sb.append("class SEFaultInjectSeParam {\n");
                   sb.append("    core: ").append(toIndentedString(core)).append("\n");
+                        sb.append("    objNames: ").append(toIndentedString(objNames)).append("\n");
                         sb.append("    randomCore: ").append(toIndentedString(randomCore)).append("\n");
                         sb.append("    seAgentFault: ").append(toIndentedString(seAgentFault)).append("\n");
                         sb.append("    seDpFault: ").append(toIndentedString(seDpFault)).append("\n");
