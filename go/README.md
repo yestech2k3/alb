@@ -28,34 +28,41 @@ Go Lang ([Click here](https://golang.org/doc/install) for more information)
 They can be installed simply as:
 ### Avi Go SDK Install
 ```sh
-$ mkdir -p src/github.com/avinetworks/
-$ cd src/github.com/avinetworks/
+$ mkdir -p src/github.com/vmware/
+$ cd src/github.com/vmware/
 $ git clone https://github.com/vmware/alb-sdk.git
 #GOPATH will be path till src dir.
-$ export GOPATH=~/src
+$ export GOPATH=<path to src directory>
 ```
 
 ### Usage Examples
-Please follow following steps to create session, pool and virtualservice.
+Please follow following steps to create session, pool and virtualservice. 
 1. Create create_vs.go file and write following code in the file.
 2. Import AVI session, models and clients
 ```
 package main
 
 import (
-	"github.com/vmware/alb-sdk/go/clients"
-	"github.com/vmware/alb-sdk/go/models"
-	"github.com/vmware/alb-sdk/go/session"
-	)
+        "fmt"
+        "github.com/vmware/alb-sdk/go/clients"
+        "github.com/vmware/alb-sdk/go/models"
+        "github.com/vmware/alb-sdk/go/session"
+)
 ```
-3. Create AVI API session. Specify AVI controller IP, username, password, tenant and API version
+3. Add main function.
+```
+func main() {
+    // Add code from steps 4 to 11 here.
+}
+```
+4. Create AVI API session. Specify AVI controller IP, username, password, tenant and API version
 for your NSX ALB controller
 ```
 aviClient, err := clients.NewAviClient("10.10.25.25", "admin",
 		session.SetPassword("something"),
 		session.SetTenant("admin"),
 		session.SetInsecure,
-		session.SetControllerStatusCheckLimits(5, 10)
+		session.SetControllerStatusCheckLimits(5, 10),
 		session.SetVersion("22.1.1"))
 ```
 - We can use following options while creating session.
@@ -85,7 +92,7 @@ aviClient, err := clients.NewAviClient("10.10.25.25", "admin",
     - **SetApiRetryInterval(api_retry_interval int)** : Use this for NewAviSession option argument 
         to set API retry interval.
 
-4. Create pool 'my-test-pool' with one server. Here we can use the models defined in go/models.
+5. Create pool 'my-test-pool' with one server. Here we can use the models defined in go/models.
 ```go
 pobj := models.Pool{}
 pname := "my-test-pool"
@@ -105,7 +112,7 @@ if err != nil {
 }
 ```
 
-5. Create vsvip 'test-vip' :
+6. Create vsvip 'test-vip' :
 
 ```go
 vsVip := models.VsVip{}
@@ -125,7 +132,7 @@ if err != nil {
 }
 ```
 
-6. Create virtualservice 'my-test-vs' using pool 'my-test-pool':
+7. Create virtualservice 'my-test-vs' using pool 'my-test-pool':
 
 ```go
 vsobj := models.VirtualService{}
@@ -144,7 +151,7 @@ if err != nil {
 fmt.Printf("VS obj: %+v", *nvsobj)
 ```
 
-7. Fetching object by name:
+8. Fetching object by name:
 
 ```go
 var obj interface{}
@@ -157,21 +164,26 @@ err = aviClient.AviSession.GetObject(
 fmt.Printf("VS with CLOUD_UUID obj: %v", obj)
 ```
 
-8. Delete virtualservice
+9. Delete virtualservice
 
 ```go
 aviClient.VirtualService.Delete(nvsobj.UUID)
 ```
-9. Delete pool
+10. Delete VsVip
+```
+aviClient.VsVip.Delete(*vsVipObj.UUID)
+```
+11. Delete pool
 
 ```go
 aviClient.Pool.Delete(npobj.UUID)
 ```
-10. Now we can run create_vs.go to create/delete VS, pool.
+12. Now we can run create_vs.go to create/delete VS, pool.
 ```sh
 $ go run create_vs.go
 ```
-
+##
+**Lets try another example**
 - Metric and Inventory API example:
 ```go
 package main
@@ -217,29 +229,19 @@ func main() {
 	fmt.Printf("response %v\n", rsp)
 }
 ```
-- To compile:
+- To run:
 
 ```sh
-$ go build -o /usr/bin/create_vs create_vs.go
+$ go run metrics_inventory.go
 ```
-- To include Go SDK in third party code:
+##
+**To include Go SDK in third party code:**
 
-Following is an example entry of vendor.json file in Terraform provider
-```go
-"package": [{
-                "path": "github.com/vmware/alb-sdk/go/clients",
-                "revision": "23def4e6c14b4da8ac2ed8007337bc5eb5007998",
-                "revisionTime": "2016-01-25T20:49:56Z",
-                "version": "18.1.3",
-                "versionExact": "18.1.3"
-            },
-            {
-                "path": "github.com/vmware/alb-sdk/go/session",
-                "revision": "23def4e6c14b4da8ac2ed8007337bc5eb5007998",
-                "revisionTime": "2016-01-25T20:49:56Z",
-                "version": "18.1.3",
-                "versionExact": "18.1.3"
-            }]
+Following is an example entry of go.mod file in third party code
+```
+require (
+	github.com/vmware/alb-sdk v22.1.1
+)
 ```
 
 Following is an example to import Go SDK packages in third party Go code
