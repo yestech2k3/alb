@@ -427,7 +427,7 @@ class AviClone:
                     cm_obj=old_obj, t_obj=t_obj, ot_obj=ot_obj,
                     oc_obj=oc_obj, ov_obj=ov_obj, force_clone=force_clone)
             elif object_type == 'analyticsprofile':
-                if '18.2.6' <= self.dest_api.api_version < '21.1.1':
+                if '18.2.6' <= self.dest_api.api_version < '21.1.5':
                     # Workaround for issue in certain releases where
                     # hs_security_tls13_score is read-only - AV-84655
                     old_obj.pop('hs_security_tls13_score', None)
