@@ -1194,7 +1194,6 @@ definitions:
             disable_gro:
                 description: "Disable Generic Receive Offload (GRO) in DPDK poll-mode driver packet receive path.  GRO is on by default on NICs that do not support LRO (Large Receive Offload) or do not gain performance boost from LRO. Field introduced in 17.2.5, 18.1.1. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
-                default: True
             disable_se_memory_check:
                 description: "If set, disable the config memory check done in service engine. Field introduced in 18.1.2. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: boolean
@@ -1312,6 +1311,11 @@ definitions:
                 description: "GratArp periodicity for VIP-IP. Allowed values are 5-30. Field introduced in 18.2.3. Unit is MIN. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
                 default: 10
+                format: int32
+            grpc_channel_connect_timeout:
+                description: "Timeout in seconds that SE waits for a grpc channel to connect to server, before it retries. Allowed values are 5-45. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                default: 15
                 format: int32
             ha_mode:
                 description: "High Availability mode for all the Virtual Services using this Service Engine group. Enum options - HA_MODE_SHARED_PAIR, HA_MODE_SHARED, HA_MODE_LEGACY_ACTIVE_STANDBY. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- HA_MODE_LEGACY_ACTIVE_STANDBY), Basic edition(Allowed values- HA_MODE_LEGACY_ACTIVE_STANDBY), Enterprise with Cloud Services edition. Special default for Essentials edition is HA_MODE_LEGACY_ACTIVE_STANDBY, Basic edition is HA_MODE_LEGACY_ACTIVE_STANDBY, Enterprise is HA_MODE_SHARED."

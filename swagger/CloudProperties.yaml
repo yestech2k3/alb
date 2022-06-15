@@ -1022,6 +1022,9 @@ definitions:
             enable_resmgr_log_cache_print:
                 description: "Enable printing of cached logs inside Resource Manager. Used for debugging purposes only. Field introduced in 20.1.6. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: boolean
+            false_positive_learning_config:
+                description: "False Positive learning configuration. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                $ref: '#/definitions/FalsePositiveLearningConfig'
             fatal_error_lease_time:
                 description: " Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
                 type: integer
@@ -1138,7 +1141,7 @@ definitions:
             se_upgrade_flow_cleanup_timeout:
                 description: "Timeout for flows cleanup by ServiceEngine during Upgrade.Internal knob  to be exercised under the surveillance of VMware AVI support team. Field introduced in 22.1.1. Unit is SEC. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: integer
-                default: 30
+                default: 90
                 format: int32
             se_vnic_cooldown:
                 description: " Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
@@ -1324,6 +1327,29 @@ definitions:
                     $ref: "#/definitions/ControllerProperties"
             next:
                 type: string
+    FalsePositiveLearningConfig:
+        type: object
+        properties:
+            max_apps_supported:
+                description: "Max number of applications supported to detect false positive. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                default: 5
+                format: int64
+            min_monitor_time:
+                description: "Minimum monitor time required to automatically detect false positive. Unit is minutes. Field introduced in 22.1.1. Unit is MIN. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                default: 10080
+                format: int64
+            min_trans_per_application:
+                description: "Minimum number of transactions in one application required to automatically detect false positive. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                default: 5000000
+                format: int64
+            min_trans_per_uri:
+                description: "Minimum number of transactions in one URI required to automatically detect false positive. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
+                type: integer
+                default: 10000
+                format: int64
     Hypervisor_Properties:
         type: object
         required:
