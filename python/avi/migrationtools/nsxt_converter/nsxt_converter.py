@@ -331,6 +331,8 @@ if __name__ == "__main__":
                         help='NSX-T Password', required=True)
     parser.add_argument('-port', '--nsxt_port', default=443,
                         help='NSX-T Port')
+    parser.add_argument( '--ssh_root_password',
+                        help='ssh root  Password')
     # Added not in use flag
     parser.add_argument('--not_in_use',
                         help='Flag for skipping not in use object',
@@ -365,6 +367,7 @@ if __name__ == "__main__":
                              'settings in status excel sheet')
     parser.add_argument('-s', '--vs_state', choices=ARG_CHOICES['vs_state'],
                         help='State of created VS')
+
 
     start = datetime.now()
     args = parser.parse_args()

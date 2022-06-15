@@ -465,10 +465,10 @@ class VsConfigConv(object):
                                 cloud_name=cloud_name, prefix=prefix)
                             is_pg_created = is_pool_group
                             main_pool_ref = pool_ref
-
+                            if is_pool_group:
+                                is_pool_group_used[pool_ref] = alb_vs['name']
                             if cloud_type == 'Vlan':
                                 if is_pool_group:
-                                    is_pool_group_used[pool_ref]=alb_vs['name']
                                     self.add_placement_network_to_pool_group(pool_ref, pool_segment,
                                                                              alb_config, cloud_name, tenant)
 

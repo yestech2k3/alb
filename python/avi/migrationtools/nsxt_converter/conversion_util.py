@@ -1190,8 +1190,11 @@ class NsxtConvUtil(MigrationUtil):
             pg_ref = new_pool_group["name"]
             new_pool_group["tenant_ref"] = self.get_object_ref(tenant, 'tenant')
             avi_config['PoolGroup'].append(new_pool_group)
-            for member in new_pool_group['members']:
+            for index, member in enumerate(new_pool_group['members']):
                 pool_name = self.get_name(member['pool_ref'])
+                if not pool_name.startswith(pool_group_name):
+                    del new_pool_group['members'][index]
+                    continue
                 pool_name = self.clone_pool(pool_name, clone_for,
                                             avi_config['Pool'], is_vs, tenant)
                 member['pool_ref'] = self.get_object_ref(
