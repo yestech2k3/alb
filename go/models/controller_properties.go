@@ -114,6 +114,9 @@ type ControllerProperties struct {
 	// Enable printing of cached logs inside Resource Manager. Used for debugging purposes only. Field introduced in 20.1.6. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	EnableResmgrLogCachePrint *bool `json:"enable_resmgr_log_cache_print,omitempty"`
 
+	// False Positive learning configuration. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	FalsePositiveLearningConfig *FalsePositiveLearningConfig `json:"false_positive_learning_config,omitempty"`
+
 	//  Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
 	FatalErrorLeaseTime *int32 `json:"fatal_error_lease_time,omitempty"`
 
