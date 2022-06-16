@@ -852,7 +852,7 @@ class VsConfigConv(object):
                             "mask": sub["subnets"]["network_range"].split("/")[-1]
                         },
                         network_ref=conv_utils.get_object_ref(
-                            sub["seg_name"], 'network', tenant=tenant, cloud_name=cloud_name)
+                            sub["seg_name"], 'network', tenant="admin", cloud_name=cloud_name)
                     )
                     pool_obj["placement_networks"].append(subnets)
             if not pool_present:
@@ -1003,7 +1003,7 @@ class VsConfigConv(object):
                     "mask": sub["subnets"]["network_range"].split("/")[-1]
                 },
                 network_ref=conv_utils.get_object_ref(
-                    sub["seg_name"], 'network', tenant=tenant, cloud_name=cloud_name)
+                    sub["seg_name"], 'network', tenant="admin", cloud_name=cloud_name)
             )
             vip_config[0]['placement_networks'].append(subnets)
 
@@ -1048,7 +1048,7 @@ class VsConfigConv(object):
                             "mask": sub["subnets"]["network_range"].split("/")[-1]
                         },
                         network_ref=conv_utils.get_object_ref(
-                            sub["seg_name"], 'network', tenant=tenant, cloud_name=cloud_name)
+                            sub["seg_name"], 'network', tenant="admin", cloud_name=cloud_name)
                     )
                     pool_obj["placement_networks"].append(subnets)
                 break
