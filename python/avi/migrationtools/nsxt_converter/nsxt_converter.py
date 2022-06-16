@@ -386,10 +386,7 @@ if __name__ == "__main__":
             exit()
     if not args.ssh_root_password:
         if os.environ.get('ssh_root_password'):
-            args.ssh_root_password= os.environ.get('ssh_root_password')
-        else:
-            print('\033[91m'+'ERROR: please provide ssh_root_password either through environment variable or as a script parameter'+'\033[0m')
-            exit()
+            args.ssh_root_password = os.environ.get('ssh_root_password')
     nsxt_converter = NsxtConverter(args)
     nsxt_converter.conver_lb_config(args)
     end = datetime.now()
