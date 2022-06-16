@@ -125,19 +125,19 @@ def get_object_segments(vs_id, obj_ip):
     return None
 
 
-def get_certificate_data(certificate_ref, nsxt_ip, nsxt_pw):
+def get_certificate_data(certificate_ref, nsxt_ip, ssh_root_password):
     import paramiko
     import json
 
     ssh = paramiko.SSHClient()
     ssh.load_system_host_keys()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(nsxt_ip, username='root', password=nsxt_pw, allow_agent=False, look_for_keys=False)
+    ssh.connect(nsxt_ip, username='root', password=ssh_root_password, allow_agent=False, look_for_keys=False)
 
     data = None
     cmd = "curl --header 'Content-Type: application/json' --header 'x-nsx-username: admin' " \
           "http://'admin':'{}'@127.0.0.1:7440/nsxapi/api/v1/trust-management/certificates".\
-        format(nsxt_pw)
+        format(ssh_root_password)
     stdin, stdout, stderr = ssh.exec_command(cmd)
 
     output_dict = ''

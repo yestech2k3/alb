@@ -62,6 +62,7 @@ class NsxtConverter(AviConverter):
         self.traffic_enabled = args.traffic_enabled
         self.default_params_file = args.default_params_file
         self.cloud_tenant = args.cloud_tenant
+        self.ssh_root_password = args.ssh_root_password
 
     def conver_lb_config(self, args):
 
@@ -123,7 +124,7 @@ class NsxtConverter(AviConverter):
             self.cloud_tenant = "admin"
         alb_config = nsxt_config_converter.convert(
             nsx_lb_config, input_path, output_path, self.tenant,
-            self.prefix, None, self.object_merge_check, self.controller_version,
+            self.prefix, None, self.object_merge_check, self.controller_version, self.ssh_root_password,
             migration_input_config,
             self.vs_state,
             self.vs_level_status, None, self.segroup, self.not_in_use, None,
@@ -317,7 +318,7 @@ if __name__ == "__main__":
                         help='controller username for auto upload', required=True)
     parser.add_argument('--alb_controller_password',
                         help='controller password for auto upload. Input '
-                             'prompt will appear if no value provided', required=True)
+                             'prompt will appear if no value provided')
     parser.add_argument('-t', '--alb_controller_tenant', help='tenant name for auto upload',
                         default="admin")
     parser.add_argument('--cloud_tenant', help="tenant for cloud ref")
@@ -328,7 +329,7 @@ if __name__ == "__main__":
     parser.add_argument('-u', '--nsxt_user',
                         help='NSX-T User name', required=True)
     parser.add_argument('-p', '--nsxt_password',
-                        help='NSX-T Password', required=True)
+                        help='NSX-T Password')
     parser.add_argument('-port', '--nsxt_port', default=443,
                         help='NSX-T Port')
     parser.add_argument( '--ssh_root_password',
@@ -371,6 +372,24 @@ if __name__ == "__main__":
 
     start = datetime.now()
     args = parser.parse_args()
+    if not args.nsxt_password:
+        if os.environ.get('nsxt_password'):
+            args.nsxt_password = os.environ.get('nsxt_password')
+        else:
+            print("\033[91m"+'ERROR: please provide nsxt password either through environment variable or as a script parameter'+"\033[0m")
+            exit()
+    if not args.alb_controller_password:
+        if os.environ.get('alb_controller_password'):
+            args.alb_controller_password= os.environ.get('alb_controller_password')
+        else:
+            print('\033[91m'+'ERROR: please provide alb_controller_password either through environment variable or as a script parameter'+"\033[0m")
+            exit()
+    if not args.ssh_root_password:
+        if os.environ.get('ssh_root_password'):
+            args.ssh_root_password= os.environ.get('ssh_root_password')
+        else:
+            print('\033[91m'+'ERROR: please provide ssh_root_password either through environment variable or as a script parameter'+'\033[0m')
+            exit()
     nsxt_converter = NsxtConverter(args)
     nsxt_converter.conver_lb_config(args)
     end = datetime.now()

@@ -54,7 +54,7 @@ class VsConfigConv(object):
         self.nsxt_password = nsxt_password
 
     def convert(self, alb_config, nsx_lb_config, prefix, tenant, vs_state, controller_version, traffic_enabled,
-                cloud_tenant, migration_input_config=None, vrf=None, segroup=None):
+                cloud_tenant, ssh_root_password, migration_input_config=None, vrf=None, segroup=None):
         '''
         LBVirtualServer to Avi Config vs converter
         '''
@@ -105,6 +105,8 @@ class VsConfigConv(object):
                     tenant = tenant_name
                 if not cloud_tenant:
                     cloud_tenant = "admin"
+                if not ssh_root_password:
+                    ssh_root_password = self.nsxt_password
                 name = lb_vs.get('display_name')
                 if prefix:
                     name = prefix + '-' + name
@@ -178,7 +180,7 @@ class VsConfigConv(object):
                         pki_client_profile = dict()
                         error = False
                         ca = self.get_ca_cert(lb_vs["client_ssl_profile_binding"].get("client_auth_ca_paths"),
-                                              self.nsxt_ip, self.nsxt_password)
+                                              self.nsxt_ip, ssh_root_password)
                         if ca:
                             pki_client_profile["ca_certs"] = [{'certificate': ca}]
                         else:
@@ -218,7 +220,7 @@ class VsConfigConv(object):
                         pki_server_profile = dict()
                         error = False
                         ca = self.get_ca_cert(lb_vs["server_ssl_profile_binding"].get("server_auth_ca_paths"),
-                                              self.nsxt_ip, self.nsxt_password)
+                                              self.nsxt_ip, ssh_root_password)
                         if ca:
                             pki_server_profile["ca_certs"] = [{'certificate': ca}]
                         else:
@@ -309,7 +311,7 @@ class VsConfigConv(object):
                         cert_name = name + "-" + str(random.randint(0, 20))
                         ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], tenant, prefix,
                                                               ssl_type='client_ssl', ssl_data=client_ssl,
-                                                              nsxt_ip=self.nsxt_ip, nsxt_password=self.nsxt_password)
+                                                              nsxt_ip=self.nsxt_ip, ssh_root_password=ssh_root_password)
 
                         ssl_key_cert_refs.append(
                             "/api/sslkeyandcertificate/?tenant=%s&name=%s" % (tenant, ca_cert_obj.get("name")))
@@ -323,7 +325,7 @@ class VsConfigConv(object):
                             ca_cert_obj = self.update_ca_cert_obj(cert_name, alb_config, [], tenant, prefix,
                                                                   ssl_type='client_ssl', ssl_data=client_ssl,
                                                                   nsxt_ip=self.nsxt_ip,
-                                                                  nsxt_password=self.nsxt_password)
+                                                                  ssh_root_password=ssh_root_password)
 
                             ssl_key_cert_refs.append(
                                 "/api/sslkeyandcertificate/?tenant=%s&name=%s" % (tenant, ca_cert_obj.get("name")))
@@ -403,6 +405,7 @@ class VsConfigConv(object):
 
                 is_pg_created = False
                 main_pool_ref = None
+                pool_present = False
                 if lb_vs.get('pool_path'):
                     pool_ref = lb_vs.get('pool_path')
                     pl_id = pool_ref.split('/')[-1]
@@ -467,6 +470,8 @@ class VsConfigConv(object):
                             main_pool_ref = pool_ref
                             if is_pool_group:
                                 is_pool_group_used[pool_ref] = alb_vs['name']
+                            else:
+                                pool_present = True
                             if cloud_type == 'Vlan':
                                 if is_pool_group:
                                     self.add_placement_network_to_pool_group(pool_ref, pool_segment,
@@ -515,7 +520,7 @@ class VsConfigConv(object):
                     self.update_poolgroup_with_cloud(main_pool_ref, alb_config, cloud_name, tenant, cloud_tenant)
                     alb_vs['pool_group_ref'] = conv_utils.get_object_ref(
                         main_pool_ref, 'poolgroup', tenant=tenant, cloud_name=cloud_name)
-                else:
+                elif pool_present:
                     self.add_tier_to_pool(main_pool_ref, alb_config, tier1_lr)
                     self.update_pool_with_cloud(main_pool_ref, alb_config, cloud_name, tenant, cloud_tenant)
                     alb_vs['pool_ref'] = conv_utils.get_object_ref(
@@ -526,7 +531,7 @@ class VsConfigConv(object):
                     server_ssl = lb_vs.get('server_ssl_profile_binding')
                     if is_pg_created:
                         self.update_poolgroup_with_ssl(alb_config, nsx_lb_config, lb_vs, main_pool_ref,
-                                                       prefix, tenant, converted_alb_ssl_certs)
+                                                       prefix, tenant, converted_alb_ssl_certs,ssh_root_password)
                     else:
                         self.add_ssl_to_pool(alb_config, nsx_lb_config, lb_vs, main_pool_ref,
                                              prefix, tenant, converted_alb_ssl_certs)
@@ -625,7 +630,7 @@ class VsConfigConv(object):
     def update_pool_with_ssl(self, alb_config, nsx_lb_config, lb_vs, pool_name, object_merge_check,
                              merge_object_mapping,
                              prefix, tenant,
-                             converted_alb_ssl_certs):
+                             converted_alb_ssl_certs,ssh_root_password):
         for pool in alb_config['Pool']:
             if pool.get('name') == pool_name:
                 server_ssl = lb_vs['server_ssl_profile_binding']
@@ -644,7 +649,7 @@ class VsConfigConv(object):
                 if server_ssl.get('client_certificate_path', None):
                     ca_cert_obj = self.update_ca_cert_obj(pool_name, alb_config, [], tenant, prefix,
                                                           ssl_type='server_ssl', ssl_data=server_ssl,
-                                                          nsxt_ip=self.nsxt_ip, nsxt_password=self.nsxt_password)
+                                                          nsxt_ip=self.nsxt_ip, ssh_root_password= ssh_root_password)
 
                     pool[
                         "ssl_key_and_certificate_ref"] = conv_utils.get_object_ref \
@@ -685,7 +690,7 @@ class VsConfigConv(object):
 
     def update_ca_cert_obj(self, name, avi_config, converted_objs, tenant, prefix,
                            cert_type='SSL_CERTIFICATE_TYPE_CA', ca_cert=None,
-                           ssl_type=None, ssl_data=None, nsxt_ip=None, nsxt_password=None):
+                           ssl_type=None, ssl_data=None, nsxt_ip=None, ssh_root_password=None):
         """
         This method create the certs if certificate not present at location
         it create placeholder certificate.
@@ -712,7 +717,7 @@ class VsConfigConv(object):
             if certificate_ref:
                 certificate_ref = certificate_ref.split('/')[-1]
 
-            key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, nsxt_password)
+            key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, ssh_root_password)
 
             LOG.debug("Fetched data for certificate_ref {}".format(certificate_ref))
             if not ca_cert:
@@ -786,11 +791,11 @@ class VsConfigConv(object):
                                            [{'application_http_profile': app_prof_cmd}])
         return app_name
 
-    def get_ca_cert(self, ca_url, nsxt_ip, nsxt_password):
+    def get_ca_cert(self, ca_url, nsxt_ip, ssh_root_password):
         if ca_url:
             certificate_ref = ca_url[0].split('/')[-1]
 
-            key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, nsxt_password)
+            key, ca_cert = get_certificate_data(certificate_ref, nsxt_ip, ssh_root_password)
             LOG.debug("Fetched ca cert data for certificate_ref".format(certificate_ref))
             if not ca_cert:
                 key, ca_cert = conv_utils.create_self_signed_cert()
@@ -1175,7 +1180,7 @@ class VsConfigConv(object):
 
     def update_poolgroup_with_ssl(self, alb_config, nsx_lb_config, lb_vs, pg_name,
                                   prefix, tenant,
-                                  converted_alb_ssl_certs):
+                                  converted_alb_ssl_certs,ssh_root_password):
 
         pool_group = [obj for obj in alb_config['PoolGroup']
                       if obj['name'] == pg_name]
@@ -1184,10 +1189,10 @@ class VsConfigConv(object):
             for member in pool_group['members']:
                 pool_name = conv_utils.get_name(member['pool_ref'])
                 self.add_ssl_to_pool(alb_config, nsx_lb_config, lb_vs, pool_name,
-                                     prefix, tenant, converted_alb_ssl_certs)
+                                     prefix, tenant, converted_alb_ssl_certs, ssh_root_password)
 
     def add_ssl_to_pool(self, alb_config, nsx_lb_config, lb_vs, pool_name,
-                        prefix, tenant, converted_alb_ssl_certs):
+                        prefix, tenant, converted_alb_ssl_certs,ssh_root_password):
         for pool in alb_config['Pool']:
             if pool.get('name') == pool_name:
                 server_ssl = lb_vs['server_ssl_profile_binding']
@@ -1206,7 +1211,7 @@ class VsConfigConv(object):
                 if server_ssl.get('client_certificate_path', None):
                     ca_cert_obj = self.update_ca_cert_obj(pool_name, alb_config, [], tenant, prefix,
                                                           ssl_type='server_ssl', ssl_data=server_ssl,
-                                                          nsxt_ip=self.nsxt_ip, nsxt_password=self.nsxt_password)
+                                                          nsxt_ip=self.nsxt_ip, ssh_root_password=ssh_root_password)
 
                     pool[
                         "ssl_key_and_certificate_ref"] = conv_utils.get_object_ref \
