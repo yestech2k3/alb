@@ -104,17 +104,17 @@ def convert(nsx_lb_config, input_path, output_path, tenant, prefix,
         if key != 'META':
             if key == 'VirtualService':
                 if vs_level_status:
-                    LOG.info('Total Objects of %s : %s (%s full conversions)'
-                             % (key, len(avi_config_dict[key]),
+                    LOG.info('Total Objects of %s : %s (%s  migrated , %s full conversions)'
+                             % (key,len(nsx_lb_config['LbVirtualServers']), len(avi_config_dict[key]),
                                 conversion_util.fully_migrated))
-                    print('Total Objects of %s : %s (%s full conversions)' \
-                          % (key, len(avi_config_dict[key]),
+                    print('Total Objects of %s : %s (%s  migrated , %s full conversions)' \
+                          % (key, len(nsx_lb_config['LbVirtualServers']), len(avi_config_dict[key]),
                              conversion_util.fully_migrated))
                 else:
-                    LOG.info('Total Objects of %s : %s'
-                             % (key, len(avi_config_dict[key])))
-                    print('Total Objects of %s : %s' \
-                          % (key, len(avi_config_dict[key])))
+                    LOG.info('Total Objects of %s : %s (%s  migrated)'
+                             % (key, len(nsx_lb_config['LbVirtualServers']), len(avi_config_dict[key])))
+                    print('Total Objects of %s : %s (%s  migrated)' \
+                          % (key,len(nsx_lb_config['LbVirtualServers']),  len(avi_config_dict[key])))
 
                 continue
             # Added code to print merged count.

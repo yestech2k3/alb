@@ -102,7 +102,7 @@ class NsxtConvUtil(MigrationUtil):
         for status in conv_const.STATUS_LIST:
             status_list = [row for row in csv_writer_dict_list if
                            row['Status'] == status]
-            print('%s: %s' % (status, len(status_list)))
+            print('%s: %s' % ('Total '+status, len(status_list)))
         print("Writing Excel Sheet For Converted Configuration...")
         ptotal_count = ptotal_count + len(csv_writer_dict_list)
         if vs_level_status:
@@ -1098,6 +1098,12 @@ class NsxtConvUtil(MigrationUtil):
             else:
                 ref = self.clone_pool(ref, vs_name, avi_config['Pool'],
                                       True, tenant)
+        if pool_obj and not shared_vs:
+            if pool_obj[0].get('cloud_ref'):
+                if self.get_name(pool_obj[0]['cloud_ref']) != cloud_name:
+                    ref = self.clone_pool(ref, vs_name, avi_config['Pool'],
+                                          True, tenant)
+
         if is_pool_group and not shared_vs:
             if ref in is_pool_group_used.keys():
                 if pool_group_obj[0].get('members'):
