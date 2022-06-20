@@ -73,6 +73,7 @@ class PoolConfigConv(object):
                             lb_list = {}
                             for vs_id in vs_list:
                                 if vs_id in vs_pool_segment_list.keys():
+                                    pool_skip = False
                                     continue
                                 lb = get_lb_service_name(vs_id)
                                 if not lb:
@@ -80,13 +81,13 @@ class PoolConfigConv(object):
                                 pool_segment = get_object_segments(vs_id,
                                                                  member["ip_address"])
                                 if pool_segment:
+                                    pool_skip = False
                                     if lb in lb_list.keys():
        #                                 pool_list = lb_list[lb]
      #                                   pool_list["name"] = pool_list["name"]+"-"+vs_id
                                         vs_pool_segment_list[vs_id] = lb_list[lb]
                                         continue
 
-                                    pool_skip = False
                                     if pool_count == 0:
                                         vs_pool_segment_list[vs_id] = {
                                             "pool_name": name,
@@ -105,16 +106,17 @@ class PoolConfigConv(object):
                                     pool_count += 1
                     for vs_id in vs_list_for_sorry_pool:
                         if vs_id in vs_sorry_pool_segment_list.keys():
+                            pool_skip = False
                             continue
                         lb = get_lb_service_name(vs_id)
                         pool_segment = get_object_segments(vs_id,
                                                          member["ip_address"])
                         if pool_segment:
+                            pool_skip = False
                             if lb in lb_list.keys():
                                 vs_sorry_pool_segment_list[vs_id] = lb_list[lb]
                                 continue
 
-                            pool_skip = False
                             if pool_count == 0:
                                 vs_sorry_pool_segment_list[vs_id] = {
                                     "pool_name": name,
@@ -132,9 +134,20 @@ class PoolConfigConv(object):
 
                     if pool_skip:
                         skipped_pools_list.append(name)
+                        skip_msg='Member ip not falling in segment rnge'
                         conv_utils.add_status_row('pool', None, lb_pl['display_name'],
-                                                        conv_const.STATUS_SKIPPED)
+                                                        conv_const.STATUS_SKIPPED, skip_msg)
+                        LOG.warning("POOL {} not migrated. Reason: {}".format(name,
+                                                                            skip_msg))
                         continue
+                else:
+                    skipped_pools_list.append(name)
+                    skip_msg = 'Pool does not contains members'
+                    conv_utils.add_status_row('pool', None, lb_pl['display_name'],
+                                              conv_const.STATUS_SKIPPED, skip_msg)
+                    LOG.warning("POOL {} not migrated. Reason: {}".format(name,
+                                                                          skip_msg))
+                    continue
 
                 na_list = [val for val in lb_pl.keys()
                            if val in self.common_na_attr or val in self.pool_na_attr]

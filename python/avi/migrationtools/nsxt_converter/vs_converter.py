@@ -534,7 +534,7 @@ class VsConfigConv(object):
                                                        prefix, tenant, converted_alb_ssl_certs,ssh_root_password)
                     else:
                         self.add_ssl_to_pool(alb_config, nsx_lb_config, lb_vs, main_pool_ref,
-                                             prefix, tenant, converted_alb_ssl_certs)
+                                             prefix, tenant, converted_alb_ssl_certs,ssh_root_password)
 
                     skipped_server_ssl = [val for val in server_ssl.keys()
                                           if val not in self.server_ssl_attr]
