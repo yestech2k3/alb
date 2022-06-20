@@ -145,7 +145,7 @@ public class ServiceEngineGroup extends AviRestResource  {
     private Boolean disableFlowProbes = false;
 
     @JsonProperty("disable_gro")
-    private Boolean disableGro = true;
+    private Boolean disableGro = null;
 
     @JsonProperty("disable_se_memory_check")
     private Boolean disableSeMemoryCheck = false;
@@ -233,6 +233,9 @@ public class ServiceEngineGroup extends AviRestResource  {
 
     @JsonProperty("gratarp_permanent_periodicity")
     private Integer gratarpPermanentPeriodicity = 10;
+
+    @JsonProperty("grpc_channel_connect_timeout")
+    private Integer grpcChannelConnectTimeout = 15;
 
     @JsonProperty("ha_mode")
     private String haMode;
@@ -1971,7 +1974,7 @@ public class ServiceEngineGroup extends AviRestResource  {
      * Gro is on by default on nics that do not support lro (large receive offload) or do not gain performance boost from lro.
      * Field introduced in 17.2.5, 18.1.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @return disableGro
      */
     public Boolean getDisableGro() {
@@ -1984,7 +1987,7 @@ public class ServiceEngineGroup extends AviRestResource  {
      * Gro is on by default on nics that do not support lro (large receive offload) or do not gain performance boost from lro.
      * Field introduced in 17.2.5, 18.1.1.
      * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as true.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
      * @param disableGro set the disableGro.
      */
     public void setDisableGro(Boolean  disableGro) {
@@ -2747,6 +2750,32 @@ public class ServiceEngineGroup extends AviRestResource  {
      */
     public void setGratarpPermanentPeriodicity(Integer  gratarpPermanentPeriodicity) {
         this.gratarpPermanentPeriodicity = gratarpPermanentPeriodicity;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * Timeout in seconds that se waits for a grpc channel to connect to server, before it retries.
+     * Allowed values are 5-45.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 15.
+     * @return grpcChannelConnectTimeout
+     */
+    public Integer getGrpcChannelConnectTimeout() {
+        return grpcChannelConnectTimeout;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * Timeout in seconds that se waits for a grpc channel to connect to server, before it retries.
+     * Allowed values are 5-45.
+     * Field introduced in 22.1.1.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 15.
+     * @param grpcChannelConnectTimeout set the grpcChannelConnectTimeout.
+     */
+    public void setGrpcChannelConnectTimeout(Integer  grpcChannelConnectTimeout) {
+        this.grpcChannelConnectTimeout = grpcChannelConnectTimeout;
     }
 
     /**
@@ -8437,7 +8466,8 @@ public class ServiceEngineGroup extends AviRestResource  {
   Objects.equals(this.deactivateKniFilteringAtDispatcher, objServiceEngineGroup.deactivateKniFilteringAtDispatcher)&&
   Objects.equals(this.vcenterParkingVnicPg, objServiceEngineGroup.vcenterParkingVnicPg)&&
   Objects.equals(this.dpdkGroTimeoutInterval, objServiceEngineGroup.dpdkGroTimeoutInterval)&&
-  Objects.equals(this.seTimeTrackerProps, objServiceEngineGroup.seTimeTrackerProps);
+  Objects.equals(this.seTimeTrackerProps, objServiceEngineGroup.seTimeTrackerProps)&&
+  Objects.equals(this.grpcChannelConnectTimeout, objServiceEngineGroup.grpcChannelConnectTimeout);
     }
 
     @Override
@@ -8515,6 +8545,7 @@ public class ServiceEngineGroup extends AviRestResource  {
                         sb.append("    freeListSize: ").append(toIndentedString(freeListSize)).append("\n");
                         sb.append("    gcpConfig: ").append(toIndentedString(gcpConfig)).append("\n");
                         sb.append("    gratarpPermanentPeriodicity: ").append(toIndentedString(gratarpPermanentPeriodicity)).append("\n");
+                        sb.append("    grpcChannelConnectTimeout: ").append(toIndentedString(grpcChannelConnectTimeout)).append("\n");
                         sb.append("    haMode: ").append(toIndentedString(haMode)).append("\n");
                         sb.append("    handlePerPktAttack: ").append(toIndentedString(handlePerPktAttack)).append("\n");
                         sb.append("    hardwaresecuritymodulegroupRef: ").append(toIndentedString(hardwaresecuritymodulegroupRef)).append("\n");
