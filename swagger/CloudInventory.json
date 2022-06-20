@@ -850,7 +850,8 @@
                 },
                 "use_content_lib": {
                     "description": "If false, Service Engine image will not be pushed to content library. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.",
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "username": {
                     "description": "The username Avi Vantage will use when authenticating with vCenter. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.",
