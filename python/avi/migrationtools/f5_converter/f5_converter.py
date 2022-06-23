@@ -444,108 +444,119 @@ def get_terminal_args(terminal_args):
 if __name__ == "__main__":
 
     HELP_STR = '''
-    Converts F5 Config to avi config.
-    Example to convert F5 config file to avi config json:
-         f5_converter.py -f bigip.conf
+    Converts F5 Config to Avi config.
+
+    Example to convert F5 config file to Avi json config:
+        f5_converter.py -f bigip.conf
+    Usecase: 
+        Runs migration tool against local bipip.conf. (bigip.conf doesn't contain certificates and keys. Migration tool will auto-generate place holder ones)
 
     Example to skip default file in f5:
-          f5_converter.py -f bigip.conf --skip_default_file
-    Usecase: To skip default profile and monitor configuration
+        f5_converter.py -f bigip.conf --skip_default_file
+    Usecase:
+        To skip default profile and monitor configuration
 
     Example to f5_config_version
-       f5_converter.py -f bigip.conf -v 10
+        f5_converter.py -f bigip.conf -v 10
+    Usecase:
+        Used for specifying the version of LTM you're migrating
 
-    Example to download config from f5 host and convert to avi config:
-         f5_converter.py --f5_host_ip "1.1.1.1" --f5_ssh_user
-         username --f5_ssh_password password
+    Example to download config from f5 host and convert to Avi config:
+        f5_converter.py --f5_host_ip 1.1.1.1 --f5_ssh_user username --f5_ssh_password password
+    Usecase: 
+        Download configuration, certificates, and keys, to create Avi json config
 
     Example to auto upload to controller after conversion:
-        f5_converter.py -f bigip.conf -O auto-upload -c 2.2.2.2 -u
-        username -p password -t tenant
+        f5_converter.py -f bigip.conf -O auto-upload -c 2.2.2.2 -u username -p password -t tenant
+    Usecase: 
+        Run the migration tool, create the Avi config, and upload all in one step
 
     Example to use -s or --vs_state option:
         f5_converter.py -f bigip.conf -s enable
-    Usecase: To enable a VS after conversion to AVI (default value is disable).
+    Usecase:      
+        Sets traffic_enabled to true in Virtual Service configuration
 
-    Example to use input file for certs and key
+    Example to use input file for local certs and key
         f5_converter.py -f bigip.conf -l /home/username
+    Usecase: 
+        Creates Avi config mapping local certificates and keys. Local certificate and key names must match names in config to properly map. F5 appends digits to the end of the original certificate name
 
     Example to use --controller_version option:
-     f5_converter.py -f bigip.conf --controller_version <17.2.3>
-    Usecase: To provide the version of controller for getting output in
-    respective controller format.
+        f5_converter.py -f bigip.conf --controller_version <21.1.4>
+    Usecase: To provide the version of controller for getting output in respective controller format.
 
     Example to use ignore config option:
          f5_converter.py -f bigip.conf --ignore_config
-    Usecase: The attributes mentioned in ignore_config.yaml will appear in
-    ignore column in excel sheet instead of skip. It will need an ignore_config.yaml
-    file in the input directory defined by user
-    <object example monitor>:
-        <property example https>:
-        - <attribute example 'destination'>
+    Usecase: 
+        The attributes mentioned in ignore_config.yaml will appear in ignore column in excel sheet instead of skip. It will need an ignore_config.yaml file in the input directory defined by user
+        <Example Format>
+            monitor:
+              https:
+              - 'destination'
+              gateway-icmp:
+              - 'destination'
+              - 'adaptive'
 
     Example to use --partition_config option:
        f5_converter.py -f bigip.conf --partition_config /home/username/abc.txt
-    Usecase: When auto-download option enable. It download the files from
-    different f5 partitions with comma separated path provided with partition
-    config option.
+    Usecase: 
+        When auto-download option enable. It download the files from different f5 partitions with comma separated path provided with partition config option.
 
     Example to use no object merge option:
         f5_converter.py -f bigip.conf --no_object_merge
-    Usecase: When we don't need to merge two same object (based on their
-     attribute values except name)
+    Usecase: 
+        When we don't need to merge two of the same objects (Multiple objects with matching attributes but different names)
 
     Example to patch the config after conversion:
-       f5_converter.py -f bigip.conf --patch test/patch.yaml
-       where patch.yaml file contains
-       <avi_object example Pool>:
-        - match_name: <existing name example p1>
-       patch:
-        name: <changed name example coolpool>
-
-    Example to export a single VS:
-         f5_converter.py -f bigip.conf --vs_filter cool_vs
-
-    Example to skip avi object during playbook creation
-         f5_converter.py -f bigip.conf  --ansible --ansible_skip_types DebugController
+        f5_converter.py -f bigip.conf --patch test/patch.yaml
+        where patch.yaml file contains
+        <avi_object example Pool>:
+            - match_name: <existing name example p1>
+        patch:
+            name: <changed name example coolpool>
     Usecase:
-         Comma separated list of Avi Object types to skip during conversion.
-         Eg. DebugController, ServiceEngineGroup will skip debugcontroller and
-         serviceengine objects
+        Use for bulk changes to config. Example: Enabling XFF in application profile or disabling traffic on VS
+
+    Example to export list of virtual services
+         f5_converter.py -f bigip.conf --vs_filter vs1,vs3,vs5
+    Usecase: 
+        Comma seperated list that is useful for only migrating VSs and their child objects that are in scope
+
+    Example to skip Avi object during playbook creation
+        f5_converter.py -f bigip.conf --ansible --ansible_skip_types DebugController
+    Usecase:
+        Comma separated list of Avi Object types to skip during conversion.
+        Example: DebugController, ServiceEngineGroup will skip debugcontroller and serviceengine objects
 
     Example to filter ansible object
-         f5_converter.py -f bigip.conf  --ansible --ansible_filter_types
-         virtualservice, pool
+        f5_converter.py -f bigip.conf --ansible --ansible_filter_types virtualservice, pool
     Usecase:
         Comma separated list of Avi Objects types to include during conversion.
-        Eg. VirtualService , Pool will do ansible conversion only for
-        Virtualservice and Pool objects
+        Example: VirtualService , Pool will do ansible conversion only for Virtualservice and Pool objects
 
     Example to use ansible option:
         f5_converter.py -f bigip.conf --ansible
-    Usecase: To generate the ansible playbook for the avi configuration
-    which can be used for upload to controller
+    Usecase: To generate the ansible playbook for the Avi configuration which can be used for upload to controller
 
-    Example to add the prefix to avi object name:
+    Example to add the prefix to Avi object name:
         f5_converter.py -f bigip.conf --prefix abc
-    Usecase: When two configuration is to be uploaded to same controller then
-     in order to differentiate between the objects that will be uploaded in
-     second time.
+    Usecase: 
+        When two configuration is to be uploaded to same controller then in order to differentiate between the objects that will be uploaded in second time.
 
     Example to convert snatpool into individual address
-     f5_converter.py -f bigip.conf --convertsnat
-    Usecase:
-        Flag to enable Source Network Address Translation in avi.
+        f5_converter.py -f bigip.conf --convertsnat
+    Usecase: 
+        Flag to enable Source Network Address Translation in Avi.
 
     Example to use not_in_use option:
         f5_converter.py -f bigip.conf --not_in_use
-    Usecase: Dangling object which are not referenced by any avi object will be removed
+    Usecase: 
+        Dangling object which are not referenced by any Avi object will be removed
 
     Example to provide baseline json file absolute location:
-        f5_converter.py -f bigip.conf --baseline_profile
-        /home/<'sys_conf.json' or 'bigip-Output.json'>
-     Usecase: Need to merge objects if there is migration of two
-     f5 instances/box to single controller.
+        f5_converter.py -f bigip.conf --baseline_profile /home/<'sys_conf.json' or 'bigip-Output.json'>
+    Usecase: 
+        Need to merge objects if there is migration of two f5 instances/box to single controller.
 
     Example to provide passphrase of encrypted certs and certkey file location
          f5_converter.py -f bigip.conf -l /home/certs/
@@ -556,24 +567,34 @@ if __name__ == "__main__":
           Example:
             mcqcim.key: ZcZawJ7ps0AJ+5TMDi7UA==
             avi_key.pem : foobar
+    Usecase:
+        To complete an offline migration, you need to call a directory containing certs and keys because the bigip.conf doesn't contain them. If not used, the migration tool will auto create placeholder ones.
 
     Example to use vs level status option:
         f5_converter.py -f bigip.conf --vs_level_status
-    Usecase: To get the vs level status for the avi objects in excel sheet
+    Usecase: 
+        To get the vs level status for enhanced reporting for the Avi objects in excel sheet
 
     Example to use segroup flag
-        f5_converter.py -f ns.conf --segroup segroup_name
-    UseCase: To add / Change segroup reference of vs
+        f5_converter.py -f bigip.conf --segroup segroup_name
+    UseCase:
+        To add or update segroup reference of vs
 
     Example to use vrf flag
-        f5_converter.py -f ns.conf --vrf vrf_name
-    UseCase: Change all the vrf reference in the configuration while conversion
+        f5_converter.py -f bipip.conf --vrf vrf_name
+    Usecase: 
+        Change all the vrf reference in the configuration while conversion
 
     Example to use config_file
        f5_converter.py --config_file ./test/config.yaml
-    UseCase: To pass the cli params using config.yaml file
-        bigip_config_file: './test/bigip_v11.conf'
-        controller_version: '20.1.4'
+    Usecase: 
+        To pass the cli params using config.yaml file bigip_config_file: './test/bigip_v11.conf' controller_version: '20.1.4'
+
+    Example to use reuse http policy flag
+        f5_converter.py -f bipip.conf --reuse_http_policy
+    Usecase:
+        Create http policy once and reuse it with all applicable VSs
+
     '''
 
     parser = argparse.ArgumentParser(
@@ -582,26 +603,26 @@ if __name__ == "__main__":
 
     # Create Ansible Script based on Flag
     parser.add_argument('--ansible',
-                        help='Flag for create ansible file',
+                        help='Flag for create ansible files (Create and Delete playbooks)',
                         action='store_true')
     # Added command line args to take skip type for ansible playbook
     parser.add_argument('--ansible_skip_types',
                         help='Comma separated list of Avi Object types to skip '
-                             'during conversion.\n  Eg. -s DebugController,'
+                             'during conversion.\n  Example: -s DebugController,'
                              'ServiceEngineGroup will skip debugcontroller and '
                              'serviceengine objects')
     # Added command line args to take skip type for ansible playbook
     parser.add_argument('--ansible_filter_types',
                         help='Comma separated list of Avi Objects types to '
-                             'include during conversion.\n Eg. -f '
+                             'include during conversion.\n Example: -f '
                              'VirtualService, Pool will do ansible conversion '
                              'only for Virtualservice and Pool objects')
     # Added args for baseline profile json file
-    parser.add_argument('--baseline_profile', help='asolute path for json '
+    parser.add_argument('--baseline_profile', help='absolute path for json '
                         'file containing baseline profiles')
     parser.add_argument('-c', '--controller_ip',
-                        help='controller ip for auto upload')
-    parser.add_argument('--cloud_name', help='cloud name for auto upload')
+                        help='destination controller ip or fqdn for config upload')
+    parser.add_argument('--cloud_name', help='destination cloud name')
     parser.add_argument('--controller_version',
                         help='Target Avi controller version')
     # Added snatpool conversion option
@@ -650,11 +671,11 @@ if __name__ == "__main__":
                              'file auto upload will upload config to ' +
                              'controller')
     parser.add_argument('-p', '--password',
-                        help='controller password for auto upload. Input '
+                        help='destination controller password for config upload. Input '
                              'prompt will appear if no value provided')
     parser.add_argument('--partition_config',
                         help='comma separated partition config files')
-    # Added command line args to execute config_patch file with related avi
+    # Added command line args to execute config_patch file with related Avi
     # json file location and patch location
     parser.add_argument('--patch', help='Run config_patch please provide '
                                         'location of patch.yaml')
@@ -670,7 +691,7 @@ if __name__ == "__main__":
     parser.add_argument('--skip_pki',
                         help='Skip migration of PKI profile',
                         action='store_true')
-    parser.add_argument('-t', '--tenant', help='tenant name for auto upload')
+    parser.add_argument('-t', '--tenant', help='destination tenant name')
     # Adding support for test vip
     parser.add_argument('--test_vip',
                         help='Enable test vip for ansible generated file '
@@ -678,7 +699,7 @@ if __name__ == "__main__":
                         'Note: The actual ip will vary from input to output'
                         'use it with caution ')
     parser.add_argument('-u', '--user',
-                        help='controller username for auto upload')
+                        help='username on destination controller for config upload')
     parser.add_argument('-v', '--f5_config_version',
                         help='version of f5 config file')
     parser.add_argument('--version',
@@ -689,7 +710,7 @@ if __name__ == "__main__":
                              'reference')
     # Added command line args to execute vs_filter.py with vs_name.
     parser.add_argument('--vs_filter',
-                        help='comma seperated names of virtualservices.\n'
+                        help='comma seperated names of virtualservices. vs1,vs3,vs5\n'
                         'Note: If patch data is supplied, vs_name should match '
                         'the new name given in it'
                         )
@@ -704,7 +725,8 @@ if __name__ == "__main__":
                         help='Config file to specify all the arguments '
                              'of this script. Argument values provided '
                              'on terminal take precedence over config file '
-                             'argument values')
+                             'argument values \n'
+                             'file located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml')
 
     terminal_args = parser.parse_args()
     args = get_terminal_args(terminal_args)
