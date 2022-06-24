@@ -454,7 +454,7 @@ type ServiceEngineGroup struct {
 	// Number of dispatcher cores (0,1,2,4,8 or 16). If set to 0, then number of dispatcher cores is deduced automatically.Requires SE Reboot. Allowed values are 0,1,2,4,8,16. Field introduced in 17.2.12, 18.1.3, 18.2.1. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- 0), Basic edition(Allowed values- 0), Enterprise with Cloud Services edition.
 	NumDispatcherCores *int32 `json:"num_dispatcher_cores,omitempty"`
 
-	// Number of queues to each dispatcher. Allowed values are 2-8. Special values are 0 - auto-compute, 1 - single-queue. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
+	// Number of queues to each dispatcher. Allowed values are 1-2. Field introduced in 21.1.3. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition.
 	NumDispatcherQueues *int32 `json:"num_dispatcher_queues,omitempty"`
 
 	// Number of changes in num flow cores sum to ignore. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition.
