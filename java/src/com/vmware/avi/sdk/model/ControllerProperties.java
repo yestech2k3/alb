@@ -190,7 +190,7 @@ public class ControllerProperties extends AviRestResource  {
     private Integer seSpawnRetryInterval = 300;
 
     @JsonProperty("se_upgrade_flow_cleanup_timeout")
-    private Integer seUpgradeFlowCleanupTimeout = 30;
+    private Integer seUpgradeFlowCleanupTimeout = 90;
 
     @JsonProperty("se_vnic_cooldown")
     private Integer seVnicCooldown = 120;
@@ -1698,7 +1698,7 @@ public class ControllerProperties extends AviRestResource  {
      * Field introduced in 21.1.5.
      * Unit is sec.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 30.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 90.
      * @return seUpgradeFlowCleanupTimeout
      */
     public Integer getSeUpgradeFlowCleanupTimeout() {
@@ -1711,7 +1711,7 @@ public class ControllerProperties extends AviRestResource  {
      * Field introduced in 21.1.5.
      * Unit is sec.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
-     * Default value when not specified in API or module is interpreted by Avi Controller as 30.
+     * Default value when not specified in API or module is interpreted by Avi Controller as 90.
      * @param seUpgradeFlowCleanupTimeout set the seUpgradeFlowCleanupTimeout.
      */
     public void setSeUpgradeFlowCleanupTimeout(Integer  seUpgradeFlowCleanupTimeout) {
