@@ -187,7 +187,7 @@ font-style: italic;
     <div class="app-desc">CLI ``` - configure httppolicyset <key> - show httppolicyset <key> ``` </div>
     <div class="app-desc">More information: <a href="https://avinetworks.com/contact-us">https://avinetworks.com/contact-us</a></div>
     <div class="app-desc">Contact Info: <a href="support@avinetworks.com">support@avinetworks.com</a></div>
-    <div class="app-desc">Version: 22.1.1</div>
+    <div class="app-desc">Version: 22.1.3</div>
     <div class="app-desc">BasePath:/api</div>
     <div class="license-info">All rights reserved</div>
     <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
@@ -474,7 +474,7 @@ font-style: italic;
             }
           },
           "action" : "aeiou",
-          "index" : 123
+          "hdr_index" : 123
         } ],
         "index" : 123,
         "rewrite_url_action" : {
@@ -767,7 +767,7 @@ font-style: italic;
           }
         },
         "action" : "aeiou",
-        "index" : 123
+        "hdr_index" : 123
       } ],
       "index" : 123,
       "rewrite_url_action" : {
@@ -1131,7 +1131,7 @@ font-style: italic;
           }
         },
         "action" : "aeiou",
-        "index" : 123
+        "hdr_index" : 123
       } ],
       "index" : 123,
       "rewrite_url_action" : {
@@ -1435,7 +1435,7 @@ font-style: italic;
           }
         },
         "action" : "aeiou",
-        "index" : 123
+        "hdr_index" : 123
       } ],
       "index" : 123,
       "rewrite_url_action" : {
@@ -1739,7 +1739,7 @@ font-style: italic;
           }
         },
         "action" : "aeiou",
-        "index" : 123
+        "hdr_index" : 123
       } ],
       "index" : 123,
       "rewrite_url_action" : {
@@ -1892,7 +1892,7 @@ font-style: italic;
       <div class="param">action </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> ADD  A new header with the new value is added irrespective of the existence of an HTTP header of the given name. REPLACE  A new header with the new value is added if no header of the given name exists, else existing headers with the given name are removed and a new header with the new value is added. REMOVE  All the headers of the given name are removed. Enum options - HTTP_ADD_HDR, HTTP_REMOVE_HDR, HTTP_REPLACE_HDR. Allowed in Enterprise edition with any value, Essentials edition(Allowed values- HTTP_REMOVE_HDR,HTTP_REPLACE_HDR), Basic edition(Allowed values- HTTP_REMOVE_HDR,HTTP_REPLACE_HDR), Enterprise with Cloud Services edition. </div>
 <div class="param">cookie (optional)</div><div class="param-desc"><span class="param-type"><a href="#HTTPCookieData">HTTPCookieData</a></span> Cookie information. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
 <div class="param">hdr (optional)</div><div class="param-desc"><span class="param-type"><a href="#HTTPHdrData">HTTPHdrData</a></span> HTTP header information. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition. </div>
-<div class="param">index (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Index to identify the header actions. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. format: int32</div>
+<div class="param">hdr_index (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Index to identify the header actions. Field introduced in 22.1.1. Allowed in Enterprise edition with any value, Essentials edition with any value, Basic edition with any value, Enterprise with Cloud Services edition. format: int32</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
