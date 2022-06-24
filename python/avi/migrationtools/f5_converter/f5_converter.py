@@ -479,7 +479,8 @@ if __name__ == "__main__":
     Example to use input file for local certs and key
         f5_converter.py -f bigip.conf -l /home/username
     Usecase: 
-        Creates Avi config mapping local certificates and keys. Local certificate and key names must match names in config to properly map. F5 appends digits to the end of the original certificate name
+        Creates Avi config mapping local certificates and keys. Local certificate and key names must match names in config to properly map
+        F5 appends digits to the end of the original certificate name
 
     Example to use --controller_version option:
         f5_converter.py -f bigip.conf --controller_version <21.1.4>
@@ -500,7 +501,7 @@ if __name__ == "__main__":
     Example to use --partition_config option:
        f5_converter.py -f bigip.conf --partition_config /home/username/abc.txt
     Usecase: 
-        When auto-download option enable. It download the files from different f5 partitions with comma separated path provided with partition config option.
+        When auto-download option enable. It will download the files from different f5 partitions with comma separated path provided with partition config option.
 
     Example to use no object merge option:
         f5_converter.py -f bigip.conf --no_object_merge
@@ -511,13 +512,14 @@ if __name__ == "__main__":
         f5_converter.py -f bigip.conf --patch test/patch.yaml
         where patch.yaml file contains
         <avi_object example Pool>:
-            - match_name: <existing name example p1>
-        patch:
-            name: <changed name example coolpool>
+        Pool:
+          - match_name: <existing name example p1>
+            patch:
+              name: <changed name example coolpool>
     Usecase:
         Use for bulk changes to config. Example: Enabling XFF in application profile or disabling traffic on VS
 
-    Example to export list of virtual services
+    Example to export/migrate list of virtual services
          f5_converter.py -f bigip.conf --vs_filter vs1,vs3,vs5
     Usecase: 
         Comma seperated list that is useful for only migrating VSs and their child objects that are in scope
@@ -618,11 +620,11 @@ if __name__ == "__main__":
                              'VirtualService, Pool will do ansible conversion '
                              'only for Virtualservice and Pool objects')
     # Added args for baseline profile json file
-    parser.add_argument('--baseline_profile', help='absolute path for json '
-                        'file containing baseline profiles')
+    parser.add_argument('--baseline_profile', help='Absolute path for json '
+                        'File containing baseline profiles')
     parser.add_argument('-c', '--controller_ip',
-                        help='destination controller ip or fqdn for config upload')
-    parser.add_argument('--cloud_name', help='destination cloud name')
+                        help='Destination controller ip or fqdn for config upload')
+    parser.add_argument('--cloud_name', help='Destination cloud name')
     parser.add_argument('--controller_version',
                         help='Target Avi controller version')
     # Added snatpool conversion option
@@ -631,15 +633,15 @@ if __name__ == "__main__":
                              'individual addresses',
                         action="store_true")
     parser.add_argument('--custom_config',
-                        help='iRule/monitor custom mapping yml file path')
+                        help='iRule/monitor custom mapping yml file path. (File containing converted iRules or health monitors)')
     parser.add_argument('--distinct_app_profile',  action="store_true",
                         help="Option to create distinct application profile for"
                              " each VS even though it is shared in F5 config")
     parser.add_argument('-f', '--bigip_config_file',
-                        help='absolute path for F5 config file')
-    parser.add_argument('--f5_host_ip', help='host ip of f5 instance')
+                        help='Absolute path for F5 config file')
+    parser.add_argument('--f5_host_ip', help='Host ip of f5 instance')
     parser.add_argument('--f5_key_file',
-                        help='f5 host key file location if key based ' +
+                        help='F5 host key file location if key based ' +
                              'authentication')
     parser.add_argument('--f5_passphrase_file',
                         help='F5 key passphrase yaml file path')
@@ -649,16 +651,16 @@ if __name__ == "__main__":
                                         'based authentication. Input prompt '
                                         'will appear if no value provided')
     parser.add_argument('--f5_ssh_port',
-                        help='f5 host ssh port id non default port is used ')
+                        help='F5 host ssh port id non default port is used ')
     parser.add_argument('--ignore_config',
-                        help='config json to skip the config in conversion')
+                        help='Config file to skip specific configuration in conversion')
 
     parser.add_argument('-l', '--input_folder_location',
-                        help='location of input files like cert files ' +
+                        help='Location of input files like cert files ' +
                              'external monitor scripts')
     # Changed the command line option to more generic term object
     parser.add_argument('--no_object_merge',
-                        help='Flag for object merge', action='store_false')
+                        help='Flag for skipping object merge', action='store_false')
     # Added not in use flag
     parser.add_argument('--not_in_use',
                         help='Flag for skipping not in use object',
@@ -671,27 +673,25 @@ if __name__ == "__main__":
                              'file auto upload will upload config to ' +
                              'controller')
     parser.add_argument('-p', '--password',
-                        help='destination controller password for config upload. Input '
+                        help='Destination controller password for config upload. Input '
                              'prompt will appear if no value provided')
     parser.add_argument('--partition_config',
-                        help='comma separated partition config files')
+                        help='Comma separated partition config files')
     # Added command line args to execute config_patch file with related Avi
     # json file location and patch location
-    parser.add_argument('--patch', help='Run config_patch please provide '
-                                        'location of patch.yaml')
+    parser.add_argument('--patch', help='Absolute path to patch.yaml file')
     # Added prefix for objects
     parser.add_argument('--prefix', help='Prefix for objects')
     parser.add_argument('-s', '--vs_state', choices=ARG_CHOICES['vs_state'],
                         help='traffic_enabled state of VS created')
     parser.add_argument('--segroup',
-                        help='Update the available segroup ref with the'
-                             'custom ref')
+                        help='Update the available segroup ref with the custom ref')
     parser.add_argument('--skip_default_file',
                         help='Flag for skip default file', action='store_true')
     parser.add_argument('--skip_pki',
                         help='Skip migration of PKI profile',
                         action='store_true')
-    parser.add_argument('-t', '--tenant', help='destination tenant name')
+    parser.add_argument('-t', '--tenant', help='Destination tenant name')
     # Adding support for test vip
     parser.add_argument('--test_vip',
                         help='Enable test vip for ansible generated file '
@@ -699,9 +699,9 @@ if __name__ == "__main__":
                         'Note: The actual ip will vary from input to output'
                         'use it with caution ')
     parser.add_argument('-u', '--user',
-                        help='username on destination controller for config upload')
+                        help='Username on destination controller for config upload')
     parser.add_argument('-v', '--f5_config_version',
-                        help='version of f5 config file')
+                        help='Version of f5 config file')
     parser.add_argument('--version',
                         help='Print product version and exit',
                         action='store_true')
@@ -710,7 +710,7 @@ if __name__ == "__main__":
                              'reference')
     # Added command line args to execute vs_filter.py with vs_name.
     parser.add_argument('--vs_filter',
-                        help='comma seperated names of virtualservices. vs1,vs3,vs5\n'
+                        help='Comma seperated names of virtualservices. vs1,vs3,vs5\n'
                         'Note: If patch data is supplied, vs_name should match '
                         'the new name given in it'
                         )
@@ -726,7 +726,7 @@ if __name__ == "__main__":
                              'of this script. Argument values provided '
                              'on terminal take precedence over config file '
                              'argument values \n'
-                             'file located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml')
+                             'File located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml')
 
     terminal_args = parser.parse_args()
     args = get_terminal_args(terminal_args)
