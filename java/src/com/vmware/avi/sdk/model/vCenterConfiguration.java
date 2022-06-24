@@ -224,7 +224,7 @@ public class vCenterConfiguration  {
      * This is the getter method this will return the attribute value.
      * If false, service engine image will not be pushed to content library.
      * Field introduced in 22.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @return useContentLib
      */
@@ -236,7 +236,7 @@ public class vCenterConfiguration  {
      * This is the setter method to the attribute.
      * If false, service engine image will not be pushed to content library.
      * Field introduced in 22.1.1.
-     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Allowed in enterprise edition with any value, essentials edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as true.
      * @param useContentLib set the useContentLib.
      */
