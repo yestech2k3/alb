@@ -460,7 +460,7 @@ definitions:
             se_upgrade_flow_cleanup_timeout:
                 description: "Timeout for flows cleanup by ServiceEngine during Upgrade.Internal knob  to be exercised under the surveillance of VMware AVI support team. Field introduced in 21.1.5. Unit is SEC. Allowed in Enterprise edition with any value, Enterprise with Cloud Services edition."
                 type: integer
-                default: 30
+                default: 90
                 format: int32
             se_vnic_cooldown:
                 description: " Unit is SEC. Allowed in Enterprise edition with any value, Essentials, Basic, Enterprise with Cloud Services edition."
