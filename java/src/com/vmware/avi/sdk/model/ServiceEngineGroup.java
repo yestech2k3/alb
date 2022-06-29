@@ -4723,8 +4723,7 @@ public class ServiceEngineGroup extends AviRestResource  {
     /**
      * This is the getter method this will return the attribute value.
      * Number of queues to each dispatcher.
-     * Allowed values are 2-8.
-     * Special values are 0 - auto-compute, 1 - single-queue.
+     * Allowed values are 1-2.
      * Field introduced in 21.1.3.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1.
@@ -4737,8 +4736,7 @@ public class ServiceEngineGroup extends AviRestResource  {
     /**
      * This is the setter method to the attribute.
      * Number of queues to each dispatcher.
-     * Allowed values are 2-8.
-     * Special values are 0 - auto-compute, 1 - single-queue.
+     * Allowed values are 1-2.
      * Field introduced in 21.1.3.
      * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as 1.
