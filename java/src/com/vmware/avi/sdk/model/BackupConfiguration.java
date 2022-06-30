@@ -27,6 +27,9 @@ public class BackupConfiguration extends AviRestResource  {
     @JsonProperty("aws_bucket_id")
     private String awsBucketId = null;
 
+    @JsonProperty("aws_bucket_region")
+    private String awsBucketRegion = null;
+
     @JsonProperty("aws_secret_access")
     private String awsSecretAccess = null;
 
@@ -117,6 +120,30 @@ public class BackupConfiguration extends AviRestResource  {
      */
     public void setAwsBucketId(String  awsBucketId) {
         this.awsBucketId = awsBucketId;
+    }
+
+    /**
+     * This is the getter method this will return the attribute value.
+     * The name of the aws region associated with the bucket.
+     * Field introduced in 21.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @return awsBucketRegion
+     */
+    public String getAwsBucketRegion() {
+        return awsBucketRegion;
+    }
+
+    /**
+     * This is the setter method to the attribute.
+     * The name of the aws region associated with the bucket.
+     * Field introduced in 21.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
+     * Default value when not specified in API or module is interpreted by Avi Controller as null.
+     * @param awsBucketRegion set the awsBucketRegion.
+     */
+    public void setAwsBucketRegion(String  awsBucketRegion) {
+        this.awsBucketRegion = awsBucketRegion;
     }
 
     /**
@@ -454,6 +481,7 @@ public class BackupConfiguration extends AviRestResource  {
   Objects.equals(this.awsAccessKey, objBackupConfiguration.awsAccessKey)&&
   Objects.equals(this.awsSecretAccess, objBackupConfiguration.awsSecretAccess)&&
   Objects.equals(this.awsBucketId, objBackupConfiguration.awsBucketId)&&
+  Objects.equals(this.awsBucketRegion, objBackupConfiguration.awsBucketRegion)&&
   Objects.equals(this.tenantRef, objBackupConfiguration.tenantRef);
     }
 
@@ -463,6 +491,7 @@ public class BackupConfiguration extends AviRestResource  {
       sb.append("class BackupConfiguration {\n");
                   sb.append("    awsAccessKey: ").append(toIndentedString(awsAccessKey)).append("\n");
                         sb.append("    awsBucketId: ").append(toIndentedString(awsBucketId)).append("\n");
+                        sb.append("    awsBucketRegion: ").append(toIndentedString(awsBucketRegion)).append("\n");
                         sb.append("    awsSecretAccess: ").append(toIndentedString(awsSecretAccess)).append("\n");
                         sb.append("    backupFilePrefix: ").append(toIndentedString(backupFilePrefix)).append("\n");
                         sb.append("    backupPassphrase: ").append(toIndentedString(backupPassphrase)).append("\n");
