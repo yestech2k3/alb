@@ -444,7 +444,7 @@ def get_terminal_args(terminal_args):
 if __name__ == "__main__":
 
     HELP_STR = '''
-    Converts F5 Config to Avi config.
+    Converts F5 Config to Avi config. F5 Version's 10-14 are fully supported
 
     Example to convert F5 config file to Avi json config:
         f5_converter.py -f bigip.conf
@@ -597,6 +597,11 @@ if __name__ == "__main__":
     Usecase:
         Create http policy once and reuse it with all applicable VSs
 
+    Example to use args file
+        f5_converter.py -f bipip.conf --args_config_file config.yaml
+    Usecase:
+        Preconfigured file with all F5 migration tool flags and you define which are enabled. File location: 'File located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml'
+
     '''
 
     parser = argparse.ArgumentParser(
@@ -725,8 +730,7 @@ if __name__ == "__main__":
                         help='Config file to specify all the arguments '
                              'of this script. Argument values provided '
                              'on terminal take precedence over config file '
-                             'argument values \n'
-                             'File located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml')
+                             'argument values')
 
     terminal_args = parser.parse_args()
     args = get_terminal_args(terminal_args)
