@@ -591,7 +591,7 @@ if __name__ == "__main__":
        f5_converter.py --args_config_file ./test/config.yaml
     Usecase: 
         To pass the cli params using config.yaml file bigip_config_file: './test/bigip_v11.conf' controller_version: '20.1.4'
-        File location: 'File located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml'
+        File located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml
 
     Example to use reuse http policy flag
         f5_converter.py -f bipip.conf --reuse_http_policy
