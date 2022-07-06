@@ -444,7 +444,7 @@ def get_terminal_args(terminal_args):
 if __name__ == "__main__":
 
     HELP_STR = '''
-    Converts F5 Config to Avi config. F5 Version's 10-14 are fully supported
+    Converts F5 Config to Avi config.
 
     Example to convert F5 config file to Avi json config:
         f5_converter.py -f bigip.conf
@@ -587,21 +587,21 @@ if __name__ == "__main__":
     Usecase: 
         Change all the vrf reference in the configuration while conversion
 
-    Example to use config_file
-       f5_converter.py --config_file ./test/config.yaml
+    Example to use args config_file
+       f5_converter.py --args_config_file ./test/config.yaml
     Usecase: 
         To pass the cli params using config.yaml file bigip_config_file: './test/bigip_v11.conf' controller_version: '20.1.4'
+        File location: 'File located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml'
 
     Example to use reuse http policy flag
         f5_converter.py -f bipip.conf --reuse_http_policy
     Usecase:
         Create http policy once and reuse it with all applicable VSs
 
-    Example to use args file
-        f5_converter.py -f bipip.conf --args_config_file config.yaml
+    Example to use the skip PKI flag
+        f5_converter.py -f bipip.conf --skip_pki
     Usecase:
-        Preconfigured file with all F5 migration tool flags and you define which are enabled. File location: 'File located https://github.com/vmware/alb-sdk/blob/eng/python/avi/migrationtools/f5_converter/config.yaml'
-
+        --skip_pki flag is used for testing and debugging. Sometimes pki profile is quite big and it takes more time to convert so for testing purpose we use this flag to skip the pki profile
     '''
 
     parser = argparse.ArgumentParser(
