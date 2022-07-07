@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * The VIMgrInterestedEntity is a POJO class extends AviRestResource that used for creating
- * VIMgrInterestedEntity.
+ * The SingleOptionalStringField is a POJO class extends AviRestResource that used for creating
+ * SingleOptionalStringField.
  *
  * @version 1.0
  * @since 
@@ -20,30 +20,34 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class VIMgrInterestedEntity  {
-    @JsonProperty("interested_uuid")
-    private String interestedUuid = null;
+public class SingleOptionalStringField  {
+    @JsonProperty("test_string")
+    private String testString = null;
 
 
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+     * Optional string field.
+     * Field introduced in 21.1.5, 22.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return interestedUuid
+     * @return testString
      */
-    public String getInterestedUuid() {
-        return interestedUuid;
+    public String getTestString() {
+        return testString;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise edition with any value, essentials, basic, enterprise with cloud services edition.
+     * Optional string field.
+     * Field introduced in 21.1.5, 22.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param interestedUuid set the interestedUuid.
+     * @param testString set the testString.
      */
-    public void setInterestedUuid(String  interestedUuid) {
-        this.interestedUuid = interestedUuid;
+    public void setTestString(String  testString) {
+        this.testString = testString;
     }
 
 
@@ -55,15 +59,15 @@ public class VIMgrInterestedEntity  {
       if (o == null || getClass() != o.getClass()) {
           return false;
       }
-      VIMgrInterestedEntity objVIMgrInterestedEntity = (VIMgrInterestedEntity) o;
-      return   Objects.equals(this.interestedUuid, objVIMgrInterestedEntity.interestedUuid);
+      SingleOptionalStringField objSingleOptionalStringField = (SingleOptionalStringField) o;
+      return   Objects.equals(this.testString, objSingleOptionalStringField.testString);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class VIMgrInterestedEntity {\n");
-                  sb.append("    interestedUuid: ").append(toIndentedString(interestedUuid)).append("\n");
+      sb.append("class SingleOptionalStringField {\n");
+                  sb.append("    testString: ").append(toIndentedString(testString)).append("\n");
                   sb.append("}");
       return sb.toString();
     }

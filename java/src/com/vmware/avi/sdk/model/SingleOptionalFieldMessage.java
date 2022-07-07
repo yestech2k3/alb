@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * The VcenterInventoryDiagReq is a POJO class extends AviRestResource that used for creating
- * VcenterInventoryDiagReq.
+ * The SingleOptionalFieldMessage is a POJO class extends AviRestResource that used for creating
+ * SingleOptionalFieldMessage.
  *
  * @version 1.0
  * @since 
@@ -20,30 +20,34 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class VcenterInventoryDiagReq  {
-    @JsonProperty("cloud_uuid")
-    private String cloudUuid = null;
+public class SingleOptionalFieldMessage  {
+    @JsonProperty("optional_string")
+    private String optionalString = null;
 
 
 
     /**
      * This is the getter method this will return the attribute value.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Optional string field for nested f_mandatory test cases-level3.
+     * Field introduced in 21.1.5, 22.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return cloudUuid
+     * @return optionalString
      */
-    public String getCloudUuid() {
-        return cloudUuid;
+    public String getOptionalString() {
+        return optionalString;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Allowed in enterprise with any value edition, essentials edition, basic edition, enterprise with cloud services edition.
+     * Optional string field for nested f_mandatory test cases-level3.
+     * Field introduced in 21.1.5, 22.1.3.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param cloudUuid set the cloudUuid.
+     * @param optionalString set the optionalString.
      */
-    public void setCloudUuid(String  cloudUuid) {
-        this.cloudUuid = cloudUuid;
+    public void setOptionalString(String  optionalString) {
+        this.optionalString = optionalString;
     }
 
 
@@ -55,15 +59,15 @@ public class VcenterInventoryDiagReq  {
       if (o == null || getClass() != o.getClass()) {
           return false;
       }
-      VcenterInventoryDiagReq objVcenterInventoryDiagReq = (VcenterInventoryDiagReq) o;
-      return   Objects.equals(this.cloudUuid, objVcenterInventoryDiagReq.cloudUuid);
+      SingleOptionalFieldMessage objSingleOptionalFieldMessage = (SingleOptionalFieldMessage) o;
+      return   Objects.equals(this.optionalString, objSingleOptionalFieldMessage.optionalString);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class VcenterInventoryDiagReq {\n");
-                  sb.append("    cloudUuid: ").append(toIndentedString(cloudUuid)).append("\n");
+      sb.append("class SingleOptionalFieldMessage {\n");
+                  sb.append("    optionalString: ").append(toIndentedString(optionalString)).append("\n");
                   sb.append("}");
       return sb.toString();
     }
