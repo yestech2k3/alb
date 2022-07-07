@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * APICLifsRuntimeApiResponse
+ * WebappUTApiResponse
  */
-public class APICLifsRuntimeApiResponse {
+public class WebappUTApiResponse {
   @JsonProperty("count")
   private Integer count = null;
 
   @JsonProperty("results")
-  private List<APICLifsRuntime> results = new ArrayList<APICLifsRuntime>();
+  private List<WebappUT> results = new ArrayList<WebappUT>();
 
-  public APICLifsRuntimeApiResponse count(Integer count) {
+  public WebappUTApiResponse count(Integer count) {
     this.count = count;
     return this;
   }
@@ -39,12 +39,12 @@ public class APICLifsRuntimeApiResponse {
     this.count = count;
   }
 
-  public APICLifsRuntimeApiResponse results(List<APICLifsRuntime> results) {
+  public WebappUTApiResponse results(List<WebappUT> results) {
     this.results = results;
     return this;
   }
 
-  public APICLifsRuntimeApiResponse addResultsItem(APICLifsRuntime resultsItem) {
+  public WebappUTApiResponse addResultsItem(WebappUT resultsItem) {
     this.results.add(resultsItem);
     return this;
   }
@@ -54,11 +54,11 @@ public class APICLifsRuntimeApiResponse {
    * @return results
   **/
   @Schema(required = true, description = "")
-  public List<APICLifsRuntime> getResults() {
+  public List<WebappUT> getResults() {
     return results;
   }
 
-  public void setResults(List<APICLifsRuntime> results) {
+  public void setResults(List<WebappUT> results) {
     this.results = results;
   }
 
@@ -70,9 +70,9 @@ public class APICLifsRuntimeApiResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    APICLifsRuntimeApiResponse aPICLifsRuntimeApiResponse = (APICLifsRuntimeApiResponse) o;
-    return Objects.equals(this.count, aPICLifsRuntimeApiResponse.count) &&
-        Objects.equals(this.results, aPICLifsRuntimeApiResponse.results);
+    WebappUTApiResponse webappUTApiResponse = (WebappUTApiResponse) o;
+    return Objects.equals(this.count, webappUTApiResponse.count) &&
+        Objects.equals(this.results, webappUTApiResponse.results);
   }
 
   @Override
@@ -84,7 +84,7 @@ public class APICLifsRuntimeApiResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class APICLifsRuntimeApiResponse {\n");
+    sb.append("class WebappUTApiResponse {\n");
     
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    results: ").append(toIndentedString(results)).append("\n");

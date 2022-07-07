@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 VMware, Inc.
+ * SPDX-License-Identifier: Apache License 2.0
+ */
+
 package com.vmware.avi.sdk.model;
 
 import java.util.*;
@@ -6,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * The SystemUpgradeDetails is a POJO class extends AviRestResource that used for creating
- * SystemUpgradeDetails.
+ * The SingleOptionalFieldMessage is a POJO class extends AviRestResource that used for creating
+ * SingleOptionalFieldMessage.
  *
  * @version 1.0
  * @since 
@@ -15,30 +20,34 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SystemUpgradeDetails  {
-    @JsonProperty("upgrade_status")
-    private SystemUpgradeState upgradeStatus = null;
+public class SingleOptionalFieldMessage  {
+    @JsonProperty("optional_string")
+    private String optionalString = null;
 
 
 
     /**
      * This is the getter method this will return the attribute value.
-     * Upgrade status.
+     * Optional string field for nested f_mandatory test cases-level3.
+     * Field introduced in 21.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @return upgradeStatus
+     * @return optionalString
      */
-    public SystemUpgradeState getUpgradeStatus() {
-        return upgradeStatus;
+    public String getOptionalString() {
+        return optionalString;
     }
 
     /**
      * This is the setter method to the attribute.
-     * Upgrade status.
+     * Optional string field for nested f_mandatory test cases-level3.
+     * Field introduced in 21.1.5.
+     * Allowed in enterprise edition with any value, enterprise with cloud services edition.
      * Default value when not specified in API or module is interpreted by Avi Controller as null.
-     * @param upgradeStatus set the upgradeStatus.
+     * @param optionalString set the optionalString.
      */
-    public void setUpgradeStatus(SystemUpgradeState upgradeStatus) {
-        this.upgradeStatus = upgradeStatus;
+    public void setOptionalString(String  optionalString) {
+        this.optionalString = optionalString;
     }
 
 
@@ -50,15 +59,15 @@ public class SystemUpgradeDetails  {
       if (o == null || getClass() != o.getClass()) {
           return false;
       }
-      SystemUpgradeDetails objSystemUpgradeDetails = (SystemUpgradeDetails) o;
-      return   Objects.equals(this.upgradeStatus, objSystemUpgradeDetails.upgradeStatus);
+      SingleOptionalFieldMessage objSingleOptionalFieldMessage = (SingleOptionalFieldMessage) o;
+      return   Objects.equals(this.optionalString, objSingleOptionalFieldMessage.optionalString);
     }
 
     @Override
     public String toString() {
       StringBuilder sb = new StringBuilder();
-      sb.append("class SystemUpgradeDetails {\n");
-                  sb.append("    upgradeStatus: ").append(toIndentedString(upgradeStatus)).append("\n");
+      sb.append("class SingleOptionalFieldMessage {\n");
+                  sb.append("    optionalString: ").append(toIndentedString(optionalString)).append("\n");
                   sb.append("}");
       return sb.toString();
     }
