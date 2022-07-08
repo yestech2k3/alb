@@ -16,6 +16,9 @@ import logging
 import sys
 import random
 
+import sys
+sys.path.append("/home/ubuntu/alb/alb/python")
+
 from avi.sdk.avi_api import ApiSession
 from avi.sdk.utils.api_utils import ApiUtils
 from avi.sdk.samples.common import get_sample_ssl_params

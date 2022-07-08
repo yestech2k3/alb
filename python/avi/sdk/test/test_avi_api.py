@@ -7,6 +7,10 @@ import unittest
 from multiprocessing.pool import ThreadPool
 import pytest
 from requests_toolbelt import MultipartEncoder
+
+import sys
+sys.path.append("/home/ubuntu/alb/alb/python")
+
 from avi.sdk.avi_api import (ApiSession, ObjectNotFound, APIError, ApiResponse,
                              avi_timedelta, sessionDict,
                              AviMultipartUploadError)
