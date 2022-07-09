@@ -17,11 +17,13 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope='module') 
 def setup(request): 
+
     print("setup: read the cfg")
     config_file = request.config.getoption("--config")
     with open(config_file) as fp_config:
         cfg = json.load(fp_config)
     login_info = cfg["LoginInfo"]
+
     print("setup: create the apisession")
     api = ApiSession(
         login_info["controller_ip"], login_info.get("username", "admin"),

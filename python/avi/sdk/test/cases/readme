@@ -1,0 +1,3 @@
+1. To execute cases
+   > cd /home/ubuntu/alb/alb/python/avi/sdk/test/cases
+   > pytest -s -v -m case1 --config /home/ubuntu/alb/alb/python/avi/sdk/test/cases/jenkins_test_api.cfg
