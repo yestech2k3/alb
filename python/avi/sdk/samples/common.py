@@ -12,8 +12,9 @@ def get_sample_ssl_params(folder_path=''):
         server_crt = f.read()
     with open(folder_path + 'certs/server.key') as f:
         server_key = f.read()
-    with open(folder_path + 'certs/cakey.pem') as f:
-        ca_key = f.read()
-    with open(folder_path + 'certs/cacert.pem') as f:
-        ca_cert = f.read()
-    return server_crt, server_key, ca_key, ca_cert
+    #with open(folder_path + 'certs/cakey.pem') as f:
+    #    ca_key = f.read()
+    #with open(folder_path + 'certs/cacert.pem') as f:
+    #    ca_cert = f.read()
+    #return server_crt, server_key, ca_key, ca_cert
+    return server_crt, server_key
