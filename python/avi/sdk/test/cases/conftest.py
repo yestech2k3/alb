@@ -1,7 +1,6 @@
 import pytest
 import json
 
-
 import sys
 sys.path.append("/home/ubuntu/alb/alb/python")
 
@@ -15,9 +14,9 @@ from avi.sdk.samples.clone_vs import AviClone
 def pytest_addoption(parser):
     parser.addoption("--config", action="store", help="config file")
 
-@pytest.fixture(scope='module') 
-def setup(request): 
 
+@pytest.fixture(scope='module') 
+def setup(request):
     print("setup: read the cfg")
     config_file = request.config.getoption("--config")
     with open(config_file) as fp_config:
@@ -30,6 +29,10 @@ def setup(request):
         login_info.get("password", "fr3sca$%^"), api_version=login_info.get(
             "api_version", "17.1"), data_log=login_info['data_log'])    
 
+    request.config.cache.set('api', "123")
     yield (cfg, api)
-
     print("teardown: teardown")
+    all_pools_iter = api.get_objects_iter('pool')
+    for pool in all_pools_iter:
+        print("Deleting pool {}".format(pool["name"]))
+        api.delete_by_name('pool',pool["name"])
