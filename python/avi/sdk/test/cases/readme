@@ -1,6 +1,8 @@
 1. To execute cases
    > cd /home/ubuntu/alb/alb/python/avi/sdk/test/cases
    > pytest -s -v -m case1 --config /home/ubuntu/alb/alb/python/avi/sdk/test/cases/jenkins_test_api.cfg
+   #To run multiple tags
+   > pytest -s -v -m "case1 or case2" --config /home/ubuntu/alb/alb/python/avi/sdk/test/cases/jenkins_test_api.cfg
 
 2. request fixture
    https://stackoverflow.com/questions/22768976/how-to-share-a-variable-across-modules-for-all-tests-in-py-test
