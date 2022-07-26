@@ -27,7 +27,7 @@ def setup(request):
     api = ApiSession(
         login_info["controller_ip"], login_info.get("username", "admin"),
         login_info.get("password", "fr3sca$%^"), api_version=login_info.get(
-            "api_version", "17.1"), data_log=login_info['data_log'])    
+            "api_version", "17.1"), data_log=login_info['data_log'])
 
     yield (cfg, api)
 

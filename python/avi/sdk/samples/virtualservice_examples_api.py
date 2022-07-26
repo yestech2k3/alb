@@ -13,6 +13,7 @@
 import argparse
 import json
 import logging
+from pickle import FALSE
 import sys
 import random
 
@@ -33,7 +34,7 @@ root_logger.addHandler(ch)
 urllib3.disable_warnings()
 
 
-class VirtualServiceExample(object):
+class VirtualService(object):
     '''
     Provides example of following operations
     1. Create basic vs
@@ -46,34 +47,60 @@ class VirtualServiceExample(object):
         self.api = api
         self.api_utils = ApiUtils(api)
 
-    def create_basic_vs(self, vs_name, vip, servers=None):
+    def create_basic_vs(self, vs_name, vip_name, vip, pool_name, servers=None):
         # first create pool for virtual service
+        vip_obj = self.create_vip(vip_name, vip)
+        vip_ref = self.api.get_obj_ref(vip_obj)
+
         servers_obj = self.get_server_obj(servers)
-        pool_name = vs_name + '-pool'
         pool_obj = self.create_pool(pool_name, servers_obj)
         pool_ref = self.api.get_obj_ref(pool_obj)
 
         # create virtual service dict
-        services_obj = [{'port': 80, 'enable_ssl': False}]
         vs_obj = {
-            'name': vs_name,
-            'type': 'VS_TYPE_NORMAL',
-            'ip_address': {
-                'addr': vip,
-                'type': 'V4'
-            },
-            'enabled': True,
-            'services': services_obj,
-            'application_profile_name': 'System-HTTP',
-            'pool_ref': pool_ref
-        }
+            "name": vs_name,
+            "type": "VS_TYPE_NORMAL",
+            "enabled": True,
+            "services": [{
+                "port": 80,
+                "enable_ssl": False
+            }],
+            "vsvip_ref": vip_ref,
+            "pool_ref": pool_ref,
+            "application_profile_name": "System-HTTP"
+        }        
 
         # post VS data in json format to avi api
         resp = self.api.post('virtualservice', data=json.dumps(vs_obj))
         if resp.status_code in range(200, 299):
             logger.debug('Virtual service created successfully %s' % vs_name)
+            return(True)
         else:
             logger.debug('Error creating virtual service : %s' % resp.text)
+            return('Error creating virtual service : %s' % resp.text)
+
+    def create_vip(self, vipname, vip):
+        # create vip
+        vsvip_obj= {
+          "name": vipname,
+          "vip": [
+            {
+                "ip_address": {
+                    "addr": vip,
+                    "type": "V4"
+                }
+            }
+          ]
+        }
+
+        # post VS data in json format to avi api
+        resp = self.api.post('vsvip', data=json.dumps(vsvip_obj))
+        if resp.status_code in range(200, 299):
+            logger.debug('vip created successfully %s' % vipname)
+            return(resp)
+        else:
+            logger.debug('Error creating vip : %s' % resp.text)
+            assert False, 'Error creating vip : %s' % resp.text
 
     def create_ssl_vs(self, vs_name, vip, servers=None):
         # import certs.
@@ -278,7 +305,7 @@ class VirtualServiceExample(object):
             return resp
         else:
             print('Error in creating pool :%s' % resp.text)
-            exit(0)
+            assert False, 'Error in creating pool :%s' % resp.text
 
     def update_password(self, resource_name, new_val):
         obj = self.api.get_object_by_name('user', resource_name)
