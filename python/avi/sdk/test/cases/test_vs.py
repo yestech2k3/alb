@@ -63,3 +63,13 @@ class TestVS:
         resp = api.post('virtualservice', data=json.dumps(basic_vs_cfg["vs_obj"]),
                         api_version=cfg["LoginInfo"]["api_version"])
         assert resp.status_code in (200, 201),resp.json()
+
+    #case3
+        #Create tenant-test
+        #Verify new pool not present in tenant admin (api)
+        #Verify new pool present in tenant-test (tapi)
+        #Verify pool access by using admin api but by refering tenant_uuid
+        #Verify pool access by using admin api but by refering tenant name
+        #Verify response after pool delete (tapi)
+        #Verify pool access returns None, by using admin api but by refering tenant name
+        #Verify tenant delete (test-tenant) using tapi
