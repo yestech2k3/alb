@@ -28,7 +28,8 @@ from requests.packages import urllib3
 logger = logging.getLogger(__name__)
 ch = logging.StreamHandler(sys.stdout)
 root_logger = logging.getLogger()
-root_logger.setLevel(logging.DEBUG)
+#root_logger.setLevel(logging.DEBUG)
+root_logger.setLevel(logging.INFO)
 root_logger.addHandler(ch)
 
 urllib3.disable_warnings()
@@ -68,7 +69,7 @@ class VirtualService(object):
             "vsvip_ref": vip_ref,
             "pool_ref": pool_ref,
             "application_profile_name": "System-HTTP"
-        }        
+        }
 
         # post VS data in json format to avi api
         resp = self.api.post('virtualservice', data=json.dumps(vs_obj))
